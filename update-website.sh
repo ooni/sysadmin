@@ -1,13 +1,13 @@
 #!/bin/sh
 
-SETTINGS_DIR='settings/'
+SETTINGS_DIR='/home/art/sysadmin/settings/'
 
-source $SETTINGS_DIR/config.sh
+. $SETTINGS_DIR/config.sh
 # These commands are to be run on staticiforme
 ##
 
 # Update the reports collected from the oonib collector
-for collector in `cat ${SETTINGS_DIR}/collectors/`; do
+for collector in `cat ${SETTINGS_DIR}/collectors.txt`; do
   rsync -avzh $collector $REPORTS_DIR
 done
 
