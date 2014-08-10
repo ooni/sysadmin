@@ -33,7 +33,7 @@ sudo -u ooni rsync -avzh $DOCS_DIR $DST_DIR/build/docs
 
 # Update the reports and report lists
 echo "Updating the reports and report lists"
-sudo -u ooni rsync -avzh $REPORTS_DIR $DST_DIR/build/reports/0.1
+sudo -u ooni rsync -avzh $REPORTS_DIR/* $DST_DIR/build/reports/0.1
 
 # Publish the updated website
 echo "Publishing the website"
