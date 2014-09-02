@@ -1,0 +1,91 @@
+helpers:
+  daphn3:
+    address: null
+    pcap_file: null
+{% if enable_daphn3_helper == "yes" %}
+    port: {{ daphn3_port }}
+{% else %}
+    port: null
+{% endif %}
+    yaml_file: null
+  dns:
+    address: null
+    resolver_address: {{ dns_resolver_address }}
+{% if enable_dns_helper == "yes" %}
+    tcp_port: {{ dns_port_tcp }}
+    udp_port: {{ dns_port_udp }}
+{% else %}
+    tcp_port: null
+    udp_port: null
+{% endif %}
+  dns_discovery:
+    address: null
+    resolver_address: null
+{% if enable_dns_discovery_helper == "yes" %}
+    tcp_port: {{ dns_discover_port_tcp }}
+    udp_port: {{ dns_discover_port_udp }}
+{% else %}
+    tcp_port: null
+    udp_port: null
+{% endif %}
+  http-return-json-headers:
+    address: null
+{% if enable_http_return_json_headers_helper == "yes" %}
+    port: {{ http_return_json_headers_port }}
+{% else %}
+    port: null
+{% endif %}
+    server_version: Apache
+  ssl:
+    address: null
+    certificate: certificate.crt
+    private_key: private.key
+{% if enable_ssl_helper == "yes" %}
+    port: {{ ssl_port }}
+{% else %}
+    port: null
+{% endif %}
+  tcp-echo:
+    address: null
+{% if enable_tcp_echo_helper == "yes" %}
+    port: {{ tcp_echo_port }}
+{% else %}
+    port: null
+{% endif %}
+main:
+  archive_dir: /var/spool/ooni/backend/archive
+{% if enable_bouncer == "yes" %}
+  bouncer_file: /var/spool/ooni/backend/bouncer.yaml
+{% else %}
+  bouncer_file: null
+{% endif %}
+  chroot: null
+  database_uri: sqlite://oonib_test_db.db
+  db_threadpool_size: 10
+  debug: false
+  deck_dir: /usr/share/ooni/backend/decks
+  euid: null
+  gid: null
+  input_dir: /usr/share/ooni/backend/inputs
+  logfile: null
+  no_save: true
+  nodaemon: true
+  originalname: null
+  pidfile: oonib.pid
+{% if enable_policy == "yes" %}
+  policy_file: /var/spool/ooni/backend/policy.yaml
+{% else %}
+  policy_file: null
+{% endif %}
+  profile: null
+  report_dir: /var/spool/ooni/backend/reports
+  rundir: .
+  socks_port: 9055
+  stale_time: 3600
+  tor2webmode: false
+  tor_binary: null
+  tor_datadir: /var/spool/ooni/backend/tor
+  tor_hidden_service: true
+  uid: null
+  umask: null
+  uuid: null

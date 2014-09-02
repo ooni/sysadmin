@@ -1,0 +1,17 @@
+---
+- name: fetch tor apt key
+  shell: "gpg --keyserver keys.gnupg.net --recv 886DDD89"
+- name: install tor apt key
+  shell: "gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -"
+  sudo: yes
+
+- name: setup tor apt repo
+  apt_repository: >
+    repo='deb http://deb.torproject.org/torproject.org wheezy main'
+    state=present 
+    update_cache=yes
+- name: install tor and tor keyring packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items: ["deb.torproject.org-keyring", "tor"]
