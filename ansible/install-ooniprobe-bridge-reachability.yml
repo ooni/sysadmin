@@ -1,9 +1,8 @@
 ---
 - hosts: local
   tasks:
-  - name: ensure human user exists
-    user: name="human"
   roles:
+  - human
   - common
   - { role: ansible-ooniprobe,
       ooni_user: "human",
