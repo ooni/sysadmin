@@ -1,0 +1,14 @@
+---
+- hosts: local
+  tasks:
+  - name: ensure human user exists
+    user: name="human"
+  roles:
+  - common
+  - { role: ansible-ooniprobe,
+      ooni_user: "human",
+      ooni_home: "/home/human",
+      ooni_start_tor: "false",
+      ooni_cron_bridge_reachability: true,
+      sudo: yes
+  }
