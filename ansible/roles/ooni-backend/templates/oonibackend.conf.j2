@@ -53,7 +53,7 @@ helpers:
     port: null
 {% endif %}
 main:
-  archive_dir: /var/spool/ooni/backend/archive
+  archive_dir: {{ archive_dir }}
 {% if enable_bouncer == "yes" %}
   bouncer_file: /var/spool/ooni/backend/bouncer.yaml
 {% else %}
@@ -84,7 +84,7 @@ main:
   stale_time: 3600
   tor2webmode: false
   tor_binary: null
-  tor_datadir: /var/spool/ooni/backend/tor
+  tor_datadir: {{ tor_datadir }}
   tor_hidden_service: true
   uid: null
   umask: null

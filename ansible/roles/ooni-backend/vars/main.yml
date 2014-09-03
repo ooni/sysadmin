@@ -19,3 +19,4 @@ ssl_port: 57006
 enable_bouncer: no
 enable_policy: no
 archive_dir: /var/spool/ooni/backend/archive
+tor_datadir: /var/spool/ooni/backend/tor
