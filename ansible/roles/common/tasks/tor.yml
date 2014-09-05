@@ -10,6 +10,14 @@
     repo='deb http://deb.torproject.org/torproject.org wheezy main'
     state=present 
     update_cache=yes
+
+- name: setup tor apt repo
+  apt_repository: >
+    repo='deb http://deb.torproject.org/torproject.org tor-experimental-0.2.5.x-wheezy main'
+    state=present 
+    update_cache=yes
+  when: experimental_tor == "yes"
+
 - name: install tor and tor keyring packages
   apt:
     pkg: "{{ item }}"
