@@ -25,11 +25,11 @@ python $SYSADMIN_TOOLS_DIR/update-report-list.py $REPORTS_DIR $REPORTS_DIR/repor
 
 # Update the base website
 echo "Updating the base website"
-sudo -u ooni rsync -avzh $WEBSITE_DIR $DST_DIR/build/
+sudo -u ooni rsync -avzh $WEBSITE_DIR/ $DST_DIR/build
 
 # Update the docs
 echo "Updating the docs"
-sudo -u ooni rsync -avzh $DOCS_DIR $DST_DIR/build/docs
+sudo -u ooni rsync -avzh $DOCS_DIR/ $DST_DIR/build/docs
 
 # Update the reports and report lists
 echo "Updating the reports and report lists"
