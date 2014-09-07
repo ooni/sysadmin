@@ -6,8 +6,8 @@ SETTINGS_DIR='/home/art/sysadmin/settings/'
 # These commands are to be run on staticiforme
 ##
 
-sudo -u ooni echo
-sudo -u mirroradm echo
+sudo -v -u ooni
+sudo -v -u mirroradm
 
 # Update the reports collected from the oonib collector
 echo "Updating reports from collectors: "
