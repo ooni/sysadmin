@@ -7,7 +7,6 @@ SETTINGS_DIR='/home/art/sysadmin/settings/'
 ##
 
 sudo -v -u ooni
-sudo -v -u mirroradm
 
 # Update the reports collected from the oonib collector
 echo "Updating reports from collectors: "
