@@ -55,7 +55,7 @@ helpers:
 main:
   archive_dir: {{ archive_dir }}
 {% if enable_bouncer == "yes" %}
-  bouncer_file: /var/spool/ooni/backend/bouncer.yaml
+  bouncer_file: {{ bouncer_file }}
 {% else %}
   bouncer_file: null
 {% endif %}
@@ -73,7 +73,7 @@ main:
   originalname: null
   pidfile: oonib.pid
 {% if enable_policy == "yes" %}
-  policy_file: /var/spool/ooni/backend/policy.yaml
+  policy_file: {{ policy_file }}
 {% else %}
   policy_file: null
 {% endif %}

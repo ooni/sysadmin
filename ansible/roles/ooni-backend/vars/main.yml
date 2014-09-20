@@ -20,3 +20,5 @@ enable_bouncer: no
 enable_policy: no
 archive_dir: /var/spool/ooni/backend/archive
 tor_datadir: /var/spool/ooni/backend/tor
+bouncer_file: /var/spool/ooni/backend/bouncer.yaml
+policy_file: /var/spool/ooni/backend/policy.yaml
