@@ -63,10 +63,10 @@ main:
   database_uri: sqlite://oonib_test_db.db
   db_threadpool_size: 10
   debug: false
-  deck_dir: /usr/share/ooni/backend/decks
+  deck_dir: {{ deck_dir }}
   euid: null
   gid: null
-  input_dir: /usr/share/ooni/backend/inputs
+  input_dir: {{ input_dir }}
   logfile: null
   no_save: true
   nodaemon: true
