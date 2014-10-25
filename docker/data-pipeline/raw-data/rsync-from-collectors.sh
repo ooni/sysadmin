@@ -1,6 +1,7 @@
 #!/bin/bash
-dest=$1
+list=$1
+dest=$2
 while read line           
 do           
- rsync -ave ssh $line $dest
-done <collectors-conf.sh
+ rsync -av $line $dest
+done <$list
