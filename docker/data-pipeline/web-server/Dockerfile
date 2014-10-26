@@ -10,3 +10,4 @@ RUN rm -rf /etc/nginx/conf.d/* /srv/www/*
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD default.conf /etc/nginx/conf.d/default.conf
+CMD ["nginx"]
