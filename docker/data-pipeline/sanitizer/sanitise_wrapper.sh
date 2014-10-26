@@ -1,3 +1,4 @@
 #!/bin/bash
 . ./config.sh
-./ooni-pipeline/bin/oonipipeline sanitise
+cd ooni-pipeline
+./bin/oonipipeline sanitise
