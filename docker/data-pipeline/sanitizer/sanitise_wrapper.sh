@@ -1,3 +1,3 @@
 #!/bin/bash
 . ./config.sh
-./ooni-pipeline/tasks/sanitise.py
+./ooni-pipeline/bin/oonipipeline sanitise
