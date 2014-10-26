@@ -1,4 +1,6 @@
-#!/bin/dash
+#!/bin/bash
+
+. ./config.sh
 
 mkdir -p /data/raw
-docker run -d --name="sanitizer" -v /data/raw:/data/raw -v /data/sanitized:/data/sanitized -v /data/sanitized-archive:/data/sanitized-archive ooni/sanitizer
+docker run -d --name="sanitizer" -v $OONI_RAW_DIR:$OONI_RAW_DIR -v $OONI_SANITISED_DIR:$OONI_SANITISED_DIR -v $OONI_ARCHIVE_DIR:$OONI_ARCHIVE_DIR ooni/sanitizer
