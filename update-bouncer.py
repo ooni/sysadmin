@@ -27,8 +27,9 @@ def read_parts_from_mlabns():
     part_list = []
     for sliver in sliver_list:
         tool_extra_obj = json.loads(sliver['tool_extra'])
-        if 'policy' in tool_extra_obj and 'input' not in tool_extra_obj['policy']:
-            tool_extra_obj['policy']['input'] = []
+        for hs, value in tool_extra_obj.items():
+          if 'policy' in value and 'input' not in value['policy']:
+              value['policy']['input'] = []
         part_list.append(tool_extra_obj)
 
     return part_list
