@@ -3,4 +3,4 @@
     pkg: "{{ item }}"
     state: latest
   with_items: ["build-essential", "python-dev", "python-setuptools", "openssl",
-               "libsqlite3-dev", "libffi-dev"]
+               "libssl-dev", "libyaml-dev","libsqlite3-dev", "libffi-dev"]
