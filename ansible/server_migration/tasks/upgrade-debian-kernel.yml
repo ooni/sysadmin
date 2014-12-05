@@ -1,0 +1,18 @@
+---
+  - name: Apt install kernel from debian testing
+    apt: name={{ item }} update_cache=yes default_release=testing state=latest
+    with_items:
+    - linux-image-amd64
+    when: ansible_kernel < '3.8.*'
+    register: kernel
+  - name: Rebooting ...
+    command: shutdown -r now "Ansible kernel update applied"
+    async: 0
+    poll: 0
+    ignore_errors: true
+    when: kernel.changed
+  - name: Waiting for server to come back...
+    local_action: wait_for host={{ inventory_hostname }}
+                  state=started
+    sudo: false
+    when: kernel.changed
