@@ -1,0 +1,3 @@
+---
+- include: install-docker.yml
+- include: deploy-containers.yml
