@@ -2,18 +2,8 @@
 - hosts: ooni-pipeline-hosts
   sudo: yes
   tasks:
-  - name: Install ansible requirements for apt module
-    apt: name={{item}} update_cache=yes state=latest
-    with_items:
-    - python-apt
-    - apt-transport-https
-  - name: Add Debian testing repo
-    apt_repository: repo='deb http://cdn.debian.net/debian/ testing main' 
-                    state=present update_cache=yes
-  - name: Configure APT preferences for Debian stable/testing
-    template: src=apt_debian-testing.preferences 
-              dest=/etc/apt/preferences.d/apt_debian-testing.pref
-              owner=root group=root mode=0644 backup=yes
+  - include: tasks/apt_add_testing.yml
+  - include: tasks/upgrade-debian-kernel.yml
   - name: Apt install docker.io
     apt: name={{ item }} update_cache=yes default_release=testing
     with_items:
