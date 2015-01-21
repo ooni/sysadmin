@@ -1,0 +1,86 @@
+---
+- hosts: ooni-pipeline-hosts
+  sudo: yes
+  vars:
+    - dockers_path: '{{ OONI_SYSADMIN_PATH }}/docker'
+  tasks:
+  - name: Install ansible requirements for docker
+    apt: name={{ item }} update_cache=yes state=latest default_release=testing
+    with_items:
+      - python-docker
+  - name: Checkout oonisysadmin repo
+    git: repo=https://github.com/TheTorProject/ooni-sysadmin.git 
+         dest={{ OONI_SYSADMIN_PATH }}
+  - name: Build (or check) docker images
+    docker_image: path={{ item.path }} state=build name={{ item.name }} 
+    with_items:
+      - { path: '{{ dockers_path }}/backend',
+          name: 'bridge-reachability-collector'}
+      - { path: '{{ dockers_path }}/probe',
+          name: 'bridge-reachability-probe'}
+      - { path: '{{ dockers_path }}/data-pipeline/importer',
+          name: 'ooni/import'}
+      - { path: '{{ dockers_path }}/data-pipeline/raw-data',
+          name: 'ooni/rsync-collector-raw'}
+      - { path: '{{ dockers_path }}/data-pipeline/sanitizer',
+          name: 'ooni/sanitizer'}
+      - { path: '{{ dockers_path }}/data-pipeline/web-server',
+          name: 'ooni/web-server'}
+    ignore_errors: True
+    register: docker_images
+    tags:
+       - docker_build
+  - name: Create missing directories
+    file: dest={{ item }} state=directory
+    with_items:
+      - /data/raw/
+      - /data/collector-raw-data
+      - '{{ OONI_RAW_DIR }}'
+      - '{{ OONI_SANITISED_DIR }}'
+      - '{{ OONI_ARCHIVE_DIR }}'
+      - '{{ OONI_PUBLIC_DIR }}'
+  - name: Run docker containers
+    docker: state=running image={{ item.image }} name={{ item.name }}
+            volumes={{ item.volumes }} env="{{ item.env }}"
+    with_items:
+      - { image: 'ooni/import',
+          name: 'importer',
+          env: "OONI_BRIDGE_DB_FILE={{ OONI_BRIDGE_DB_FILE }},\
+                OONI_RAW_DIR={{ OONI_RAW_DIR }},\
+                OONI_SANITISED_DIR={{ OONI_SANITISED_DIR }},\
+                OONI_ARCHIVE_DIR={{ OONI_ARCHIVE_DIR }},\
+                OONI_PUBLIC_DIR={{ OONI_PUBLIC_DIR }}",
+          volumes: "{{ OONI_SANITISED_DIR }}:{{ OONI_SANITISED_DIR }},\
+                   {{ OONI_PUBLIC_DIR }}:{{ OONI_PUBLIC_DIR }}" }
+
+      - { image: 'ooni/sanitizer',
+          name: 'ooni_sanitizer',
+          env: "OONI_BRIDGE_DB_FILE={{ OONI_BRIDGE_DB_FILE }},\
+                OONI_RAW_DIR={{ OONI_RAW_DIR }},\
+                OONI_SANITISED_DIR={{ OONI_SANITISED_DIR }},\
+                OONI_ARCHIVE_DIR={{ OONI_ARCHIVE_DIR }},\
+                OONI_PUBLIC_DIR={{ OONI_PUBLIC_DIR }},\
+                OONI_DB_IP={{ OONI_DB_IP }},\
+                OONI_DB_PORT={{ OONI_DB_PORT }},\
+                OONI_REMOTE_SERVERS_FILE = {{ OONI_REMOTE_SERVERS_FILE }}",
+          volumes: "{{ OONI_SANITISED_DIR }}:{{ OONI_SANITISED_DIR }},\
+                    {{ OONI_ARCHIVE_DIR }}:{{ OONI_ARCHIVE_DIR }},\
+                    {{ OONI_RAW_DIR }}:{{ OONI_RAW_DIR }}" }
+  - name: Run docker containers
+    docker: state=running image={{ item.image }} name={{ item.name }}
+            volumes={{ item.volumes }}
+    with_items:
+      - { image: 'ooni/rsync-collector-raw',
+          name: 'rsync-collector-raw',
+          volumes: "/data/raw/:/data/raw,\
+                   /data/collector-raw-data:/data/collector-raw-data" }
+      - { image: 'ooni/collector',
+          name: 'bridge-reachability-collector',
+          volumes: "/data/collector/:/data"}
+      - { image: 'ooni/probe-bridge-reachability',
+          name: 'bridge-reachability-probe',
+          volumes: "/data/probe/bridge_reachability/:/data/bridge_reachability/"}
+    ignore_errors: True
+  - name: Run remaining docker containers
+    docker: state=running image='ooni/web-server' name='web-server'
+            volumes='{{ OONI_PUBLIC_DIR }}:/srv/www/' ports='80:80'

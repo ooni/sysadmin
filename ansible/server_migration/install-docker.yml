@@ -1,0 +1,10 @@
+---
+- hosts: ooni-pipeline-hosts
+  sudo: yes
+  tasks:
+  - include: tasks/apt_add_testing.yml
+  - include: tasks/upgrade-debian-kernel.yml
+  - name: Apt install docker.io
+    apt: name={{ item }} update_cache=yes default_release=testing
+    with_items:
+    - docker.io
