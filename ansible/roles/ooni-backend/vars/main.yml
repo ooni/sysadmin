@@ -1,3 +1,4 @@
+oonibackend_package: oonibackend
 enable_dns_helper: yes
 enable_dns_discovery_helper: yes
 enable_http_return_json_headers_helper: yes
