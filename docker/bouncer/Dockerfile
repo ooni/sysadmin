@@ -2,9 +2,7 @@ FROM debian:wheezy
 MAINTAINER Arturo Filastò <art@torproject.org>
 RUN apt-get -y update
 RUN apt-get install -y python-pip python-dev git
-RUN git clone http://github.com/ansible/ansible.git /tmp/ansible
-WORKDIR /tmp/ansible
-RUN make install
+RUN pip install ansible==1.7.1
 ADD inventory /etc/ansible/hosts
 RUN git clone http://github.com/TheTorProject/ooni-sysadmin.git /tmp/ooni-sysadmin
 WORKDIR /tmp/ooni-sysadmin/
