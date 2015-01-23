@@ -33,3 +33,21 @@ Send bitcoins to:
 16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
 ```
 
+
+# Instructions
+
+Unless otherwise indicated the instructions are for debian wheezy.
+
+## Setting up docker
+
+```
+# Install kernel >3.8
+echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
+apt-get update
+apt-get install -t wheezy-backports linux-image-amd64
+apt-get install curl
+# Install docker
+curl -sSL https://get.docker.com/ | sh
+```
+
+

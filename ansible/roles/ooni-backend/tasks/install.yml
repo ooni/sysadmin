@@ -1,3 +1,7 @@
 ---
 - name: Install ooni-backend via pip
   pip: name="oonibackend" state="latest"
+- name: Create ooni log directory
+  file: path=/var/log/ooni state=directory
+- name: Create ooni spool directory
+  file: path=/var/spool/ooni state=directory
