@@ -24,3 +24,4 @@ bouncer_file: /var/spool/ooni/backend/bouncer.yaml
 policy_file: /var/spool/ooni/backend/policy.yaml
 deck_dir: /usr/share/ooni/backend/decks
 input_dir: /usr/share/ooni/backend/inputs
+report_dir: /var/spool/ooni/backend/raw_reports
