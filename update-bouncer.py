@@ -31,6 +31,9 @@ def read_parts_from_mlabns():
         except ValueError:
             # Skip invalid tool_extra values
             continue
+        except KeyError:
+            # Skip entries with missing tool_extra
+            continue
         for hs, value in tool_extra_obj.items():
           if 'policy' in value and 'input' not in value['policy']:
               value['policy']['input'] = []
