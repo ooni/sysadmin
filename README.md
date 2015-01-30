@@ -59,5 +59,5 @@ everything goes bad.
 
 ```
 cd ansible/server_migration/
-ansible-playbook -i hosts main.yml -vvvv
+ansible-playbook -i hosts pipeline.yml -vvvv
 ```
