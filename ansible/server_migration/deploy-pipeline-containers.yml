@@ -14,10 +14,6 @@
   - name: Build (or check) docker images
     docker_image: path={{ item.path }} state=build name={{ item.name }} 
     with_items:
-      - { path: '{{ dockers_path }}/backend',
-          name: 'bridge-reachability-collector'}
-      - { path: '{{ dockers_path }}/probe',
-          name: 'bridge-reachability-probe'}
       - { path: '{{ dockers_path }}/data-pipeline/importer',
           name: 'ooni/import'}
       - { path: '{{ dockers_path }}/data-pipeline/raw-data',
@@ -26,7 +22,7 @@
           name: 'ooni/sanitizer'}
       - { path: '{{ dockers_path }}/data-pipeline/web-server',
           name: 'ooni/web-server'}
-    ignore_errors: True
+    ignore_errors: False
     register: docker_images
     tags:
        - docker_build
@@ -74,12 +70,6 @@
           name: 'rsync-collector-raw',
           volumes: "/data/raw/:/data/raw,\
                    /data/collector-raw-data:/data/collector-raw-data" }
-      - { image: 'ooni/collector',
-          name: 'bridge-reachability-collector',
-          volumes: "/data/collector/:/data"}
-      - { image: 'ooni/probe-bridge-reachability',
-          name: 'bridge-reachability-probe',
-          volumes: "/data/probe/bridge_reachability/:/data/bridge_reachability/"}
     ignore_errors: True
   - name: Run remaining docker containers
     docker: state=running image='ooni/web-server' name='web-server'

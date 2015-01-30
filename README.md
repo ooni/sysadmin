@@ -50,4 +50,14 @@ apt-get install curl
 curl -sSL https://get.docker.com/ | sh
 ```
 
+# Disaster recovery procedure
 
+This is the procedure to restore all the system of the OONI infrastructure if
+everything goes bad.
+
+## Restore OONI pipeline
+
+```
+cd ansible/server_migration/
+ansible-playbook -i hosts main.yml -vvvv
+```
