@@ -61,7 +61,8 @@
                 OONI_REMOTE_SERVERS_FILE = {{ OONI_REMOTE_SERVERS_FILE }}",
           volumes: "{{ OONI_SANITISED_DIR }}:{{ OONI_SANITISED_DIR }},\
                     {{ OONI_ARCHIVE_DIR }}:{{ OONI_ARCHIVE_DIR }},\
-                    {{ OONI_RAW_DIR }}:{{ OONI_RAW_DIR }}" }
+                    {{ OONI_RAW_DIR }}:{{ OONI_RAW_DIR }},\
+                    {{ OONI_PRIVATE_DIR }}:{{ OONI_PRIVATE_DIR }}" }
   - name: Run docker containers
     docker: state=running image={{ item.image }} name={{ item.name }}
             volumes={{ item.volumes }}
