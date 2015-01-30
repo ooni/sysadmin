@@ -1,7 +1,7 @@
 [ooni-pipeline-hosts]
 #pipeline.infra.ooni.nu
-#104.193.9.122
-localhost
+104.193.9.122
+#localhost
 
 [ooni-pipeline-hosts:vars]
 #ansible_ssh_user=

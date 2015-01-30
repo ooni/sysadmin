@@ -18,8 +18,8 @@
           name: 'ooni/import'}
       - { path: '{{ dockers_path }}/data-pipeline/raw-data',
           name: 'ooni/rsync-collector-raw'}
-      - { path: '{{ dockers_path }}/data-pipeline/sanitizer',
-          name: 'ooni/sanitizer'}
+      - { path: '{{ dockers_path }}/data-pipeline/sanitiser',
+          name: 'ooni/sanitiser'}
       - { path: '{{ dockers_path }}/data-pipeline/web-server',
           name: 'ooni/web-server'}
     ignore_errors: False
@@ -49,8 +49,8 @@
           volumes: "{{ OONI_SANITISED_DIR }}:{{ OONI_SANITISED_DIR }},\
                    {{ OONI_PUBLIC_DIR }}:{{ OONI_PUBLIC_DIR }}" }
 
-      - { image: 'ooni/sanitizer',
-          name: 'ooni_sanitizer',
+      - { image: 'ooni/sanitiser',
+          name: 'ooni_sanitiser',
           env: "OONI_BRIDGE_DB_FILE={{ OONI_BRIDGE_DB_FILE }},\
                 OONI_RAW_DIR={{ OONI_RAW_DIR }},\
                 OONI_SANITISED_DIR={{ OONI_SANITISED_DIR }},\

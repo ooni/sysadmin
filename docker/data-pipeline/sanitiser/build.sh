@@ -1,3 +1,3 @@
 # build
-docker build -t ooni/sanitizer --force-rm .
+docker build -t ooni/sanitiser --force-rm .
 
