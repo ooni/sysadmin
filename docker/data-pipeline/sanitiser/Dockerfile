@@ -6,6 +6,6 @@ WORKDIR /tmp/sanitiser
 RUN git clone https://github.com/TheTorProject/ooni-pipeline.git
 RUN chmod u+rx /tmp/sanitiser/ooni-pipeline/bin/oonipipeline
 COPY config.sh /tmp/sanitiser/config.sh
-COPY sanitiser_wrapper.sh /tmp/sanitiser/sanitiser_wrapper.sh
-RUN chmod u+rx /tmp/sanitiser/sanitiser_wrapper.sh
-CMD ./sanitiser_wrapper.sh
+COPY run.sh /tmp/sanitiser/run.sh
+RUN chmod u+rx /tmp/sanitiser/run.sh
+CMD ./run.sh
