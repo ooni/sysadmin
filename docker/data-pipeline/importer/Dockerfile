@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 RUN apt-get update -y
 RUN apt-get install git python python-yaml python-pymongo -y
 WORKDIR /tmp/importer
