@@ -46,6 +46,11 @@ def assemble_bouncer_config(base_bouncer, parts):
     merged_parts = {}
     for part in parts:
         merged_parts.update(part)
+        onion = part.keys()[0]
+        if not part[onion]['test-helper']['http-return-json-headers'].endswith('80'):
+          del part[onion]['test-helper']['http-return-json-headers']
+        if not part[onion]['test-helper']['tcp-echo'].endswith('80'):
+          del part[onion]['test-helper']['tcp-echo']
     bouncer_config = base_bouncer
     bouncer_config['collector'].update(merged_parts)
     return yaml.safe_dump(bouncer_config)
