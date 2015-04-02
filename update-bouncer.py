@@ -69,6 +69,11 @@ def write_bouncer_config(path, bouncer_config_contents):
 dst_bouncer_path = '/data/bouncer-nkvphnp3p6agi5qq/bouncer.yaml'
 base_bouncer_path = '/data/bouncer-nkvphnp3p6agi5qq/bouncer-base.yaml'
 base_bouncer = yaml.safe_load(open(base_bouncer_path))
-parts = read_parts_from_mlabns()
+while True:
+    try:
+        parts = read_parts_from_mlabns()
+        break
+    except:
+        pass
 bouncer_config = assemble_bouncer_config(base_bouncer, parts)
 write_bouncer_config(dst_bouncer_path, bouncer_config)
