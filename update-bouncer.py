@@ -27,12 +27,14 @@ def read_parts_from_mlabns():
     part_list = []
     for sliver in sliver_list:
         try:
-            tool_extra_obj = json.loads(sliver['tool_extra'])
+            tool_extra_obj = json.loads(sliver['tool_extra'][2:])
         except ValueError:
             # Skip invalid tool_extra values
+            print "Skipping invalid tool_extra"
             continue
         except KeyError:
             # Skip entries with missing tool_extra
+            print "Skipping missing tool_extra"
             continue
         for hs, value in tool_extra_obj.items():
           if 'policy' in value and 'input' not in value['policy']:
