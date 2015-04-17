@@ -4,7 +4,7 @@ import yaml
 import json
 import urllib
 
-MLAB_NS_QUERY_URL = "http://mlab-nstesting.appspot.com/ooni?policy=all"
+MLAB_NS_QUERY_URL = "http://mlab-ns.appspot.com/ooni?policy=all"
 
 
 def read_parts_from_mlabns():
