@@ -4,7 +4,7 @@ import yaml
 import json
 import urllib
 
-MLAB_NS_QUERY_URL = "http://mlab-nstesting.appspot.com/ooni?policy=all"
+MLAB_NS_QUERY_URL = "http://mlab-ns.appspot.com/ooni?policy=all"
 
 
 def read_parts_from_mlabns():
@@ -66,8 +66,8 @@ def write_bouncer_config(path, bouncer_config_contents):
         exit(1)
 
 
-dst_bouncer_path = '/data/bouncer-nkvphnp3p6agi5qq/bouncer.yaml'
-base_bouncer_path = '/data/bouncer-nkvphnp3p6agi5qq/bouncer-base.yaml'
+dst_bouncer_path = '/data/bouncer/bouncer.yaml'
+base_bouncer_path = '/data/bouncer/bouncer-base.yaml'
 base_bouncer = yaml.safe_load(open(base_bouncer_path))
 while True:
     try:
