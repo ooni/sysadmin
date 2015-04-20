@@ -11,8 +11,8 @@ infrastructure.
 
 hostname | role | maintainers | notes | cost |
 ------------- | ------------- | ----------- |----------- |----------- |
-ooni-pipeline quadix | pipeline, canonical reports mirror | hellais, andaraz| | 50 USD/month |
-ooni-test gr         | canonical bouncer, canonical collector |hellais, andaraz| | 0 EUR/month | 
+pipeline.infra.ooni.nu | pipeline, canonical reports mirror | hellais, andaraz| | 50 USD/month |
+bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, andaraz| | 0 EUR/month | 
 vps770.greenhost.nl  | collector bridge reachability,  |hellais, andaraz| | 0 EUR/month |
 ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, andaraz| | 0 EUR/month |
 
