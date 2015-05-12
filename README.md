@@ -16,6 +16,7 @@ bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais,
 vps770.greenhost.nl  | collector bridge reachability,  |hellais, andaraz| | 0 EUR/month |
 ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, andaraz| | 0 EUR/month |
 manager.infra.ooni.nu         | amabari manager, hadoop single node cluster |hellais | | 60 USD/month | 
+ooni-deb         | debian repository, collector |hellais, aagbsn | | ?? | 
 
 
 ## Probing infrastructure
