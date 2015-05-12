@@ -18,7 +18,7 @@ ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, andaraz
 manager.infra.ooni.nu         | amabari manager, hadoop single node cluster |hellais | | 60 USD/month | 
 ooni-deb         | debian repository, collector |hellais, aagbsn | | ?? | 
 marcello         | development/playground |hellais | | 0 EUR/month | 
-
+ooni-tpo-collector | backup collector |hellais, aagbsn | | 0 EUR/month |
 
 ## Probing infrastructure
 hostname | role | maintainers | notes | cost | next due date
