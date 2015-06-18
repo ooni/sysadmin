@@ -1,5 +1,5 @@
 ---
 - name: Perform analysis
-  command: "{{ ansible_env.HOME }}/virtualenvs/{{ virtualenv_name }}/bin/python perform_analysis.py -c {{ country_code }}"
+command: "{{ ansible_env.HOME }}/virtualenvs/{{ virtualenv_name }}/bin/python perform_analysis.py -l -c {{ country_code }}"
   args:
-    chdir="{{ ansible_env.HOME}}/trackmap/"
+    chdir: "{{ ansible_env.HOME}}/trackmap/"

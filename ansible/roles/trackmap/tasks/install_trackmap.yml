@@ -47,7 +47,7 @@
   file: path=/usr/local/bin/phantomjs state=file mode=0755
   sudo: yes
 
-- name: Install ooni-sysadmin pip requirements
+- name: Install virtualenvwrapper
   pip: name="virtualenvwrapper" state=present
   sudo: yes
 
@@ -61,14 +61,6 @@
 
 - name: Create ~/virtualenvs/
   file: path="{{ ansible_env.HOME }}/virtualenvs" state=directory
-
-- name: Clone the ooni-sysadmin repository to the home
-  git: repo=https://github.com/thetorproject/ooni-sysadmin.git dest={{ ansible_env.HOME }}/ooni-sysadmin
-
-- name: Install ooni-sysadmin pip requirements
-  pip: requirements={{ ansible_env.HOME }}/ooni-sysadmin/requirements.txt
-        virtualenv={{ ansible_env.HOME }}/virtualenvs/{{ virtualenv_name }}
-        virtualenv_site_packages=yes
 
 - name: Clone the trackmap repository to the home
   git: repo=https://github.com/vecna/trackmap.git dest={{ ansible_env.HOME }}/trackmap
