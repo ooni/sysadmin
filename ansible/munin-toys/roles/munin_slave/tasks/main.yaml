@@ -1,0 +1,25 @@
+- apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  with_items:
+      - munin-node
+      - libnet-ssleay-perl
+
+- name: Configure munin slave
+  template: src=munin-node.conf
+            dest=/etc/munin/munin-node.conf
+            owner=root group=root mode=0644
+
+- name: Install munin SSL cert
+  template: src=private/ssl-cert-munin.pem
+            dest=/etc/munin/ssl-cert-munin.pem
+            owner=root group=root mode=0644
+
+- name: Install munin SSL key
+  template: src=private/ssl-key-munin.pem
+            dest=/etc/munin/ssl-key-munin.pem
+            owner=root group=root mode=0600
+
+- name: Restart munin-node
+  service: name=munin-node state=restarted

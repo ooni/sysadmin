@@ -1,0 +1,27 @@
+this is a demo of the munin master and slave roles.
+it'll spin up 3 slaves and a master (which is also a slave).
+the munins auth and talk to each other over tls.
+the master serves graphs over nginx with tls and basic-auth.
+annoyingly, for alerting (eg. sms), munin doesn't trigger
+an alert if a slave is unreachable. so i included a cheeky
+plugin that graphs the rate of ERRORs in the munin master
+log. we can alert if that rate exceeds zero :)
+
+run.sh is the toplevel thing. it complains if you forget the
+aws key env vars, then runs the top.yaml ansible playbook.
+that runs a few things:
+* ec.yaml spins up instances (if necessary) and populates the
+  ansible inventory.
+* runs the master/slave ansible roles against the respective
+  ec2 instances.
+
+keys involved:
+  keys from amazon:
+    * AWS_ACCESS_KEY and AWS_SECRET_KEY
+  keys generated with provided scripts:
+    * ssh-key{,.pub}: you have to tell AWS about this one
+      before you refer to it by name in the ec2.yaml script.
+    * ssl key and cert for munin: slaves and master auth
+      each other and talk privately.
+    * ssl key and cert for nginx: talk privately to nginx.
+    * http basic auth crypt() thing: auth to nginx.
