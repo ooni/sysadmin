@@ -1,3 +1,6 @@
 ---
 - name: configure oonibackend
-  template: src=oonibackend.conf.j2 dest=/etc/oonibackend.conf
+  template: >
+    src=oonibackend.conf.j2
+    dest={{ oonibackend_conf }}
+    backup=yes
