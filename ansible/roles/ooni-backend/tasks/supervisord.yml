@@ -1,0 +1,9 @@
+---
+- name: Template oonibackend supervisord config
+  sudo: yes
+  template: >
+    src=oonibackend-supervisor.conf.j2 
+    dest="{{ supervisord_additional_conf_dir }}/oonibackend.conf"
+- name: Set oonib supervisord
+  sudo: yes
+  supervisorctl: name=oonib state=present
