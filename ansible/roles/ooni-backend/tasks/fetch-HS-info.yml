@@ -1,0 +1,13 @@
+---
+- name: Wait for collector HS to bootstrap
+  wait_for: >
+    path="{{ oonibackend_log_path }}/oonibackend.log"
+    search_regex="Started hidden service"
+    delay=10
+- name: Fetch Tor HS hostname
+  fetch: >
+    synchronize 
+    src={{ tor_datadir }}/collector/hostname
+    dest=../private/collector-HS-{{ inventory_hostname }}
+    flat=yes
+    fail_on_missing=yes
