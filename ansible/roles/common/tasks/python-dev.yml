@@ -4,3 +4,11 @@
     state: latest
   with_items: ["build-essential", "python-dev", "python-setuptools", "openssl",
                "libssl-dev", "libyaml-dev","libsqlite3-dev", "libffi-dev"]
+- name: install requirements for compiling python extensions
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items: ["build-essential", "python-dev", "python-setuptools", "openssl",
+               "libssl-dev", "libyaml-dev","libsqlite3-dev", "libffi-dev",
+               "python-pip"]
+  when: ansible_distribution_release == 'Debian' and ansible_distribution_version >= '8'
