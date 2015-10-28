@@ -1,0 +1,6 @@
+[custom]
+hostname
+
+[custom:vars]
+# Set to true to set ooni-backend supervisor service
+set_supervisord='true'
