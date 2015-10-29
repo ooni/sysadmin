@@ -30,3 +30,4 @@ report_dir: /var/spool/ooni/backend/raw_reports
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
 oonibackend_conf: /etc/oonibackend.conf
+oonibackend_log_file_name: oonibackend.log

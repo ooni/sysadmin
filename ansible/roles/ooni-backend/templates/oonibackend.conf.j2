@@ -67,7 +67,7 @@ main:
   euid: null
   gid: null
   input_dir: {{ input_dir }}
-  logfile: /var/log/ooni/oonibackend.log
+  logfile: {{ oonibackend_log_path }}/{{ oonibackend_log_file_name }}
   no_save: true
   nodaemon: true
   originalname: null
