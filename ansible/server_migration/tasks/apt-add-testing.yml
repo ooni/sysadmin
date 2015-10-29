@@ -5,7 +5,7 @@
     - python-apt
     - apt-transport-https
   - name: Add Debian testing repo
-    apt_repository: repo='deb http://httpredir.debian.net/debian/ testing main'
+    apt_repository: repo='deb http://httpredir.debian.org/debian/ testing main'
                     state=present update_cache=yes
   - name: Configure APT preferences for Debian stable/testing
     template: src=apt_debian-testing.preferences 
