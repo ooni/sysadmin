@@ -1,0 +1,6 @@
+#Ansible: run_ooniprobe_deck
+#!/bin/bash
+# Run ooniprobe daily deck test
+flock --nonblock /run/oonprobe.daily.lock su Debian-ooni -c \
+"cd /var/lib/ooni/reports && ooniprobe -f {{ ooniprobe_config }} -i \
+{{ ooniprobe_daily_deck_file }}" > /dev/null

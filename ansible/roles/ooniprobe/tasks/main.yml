@@ -1,0 +1,6 @@
+---
+- include: install.yml
+  when: set_ooniprobe_pip is not defined
+- include: install-git.yml
+  when: set_ooniprobe_pip == 'true'
+- include: cron.yml

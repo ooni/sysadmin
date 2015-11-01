@@ -1,0 +1,8 @@
+custom_debian_release_name: stretch
+custom_debian_repository: "deb http://httpredir.debian.org/debian/ {{ custom_debian_release_name }} main"
+ooniprobe_log_file: /var/log/ooni/ooniprobe.log
+ooniprobe_collector: "{{ inventory_ooniprobe_collector }}"
+ooniprobe_bouncer: "{{ inventory_ooniprobe_bouncer }}"
+ooniprobe_data_dir: /var/lib/ooni/reports
+ooniprobe_config: /etc/ooniprobe.conf
+ooniprobe_daily_deck_file: /var/lib/ooni/decks/debian-default/user.deck

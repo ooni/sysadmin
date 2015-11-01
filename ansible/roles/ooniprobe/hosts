@@ -1,0 +1,7 @@
+[custom]
+hostname
+
+[custom:vars]
+# Set true set_ooniprobe_pip to install ooniprobe via pip (git)
+# By default ooniprobe will be installed via apt (set_ooniprobe_pip unset)
+#set_ooniprobe_pip='true'
