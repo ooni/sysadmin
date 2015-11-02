@@ -7,15 +7,35 @@ basic:
     logfile: {{ ooniprobe_log_file }}
 privacy:
     # Should we include the IP address of the probe in the report?
+    {% if ooniprobe_includeip is true %}
+    includeip: true
+    {% else %}
     includeip: false
+    {% endif %}
     # Should we include the ASN of the probe in the report?
+    {% if ooniprobe_includeasn is false %}
+    includeasn: false
+    {% else %}
     includeasn: true
+    {% endif %}
     # Should we include the country as reported by GeoIP in the report?
+    {% if ooniprobe_includecountry is false %}
+    includecountry: false
+    {% else %}
     includecountry: true
+    {% endif %}
     # Should we include the city as reported by GeoIP in the report?
+    {% if ooniprobe_includecity is true %}
+    includecity: true
+    {% else %}
     includecity: false
+    {% endif %}
     # Should we collect a full packet capture on the client?
+    {% if ooniprobe_pcap is true %}
+    includepcap: true
+    {% else %}
     includepcap: false
+    {% endif %}
 reports:
     # This is a packet capture file (.pcap) to load as a test:
     pcap: null
@@ -42,17 +62,41 @@ advanced:
     # explicitly set the control port and SOCKS port
     start_tor: true
     # After how many seconds we should give up on a particular measurement
+    {% if ooniprobe_measurement_timeout is defined %}
+    measurement_timeout: {{ ooniprobe_measurement_timeout }}
+    {% else %}
     measurement_timeout: 60
+    {% endif %}
     # After how many retries we should give up on a measurement
+    {% if ooniprobe_measurement_retries is defined %}
+    measurement_retries: {{ ooniprobe_measurement_retries }}
+    {% else %}
     measurement_retries: 3
+    {% endif %}
     # How many measurments to perform concurrently
+    {% if ooniprobe_measurement_concurrency is defined %}
+    measurement_concurrency: {{ ooniprobe_measurement_concurrency }}
+    {% else %}
     measurement_concurrency: 10
+    {% endif %}
     # After how may seconds we should give up reporting
+    {% if ooniprobe_reporting_timeout is defined %}
+    reporting_timeout: {{ ooniprobe_reporting_timeout }}
+    {% else %}
     reporting_timeout: 80
+    {% endif %}
     # After how many retries to give up on reporting
+    {% if ooniprobe_reporting_retries is defined %}
+    reporting_retries: {{ ooniprobe_reporting_retries }}
+    {% else %}
     reporting_retries: 4
+    {% endif %}
     # How many reports to perform concurrently
+    {% if ooniprobe_reporting_concurrency is defined %}
+    reporting_concurrency: {{ ooniprobe_reporting_concurrency }}
+    {% else %}
     reporting_concurrency: 15
+    {% endif %}
     # Specify here a custom data_dir path
     data_dir: {{ ooniprobe_data_dir }}
     oonid_api_port: 8042
