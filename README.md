@@ -28,16 +28,6 @@ probe ua | bridge reachability study | hellais, griffin| | 0 EUR/month | |
 probe cn | bridge reachability study | hellais | | 10 USD/month | 2015-05-10
 probe ir | bridge reachability study | hellais | | 30 USD/month | 2015-03-21
 
-
-## Donate to support OONI infrastructure
-
-Send bitcoins to:
-![bitcoin address](http://i.imgur.com/CIWHb5R.png)
-```
-1Ai9d4dhDBjxYVkKKf1pFXptEGfM1vxFBf
-```
-
-
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.
