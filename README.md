@@ -32,9 +32,9 @@ probe ir | bridge reachability study | hellais | | 30 USD/month | 2015-03-21
 ## Donate to support OONI infrastructure
 
 Send bitcoins to:
-![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
+![bitcoin address](http://i.imgur.com/CIWHb5R.png)
 ```
-16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
+1Ai9d4dhDBjxYVkKKf1pFXptEGfM1vxFBf
 ```
 
 
