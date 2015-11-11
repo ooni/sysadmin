@@ -9,24 +9,24 @@ infrastructure.
 
 ## Backend infrastructure
 
-hostname | role | maintainers | notes | cost |
-------------- | ------------- | ----------- |----------- |----------- |
-pipeline.infra.ooni.nu | pipeline, canonical reports mirror | hellais, andaraz| | 50 USD/month |
-bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, andaraz| | 0 EUR/month | 
-vps770.greenhost.nl  | collector bridge reachability,  |hellais, andaraz| | 0 EUR/month |
-ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, andaraz| | 0 EUR/month |
-manager.infra.ooni.nu         | amabari manager, hadoop single node cluster |hellais | | 60 USD/month | 
-ooni-deb         | debian repository, collector |hellais, aagbsn | | ?? | 
-marcello         | development/playground |hellais | | 0 EUR/month | 
-ooni-tpo-collector | backup collector |hellais, aagbsn | | 0 EUR/month |
+hostname | role | maintainers | notes |
+------------- | ------------- | ----------- |----------- |
+bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, andaraz| | 
+vps770.greenhost.nl  | collector bridge reachability,  |hellais, andaraz| |
+ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, andaraz| |
+ooni-deb         | debian repository, collector |hellais, aagbsn | what should we do 'bout this? | 
+marcello         | development/playground |hellais | | 
+ooni-tpo-collector | backup collector |hellais, aagbsn | |
+manager.infra.ooni.nu         | DISCONTINUED |hellais | | 
+pipeline.infra.ooni.nu | DISCONTINUED | hellais, andaraz| |
 
 ## Probing infrastructure
-hostname | role | maintainers | notes | cost | next due date
--------- | ---- | ---------- | ------ |----- |------------- |
-probe ru | bridge reachability study | hellais, griffin | | 0 EUR/month | |
-probe ua | bridge reachability study | hellais, griffin| | 0 EUR/month | |
-probe cn | bridge reachability study | hellais | | 10 USD/month | 2015-05-10
-probe ir | bridge reachability study | hellais | | 30 USD/month | 2015-03-21
+hostname | role | maintainers | notes | next due date
+-------- | ---- | ---------- | ------ |------------- |
+probe ru | bridge reachability study | hellais, griffin | are these OK? | |
+probe ua | bridge reachability study | hellais, griffin | are these OK? | |
+probe cn | bridge reachability study | hellais | this is offline. | 2015-05-10 |
+probe ir | bridge reachability study | hellais | is this still live? /me thinks not | 2015-03-21 |
 
 # Instructions
 
