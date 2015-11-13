@@ -28,14 +28,15 @@
   with_items:
     - libgeoip-dev
     - libdumbnet-dev
-- name: Remove conflicting apt package dependencies to pip
-  apt: >
-    state=absent
+- name: Pip install cffi and ooniprobe
+  pip: >
+    state=latest
     name={{ item }}
   with_items:
-    - python-cryptography
-    - python-cryptography-vectors
-- name: Install ooniprobe from git via pip
-  pip: >
-    name='git+https://github.com/TheTorProject/ooni-probe.git#egg=ooni-probe'
-    state=latest
+    - cffi
+    - ooniprobe
+- name: Ensure twisted is always at version 14.0.0
+  pip:
+    name=twisted
+    version=14.0.0
+    state=present
