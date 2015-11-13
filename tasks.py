@@ -12,6 +12,7 @@ from invoke.config import Config
 from invoke import Collection, ctask as task
 
 config = Config(runtime_path="invoke.yaml")
+assert config._runtime_found, "you probably need to 'cp invoke.yaml.example invoke.yaml'"
 
 os.environ["PYTHONPATH"] = os.environ.get("PYTHONPATH") if os.environ.get("PYTHONPATH") else ""
 os.environ["PYTHONPATH"] = ":".join(os.environ["PYTHONPATH"].split(":") + [config.core.ooni_sysadmin_path])
