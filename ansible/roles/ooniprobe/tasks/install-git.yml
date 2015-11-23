@@ -35,8 +35,3 @@
   with_items:
     - cffi
     - ooniprobe
-- name: Ensure twisted is always at version 14.0.0
-  pip:
-    name=twisted
-    version=14.0.0
-    state=present
