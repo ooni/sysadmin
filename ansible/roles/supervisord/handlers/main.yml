@@ -1,0 +1,13 @@
+---
+
+- name: restart supervisord
+  sudo: yes
+  service: name=supervisor state=restarted
+
+- name: reread supervisord
+  sudo: yes
+  command: supervisorctl reread
+
+- name: update supervisord
+  sudo: yes
+  command: supervisorctl update

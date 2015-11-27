@@ -21,12 +21,61 @@ manager.infra.ooni.nu         | DISCONTINUED |hellais | |
 pipeline.infra.ooni.nu | DISCONTINUED | hellais, andaraz| |
 
 ## Probing infrastructure
+
 hostname | role | maintainers | notes | next due date
 -------- | ---- | ---------- | ------ |------------- |
 probe ru | bridge reachability study | hellais, griffin | are these OK? | |
 probe ua | bridge reachability study | hellais, griffin | are these OK? | |
 probe cn | bridge reachability study | hellais | this is offline. | 2015-05-10 |
 probe ir | bridge reachability study | hellais | is this still live? /me thinks not | 2015-03-21 |
+
+hostname | role | maintainers | notes | cost | next due date
+-------- | ---- | ---------- | ------ |----- |------------- |
+probe ru | bridge reachability study | hellais, griffin | | 0 EUR/month | |
+probe ua | bridge reachability study | hellais, griffin| | 0 EUR/month | |
+probe cn | bridge reachability study | hellais | | 10 USD/month | 2015-05-10
+probe ir | bridge reachability study | hellais | | 30 USD/month | 2015-03-21
+
+
+## Donate to support OONI infrastructure
+
+Send bitcoins to:
+![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
+```
+16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
+```
+
+# Ansible roles
+
+This is the section for using ansible roles to install and configure OONI
+components.
+
+Note: In order to use ansible you need Python 2.4 or later, but if you are
+running less than Python 2.5 on the remote hosts, you will also need the
+[python-simplejson]
+(https://docs.ansible.com/ansible/intro_installation.html#managed-node-requirements)
+package.
+
+For Debian like systems you could use something similar to:
+```
+ansible host-group -i hosts-inventory-file -m raw -a \
+"apt-get update && apt-get -y install python-simplejson"
+```
+
+## ooni-backend
+
+This ansible role installs ooni-backend from git repo via pip in a python
+virtual environment (virtualenv). The ooni-backend service is being started and
+controlled via the [Supervisor](http://supervisord.org) service. This role
+can be used for Debian releases and has been tested in Wheesy and Jessie Debian
+releases.
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/install-oonibackend.yml -v
+```
+Note: The inventory file should include hosts in custom group.
 
 # Instructions
 

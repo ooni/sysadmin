@@ -1,11 +1,25 @@
 ---
+- name: Install virtualenv via pip
+  pip: name={{ item }}
+  with_items:
+    - virtualenv
+    - virtualenvwrapper
 - name: Install ooni-backend via pip
-  pip: name="{{oonibackend_package}}" state="latest"
-- name: Create ooni log directory
-  file: path=/var/log/ooni state=directory
-- name: Create ooni backend archive directory
-  file: path=/var/spool/ooni/backend/archive state=directory
-- name: Create ooni backend raw reports directory
-  file: path=/var/spool/ooni/backend/raw_reports state=directory
-- name: Create ooni backend tor directory
-  file: path=/var/spool/ooni/backend/tor state=directory
+  pip: >
+    name='git+https://github.com/TheTorProject/ooni-backend.git#egg=oonibackend'
+    state=latest
+    virtualenv="{{ oonibackend_install_path }}"
+- name: Template virtualenv start script wrapper
+  template: >
+    src=venv_exec.j2 
+    dest="{{ oonibackend_install_path }}/exec"
+    mode=755
+- name: Create {{ item }} directory
+  file: path={{ item }} state=directory
+  with_items:
+    - "{{ archive_dir }}"
+    - "{{ tor_datadir }}"
+    - "{{ deck_dir }}"
+    - "{{ input_dir }}"
+    - "{{ report_dir }}"
+    - "{{ oonibackend_log_path }}"

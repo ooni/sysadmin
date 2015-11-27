@@ -1,5 +1,6 @@
 ---
-- hosts: local
+- hosts: local:custom
   roles:
   - common
+  - { role: supervisord, when "set_supervisord == 'true'" }
   - ooni-backend

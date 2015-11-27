@@ -7,13 +7,13 @@
 
 - name: setup tor apt repo
   apt_repository: >
-    repo='deb http://deb.torproject.org/torproject.org wheezy main'
+    repo='deb http://deb.torproject.org/torproject.org {{ tor_distribution_release }} main'
     state=present 
     update_cache=yes
 
 - name: setup tor apt repo
   apt_repository: >
-    repo='deb http://deb.torproject.org/torproject.org tor-experimental-0.2.5.x-wheezy main'
+    repo='deb http://deb.torproject.org/torproject.org {{ tor_distribution_release_experimental }} main'
     state=present 
     update_cache=yes
   when: experimental_tor == "yes"

@@ -1,0 +1,78 @@
+---
+
+# Targeting specific OSes or distributions:
+#
+#   - `ansible_system`               → Linux, BSD, ...
+#   - `ansible_os_family`            → Debian, RedHat, ...
+#   - `ansible_distribution`         → Debian, Ubuntu, RedHat, ...
+#   - `ansible_distribution_release` → precise, wheezy, ...
+#   - `ansible_pkg_mgr`              → apt, yum, ...
+
+- name: Create Supervisor conf and log directories
+  sudo: yes
+  file:
+    dest: "{{item}}"
+    state: directory
+  with_items:
+    - "{{supervisord_conf_dir}}"
+    - "{{supervisord_additional_conf_dir}}"
+    - "{{supervisord_logs_dir}}"
+  notify: restart supervisord
+  tags:
+    - conf
+    - supervisor
+    - supervisord
+
+- name: Configure Supervisord
+  sudo: yes
+  template:
+    src: supervisord.conf
+    dest: "{{supervisord_conf_file}}"
+  notify: restart supervisord
+  tags:
+    - conf
+    - supervisor
+    - supervisord
+
+- name: Link Supervisord conf
+  sudo: yes
+  file:
+    src: "{{supervisord_conf_file}}"
+    dest: "{{supervisord_conf_file_link}}"
+    state: link
+  notify: restart supervisord
+  tags:
+    - conf
+    - supervisor
+    - supervisord
+
+- name: Create supervisord init script
+  sudo: yes
+  template:
+    src: "{{item}}"
+    dest: "{{supervisord_init_script}}"
+    mode: 0755
+  with_first_found:
+    - files:
+        - "init.{{ansible_distribution}}-{{ansible_distribution_release}}"
+        - "init.{{ansible_distribution}}"
+        - "init.{{ansible_os_family}}"
+      paths:
+        - ../templates/
+  notify: restart supervisord
+  tags:
+    - init
+    - conf
+    - supervisor
+    - supervisord
+
+- name: Add supervisord to init
+  sudo: yes
+  service:
+    name: "{{supervisord_service_name}}"
+    enabled: yes
+  tags:
+    - init
+    - conf
+    - supervisor
+    - supervisord

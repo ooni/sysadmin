@@ -1,5 +1,6 @@
 ---
-- name: install sudo
+- name: install bare required packages
   apt:
-    pkg: sudo
+    pkg: "{{ item }}"
     state: latest
+  with_items: ["sudo", "git-core"]
