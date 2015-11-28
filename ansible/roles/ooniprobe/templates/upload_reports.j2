@@ -1,0 +1,5 @@
+#Ansible: upload_reports
+#!/bin/bash
+# Try to upload unsent reports
+su Debian-ooni -c 'oonireport -f {{ ooniprobe_config }} upload' \
+>> {{ ooniprobe_log_file }}

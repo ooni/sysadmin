@@ -77,6 +77,19 @@ ansible-playbook -i "hosts-inventory" ansible/install-oonibackend.yml -v
 ```
 Note: The inventory file should include hosts in custom group.
 
+## ooniprobe
+
+This ansible role install ooniprobe via apt (stretch repo) or via pip from this
+the git repo. This role can be used for Debian releases and has been tested in
+Wheesy and Jessie Debian releases. By seting the conditional variable
+`set_ooniprobe_pip` to true ooniprobe will be istalled from git via pip.
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/install-ooniprobe.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

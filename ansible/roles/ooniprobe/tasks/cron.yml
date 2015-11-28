@@ -1,0 +1,20 @@
+---
+- name: Set daily crontabs
+  template: >
+    dest=/etc/cron.daily/{{ item }}
+    owner=root
+    mode=0755
+    backup=yes
+    src={{ item }}.j2
+  with_items:
+    - run_ooniprobe_deck
+    - upload_reports
+- name: Set weekly crontabs
+  template: >
+    dest=/etc/cron.weekly/{{ item }}
+    owner=root
+    mode=0755
+    backup=yes
+    src={{ item }}.j2
+  with_items:
+    - remove_inc_reports

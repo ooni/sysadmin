@@ -3,12 +3,13 @@
     pkg: "{{ item }}"
     state: latest
   with_items: ["build-essential", "python-dev", "python-setuptools", "openssl",
-               "libssl-dev", "libyaml-dev","libsqlite3-dev", "libffi-dev"]
+               "libssl-dev", "libyaml-dev","libsqlite3-dev", "libffi-dev",
+               "libpcap0.8-dev"]
 - name: install requirements for compiling python extensions
   apt:
     pkg: "{{ item }}"
     state: latest
   with_items: ["build-essential", "python-dev", "python-setuptools", "openssl",
                "libssl-dev", "libyaml-dev","libsqlite3-dev", "libffi-dev",
-               "python-pip"]
+               "python-pip", "libpcap0.8-dev"]
   when: ansible_distribution == 'Debian' and ansible_distribution_version >= 8
