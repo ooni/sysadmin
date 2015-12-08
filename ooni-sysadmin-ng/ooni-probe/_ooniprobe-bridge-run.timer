@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily ooniprobe-bridge-reachability
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=1day
+
+[Install]
+WantedBy=multi-user.target
