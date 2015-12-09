@@ -3,8 +3,7 @@
 # exit on unset variable or non-0 return code.
 set -eu
 
-sh install-common.sh
-pip install oonibackend
+sh _install-packages.sh
 
 # we export these variables to pass them to the oonibackend.conf.sh and
 # oonibackend.service.sh templates.
@@ -13,7 +12,7 @@ export oonib_bin=$(which oonib)
 # directories owned by and daemon running as this user.
 # --system means no login and no shell.
 export oonib_user="oonib"
-adduser --system --no-create-home --quiet $oonib_user
+adduser --system --no-create-home $oonib_user
 
 export dns_resolver_address="8.8.8.8:53"
 
@@ -56,11 +55,11 @@ $ssl_dir \
 done
 
 # stick some environment variables in the templates and copy them into place
-sh oonibackend.conf.sh
+sh _oonibackend.conf.sh
 cp oonibackend.conf /etc/
 
-sh oonibackend.service.sh
-cp oonibackend.service /lib/systemd/system/
+sh _oonibackend.service.sh
+cp oonibackend.service /etc/systemd/system/
 
 # make self-signed cert for https tests
 openssl req -x509 -newkey rsa:4096 \
@@ -83,5 +82,6 @@ iptables -t nat -A PREROUTING -p tcp -m tcp \
 #    --dport 53 -j REDIRECT --to-ports $dns_port_tcp
 
 # enable and start the service
+systemctl daemon-reload
 systemctl enable oonibackend.service
 systemctl start oonibackend.service

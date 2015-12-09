@@ -1,0 +1,33 @@
+---
+# sketching this out for now.
+# basic idea is:
+#   1) this script takes as input the role (ooni-{backend,api,etc.})
+#      and other required parameters (credentials, files to analyze, etc.).
+#      i would consider it very important that this script tells you about
+#      missing parameters and doesn't move on without them.
+#   2) this script runs one of our ec2 plays (we have a few
+#      scattered around) to provision a machine.
+#   3) this script copies to the new machine the directory of shell
+#      scripts and templates appropriate to the role.
+#   4) this script runs the install-whatever.sh on the remote host.
+#
+# advantages: the user running the deploy gets the benefits of
+#   ansible (agentless, can hit a few machines at once, pass
+#   environment variables to remote scripts easily) *and* the
+#   benefits of plain-old-shell-script (more readable, easier
+#   to debug, fewer moving parts, can run bits of them by hand
+#   without ansible, other people can use them without ansible).
+#
+# it should look something like this (i'm not looking up the syntax right now)
+
+- include: ec2.yaml group={{ SPECIFIED_ROLE }} type={{ SPECIFIED_TYPE }}
+
+- hosts: {{ SPECIFIED_ROLE }}
+  roles:
+    - ooni_common # monitoring, logging, etc.
+  tasks:
+    - name: copy over the shell scripts and templates
+      copy: {{ SPECIFIED_ROLE }} /home/centos/ooni-config/
+    - name: run the install script on the remote server
+      sh: /home/centos/ooni-config/{{ SPECIFIED_ROLE }}/install.sh
+      with_vars: # pass credentials as env. var.s here
