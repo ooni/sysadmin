@@ -82,5 +82,6 @@ iptables -t nat -A PREROUTING -p tcp -m tcp \
 #    --dport 53 -j REDIRECT --to-ports $dns_port_tcp
 
 # enable and start the service
+systemctl daemon-reload
 systemctl enable oonibackend.service
 systemctl start oonibackend.service
