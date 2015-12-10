@@ -34,4 +34,4 @@
     name={{ item }}
   with_items:
     - cffi
-    - ooniprobe
+    - 'git+https://github.com/TheTorProject/ooni-probe.git#egg=ooniprobe'
