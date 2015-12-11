@@ -83,6 +83,8 @@ This ansible role install ooniprobe via apt (stretch repo) or via pip from this
 the git repo. This role can be used for Debian releases and has been tested in
 Wheesy and Jessie Debian releases. By seting the conditional variable
 `set_ooniprobe_pip` to true ooniprobe will be istalled from git via pip.
+Setting the conditional variable `set_ooniprobe_go` to true will install the
+golang-go package.
 
 ### execute role
 

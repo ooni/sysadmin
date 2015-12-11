@@ -1,28 +1,7 @@
 ---
-- name: Add required Debian apt repository
-  apt_repository: >
-    repo='{{ custom_debian_repository }}'
-    state=present
-    update_cache=yes
-- name: Configure APT preferences for Debian
-  template: >
-    src=debian.pref.j2
-    dest=/etc/apt/preferences.d/debian-{{ custom_debian_release_name }}.pref
-    owner=root
-    group=root
-    mode=0644
-    backup=yes
-- name: Install golang-go package
-  apt: >
-    update_cache=yes
-    cache_valid_time=86400
-    default_release={{ custom_debian_release_name }}
-    state=latest
-    name=golang-go
 - name: Install ooniprobe apt package dependencies
   apt: >
     update_cache=yes
-    default_release={{ custom_debian_release_name }}
     state=latest
     name={{ item }}
   with_items:
