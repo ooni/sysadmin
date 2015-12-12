@@ -1,0 +1,35 @@
+---
+- name: Create {{ PSIPHON_PYCLIENT_PATH }}
+  file: >
+    path={{ PSIPHON_PYCLIENT_PATH }}
+    state=directory
+
+- name: Install mercurial package
+  apt: name=mercurial
+
+- name: Clone Psiphon mercurial repository
+  hg: >
+    repo=https://bitbucket.org/psiphon/psiphon-circumvention-system
+    dest={{ PSIPHON_PYCLIENT_PATH }}
+
+- name: Install pip Psiphon requirements
+  pip: >
+    name={{ item }}
+  with_items:
+    - wget
+    - jsonpickle
+    - pexpect
+
+- name: Copy psi_generate_dat.py
+  template: >
+    src=psi_generate_dat.py.j2
+    dest=/tmp/psi_generate_dat.py
+    mode=0755
+
+- name: Run psi_generate_dat.py to create Psiphon servers data file
+  command: /tmp/psi_generate_dat.py
+  args:
+    chdir: /tmp/
+
+- name: Move file to {{ PSIPHON_PYCLIENT_PATH }}
+  command: mv /tmp/psi_client.dat "{{ PSIPHON_PYCLIENT_PATH  }}"
