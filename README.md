@@ -107,6 +107,25 @@ Lantern|https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-012
 ansible-playbook -i "hosts-inventory" ansible/install-thirdparty.yml -v
 ```
 
+## tor pluggable transports
+
+This ansible role install the tor pluggable transports required for ooniprobe
+bridge reachability test. The following tor pluggable transports will be
+installed with this role:
+
+Pluggagle Transport
+-------------------
+fteproxy
+obfsproxy (obfs2,obfs3,scramblesuit)
+obfs4proxy
+meek (not implemented yet in bridge reachability test)
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/install-tor-pluggagle-trans.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

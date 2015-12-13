@@ -1,0 +1,21 @@
+---
+# Install meek-cleint from infinity0's Debian repo
+
+- name: Fetch infinity0 apt key
+  shell: "gpg --keyserver pool.sks-keyservers.net --recv-keys 1318EFAC5FBBDBCE"
+- name: Install infinity0 apt key
+  shell: "gpg --export -a 1318EFAC5FBBDBCE | apt-key add -"
+
+- name: Install package apt-transport-https
+  apt: >
+    update_cache=yes
+    name=apt-transport-https
+
+- name: Add infinity0 Debian apt repository
+  apt_repository: >
+    repo="{{ infinity0_repo }}"
+    state=present
+    update_cache=yes
+
+- name: Install meek-client from infinity0 repository
+  apt: name=meek-client
