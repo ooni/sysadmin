@@ -92,6 +92,23 @@ golang-go package.
 ansible-playbook -i "hosts-inventory" ansible/install-ooniprobe.yml -v
 ```
 
+## Third party tools
+
+This ansible role install third party tools required for some ooniprobe
+tests. The following third party tools can be installed with this role:
+
+Tool|oooniprobe test
+----|---------------
+OpenVPN|https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-015-openvpn.md
+Psiphon|https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-014-psiphon.md
+Lantern|https://github.com/TheTorProject/ooni-spec/blob/master/test-specs/ts-012-lantern.md
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/install-thirdparty.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.
