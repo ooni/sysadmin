@@ -1,0 +1,3 @@
+---
+- name: Install obfsproxy (obfs2, obfs3, scramblesuit)
+  apt: name=obfsproxy
