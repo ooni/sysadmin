@@ -1,0 +1,6 @@
+---
+postgres_host:
+postgres_pass:
+aws_key_id:
+aws_key:
+vpc_subnet_id:

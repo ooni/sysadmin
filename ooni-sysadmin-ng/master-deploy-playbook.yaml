@@ -1,4 +1,3 @@
----
 # sketching this out for now.
 # basic idea is:
 #   1) this script takes as input the role (ooni-{backend,api,etc.})
@@ -20,14 +19,49 @@
 #
 # it should look something like this (i'm not looking up the syntax right now)
 
-- include: ec2.yaml group={{ SPECIFIED_ROLE }} type={{ SPECIFIED_TYPE }}
-
-- hosts: {{ SPECIFIED_ROLE }}
-  roles:
-    - ooni_common # monitoring, logging, etc.
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
   tasks:
-    - name: copy over the shell scripts and templates
-      copy: {{ SPECIFIED_ROLE }} /home/centos/ooni-config/
-    - name: run the install script on the remote server
-      sh: /home/centos/ooni-config/{{ SPECIFIED_ROLE }}/install.sh
-      with_vars: # pass credentials as env. var.s here
+    - name: Provision EC2 instance
+      ec2:
+        key_name: ooni-pipeline
+        instance_tags: role={{ role }}
+        instance_type: c3.8xlarge
+        image: ami-61bbf104
+        region: us-east-1
+        vpc_subnet_id: "{{ vpc_subnet_id }}"
+        group_id: "{{ security_group_id }}"
+        wait: yes
+      register: ec2_result
+    - name: Add instances to appropriate $group in inventory
+      add_host: hostname={{ item.public_ip }} groups={{ role }} private_ip={{ item.private_ip }} private_dns={{ item.private_dns_name }}
+      with_items: ec2_result.instances
+    - name: Wait for ssh to come up
+      local_action: wait_for host={{ item.public_ip }}
+                    state=started
+                    port=22 timeout=300
+      sudo: false
+      with_items: ec2_result.instances
+    - name: Wait for ssh key to be in place...
+      pause: seconds=30
+
+- hosts: "{{ role }}"
+  remote_user: centos
+  sudo: yes
+#  roles:
+#    - ooni_common # monitoring, logging, etc.
+  tasks:
+    - name: Copy over the shell scripts and templates
+      copy: src=./{{ role }} dest=/home/centos/
+    - name: Make install.sh executable
+      file: path=/home/centos/{{ role }}/install.sh mode="u+x"
+    - name: Run the install script on the remote server
+      shell: /home/centos/{{ role }}/install.sh
+      environment:
+        postgres_host: "{{ postgres_host }}"
+        postgres_pass: "{{ postgres_pass }}"
+        aws_key_id: "{{ aws_key_id }}"
+        aws_key: "{{ aws_key }}"
+

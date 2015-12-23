@@ -13,8 +13,8 @@ echo "source /usr/bin/virtualenvwrapper.sh" >> /home/centos/.bashrc
 source /home/centos/.bashrc
 mkvirtualenv ooni-pipeline
 
-git clone https://github.com/thetorproject/ooni-pipeline
-pip install -r ooni-pipeline/requirements-dev.txt
+git clone https://github.com/thetorproject/ooni-pipeline /home/centos/ooni-pipeline
+pip install -r /home/centos/ooni-pipeline/requirements-dev.txt
 pip install psycopg2
 
 # specify aws and postgres credentials
@@ -24,5 +24,5 @@ sh _invoke.yaml.sh > ooni-pipeline/invoke.yaml
 chown -R centos ooni-pipeline
 
 # probably make this configurable by the ansible user
-cd ooni-pipeline
-invoke add_headers_to_db --date-interval 2012
+#cd ooni-pipeline
+#invoke add_headers_to_db --date-interval 2012
