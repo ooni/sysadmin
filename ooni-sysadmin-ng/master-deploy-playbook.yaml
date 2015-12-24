@@ -54,14 +54,14 @@
 #    - ooni_common # monitoring, logging, etc.
   tasks:
     - name: Copy over the shell scripts and templates
-      copy: src=./{{ role }} dest=/home/centos/
+      copy: src=./{{ role }} dest=/home/centos/ops
     - name: Make install.sh executable
-      file: path=/home/centos/{{ role }}/install.sh mode="u+x"
+      file: path=/home/centos/ops/{{ role }}/install.sh mode="u+x"
     - name: Run the install script on the remote server
-      shell: /home/centos/{{ role }}/install.sh
+      shell: /home/centos/ops/{{ role }}/install.sh
       environment:
         postgres_host: "{{ postgres_host }}"
-        postgres_pass: "{{ postgres_pass }}"
+        postgres_password: "{{ postgres_password }}"
         aws_key_id: "{{ aws_key_id }}"
         aws_key: "{{ aws_key }}"
 

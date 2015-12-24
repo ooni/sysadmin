@@ -1,6 +1,6 @@
 ---
 postgres_host:
-postgres_pass:
+postgres_password:
 aws_key_id:
 aws_key:
 vpc_subnet_id:

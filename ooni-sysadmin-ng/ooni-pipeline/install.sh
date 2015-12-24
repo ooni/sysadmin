@@ -1,3 +1,6 @@
+#!/bin/sh
+# set -eu
+
 yum upgrade -y
 yum -y groupinstall "Development Tools" "Development Libraries"
 yum install -y git wget python-devel screen \
@@ -10,15 +13,20 @@ pip install virtualenvwrapper
 echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7" >> /home/centos/.bashrc
 echo "export WORKON_HOME=/home/centos/virtualenvs" >> /home/centos/.bashrc
 echo "source /usr/bin/virtualenvwrapper.sh" >> /home/centos/.bashrc
-source /home/centos/.bashrc
+#source /home/centos/.bashrc
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+export WORKON_HOME=/home/centos/virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
 mkvirtualenv ooni-pipeline
+workon ooni-pipeline
 
 git clone https://github.com/thetorproject/ooni-pipeline /home/centos/ooni-pipeline
 pip install -r /home/centos/ooni-pipeline/requirements-dev.txt
 pip install psycopg2
 
 # specify aws and postgres credentials
-sh _invoke.yaml.sh > ooni-pipeline/invoke.yaml
+sh /home/centos/ops/ooni-pipeline/_invoke.yaml.sh > /home/centos/ooni-pipeline/invoke.yaml
 
 # run as another user eventually
 chown -R centos ooni-pipeline
