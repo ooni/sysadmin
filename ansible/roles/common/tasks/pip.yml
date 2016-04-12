@@ -1,6 +1,6 @@
 ---
 - name: download get-pip.py
-  get_url: url="https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py" dest="/tmp/get-pip.py"
+  get_url: url="https://bootstrap.pypa.io/get-pip.py" dest="/tmp/get-pip.py"
 
 - name: install a secure version of pip
   shell: python /tmp/get-pip.py
