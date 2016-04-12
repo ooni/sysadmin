@@ -2,3 +2,5 @@ logging.cfg
 *.log
 invoke.yaml
 *.pyc
+*.swp
+*.swo
