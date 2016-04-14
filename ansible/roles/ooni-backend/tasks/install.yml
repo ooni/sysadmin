@@ -1,20 +1,63 @@
 ---
+- name: Remove conflicting python packages
+  apt: >
+    name={{ item }}
+    state=absent
+  with_items:
+    - python-cryptography
+    - python-pyasn1
+
+# Install ooni-backend and dependencies via pip
+- name: Install required pip packages
+  pip: >
+    name={{ item }}
+    state=latest
+  with_items:
+    - pyasn1-modules
+    - attrs
+    - parsley
+    - cffi
+    - cryptography
+  when: set_virtualenv is not defined or
+      ( set_virtualenv is defined and set_virtualenv == "" )
+- name: Install ooni-backend via pip
+  pip: >
+    name='git+https://github.com/TheTorProject/ooni-backend.git#egg=oonibackend'
+    state=latest
+  when: set_virtualenv is not defined or
+      ( set_virtualenv is defined and set_virtualenv == "" )
+
+# Install ooni-backend and dependencies via pip in Python virtualenv instance
 - name: Install virtualenv via pip
   pip: name={{ item }}
   with_items:
     - virtualenv
     - virtualenvwrapper
-- name: Install ooni-backend via pip
+  when: set_virtualenv is defined and set_virtualenv == 'true'
+- name: Install required pip packages in virtualenv
+  pip: name={{ item }}
+    virtualenv={{ oonibackend_install_path }}
+  with_items:
+    - pyasn1-modules
+    - attrs
+    - parsley
+    - cffi
+    - cryptography
+  when: set_virtualenv is defined and set_virtualenv == 'true'
+- name: Install ooni-backend via pip in virtualenv
   pip: >
     name='git+https://github.com/TheTorProject/ooni-backend.git#egg=oonibackend'
     state=latest
-    virtualenv="{{ oonibackend_install_path }}"
+    virtualenv={{ oonibackend_install_path }}
+  when: set_virtualenv is defined and set_virtualenv == 'true'
 - name: Template virtualenv start script wrapper
   template: >
-    src=venv_exec.j2 
+    src=venv_exec.j2
     dest="{{ oonibackend_install_path }}/exec"
     mode=755
-- name: Create {{ item }} directory
+  when: set_virtualenv is defined and set_virtualenv == 'true'
+
+- name: Create required ooni-backend directories
   file: path={{ item }} state=directory
   with_items:
     - "{{ archive_dir }}"
