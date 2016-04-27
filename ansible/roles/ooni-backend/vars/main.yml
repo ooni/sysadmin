@@ -19,15 +19,16 @@ ssl_port: 57006
 
 enable_bouncer: no
 enable_policy: no
-archive_dir: /var/spool/ooni/backend/archive
-tor_datadir: /var/spool/ooni/backend/tor
-bouncer_file: /var/spool/ooni/backend/bouncer.yaml
-policy_file: /var/spool/ooni/backend/policy.yaml
-deck_dir: /usr/share/ooni/backend/decks
-input_dir: /usr/share/ooni/backend/inputs
-report_dir: /var/spool/ooni/backend/raw_reports
+archive_dir: {{ oonibackend_data_path }}/archive
+tor_datadir: {{ oonibackend_data_path }}/tor
+bouncer_file: {{ oonibackend_data_path }}/bouncer.yaml
+policy_file: {{ oonibackend_data_path }}/policy.yaml
+deck_dir:  {{ oonibackend_data_path }}/decks
+input_dir:  {{ oonibackend_data_path }}/inputs
+report_dir: {{ oonibackend_data_path }}/raw_reports
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
 oonibackend_conf: /etc/oonibackend.conf
 oonibackend_log_file_name: oonibackend.log
+oonibackend_data_path: /usr/share/ooni/backend
