@@ -19,6 +19,7 @@ ssl_port: 57006
 
 enable_bouncer: no
 enable_policy: no
+oonibackend_data_path: /usr/share/ooni/backend
 archive_dir: "{{ oonibackend_data_path }}/archive"
 tor_datadir: "{{ oonibackend_data_path }}/tor"
 bouncer_file: "{{ oonibackend_data_path }}/bouncer.yaml"
