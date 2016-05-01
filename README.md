@@ -163,6 +163,7 @@ M-Lab [deployment process]
 # Upgrading OONI infrastructure
 
 ## ooni-backend
+
 Collected notes on how to successful upgrade a running ooni-backend (bouncer
 and collector).
 
@@ -184,7 +185,18 @@ The reports in progress will fail and schedule retries once the new bouncer and
 collector are back up.
 
 ### Common pitfalls
+
 * Ensure that the HS private keys of bouncer and collector are in right PATH
 (collector/private_key , bouncer/private_key).
 * Set the bouncer address in bouncer.yaml to the correct HS address.
 * ooni-backend will *not* generate missing directories and fail to start
+
+### Testing
+
+Running a short ooni-probe test will ensure that the backend has been
+successfully upgraded, an example test:
+
+```
+ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
+--url http://ooni.io/
+```
