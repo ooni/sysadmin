@@ -6,3 +6,5 @@ hostname
 set_supervisord='true'
 # Set to true to install ooni-backend in virtualenv
 # set_virtualenv='true'
+# Set ooni-backend main PATH for all required directories
+oonibackend_data_path: /usr/share/ooni/backend
