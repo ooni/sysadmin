@@ -1,3 +1,3 @@
-#!/bin/sh
-mkdir -p /data/collector/{archive,tor,decks,inpurs,raw_reports,etc,var/log/ooni}
+#!/bin/bash
+mkdir -pv /data/collector/{archive,tor,decks,inputs,raw_reports,etc,var/log/ooni}
 docker run -d --name="bridge-reachability-collector" -v /data/collector/:/data/ ooni/collector
