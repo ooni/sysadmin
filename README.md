@@ -11,14 +11,14 @@ infrastructure.
 
 hostname | role | maintainers | notes |
 ------------- | ------------- | ----------- |----------- |
-bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, andaraz| | 
-vps770.greenhost.nl  | collector bridge reachability,  |hellais, andaraz| |
-ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, andaraz| |
-ooni-deb         | debian repository, collector |hellais, aagbsn | what should we do 'bout this? | 
-marcello         | development/playground |hellais | | 
+bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, anadahz| |
+vps770.greenhost.nl  | collector bridge reachability,  |hellais, anadahz| |
+ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, anadahz| |
+ooni-deb         | debian repository, collector |hellais, aagbsn | what should we do 'bout this? |
+marcello         | development/playground |hellais | |
 ooni-tpo-collector | backup collector |hellais, aagbsn | |
-manager.infra.ooni.nu         | DISCONTINUED |hellais | | 
-pipeline.infra.ooni.nu | DISCONTINUED | hellais, andaraz| |
+manager.infra.ooni.nu         | DISCONTINUED |hellais | |
+pipeline.infra.ooni.nu | DISCONTINUED | hellais, anadahz| |
 
 ## Probing infrastructure
 
@@ -154,4 +154,49 @@ everything goes bad.
 ```
 cd ansible/server_migration/
 ansible-playbook -i hosts pipeline.yml -vvvv
+```
+
+# M-Lab deployment
+M-Lab [deployment process]
+(https://github.com/m-lab/ooni-support/#m-lab-deployment-process).
+
+# Upgrading OONI infrastructure
+
+## ooni-backend
+
+Collected notes on how to successful upgrade a running ooni-backend (bouncer
+and collector).
+
+1. Build the docker image of the new bouncer.
+2. Start the new docker image mapping a new bouncer directory that is not the
+   live one.
+3. Run a couple of tests against the newly created image by specifying a custom
+   bouncer and collector (the new one).
+4. Take down the old bouncer.
+5. Take up the new bouncer.
+
+Currently ooni-backend is running in a docker build the most painful way to
+upgrade to a new backend version is to create a new docker build image and use
+temporary mapping volume directories.
+After successfully building (you have already test it right?) the docker image
+we should re-run the newly created docker image *but* with the correct (the
+ones in the build script) volume directories.
+The reports in progress will fail and schedule retries once the new bouncer and
+collector are back up.
+
+### Common pitfalls
+
+* Ensure that the HS private keys of bouncer and collector are in right PATH
+(collector/private_key , bouncer/private_key).
+* Set the bouncer address in bouncer.yaml to the correct HS address.
+* ooni-backend will *not* generate missing directories and fail to start
+
+### Testing
+
+Running a short ooni-probe test will ensure that the backend has been
+successfully upgraded, an example test:
+
+```
+ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
+--url http://ooni.io/
 ```
