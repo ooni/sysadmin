@@ -7,6 +7,7 @@ enable_ssl_helper: no
 enable_daphn3_helper: yes
 enable_tls_bouncer: no
 enable_tls_collector: no
+enable_tls_web_connectivity: no
 
 dns_resolver_address: "8.8.8.8:53"
 
@@ -31,6 +32,10 @@ policy_file: "{{ oonibackend_data_path }}/policy.yaml"
 deck_dir: "{{ oonibackend_data_path }}/decks"
 input_dir: "{{ oonibackend_data_path }}/inputs"
 report_dir: "{{ oonibackend_data_path }}/raw_reports"
+bouncer_hsdir: "{{ tor_datadir }}/bouncer"
+collector_hsdir: "{{ tor_datadir }}/collector"
+web_connectivity_hsdir: "{{ tor_datadir }}/web_connectivity"
+cert_key_bundle: "{{ oonibackend_data_path }}/tls/cert-key-bundle.pem
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni

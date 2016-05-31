@@ -54,6 +54,11 @@ helpers:
 {% endif %}
   web_connectivity:
       endpoints:
+{% if enable_tls_web_connectivity == "yes" %}
+      - {type: onion, hsdir: {{ web_connectivity_hsdir }} }
+      - {type: tls, port: 463, cert: {{ cert_key_bundle }} }
+{% else %}
+{% endif %}
       - {type: tcp, port: 57007}
 main:
   archive_dir: {{ archive_dir }}
@@ -94,17 +99,17 @@ main:
 
   bouncer_endpoints:
 {% if enable_tls_bouncer == "yes" %}
-  - {type: tls, port: {{ tls_bouncer_port }}, cert: "private/ssl-key-and-cert.pem"}
+  - {type: tls, port: {{ tls_bouncer_port }}, cert: {{ cert_key_bundle }} }
 {% else %}
 {% endif %}
   - {type: tcp, port: 10080}
-  - {type: onion, hsdir: /tmp/bouncer}
+  - {type: onion, hsdir: {{ bouncer_hsdir }} }
 
   collector_endpoints:
 {% if enable_tls_collector == "yes" %}
-  - {type: tls, port: {{ tls_collector_port }}, cert: "private/ssl-key-and-cert.pem"}
+  - {type: tls, port: {{ tls_collector_port }}, cert: {{ cert_key_bundle }} }
 {% else %}
 {% endif %}
-  - {type: onion, hsdir: /tmp/collector}
+  - {type: onion, hsdir: {{ collector_hsdir }} }
 
   report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'
