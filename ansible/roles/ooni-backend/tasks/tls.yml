@@ -1,0 +1,7 @@
+---
+- name: Merge private key and certicate (required by ooni-backend)
+  shell: "cat {{ letsencrypt_cert_path }}/privkey.pem
+              {{ letsencrypt_cert_path }}/cert.pem >
+                {{ letsencrypt_cert_path }}/certbundle.pem"
+  args:
+    creates: {{ letsencrypt_cert_path }}/certbundle.pem

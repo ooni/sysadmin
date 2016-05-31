@@ -35,7 +35,6 @@ report_dir: "{{ oonibackend_data_path }}/raw_reports"
 bouncer_hsdir: "{{ tor_datadir }}/bouncer"
 collector_hsdir: "{{ tor_datadir }}/collector"
 web_connectivity_hsdir: "{{ tor_datadir }}/web_connectivity"
-cert_key_bundle: "{{ oonibackend_data_path }}/tls/cert-key-bundle.pem
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni

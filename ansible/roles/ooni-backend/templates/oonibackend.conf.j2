@@ -56,7 +56,7 @@ helpers:
       endpoints:
 {% if enable_tls_web_connectivity == "yes" %}
       - {type: onion, hsdir: {{ web_connectivity_hsdir }} }
-      - {type: tls, port: 463, cert: {{ cert_key_bundle }} }
+      - {type: tls, port: 463, cert: {{ letsencrypt_cert_path }} }
 {% else %}
 {% endif %}
       - {type: tcp, port: 57007}
@@ -99,7 +99,7 @@ main:
 
   bouncer_endpoints:
 {% if enable_tls_bouncer == "yes" %}
-  - {type: tls, port: {{ tls_bouncer_port }}, cert: {{ cert_key_bundle }} }
+  - {type: tls, port: {{ tls_bouncer_port }}, cert: {{ letsencrypt_cert_path }} }
 {% else %}
 {% endif %}
   - {type: tcp, port: 10080}
@@ -107,7 +107,7 @@ main:
 
   collector_endpoints:
 {% if enable_tls_collector == "yes" %}
-  - {type: tls, port: {{ tls_collector_port }}, cert: {{ cert_key_bundle }} }
+  - {type: tls, port: {{ tls_collector_port }}, cert: {{ letsencrypt_cert_path }} }
 {% else %}
 {% endif %}
   - {type: onion, hsdir: {{ collector_hsdir }} }
