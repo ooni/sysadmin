@@ -5,6 +5,8 @@ enable_http_return_json_headers_helper: yes
 enable_tcp_echo_helper: yes
 enable_ssl_helper: no
 enable_daphn3_helper: yes
+enable_tls_bouncer: no
+enable_tls_collector: no
 
 dns_resolver_address: "8.8.8.8:53"
 
@@ -16,6 +18,8 @@ dns_port_udp: 57004
 dns_discover_port_tcp: 57005
 dns_discover_port_udp: 57005
 ssl_port: 57006
+tls_bouncer_port: 10443
+tls_collector_port: 11443
 
 enable_bouncer: no
 enable_policy: no
