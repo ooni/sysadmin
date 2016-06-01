@@ -5,6 +5,6 @@
   - { role: supervisord, when "set_supervisord == 'true'" }
   - { role: letsencrypt, letsencrypt_email: admin@openobservatory.org,
     letsencrypt_cert_domains: [ 'bouncer.ooni.io', 'a.collector.ooni.io',
-    'a.web-connectivity.th.ooni.io'], when enable_bouncer == 'yes'
-    and set_letsencrypt == 'true'}
+    'a.web-connectivity.th.ooni.io'], when: letsencrypt_set is defined and
+    set_letsencrypt == 'true'}
   - ooni-backend
