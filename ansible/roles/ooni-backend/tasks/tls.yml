@@ -4,4 +4,4 @@
               {{ letsencrypt_cert_path }}/cert.pem >
                 {{ letsencrypt_cert_path }}/certbundle.pem"
   args:
-    creates: {{ letsencrypt_cert_path }}/certbundle.pem
+    creates: "{{ letsencrypt_cert_path }}/certbundle.pem"
