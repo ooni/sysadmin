@@ -9,5 +9,5 @@
      - bouncer.ooni.io
      - a.collector.ooni.io
      - a.web-connectivity.th.ooni.io
-    when: "enable_bouncer == 'yes'"
+    when: "enable_bouncer == 'yes'" and "set_letsencrypt == 'true'"
   - ooni-backend
