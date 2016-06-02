@@ -6,4 +6,4 @@
 - include: fetch-HS-info.yml
   when: set_supervisord is defined and set_supervisord == 'true'
 - include: tls.yml
-  when: enable_bouncer == 'yes' and set_letsencrypt == 'true'
+  when: letsencrypt_set is defined and set_letsencrypt == 'true'
