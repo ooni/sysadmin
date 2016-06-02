@@ -54,8 +54,8 @@ helpers:
 {% endif %}
   web_connectivity:
       endpoints:
-{% if enable_tls_web_connectivity == "yes" %}
       - {type: onion, hsdir: {{ web_connectivity_hsdir }} }
+{% if enable_tls_web_connectivity == "yes" %}
       - {type: tls, port: 463, cert: {{ letsencrypt_cert_path }} }
 {% else %}
 {% endif %}
