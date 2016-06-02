@@ -52,6 +52,14 @@ helpers:
 {% else %}
     port: null
 {% endif %}
+  web_connectivity:
+      endpoints:
+      - {type: onion, hsdir: {{ web_connectivity_hsdir }} }
+{% if enable_tls_web_connectivity == "yes" %}
+      - {type: tls, port: 463, cert: {{ letsencrypt_cert_path }} }
+      - {type: tcp, port: 57007}
+{% else %}
+{% endif %}
 main:
   archive_dir: {{ archive_dir }}
 {% if enable_bouncer == "yes" %}
@@ -60,8 +68,6 @@ main:
   bouncer_file: null
 {% endif %}
   chroot: null
-  database_uri: sqlite://oonib_test_db.db
-  db_threadpool_size: 10
   debug: false
   deck_dir: {{ deck_dir }}
   euid: null
@@ -88,4 +94,20 @@ main:
   tor_hidden_service: true
   uid: null
   umask: null
-  uuid: null
+
+  bouncer_endpoints:
+{% if enable_tls_bouncer == "yes" %}
+  - {type: tls, port: {{ tls_bouncer_port }}, cert: {{ letsencrypt_cert_path }} }
+  - {type: tcp, port: 10080}
+{% else %}
+{% endif %}
+  - {type: onion, hsdir: {{ bouncer_hsdir }} }
+
+  collector_endpoints:
+{% if enable_tls_collector == "yes" %}
+  - {type: tls, port: {{ tls_collector_port }}, cert: {{ letsencrypt_cert_path }} }
+{% else %}
+{% endif %}
+  - {type: onion, hsdir: {{ collector_hsdir }} }
+
+  report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'

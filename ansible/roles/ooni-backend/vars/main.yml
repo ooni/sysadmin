@@ -5,6 +5,9 @@ enable_http_return_json_headers_helper: yes
 enable_tcp_echo_helper: yes
 enable_ssl_helper: no
 enable_daphn3_helper: yes
+enable_tls_bouncer: no
+enable_tls_collector: no
+enable_tls_web_connectivity: no
 
 dns_resolver_address: "8.8.8.8:53"
 
@@ -16,6 +19,8 @@ dns_port_udp: 57004
 dns_discover_port_tcp: 57005
 dns_discover_port_udp: 57005
 ssl_port: 57006
+tls_bouncer_port: 10443
+tls_collector_port: 11443
 
 enable_bouncer: no
 enable_policy: no
@@ -27,6 +32,9 @@ policy_file: "{{ oonibackend_data_path }}/policy.yaml"
 deck_dir: "{{ oonibackend_data_path }}/decks"
 input_dir: "{{ oonibackend_data_path }}/inputs"
 report_dir: "{{ oonibackend_data_path }}/raw_reports"
+bouncer_hsdir: "{{ tor_datadir }}/bouncer"
+collector_hsdir: "{{ tor_datadir }}/collector"
+web_connectivity_hsdir: "{{ tor_datadir }}/web_connectivity"
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
