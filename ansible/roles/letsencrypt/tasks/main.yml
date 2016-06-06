@@ -1,11 +1,3 @@
 ---
-- name: Generate Letsencrypt certificates
-  docker:
-    name: {{ letsencrypt_docker_name }}
-    image: {{ letsencrypt_docker_image }}
-    ports:
-    - {{ letsencrypt_ports }}
-    volumes:
-    - {{ letsencrypt_workdir }}
-    - {{ letsencrypt_confdir }}
-    command: {{ letencrypt_certbot_cmd }}
+- include: letsencrypt_gen.yml
+- include: letsencrypt_renew.yml
