@@ -1,0 +1,6 @@
+[custom]
+hostname
+
+[custom:vars]
+# Testing uncomment to generate test certificates
+letsencrypt_test_cert: true
