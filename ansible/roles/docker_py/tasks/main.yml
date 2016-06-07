@@ -2,5 +2,5 @@
 - name: Install docker-py via pip in virtualenv
   pip: >
     name="docker-py"
-    version="0.3.1"
-    virtualenv= "{{ ansible_env.HOME }}/venv"
+    version="1.2.1"
+    virtualenv="{{ ansible_env.HOME }}/venv"

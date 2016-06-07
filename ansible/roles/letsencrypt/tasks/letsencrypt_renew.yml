@@ -5,5 +5,5 @@
     user: "root"
     cron_file: letsencrypt_renew_certs
     month: "*/2"
-    job: "{{ letencrypt_renew_cmd }}"
+    job: "{{ letsencrypt_renew_cmd }}"
 

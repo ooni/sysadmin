@@ -8,4 +8,4 @@
     volumes:
     - "{{ letsencrypt_workdir }}"
     - "{{ letsencrypt_confdir }}"
-    command: "{{ letencrypt_certbot_cmd }}"
+    command: "{{ letsencrypt_certbot_cmd }}"

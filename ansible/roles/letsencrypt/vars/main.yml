@@ -1,13 +1,13 @@
 letsencrypt_docker_image: quay.io/letsencrypt/letsencrypt
 letsencrypt_docker_name: certbot
 letsencrypt_admin_email: admin@openobservatory.org
-letencrypt_domains: bouncer.ooni.io,a.collector.ooni.io,a.web-connectivity.th.ooni.io
+letsencrypt_domains: bouncer.ooni.io,a.collector.ooni.io,a.web-connectivity.th.ooni.io
 letsencrypt_workdir: /var/lib/letsencrypt
 letsencrypt_ports: "80:80"
 letsencrypt_confdir: /etc/letsencrypt
-letencrypt_certbot_cmd: certonly --standalone
+letsencrypt_certbot_cmd: certonly --standalone
     --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
-    --email {{ letsencrypt_admin_email }} --domains {{ letencrypt_domains }}
+    --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
     {% if letsencrypt_test_cert is defined %}
     --test-cert
     {% endif %}
