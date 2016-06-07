@@ -1,4 +1,3 @@
 ---
-- include: docker_py.yml
 - include: letsencrypt_gen.yml
 - include: letsencrypt_renew.yml
