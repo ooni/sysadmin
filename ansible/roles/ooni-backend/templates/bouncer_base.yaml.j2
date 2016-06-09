@@ -1,0 +1,19 @@
+collector:
+  httpo://{{ collector_hs }}
+    test-helper: {dns: '{{ dns_test_helper_address }}',
+      http-return-json-headers: '{{ http-return-json-headers_address }}',
+{% if enable_ssl_helper == "yes" %}
+      ssl: ' {{ ssl_address }}',
+{% endif %}
+      tcp-echo: '{{ tcp_echo_address }}',
+{% if enable_web_connectivity == "yes" %}
+      web-connectivity: '{{ web_connectivity_hs }}',
+{% endif %}
+      traceroute: '{{ traceroute_address }}'}
+{% if enable_tls_web_connectivity == "yes" %}
+    test-helper-alternate:
+      web-connectivity:
+    - {address: '{{ web_connectivity_hs }}', type: 'onion'}
+    - {address: 'https://{{ web_connectivity_domain }}', type: 'https'}
+    - {address: 'http://{{ web_connectivity_domain }}', type: 'http'}
+{% endif %}

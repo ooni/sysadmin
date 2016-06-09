@@ -52,13 +52,14 @@ helpers:
 {% else %}
     port: null
 {% endif %}
+{% if enable_web_connectivity == "yes" %}
   web_connectivity:
       endpoints:
       - {type: onion, hsdir: {{ web_connectivity_hsdir }} }
+{% endif %}
 {% if enable_tls_web_connectivity == "yes" %}
-      - {type: tls, port: 463, cert: {{ letsencrypt_cert_path }} }
+      - {type: tls, port: 463, cert: {{ web_connencivity_crt_bundle }} }
       - {type: tcp, port: 57007}
-{% else %}
 {% endif %}
 main:
   archive_dir: {{ archive_dir }}
@@ -97,16 +98,14 @@ main:
 
   bouncer_endpoints:
 {% if enable_tls_bouncer == "yes" %}
-  - {type: tls, port: {{ tls_bouncer_port }}, cert: {{ letsencrypt_cert_path }} }
+  - {type: tls, port: {{ tls_bouncer_port }}, cert: {{ bouncer_crt_bundle }} }
   - {type: tcp, port: 10080}
-{% else %}
 {% endif %}
   - {type: onion, hsdir: {{ bouncer_hsdir }} }
 
   collector_endpoints:
 {% if enable_tls_collector == "yes" %}
-  - {type: tls, port: {{ tls_collector_port }}, cert: {{ letsencrypt_cert_path }} }
-{% else %}
+  - {type: tls, port: {{ tls_collector_port }}, cert: {{ tls_collector_crt_bundle }} }
 {% endif %}
   - {type: onion, hsdir: {{ collector_hsdir }} }
 
