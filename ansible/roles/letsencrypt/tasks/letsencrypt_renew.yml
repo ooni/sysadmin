@@ -6,4 +6,3 @@
     cron_file: letsencrypt_renew_certs
     month: "*/2"
     job: "{{ letsencrypt_renew_cmd }}"
-

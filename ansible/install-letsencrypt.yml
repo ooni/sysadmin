@@ -3,10 +3,11 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python"
   roles:
+    - common
     - docker_py
 
 - hosts: local:custom
   vars:
-    ansible_python_interpreter: "{{ ansible_env.HOME }}/venv/bin/python2.7"
+    ansible_python_interpreter: "/root/venv/bin/python2.7"
   roles:
     - letsencrypt

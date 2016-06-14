@@ -1,11 +1,20 @@
 ---
-- name: Generate Letsencrypt certificates
+- name: Creates {{ item }}
+  file: >
+    state=directory
+    path={{ item }}
+  with_items:
+    - "{{ letsencrypt_workdir }}"
+    - "{{ letsencrypt_confdir }}"
+
+- name: Generate Letsencrypt certificates with docker
   docker:
     name: "{{ letsencrypt_docker_name }}"
     image: "{{ letsencrypt_docker_image }}"
     ports:
     - "{{ letsencrypt_ports }}"
     volumes:
-    - "{{ letsencrypt_workdir }}"
-    - "{{ letsencrypt_confdir }}"
+    - "{{ letsencrypt_workdir }}:{{ letsencrypt_workdir }}"
+    - "{{ letsencrypt_confdir }}:{{ letsencrypt_confdir }}"
     command: "{{ letsencrypt_certbot_cmd }}"
+    state: reloaded
