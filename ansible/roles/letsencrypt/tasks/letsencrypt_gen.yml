@@ -11,8 +11,9 @@
   docker:
     name: "{{ letsencrypt_docker_name }}"
     image: "{{ letsencrypt_docker_image }}"
+    expose: "{{ letsencrypt_port }}"
     ports:
-    - "{{ letsencrypt_ports }}"
+    - "{{ letsencrypt_port }}:{{ letsencrypt_port }}"
     volumes:
     - "{{ letsencrypt_workdir }}:{{ letsencrypt_workdir }}"
     - "{{ letsencrypt_confdir }}:{{ letsencrypt_confdir }}"

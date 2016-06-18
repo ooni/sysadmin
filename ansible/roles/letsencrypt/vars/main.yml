@@ -1,18 +1,17 @@
 letsencrypt_docker_image: quay.io/letsencrypt/letsencrypt
 letsencrypt_docker_name: certbot
 letsencrypt_admin_email: admin@openobservatory.org
-#letsencrypt_domains:
+letsencrypt_domains: "{{ letsencrypt_domain_list|map(attribute='domain')|join(',') }}"
 letsencrypt_workdir: /var/lib/letsencrypt
-letsencrypt_ports: "80:80"
+letsencrypt_port: 80
 letsencrypt_confdir: /etc/letsencrypt
 letsencrypt_certbot_cmd: certonly --standalone
     --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
-    {% if letsencrypt_test_cert is defined %} --test-cert
-    {%- endif -%}
+    {% if letsencrypt_test_cert is defined %}--test-cert{%- endif -%}
 letsencrypt_renew_cmd: >
     docker run -it --rm
-    -p {{ letsencrypt_ports }}
+    -p "{{ letsencrypt_port }}:{{ letsencrypt_port }}"
     -v "/etc/letsencrypt:{{ letsencrypt_confdir }}"
     -v "/var/lib/letsencrypt:{{ letsencrypt_workdir }}"
     {{ letsencrypt_docker_image }}

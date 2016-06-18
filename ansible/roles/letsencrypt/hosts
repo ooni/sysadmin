@@ -4,6 +4,3 @@ hostname
 [custom:vars]
 # Testing uncomment to generate test certificates
 letsencrypt_test_cert=true
-# Domain names to create certificates for
-# Stage and testing OONI domains
-letsencrypt_domains="stage.ooni.io,bouncer.stage.ooni.io,a.collector.stage.ooni.io,a.web-connectivity.th.stage.ooni.io,test.ooni.io,bouncer.test.ooni.io,b.collector.test.ooni.io,a.web-connectivity.th.test.ooni.io"
