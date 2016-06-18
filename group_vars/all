@@ -1,3 +1,6 @@
 ---
 tor_distribution_release: "{{ ansible_distribution_release }}"
 tor_distribution_release_experimental: "tor-experimental-0.2.7.x-{{ ansible_distribution_release }}"
+letsencrypt_confdir: /etc/letsencrypt
+letsencrypt_domains: "{{ letsencrypt_domain_list|map(attribute='domain')|join(',') }}"
+letsencrypt_live_dir: "{{ letsencrypt_confdir }}/{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'host')|map(attribute='domain')|first }}"
