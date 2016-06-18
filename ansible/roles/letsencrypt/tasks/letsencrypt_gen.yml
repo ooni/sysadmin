@@ -6,7 +6,6 @@
   with_items:
     - "{{ letsencrypt_workdir }}"
     - "{{ letsencrypt_confdir }}"
-
 - name: Generate Letsencrypt certificates with docker
   docker:
     name: "{{ letsencrypt_docker_name }}"
