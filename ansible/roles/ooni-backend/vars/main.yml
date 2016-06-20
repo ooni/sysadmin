@@ -16,7 +16,7 @@ http-return-json-headers_address: "http://93.95.227.200"
 ssl_address:
 tcp_echo_address: "213.138.109.232"
 traceroute_address: "213.138.109.232"
-web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr("role", "equalto", "collector")|map(attribute='domain')|list }}"
+web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list }}"
 web_connectivity_hs: "{{ web_connectivity_hsdir_hostname.stdout }}"
 collector_hs: "{{ collector_hsdir_hostname.stdout }}"
 mlab_ns_query_url_ansible: "{{ http://mlab-ns.appspot.com/ooni?policy=all }}"
