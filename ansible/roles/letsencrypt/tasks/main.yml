@@ -1,0 +1,3 @@
+---
+- include: letsencrypt_gen.yml
+- include: letsencrypt_renew.yml
