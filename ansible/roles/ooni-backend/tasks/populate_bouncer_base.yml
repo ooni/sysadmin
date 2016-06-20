@@ -8,7 +8,7 @@
 - name: Assign hidden services hostnames to variables
   shell: cat "{{ item }}/hostname"
   register: "{{ item }}_hostname"
-  failed_when: "{{ item }}_hostname.rc" > 1
+  failed_when: "{{ item }}_hostname.rc not in [0, 1]"
   with_items:
 {% if enable_bouncer == "yes" %}
     - {{ bouncer_hsdir }}
