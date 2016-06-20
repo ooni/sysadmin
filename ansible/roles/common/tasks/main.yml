@@ -4,4 +4,5 @@
 - include: pip.yml
   when: ansible_distribution == 'Debian'
         and ansible_distribution_major_version|int <= 7
+- include: virtualenv.yml
 - include: tor.yml

@@ -1,0 +1,7 @@
+---
+# file: group_vars/testing
+letsencrypt_domain_list:
+  - {domain: 'test.ooni.io', role: 'host'}
+  - {domain: 'bouncer.test.ooni.io', role: 'bouncer'}
+  - {domain: 'b.collector.test.ooni.io', role: 'collector'}
+  - {domain: 'a.web-connectivity.th.test.ooni.io', role: 'web-connectivity'}

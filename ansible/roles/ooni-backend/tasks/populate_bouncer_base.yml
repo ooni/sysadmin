@@ -1,0 +1,26 @@
+---
+- name: Wait for hidden services to bootstrap
+  wait_for: >
+    path="{{ oonibackend_log_path }}/{{ oonibackend_log_file_name }}"
+    search_regex="Started hidden service"
+    delay="30"
+
+- name: Assign hidden services hostnames to variables
+  shell: cat "{{ item }}/hostname"
+  register: "{{ item }}_hostname"
+  failed_when: "{{ item }}_hostname.rc not in [0, 1]"
+  with_items:
+{% if enable_bouncer == "yes" %}
+    - {{ bouncer_hsdir }}
+{% endif %}
+    - {{ collector_hsdir }}
+{% if enable_web_connectivity == "yes" %}
+    - {{ web_connectivity_hsdir }}
+{% endif %}
+
+- name: Template "{{ bouncer_file }}"
+  template: >
+    src="bouncer_base.yaml.j2"
+    dest="{{ bouncer_file }}"
+    backup="yes"
+    when: enable_bouncer == "yes"

@@ -1,7 +1,11 @@
 ---
-- name: Merge private key and certicate (required by ooni-backend)
-  shell: "cat {{ letsencrypt_cert_path }}/privkey.pem
-              {{ letsencrypt_cert_path }}/cert.pem >
-                {{ letsencrypt_cert_path }}/certbundle.pem"
-  args:
-    creates: "{{ letsencrypt_cert_path }}/certbundle.pem"
+- name: Create required ooni-backend TLS directory
+  file: path={{ item }} state=directory
+  with_items:
+    - "{{ oonibackend_tls_dir }}"
+
+- name: Copy ooni-backend private key and cert bundle to "{{ oonibackend_certbundle }}
+  synchronize: >
+    src="{{ letsencrypt_privkey_cert_bundle }}"
+    dest="{{ oonibackend_certbundle }}"
+  delegate_to: delegate.host
