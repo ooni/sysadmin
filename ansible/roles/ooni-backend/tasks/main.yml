@@ -1,9 +1,8 @@
 ---
+- include: tls.yml
+  when: letsencrypt_set is defined and set_letsencrypt == 'true'
 - include: install.yml
 - include: configure.yml
 - include: supervisord.yml
   when: set_supervisord is defined and set_supervisord == 'true'
-- include: fetch-HS-info.yml
-  when: set_supervisord is defined and set_supervisord == 'true'
-- include: tls.yml
-  when: letsencrypt_set is defined and set_letsencrypt == 'true'
+- include: populate_bouncer_base.yml
