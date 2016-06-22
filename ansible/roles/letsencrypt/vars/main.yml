@@ -3,13 +3,15 @@ letsencrypt_docker_name: certbot
 letsencrypt_admin_email: admin@openobservatory.org
 letsencrypt_workdir: /var/lib/letsencrypt
 letsencrypt_port: 80
-letsencrypt_post_hook: "cat {{ letsencrypt_live_dir }}/privkey.pem
-    {{ letsencrypt_live_dir }}/cert.pem > {{ letsencrypt_privkey_cert_bundle }}"
+letsecnrypt_pre_hook: docker stop ooni-canonical-bouncer
+letsencrypt_post_hook: "cp {{ letsencrypt_live_dir }}/privkey.pem
+    {{ letsencrypt_live_dir }}/fullchain.pem > {{ oonibackend_tls_dir }}
+    && docker start ooni-canonical-bouncer"
 letsencrypt_certbot_cmd: certonly --standalone
     --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
     {% if letsencrypt_ooni_backend is defined %}
-    --post-hook "{{ letsencrypt_post_hook }}"
+    --pre-hook "{{ letsecnrypt_pre_hook }}" --post-hook "{{ letsencrypt_post_hook }}"
     {%- endif -%}
     {% if letsencrypt_test_cert is defined %} --test-cert {%- endif -%}
 letsencrypt_renew_cmd: >

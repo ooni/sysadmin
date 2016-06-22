@@ -4,7 +4,7 @@ tor_distribution_release_experimental: "tor-experimental-0.2.7.x-{{ ansible_dist
 letsencrypt_confdir: /etc/letsencrypt
 letsencrypt_domains: "{{ letsencrypt_domain_list|map(attribute='domain')|join(',') }}"
 letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'host')|map(attribute='domain')|first }}"
-letsencrypt_privkey_cert_bundle: "{{ letsencrypt_live_dir }}/privkey_cert.pem"
-oonibackend_data_path: /data/oonibackend
+oonibackend_data_path: /usr/share/ooni/backend
 oonibackend_tls_dir: "{{ oonibackend_data_path }}/tls"
-oonibackend_certbundle: "{{ oonibackend_tls_dir }}/certbundle.pem"
+oonibackend_fullchain: "{{ oonibackend_tls_dir }}/fullchain.pem"
+oonibackend_privkey: "{{ oonibackend_tls_dir }}/privkey.pem"
