@@ -60,3 +60,4 @@
     - "{{ input_dir }}"
     - "{{ report_dir }}"
     - "{{ oonibackend_log_path }}"
+    - "{{ oonibackend_conf_path }}"

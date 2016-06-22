@@ -5,4 +5,3 @@
 - include: configure.yml
 - include: supervisord.yml
   when: set_supervisord is defined and set_supervisord == 'true'
-- include: populate_bouncer_base.yml

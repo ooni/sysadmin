@@ -9,6 +9,7 @@ enable_tls_bouncer: no
 enable_tls_collector: no
 enable_tls_web_connectivity: no
 enable_web_connectivity: yes
+enable_collector_alternate: yes
 
 dns_resolver_address: "8.8.8.8:53"
 dns_test_helper_address: "213.138.109.232:57004"
@@ -16,8 +17,9 @@ http-return-json-headers_address: "http://93.95.227.200"
 ssl_address:
 tcp_echo_address: "213.138.109.232"
 traceroute_address: "213.138.109.232"
-web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list }}"
+web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'web-connectivity')|map(attribute='domain')|list }}"
 web_connectivity_hs: "{{ web_connectivity_hsdir_hostname.stdout }}"
+collector_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list }}"
 collector_hs: "{{ collector_hsdir_hostname.stdout }}"
 mlab_ns_query_url_ansible: "{{ http://mlab-ns.appspot.com/ooni?policy=all }}"
 dst_bouncer_path_ansible: "{{/data/bouncer/bouncer.yaml}}"
@@ -31,8 +33,12 @@ dns_port_udp: 57004
 dns_discover_port_tcp: 57005
 dns_discover_port_udp: 57005
 ssl_port: 57006
-tls_bouncer_port: 10443
-tls_collector_port: 11443
+tls_bouncer_port: 443
+tcp_bouncer_port: 80
+tls_collector_port: 4441
+tcp_collector_port: 8081
+tls_web_connectivity_port: 4442
+tcp_web_connectivity_port: 8082
 
 oonibackend_data_path: /usr/share/ooni/backend
 archive_dir: "{{ oonibackend_data_path }}/archive"
@@ -46,16 +52,6 @@ bouncer_hsdir: "{{ tor_datadir }}/bouncer"
 collector_hsdir: "{{ tor_datadir }}/collector"
 web_connectivity_hsdir: "{{ tor_datadir }}/web_connectivity"
 bouncer_update_file: "{{ oonibackend_data_path }}/update-bouncer.py"
-oonibackend_data_path: /usr/share/ooni/backend
-oonibackend_tls_dir: "{{ oonibackend_data_path }}/tls"
-oonibackend_fullchain: "{{ oonibackend_tls_dir }}/fullchain.pem"
-oonibackend_privkey: "{{ oonibackend_tls_dir }}/privkey.pem"
-tls_web_connectivity_fullchain: "{{ oonibackend_fullchain }}"
-tls_web_connectivity_privkey: "{{ oonibackend_privkey }}"
-tls_bouncer_fullchain: "{{ oonibackend_fullchain }}"
-tls_bouncer_privkey: "{{ oonibackend_privkey }}"
-tls_collector_fullchain: "{{ oonibackend_fullchain }}"
-tls_collector_privkey: "{{ oonibackend_privkey }}"
 docker_file: "{{ bind_oonibackend_data_path }}/Dockerfile"
 bind_archive_dir: "{{ bind_oonibackend_data_path }}/archive"
 bind_tor_datadir: "{{ bind_oonibackend_data_path }}/tor"
@@ -75,5 +71,6 @@ tls_collector_crt_bundle: "{{ oonibackend_certbundle }}"
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
-oonibackend_conf: /etc/oonibackend.conf
+oonibackend_conf_path: /etc/ooni
+oonibackend_conf: {{ oonibackend_conf_path }}/oonibackend.conf
 oonibackend_log_file_name: oonibackend.log

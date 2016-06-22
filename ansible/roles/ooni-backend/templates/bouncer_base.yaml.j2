@@ -1,19 +1,24 @@
 collector:
-  httpo://{{ collector_hs }}
+  httpo://{{ collector_hs }}:
+{% if enable_collector_alternate %}
+    collector-alternate:
+    - { address: 'https://{{ collector_domain }}:{{ tls_collector_port }}', type: 'https'}
+    - { address: 'http://{{ collector_domain }}:{{ tcp_collector_port }}', type: 'http'}
+{% endif %}
     test-helper: {dns: '{{ dns_test_helper_address }}',
       http-return-json-headers: '{{ http-return-json-headers_address }}',
-{% if enable_ssl_helper == "yes" %}
+{% if enable_ssl_helper %}
       ssl: ' {{ ssl_address }}',
 {% endif %}
       tcp-echo: '{{ tcp_echo_address }}',
-{% if enable_web_connectivity == "yes" %}
+{% if enable_web_connectivity %}
       web-connectivity: '{{ web_connectivity_hs }}',
 {% endif %}
       traceroute: '{{ traceroute_address }}'}
-{% if enable_tls_web_connectivity == "yes" %}
+{% if enable_tls_web_connectivity %}
     test-helper-alternate:
       web-connectivity:
     - {address: '{{ web_connectivity_hs }}', type: 'onion'}
-    - {address: 'https://{{ web_connectivity_domain }}', type: 'https'}
-    - {address: 'http://{{ web_connectivity_domain }}', type: 'http'}
+    - {address: 'https://{{ web_connectivity_domain }}:{{ tls_web_connectivity_port }}', type: 'https'}
+    - {address: 'http://{{ web_connectivity_domain }}:{{ tcp_web_connectivity_port }}', type: 'http'}
 {% endif %}
