@@ -1,6 +1,4 @@
 ---
-- include: tls.yml
-  when: letsencrypt_set is defined and set_letsencrypt == 'true'
 - include: install.yml
 - include: configure.yml
 - include: supervisord.yml
