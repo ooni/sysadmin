@@ -72,5 +72,5 @@ tls_collector_crt_bundle: "{{ oonibackend_certbundle }}"
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
 oonibackend_conf_path: /etc/ooni
-oonibackend_conf: {{ oonibackend_conf_path }}/oonibackend.conf
+oonibackend_conf: "{{ oonibackend_conf_path }}/oonibackend.conf"
 oonibackend_log_file_name: oonibackend.log
