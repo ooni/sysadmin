@@ -13,7 +13,7 @@
     enable_tls_collector: yes
     enable_tls_web_connectivity: yes
     enable_bouncer: yes
-    docker_deploymet: yes
+    docker_deployment: yes
   roles:
     - letsencrypt
     - ooni-backend
