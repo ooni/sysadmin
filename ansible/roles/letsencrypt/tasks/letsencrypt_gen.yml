@@ -12,7 +12,7 @@
     image: "{{ letsencrypt_docker_image }}"
     expose: "{{ letsencrypt_port }}"
     ports:
-    - "{{ letsencrypt_port }}:{{ letsencrypt_port }}"
+    - "{{ docker_ip }}:{{ letsencrypt_port }}:{{ letsencrypt_port }}"
     volumes:
     - "{{ letsencrypt_workdir }}:{{ letsencrypt_workdir }}"
     - "{{ letsencrypt_confdir }}:{{ letsencrypt_confdir }}"
