@@ -1,10 +1,4 @@
 ---
-- name: Clone ooni-sysadmin git repository
-  git: >
-    repo="{{ ooni_sysadmin_repo }}"
-    dest="{{ ansible_env.HOME }}"
-    update=yes
-
 - name: Create docker volumes directories
   file: path="{{ item }}" state=directory
   with_items:
