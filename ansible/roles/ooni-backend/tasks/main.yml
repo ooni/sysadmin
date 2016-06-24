@@ -1,15 +1,15 @@
 ---
 - include: install.yml
-  when: when docker_deployment is not defined
+  when: docker_deployment is not defined
 - include: configure.yml
-  when: when docker_deployment is not defined
+  when: docker_deployment is not defined
 - include: supervisord.yml
   when: set_supervisord is defined and docker_deployment is not defined
 - include: docker_deploy.yml
-  when: when docker_deployment is defined
+  when: docker_deployment is defined
 - include: populate_bouncer_base.yml
-  when: when docker_deployment is defined
+  when: docker_deployment is defined
 - include: cron.yml
-  when: when docker_deployment is defined
+  when: docker_deployment is defined
 - include: fetch_backend_conf.yml
-  when: when docker_deployment is defined
+  when: docker_deployment is defined
