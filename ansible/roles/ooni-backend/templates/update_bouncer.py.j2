@@ -66,8 +66,8 @@ def write_bouncer_config(path, bouncer_config_contents):
         exit(1)
 
 
-dst_bouncer_path = '{{ dst_bouncer_path_ansible }}'
-base_bouncer_path = '{{ base_bouncer_path_ansible }}'
+dst_bouncer_path = '{{ bind_bouncer_base_file }}'
+base_bouncer_path = '{{ bind_bouncer_file }}'
 base_bouncer = yaml.safe_load(open(base_bouncer_path))
 while True:
     try:

@@ -12,4 +12,3 @@
     user="root"
     cron_file="ansible_bouncer-update"
     job="{{ bouncer_update_file }}"
-

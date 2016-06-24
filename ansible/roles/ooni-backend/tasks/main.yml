@@ -3,3 +3,11 @@
 - include: configure.yml
 - include: supervisord.yml
   when: set_supervisord is defined and set_supervisord == 'true'
+- include: docker_deploy.yml
+  when: when docker_deployment is defined
+- include: populate_bouncer_base.yml
+  when: when docker_deployment is defined
+- include: cron.yml
+  when: when docker_deployment is defined
+- include: fetch_backend_conf.yml
+  when: when docker_deployment is defined

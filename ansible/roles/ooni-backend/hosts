@@ -6,3 +6,7 @@ hostname
 set_supervisord='true'
 # Set to true to install ooni-backend in virtualenv
 # set_virtualenv='true'
+# Deploy a backend in docker
+docker_deploymet=yes
+# This sets the docker name and it's used only when docker_deploymet is defined
+app_env=testing-bouncer

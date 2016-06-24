@@ -5,22 +5,17 @@
     search_regex="Started hidden service"
     delay="30"
 
+- name: List available HS dirs
+  command: ls "{{ bind_tor_datadir }}"
+  register: hsdirs_list
+
 - name: Assign hidden services hostnames to variables
-  shell: cat "{{ item }}/hostname"
-  register: "{{ item }}_hostname"
-  failed_when: "{{ item }}_hostname.rc" > 1
-  with_items:
-{% if enable_bouncer == "yes" %}
-    - {{ bouncer_hsdir }}
-{% endif %}
-    - {{ collector_hsdir }}
-{% if enable_web_connectivity == "yes" %}
-    - {{ web_connectivity_hsdir }}
-{% endif %}
+  shell: cat "{{ bind_tor_datadir }}/{{ item }}/hostname"
+  register: hs_hostname
+  with_items: "{{ hsdirs_list.stdout_lines }}"
 
 - name: Template "{{ bouncer_file }}"
   template: >
     src="bouncer_base.yaml.j2"
-    dest="{{ bouncer_file }}"
+    dest="{{ bind_bouncer_base_file }}"
     backup="yes"
-    when: enable_bouncer == "yes"
