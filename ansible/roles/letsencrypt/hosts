@@ -4,6 +4,3 @@ hostname
 [custom:vars]
 # Testing uncomment to generate test certificates
 letsencrypt_test_cert=true
-# Uncomment to add pre and post letsencrypt certbot hooks upon certificate
-# renewal/creation
-letsencrypt_ooni_backend=true
