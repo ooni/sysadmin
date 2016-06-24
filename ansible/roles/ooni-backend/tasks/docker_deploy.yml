@@ -44,12 +44,12 @@
     - "{{ tls_web_connectivity_port }}"
     - "{{ tcp_web_connectivity_port }}"
     ports:
-    - "{{ tls_bouncer_port }}:{{ tls_bouncer_port }}"
-    - "{{ tcp_bouncer_port }}:{{ tcp_bouncer_port }}"
-    - "{{ tls_collector_port }}:{{ tls_collector_port }}"
-    - "{{ tcp_collector_port }}:{{ tcp_collector_port }}"
-    - "{{ tls_web_connectivity_port }}:{{ tls_web_connectivity_port }}"
-    - "{{ tcp_web_connectivity_port }}:{{ tcp_web_connectivity_port }}"
+    - "{{ docker_ip }}:{{ tls_bouncer_port }}:{{ tls_bouncer_port }}"
+    - "{{ docker_ip }}:{{ tcp_bouncer_port }}:{{ tcp_bouncer_port }}"
+    - "{{ docker_ip }}:{{ tls_collector_port }}:{{ tls_collector_port }}"
+    - "{{ docker_ip }}:{{ tcp_collector_port }}:{{ tcp_collector_port }}"
+    - "{{ docker_ip }}:{{ tls_web_connectivity_port }}:{{ tls_web_connectivity_port }}"
+    - "{{ docker_ip }}:{{ tcp_web_connectivity_port }}:{{ tcp_web_connectivity_port }}"
     volumes:
     - "{{ bind_deck_dir }}:{{ deck_dir }}"
     - "{{ bind_input_dir }}:{{ input_dir }}"
