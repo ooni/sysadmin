@@ -2,9 +2,7 @@ FROM debian:jessie
 RUN apt-get -y update
 RUN apt-get install -y git-core ansible
 RUN git clone {{ ooni_sysadmin_repo }} /tmp/ooni-sysadmin
-ADD inventory /etc/ansible/hosts
 WORKDIR /tmp/ooni-sysadmin/
 RUN git submodule update --init
-WORKDIR /tmp/ooni-sysadmin/ansible
-RUN ansible-playbook -v install-oonibackend.yml -c local
+RUN ansible-playbook -v ansible/install-oonibackend.yml -c local
 CMD ["/usr/local/bin/oonib", "-c", "{{ oonibackend_conf }}"]
