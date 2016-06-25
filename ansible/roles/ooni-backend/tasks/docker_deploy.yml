@@ -23,6 +23,7 @@
 - name: Build docker image
   docker_image: >
     state=build
+    timeout=1500
     name="ooni-backend-{{ app_env }}"
     path="{{ bind_oonibackend_data_path }}"
 
