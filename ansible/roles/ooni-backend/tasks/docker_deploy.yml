@@ -31,6 +31,7 @@
   docker:
     state: reloaded
     name: "ooni-backend-{{ app_env }}"
+    image: "ooni-backend-{{ app_env }}"
     expose:
     - "{{ tls_bouncer_port }}"
     - "{{ tcp_bouncer_port }}"
