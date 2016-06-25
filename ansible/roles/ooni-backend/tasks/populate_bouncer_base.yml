@@ -1,7 +1,7 @@
 ---
 - name: Wait for hidden services to bootstrap
   wait_for: >
-    path="{{ bind_oonibackend_conf }}"
+    path="{{ bind_oonibackend_log_path }}/{{ oonibackend_log_file_name }}"
     search_regex="Started hidden service"
     delay="30"
 
