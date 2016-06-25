@@ -6,11 +6,11 @@
     delay="30"
 
 - name: List available HS dirs
-  command: ls -d "{{ bind_tor_datadir }}/*/"
+  shell: ls -d "{{ bind_tor_datadir }}"/*/
   register: hsdirs_list
 
 - name: Assign hidden services hostnames to variables
-  shell: cat "{{ bind_tor_datadir }}/{{ item }}/hostname"
+  shell: cat "{{ item }}hostname"
   register: hs_hostname
   with_items: "{{ hsdirs_list.stdout_lines }}"
 
