@@ -3,6 +3,5 @@ RUN apt-get -y update
 RUN apt-get install -y git-core ansible
 RUN git clone {{ ooni_sysadmin_repo }} /tmp/ooni-sysadmin
 WORKDIR /tmp/ooni-sysadmin/
-RUN git submodule update --init
 RUN ansible-playbook -v ansible/install-oonibackend.yml -c local
 CMD ["/usr/local/bin/oonib", "-c", "{{ oonibackend_conf }}"]
