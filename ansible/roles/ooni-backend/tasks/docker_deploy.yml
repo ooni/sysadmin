@@ -24,7 +24,7 @@
   docker_image: >
     state=build
     name="ooni-backend-{{ app_env }}"
-    path="{{ docker_file }}"
+    path="{{ bind_oonibackend_data_path }}"
 
 - name: Run docker image
   docker:
