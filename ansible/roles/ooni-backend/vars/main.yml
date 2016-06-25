@@ -3,11 +3,11 @@ enable_dns_helper: yes
 enable_dns_discovery_helper: yes
 enable_http_return_json_headers_helper: yes
 enable_tcp_echo_helper: yes
-enable_ssl_helper: no
+enable_ssl_helper:
 enable_daphn3_helper: yes
-enable_tls_bouncer: no
-enable_tls_collector: no
-enable_tls_web_connectivity: no
+enable_tls_bouncer:
+enable_tls_collector:
+enable_tls_web_connectivity:
 enable_web_connectivity: yes
 enable_collector_alternate: yes
 
