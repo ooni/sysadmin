@@ -11,5 +11,3 @@
   when: docker_deployment is defined
 - include: cron.yml
   when: docker_deployment is defined
-- include: fetch_backend_conf.yml
-  when: docker_deployment is defined

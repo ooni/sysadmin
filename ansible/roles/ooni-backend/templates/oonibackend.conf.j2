@@ -63,7 +63,7 @@ helpers:
 {% endif %}
 main:
   archive_dir: {{ archive_dir }}
-{% if enable_bouncer %}
+{% if "{{ enable_bouncer | default('') }}" %}
   bouncer_file: {{ bouncer_file }}
 {% else %}
   bouncer_file: null

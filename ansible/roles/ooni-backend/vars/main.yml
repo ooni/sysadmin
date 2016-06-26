@@ -5,24 +5,27 @@ enable_http_return_json_headers_helper: yes
 enable_tcp_echo_helper: yes
 enable_ssl_helper:
 enable_daphn3_helper: yes
+enable_policy:
+enable_bouncer:
 enable_tls_bouncer:
 enable_tls_collector:
 enable_tls_web_connectivity:
-enable_web_connectivity: yes
-enable_collector_alternate: yes
+enable_web_connectivity:
+enable_collector_alternate:
 
 dns_resolver_address: "8.8.8.8:53"
 dns_test_helper_address: "213.138.109.232:57004"
-http-return-json-headers_address: "http://93.95.227.200"
+http_return_json_headers_address: "http://93.95.227.200"
 ssl_address:
 tcp_echo_address: "213.138.109.232"
 traceroute_address: "213.138.109.232"
-web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'web-connectivity')|map(attribute='domain')|list }}"
-web_connectivity_hs: "{{ hs_hostname.results|selectattr('item', 'equalto', 'web_connectivity')|map(attribute='stdout')|list }}"
-collector_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list }}"
-collector_hs: "{{ hs_hostname.results|selectattr('item', 'equalto', 'collector')|map(attribute='stdout')|list }}"
-bouncer_hs: "{{ hs_hostname.results|selectattr('item', 'equalto', 'bouncer')|map(attribute='stdout')|list }}"
-mlab_ns_query_url_ansible: "{{ http://mlab-ns.appspot.com/ooni?policy=all }}"
+web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'web-connectivity')|map(attribute='domain')|list|join(' ') }}"
+collector_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list|join(' ') }}"
+backend_conf_path: "{{ ansible_hostname }}_{{ app_env }}_backend_files"
+web_connectivity_hs: "{{lookup('file', '{{ backend_conf_path }}/web_connectivity/hostname')}}"
+collector_hs: "{{lookup('file', '{{ backend_conf_path }}/collector/hostname')}}"
+bouncer_hs: "{{lookup('file', '{{ backend_conf_path }}/bouncer/hostname')}}"
+mlab_ns_query_url_ansible: "http://mlab-ns.appspot.com/ooni?policy=all"
 
 http_return_json_headers_port: 57001
 tcp_echo_port: 57002
@@ -64,9 +67,6 @@ bind_collector_hsdir: "{{ bind_tor_datadir }}/collector"
 bind_web_connectivity_hsdir: "{{ bind_tor_datadir }}/web_connectivity"
 bind_bouncer_file: "{{ bind_oonibackend_data_path }}/bouncer.yaml"
 bind_bouncer_update_file: "{{ bind_oonibackend_data_path }}/update-bouncer.py"
-web_connencivity_crt_bundle: "{{ oonibackend_certbundle }}"
-bouncer_crt_bundle: "{{ oonibackend_certbundle }}"
-tls_collector_crt_bundle: "{{ oonibackend_certbundle }}"
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
