@@ -5,7 +5,12 @@ letsencrypt_workdir: /var/lib/letsencrypt
 letsencrypt_port: 80
 letsecnrypt_pre_hook: docker stop {{ app_env }}
 letsencrypt_post_hook: "cp {{ letsencrypt_live_dir }}/privkey.pem
-    {{ letsencrypt_live_dir }}/fullchain.pem > {{ oonibackend_tls_dir }}
+    {{ letsencrypt_live_dir }}/fullchain.pem
+    {%- if docker_deployment is defined -%}
+    {{ bind_oonibackend_tls_dir }}
+    {%- else -%}
+    {{ oonibackend_tls_dir }}
+    {%- endif -%}
     && docker start {{ app_env }}"
 letsencrypt_certbot_cmd: certonly --standalone
     --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
