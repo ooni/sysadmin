@@ -15,7 +15,6 @@
     - "{{ bind_collector_hsdir }}"
     - "{{ bind_web_connectivity_hsdir }}"
 
-- debug: msg="web_connectivity_domain {{web_connectivity_domain}} | collector_domain {{ collector_domain }}"
 - name: Template "{{ bind_bouncer_base_file  }}"
   template: >
     src="bouncer_base.yaml.j2"

@@ -1,9 +1,13 @@
 ---
 - hosts: local:staging:testing
   vars:
+    ansible_python_interpreter: "/root/venv/bin/python2.7"
     enable_tls_bouncer: yes
+    enable_collector_alternate: yes
     enable_tls_collector: yes
     enable_tls_web_connectivity: yes
+    enable_web_connectivity: yes
+    enable_bouncer: yes
     enable_bouncer: yes
   roles:
   - common
