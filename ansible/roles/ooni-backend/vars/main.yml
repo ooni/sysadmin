@@ -6,9 +6,6 @@ enable_tcp_echo_helper: yes
 enable_ssl_helper:
 enable_daphn3_helper: yes
 enable_policy:
-enable_bouncer:
-enable_tls_bouncer:
-enable_tls_collector:
 enable_tls_web_connectivity:
 enable_web_connectivity:
 enable_collector_alternate:
