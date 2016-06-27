@@ -6,6 +6,13 @@
   with_items:
     - "{{ letsencrypt_workdir }}"
     - "{{ letsencrypt_confdir }}"
+
+- name: Creates backend TLS dir
+  file: >
+    state=directory
+    path="{{ bind_oonibackend_tls_dir }}"
+  when: docker_deployment is defined
+
 - name: Generate Letsencrypt certificates with docker
   docker:
     name: "{{ letsencrypt_docker_name }}"
@@ -24,7 +31,7 @@
     src="{{ item }}"
     dest="{{ bind_oonibackend_tls_dir }}"
     remote_src=True
-  with_items:
+  with:items:
     - "{{ letsencrypt_live_dir }}/privkey.pem"
     - "{{ letsencrypt_live_dir }}/fullchain.pem"
   when: docker_deployment is defined
