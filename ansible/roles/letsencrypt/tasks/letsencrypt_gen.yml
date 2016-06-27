@@ -18,3 +18,13 @@
     - "{{ letsencrypt_confdir }}:{{ letsencrypt_confdir }}"
     command: "{{ letsencrypt_certbot_cmd }}"
     state: reloaded
+
+- name: Copy TLS specific backend files
+  copy: >
+    src="{{ item }}"
+    dest="{{ bind_oonibackend_tls_dir }}"
+    remote_src=True
+  with_items:
+    - "{{ letsencrypt_live_dir }}/privkey.pem"
+    - "{{ letsencrypt_live_dir }}/fullchain.pem"
+  when: docker_deployment is defined
