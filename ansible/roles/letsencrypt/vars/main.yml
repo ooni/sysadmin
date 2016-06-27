@@ -10,9 +10,6 @@ letsencrypt_post_hook: "cp {{ letsencrypt_live_dir }}/privkey.pem
 letsencrypt_certbot_cmd: certonly --standalone
     --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
-    {% if docker_deployment is defined %}
-    --pre-hook "{{ letsecnrypt_pre_hook }}" --post-hook "{{ letsencrypt_post_hook }}"
-    {%- endif -%}
     {% if letsencrypt_test_cert is defined %} --test-cert {%- endif -%}
 letsencrypt_renew_cmd: >
     docker run -it --rm
@@ -21,3 +18,6 @@ letsencrypt_renew_cmd: >
     -v "/var/lib/letsencrypt:{{ letsencrypt_workdir }}"
     {{ letsencrypt_docker_image }}
     {{ letsencrypt_certbot_cmd }}
+    {% if docker_deployment is defined %}
+    --pre-hook "{{ letsecnrypt_pre_hook }}" --post-hook "{{ letsencrypt_post_hook }}"
+    {%- endif -%}
