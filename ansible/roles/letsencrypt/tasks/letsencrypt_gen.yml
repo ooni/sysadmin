@@ -30,8 +30,7 @@
   copy: >
     src="{{ item }}"
     dest="{{ bind_oonibackend_tls_dir }}"
-    remote_src=True
-  with:items:
+  with_items:
     - "{{ letsencrypt_live_dir }}/privkey.pem"
     - "{{ letsencrypt_live_dir }}/fullchain.pem"
   when: docker_deployment is defined
