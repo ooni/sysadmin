@@ -3,12 +3,7 @@ enable_dns_helper: yes
 enable_dns_discovery_helper: yes
 enable_http_return_json_headers_helper: yes
 enable_tcp_echo_helper: yes
-enable_ssl_helper:
 enable_daphn3_helper: yes
-enable_policy:
-enable_tls_web_connectivity:
-enable_web_connectivity:
-enable_collector_alternate:
 
 dns_resolver_address: "8.8.8.8:53"
 dns_test_helper_address: "213.138.109.232:57004"

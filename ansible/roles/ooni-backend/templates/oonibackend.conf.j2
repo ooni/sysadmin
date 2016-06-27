@@ -40,7 +40,7 @@ helpers:
     address: null
     certificate: certificate.crt
     private_key: private.key
-{% if enable_ssl_helper %}
+{% if enable_ssl_helper | default('') %}
     port: {{ ssl_port }}
 {% else %}
     port: null
@@ -52,12 +52,12 @@ helpers:
 {% else %}
     port: null
 {% endif %}
-{% if enable_web_connectivity %}
+{% if enable_web_connectivity | default('') %}
   web_connectivity:
       endpoints:
       - {type: onion, hsdir: "{{ web_connectivity_hsdir }}"}
 {% endif %}
-{% if enable_tls_web_connectivity %}
+{% if enable_tls_web_connectivity | default('') %}
       - {type: tls, port: {{ tls_web_connectivity_port }}, fullchain: "{{ tls_web_connectivity_fullchain }}", privkey: "{{ tls_web_connectivity_privkey }}"}
       - {type: tcp, port: {{ tcp_web_connectivity_port }}}
 {% endif %}
@@ -79,7 +79,7 @@ main:
   nodaemon: true
   originalname: null
   pidfile: oonib.pid
-{% if enable_policy %}
+{% if enable_policy | default('') %}
   policy_file: {{ policy_file }}
 {% else %}
   policy_file: null
