@@ -3,4 +3,8 @@ hostname
 
 [custom:vars]
 # Testing uncomment to generate test certificates
-letsencrypt_test_cert=true
+#letsencrypt_test_cert=true
+# This sets the docker name and it's used only when docker_deployment is defined
+app_env=env-name-bouncer
+# An IP address that docker will use for public port mapping (non internal IP)
+docker_ip="0.0.0.0"
