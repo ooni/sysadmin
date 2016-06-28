@@ -6,7 +6,10 @@ hostname
 set_supervisord='true'
 # Set to true to install ooni-backend in virtualenv
 # set_virtualenv='true'
-# Deploy a backend in docker
+# Define docker_deployment to deploy a backend in docker
 docker_deployment=yes
 # This sets the docker name and it's used only when docker_deployment is defined
 app_env=testing-bouncer
+# An IP address that docker will use for public port mapping (non internal IP)
+docker_ip="0.0.0.0"
+# The list of generated domain could be derived from groups_vars/group
