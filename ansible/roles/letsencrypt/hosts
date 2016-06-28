@@ -8,3 +8,4 @@ hostname
 app_env=env-name-bouncer
 # An IP address that docker will use for public port mapping (non internal IP)
 docker_ip="0.0.0.0"
+# The list of generated domain could be derived from groups_vars/group
