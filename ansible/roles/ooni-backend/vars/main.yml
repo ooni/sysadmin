@@ -17,7 +17,6 @@ backend_conf_path: "{{ ansible_hostname }}_{{ app_env }}_backend_files"
 web_connectivity_hs: "{{lookup('file', '{{ backend_conf_path }}/web_connectivity/hostname')}}"
 collector_hs: "{{lookup('file', '{{ backend_conf_path }}/collector/hostname')}}"
 bouncer_hs: "{{lookup('file', '{{ backend_conf_path }}/bouncer/hostname')}}"
-mlab_ns_query_url_ansible: "http://mlab-ns.appspot.com/ooni?policy=all"
 
 http_return_json_headers_port: 57001
 tcp_echo_port: 57002

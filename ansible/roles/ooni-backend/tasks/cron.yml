@@ -11,4 +11,4 @@
     day="*"
     user="root"
     cron_file="ansible_bouncer-update"
-    job="{{ bind_bouncer_update_file }}"
+    job="{{ bind_bouncer_update_file }} {{ bind_bouncer_file }} {{ bind_bouncer_base_file }}"
