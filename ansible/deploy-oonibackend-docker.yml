@@ -18,6 +18,9 @@
     enable_web_connectivity: yes
     enable_bouncer: yes
     docker_deployment: yes
+    enable_tcp_web_connectivity: yes
+    enable_tcp_bouncer: yes
+    enable_tcp_collector: yes
   roles:
     - letsencrypt
     - ooni-backend

@@ -8,7 +8,9 @@
     enable_tls_web_connectivity: yes
     enable_web_connectivity: yes
     enable_bouncer: yes
-    enable_bouncer: yes
+    enable_tcp_web_connectivity: yes
+    enable_tcp_bouncer: yes
+    enable_tcp_collector: yes
   roles:
   - common
   - { role: supervisord, when "set_supervisord == 'true'" }

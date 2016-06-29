@@ -59,6 +59,8 @@ helpers:
 {% endif %}
 {% if enable_tls_web_connectivity | default('') %}
       - {type: tls, port: {{ tls_web_connectivity_port }}, fullchain: "{{ tls_web_connectivity_fullchain }}", privkey: "{{ tls_web_connectivity_privkey }}"}
+{% endif %}
+{% if enable_tcp_web_connectivity | default('') %}
       - {type: tcp, port: {{ tcp_web_connectivity_port }}}
 {% endif %}
 main:
@@ -99,6 +101,8 @@ main:
   bouncer_endpoints:
 {% if "{{ enable_tls_bouncer | default('') }}" %}
   - {type: tls, port: {{ tls_bouncer_port }}, fullchain: "{{ tls_bouncer_fullchain }}", privkey: "{{ tls_bouncer_privkey }}"}
+{% endif %}
+{% if "{{ enable_tcp_bouncer | default('') }}" %}
   - {type: tcp, port: {{ tcp_bouncer_port }}}
 {% endif %}
   - {type: onion, hsdir: "{{ bouncer_hsdir }}"}
@@ -106,6 +110,8 @@ main:
   collector_endpoints:
 {% if "{{ enable_tls_collector | default('') }}" %}
   - {type: tls, port: {{ tls_collector_port }}, fullchain: "{{ tls_collector_fullchain  }}", privkey: "{{ tls_collector_privkey }}"}
+{% endif %}
+{% if "{{ enable_tcp_collector | default('') }}" %}
   - {type: tcp, port: {{ tcp_collector_port }}}
 {% endif %}
   - {type: onion, hsdir: "{{ collector_hsdir }}"}

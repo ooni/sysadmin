@@ -2,7 +2,11 @@ collector:
   httpo://{{ collector_hs }}:
 {% if enable_collector_alternate | default('') %}
     collector-alternate:
+{% endif %}
+{% if "{{ enable_tls_collector | default('') }}" %}
     - { address: 'https://{{ collector_domain }}:{{ tls_collector_port }}', type: 'https'}
+{% endif %}
+{% if "{{ enable_tcp_collector | default('') }}" %}
     - { address: 'http://{{ collector_domain }}:{{ tcp_collector_port }}', type: 'http'}
 {% endif %}
     test-helper:
@@ -16,10 +20,14 @@ collector:
        web-connectivity: '{{ web_connectivity_hs }}',
 {% endif %}
        traceroute: '{{ traceroute_address }}'}
-{% if enable_tls_web_connectivity | default('') %}
+{% if enable_web_connectivity | default('') %}
     test-helper-alternate:
       web-connectivity:
       - {address: '{{ web_connectivity_hs }}', type: 'onion'}
+{% endif %}
+{% if enable_tls_web_connectivity | default('') %}
       - {address: 'https://{{ web_connectivity_domain }}:{{ tls_web_connectivity_port }}', type: 'https'}
+{% endif %}
+{% if enable_tcp_web_connectivity | default('') %}
       - {address: 'http://{{ web_connectivity_domain }}:{{ tcp_web_connectivity_port }}', type: 'http'}
 {% endif %}
