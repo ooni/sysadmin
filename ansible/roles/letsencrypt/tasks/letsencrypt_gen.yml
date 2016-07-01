@@ -1,5 +1,18 @@
 ---
-- name: Creates {{ item }}
+- name: Add jessie backports repository
+  apt_repository: >
+    state=present
+    repo='deb http://httpredir.debian.org/debian {{ ansible_distribution_release }}-backports main'
+  when: docker_deployment is defined and ansible_distribution == "Debian"
+
+- name: Install Letsencrypt certbot
+  apt: >
+    name=certbot
+    state=latest
+    default_release="{{ ansible_distribution_release }}-backports"
+  when: docker_deployment is defined and ansible_distribution == "Debian"
+
+- name: Creates Letsencrypt working/config directories
   file: >
     state=directory
     path={{ item }}
@@ -11,6 +24,10 @@
   file: >
     state=directory
     path="{{ bind_oonibackend_tls_dir }}"
+  when: docker_deployment is defined
+
+- name: Generate Letsencrypt certificate with certbot package
+  shell: "certbot {{ letsencrypt_certbot_cmd }}"
   when: docker_deployment is defined
 
 - name: Generate Letsencrypt certificates with docker
@@ -25,11 +42,13 @@
     - "{{ letsencrypt_confdir }}:{{ letsencrypt_confdir }}"
     command: "{{ letsencrypt_certbot_cmd }}"
     state: reloaded
+  when: letsencrypt_docker is defined
 
 - name: Copy TLS specific backend files
   copy: >
     src="{{ item }}"
     dest="{{ bind_oonibackend_tls_dir }}"
+    remote_src=True
   with_items:
     - "{{ letsencrypt_live_dir }}/privkey.pem"
     - "{{ letsencrypt_live_dir }}/fullchain.pem"

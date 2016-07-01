@@ -3,7 +3,6 @@
   shell: "gpg --keyserver keys.gnupg.net --recv 886DDD89"
 - name: install tor apt key
   shell: "gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -"
-  sudo: yes
 
 - name: setup tor apt repo
   apt_repository: >

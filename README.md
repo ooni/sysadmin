@@ -134,8 +134,12 @@ This ansible role installs the required dependencies and generates letsencrypt
 certificates. Additionally is sets a monthly cron job that renews if needed the
 generated certificates.
 
-Note: It uses docker, an existing docker installation should exist on target
-host.
+The role has 2 modes of deployment: docker ( variable flag letsencrypt_docker)
+based and distribution package based (default).
+
+Note: Currently the docker role deployment has no support to restart
+ooni-backend services and the default role (software package deployment) should
+be used instead.
 
 ### execute role
 
