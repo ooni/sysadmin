@@ -3,13 +3,20 @@ enable_dns_helper: yes
 enable_dns_discovery_helper: yes
 enable_http_return_json_headers_helper: yes
 enable_tcp_echo_helper: yes
-enable_ssl_helper: no
 enable_daphn3_helper: yes
-enable_tls_bouncer: no
-enable_tls_collector: no
-enable_tls_web_connectivity: no
 
 dns_resolver_address: "8.8.8.8:53"
+dns_test_helper_address: "213.138.109.232:57004"
+http_return_json_headers_address: "http://93.95.227.200"
+ssl_address:
+tcp_echo_address: "213.138.109.232"
+traceroute_address: "213.138.109.232"
+web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'web-connectivity')|map(attribute='domain')|list|join(' ') }}"
+collector_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list|join(' ') }}"
+backend_conf_path: "{{ ansible_hostname }}_{{ app_env }}_backend_files"
+web_connectivity_hs: "{{lookup('file', '{{ backend_conf_path }}/web_connectivity/hostname')}}"
+collector_hs: "{{lookup('file', '{{ backend_conf_path }}/collector/hostname')}}"
+bouncer_hs: "{{lookup('file', '{{ backend_conf_path }}/bouncer/hostname')}}"
 
 http_return_json_headers_port: 57001
 tcp_echo_port: 57002
@@ -19,13 +26,17 @@ dns_port_udp: 57004
 dns_discover_port_tcp: 57005
 dns_discover_port_udp: 57005
 ssl_port: 57006
-tls_bouncer_port: 10443
-tls_collector_port: 11443
+tls_bouncer_port: 443
+tcp_bouncer_port: 80
+tls_collector_port: 4441
+tcp_collector_port: 8081
+tls_web_connectivity_port: 4442
+tcp_web_connectivity_port: 8082
 
 oonibackend_data_path: /usr/share/ooni/backend
 archive_dir: "{{ oonibackend_data_path }}/archive"
 tor_datadir: "{{ oonibackend_data_path }}/tor"
-bouncer_file: "{{ oonibackend_data_path }}/bouncer.yaml"
+bouncer_file: "{{ oonibackend_data_path }}/bouncer-base.yaml"
 policy_file: "{{ oonibackend_data_path }}/policy.yaml"
 deck_dir: "{{ oonibackend_data_path }}/decks"
 input_dir: "{{ oonibackend_data_path }}/inputs"
@@ -34,7 +45,6 @@ bouncer_hsdir: "{{ tor_datadir }}/bouncer"
 collector_hsdir: "{{ tor_datadir }}/collector"
 web_connectivity_hsdir: "{{ tor_datadir }}/web_connectivity"
 bouncer_update_file: "{{ oonibackend_data_path }}/update-bouncer.py"
-oonibackend_data_path: /usr/share/ooni/backend
 oonibackend_tls_dir: "{{ oonibackend_data_path }}/tls"
 oonibackend_fullchain: "{{ oonibackend_tls_dir }}/fullchain.pem"
 oonibackend_privkey: "{{ oonibackend_tls_dir }}/privkey.pem"
@@ -60,5 +70,10 @@ bind_bouncer_update_file: "{{ bind_oonibackend_data_path }}/update-bouncer.py"
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni
-oonibackend_conf: /etc/oonibackend.conf
+oonibackend_conf_path: /etc/ooni
+oonibackend_conf: "{{ oonibackend_conf_path }}/oonibackend.conf"
 oonibackend_log_file_name: oonibackend.log
+bind_oonibackend_conf_path: "{{ bind_oonibackend_data_path }}/etc/ooni"
+bind_oonibackend_log_path: "{{ bind_oonibackend_data_path }}/var/log/ooni"
+bind_oonibackend_conf: "{{ bind_oonibackend_conf_path }}/oonibackend.conf"
+ooni_sysadmin_repo: "https://github.com/TheTorProject/ooni-sysadmin.git"

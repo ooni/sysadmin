@@ -1,7 +1,13 @@
 ---
 - include: install.yml
+  when: docker_deployment is not defined
 - include: configure.yml
+  when: docker_deployment is not defined
 - include: supervisord.yml
-  when: set_supervisord is defined and set_supervisord == 'true'
-- include: fetch-HS-info.yml
-  when: set_supervisord is defined and set_supervisord == 'true'
+  when: set_supervisord is defined and docker_deployment is not defined
+- include: docker_deploy.yml
+  when: docker_deployment is defined
+- include: populate_bouncer_base.yml
+  when: docker_deployment is defined
+- include: cron.yml
+  when: docker_deployment is defined

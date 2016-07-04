@@ -1,0 +1,54 @@
+---
+- name: Create docker volumes directories
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ bind_oonibackend_data_path }}"
+    - "{{ bind_archive_dir }}"
+    - "{{ bind_tor_datadir }}"
+    - "{{ bind_deck_dir }}"
+    - "{{ bind_input_dir }}"
+    - "{{ bind_report_dir }}"
+    - "{{ bind_oonibackend_log_path }}"
+    - "{{ bind_oonibackend_conf_path }}"
+
+- name: Generate templates
+  template: >
+    backup=yes
+    src="{{ item.src }}"
+    dest="{{ item.dest }}"
+  with_items:
+    - { src: "Dockerfile.j2", dest: "{{ docker_file }}" }
+    - { src: "oonibackend.conf.j2", dest: "{{ bind_oonibackend_conf }}" }
+
+- name: Build docker image
+  docker_image: >
+    state=build
+    timeout=1500
+    name="ooni-backend-{{ app_env }}"
+    path="{{ bind_oonibackend_data_path }}"
+
+- name: Run docker image
+  docker:
+    state: reloaded
+    name: "ooni-backend-{{ app_env }}"
+    image: "ooni-backend-{{ app_env }}"
+    expose:
+    - "{{ tls_bouncer_port }}"
+    - "{{ tcp_bouncer_port }}"
+    - "{{ tls_collector_port }}"
+    - "{{ tcp_collector_port }}"
+    - "{{ tls_web_connectivity_port }}"
+    - "{{ tcp_web_connectivity_port }}"
+    ports:
+    - "{{ docker_ip }}:{{ tls_bouncer_port }}:{{ tls_bouncer_port }}"
+    - "{{ docker_ip }}:{{ tcp_bouncer_port }}:{{ tcp_bouncer_port }}"
+    - "{{ docker_ip }}:{{ tls_collector_port }}:{{ tls_collector_port }}"
+    - "{{ docker_ip }}:{{ tcp_collector_port }}:{{ tcp_collector_port }}"
+    - "{{ docker_ip }}:{{ tls_web_connectivity_port }}:{{ tls_web_connectivity_port }}"
+    - "{{ docker_ip }}:{{ tcp_web_connectivity_port }}:{{ tcp_web_connectivity_port }}"
+    volumes:
+    - "{{ bind_deck_dir }}:{{ deck_dir }}"
+    - "{{ bind_input_dir }}:{{ input_dir }}"
+    - "{{ bind_oonibackend_log_path }}:{{ oonibackend_log_path }}"
+    - "{{ bind_oonibackend_conf_path }}:{{ oonibackend_conf_path }}"
+    - "{{ bind_oonibackend_data_path }}:{{ oonibackend_data_path }}"

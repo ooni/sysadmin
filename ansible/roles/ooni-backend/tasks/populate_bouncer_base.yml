@@ -1,0 +1,31 @@
+---
+- name: Wait for hidden services to bootstrap
+  wait_for: >
+    path="{{ bind_oonibackend_log_path }}/{{ oonibackend_log_file_name }}"
+    search_regex="Started hidden service"
+    delay="30"
+
+- name: Fetch backend related config files and HS keys
+  synchronize: >
+    mode=pull
+    src="{{ item }}"
+    dest="{{ backend_conf_path }}"
+  with_items:
+    - "{{ bind_bouncer_hsdir }}"
+    - "{{ bind_collector_hsdir }}"
+    - "{{ bind_web_connectivity_hsdir }}"
+
+- name: Template "{{ bind_bouncer_base_file  }}"
+  template: >
+    src="bouncer_base.yaml.j2"
+    dest="{{ bind_bouncer_base_file }}"
+    backup="yes"
+
+- name: Fetch backend related config files and HS keys
+  fetch: >
+    src="{{ item }}"
+    dest="{{ backend_conf_path }}"
+    flat=yes
+  with_items:
+    - "{{ bind_oonibackend_conf }}"
+    - "{{ bind_bouncer_base_file }}"

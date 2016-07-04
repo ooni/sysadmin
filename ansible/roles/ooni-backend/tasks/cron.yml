@@ -1,0 +1,14 @@
+---
+- name: Template update bouncer script
+  template: >
+    src="update_bouncer.py.j2"
+    dest="{{ bind_bouncer_update_file }}"
+    mode="755"
+
+- name: Add daily cronjob to generate the bouncer.yaml from MLab NS data
+  cron: >
+    name="Generate the bouncer.yaml from mlabns pulled data"
+    day="*"
+    user="root"
+    cron_file="ansible_bouncer-update"
+    job="{{ bind_bouncer_update_file }} {{ bind_bouncer_file }} {{ bind_bouncer_base_file }}"

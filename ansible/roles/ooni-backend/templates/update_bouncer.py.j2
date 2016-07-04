@@ -3,6 +3,7 @@
 import yaml
 import json
 import urllib
+import sys
 
 MLAB_NS_QUERY_URL = "http://mlab-ns.appspot.com/ooni?policy=all"
 
@@ -65,9 +66,16 @@ def write_bouncer_config(path, bouncer_config_contents):
         print "Couldn't write to bouncer config file."
         exit(1)
 
+# run this with python
+# update-bouncer.yaml dst/bouncer/path.yaml base/bouncer/path.yaml
+if __name__ == "__main__":
+    dst_bouncer_path = "/usr/share/ooni/backend/bouncer.yaml"
+    base_bouncer_path = "/usr/share/ooni/backend/bouncer-base.yaml"
 
-dst_bouncer_path = '/data/bouncer/bouncer.yaml'
-base_bouncer_path = '/data/bouncer/bouncer-base.yaml'
+    if len(sys.argv) == 3:
+        dst_bouncer_path = sys.argv[1]
+        base_bouncer_path = sys.argv[2]
+
 base_bouncer = yaml.safe_load(open(base_bouncer_path))
 while True:
     try:
