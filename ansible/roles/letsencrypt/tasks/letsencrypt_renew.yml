@@ -1,0 +1,8 @@
+---
+- name: Letsencrypt certificates renewal cronjob
+  cron:
+    name: "Renew ooni-backend letsencrypt certificates"
+    user: "root"
+    cron_file: "letsencrypt_renew_certs-{{ app_env }}"
+    month: "*"
+    job: "{{ letsencrypt_renew_cmd }}"

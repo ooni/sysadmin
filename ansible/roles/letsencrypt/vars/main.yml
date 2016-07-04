@@ -1,0 +1,38 @@
+letsencrypt_docker_image: quay.io/letsencrypt/letsencrypt
+letsencrypt_docker_name: certbot
+letsencrypt_admin_email: admin@openobservatory.org
+letsencrypt_workdir: /var/lib/letsencrypt
+letsencrypt_port: 80
+# Currently no pre_hook can be set to restart backend docker containers
+# XXX this should be fixed when ooni-backend re-read TLS certificates
+letsencrypt_pre_hook: "{%- if letsencrypt_docker is undefined -%}
+    docker stop {{ app_env }} {%- endif -%}"
+letsencrypt_post_hook: "cp {{ letsencrypt_live_dir }}/privkey.pem
+    {{ letsencrypt_live_dir }}/fullchain.pem
+    {%- if docker_deployment is defined -%}
+    {{ bind_oonibackend_tls_dir }}
+    {%- else -%}
+    {{ oonibackend_tls_dir }}
+    {%- endif -%}
+    {% if letsencrypt_docker is undefined %}
+    && docker start {{ app_env }}
+    {%- endif -%}"
+letsencrypt_certbot_cmd: certonly --standalone
+    --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
+    --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
+    {%- if letsencrypt_test_cert is defined -%} --test-cert {%- endif -%}
+letsencrypt_renew_cmd: >
+    {%- if letsencrypt_docker is defined -%}
+    docker run -it --rm
+    -p "{{ letsencrypt_port }}:{{ letsencrypt_port }}"
+    -v "/etc/letsencrypt:{{ letsencrypt_confdir }}"
+    -v "/var/lib/letsencrypt:{{ letsencrypt_workdir }}"
+    {{ letsencrypt_docker_image }}
+    {% endif %}
+    {%- if letsencrypt_docker is undefined -%}
+    certbot
+    {% endif %}
+    {{ letsencrypt_certbot_cmd }}
+    {% if docker_deployment is defined %}
+    --pre-hook "{{ letsencrypt_pre_hook }}" --post-hook "{{ letsencrypt_post_hook }}"
+    {%- endif -%}

@@ -128,6 +128,25 @@ meek (not implemented yet in bridge reachability test)
 ansible-playbook -i "hosts-inventory" ansible/install-tor-pluggagle-trans.yml -v
 ```
 
+## letsencrypt role
+
+This ansible role installs the required dependencies and generates letsencrypt
+certificates. Additionally is sets a monthly cron job that renews if needed the
+generated certificates.
+
+The role has 2 modes of deployment: docker ( variable flag letsencrypt_docker)
+based and distribution package based (default).
+
+Note: Currently the docker role deployment has no support to restart
+ooni-backend services and the default role (software package deployment) should
+be used instead.
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/install-letsencrypt.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

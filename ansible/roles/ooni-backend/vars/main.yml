@@ -22,8 +22,6 @@ ssl_port: 57006
 tls_bouncer_port: 10443
 tls_collector_port: 11443
 
-enable_bouncer: no
-enable_policy: no
 oonibackend_data_path: /usr/share/ooni/backend
 archive_dir: "{{ oonibackend_data_path }}/archive"
 tor_datadir: "{{ oonibackend_data_path }}/tor"
@@ -35,6 +33,30 @@ report_dir: "{{ oonibackend_data_path }}/raw_reports"
 bouncer_hsdir: "{{ tor_datadir }}/bouncer"
 collector_hsdir: "{{ tor_datadir }}/collector"
 web_connectivity_hsdir: "{{ tor_datadir }}/web_connectivity"
+bouncer_update_file: "{{ oonibackend_data_path }}/update-bouncer.py"
+oonibackend_data_path: /usr/share/ooni/backend
+oonibackend_tls_dir: "{{ oonibackend_data_path }}/tls"
+oonibackend_fullchain: "{{ oonibackend_tls_dir }}/fullchain.pem"
+oonibackend_privkey: "{{ oonibackend_tls_dir }}/privkey.pem"
+tls_web_connectivity_fullchain: "{{ oonibackend_fullchain }}"
+tls_web_connectivity_privkey: "{{ oonibackend_privkey }}"
+tls_bouncer_fullchain: "{{ oonibackend_fullchain }}"
+tls_bouncer_privkey: "{{ oonibackend_privkey }}"
+tls_collector_fullchain: "{{ oonibackend_fullchain }}"
+tls_collector_privkey: "{{ oonibackend_privkey }}"
+docker_file: "{{ bind_oonibackend_data_path }}/Dockerfile"
+bind_archive_dir: "{{ bind_oonibackend_data_path }}/archive"
+bind_tor_datadir: "{{ bind_oonibackend_data_path }}/tor"
+bind_bouncer_base_file: "{{ bind_oonibackend_data_path }}/bouncer-base.yaml"
+bind_policy_file: "{{ bind_oonibackend_data_path }}/policy.yaml"
+bind_deck_dir: "{{ bind_oonibackend_data_path }}/decks"
+bind_input_dir: "{{ bind_oonibackend_data_path }}/inputs"
+bind_report_dir: "{{ bind_oonibackend_data_path }}/raw_reports"
+bind_bouncer_hsdir: "{{ bind_tor_datadir }}/bouncer"
+bind_collector_hsdir: "{{ bind_tor_datadir }}/collector"
+bind_web_connectivity_hsdir: "{{ bind_tor_datadir }}/web_connectivity"
+bind_bouncer_file: "{{ bind_oonibackend_data_path }}/bouncer.yaml"
+bind_bouncer_update_file: "{{ bind_oonibackend_data_path }}/update-bouncer.py"
 
 oonibackend_install_path: /opt/ooni-backend
 oonibackend_log_path: /var/log/ooni

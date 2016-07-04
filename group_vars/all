@@ -1,3 +1,10 @@
 ---
 tor_distribution_release: "{{ ansible_distribution_release }}"
 tor_distribution_release_experimental: "tor-experimental-0.2.7.x-{{ ansible_distribution_release }}"
+letsencrypt_confdir: /etc/letsencrypt
+letsencrypt_domains: "{{ letsencrypt_domain_list|map(attribute='domain')|join(',') }}"
+letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'host')|map(attribute='domain')|first }}"
+oonibackend_data_path: /usr/share/ooni/backend
+oonibackend_tls_dir: "{{ oonibackend_data_path }}/tls"
+oonibackend_fullchain: "{{ oonibackend_tls_dir }}/fullchain.pem"
+oonibackend_privkey: "{{ oonibackend_tls_dir }}/privkey.pem"
