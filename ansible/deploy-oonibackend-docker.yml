@@ -2,14 +2,17 @@
 - hosts: local:staging:testing
   vars:
     ansible_python_interpreter: "/usr/bin/python"
+    bind_oonibackend_data_path: "/data/{{ app_env }}"
+    bind_oonibackend_tls_dir: "{{ bind_oonibackend_data_path }}/tls"
   roles:
     - common
-    - docker_py
+    - { role: docker_py, when: docker_deployment is defined }
+    - { role: letsencrypt, when: letsencrypt_docker is undefined }
 
 - hosts: local:staging:testing
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
-    bind_oonibackend_data_path: /data/{{ app_env }}
+    bind_oonibackend_data_path: "/data/{{ app_env }}"
     bind_oonibackend_tls_dir: "{{ bind_oonibackend_data_path }}/tls"
     enable_tls_bouncer: yes
     enable_collector_alternate: yes
@@ -22,5 +25,5 @@
     enable_tcp_bouncer: yes
     enable_tcp_collector: yes
   roles:
-    - letsencrypt
+    - { role: letsencrypt, when: letsencrypt_docker is defined }
     - ooni-backend

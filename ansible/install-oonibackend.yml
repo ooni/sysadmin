@@ -1,7 +1,6 @@
 ---
 - hosts: local:staging:testing
   vars:
-    ansible_python_interpreter: "/root/venv/bin/python2.7"
     enable_tls_bouncer: yes
     enable_collector_alternate: yes
     enable_tls_collector: yes

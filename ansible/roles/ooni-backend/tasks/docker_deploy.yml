@@ -26,6 +26,7 @@
     timeout=1500
     name="ooni-backend-{{ app_env }}"
     path="{{ bind_oonibackend_data_path }}"
+    nocache=True
 
 - name: Run docker image
   docker:
