@@ -1,5 +1,5 @@
 ---
-- hosts: local:staging:testing
+- hosts: local:staging:testing:production
   vars:
     ansible_python_interpreter: "/usr/bin/python"
     bind_oonibackend_data_path: "/data/{{ app_env }}"
@@ -9,7 +9,7 @@
     - { role: docker_py, when: docker_deployment is defined }
     - { role: letsencrypt, when: letsencrypt_docker is undefined }
 
-- hosts: local:staging:testing
+- hosts: local:staging:testing:production
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
     bind_oonibackend_data_path: "/data/{{ app_env }}"
