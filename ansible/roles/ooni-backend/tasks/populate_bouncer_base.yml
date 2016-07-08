@@ -15,10 +15,10 @@
     - "{{ bind_collector_hsdir }}"
     - "{{ bind_web_connectivity_hsdir }}"
 
-- name: Template "{{ bind_bouncer_base_file  }}"
+- name: Template "{{ bind_bouncer_file  }}"
   template: >
     src="bouncer_base.yaml.j2"
-    dest="{{ bind_bouncer_base_file }}"
+    dest="{{ bind_bouncer_file }}"
     backup="yes"
 
 - name: Fetch backend related config files and HS keys
@@ -28,4 +28,4 @@
     flat=yes
   with_items:
     - "{{ bind_oonibackend_conf }}"
-    - "{{ bind_bouncer_base_file }}"
+    - "{{ bind_bouncer_file }}"
