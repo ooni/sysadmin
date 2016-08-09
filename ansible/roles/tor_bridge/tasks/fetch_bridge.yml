@@ -1,0 +1,11 @@
+---
+# file: roles/tor_bridge/tasks/fetch_bridge.yml
+- name: Fetch bridge fingerprint
+  fetch: >
+    src=/var/lib/tor/fingerprint
+    dest=bridges
+
+- name: Fetch obfs4 bridge line
+  fetch: >
+    src=/var/lib/tor/pt_state/obfs4_bridgeline.txt
+    dest=bridges

@@ -1,0 +1,22 @@
+---
+# file: roles/tor_bridge/tasks/provision.yml
+- name: Template torrc
+  template: >
+    backup=yes
+    mode=0644
+    src=torrc.j2
+    dest=/etc/tor/torrc
+  register: torrc
+
+- name: Restart tor for changes to take effect
+  service: >
+    state=restarted
+    name=tor
+  when: torrc.changed
+
+- name: Wait for the bridge to bootstrap
+  wait_for: >
+    path=/var/log/tor/log
+    search_regex="Registered server transport"
+    delay="20"
+  when: torrc.changed

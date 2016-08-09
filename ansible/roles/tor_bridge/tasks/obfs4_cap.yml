@@ -1,0 +1,8 @@
+---
+# file: roles/tor_bridge/tasks/obfs4_cap.yml
+- name: Set capabilities to obfs4proxy
+  capabilities: >
+    path=/usr/bin/obfs4proxy
+    capability="cap_net_bind_service=+ep"
+    state=present
+  when: obfs4_listen_port is defined and obfs4_listen_port <= 1024

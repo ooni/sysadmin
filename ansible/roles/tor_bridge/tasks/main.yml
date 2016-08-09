@@ -1,0 +1,5 @@
+---
+# file: roles/tor_bridge/tasks/main.yml
+- include: obfs4_cap.yml
+- include: provision.yml
+- include: fetch_bridge.yml

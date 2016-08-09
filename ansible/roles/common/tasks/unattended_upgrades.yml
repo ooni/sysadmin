@@ -1,0 +1,6 @@
+---
+# file: roles/common/tasks/unattended_upgrades.yml
+- name: Install unattended-upgrades Debian package
+  apt: >
+    name=unattended-upgrades
+    state=latest

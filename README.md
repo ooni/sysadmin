@@ -147,6 +147,20 @@ be used instead.
 ansible-playbook -i "hosts-inventory" ansible/install-letsencrypt.yml -v
 ```
 
+## install tor bridge (obfs4)
+
+This role install the dependencies needed for an obfs4proxy bridge, provisions
+the bridge and fetches the fingerprint and the corresponding generated client
+`torrc` configuration bridge line.
+This role should be running with the following tags:
+`install_tor`, `upgrades` and `install_obfs4`.
+
+### execute role
+
+```
+ansible-playbook -i hosts ansible/install-tor-bridge.yml --tags "install_tor,upgrades,install_obfs4"
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

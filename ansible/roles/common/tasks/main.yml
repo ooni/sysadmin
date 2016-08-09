@@ -6,3 +6,6 @@
         and ansible_distribution_major_version|int <= 7
 - include: virtualenv.yml
 - include: tor.yml
+  tags: [install_tor]
+- include: unattended_upgrades.yml
+  tags: [upgrades]

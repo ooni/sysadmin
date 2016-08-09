@@ -1,0 +1,11 @@
+---
+# file: install-tor-bridge.yml
+# This role should be running with tags install_tor upgrades and install_obfs4
+# ansible-playbook -i hosts ansible/install-tor-bridge.yml --tags \
+# "install_tor,upgrades,install_obfs4"
+
+- hosts: bridges
+  roles:
+    - common
+    - tor-pluggable-trans
+    - { role: tor_bridge, tags: [ 'always' ] }

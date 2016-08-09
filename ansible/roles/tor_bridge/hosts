@@ -1,0 +1,7 @@
+[bridges]
+37.218.240.79 tor_nickname=Joubini obfs4_listen_port=8080
+1.209.122.142 tor_nickname=Hapalochlaena obfs4_listen_port=5222
+199.119.112.170 tor_nickname=Bimaculoides obfs4_listen_port=5223
+
+[bridges:vars]
+tor_contactinfo=admin@openobservatory.org
