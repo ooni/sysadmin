@@ -22,7 +22,7 @@
 
 - name: Build docker image
   docker_image: >
-    state=build
+    state=present
     timeout=1500
     name="{{ docker_img_name }}"
     path="{{ bind_oonibackend_data_path }}"
@@ -53,3 +53,4 @@
     - "{{ bind_oonibackend_log_path }}:{{ oonibackend_log_path }}"
     - "{{ bind_oonibackend_conf_path }}:{{ oonibackend_conf_path }}"
     - "{{ bind_oonibackend_data_path }}:{{ oonibackend_data_path }}"
+    restart_policy: always
