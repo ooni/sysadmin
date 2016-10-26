@@ -1,0 +1,3 @@
+---
+- name: Stop docker SYSV init.d script "{{ docker_name_container }}"
+  service: name= "{{ docker_name_container }}" state=stopped

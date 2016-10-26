@@ -1,0 +1,6 @@
+---
+- name: Add docker SYSV init.d script "{{ docker_name_container }}"
+  template: src=docker-container.sysv.j2 group=root mode=0751 owner=root
+      dest=/etc/init.d/"{{ docker_name_container }}"
+- name: Enable docker SYSV init.d script  "{{ docker_name_container }}"
+  service: name={{ docker_name_container }} enabled=yes
