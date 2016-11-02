@@ -1,0 +1,9 @@
+---
+- name: install apt package ooniprobe dependencies
+  apt: >
+    update_cache=yes
+    state=latest
+    name={{ item }}
+  with_items:
+    - libgeoip-dev
+    - libdumbnet-dev

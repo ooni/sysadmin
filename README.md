@@ -79,17 +79,17 @@ Note: The inventory file should include hosts in custom group.
 
 ## ooniprobe
 
-This ansible role install ooniprobe via apt (stretch repo) or via pip from this
-the git repo. This role can be used for Debian releases and has been tested in
-Wheesy and Jessie Debian releases. By seting the conditional variable
-`set_ooniprobe_pip` to true ooniprobe will be istalled from git via pip.
-Setting the conditional variable `set_ooniprobe_go` to true will install the
-golang-go package.
+This ansible role installs ooniprobe via pip. It has been tested in Debian
+Jessie release. Setting the conditional variable `user_consent` to true will
+bootstrap ooniprobe to schedule the default daily measurements and update
+country inputs. Be sure to read the [risks]
+(https://github.com/TheTorProject/ooni-spec/blob/master/informed-consent/risks.md)
+involved in running ooniprobe.
 
 ### execute role
 
 ```
-ansible-playbook -i "hosts-inventory" ansible/install-ooniprobe.yml -v
+ansible-playbook -i "hosts-inventory" --skip-tags=pip_venv ansible/install-ooniprobe.yml -v
 ```
 
 ## Third party tools

@@ -1,0 +1,18 @@
+{# Source file repository: https://github.com/TheTorProject/ooni-probe.git
+   commit 8da2312d61c4c1a840d0878e19967629526cd731
+#}
+[Unit]
+Description=%n, network interference detection tool
+After=network.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/var/lib/ooni/twistd.pid
+ExecStart=/usr/local/bin/ooniprobe-agent start
+ExecStop=/usr/local/bin/ooniprobe-agent stop
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

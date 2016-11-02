@@ -1,0 +1,5 @@
+---
+- name: restart ooniprobe
+  service: >
+    name=ooniprobe
+    state=restarted
