@@ -1,0 +1,88 @@
+# This role provisions a new machine to be used for staging of any ooni service
+# on eclipsis.
+#
+# It is tested with ansible 2.2.0
+#
+# The staging machine has the following setup by default:
+#
+# OS: debian jessi
+# Location: Amsterdam
+# RAM: 512 MB
+# Disk: 10 GB
+#
+# To run this create an inventory with in it:
+# [local]
+# localhost ansible_connection=local
+# [eclipsis_hosts]
+# [eclipsis_hosts:vars]
+# ansible_ssh_private_key_file=/path/to/your/key
+#
+# Then run:
+#
+# DO_API_TOKEN="TOKEN" ansible-playbook -i your_inventory \
+#                           --extra-vars "instance_name=my-instance-name ssh_key_id=id_of_the_above key" \
+#                           ansible/provision-staging-vm.yml
+#
+# Notes: 
+# DO_API_TOKEN:
+# You can get the token to use with the eclipsis API by clicking on your
+# account in the top right corner and then change password. From there you can
+# generate a token (called API key).
+#
+# ssh_key_id:
+# Once you get your token you can list the IDs of keys by running:
+# DO_API_TOKEN="YOUR_TOKEN"; curl -X GET --header 'Content-type: application/json' \
+#                               --header "Authorization: Bearer ${DO_API_TOKEN}" \
+#                               'https://portal.eclips.is/portal/api/v2/account/keys' \
+#                               | python -m json.tool
+#
+# Other useful URLs are:
+#
+# List images: https://portal.eclips.is/portal/api/v2/images
+# List regions: https://portal.eclips.is/portal/api/v2/regions
+
+- name: ensure that a single instance is launched
+  hosts: localhost
+  gather_facts: no
+  vars:
+    instance_name: 'ooni-staging'
+    instance_region: 'ams1'
+    api_baseurl: "https://portal.eclips.is/portal/api/v2"
+    ssh_key_id: 77 # This is art@torproject ssh_key
+    disk_size: 10 # Expressed in GB
+    ram_size: 512 # Expressed in MB
+    image_id: 6 # 6 is debian jessie-x64
+  tasks:
+  - name: ensure instance is created
+    eclipsis_droplet:
+      state: present
+      api_baseurl: "{{ api_baseurl }}"
+      name: "{{ instance_name }}"
+      region: "{{ instance_region }}"
+      size: "{{ ram_size }}"
+      disk: "{{ disk_size }}"
+      ssh_key_id: "{{ ssh_key_id }}"
+      image_id: "{{ image_id }}"
+      unique_name: "yes"
+    register: instance_info
+
+  - debug:
+      msg: "Instance info {{ instance_info }}"
+
+  - name: add instance to in-memory hosts
+    add_host:
+      hostname: "{{ instance_info.droplet.networks.v4[0].ip_address }}"
+      groupname: eclipsis_hosts
+
+  - name: wait for it to listen on port 22
+    wait_for:
+      state: started
+      host: "{{ instance_info.droplet.networks.v4[0].ip_address }}"
+      port: 22
+
+- name: ensure that the base updater is setup on the machine
+  hosts: eclipsis_hosts
+  remote_user: root
+  gather_facts: no
+  roles:
+  - staging
