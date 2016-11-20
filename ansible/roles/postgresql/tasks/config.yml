@@ -1,0 +1,49 @@
+---
+- name: ensure PostgreSQL service is running
+  service: >
+    name=postgresql
+    state=started
+    enabled=yes
+  become_user: root
+
+- name: register PostgreSQL pg_hba full PATH
+  command: "psql -t -P format=unaligned -c 'show {{ item }}';"
+  with_items:
+  - hba_file
+  - config_file
+  register: pg_path
+
+- debug: var=pg_path
+
+- name: template pg_bha.conf
+  template: >
+    src=pg_hba.conf.j2
+    dest={{ pg_path.results[0].stdout }}
+    owner=postgres
+    group=postgres
+    mode=0640
+  notify: restart postgresql
+
+- name: listen on all interfaces
+  replace: >
+    regexp="^#listen_addresses = 'localhost'"
+    replace="listen_addresses = '*'"
+    backup=yes
+    dest={{ pg_path.results[1].stdout }}
+    owner=postgres
+    group=postgres
+    mode=0640
+  notify: restart postgresql
+
+- name: create a new database in PostgreSQL
+  postgresql_db: >
+    name={{ psql_db_name }}
+    state=present
+
+- name: add user and grant permissions to DB
+  postgresql_user: >
+    name={{ psql_db_user }}
+    password={{ psql_db_passwd }}
+    role_attr_flags=CREATEDB,NOSUPERUSER
+    encrypted=true
+    no_password_changes=yes

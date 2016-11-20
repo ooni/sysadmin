@@ -147,6 +147,20 @@ be used instead.
 ansible-playbook -i "hosts-inventory" ansible/install-letsencrypt.yml -v
 ```
 
+## PostgreSQL role
+
+This ansible role installs the dependencies and configuration required to run a
+PostgreSQL service with a new database (`psql_db_name`) and a user (`psql_db_user`)
+with a given password (`psql_db_passwd`).
+
+This roles has been tested in Debian Jessie.
+
+### Execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/install-postgresql.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.
