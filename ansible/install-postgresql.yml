@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    instance_name: ooni-measurements-db
+    disk_size: 200
+    ram_size: 4096
+    cpu_cores: 2
+  roles:
+    - { role: eclipsis, when: api_token is defined }
+
+- hosts: eclipsis_hosts:local:custom
+  roles:
+  - postgresql

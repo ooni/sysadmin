@@ -1,0 +1,6 @@
+---
+- include: install.yml
+- include: config.yml
+  become: yes
+  become_user: postgres
+  become_method: su
