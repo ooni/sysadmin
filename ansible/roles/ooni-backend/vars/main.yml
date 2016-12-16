@@ -26,12 +26,6 @@ dns_port_udp: 57004
 dns_discover_port_tcp: 57005
 dns_discover_port_udp: 57005
 ssl_port: 57006
-tls_bouncer_port: 443
-tcp_bouncer_port: 80
-tls_collector_port: 4441
-tcp_collector_port: 8081
-tls_web_connectivity_port: 4442
-tcp_web_connectivity_port: 8082
 
 oonibackend_data_path: /usr/share/ooni/backend
 archive_dir: "{{ oonibackend_data_path }}/archive"

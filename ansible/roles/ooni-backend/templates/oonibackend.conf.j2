@@ -98,6 +98,7 @@ main:
   uid: null
   umask: null
 
+{% if enable_bouncer | default('')  %}
   bouncer_endpoints:
 {% if "{{ enable_tls_bouncer | default('') }}" %}
   - {type: tls, port: {{ tls_bouncer_port }}, fullchain: "{{ tls_bouncer_fullchain }}", privkey: "{{ tls_bouncer_privkey }}"}
@@ -106,7 +107,9 @@ main:
   - {type: tcp, port: {{ tcp_bouncer_port }}}
 {% endif %}
   - {type: onion, hsdir: "{{ bouncer_hsdir }}"}
+{% endif %}
 
+{% if enable_collector | default('') %}
   collector_endpoints:
 {% if "{{ enable_tls_collector | default('') }}" %}
   - {type: tls, port: {{ tls_collector_port }}, fullchain: "{{ tls_collector_fullchain  }}", privkey: "{{ tls_collector_privkey }}"}
@@ -115,5 +118,6 @@ main:
   - {type: tcp, port: {{ tcp_collector_port }}}
 {% endif %}
   - {type: onion, hsdir: "{{ collector_hsdir }}"}
+{% endif %}
 
   report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'

@@ -18,9 +18,9 @@ letsencrypt_post_hook: "cp {{ letsencrypt_live_dir }}/privkey.pem
     && docker start {{ docker_img_name }}
     {%- endif -%}"
 letsencrypt_certbot_cmd: certonly --standalone
+    {% if letsencrypt_test_cert is defined -%} --test-cert {% endif -%}
     --standalone-supported-challenges http-01 --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
-    {%- if letsencrypt_test_cert is defined -%} --test-cert {%- endif -%}
     {% if docker_deployment is defined %}
     --pre-hook "{{ letsencrypt_pre_hook }}" --post-hook "{{ letsencrypt_post_hook }}"
     {%- endif -%}
