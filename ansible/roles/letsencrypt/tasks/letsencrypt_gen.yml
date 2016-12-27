@@ -13,6 +13,11 @@
     update_cache=yes
   when: docker_deployment is defined and ansible_distribution == "Debian"
 
+- name: Ensure certbot package default cronjob is removed
+  file: >
+    path=/etc/cron.d/certbot
+    state=absent
+
 - name: Creates Letsencrypt working/config directories
   file: >
     state=directory
@@ -54,3 +59,7 @@
     - "{{ letsencrypt_live_dir }}/privkey.pem"
     - "{{ letsencrypt_live_dir }}/fullchain.pem"
   when: docker_deployment is defined
+
+- name: Force Letsencrypt certificate(s) renewal
+  command: "{{ letsencrypt_renew_cmd }}"
+  when: letsencrypt_force_renew is defined

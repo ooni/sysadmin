@@ -34,5 +34,6 @@ letsencrypt_renew_cmd: >
     {% endif %}
     {%- if letsencrypt_docker is undefined -%}
     certbot
+    {% if letsencrypt_force_renew is defined -%} --force-renew {% endif -%}
     {% endif %}
     {{ letsencrypt_certbot_cmd }}

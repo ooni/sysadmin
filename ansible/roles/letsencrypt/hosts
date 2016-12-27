@@ -14,3 +14,5 @@ docker_ip="0.0.0.0"
 #letsencrypt_docker=true
 # When ooni-backend is deployed in a docker container uncooment the following
 #docker_deployment=true
+# Force renewal of generated certificates (such as test certificates)
+#letsencrypt_force_renew=true
