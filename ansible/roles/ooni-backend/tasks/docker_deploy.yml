@@ -16,7 +16,6 @@
     backup=yes
     src="{{ item.src }}"
     dest="{{ item.dest }}"
-    unsafe_writes=true
   with_items:
     - { src: "Dockerfile.j2", dest: "{{ docker_file }}" }
     - { src: "oonibackend.conf.j2", dest: "{{ bind_oonibackend_conf }}" }

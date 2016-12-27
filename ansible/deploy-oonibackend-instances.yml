@@ -52,12 +52,11 @@
 - hosts: local:staging:testing:production
   vars:
     ansible_python_interpreter: "/usr/bin/python"
-    app_env: "{{ group_names[0] }}"
+    app_env: "{{ letsencrypt_domains }}"
     bind_oonibackend_data_path: "/data/{{ app_env }}"
     bind_oonibackend_tls_dir: "{{ bind_oonibackend_data_path }}/tls"
-    letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ app_env }}"
     docker_deployment: yes
-    letsencrypt_test_cert: true
+    letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ app_env }}"
   roles:
     - common
     - { role: docker_py, when: docker_deployment is defined }
@@ -66,7 +65,7 @@
 - hosts: local:staging:testing:production
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
-    app_env: "{{ group_names[0] }}"
+    app_env: "{{ letsencrypt_domains }}"
     bind_oonibackend_data_path: "/data/{{ app_env }}"
     bind_oonibackend_tls_dir: "{{ bind_oonibackend_data_path }}/tls"
     docker_deployment: yes

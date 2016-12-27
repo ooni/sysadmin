@@ -36,6 +36,3 @@ letsencrypt_renew_cmd: >
     certbot
     {% endif %}
     {{ letsencrypt_certbot_cmd }}
-    {% if docker_deployment is defined %}
-    --pre-hook "{{ letsencrypt_pre_hook }}" --post-hook "{{ letsencrypt_post_hook }}"
-    {%- endif -%}
