@@ -1,0 +1,6 @@
+---
+- hosts: local:production
+  roles:
+    - docker_py
+    - docker-compose
+    - ooni-measurements

@@ -1,0 +1,17 @@
+---
+
+- name: Checkout "{{ ooni_measurements_repo }}" repository
+  git: >
+    depth=1
+    dest="{{ ooni_measurements_path }}"
+    repo="{{ ooni_measurements_repo }}"
+
+- name: Template secrets
+  template: >
+    src="{{ ooni_measurements_secrets }}"
+    dest="{{ ooni_measurements_secrets_path }}"
+
+- name: Build ooni-measurements production target
+  make:
+    chdir: "{{ ooni_measurements_path }}"
+    target: production
