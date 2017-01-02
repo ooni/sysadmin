@@ -26,7 +26,7 @@
     - "{{ bind_oonibackend_conf_path }}:{{ oonibackend_conf_path }}"
     - "{{ bind_oonibackend_data_path }}:{{ oonibackend_data_path }}"
     restart_policy: always
-  when: oonibackend_bundle is defined
+  when: ( oonibackend_bundle is defined and oonibackend_bundle == True )
 
 - name: runs oonibackend bouncer docker image
   docker_container:
