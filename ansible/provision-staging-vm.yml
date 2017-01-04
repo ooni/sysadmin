@@ -48,7 +48,7 @@
     instance_name: 'ooni-staging'
     instance_region: 'ams1'
     api_baseurl: "https://portal.eclips.is/portal/api/v2"
-    ssh_key_id: 77 # This is art@torproject ssh_key
+    ssh_key_id: 215 # This is the travis-ci key
     disk_size: 10 # Expressed in GB
     ram_size: 512 # Expressed in MB
     image_id: 6 # 6 is debian jessie-x64
