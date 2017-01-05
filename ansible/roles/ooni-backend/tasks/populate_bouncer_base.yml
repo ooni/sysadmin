@@ -21,7 +21,7 @@
     dest="{{ bind_bouncer_file }}"
     backup="yes"
     unsafe_writes="true"
-  when: ( oonibackend_bundle is defined and oonibackend_bundle == True )
+  when: ( oonibackend_bundle is defined and oonibackend_bundle|bool == true )
   register: bouncer_config_file
 
 - name: Template "{{ bind_bouncer_file }}" with "{{ bouncer_base_template }}"
@@ -30,7 +30,7 @@
     dest="{{ bind_bouncer_file }}"
     backup="yes"
     unsafe_writes="true"
-  when: ( oonibackend_bundle is undefined or oonibackend_bundle == False )
+  when: ( oonibackend_bundle is undefined or oonibackend_bundle|bool == false )
   register: bouncer_config_file
 
 - name: Restart docker containers on bouncer config change
