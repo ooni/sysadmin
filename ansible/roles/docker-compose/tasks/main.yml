@@ -1,0 +1,9 @@
+---
+
+- name: Install apt package python-pip
+  apt: >
+    update_cache=yes
+    name=python-pip
+
+- name: Install pip package docker-compose
+  pip: name=docker-compose

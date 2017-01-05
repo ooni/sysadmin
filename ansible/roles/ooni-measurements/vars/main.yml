@@ -1,0 +1,5 @@
+---
+ooni_measurements_path: "{{ ansible_env.HOME }}/ooni-measurements"
+ooni_measurements_repo: https://github.com/TheTorProject/ooni-measurements.git
+ooni_measurements_secrets: secrets.env.j2
+ooni_measurements_secrets_path: /opt/secrets.env
