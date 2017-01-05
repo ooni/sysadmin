@@ -161,6 +161,17 @@ This roles has been tested in Debian Jessie.
 ansible-playbook -i "hosts-inventory" ansible/install-postgresql.yml -v
 ```
 
+## ooni-measurements role
+
+This ansible role deploys ooni-measurements application.
+
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/ansible/deploy-ooni-measurements.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.
