@@ -8,12 +8,13 @@
 - name: Fetch backend onion related files and keys
   synchronize: >
     mode=pull
-    src="{{ item }}"
+    src="{{ item.path }}"
     dest="{{ backend_conf_path }}"
   with_items:
-    - "{{ bind_bouncer_hsdir }}"
-    - "{{ bind_collector_hsdir }}"
-    - "{{ bind_web_connectivity_hsdir }}"
+    - { path: "{{ bind_bouncer_hsdir }}", get: "{{ enable_bouncer is defined }}" }
+    - { path: "{{ bind_collector_hsdir }}", get: "{{ enable_collector is defined }}" }
+    - { path: "{{ bind_web_connectivity_hsdir }}", get: "{{ enable_web_connectivity is defined }}" }
+  when: item.get | default(False) | bool
 
 - name: Template "{{ bind_bouncer_file }}" with bouncer_base.yaml.j2
   template: >
