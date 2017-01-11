@@ -7,6 +7,8 @@
   when: set_supervisord is defined and docker_deployment is not defined
 - include: docker_deploy.yml
   when: docker_deployment is defined
+- include: docker_instances.yml
+  when: docker_deployment is defined
 - include: populate_bouncer_base.yml
   when: docker_deployment is defined
 - include: cron.yml

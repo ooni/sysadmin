@@ -27,30 +27,3 @@
     name="{{ docker_img_name }}"
     path="{{ bind_oonibackend_data_path }}"
     nocache=True
-
-- name: Run docker image
-  docker:
-    state: reloaded
-    name: "{{ docker_img_name }}"
-    image: "{{ docker_img_name }}"
-    expose:
-    - "{{ tls_bouncer_port }}"
-    - "{{ tcp_bouncer_port }}"
-    - "{{ tls_collector_port }}"
-    - "{{ tcp_collector_port }}"
-    - "{{ tls_web_connectivity_port }}"
-    - "{{ tcp_web_connectivity_port }}"
-    ports:
-    - "{{ docker_ip }}:{{ tls_bouncer_port }}:{{ tls_bouncer_port }}"
-    - "{{ docker_ip }}:{{ tcp_bouncer_port }}:{{ tcp_bouncer_port }}"
-    - "{{ docker_ip }}:{{ tls_collector_port }}:{{ tls_collector_port }}"
-    - "{{ docker_ip }}:{{ tcp_collector_port }}:{{ tcp_collector_port }}"
-    - "{{ docker_ip }}:{{ tls_web_connectivity_port }}:{{ tls_web_connectivity_port }}"
-    - "{{ docker_ip }}:{{ tcp_web_connectivity_port }}:{{ tcp_web_connectivity_port }}"
-    volumes:
-    - "{{ bind_deck_dir }}:{{ deck_dir }}"
-    - "{{ bind_input_dir }}:{{ input_dir }}"
-    - "{{ bind_oonibackend_log_path }}:{{ oonibackend_log_path }}"
-    - "{{ bind_oonibackend_conf_path }}:{{ oonibackend_conf_path }}"
-    - "{{ bind_oonibackend_data_path }}:{{ oonibackend_data_path }}"
-    restart_policy: always

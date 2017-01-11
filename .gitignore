@@ -4,4 +4,5 @@ invoke.yaml
 *.pyc
 *.swp
 *.swo
+backend-files/
 secrets.env.j2

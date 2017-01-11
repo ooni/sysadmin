@@ -1,0 +1,75 @@
+---
+
+# This ansible playbook deploys the oonibackend bouncers, collectors and
+# test-helpers in separate docker containers and on different hosts.
+#
+# An inventory file should look similar to:
+# [bouncer]
+# bouncer-host
+#
+# [collector]
+# collector-host
+#
+# [web_connectivity_helper]
+# web_connectivity_host
+#
+# [bouncer:vars]
+# enable_tls_bouncer=yes
+# enable_bouncer=yes
+# enable_tcp_bouncer=yes
+# # DNS entry used by letsenrypt to issue or renew the certificate(s)
+# letsencrypt_domains="bouncer.stage.ooni.io"
+#
+# [collector:vars]
+# enable_collector=yes
+# enable_collector_alternate=yes
+# enable_tls_collector=yes
+# enable_tcp_collector=yes
+# letsencrypt_domains="a.collector.stage.ooni.io"
+#
+# [web_connectivity_helper:vars]
+# enable_web_connectivity=yes
+# enable_tls_web_connectivity=yes
+# enable_tcp_web_connectivity=yes
+# letsencrypt_domains="a.web-connectivity.th.stage.ooni.io"
+#
+# [staging:children]
+# bouncer
+# collector
+# web_connectivity_helper
+#
+# [staging:vars]
+# docker_ip="0.0.0.0"
+# # The bouncer configuration file that will be used by all oonibackend instances
+# bouncer_base_template=bouncer_base.yaml.j2
+# tls_bouncer_port=443
+# tcp_bouncer_port=80
+# tls_collector_port=443
+# tcp_collector_port=80
+# tls_web_connectivity_port=443
+# tcp_web_connectivity_port=80
+
+- hosts: local:staging:testing:production
+  vars:
+    ansible_python_interpreter: "/usr/bin/python"
+    app_env: "{{ letsencrypt_domains }}"
+    bind_oonibackend_data_path: "/data/{{ app_env }}"
+    bind_oonibackend_tls_dir: "{{ bind_oonibackend_data_path }}/tls"
+    docker_deployment: yes
+    letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ app_env }}"
+  roles:
+    - common
+    - { role: docker_py, when: docker_deployment is defined }
+    - { role: letsencrypt, when: letsencrypt_docker is undefined }
+
+- hosts: local:staging:testing:production
+  vars:
+    ansible_python_interpreter: "/root/venv/bin/python2.7"
+    app_env: "{{ letsencrypt_domains }}"
+    bind_oonibackend_data_path: "/data/{{ app_env }}"
+    bind_oonibackend_tls_dir: "{{ bind_oonibackend_data_path }}/tls"
+    docker_deployment: yes
+    letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ app_env }}"
+  roles:
+    - { role: letsencrypt, when: letsencrypt_docker is defined }
+    - ooni-backend

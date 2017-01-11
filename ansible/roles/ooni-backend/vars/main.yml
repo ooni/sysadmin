@@ -13,7 +13,7 @@ tcp_echo_address: "213.138.109.232"
 traceroute_address: "213.138.109.232"
 web_connectivity_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'web-connectivity')|map(attribute='domain')|list|join(' ') }}"
 collector_domain: "{{ letsencrypt_domain_list|selectattr('role', 'equalto', 'collector')|map(attribute='domain')|list|join(' ') }}"
-backend_conf_path: "{{ ansible_hostname }}_{{ app_env }}_backend_files"
+backend_conf_path: "backend-files/{{ ansible_hostname }}_{{ app_env }}"
 web_connectivity_hs: "{{lookup('file', '{{ backend_conf_path }}/web_connectivity/hostname')}}"
 collector_hs: "{{lookup('file', '{{ backend_conf_path }}/collector/hostname')}}"
 bouncer_hs: "{{lookup('file', '{{ backend_conf_path }}/bouncer/hostname')}}"
@@ -26,12 +26,6 @@ dns_port_udp: 57004
 dns_discover_port_tcp: 57005
 dns_discover_port_udp: 57005
 ssl_port: 57006
-tls_bouncer_port: 443
-tcp_bouncer_port: 80
-tls_collector_port: 4441
-tcp_collector_port: 8081
-tls_web_connectivity_port: 4442
-tcp_web_connectivity_port: 8082
 
 oonibackend_data_path: /usr/share/ooni/backend
 archive_dir: "{{ oonibackend_data_path }}/archive"
@@ -77,3 +71,4 @@ bind_oonibackend_conf_path: "{{ bind_oonibackend_data_path }}/etc/ooni"
 bind_oonibackend_log_path: "{{ bind_oonibackend_data_path }}/var/log/ooni"
 bind_oonibackend_conf: "{{ bind_oonibackend_conf_path }}/oonibackend.conf"
 ooni_sysadmin_repo: "https://github.com/TheTorProject/ooni-sysadmin.git"
+ooni_backend_repo: "https://github.com/TheTorProject/ooni-backend.git"

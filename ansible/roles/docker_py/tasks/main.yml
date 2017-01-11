@@ -1,4 +1,33 @@
 ---
+
+- name: installs apt-https-transport and required kernel packages
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - "linux-image-{{ ansible_kernel }}"
+    - apt-transport-https
+    - python-virtualenv
+
+- name: adds Docker repository key
+  apt_key: >
+    id=58118E89F3A912897C070ADBF76221572C52609D
+    url="https://apt.dockerproject.org/gpg"
+
+- name: adds Docker repository and update apt cache
+  apt_repository: >
+    repo="deb https://apt.dockerproject.org/repo {{ ansible_distribution|lower }}-{{ ansible_distribution_release }} main"
+    update_cache=yes
+
+- name: installs docker-engine package
+  apt: name=docker-engine
+
+- name: enables and starts docker service
+  service: >
+    name=docker
+    enabled=yes
+    state=started
+
 - name: Install docker-py via pip in virtualenv
   pip: >
     name="docker-py"

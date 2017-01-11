@@ -1,5 +1,5 @@
 ---
-- name: Add jessie backports repository
+- name: Add Debian stable backports repository
   apt_repository: >
     state=present
     repo='deb http://httpredir.debian.org/debian {{ ansible_distribution_release }}-backports main'
@@ -10,7 +10,13 @@
     name=certbot
     state=latest
     default_release="{{ ansible_distribution_release }}-backports"
+    update_cache=yes
   when: docker_deployment is defined and ansible_distribution == "Debian"
+
+- name: Ensure certbot package default cronjob is removed
+  file: >
+    path=/etc/cron.d/certbot
+    state=absent
 
 - name: Creates Letsencrypt working/config directories
   file: >
@@ -31,7 +37,7 @@
   when: docker_deployment is defined
 
 - name: Generate Letsencrypt certificates with docker
-  docker:
+  docker_container:
     name: "{{ letsencrypt_docker_name }}"
     image: "{{ letsencrypt_docker_image }}"
     expose: "{{ letsencrypt_port }}"
@@ -53,3 +59,7 @@
     - "{{ letsencrypt_live_dir }}/privkey.pem"
     - "{{ letsencrypt_live_dir }}/fullchain.pem"
   when: docker_deployment is defined
+
+- name: Force Letsencrypt certificate(s) renewal
+  command: "{{ letsencrypt_renew_cmd }}"
+  when: letsencrypt_force_renew is defined

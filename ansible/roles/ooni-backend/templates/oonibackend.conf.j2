@@ -52,16 +52,18 @@ helpers:
 {% else %}
     port: null
 {% endif %}
-{% if enable_web_connectivity | default('') %}
   web_connectivity:
+{% if enable_web_connectivity | default('') %}
       endpoints:
       - {type: onion, hsdir: "{{ web_connectivity_hsdir }}"}
+{% else %}
+      endpoints: []
 {% endif %}
 {% if enable_tls_web_connectivity | default('') %}
-      - {type: tls, port: {{ tls_web_connectivity_port }}, fullchain: "{{ tls_web_connectivity_fullchain }}", privkey: "{{ tls_web_connectivity_privkey }}"}
+      - {type: tls, port: {{ tls_web_connectivity_port | default('4442') }}, fullchain: "{{ tls_web_connectivity_fullchain }}", privkey: "{{ tls_web_connectivity_privkey }}"}
 {% endif %}
 {% if enable_tcp_web_connectivity | default('') %}
-      - {type: tcp, port: {{ tcp_web_connectivity_port }}}
+      - {type: tcp, port: {{ tcp_web_connectivity_port | default('8082') }}}
 {% endif %}
 main:
   archive_dir: {{ archive_dir }}
@@ -98,22 +100,26 @@ main:
   uid: null
   umask: null
 
+{% if enable_bouncer | default('')  %}
   bouncer_endpoints:
 {% if "{{ enable_tls_bouncer | default('') }}" %}
-  - {type: tls, port: {{ tls_bouncer_port }}, fullchain: "{{ tls_bouncer_fullchain }}", privkey: "{{ tls_bouncer_privkey }}"}
+  - {type: tls, port: {{ tls_bouncer_port | default('443') }}, fullchain: "{{ tls_bouncer_fullchain }}", privkey: "{{ tls_bouncer_privkey }}"}
 {% endif %}
 {% if "{{ enable_tcp_bouncer | default('') }}" %}
-  - {type: tcp, port: {{ tcp_bouncer_port }}}
+  - {type: tcp, port: {{ tcp_bouncer_port | default('80') }}}
 {% endif %}
   - {type: onion, hsdir: "{{ bouncer_hsdir }}"}
+{% endif %}
 
+{% if enable_collector | default('') %}
   collector_endpoints:
 {% if "{{ enable_tls_collector | default('') }}" %}
-  - {type: tls, port: {{ tls_collector_port }}, fullchain: "{{ tls_collector_fullchain  }}", privkey: "{{ tls_collector_privkey }}"}
+  - {type: tls, port: {{ tls_collector_port | default ('4441') }}, fullchain: "{{ tls_collector_fullchain  }}", privkey: "{{ tls_collector_privkey }}"}
 {% endif %}
 {% if "{{ enable_tcp_collector | default('') }}" %}
-  - {type: tcp, port: {{ tcp_collector_port }}}
+  - {type: tcp, port: {{ tcp_collector_port | default ('8081') }}}
 {% endif %}
   - {type: onion, hsdir: "{{ collector_hsdir }}"}
+{% endif %}
 
   report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'
