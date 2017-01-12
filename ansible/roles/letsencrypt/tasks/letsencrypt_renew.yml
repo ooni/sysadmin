@@ -3,6 +3,6 @@
   cron:
     name: "Renew ooni-backend letsencrypt certificates"
     user: "root"
-    cron_file: "letsencrypt_renew_certs-{{ app_env }}"
+    cron_file: "letsencrypt_renew_certs-{{ app_env | to_uuid }}"
     special_time: "daily"
     job: "{{ letsencrypt_renew_cmd }}"
