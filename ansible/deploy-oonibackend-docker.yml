@@ -60,7 +60,7 @@
   roles:
     - common
     - { role: docker_py, when: docker_deployment is defined }
-    - { role: letsencrypt, when: letsencrypt_docker is undefined }
+    - { role: letsencrypt, when: docker_deployment is undefined }
 
 - hosts: local:staging:testing:production
   vars:
@@ -79,5 +79,5 @@
     enable_tcp_collector: yes
     oonibackend_bundle: yes
   roles:
-    - { role: letsencrypt, when: letsencrypt_docker is defined }
+    - { role: letsencrypt, when: docker_deployment is defined }
     - ooni-backend

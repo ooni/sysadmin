@@ -60,7 +60,7 @@
   roles:
     - common
     - { role: docker_py, when: docker_deployment is defined }
-    - { role: letsencrypt, when: letsencrypt_docker is undefined }
+    - { role: letsencrypt, when: docker_deployment is undefined }
 
 - hosts: local:staging:testing:production
   vars:
@@ -71,5 +71,5 @@
     docker_deployment: yes
     letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ app_env }}"
   roles:
-    - { role: letsencrypt, when: letsencrypt_docker is defined }
+    - { role: letsencrypt, when: docker_deployment is defined }
     - ooni-backend
