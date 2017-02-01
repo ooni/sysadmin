@@ -1,0 +1,37 @@
+---
+
+- name: Install required packages for munin (Debian)
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+      - munin-node
+      - libnet-ssleay-perl
+  when: ansible_os_family == 'Debian'
+
+- name: Install required packages for munin (RedHat)
+  yum:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - munin-node
+    - perl-Net-SSLeay
+  when: ansible_os_family == 'RedHat'
+
+- name: Configure munin slave
+  template: src=munin-node.conf
+            dest=/etc/munin/munin-node.conf
+            owner=root group=root mode=0644
+
+- name: Install munin SSL key and cert
+  template: src={{ item.src }}
+            dest={{ item.dest }}
+            owner=munin group=munin mode=0644
+  with_items:
+    - { src: '{{ local_ssl_cert_munin }}', dest: '{{ remote_ssl_cert_munin }}' }
+    - { src: '{{ local_ssl_key_munin }}', dest: '{{ remote_ssl_key_munin }}' }
+
+- name: Restart munin-node
+  service: name=munin-node state=restarted

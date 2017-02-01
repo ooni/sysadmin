@@ -172,6 +172,17 @@ This ansible role deploys ooni-measurements application.
 ansible-playbook -i "hosts-inventory" ansible/ansible/deploy-ooni-measurements.yml -v
 ```
 
+## munin role
+
+This ansible roles deploy munin monitoring to master and slaves and issues the
+letsencrypt certificate for munin virtualhost.
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/deploy-munin.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

@@ -1,0 +1,14 @@
+[munin_masters]
+
+[munin_masters:vars]
+# munin htaccess username
+#munin_user=user
+#munin_passwd=pass
+# munin domain.tld (creates letsencrypt cert)
+letsencrypt_domains=test-monitoring.ooni.io
+# postfix relay setup (email notifications)
+#postfix_relay_host=hostname
+#postfix_relay_user=user
+#postfix_relay_password=pass
+
+[munin_slaves]

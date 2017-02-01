@@ -1,0 +1,81 @@
+---
+
+- apt:
+    name: "{{item}}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - munin
+    - nginx
+    - libnet-ssleay-perl
+    - python-passlib
+    - heirloom-mailx
+    - postfix
+    - libsasl2-modules
+
+- name: Create local key and cert files directory
+  file: path={{ local_pem_path }} state=directory
+  run_once: true
+  delegate_to: localhost
+
+- name: Generate munin OpenSSL key and cert locally
+  command: |
+    openssl req -x509 -newkey rsa:2048 -days 3650 -nodes -subj '/CN=selfie'
+    -out {{ local_ssl_cert_munin }}
+    -keyout {{ local_ssl_key_munin }}
+  args:
+    creates: "{{ item }}"
+  with_items:
+    - "{{ local_ssl_cert_munin }}"
+    - "{{ local_ssl_key_munin }}"
+  delegate_to: localhost
+
+- name: Configure munin master
+  template: src={{ munin_conf_file }}
+            dest={{ munin_conf }}/{{ munin_conf_file }}
+            owner=root group=root mode=0644
+
+- name: Install munin SSL key and cert
+  template: src={{ item.src }}
+            dest={{ item.dest }}
+            owner=munin group=munin mode=0644
+  with_items:
+    - { src: '{{ local_ssl_cert_munin }}', dest: '{{ remote_ssl_cert_munin }}' }
+    - { src: '{{ local_ssl_key_munin }}', dest: '{{ remote_ssl_key_munin }}' }
+
+- name: Install munin-error-counting plugin
+  template: src=munin_errors
+            dest={{ munin_conf }}/plugins/munin_errors
+            owner=root group=root mode=0755
+
+- name: Restart munin-node
+  service: name=munin-node state=restarted
+
+- name: Remove default nginx virtual host config
+  file: name=/etc/nginx/sites-enabled/default state=absent
+
+- name: Add munin nginx virtual host config
+  template: src=nginx-munin.conf.j2
+            dest=/etc/nginx/sites-enabled/munin
+            owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: Configure nginx
+  template: src=nginx.conf
+            dest=/etc/nginx/nginx.conf
+            owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: Install basic auth password file
+  htpasswd: path=/etc/nginx/basic-auth
+            name={{ munin_user }}
+            password={{ munin_passwd }}
+            owner=root group=root mode=0644
+
+- name: Template Postfix configuration template
+  template: src=main.cf
+            dest=/etc/postfix/main.cf
+            owner=root group=root mode=0644
+  notify: restart postfix
+
+- meta: flush_handlers
