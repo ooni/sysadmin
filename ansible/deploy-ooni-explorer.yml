@@ -1,0 +1,9 @@
+---
+- hosts: ooni-explorer
+  vars:
+    letsencrypt_nginx: yes
+  roles:
+    - letsencrypt
+    - role: ooni-explorer
+      become: yes
+      become_method: su

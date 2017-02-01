@@ -1,0 +1,14 @@
+[ooni-explorer]
+host
+
+[ooni-explorer:vars]
+# letsencrypt certificate domain
+#letsencrypt_domains=domain.tld
+# pipeline db host
+#ooni_pipeline_host=
+# pipeline db name
+#ooni_pipeline_db=ooni_pipeline
+# pipeline db username
+#ooni_pipeline_user=ooni
+# pipeline db user password
+#ooni_pipeline_passwd=passwd

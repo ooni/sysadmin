@@ -176,6 +176,16 @@ letsencrypt certificate for munin virtualhost.
 ansible-playbook -i "hosts-inventory" ansible/deploy-munin.yml -v
 ```
 
+## ooni-explorer role
+
+This ansible role deploy ooni-explorer with letsencrypt certificate.
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/ansible/deploy-ooni-explorer.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

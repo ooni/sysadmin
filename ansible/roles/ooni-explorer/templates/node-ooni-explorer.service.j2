@@ -1,0 +1,13 @@
+[Service]
+ExecStart=/usr/bin/node {{ ooni_explorer_path }}/server.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=node-{{ ooni_explorer_user }}
+User={{ ooni_explorer_user }}
+Group={{ ooni_explorer_user }}
+RestartSec=15s
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
