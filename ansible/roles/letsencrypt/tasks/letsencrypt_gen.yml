@@ -33,6 +33,10 @@
     path="{{ bind_oonibackend_tls_dir }}"
   when: bind_oonibackend_tls_dir is defined
 
+- name: Install nginx apt package
+  apt: name=nginx
+  when: ( ansible_distribution == "Debian" and letsencrypt_nginx is defined and letsencrypt_nginx|bool == true )
+
 - name: Creates letsencrypt webroot
   file: >
     state=directory
