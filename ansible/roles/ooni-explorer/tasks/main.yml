@@ -83,11 +83,6 @@
     dest: "{{ ooni_explorer_datasources }}"
   become_user: "{{ ooni_explorer_user }}"
 
-- name: Remove conflicting datasources example file
-  file:
-    path: "{{ ooni_explorer_path }}/server/datasources.production.js"
-    state: absent
-
 - name: Install node-ooni-explorer.service
   template:
     src: node-ooni-explorer.service.j2
