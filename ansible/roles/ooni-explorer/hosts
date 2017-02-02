@@ -2,8 +2,9 @@
 host
 
 [ooni-explorer:vars]
-# letsencrypt certificate domain
-#letsencrypt_domains=domain.tld
+# letsencrypt certificate domain(s)
+# Separate domains with comma
+#letsencrypt_domains=domain.tld,domain2.tld
 # pipeline db host
 #ooni_pipeline_host=
 # pipeline db name
