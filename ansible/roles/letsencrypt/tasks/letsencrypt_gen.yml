@@ -49,6 +49,12 @@
     dest: /etc/nginx/sites-enabled/letsencrypt
   when: ( letsencrypt_nginx is defined and letsencrypt_nginx|bool == true )
 
+- name: Remove default nginx virtual host config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  when: ( letsencrypt_nginx is defined and letsencrypt_nginx|bool == true )
+
 - name: Restart nginx to activate letsencrypt virtualhost
   service: name=nginx state=restarted
   when: ( letsencrypt_nginx is defined and letsencrypt_nginx|bool == true )
