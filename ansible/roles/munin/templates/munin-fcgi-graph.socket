@@ -1,0 +1,11 @@
+[Unit]
+Description=Munin fcgi graph listen socket
+
+[Socket]
+SocketUser=www-data
+SocketGroup=munin
+SocketMode=0640
+ListenStream=/var/run/munin/fcgi-graph.sock
+
+[Install]
+WantedBy=sockets.target

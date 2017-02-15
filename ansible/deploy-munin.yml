@@ -1,0 +1,7 @@
+---
+- hosts: munin_masters:munin_slaves
+  vars:
+    letsencrypt_nginx: yes
+  roles:
+    - { role: letsencrypt, when: "'munin_masters' in group_names" }
+    - munin

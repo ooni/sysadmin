@@ -1,0 +1,5 @@
+---
+- include: munin_master.yml
+  when: "'munin_masters' in group_names"
+- include: munin_slave.yml
+  when: "'munin_slaves' in group_names"

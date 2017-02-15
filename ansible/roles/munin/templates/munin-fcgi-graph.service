@@ -1,0 +1,13 @@
+[Unit]
+Description=Munin fcgi graph service
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/munin/cgi/munin-cgi-graph
+User=munin
+Group=munin
+StandardInput=socket
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

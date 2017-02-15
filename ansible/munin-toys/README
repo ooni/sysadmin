@@ -25,3 +25,5 @@ keys involved:
       each other and talk privately.
     * ssl key and cert for nginx: talk privately to nginx.
     * http basic auth crypt() thing: auth to nginx.
+
+run-non-ec2.sh script deploys munin to non ec2 hosts.
