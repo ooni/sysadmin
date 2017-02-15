@@ -1,0 +1,96 @@
+---
+
+- name: Install apt-transport-https
+  apt:
+    name: apt-transport-https
+
+- name: Add NodeSource apt package signing key
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+
+- name: Add NodeSource apt repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/node_7.x {{ ansible_distribution_release }} main'
+
+- name: Install required apt packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - git-core
+    - nodejs
+    - nginx
+    - bzip2
+
+- name: Create {{ ooni_explorer_user }} user
+  user:
+    name: "{{ ooni_explorer_user }}"
+
+- name: Remove default nginx virtual host config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  register: nginx
+
+- name: Add munin nginx virtual host config
+  template:
+    src: nginx-ooni-explorer.conf.j2
+    dest: /etc/nginx/sites-enabled/ooni-explorer
+    owner: root
+    group: root
+    mode: 0644
+  register: nginx
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  when: nginx.changed
+
+- name: Clone {{ ooni_explorer_git }} repository
+  git:
+    repo: "{{ ooni_explorer_git }}"
+    dest: "{{ ooni_explorer_path }}"
+  become_user: "{{ ooni_explorer_user }}"
+
+- name: Install bower package
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - bower
+    - grunt
+
+- name: Install bower package requirements
+  bower:
+    path: "{{ ooni_explorer_path }}"
+  become_user: "{{ ooni_explorer_user }}"
+
+- name: Install node package requirements
+  npm:
+    path: "{{ ooni_explorer_path }}"
+    state: latest
+  become_user: "{{ ooni_explorer_user }}"
+
+- name: Grunt build
+  command: grunt build
+  args:
+    chdir: "{{ ooni_explorer_path }}"
+  become_user: "{{ ooni_explorer_user }}"
+
+- name: Template {{ ooni_explorer_datasources }}
+  template:
+    src: datasources.production.js.j2
+    dest: "{{ ooni_explorer_datasources }}"
+  become_user: "{{ ooni_explorer_user }}"
+
+- name: Install node-ooni-explorer.service
+  template:
+    src: node-ooni-explorer.service.j2
+    dest: "{{ ooni_explorer_unit_path }}"
+
+- name: Start node-ooni-explorer.service
+  systemd:
+    name: node-ooni-explorer.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

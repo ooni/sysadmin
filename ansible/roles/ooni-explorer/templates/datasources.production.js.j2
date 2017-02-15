@@ -1,0 +1,17 @@
+module.exports = {
+  "db": {
+    "host": "{{ ooni_pipeline_host }}",
+    "port": "5432",
+    "database": "{{ ooni_pipeline_db }}",
+    "username": "{{ ooni_pipeline_user }}",
+    "password": "{{ ooni_pipeline_passwd }}",
+    "name": "postgres",
+    "debug": false,
+    "connector": "postgresql",
+    "ssl": true
+  },
+  "mem": {
+    "name": "mem",
+    "connector": "memory"
+  }
+}
