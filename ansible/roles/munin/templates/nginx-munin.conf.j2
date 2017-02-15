@@ -1,0 +1,31 @@
+# modified from /etc/nginx/sites-available/default packaged in jessie
+server {
+    server_name _;
+
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+
+    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains }}/fullchain.pem;
+
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/basic-auth;
+
+    root /var/cache/munin/www;
+
+    index index.html;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ =404;
+    }
+
+    location ^~ /munin-cgi/munin-cgi-graph/ {
+        fastcgi_split_path_info ^(/munin-cgi/munin-cgi-graph)(.*);
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_pass unix:/var/run/munin/fcgi-graph.sock;
+        include fastcgi_params;
+    }
+}

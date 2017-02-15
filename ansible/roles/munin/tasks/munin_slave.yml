@@ -1,0 +1,77 @@
+---
+
+- name: Add Ubuntu universe repository
+  apt_repository:
+    repo: "{{ item }}"
+  with_items:
+    - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}} universe'
+    - 'deb http://archive.ubuntu.com/ubuntu {{ansible_distribution_release}}-updates universe'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Add Debian stable backports repository
+  apt_repository: >
+    state=present
+    repo='deb http://httpredir.debian.org/debian {{ ansible_distribution_release }}-backports main'
+  when: ansible_distribution == "Debian"
+
+- name: Install required packages for munin (Debian)
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - libnet-ssleay-perl
+    - libcache-cache-perl
+    - locales
+    - ntp
+    - smartmontools
+  when: ansible_os_family == 'Debian'
+
+- name: Install required packages for munin (Debian)
+  apt:
+    name: "{{ item }}"
+    state: latest
+    default_release: "{{ ansible_distribution_release }}-backports"
+    update_cache: yes
+  with_items:
+    - munin-node
+    - munin-plugins-core
+    - munin-plugins-extra
+  when: ansible_os_family == 'Debian'
+
+- name: Install required packages for munin (Postgresql)
+  apt:  name=libdbd-pg-perl
+  when: ( psql is defined and psql|bool == true )
+
+- name: Install required packages for munin (nginx)
+  apt:  name=libwww-perl
+  when: ( nginx is defined and nginx|bool == true )
+
+- name: Install nginx status module in localhost
+  template: src=nginx-status.conf
+            dest=/etc/nginx/sites-enabled/nginx-status
+            owner=root group=root mode=0644
+  notify: reload nginx
+  when: ( nginx is defined and nginx|bool == true )
+
+- name: Generate locales
+  locale_gen: name=en_US.UTF-8
+
+- name: Configure munin slave
+  template: src=munin-node.conf
+            dest=/etc/munin/munin-node.conf
+            owner=root group=root mode=0644
+
+- name: Install munin SSL key and cert
+  template: src={{ item.src }}
+            dest={{ item.dest }}
+            owner=munin group=munin mode=0644
+  with_items:
+    - { src: '{{ local_ssl_cert_munin }}', dest: '{{ remote_ssl_cert_munin }}' }
+    - { src: '{{ local_ssl_key_munin }}', dest: '{{ remote_ssl_key_munin }}' }
+
+- name: Run munin-node-configure command
+  shell: "munin-node-configure --shell --exitnoterror | sh"
+
+- name: Restart munin-node
+  service: name=munin-node state=restarted
