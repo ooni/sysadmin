@@ -5,10 +5,10 @@
 #
 # An inventory file should look similar to:
 # [bouncer]
-# bouncer-host
+# bouncer-host letsencrypt_domains="a.collector.stage.ooni.io"
 #
 # [collector]
-# collector-host
+# collector-host letsencrypt_domains="a.web-connectivity.th.stage.ooni.io"
 #
 # [web_connectivity_helper]
 # web_connectivity_host
@@ -25,13 +25,11 @@
 # enable_collector_alternate=yes
 # enable_tls_collector=yes
 # enable_tcp_collector=yes
-# letsencrypt_domains="a.collector.stage.ooni.io"
 #
 # [web_connectivity_helper:vars]
 # enable_web_connectivity=yes
 # enable_tls_web_connectivity=yes
 # enable_tcp_web_connectivity=yes
-# letsencrypt_domains="a.web-connectivity.th.stage.ooni.io"
 #
 # [staging:children]
 # bouncer
@@ -60,7 +58,7 @@
   roles:
     - common
     - { role: docker_py, when: docker_deployment is defined }
-    - { role: letsencrypt, when: letsencrypt_docker is undefined }
+    - letsencrypt
 
 - hosts: local:staging:testing:production
   vars:
@@ -71,5 +69,4 @@
     docker_deployment: yes
     letsencrypt_live_dir: "{{ letsencrypt_confdir }}/live/{{ app_env }}"
   roles:
-    - { role: letsencrypt, when: letsencrypt_docker is defined }
     - ooni-backend
