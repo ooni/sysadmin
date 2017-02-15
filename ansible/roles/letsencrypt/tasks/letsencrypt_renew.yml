@@ -1,4 +1,5 @@
 ---
+
 - name: Letsencrypt certificates renewal cronjob
   cron:
     name: "Renew ooni-backend letsencrypt certificates"
@@ -6,3 +7,13 @@
     cron_file: "letsencrypt_renew_certs-{{ app_env | to_uuid }}"
     special_time: "daily"
     job: "{{ letsencrypt_renew_cmd }}"
+  when: app_env is defined
+
+- name: Config certificates renewal cronjob for nginx
+  cron:
+    name: "Renew nginx letsencrypt certificates"
+    user: "root"
+    cron_file: "letsencrypt_renew_certs-{{ letsencrypt_domains | to_uuid }}"
+    special_time: "daily"
+    job: "{{ letsencrypt_renew_cmd }}"
+  when: ( letsencrypt_nginx is defined and letsencrypt_nginx|bool == true )

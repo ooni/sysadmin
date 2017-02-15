@@ -1,0 +1,28 @@
+server_tokens off;
+
+server {
+    listen 80 default_server;
+    server_name _;
+
+    # redirect HTTP to HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+
+    location /.well-known/acme-challenge {
+        default_type "text/plain";
+        root {{ letsencrypt_webroot }};
+        try_files $uri $uri/ =404;
+    }
+
+    # Hide /acme-challenge subdirectory and return 404 on all requests.
+    location = /.well-known/acme-challenge/ {
+        return 404;
+    }
+
+    location /favicon.ico {
+                    return         204;
+                    access_log     off;
+                    log_not_found  off;
+    }
+}
