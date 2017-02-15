@@ -1,7 +1,5 @@
 ---
 - hosts: munin_masters:munin_slaves
-  # Get host facts first
-  tasks: [ ]
   vars:
     letsencrypt_nginx: yes
   roles:

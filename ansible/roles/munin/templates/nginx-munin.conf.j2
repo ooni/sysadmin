@@ -21,4 +21,11 @@ server {
         # as directory, then fall back to displaying a 404.
         try_files $uri $uri/ =404;
     }
+
+    location ^~ /munin-cgi/munin-cgi-graph/ {
+        fastcgi_split_path_info ^(/munin-cgi/munin-cgi-graph)(.*);
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_pass unix:/var/run/munin/fcgi-graph.sock;
+        include fastcgi_params;
+    }
 }

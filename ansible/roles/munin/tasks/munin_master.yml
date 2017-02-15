@@ -12,6 +12,11 @@
     - heirloom-mailx
     - postfix
     - libsasl2-modules
+    - munin-plugins-core
+    - munin-plugins-extra
+    - libcache-cache-perl
+    - libcgi-fast-perl
+    - rrdcached
 
 - name: Create local key and cert files directory
   file: path={{ local_pem_path }} state=directory
@@ -30,10 +35,21 @@
     - "{{ local_ssl_key_munin }}"
   delegate_to: localhost
 
+- name: Generate locales
+  locale_gen: name=en_US.UTF-8
+
 - name: Configure munin master
   template: src={{ munin_conf_file }}
             dest={{ munin_conf }}/{{ munin_conf_file }}
             owner=root group=root mode=0644
+
+- name: Create munin directories
+  file: path={{ item }}
+        owner=munin group=munin mode=0755
+  with_items:
+    - '/var/lib/munin/cgi-tmp'
+    - '/var/lib/munin-node/plugin-state'
+    - '/etc/munin/plugin-conf.d'
 
 - name: Install munin SSL key and cert
   template: src={{ item.src }}
@@ -44,9 +60,12 @@
     - { src: '{{ local_ssl_key_munin }}', dest: '{{ remote_ssl_key_munin }}' }
 
 - name: Install munin-error-counting plugin
-  template: src=munin_errors
+  template: src=plugins/munin_errors
             dest={{ munin_conf }}/plugins/munin_errors
             owner=root group=root mode=0755
+
+- name: Run munin-node-configure command
+  shell: "munin-node-configure --shell --exitnoterror | sh"
 
 - name: Restart munin-node
   service: name=munin-node state=restarted
@@ -77,5 +96,25 @@
             dest=/etc/postfix/main.cf
             owner=root group=root mode=0644
   notify: restart postfix
+
+- name: Install munin fcgi units
+  template:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/
+  with_items:
+    - munin-fcgi-graph.socket
+    - munin-fcgi-graph.service
+    - munin-rrdcached.service
+
+- name: Start munin fcgi units
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  with_items:
+    - munin-fcgi-graph.socket
+    - munin-fcgi-graph.service
+    - munin-rrdcached.service
 
 - meta: flush_handlers

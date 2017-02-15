@@ -12,3 +12,7 @@ letsencrypt_domains=test-monitoring.ooni.io
 #postfix_relay_password=pass
 
 [munin_slaves]
+# Add packages related to postgresql plugins
+#psql=true
+# Add packages related to nginx plugins
+# nginx=true

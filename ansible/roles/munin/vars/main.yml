@@ -11,8 +11,8 @@ remote_ssl_cert_munin: "{{ munin_conf }}/{{ cert_munin }}"
 remote_ssl_key_munin: "{{ munin_conf }}/{{ key_munin }}"
 munin_alerts:
   - {
-    name: "Admin",
-    email: "admin@openobservatory.org",
+    name: "contact-notify",
+    email: "contact+notifications@openobservatory.org",
     subject: "Munin notification for ${var:group} :: ${var:host}",
-    level: "warning critical"
+    level: "critical"
   }

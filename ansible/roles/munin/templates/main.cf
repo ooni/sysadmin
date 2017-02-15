@@ -17,7 +17,7 @@ append_dot_mydomain = no
 
 readme_directory = no
 
-relayhost = {{ postfix_relay_host }}:587
+relayhost = {{ postfix_relay_host }}:{{ postfix_relay_port }}
 
 # TLS parameters
 smtp_tls_security_level = encrypt
