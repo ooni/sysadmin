@@ -1,0 +1,6 @@
+---
+- hosts: slackin
+  roles:
+    - docker_py
+    - docker-compose
+    - slackin

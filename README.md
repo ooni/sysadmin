@@ -186,6 +186,16 @@ This ansible role deploy ooni-explorer with letsencrypt certificate.
 ansible-playbook -i "hosts-inventory" ansible/ansible/deploy-ooni-explorer.yml -v
 ```
 
+## slackin role
+
+This ansible role deploys slackin with letsencrypt certificate.
+
+### execute role
+
+```
+ansible-playbook -i "hosts-inventory" ansible/deploy-slackin.yml -v
+```
+
 # Instructions
 
 Unless otherwise indicated the instructions are for debian wheezy.

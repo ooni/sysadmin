@@ -33,3 +33,4 @@
     name="docker-py"
     version="1.7.0"
     virtualenv="{{ ansible_env.HOME }}/venv"
+  when: ansible_python_interpreter is defined
