@@ -5,6 +5,7 @@
     depth=1
     dest="{{ ooni_measurements_path }}"
     repo="{{ ooni_measurements_repo }}"
+    force=yes
 
 - name: Template secrets
   template: >
