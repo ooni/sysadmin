@@ -15,3 +15,8 @@ docker_ip="0.0.0.0"
 # The list of generated domain could be derived from groups_vars/group
 # Set to true to install ooni-backend from git repository. Default: PyPI install
 # oonibackend_git_install=true
+# dns_resolver_address="8.8.8.8:53"
+# dns_test_helper_address="213.138.109.232:57004"
+# http_return_json_headers_address="http://93.95.227.200"
+# tcp_echo_address="213.138.109.232"
+# traceroute_address="213.138.109.232"

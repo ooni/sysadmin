@@ -10,6 +10,6 @@
 - include: docker_instances.yml
   when: docker_deployment is defined
 - include: populate_bouncer_base.yml
-  when: docker_deployment is defined
+  when: docker_deployment is defined and test_helper is not defined
 - include: cron.yml
-  when: docker_deployment is defined
+  when: docker_deployment is defined and test_helper is not defined

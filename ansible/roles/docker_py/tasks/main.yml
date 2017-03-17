@@ -4,9 +4,11 @@
   apt: >
     name={{ item }}
     state=present
+    update_cache=yes
   with_items:
     - apt-transport-https
     - python-virtualenv
+    - python-pip
 
 - name: adds Docker repository key
   apt_key: >

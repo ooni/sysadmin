@@ -1,0 +1,11 @@
+---
+- hosts: test-helpers
+  vars:
+    docker_deployment: yes
+    docker_ip: 0.0.0.0
+    test_helper: yes
+    bind_oonibackend_data_path: "/data/{{ ansible_nodename }}"
+    docker_img_name: "ooni-backend-{{ ansible_nodename }}"
+  roles:
+    - docker_py
+    - ooni-backend

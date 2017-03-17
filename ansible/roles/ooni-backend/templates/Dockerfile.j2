@@ -6,8 +6,8 @@ RUN echo "deb http://deb.torproject.org/torproject.org jessie main" \
 RUN apt-get -y update
 RUN apt-get install -y git-core python-pip python-dev libsqlite3-dev \
                        libffi-dev tor deb.torproject.org-keyring
-{% if ( oonibackend_git_install|default('false')|bool ) %}
-RUN pip install git+{{ ooni_backend_repo }}
+{% if ( oonibackend_git_install|default('true')|bool ) %}
+RUN pip install git+{{ ooni_backend_repo }}@{{ooni_backend_git_hash }}
 {% else %}
 RUN pip install oonibackend
 {% endif %}

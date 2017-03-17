@@ -87,3 +87,29 @@
     - "{{ bind_oonibackend_data_path }}:{{ oonibackend_data_path }}"
     restart_policy: always
   when: enable_web_connectivity is defined
+
+- name: runs oonibackend test helpers docker image
+  docker_container:
+    state: started
+    name: "{{ docker_img_name }}"
+    image: "{{ docker_img_name }}"
+    expose:
+    - "{{ http_return_json_headers_port }}"
+    - "{{ tcp_echo_port }}"
+    - "{{ daphn3_port }}"
+    - "{{ dns_port_tcp }}"
+    - "{{ dns_discover_port_tcp }}"
+    ports:
+    - "{{ docker_ip }}:{{ http_return_json_headers_port }}:{{ http_return_json_headers_port }}"
+    - "{{ docker_ip }}:{{ tcp_echo_port }}:{{ tcp_echo_port }}"
+    - "{{ docker_ip }}:{{ daphn3_port }}:{{ daphn3_port }}"
+    - "{{ docker_ip }}:{{ dns_port_tcp }}:{{ dns_port_tcp }}"
+    - "{{ docker_ip }}:{{ dns_discover_port_tcp }}:{{ dns_discover_port_tcp }}"
+    volumes:
+    - "{{ bind_deck_dir }}:{{ deck_dir }}"
+    - "{{ bind_input_dir }}:{{ input_dir }}"
+    - "{{ bind_oonibackend_log_path }}:{{ oonibackend_log_path }}"
+    - "{{ bind_oonibackend_conf_path }}:{{ oonibackend_conf_path }}"
+    - "{{ bind_oonibackend_data_path }}:{{ oonibackend_data_path }}"
+    restart_policy: always
+  when: test_helper is defined

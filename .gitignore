@@ -6,3 +6,4 @@ invoke.yaml
 *.swo
 backend-files/
 secrets.env.j2
+*.secrets
