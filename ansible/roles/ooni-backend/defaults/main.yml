@@ -1,0 +1,21 @@
+enable_dns_helper: yes
+enable_dns_discovery_helper: yes
+enable_http_return_json_headers_helper: yes
+enable_tcp_echo_helper: yes
+enable_daphn3_helper: yes
+
+dns_resolver_address: "8.8.8.8:53"
+dns_test_helper_address: "213.138.109.232:57004"
+http_return_json_headers_address: "http://93.95.227.200"
+ssl_address:
+tcp_echo_address: "213.138.109.232"
+traceroute_address: "213.138.109.232"
+http_return_json_headers_port: 57001
+tcp_echo_port: 57002
+daphn3_port: 57003
+dns_port_tcp: 57004
+dns_port_udp: 57004
+dns_discover_port_tcp: 57005
+dns_discover_port_udp: 57005
+ssl_port: 57006
+docker_ip: 0.0.0.0
