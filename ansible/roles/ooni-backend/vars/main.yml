@@ -52,4 +52,4 @@ bind_oonibackend_log_path: "{{ bind_oonibackend_data_path }}/var/log/ooni"
 bind_oonibackend_conf: "{{ bind_oonibackend_conf_path }}/oonibackend.conf"
 ooni_sysadmin_repo: "https://github.com/TheTorProject/ooni-sysadmin.git"
 ooni_backend_repo: "https://github.com/TheTorProject/ooni-backend.git"
-ooni_backend_git_hash: 5395ce8275c87526b443cfc63c4db37e4b1f3ce8
+ooni_backend_git_hash: v1.3.3
