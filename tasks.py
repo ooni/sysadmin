@@ -129,12 +129,43 @@ def start_probe(ctx, private_key="private/ooni-pipeline.pem",
     os.environ["AWS_ACCESS_KEY_ID"] = config.aws.access_key_id
     os.environ["AWS_SECRET_ACCESS_KEY"] = config.aws.secret_access_key
     try:
-        command = ("ansible-playbook --private-key {private_key}"
-                   " -i inventory playbook.yaml"
+        command = ("cd ansible && ansible-playbook"
+                "--private-key {private_key}"
+                " -i inventory start-probe.yaml"
+                " --extra-vars=".format(private_key=private_key))
+        command += "'%s'" % json.dumps({
+                "instance_type": instance_type,
+                "playbook": playbook,
+                "region": region
+        })
+        result = ctx.run(command, pty=True)
+        logger.info(str(result))
+    except Exception:
+        logger.error("Failed to run ansible playbook")
+        logger.error(traceback.format_exc())
+    logger.info("start_computer runtime: %s" % timer.stop())
+
+@task(setup_remote_syslog)
+def deploy(ctx, private_key="private/ooni-pipeline.pem",
+           instance_type="m3.medium",
+           component="bouncer",
+           region="us-east-1"):
+    timer = Timer()
+    timer.start()
+    logger.info("Starting a %s AWS instance"
+                " and deploying the '%s' component" % (instance_type, component))
+
+    os.environ["ANSIBLE_HOST_KEY_CHECKING"] = "false"
+    os.environ["AWS_ACCESS_KEY_ID"] = config.aws.access_key_id
+    os.environ["AWS_SECRET_ACCESS_KEY"] = config.aws.secret_access_key
+    try:
+        command = ("cd ansible && ansible-playbook"
+                   " --private-key {private_key}"
+                   " -i inventory deploy.yaml"
                    " --extra-vars=".format(private_key=private_key))
         command += "'%s'" % json.dumps({
             "instance_type": instance_type,
-            "playbook": playbook,
+            "component": component,
             "region": region
         })
         result = ctx.run(command, pty=True)
@@ -144,4 +175,4 @@ def start_probe(ctx, private_key="private/ooni-pipeline.pem",
         logger.error(traceback.format_exc())
     logger.info("start_computer runtime: %s" % timer.stop())
 
-ns = Collection(start_probe)
+ns = Collection(start_probe, deploy)
