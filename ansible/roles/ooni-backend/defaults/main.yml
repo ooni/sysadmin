@@ -5,11 +5,11 @@ enable_tcp_echo_helper: yes
 enable_daphn3_helper: yes
 
 dns_resolver_address: "8.8.8.8:53"
-dns_test_helper_address: "213.138.109.232:57004"
-http_return_json_headers_address: "http://93.95.227.200"
+dns_test_helper_address: "37.218.247.110:57004"
+http_return_json_headers_address: "http://37.218.247.95"
 ssl_address:
-tcp_echo_address: "213.138.109.232"
-traceroute_address: "213.138.109.232"
+tcp_echo_address: "37.218.247.110"
+traceroute_address: "199.119.112.49"
 http_return_json_headers_port: 57001
 tcp_echo_port: 57002
 daphn3_port: 57003
