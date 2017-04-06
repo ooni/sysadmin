@@ -50,6 +50,7 @@
   git:
     repo: "{{ ooni_explorer_git }}"
     dest: "{{ ooni_explorer_path }}"
+    version: "{{ ooni_explorer_git_version }}"
   become_user: "{{ ooni_explorer_user }}"
 
 - name: Install bower package
