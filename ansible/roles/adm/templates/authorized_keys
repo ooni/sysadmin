@@ -1,0 +1,4 @@
+# ansible-managed in ooni-sysadmin.git
+{% for k in item['keys'] %}
+{{ k }}
+{% endfor %}

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ansible-playbook --vault-password-file ./password-pipe --inventory-file ./inventory "$@"

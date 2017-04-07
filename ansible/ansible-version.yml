@@ -1,0 +1,12 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: ensure team@ has same ansible_version # kill incompatibility ASAP
+      assert:
+        msg: "ansible_version: {{ ansible_version }}"
+        that:
+          - ansible_version.major == 2
+          - ansible_version.minor == 2
+          - ansible_version.revision == 2

@@ -1,0 +1,35 @@
+---
+passwd:
+  # people
+  agrabeli:
+    login: agrabeli
+    id: 10000
+    comment: Maria Xynou
+    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD0JSwM+t3Uz9lS3Mjoz9oo4vOToWyzboZhYQbP8JY5HvFtAvWanWHnUBO91t6hkgKIMiUqhdCJn26fqkhSGe/bRBaFUocOmuyfcmZoRdi0qzAskmycJsj/w6vWR4x6MYkmJvSeI/MGxjEFt4s2MfOG1tP8CBLUYft9qUleeJa7Jln8c+xbnqB7YngaI190icQHE9NuIB2CXvzbmo3tLtHNMagEwI7VoBDj6mxzTxBd9JhuhF4w5uGxxm0Gp1hzk+15obNnaBS+Anr7jXz8FPwwxCH+XhBZxB1PPpcIayKrf9iLyGtwmhkdDoWCqYAr1mue3LxFso+TZF4bwE4Cjt1 agrabelh@agrabelh"]
+  weasel:
+    login: "{{ vault_weasel_login }}"
+    id: 10001
+    comment: "{{ vault_weasel_comment }}"
+    keys: "{{ vault_weasel_keys}}"
+  art:
+    login: art
+    id: 10002
+    comment: Arturo Filasto
+    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu4HGXj2rXvZhVwts/F/yeF+G+OFAuhRhKNtAD+F8xu8z2flsNnW13u9Aspe53uMafSYYrujLYu6pm8UE/MZ5XiGaRRivQVhn/qGxv8HQOaYWihn3npTyX9p10W8xDm45P1n5EGV8NSgcE5UZ3MDDwT8uh9oIsq3VFAUea4yn9V/l9ZImGamfEiQlXQ3Jj9KoKH9EgTvh0FQmnJtMldm32T5ZAZtJ/TGWdwr3QBfyh8nZoCKHqO8c9qBB2nJRR1t0O73/Cy+tmWdWsFpSeVps2wg8THfmdm+TWTno6iD+uTmh8pALmuyuwcVzU++xaiE65GmocJlFF/tSS1oOeDI8jw== art@torproject.org"]
+  darkk:
+    login: darkk
+    id: 10003
+    comment: Leonid Evdokimov
+    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWe9jGACZhSKhCq/jGOe8xKpY8bPSC8MagEiWMCzcHA5520Js4EGzwuYx5h/7sHK4GKWekGzO57xOsgeKACDKo8JppIPt+uJtnwJpVr7EHdnX1hhBMfo0NfV42R+//fZIHMNtGIW31iPg3cQVp9c+GQPsdmuDPbKGLoQvS9dGnF+N6lM+dicEmeBrqbA/t5V1j/rrfpmpTNOWef2WsREFdZBQbgD3rZU1lG0CnxNw6ATnFQgqcC1QsyfWD8e1pmDLByoVuYJ6WXBLKgI86hrMNidxGjzmpAn2q+5cbu5HZXOkmny3TBiP0VxPJJ43PuLIFkdCNh50KRPtTug3o38Oj leon+2016@darkk.net.ru"]
+  nuke:
+    login: nuke
+    id: 10004
+    comment: Lorenzo Primiterra
+    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+QtDwA/s8vw7aETWGjItUBmgCXgm9jTEjCh/5OofGJ/Bk4kjZ+a6NisUNJRvrySfr89oeJz7VOuHgHTCM1g2CKANAiidcBkepHjdBlHDElV1WBlUxdgl0RsbM4ue8zUxtrmzEQaxLxL769ZHR+gI8PoZau1cSyKG5jVge91Bt1+wvV3dMGvxibM144+uHCrxHpBsbRd9irIgk+vNJmecKn3bSh3aKo9txBjIqBprBrZ1Dqj0x9IKVhD59URcO1Vrr3HXPghZnsWFjOSSQ0DeVpkE3cEz78CpdvqL0drv4Mo1ZgE33YLwWjJSceDGIrtnsPZhs5YzOI4iStRIdPD4X nuke"]
+  sbs:
+    login: sbs
+    id: 10005
+    comment: Simone Basso
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChiA7/HyB2fcXulsT33NF7N+681A4u3JRjl/d85JCjYycnw+gYl2Q/aovZ31Y64VC3AYwXwHp6lx2GwfTe0R+4Wk0qriFYnDhnjG6uiFEdatJWb1/yyGkJ31XOMoOBEPRrqhjmpHDmLvyhD1J0UIfk+5jsV3SIOXUMTKO9NDbUT0fu4d85/IFGteip6tVu3eKHNVLHQJhxkvOwN9B4WLNbALW4TlFqYfUX0Stz4ijguVNKdeIjNq74DbyTYRWm/DEMFpwIrBDuupg8I2InXbYFRU8H7avIvBc7UWhFVm5yvLkTnq5DltERt6dDAEdT6PdGyrP9Zf0vgGgfvc6c8gFTKdm7xoGCUgYYMak/m6AOaiB/18HRGVF97XEwN1VUB0pOkGNOLwgS/DbrDvonrnDC4Du6nuGJ56Wz2mH1kxG0AWY++NamtCrm7gUrmbmeHhjIVwfea1AKaQUEwgxeV5woiW4NGX3Im/GWr1pwqvbIZ2ple9AGzA2+JBfHDetKJZOVhF0hdUzGXa1y+vLykRiZ+dCy5WFw2prBmREv9BvUutGIn9qwR9NbFHsft/P4n5BS8AzNox9nSog6YPm0Qbsg5LIDxfD0Z6uw9l9KsinrJ4fn/08rJrSIAvh2pORuXPWIXU3321Pt2o0nwmWncL/spVh2Fjrkt3Iuh5668c2wjw== simone@shelob"
+      - "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOODb6hoif8TDyU2KZ73mfc0zjy4dy/1a6wZwpd3hmdLGmMHPEMtl8KjeLCo8uGVPK4dDE4NGBcWeYCPJofuQWk= sbasso@dunkerque.local"

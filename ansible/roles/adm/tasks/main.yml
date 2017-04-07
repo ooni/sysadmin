@@ -1,0 +1,41 @@
+---
+# This role is part of bootstrap process that creates sysadmin accoints so
+# furhter setup can be done with logged `sudo`.  ooni-sysadmin repo is single
+# point of truth for the keys, unknown keys are dropped, that's why
+# `authorized_key` ansible module is not used.
+
+- name: install sudo
+  apt: name=sudo state=latest
+
+- name: create group
+  group: name={{ item.login }} gid={{ item.id }} state=present
+  with_items: "{{ adm_passwd }}"
+  loop_control:
+    label: "{{ item.login }}"
+
+- name: create user
+  user:
+    name: "{{ item.login }}"
+    group: "{{ item.login }}"
+    uid: "{{ item.id }}"
+    comment: "{{ item.comment }}"
+    shell: /bin/bash
+    state: present
+  with_items: "{{ adm_passwd }}"
+  loop_control:
+    label: "{{ item.login }}"
+
+- name: create .ssh
+  file: path=/home/{{item.login}}/.ssh state=directory owner={{item.login}} group={{item.login}} mode=0700
+  with_items: "{{ adm_passwd }}"
+  loop_control:
+    label: "{{ item.login }}"
+
+- name: create .ssh/authorized_keys
+  template: src=authorized_keys dest=/home/{{item.login}}/.ssh/authorized_keys owner={{item.login}} group={{item.login}} mode=0400
+  with_items: "{{ adm_passwd }}"
+  loop_control:
+    label: "{{ item.login }}"
+
+- name: sudoers.d/adm
+  template: src=sudoers dest=/etc/sudoers.d/adm owner=root group=root mode=0440 validate='visudo -cf %s'

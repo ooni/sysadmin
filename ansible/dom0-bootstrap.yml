@@ -1,0 +1,17 @@
+---
+- include: ansible-version.yml
+
+- hosts: gh # TODO: it eventually should become `all`
+  remote_user: root
+  gather_facts: no
+  pre_tasks:
+    - name: bootstap python
+      raw: if [ ! -x /usr/bin/python ]; then apt-get update && apt-get -y install python-simplejson python-apt; fi
+      register: output
+      changed_when: output.stdout != ""
+  roles:
+    - role: adm
+      adm_passwd:
+        #- "{{ passwd.weasel }}"
+        #- "{{ passwd.art }}"
+        - "{{ passwd.darkk }}"

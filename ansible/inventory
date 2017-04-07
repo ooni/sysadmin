@@ -1,5 +1,15 @@
 [collectors]
 vps770.greenhost.nl
+
 [probes]
 #211.149.218.16
 87.107.121.133
+
+[gh:children]
+hkg
+ams
+
+[hkg]
+datacollector.infra.ooni.io
+
+[ams]
