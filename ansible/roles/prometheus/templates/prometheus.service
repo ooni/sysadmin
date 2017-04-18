@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Node Exporter
+
+[Service]
+User={{ prometheus_user }}
+Group={{ prometheus_group }}
+ExecStart={{ prometheus_path }}/prometheus -web.listen-address "{{ prometheus_listen_address }}" -config.file {{ prometheus_config_path }}/prometheus.yml -storage.local.path {{ prometheus_db_path }} -storage.local.memory-chunks=400000 -storage.local.max-chunks-to-persist=300000
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
