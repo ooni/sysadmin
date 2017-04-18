@@ -2,8 +2,9 @@
 - include: ansible-version.yml
 
 - hosts: gh # TODO: it eventually should become `all`
+  become: false
   remote_user: root
-  gather_facts: no
+  gather_facts: false
   pre_tasks:
     - name: bootstap python
       raw: if [ ! -x /usr/bin/python ]; then apt-get update && apt-get -y install python-simplejson python-apt; fi
