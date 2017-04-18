@@ -24,7 +24,7 @@ passwd:
     login: art
     id: 10002
     comment: Arturo Filasto
-    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu4HGXj2rXvZhVwts/F/yeF+G+OFAuhRhKNtAD+F8xu8z2flsNnW13u9Aspe53uMafSYYrujLYu6pm8UE/MZ5XiGaRRivQVhn/qGxv8HQOaYWihn3npTyX9p10W8xDm45P1n5EGV8NSgcE5UZ3MDDwT8uh9oIsq3VFAUea4yn9V/l9ZImGamfEiQlXQ3Jj9KoKH9EgTvh0FQmnJtMldm32T5ZAZtJ/TGWdwr3QBfyh8nZoCKHqO8c9qBB2nJRR1t0O73/Cy+tmWdWsFpSeVps2wg8THfmdm+TWTno6iD+uTmh8pALmuyuwcVzU++xaiE65GmocJlFF/tSS1oOeDI8jw== art@torproject.org"]
+    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9her6lZIfP/ulXleu00u3ukdcVEDslkfXzi65JFRXRkKYsdMw7zLvrkvFryqDGsRQwpZo0rlk5o26QNSUR/g2Kf3wEHxxmMcN4+g+f0/fJDKLHSFdL5Z5ACyp5YvjA88vG753qVn7lBINuvCb4wk1sUOWM1WVG5WiszLiJCddYUrgCZWzD3FHyApJ/GGH2A5vTTN8mcQapQaJ9/sgxDw5WT+yMtZ8TW4462x+TaWWGE0WnAd/l6HOFaS14mql0K+MbtRp9EKN2O6+sA0OsjknYpt21ovtEWfBiojjh+4Iz6bTk+M5+fWHwQaxqEcaok22l35GudlmaoTB0OesB/1z art@eclipsis"]
   darkk:
     login: darkk
     id: 10003

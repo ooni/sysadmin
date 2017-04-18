@@ -14,5 +14,5 @@
     - role: adm
       adm_passwd:
         #- "{{ passwd.weasel }}"
-        #- "{{ passwd.art }}"
+        - "{{ passwd.art }}"
         - "{{ passwd.darkk }}"
