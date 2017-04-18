@@ -2,6 +2,7 @@
 - hosts: all
   connection: local
   gather_facts: false
+  tags: always
   tasks:
     - name: ensure team@ has same ansible_version # kill incompatibility ASAP
       assert:
