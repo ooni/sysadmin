@@ -1,1 +1,3 @@
 *.retry
+play_*.log
+play_*.timing
