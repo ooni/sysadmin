@@ -1,0 +1,12 @@
+---
+- include: ansible-version.yml
+
+- hosts: datacollector.infra.ooni.io
+  roles:
+    - docker_py
+
+- hosts: datacollector.infra.ooni.io
+  vars:
+    ansible_python_interpreter: "/root/venv/bin/python2.7"
+  roles:
+    - airflow

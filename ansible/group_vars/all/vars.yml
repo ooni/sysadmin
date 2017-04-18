@@ -1,5 +1,14 @@
 ---
 passwd:
+  # services
+  afredis:  {login: afredis,  id: 2000, comment: Airflow Redis}
+  afpsql:   {login: afpsql,   id: 2001, comment: Airflow Postgresql}
+  afsched:  {login: afsched,  id: 2002, comment: Airflow Scheduler}
+  afwebsrv: {login: afwebsrv, id: 2003, comment: Airflow Webserver}
+  afworker: {login: afworker, id: 2004, comment: Airflow Worker}
+  afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
+  plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
+  plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
   # people
   agrabeli:
     login: agrabeli
@@ -33,3 +42,8 @@ passwd:
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChiA7/HyB2fcXulsT33NF7N+681A4u3JRjl/d85JCjYycnw+gYl2Q/aovZ31Y64VC3AYwXwHp6lx2GwfTe0R+4Wk0qriFYnDhnjG6uiFEdatJWb1/yyGkJ31XOMoOBEPRrqhjmpHDmLvyhD1J0UIfk+5jsV3SIOXUMTKO9NDbUT0fu4d85/IFGteip6tVu3eKHNVLHQJhxkvOwN9B4WLNbALW4TlFqYfUX0Stz4ijguVNKdeIjNq74DbyTYRWm/DEMFpwIrBDuupg8I2InXbYFRU8H7avIvBc7UWhFVm5yvLkTnq5DltERt6dDAEdT6PdGyrP9Zf0vgGgfvc6c8gFTKdm7xoGCUgYYMak/m6AOaiB/18HRGVF97XEwN1VUB0pOkGNOLwgS/DbrDvonrnDC4Du6nuGJ56Wz2mH1kxG0AWY++NamtCrm7gUrmbmeHhjIVwfea1AKaQUEwgxeV5woiW4NGX3Im/GWr1pwqvbIZ2ple9AGzA2+JBfHDetKJZOVhF0hdUzGXa1y+vLykRiZ+dCy5WFw2prBmREv9BvUutGIn9qwR9NbFHsft/P4n5BS8AzNox9nSog6YPm0Qbsg5LIDxfD0Z6uw9l9KsinrJ4fn/08rJrSIAvh2pORuXPWIXU3321Pt2o0nwmWncL/spVh2Fjrkt3Iuh5668c2wjw== simone@shelob"
       - "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOODb6hoif8TDyU2KZ73mfc0zjy4dy/1a6wZwpd3hmdLGmMHPEMtl8KjeLCo8uGVPK4dDE4NGBcWeYCPJofuQWk= sbasso@dunkerque.local"
+
+# to avoid useless `pip` modules in global environment if ansible modules require it
+ansible_venv: /root/venv
+docker_apt_ver: ""
+airflow_tag: "1.8.0-oo1"

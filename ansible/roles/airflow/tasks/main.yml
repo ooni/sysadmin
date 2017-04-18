@@ -1,0 +1,132 @@
+---
+- set_fact:
+    svc_passwd:
+      - "{{ passwd.afredis }}"
+      - "{{ passwd.afpsql }}"
+      - "{{ passwd.afsched }}"
+      - "{{ passwd.afwebsrv }}"
+      - "{{ passwd.afworker }}"
+      - "{{ passwd.plpsql }}"
+      - "{{ passwd.plshovel}}"
+- group: name={{ item.login }} gid={{ item.id }} state=present
+  with_items: "{{ svc_passwd }}"
+- user:
+    name: "{{ item.login }}"
+    group: "{{ item.login }}"
+    uid: "{{ item.id }}"
+    comment: "{{ item.comment }}"
+    shell: /usr/sbin/nologin
+    createhome: no
+    home: /nonexistent
+    state: present
+  with_items: "{{ svc_passwd }}"
+
+- name: shared tmp directory to workaround lack of tmpfs support in docker_container
+  file: dest=/srv/tmp state=directory owner=root group=root mode=0750
+
+- name: config file directory
+  file: dest=/srv/etc state=directory owner=root group=root mode=0750
+
+- name: docker network for airflow
+  docker_network:
+    name: af
+    driver_options:
+      com.docker.network.bridge.name: braf
+    ipam_options:
+      subnet: 172.26.43.0/24
+      gateway: 172.26.43.1
+
+- name: redis .../etc directory
+  file: dest=/srv/etc/af-redis state=directory owner=root group=root mode=0755
+- name: redis .../etc/redis.conf
+  template: dest=/srv/etc/af-redis/redis.conf src=af-redis.conf mode=0640 owner=root group=afredis
+- name: redis /data directory
+  file: dest=/srv/af-redis state=directory owner=afredis group=afredis mode=0750
+- name: docker run redis
+  docker_container:
+    image: redis:3.2
+    name: af-redis
+    hostname: af-redis
+    networks: [{name: af}]
+    purge_networks: true # drop `bridge` network
+    volumes:
+      - /srv/etc/af-redis:/usr/local/etc:ro
+      - /srv/af-redis:/data:rw
+    command: /usr/local/etc/redis.conf
+    user: "{{ passwd.afredis.id}}:{{ passwd.afredis.id}}"
+    restart_policy: on-failure
+    restart_retries: 2
+
+# 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
+# 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
+#    https://github.com/ansible/ansible/pull/22646
+- name: airflow postgres tmp directory
+  file: dest=/srv/tmp/af-psql state=directory owner=afpsql group=afpsql mode=0750
+- name: airflow postgres /data directory
+  file: dest=/srv/af-psql state=directory owner=afpsql group=afpsql mode=0750
+- name: docker run airflow postgres
+  docker_container:
+    image: postgres:9.6
+    name: af-psql
+    hostname: af-psql
+    networks: [{name: af}]
+    purge_networks: true # drop `bridge` network
+    volumes:
+      - /srv/tmp/af-psql:/run/postgresql:rw
+      - /srv/af-psql:/srv/af-psql:rw
+    env:
+      PGDATA: /srv/af-psql
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
+    user: "{{ passwd.afpsql.id }}:{{ passwd.afpsql.id }}"
+    restart_policy: on-failure
+    restart_retries: 2
+
+- name: shared airflow config templates
+  file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750
+- stat: path=/srv/etc/af-share-{{ airflow_tag }}/passwd
+  register: afpasswd
+- stat: path=/srv/etc/af-share-{{ airflow_tag }}/group
+  register: afgroup
+- stat: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg
+  register: afcfg
+
+- name: create temporary openobservatory/airflow container to extract file
+  docker_container:
+    image: openobservatory/airflow:{{ airflow_tag }}
+    name: af-tmp
+    purge_networks: true
+    state: present # NB: it's not `started`
+  when: not (afpasswd.stat.exists and afgroup.stat.exists and afcfg.stat.exists)
+- command: docker cp af-tmp:/etc/passwd /srv/etc/af-share-{{ airflow_tag }}/passwd
+  when: not afpasswd.stat.exists
+- command: docker cp af-tmp:/etc/group /srv/etc/af-share-{{ airflow_tag }}/group
+  when: not afgroup.stat.exists
+- command: docker cp af-tmp:/usr/local/airflow/airflow.cfg /srv/etc/af-share-{{ airflow_tag }}/airflow.cfg
+  when: not afcfg.stat.exists
+- name: drop temporary openobservatory/airflow container
+  docker_container:
+    name: af-tmp
+    state: absent
+
+- file: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg mode=0644 owner=root group=root
+
+- lineinfile:
+    dest: /srv/etc/af-share-{{ airflow_tag }}/group
+    line: "{{ item.login }}:x:{{ item.id }}:"
+  with_items:
+    - "{{ passwd.afsched }}"
+    - "{{ passwd.afwebsrv }}"
+    - "{{ passwd.afworker }}"
+
+- lineinfile:
+    dest: /srv/etc/af-share-{{ airflow_tag }}/passwd
+    line: "{{ item.login }}:x:{{ item.id }}:{{ item.id }}:{{ item.comment }}:/usr/local/airflow:/bin/bash"
+  with_items:
+    - "{{ passwd.afsched }}"
+    - "{{ passwd.afwebsrv }}"
+    - "{{ passwd.afworker }}"
+
+- include: af-container.yml dockname=af-sched  login=afsched  command=scheduler
+- include: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
+- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker

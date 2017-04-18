@@ -1,0 +1,2 @@
+#!/bin/sh -x
+exec docker build -t openobservatory/airflow:1.8.0-oo1 -t openobservatory/airflow:latest .

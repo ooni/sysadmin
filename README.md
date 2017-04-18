@@ -62,6 +62,12 @@ ansible host-group -i hosts-inventory-file -m raw -a \
 "apt-get update && apt-get -y install python-simplejson"
 ```
 
+Rule of thumb: if you need some python packages **only** for ansible module to
+work and don't need it in system-wide pip repository, then you should put these
+modules in separate virtual environment and set proper
+`ansible_python_interpreter` for the play. See `docker_py` role and grep for
+`/root/venv` for examples.
+
 ## ooni-backend
 
 This ansible role installs ooni-backend from git repo via pip in a python
