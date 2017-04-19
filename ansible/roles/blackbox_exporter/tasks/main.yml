@@ -15,19 +15,6 @@
     group: root
     copy: no
 
-- name: Check if the binary can use CAP_NET_RAW
-  shell: getcap {{ blackbox_exporter_path }}/blackbox_exporter | grep cap_net_raw
-  failed_when: False
-  changed_when: False
-  register: blackbox_exporter_cap_net_raw
-
-- name: Set capability on the binary can use CAP_NET_RAW
-  command: setcap cap_net_raw+ep {{ blackbox_exporter_path }}/blackbox_exporter
-  notify:
-  - reload systemd
-  - restart blackbox_exporter
-  when: blackbox_exporter_cap_net_raw.rc > 0
-
 - name: Install config file
   copy:
     src: blackbox.yml
