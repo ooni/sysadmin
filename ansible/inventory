@@ -5,11 +5,33 @@ vps770.greenhost.nl
 #211.149.218.16
 87.107.121.133
 
-[gh:children]
+[gh:children] # group to gather new-style ACL
 hkg
 ams
+wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
+ath # NOT GH
+ber # NOT GH
+
+[wdc]
+#c.web-connectivity.th.ooni.io
+b.collector.ooni.io
 
 [hkg]
 datacollector.infra.ooni.io
+# irc-bouncer.service.ooni.io # keep commented for a while, broken UIDs there
 
 [ams]
+c.collector.ooni.io
+#measurements.ooni.io
+#explorer.ooni.io
+#get.ooni.io
+
+[ath] # Athens. Greek Research and Technology Network S.A
+bouncer.infra.ooni.nu
+
+[ber] # Humboldt-Universitaet zu Berlin
+chameleon.infra.ooni.io
+
+[dead]
+api-1.infra.ooni.io # as of 2017-04-18
+hammerhead.infra.ooni.io # as of 2017-04-18
