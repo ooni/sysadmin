@@ -27,7 +27,7 @@ c.collector.ooni.io
 #get.ooni.io
 
 [ath] # Athens. Greek Research and Technology Network S.A
-bouncer.infra.ooni.nu
+bouncer.infra.ooni.nu # AKA a.collector.ooni.io
 
 [ber] # Humboldt-Universitaet zu Berlin
 chameleon.infra.ooni.io

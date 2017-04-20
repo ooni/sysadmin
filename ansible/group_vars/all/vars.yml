@@ -19,7 +19,7 @@ passwd:
     login: "{{ vault_weasel_login }}"
     id: 10001
     comment: "{{ vault_weasel_comment }}"
-    keys: "{{ vault_weasel_keys}}"
+    keys: "{{ vault_weasel_keys }}"
   art:
     login: art
     id: 10002
