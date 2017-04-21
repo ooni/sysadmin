@@ -127,6 +127,12 @@
     - "{{ passwd.afwebsrv }}"
     - "{{ passwd.afworker }}"
 
+- name: mkdir airflow-dags
+  file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
+- name: copy airflow-dags # depends on `rsync`
+  synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes
+  notify: restart airflow
+
 - include: af-container.yml dockname=af-sched  login=afsched  command=scheduler
 - include: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
 - include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
