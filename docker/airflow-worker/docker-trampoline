@@ -75,4 +75,4 @@ esac
 set -o xtrace
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} ooni/shovel:latest "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.2 "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"

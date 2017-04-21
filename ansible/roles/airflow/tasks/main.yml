@@ -128,8 +128,10 @@
     - "{{ passwd.afworker }}"
 
 - name: mkdir airflow-dags
+  tags: airflow-dags
   file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
 - name: copy airflow-dags # depends on `rsync`
+  tags: airflow-dags
   synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes
   notify: restart airflow
 

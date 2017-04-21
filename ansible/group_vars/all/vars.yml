@@ -46,4 +46,4 @@ passwd:
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
 docker_apt_ver: ""
-airflow_tag: "1.8.0-oo1"
+airflow_tag: "1.8.0-oo2"
