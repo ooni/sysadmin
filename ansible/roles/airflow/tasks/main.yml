@@ -135,4 +135,4 @@
 
 - include: af-container.yml dockname=af-sched  login=afsched  command=scheduler
 - include: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
-- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
+- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker volume_ext=/var/run/docker.sock:/var/run/docker.sock

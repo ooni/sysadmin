@@ -9,13 +9,18 @@
     image: openobservatory/airflow{{ image_ext | default('') }}:{{ airflow_tag }}
     name: "{{ dockname }}"
     hostname: "{{ dockname }}"
-    networks: [{name: af, ipv4_address: "{{ ipv4_address | default(omit) }}" }]
+    networks: [ "{{ {'name': 'af'} | combine(
+      ipv4_address | default(False) | ternary({'ipv4_address': ipv4_address}, {})
+    ) }}" ]
     purge_networks: true
-    volumes:
-      - /srv/etc/af-share-{{ airflow_tag }}/passwd:/etc/passwd:ro
-      - /srv/etc/af-share-{{ airflow_tag }}/group:/etc/group:ro
-      - /srv/{{ dockname }}:/usr/local/airflow:rw
-      - /srv/airflow-dags:/usr/local/airflow/dags:ro
+    volumes: "{{ [
+      '/srv/etc/af-share-' + airflow_tag + '/passwd:/etc/passwd:ro',
+      '/srv/etc/af-share-' + airflow_tag + '/group:/etc/group:ro',
+      '/srv/' + dockname + ':/usr/local/airflow:rw',
+      '/srv/airflow-dags:/usr/local/airflow/dags:ro',
+    ] | union(
+      volume_ext | default(False) | ternary([volume_ext], [])
+    ) }}"
     env:
       LOAD_EX: n
       EXECUTOR: Celery
