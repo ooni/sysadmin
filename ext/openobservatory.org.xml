@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApiResponse Status="OK" xmlns="http://api.namecheap.com/xml.response">
+  <Errors />
+  <Warnings />
+  <RequestedCommand>namecheap.domains.dns.gethosts</RequestedCommand>
+  <CommandResponse Type="namecheap.domains.dns.getHosts">
+    <DomainDNSGetHostsResult Domain="openobservatory.org" EmailType="MX" IsUsingOurDNS="true">
+      <host HostId="109814312" Name="slack" Type="A" Address="37.218.247.42" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="77079882" Name="blog" Type="CNAME" Address="openo.ghost.io." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="98370665" Name="@" Type="MX" Address="mx.runbox.com." MXPref="10" TTL="1799" AssociatedAppTitle="MX" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="101566748" Name="@" Type="TXT" Address="v=spf1 redirect=spf.runbox.com" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053923" Name="@" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053924" Name="www" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+    </DomainDNSGetHostsResult>
+  </CommandResponse>
+  <Server/>
+  <GMTTimeDifference>--4:00</GMTTimeDifference>
+  <ExecutionTime/>
+</ApiResponse>
