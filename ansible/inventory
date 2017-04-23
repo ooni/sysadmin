@@ -6,32 +6,82 @@ vps770.greenhost.nl
 87.107.121.133
 
 [gh:children] # group to gather new-style ACL
+wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
 hkg
 ams
-wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
-ath # NOT GH
-ber # NOT GH
+ath
+ber
+quadix
+euserv
+bigv
 
 [wdc]
-#c.web-connectivity.th.ooni.io
+mail.ooni.io # NOT-GH
+mail.test.ooni.io # NOT-GH, mail-test.ooni.io
+ooni-fdroid-build.infra.ooni.io
+a.echo.th.ooni.io
+separate.b.collector.test.ooni.io # NOT-GH
+separate.bouncer.test.ooni.io # NOT-GH
+separate.a.web-connectivity.th.test.ooni.io # NOT-GH
+lepidopter-funbox.infra.ooni.io
+c.web-connectivity.th.ooni.io
+munin.ooni.io # NOT-GH, test-monitoring.ooni.io
+tipitpitap.infra.ooni.io
 b.collector.ooni.io
+ooni-proxy-dc.infra.ooni.io
+ooni-backend-testing.infra.ooni.io
+oonibackend-stress-test.infra.ooni.io
+apk-build-test.infra.ooni.io
 
 [hkg]
 datacollector.infra.ooni.io
 # irc-bouncer.service.ooni.io # keep commented for a while, broken UIDs there
+vpn-gate-runner.infra.ooni.io
+seedling.infra.ooni.io
+stage.ooni.io # NOT-GH
+test.ooni.io # NOT-GH
+test-lists.openobservatory.org
 
 [ams]
+demo.probe.ooni.io # NOT-GH
+ooni-pipeline-db.infra.ooni.io
+ooniprobe-app.infra.ooni.io
+get.ooni.io
+ooni-probe-demo.infra.ooni.io
+explorer.ooni.io
+lepidopter-update-test.infra.ooni.io
 c.collector.ooni.io
-#measurements.ooni.io
-#explorer.ooni.io
-#get.ooni.io
+measurements.ooni.io
+ubuilder.infra.ooni.io
+debuilder.infra.ooni.io
+staging.measurements.ooni.io
+ooni-measurements-db.infra.ooni.io
+b.web-connectivity.th.ooni.io
+ssdamsterdam.infra.ooni.io
+prometheus.infra.ooni.io
+slack.openobservatory.org
+a.http.th.ooni.io
+c.echo.th.ooni.io
+reports.ooni.nu # vps770.greenhost.nl NOT-GH
 
 [ath] # Athens. Greek Research and Technology Network S.A
-bouncer.infra.ooni.nu # AKA a.collector.ooni.io
+bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
+puppet-master-1.infra.ooni.io # NOT-GH, java1.interoperability.gr
 
 [ber] # Humboldt-Universitaet zu Berlin
-chameleon.infra.ooni.io
+chameleon.infra.ooni.io # NOT-GH
+polaris.infra.ooni.io # NOT-GH, jumphost=chameleon, tune ~/.ssh/config
+
+[quadix] # QuadIX (QUADI-8), US, Pensilvania
+pipeline.infra.ooni.nu # NOT-GH
+
+[euserv] # http://www.euserv.de
+deb.ooni.nu # NOT-GH
+
+[bigv] # Bytemark @ London
+b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io
 
 [dead]
-api-1.infra.ooni.io # as of 2017-04-18
-hammerhead.infra.ooni.io # as of 2017-04-18
+api-1.infra.ooni.io # NOT-GH, [aws], as of 2017-04-18 ooni-explorer-api-aws
+hammerhead.infra.ooni.io # NOT-GH, [ber] as of 2017-04-18
+ns.dnsth.ooni.nu # NOT-GH, [ovh] France

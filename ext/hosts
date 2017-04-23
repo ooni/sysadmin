@@ -1,0 +1,56 @@
+#!/usr/bin/env python2
+#
+# Build hosts-like file with data from external inventory (DNS, droplets API)
+
+import json
+import socket
+from  subprocess import check_output
+import xml.etree.ElementTree as ElementTree
+
+dns = {}
+gh = {}
+ptr = {}
+state = {}
+
+ns = {'NC': 'http://api.namecheap.com/xml.response'}
+for domain in ('openobservatory.org', 'ooni.io', 'ooni.nu'):
+    tree = ElementTree.parse(domain + '.xml')
+    for el in tree.findall('./NC:CommandResponse/NC:DomainDNSGetHostsResult/NC:host', ns):
+        if el.get('Type') == 'A':
+            dns.setdefault(el.get('Address'), set()).add(el.get('Name') + '.' + domain)
+
+droplets = json.load(open('gh-droplets.json'))
+for vm in droplets['droplets']:
+    for net in vm['networks']['v4']: # no IPv6 support there yet
+        gh[net['ip_address']] = vm['name']
+
+all_ips = dns.viewkeys() | gh.viewkeys()
+
+nmap = check_output(['sudo', 'nmap', '-v', '-sn', '-oX', '-'] + list(all_ips))
+nmap = ElementTree.fromstring(nmap)
+for host in nmap.findall('host'):
+    ip = host.find('address[@addrtype="ipv4"]').get('addr')
+    try:
+        state[ip] = host.find('status').get('state')
+    except Exception:
+        pass
+    try:
+        ptr[ip] = host.find('hostnames/hostname[@type="PTR"]').get('name')
+    except Exception:
+        pass
+
+for ip in all_ips:
+    if ip not in ptr:
+        try:
+            ptr[ip] = socket.gethostbyaddr(ip)[0]
+        except Exception:
+            pass
+
+def maxlen(d):
+    return str(max(map(len, d.values())))
+def keyip(s):
+    return tuple(map(int, s.split('.')))
+
+fmt = '{:15} {:'+maxlen(ptr)+'} {:4} {:'+maxlen(gh)+'} {}'
+for ip in sorted(all_ips, key=keyip):
+    print fmt.format(ip, ptr.get(ip, 'NO-PTR'), state.get(ip, '?'), gh.get(ip, 'NOT-GH'), ' '.join(sorted(dns.get(ip, []))))
