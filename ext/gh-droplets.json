@@ -111,7 +111,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "1"
         }, 
         {
@@ -263,7 +263,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "1"
         }, 
         {
@@ -757,7 +757,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -833,7 +833,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "2"
         }, 
         {
@@ -985,7 +985,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1023,7 +1023,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "2"
         }, 
         {
@@ -1137,7 +1137,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "2"
         }, 
         {

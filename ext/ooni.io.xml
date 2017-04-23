@@ -38,7 +38,6 @@
       <host HostId="84883574" Name="measurements" Type="A" Address="37.218.242.217" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85876993" Name="@" Type="TXT" Address="v=spf1 include:spf.efwd.registrar-servers.com ~all" MXPref="10" TTL="1800" AssociatedAppTitle="FWD" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965200" Name="@" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="85965209" Name="www" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="88526130" Name="irc-bouncer.service" Type="A" Address="37.218.240.126" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90103867" Name="get" Type="A" Address="37.218.242.157" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="91215315" Name="stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -68,6 +67,8 @@
       <host HostId="112976293" Name="ooni-proxy-dc.infra" Type="A" Address="199.119.112.184" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976294" Name="ooni-backend-testing.infra" Type="A" Address="199.119.112.211" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976295" Name="oonibackend-stress-test.infra" Type="A" Address="199.119.112.233" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="112991539" Name="polaris.infra" Type="A" Address="141.20.103.26" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="85965209" Name="www" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>
