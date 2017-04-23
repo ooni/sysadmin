@@ -19,7 +19,7 @@
       '/srv/' + dockname + ':/usr/local/airflow:rw',
       '/srv/airflow-dags:/usr/local/airflow/dags:ro',
     ] | union(
-      volume_ext | default(False) | ternary([volume_ext], [])
+      volume_ext | default([])
     ) }}"
     env:
       LOAD_EX: n

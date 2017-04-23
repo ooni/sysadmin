@@ -1,11 +1,11 @@
-FROM openobservatory/airflow:1.8.0-oo2
+FROM openobservatory/airflow:1.8.0-oo3
 
 # docker_apt_ver should match {{ docker_apt_ver }} for dom0
 ARG docker_apt_ver=1.12.6-0~debian-jessie
 
 USER root
 
-ADD docker-trampoline /usr/local/bin/
+# /usr/local/bin/docker-trampoline is bind-mounted to avoid repetitive image update
 
 RUN set -ex \
     && apt-get update \
@@ -22,7 +22,6 @@ RUN set -ex \
     && : \
     && echo 'ALL ALL = (ALL:ALL) NOPASSWD: /usr/local/bin/docker-trampoline' >/etc/sudoers.d/af-docker \
     && chmod 440 /etc/sudoers.d/af-docker \
-    && chmod 755 /usr/local/bin/docker-trampoline \
     && : \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \

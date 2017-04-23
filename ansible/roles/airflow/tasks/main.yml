@@ -127,8 +127,13 @@
     - "{{ passwd.afwebsrv }}"
     - "{{ passwd.afworker }}"
 
-- name: mkdir airflow-dags
+- name: mkdir af-worker-bin
+  file: dest=/srv/af-worker-bin state=directory owner=root group=root mode=0755
+- name: copy docker-trampoline
   tags: airflow-dags
+  copy: src=docker-trampoline dest=/srv/af-worker-bin/ owner=root group=root mode=0755
+
+- name: mkdir airflow-dags
   file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
 - name: copy airflow-dags # depends on `rsync`
   tags: airflow-dags
@@ -137,4 +142,8 @@
 
 - include: af-container.yml dockname=af-sched  login=afsched  command=scheduler
 - include: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
-- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker volume_ext=/var/run/docker.sock:/var/run/docker.sock
+- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
+  vars:
+    volume_ext:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/af-worker-bin/docker-trampoline:/usr/local/bin/docker-trampoline:ro
