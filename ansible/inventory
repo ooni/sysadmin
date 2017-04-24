@@ -19,12 +19,11 @@ bigv
 mail.ooni.io # NOT-GH, Art-No-ACCESS - no idea what this is
 mail.test.ooni.io # NOT-GH, Art-No-ACCESS, mail-test.ooni.io - no idea what this is
 ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
-a.echo.th.ooni.io # OK (u: root)
+a.echo.th.ooni.io # OK
 separate.b.collector.test.ooni.io # NOT-GH, Art-NO-ACCESS, OFFLINE?
 separate.bouncer.test.ooni.io # NOT-GH, Art-NO-ACCESS, OFFLINE?
 separate.a.web-connectivity.th.test.ooni.io # NOT-GH, Art-NO-ACCESS, OFFLINE?
-lepidopter-funbox.infra.ooni.io # Art-NO-ACCESS, OFFLINE?
-c.web-connectivity.th.ooni.io # OK (u: root)
+c.web-connectivity.th.ooni.io # OK
 munin.ooni.io # NOT-GH, test-monitoring.ooni.io, Art-NO-ACCESS
 tipitpitap.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 b.collector.ooni.io # OK
@@ -46,22 +45,22 @@ test-lists.openobservatory.org # OK - This was used for testing out test-lists w
 demo.probe.ooni.io # NOT-GH - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 ooni-pipeline-db.infra.ooni.io # OK
 ooniprobe-app.infra.ooni.io # OK - This was a machine used for demoing the new WUI. Maybe discontinue
-get.ooni.io # Art-NO-ACCESS, CRITICAL
+get.ooni.io # OK
 ooni-probe-demo.infra.ooni.io # OK - Not sure of the purpose of this. Maybe discontinue
-explorer.ooni.io # Art-NO-ACCESS, CRITICAL
+explorer.ooni.io # OK
 lepidopter-update-test.infra.ooni.io # OK - Used for testing lepidopter update. Maybe discontinue
 c.collector.ooni.io # OK
 measurements.ooni.io # OK
 ubuilder.infra.ooni.io # OK
 debuilder.infra.ooni.io # OK
 staging.measurements.ooni.io # OK
-ooni-measurements-db.infra.ooni.io # Art-NO-ACCESS, CRITICAL
+ooni-measurements-db.infra.ooni.io # OK
 b.web-connectivity.th.ooni.io # OK
 ssdamsterdam.infra.ooni.io # OK
 prometheus.infra.ooni.io # OK
-slack.openobservatory.org # Art-NO-ACCESS, CRITICAL
+slack.openobservatory.org # OK
 a.http.th.ooni.io # OK
-c.echo.th.ooni.io # Art-NO-ACCESS, CRITICAL
+c.echo.th.ooni.io # OK
 reports.ooni.nu # vps770.greenhost.nl NOT-GH - DISCONTINUED
 
 [ath] # Athens. Greek Research and Technology Network S.A
