@@ -91,18 +91,18 @@ case "$script" in
     ;;
 
     sanitised_check)
-    volargs="${volargs} --voulme=${pub}/autoclaved/${bucket}:${pub}/autoclaved/${bucket}:ro"
-    volargs="${volargs} --voulme=${pub}/sanitised/${bucket}:${pub}/sanitised/${bucket}:ro"
-    volargs="${volargs} --voulme=${pub}/santoken:${pub}/santoken:rw"
+    volargs="${volargs} --volume=${pub}/autoclaved/${bucket}:${pub}/autoclaved/${bucket}:ro"
+    volargs="${volargs} --volume=${pub}/sanitised/${bucket}:${pub}/sanitised/${bucket}:ro"
+    volargs="${volargs} --volume=${pub}/santoken:${pub}/santoken:rw"
     script=""
     set -- /usr/local/bin/check_sanitised.py --bucket "${bucket}" --sanitised-root "${pub}/sanitised" --autoclaved-root "${pub}/autoclaved" --santoken "${pub}/santoken/${bucket}"
     ;;
 
     sanitised_cleanup)
-    volargs="${volargs} --voulme=${pub}/autoclaved/${bucket}:${pub}/autoclaved/${bucket}:ro"
-    volargs="${volargs} --voulme=${pub}/sanitised-s3-ls:${pub}/sanitised-s3-ls:ro"
-    volargs="${volargs} --voulme=${pub}/santoken:${pub}/santoken:ro"
-    volargs="${volargs} --voulme=${pub}/sanitised/${bucket}:${pub}/sanitised/${bucket}:rw"
+    volargs="${volargs} --volume=${pub}/autoclaved/${bucket}:${pub}/autoclaved/${bucket}:ro"
+    volargs="${volargs} --volume=${pub}/sanitised-s3-ls:${pub}/sanitised-s3-ls:ro"
+    volargs="${volargs} --volume=${pub}/santoken:${pub}/santoken:ro"
+    volargs="${volargs} --volume=${pub}/sanitised/${bucket}:${pub}/sanitised/${bucket}:rw"
     script=""
     set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "${pub}/sanitised" --autoclaved-root "${pub}/autoclaved" --santoken "${pub}/santoken/${bucket}" --s3-ls "${pub}/sanitised-s3-ls/${bucket}.json.gz"
     ;;
