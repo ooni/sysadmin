@@ -10,3 +10,7 @@ airflow_fernet_key: "{{ vault_airflow_fernet_key }}"
 airflow_redis_password: "{{ vault_airflow_redis_password }}"
 airflow_postgres_password: "{{ vault_airflow_postgres_password }}"
 shovel_postgres_password: "{{ vault_shovel_postgres_password }}"
+
+# tokens to read https://s3.amazonaws.com/ooni-* buckets
+s3read_access_key_id: "{{ vault_s3read_access_key_id }}"
+s3read_secret_access_key: "{{ vault_s3read_secret_access_key }}"

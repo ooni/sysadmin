@@ -66,6 +66,47 @@ case "$script" in
     docknet="--net af_default --link af_oometa_1:metadb" # FIXME:too hardcoded
     ;;
 
+    reports_raw_s3_ls)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
+    volargs="${volargs} --volume=${priv}/reports-raw-s3-ls:${priv}/reports-raw-s3-ls:rw"
+    script=""
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/reports-raw/yaml/$bucket" --s3-ls "${priv}/reports-raw-s3-ls/${bucket}.json.gz"
+    ;;
+
+    reports_raw_cleanup)
+    volargs="${volargs} --volume=${priv}/reports-raw-s3-ls:${priv}/reports-raw-s3-ls:ro"
+    volargs="${volargs} --volume=${priv}/canned/${bucket}:${priv}/canned/${bucket}:ro"
+    volargs="${volargs} --volume=${priv}/reports-raw/${bucket}:${priv}/reports-raw/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "${priv}/reports-raw" --canned-root "${priv}/canned" --s3-ls "${priv}/reports-raw-s3-ls/${bucket}.json.gz"
+    ;;
+
+    sanitised_s3_ls)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
+    volargs="${volargs} --volume=${pub}/sanitised-s3-ls:${pub}/sanitised-s3-ls:rw"
+    script=""
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-public/sanitised/$bucket" --s3-ls "${pub}/sanitised-s3-ls/${bucket}.json.gz"
+    ;;
+
+    sanitised_check)
+    volargs="${volargs} --voulme=${pub}/autoclaved/${bucket}:${pub}/autoclaved/${bucket}:ro"
+    volargs="${volargs} --voulme=${pub}/sanitised/${bucket}:${pub}/sanitised/${bucket}:ro"
+    volargs="${volargs} --voulme=${pub}/santoken:${pub}/santoken:rw"
+    script=""
+    set -- /usr/local/bin/check_sanitised.py --bucket "${bucket}" --sanitised-root "${pub}/sanitised" --autoclaved-root "${pub}/autoclaved" --santoken "${pub}/santoken/${bucket}"
+    ;;
+
+    sanitised_cleanup)
+    volargs="${volargs} --voulme=${pub}/autoclaved/${bucket}:${pub}/autoclaved/${bucket}:ro"
+    volargs="${volargs} --voulme=${pub}/sanitised-s3-ls:${pub}/sanitised-s3-ls:ro"
+    volargs="${volargs} --voulme=${pub}/santoken:${pub}/santoken:ro"
+    volargs="${volargs} --voulme=${pub}/sanitised/${bucket}:${pub}/sanitised/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "${pub}/sanitised" --autoclaved-root "${pub}/autoclaved" --santoken "${pub}/santoken/${bucket}" --s3-ls "${pub}/sanitised-s3-ls/${bucket}.json.gz"
+    ;;
+
     *)
     echo "$0: unknown script <$script>" 1>&2
     exit 1
@@ -75,4 +116,7 @@ esac
 set -o xtrace
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.3 "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
+if [ -n "$script" ]; then
+    set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
+fi
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.3 "$@"
