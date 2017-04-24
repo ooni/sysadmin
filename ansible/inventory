@@ -12,7 +12,7 @@ ams
 ath
 ber
 quadix
-euserv
+tpo
 bigv
 
 [wdc]
@@ -35,7 +35,7 @@ apk-build-test.infra.ooni.ioa # Art-NO-ACCESS - no idea what this is
 
 [hkg]
 datacollector.infra.ooni.io
-# irc-bouncer.service.ooni.io # keep commented for a while, broken UIDs there
+# irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
 vpn-gate-runner.infra.ooni.io # OK
 seedling.infra.ooni.io # Art-NO-ACCESS - I think this is the machine used to seed lepidopter torrent
 stage.ooni.io # NOT-GH, ooni-zoo, OK
@@ -70,16 +70,20 @@ puppet-master-1.infra.ooni.io # NOT-GH, Art-NO-ACCESS, java1.interoperability.gr
 
 [ber] # Humboldt-Universitaet zu Berlin
 chameleon.infra.ooni.io # NOT-GH, OK
-polaris.infra.ooni.io # NOT-GH, jumphost=chameleon, tune ~/.ssh/config, Art-NO-ACCESS
+polaris.infra.ooni.io # NOT-GH, OK, jumphost=chameleon, tune ~/.ssh/config
 
 [quadix] # QuadIX (QUADI-8), US, Pensilvania
 pipeline.infra.ooni.nu # NOT-GH - This is dead
 
-[euserv] # http://www.euserv.de
+[tpo] # http://www.euserv.de
 deb.ooni.nu # NOT-GH, OK - This can probably be discontinued
+staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
 
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
+
+[scaleway]
+rpi-build # andz: is it OK to publish the IP of this host (last octet .250)?
 
 [dead]
 api-1.infra.ooni.io # NOT-GH, [aws], as of 2017-04-18 ooni-explorer-api-aws
