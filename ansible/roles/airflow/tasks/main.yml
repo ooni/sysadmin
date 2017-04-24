@@ -136,6 +136,7 @@
 - name: copy docker-trampoline
   tags: airflow-dags
   copy: src=docker-trampoline dest=/srv/af-worker-bin/ owner=root group=root mode=0755
+  notify: restart af-worker # because the _file_ is bind-monted, not a directory
 
 - name: mkdir airflow-dags
   file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
