@@ -113,10 +113,9 @@ case "$script" in
     ;;
 esac
 
-set -o xtrace
-
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 if [ -n "$script" ]; then
     set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
 fi
+set -o xtrace
 exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.4 "$@"
