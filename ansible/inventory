@@ -1,30 +1,17 @@
-[collectors]
-vps770.greenhost.nl # DELETE discontinued
-
-[probes]
-#211.149.218.16
-87.107.121.133 # DELETE discontinued
-
 [gh:children] # group to gather new-style ACL
 wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
 hkg
 ams
 ath
 ber
-quadix
 tpo
 bigv
 
 [wdc]
-mail.ooni.io # NOT-GH, Art-No-ACCESS - no idea what this is
-mail.test.ooni.io # NOT-GH, Art-No-ACCESS, mail-test.ooni.io - no idea what this is
 ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
 a.echo.th.ooni.io # OK
-separate.b.collector.test.ooni.io # NOT-GH, Art-NO-ACCESS, OFFLINE?
-separate.bouncer.test.ooni.io # NOT-GH, Art-NO-ACCESS, OFFLINE?
-separate.a.web-connectivity.th.test.ooni.io # NOT-GH, Art-NO-ACCESS, OFFLINE?
 c.web-connectivity.th.ooni.io # OK
-munin.ooni.io # NOT-GH, test-monitoring.ooni.io, Art-NO-ACCESS
+munin.ooni.io # OK
 tipitpitap.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 b.collector.ooni.io # OK
 ooni-proxy-dc.infra.ooni.io # OK - MAYBE DISCONTINUE?
@@ -36,13 +23,12 @@ apk-build-test.infra.ooni.ioa # Art-NO-ACCESS - no idea what this is
 datacollector.infra.ooni.io
 # irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
 vpn-gate-runner.infra.ooni.io # OK
-seedling.infra.ooni.io # Art-NO-ACCESS - I think this is the machine used to seed lepidopter torrent
 stage.ooni.io # NOT-GH, ooni-zoo, OK
 test.ooni.io # NOT-GH, ooni-zoo, OK
 test-lists.openobservatory.org # OK - This was used for testing out test-lists web interface. Not critical
 
 [ams]
-demo.probe.ooni.io # NOT-GH - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+demo.probe.ooni.io # NOT-GH, OK - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 ooni-pipeline-db.infra.ooni.io # OK
 ooniprobe-app.infra.ooni.io # OK - This was a machine used for demoing the new WUI. Maybe discontinue
 get.ooni.io # OK
@@ -69,10 +55,6 @@ puppet-master-1.infra.ooni.io # NOT-GH, Art-NO-ACCESS, java1.interoperability.gr
 
 [ber] # Humboldt-Universitaet zu Berlin
 chameleon.infra.ooni.io # NOT-GH, OK
-polaris.infra.ooni.io # NOT-GH, OK, jumphost=chameleon, tune ~/.ssh/config
-
-[quadix] # QuadIX (QUADI-8), US, Pensilvania
-pipeline.infra.ooni.nu # NOT-GH - This is dead
 
 [tpo] # http://www.euserv.de
 deb.ooni.nu # NOT-GH, OK - This can probably be discontinued
@@ -81,10 +63,20 @@ staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
-[scaleway]
-rpi-build # andz: is it OK to publish the IP of this host (last octet .250)?
-
 [dead]
 api-1.infra.ooni.io # NOT-GH, [aws], as of 2017-04-18 ooni-explorer-api-aws
 hammerhead.infra.ooni.io # NOT-GH, [ber] as of 2017-04-18
 ns.dnsth.ooni.nu # NOT-GH, [ovh] France
+pipeline.infra.ooni.nu # NOT-GH
+
+[todelete]
+polaris.infra.ooni.io # DELETE
+vps770.greenhost.nl # DELETE discontinued, old-collector
+#211.149.218.16 old-probe
+87.107.121.133 # DELETE discontinued, old-probe
+mail.ooni.io # DELETE
+mail.test.ooni.io # DELETE
+separate.b.collector.test.ooni.io # DELETE
+separate.bouncer.test.ooni.io # DELETE
+separate.a.web-connectivity.th.test.ooni.io # DELETE
+seedling.infra.ooni.io # DELETE
