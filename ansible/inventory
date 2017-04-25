@@ -8,57 +8,64 @@ tpo
 bigv
 
 [wdc]
-ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
-a.echo.th.ooni.io # OK
-c.web-connectivity.th.ooni.io # OK
-munin.ooni.io # OK
+a.echo.th.ooni.io
+c.web-connectivity.th.ooni.io
+munin.ooni.io
+b.collector.ooni.io
+
+# The machines below maybe can be discontinued
+ooni-proxy-dc.infra.ooni.io
+ooni-backend-testing.infra.ooni.io
+oonibackend-stress-test.infra.ooni.io
+
 tipitpitap.infra.ooni.io # Art-NO-ACCESS - no idea what this is
-b.collector.ooni.io # OK
-ooni-proxy-dc.infra.ooni.io # OK - MAYBE DISCONTINUE?
-ooni-backend-testing.infra.ooni.io # OK - Temporary machine
-oonibackend-stress-test.infra.ooni.io # OK - MAYBE DISCONTINUE?
-apk-build-test.infra.ooni.ioa # Art-NO-ACCESS - no idea what this is
+ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
+apk-build-test.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 
 [hkg]
 datacollector.infra.ooni.io
 # irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
-vpn-gate-runner.infra.ooni.io # OK
-stage.ooni.io # NOT-GH, ooni-zoo, OK
-test.ooni.io # NOT-GH, ooni-zoo, OK
-test-lists.openobservatory.org # OK - This was used for testing out test-lists web interface. Not critical
+vpn-gate-runner.infra.ooni.io
+stage.ooni.io # NOT-GH, ooni-zoo
+test.ooni.io # NOT-GH, ooni-zoo
+
+test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 
 [ams]
-demo.probe.ooni.io # NOT-GH, OK - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
-ooni-pipeline-db.infra.ooni.io # OK
-ooniprobe-app.infra.ooni.io # OK - This was a machine used for demoing the new WUI. Maybe discontinue
-get.ooni.io # OK
-ooni-probe-demo.infra.ooni.io # OK - Not sure of the purpose of this. Maybe discontinue
-explorer.ooni.io # OK
-lepidopter-update-test.infra.ooni.io # OK - Used for testing lepidopter update. Maybe discontinue
-c.collector.ooni.io # OK
-measurements.ooni.io # OK
-ubuilder.infra.ooni.io # OK
-debuilder.infra.ooni.io # OK
-staging.measurements.ooni.io # OK
-ooni-measurements-db.infra.ooni.io # OK
-b.web-connectivity.th.ooni.io # OK
-ssdamsterdam.infra.ooni.io # OK
-prometheus.infra.ooni.io # OK
-slack.openobservatory.org # OK
-a.http.th.ooni.io # OK
-c.echo.th.ooni.io # OK
-reports.ooni.nu # vps770.greenhost.nl NOT-GH - DISCONTINUED
+explorer.ooni.io
+measurements.ooni.io
+get.ooni.io
+a.http.th.ooni.io
+b.web-connectivity.th.ooni.io
+c.echo.th.ooni.io
+c.collector.ooni.io
+ooni-measurements-db.infra.ooni.io
+ooni-pipeline-db.infra.ooni.io
+ssdamsterdam.infra.ooni.io
+slack.openobservatory.org
+prometheus.infra.ooni.io
+ubuilder.infra.ooni.io
+debuilder.infra.ooni.io
+staging.measurements.ooni.io
+demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+
+# The machines below can maybe be discontinued
+ooni-probe-demo.infra.ooni.io
+lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
+ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
 
 [ath] # Athens. Greek Research and Technology Network S.A
-bouncer.infra.ooni.nu # NOT-GH, OK, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
+bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
 puppet-master-1.infra.ooni.io # NOT-GH, Art-NO-ACCESS, java1.interoperability.gr - Is this still even alive?
 
 [ber] # Humboldt-Universitaet zu Berlin
-chameleon.infra.ooni.io # NOT-GH, OK
+chameleon.infra.ooni.io # NOT-GH
 
 [tpo] # http://www.euserv.de
-deb.ooni.nu # NOT-GH, OK - This can probably be discontinued
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
+
+# The machines below can maybe be discontinued
+deb.ooni.nu # NOT-GH
 
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
@@ -80,3 +87,4 @@ separate.b.collector.test.ooni.io # DELETE
 separate.bouncer.test.ooni.io # DELETE
 separate.a.web-connectivity.th.test.ooni.io # DELETE
 seedling.infra.ooni.io # DELETE
+reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
