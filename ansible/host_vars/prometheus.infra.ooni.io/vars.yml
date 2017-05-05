@@ -17,7 +17,7 @@ blackbox_jobs:
   - name: "ooni bouncer"
     module: "ooni_bouncer_ok"
     targets:
-      - "https://bouncer.ooni.io/bouncer/net-tests"
+      - "https://bouncer.ooni.io/bouncer"
 
   - name: "ooni tcp echo"
     module: "ooni_tcp_echo_ok"
