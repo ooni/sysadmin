@@ -1,54 +1,14 @@
 # OONI sysadmin
 
-In here shall go all code related to system administration of the OONI
-infrastructure.
-
-
-# OONI infrastructure overview
-
-
-## Backend infrastructure
-
-hostname | role | maintainers | notes |
-------------- | ------------- | ----------- |----------- |
-bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, anadahz| |
-vps770.greenhost.nl  | collector bridge reachability,  |hellais, anadahz| |
-ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, anadahz| |
-ooni-deb         | debian repository, collector |hellais, aagbsn | what should we do 'bout this? |
-marcello         | development/playground |hellais | |
-ooni-tpo-collector | backup collector |hellais, aagbsn | |
-manager.infra.ooni.nu         | DISCONTINUED |hellais | |
-pipeline.infra.ooni.nu | DISCONTINUED | hellais, anadahz| |
-
-## Probing infrastructure
-
-hostname | role | maintainers | notes | next due date
--------- | ---- | ---------- | ------ |------------- |
-probe ru | bridge reachability study | hellais, griffin | are these OK? | |
-probe ua | bridge reachability study | hellais, griffin | are these OK? | |
-probe cn | bridge reachability study | hellais | this is offline. | 2015-05-10 |
-probe ir | bridge reachability study | hellais | is this still live? /me thinks not | 2015-03-21 |
-
-hostname | role | maintainers | notes | cost | next due date
--------- | ---- | ---------- | ------ |----- |------------- |
-probe ru | bridge reachability study | hellais, griffin | | 0 EUR/month | |
-probe ua | bridge reachability study | hellais, griffin| | 0 EUR/month | |
-probe cn | bridge reachability study | hellais | | 10 USD/month | 2015-05-10
-probe ir | bridge reachability study | hellais | | 30 USD/month | 2015-03-21
-
-
-## Donate to support OONI infrastructure
-
-Send bitcoins to:
-![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
-```
-16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
-```
+In here live all the tools and scripts related to administering the
+infrastructure that are part of OONI.
 
 # Ansible roles
 
 This is the section for using ansible roles to install and configure OONI
 components.
+
+It is required that you are running the following ansible version: `2.2.2`.
 
 Note: In order to use ansible you need Python 2.4 or later, but if you are
 running less than Python 2.5 on the remote hosts, you will also need the
@@ -263,4 +223,12 @@ successfully upgraded, an example test:
 ```
 ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 --url http://ooni.io/
+```
+
+# Donate to support OONI infrastructure
+
+Send bitcoins to:
+![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
+```
+16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
 ```
