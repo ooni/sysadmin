@@ -1,0 +1,28 @@
+---
+blackbox_jobs:
+  - name: "ooni web_connectivity test helpers"
+    module: "ooni_web_connectivity_ok"
+    targets:
+      #- "https://a.web-connectivity.th.ooni.io/status"
+      - "https://b.web-connectivity.th.ooni.io/status"
+      - "https://c.web-connectivity.th.ooni.io/status"
+  - name: "ooni collector"
+    module: "ooni_collector_ok"
+    targets:
+      #- "https://a.collector.ooni.io/invalidpath"
+      - "https://b.collector.ooni.io/invalidpath"
+      - "https://c.collector.ooni.io/invalidpath"
+  - name: "ooni bouncer"
+    module: "ooni_bouncer_ok"
+    targets:
+      - "https://bouncer.ooni.io/bouncer/net-tests"
+
+  - name: "ooni tcp echo"
+    module: "ooni_tcp_echo_ok"
+    targets:
+      - "37.218.247.110:80"
+      - "213.138.109.232:80"
+  - name: "ooni http return json headers"
+    module: "ooni_http_return_json_headers_ok"
+    targets:
+      - "http://38.107.216.10:80"
