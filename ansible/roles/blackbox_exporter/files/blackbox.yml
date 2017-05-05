@@ -38,3 +38,52 @@ modules:
   icmp:
     prober: icmp
     timeout: 5s
+
+  # When using this prober, be sure to target:
+  # https://collector.ooni.io/invalidpath
+  ooni_collector_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [404]
+      method: GET
+  # When using this prober, be sure to target:
+  # https://bouncer.ooni.io/bouncer/net-tests
+  ooni_bouncer_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [200]
+      headers:
+        Content-Type: "application/json"
+      method: POST
+      body: '{"net-tests":[{"name":"web_connectivity","version":"0.0.0","test-helpers":[],"input-hashes":[]}]}'
+      fail_if_not_matches_regexp:
+        - ".+?collector\-alternate\": \[{.+?"
+
+  # When using this prober, be sure to target:
+  # https://web-connectivity.th.ooni.io/status
+  ooni_web_connectivity_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [200]
+      method: GET
+      fail_if_not_matches_regexp:
+        - ".+?\"status\".+?\"ok\".+?"
+
+  ooni_tcp_echo_ok:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+        - send: "TEST"
+          expect: "TEST"
+
+  ooni_http_return_json_headers_ok:
+    prober: http
+    http:
+      valid_status_codes: [200]
+      method: GET
+      fail_if_not_matches_regexp:
+        - ".+?\"headers_dict\".+?"
