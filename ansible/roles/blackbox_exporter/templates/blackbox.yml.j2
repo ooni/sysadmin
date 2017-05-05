@@ -59,7 +59,7 @@ modules:
       method: POST
       body: '{"net-tests":[{"name":"web_connectivity","version":"0.0.0","test-helpers":[],"input-hashes":[]}]}'
       fail_if_not_matches_regexp:
-        - ".+?collector\-alternate\": \[{.+?"
+      - ".+?collector\\-alternate\": \\[{.+?"
 
   # When using this prober, be sure to target:
   # https://web-connectivity.th.ooni.io/status

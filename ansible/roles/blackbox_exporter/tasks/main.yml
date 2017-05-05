@@ -16,8 +16,8 @@
     copy: no
 
 - name: Install config file
-  copy:
-    src: blackbox.yml
+  template:
+    src: blackbox.yml.j2
     dest: "{{ blackbox_exporter_install_path }}/blackbox.yml"
   notify:
   - restart blackbox_exporter
