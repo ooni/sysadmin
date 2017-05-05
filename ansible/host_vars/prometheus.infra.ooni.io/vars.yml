@@ -26,3 +26,13 @@ blackbox_jobs:
     module: "ooni_http_return_json_headers_ok"
     targets:
       - "http://38.107.216.10:80"
+
+  - name: "ooni explorer countByCountry"
+    module: "http_2xx"
+    targets:
+      - "https://explorer.ooni.torproject.org/api/reports/countByCountry"
+
+  - name: "ooni measurements API files"
+    module: "http_2xx"
+    targets:
+      - "https://measurements.ooni.torproject.org/api/v1/files"
