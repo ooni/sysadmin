@@ -4,5 +4,7 @@ blackbox_exporter_install_path: /srv/blackbox_exporter
 blackbox_exporter_version: 0.4.0
 blackbox_exporter_download_url: https://github.com/prometheus/blackbox_exporter/releases/download
 
+blackbox_exporter_listen_address: "127.0.0.1:9115"
+
 blackbox_exporter_tarball_url: "{{ blackbox_exporter_download_url }}/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ go_arch }}.tar.gz"
 blackbox_exporter_path: "{{ blackbox_exporter_install_path }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ go_arch }}"

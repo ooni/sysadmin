@@ -1,0 +1,63 @@
+- name: create Alertmanager group
+  group: name={{ alertmanager_group }}  state=present
+
+- name: create Alertmanager user
+  user:
+    name: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    createhome: no
+    shell: /sbin/nologin
+    comment: "Prometheus User"
+    state: present
+
+- name: set permissions, owner and group
+  file:
+    path: "{{ alertmanager_install_path }}"
+    state: directory
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ alertmanager_install_path }}"
+    - "{{ alertmanager_config_path }}"
+    - "{{ alertmanager_data_path }}"
+    - "{{ alertmanager_templates_path }}"
+
+- name: untar alertmanager tarball
+  unarchive:
+    src: "{{ alertmanager_tarball_url }}"
+    dest: "{{ alertmanager_install_path }}"
+    mode: 0755
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    copy: no
+
+- name: Configure Alertmanager
+  notify:
+  - reload alertmanager
+  template:
+    src: alertmanager.yml.j2
+    dest: "{{ alertmanager_config_path }}/alertmanager.yml"
+
+- name: Install alertmanager systemd service file
+  notify:
+  - restart alertmanager
+  template:
+    src: alertmanager.service
+    dest: /etc/systemd/system/alertmanager.service
+
+- name: Enable and start alertmanager service
+  systemd:
+    name: alertmanager.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
