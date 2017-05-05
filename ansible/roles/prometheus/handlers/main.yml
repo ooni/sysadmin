@@ -1,0 +1,5 @@
+- name: restart prometheus
+  systemd: name=prometheus.service state=restarted
+- name: reload prometheus
+  systemd: name=prometheus.service state=reloaded
+

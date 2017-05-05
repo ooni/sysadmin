@@ -1,0 +1,7 @@
+[ooni-get]
+host
+
+[ooni-get:vars]
+# letsencrypt certificate domain(s)
+# Separate domains with comma
+#letsencrypt_domains=domain.tld,domain2.tld

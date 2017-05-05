@@ -1,0 +1,38 @@
+- name: Creating blackbox_exporter dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ blackbox_exporter_install_path }}"
+
+- name: untar blackbox_exporter tarball
+  unarchive:
+    src: "{{ blackbox_exporter_tarball_url }}"
+    dest: "{{ blackbox_exporter_install_path }}"
+    mode: 0755
+    owner: root
+    group: root
+    copy: no
+
+- name: Install config file
+  copy:
+    src: blackbox.yml
+    dest: "{{ blackbox_exporter_install_path }}/blackbox.yml"
+  notify:
+  - restart blackbox_exporter
+
+- name: Install blackbox_exporter systemd service file
+  notify:
+  - reload systemd
+  - restart blackbox_exporter
+  template:
+    src: blackbox_exporter.service
+    dest: /etc/systemd/system/blackbox_exporter.service
+
+- name: Enable and start blackbox_exporter service
+  systemd:
+    name: blackbox_exporter.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
