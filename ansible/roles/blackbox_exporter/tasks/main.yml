@@ -24,7 +24,6 @@
 
 - name: Install blackbox_exporter systemd service file
   notify:
-  - reload systemd
   - restart blackbox_exporter
   template:
     src: blackbox_exporter.service
