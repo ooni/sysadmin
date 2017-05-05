@@ -15,11 +15,13 @@
       adm_passwd:
         - "{{ passwd.art }}"
         - "{{ passwd.darkk }}"
+        - "{{ passwd.superq }}"
 
 - hosts: prometheus.infra.ooni.io
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
   roles:
+    - alertmanager
     - prometheus
     - blackbox_exporter

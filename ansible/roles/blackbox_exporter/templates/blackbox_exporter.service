@@ -7,7 +7,7 @@ Group=nogroup
 EnvironmentFile=-/etc/default/blackbox_exporter
 PermissionsStartOnly=true
 ExecStartPre=/sbin/setcap 'cap_net_raw+ep' {{ blackbox_exporter_path }}/blackbox_exporter
-ExecStart={{ blackbox_exporter_path }}/blackbox_exporter -config.file {{ blackbox_exporter_install_path }}/blackbox.yml -web.listen-address 127.0.0.1:9115
+ExecStart={{ blackbox_exporter_path }}/blackbox_exporter -config.file {{ blackbox_exporter_install_path }}/blackbox.yml -web.listen-address "{{ blackbox_exporter_listen_address }}"
 KillMode=process
 Restart=always
 

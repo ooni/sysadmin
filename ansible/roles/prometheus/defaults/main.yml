@@ -16,3 +16,5 @@ prometheus_download_url: https://github.com/prometheus/prometheus/releases/downl
 
 prometheus_tarball_url: "{{ prometheus_download_url }}/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}.tar.gz"
 prometheus_path: "{{ prometheus_install_path }}/prometheus-{{ prometheus_version }}.linux-{{ go_arch }}"
+
+alertmanager_url: "http://127.0.0.1:9093"

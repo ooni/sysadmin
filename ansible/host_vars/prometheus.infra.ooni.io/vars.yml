@@ -12,6 +12,8 @@ blackbox_jobs:
       #- "https://a.collector.ooni.io/invalidpath"
       - "https://b.collector.ooni.io/invalidpath"
       - "https://c.collector.ooni.io/invalidpath"
+      # Testing collectors
+      - "https://b.collector.test.ooni.io/invalidpath"
   - name: "ooni bouncer"
     module: "ooni_bouncer_ok"
     targets:
