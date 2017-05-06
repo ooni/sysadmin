@@ -1,0 +1,26 @@
+---
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ grafana_config_path }}"
+    - "{{ grafana_lib_path }}"
+
+- name: configure grafana
+  template:
+    src: grafana.ini.j2
+    dest: "{{ grafana_config_path }}/grafana.ini"
+
+- name: grafana service
+  docker_container:
+    image: grafana/grafana
+    name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - "{{ grafana_config_path }}:/etc/grafana"
+      - "{{ grafana_lib_path }}:/var/lib/grafana"
+    env:
+      GF_SECURITY_ADMIN_PASSWORD: "{{ grafana_admin_password }}"
