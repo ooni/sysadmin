@@ -25,3 +25,4 @@
     - alertmanager
     - prometheus
     - blackbox_exporter
+    - grafana
