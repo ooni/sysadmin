@@ -2,44 +2,6 @@
     "droplets": [
         {
             "backup_ids": [], 
-            "disk": 40, 
-            "features": [], 
-            "id": "450", 
-            "kernel": {
-                "id": "7", 
-                "name": "Linux 3.18.13", 
-                "version": "3.18.13"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 99:28:82:a7:f9:cc:f9:52:d1:26:f1:15:e0:00:d2:e2 \n", 
-                "ssh_ecdsa": "256 ba:78:c5:72:54:e5:95:6d:b8:e3:74:ad:cb:9f:fe:1b \n", 
-                "ssh_rsa": "2048 c4:63:fa:e2:89:f5:c6:6b:f2:63:7a:bf:c9:c0:9b:17 \n"
-            }, 
-            "locked": false, 
-            "memory": "8192", 
-            "name": "lepidopter-funbox", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.158", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "4"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 200, 
             "features": [], 
             "id": "500", 
@@ -111,7 +73,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "1"
         }, 
         {
@@ -131,7 +93,7 @@
             }, 
             "locked": false, 
             "memory": "16384", 
-            "name": "datacollector", 
+            "name": "datacollector.infra.ooni.io", 
             "networks": {
                 "v4": [
                     {
@@ -263,44 +225,6 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
-            "id": "855", 
-            "kernel": {
-                "id": "7", 
-                "name": "Linux 3.18.13", 
-                "version": "3.18.13"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 46:7a:5a:29:02:05:15:3d:8e:a3:6c:a3:22:25:13:8d \n", 
-                "ssh_ecdsa": "256 25:8b:a6:3d:4a:9c:a8:4c:13:28:dc:4a:44:a6:cf:48 \n", 
-                "ssh_rsa": "2048 89:ca:cd:54:33:b4:17:1d:f5:14:e8:87:6f:4c:99:cc \n"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "seedling", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254", 
-                        "ip_address": "37.218.240.134", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.240.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
         }, 
@@ -372,7 +296,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -410,7 +334,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -448,7 +372,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -486,7 +410,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -524,7 +448,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -562,7 +486,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -600,7 +524,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -638,7 +562,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -663,7 +587,7 @@
             }, 
             "locked": false, 
             "memory": "4096", 
-            "name": "ssdamsterdam", 
+            "name": "ssdams.infra.ooni.io", 
             "networks": {
                 "v4": [
                     {
@@ -676,7 +600,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -714,7 +638,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -757,7 +681,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "4"
         }, 
         {
@@ -790,7 +714,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -833,7 +757,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
@@ -866,7 +790,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -904,7 +828,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -947,7 +871,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
@@ -985,7 +909,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "4"
         }, 
         {
@@ -1023,7 +947,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
@@ -1056,7 +980,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1094,7 +1018,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1137,7 +1061,7 @@
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
@@ -1170,7 +1094,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1208,7 +1132,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1246,55 +1170,17 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
-            "id": "1614", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux LTS latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 bf:17:d0:4c:97:aa:10:c5:e9:4d:fb:16:5c:25:13:0e\n", 
-                "ssh_ecdsa": "256 f6:31:60:80:44:99:fb:b3:1c:9d:4d:0d:b0:dd:55:af\n", 
-                "ssh_rsa": "2048 eb:26:1b:21:a9:31:68:7c:d2:1b:9a:2c:00:02:f1:9d\n"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "freebogatov", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.245.254", 
-                        "ip_address": "37.218.245.44", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.245.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 34
+        "total": 31
     }
 }
