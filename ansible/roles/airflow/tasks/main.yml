@@ -84,11 +84,14 @@
 
 - name: shared airflow config templates
   file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750
-- stat: path=/srv/etc/af-share-{{ airflow_tag }}/passwd
+- name: check shared airflow passwd
+  stat: path=/srv/etc/af-share-{{ airflow_tag }}/passwd
   register: afpasswd
-- stat: path=/srv/etc/af-share-{{ airflow_tag }}/group
+- name: check shared airflow group
+  stat: path=/srv/etc/af-share-{{ airflow_tag }}/group
   register: afgroup
-- stat: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg
+- name: check shared airflow.cfg
+  stat: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg
   register: afcfg
 
 - name: create temporary openobservatory/airflow container to extract file
@@ -98,20 +101,25 @@
     purge_networks: true
     state: present # NB: it's not `started`
   when: not (afpasswd.stat.exists and afgroup.stat.exists and afcfg.stat.exists)
-- command: docker cp af-tmp:/etc/passwd /srv/etc/af-share-{{ airflow_tag }}/passwd
+- name: extract shared airflow passwd
+  command: docker cp af-tmp:/etc/passwd /srv/etc/af-share-{{ airflow_tag }}/passwd
   when: not afpasswd.stat.exists
-- command: docker cp af-tmp:/etc/group /srv/etc/af-share-{{ airflow_tag }}/group
+- name: extract shared airflow group
+  command: docker cp af-tmp:/etc/group /srv/etc/af-share-{{ airflow_tag }}/group
   when: not afgroup.stat.exists
-- command: docker cp af-tmp:/usr/local/airflow/airflow.cfg /srv/etc/af-share-{{ airflow_tag }}/airflow.cfg
+- name: extract shared airflow.cfg
+  command: docker cp af-tmp:/usr/local/airflow/airflow.cfg /srv/etc/af-share-{{ airflow_tag }}/airflow.cfg
   when: not afcfg.stat.exists
 - name: drop temporary openobservatory/airflow container
   docker_container:
     name: af-tmp
     state: absent
 
-- file: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg mode=0644 owner=root group=root
+- name: chown & chmod shared airflow.cfg
+  file: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg mode=0644 owner=root group=root
 
-- lineinfile:
+- name: update shared airflow group
+  lineinfile:
     dest: /srv/etc/af-share-{{ airflow_tag }}/group
     line: "{{ item.login }}:x:{{ item.id }}:"
   with_items:
@@ -119,7 +127,8 @@
     - "{{ passwd.afwebsrv }}"
     - "{{ passwd.afworker }}"
 
-- lineinfile:
+- name: update shared airflow passwd
+  lineinfile:
     dest: /srv/etc/af-share-{{ airflow_tag }}/passwd
     line: "{{ item.login }}:x:{{ item.id }}:{{ item.id }}:{{ item.comment }}:/usr/local/airflow:/bin/bash"
   with_items:

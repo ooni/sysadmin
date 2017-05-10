@@ -39,6 +39,7 @@ for host in nmap.findall('host'):
     except Exception:
         pass
 
+# nmap sometimes misses some PTR responses, maybe it's too aggressive for DNS recursor, who knows...
 for ip in all_ips:
     if ip not in ptr:
         try:

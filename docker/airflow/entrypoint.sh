@@ -22,12 +22,12 @@ if [ -n "$FERNET_KEY" ] && ! python -c 'import cryptography.fernet, sys; cryptog
     exit 1
 fi
 
-# Load DAGs exemples (default: Yes)
+# Load DAGs examples (default: Yes)
 if [ "$LOAD_EX" = "n" ]; then
     sed -i "s/load_examples = True/load_examples = False/" "$AIRFLOW_HOME"/airflow.cfg
 fi
 
-# Install custome python package if requirements.txt is present
+# Install custom python package if requirements.txt is present
 if [ -e "/requirements.txt" ]; then
     $(which pip) install --user -r /requirements.txt
 fi

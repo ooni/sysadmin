@@ -1,6 +1,6 @@
 ---
-# This role is part of bootstrap process that creates sysadmin accoints so
-# furhter setup can be done with logged `sudo`.  ooni-sysadmin repo is single
+# This role is part of bootstrap process that creates sysadmin accounts so
+# further setup can be done with logged `sudo`.  ooni-sysadmin repo is single
 # point of truth for the keys, unknown keys are dropped, that's why
 # `authorized_key` ansible module is not used.
 

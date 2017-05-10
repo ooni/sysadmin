@@ -1,8 +1,11 @@
 ---
-- file: path=/srv/{{ dockname }} state=directory mode=0750 owner={{ login }} group={{ login }}
-- stat: path=/srv/{{ dockname }}/airflow.cfg
+- name: chmod & chown {{ dockname }} home
+  file: path=/srv/{{ dockname }} state=directory mode=0750 owner={{ login }} group={{ login }}
+- name: check {{ dockname }} airflow.cfg
+  stat: path=/srv/{{ dockname }}/airflow.cfg
   register: afcfg
-- command: cp -a /srv/etc/af-share-{{ airflow_tag }}/airflow.cfg /srv/{{ dockname }}/airflow.cfg
+- name: create new {{ dockname }} airflow.cfg
+  copy: src=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg dest=/srv/{{ dockname }}/airflow.cfg mode=0600 owner={{ login }} group={{ login }} remote_src=true
   when: not afcfg.stat.exists
 - name: airflow service -- {{ command }}
   docker_container:
