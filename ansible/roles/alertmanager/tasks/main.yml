@@ -48,6 +48,18 @@
     src: alertmanager.yml.j2
     dest: "{{ alertmanager_config_path }}/alertmanager.yml"
 
+- name: Configure Alertmanager templates
+  notify:
+  - reload alertmanager
+  copy:
+    src: "{{ item }}"
+    dest: "{{ alertmanager_templates_path }}"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: "u=rwx,g=rx,o="
+  with_fileglob:
+    - templates/*.tmpl
+
 - name: Install alertmanager systemd service file
   notify:
   - restart alertmanager
