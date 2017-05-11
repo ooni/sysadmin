@@ -5,6 +5,4 @@
 {{ end }}
 
 {{ define "slack.ooni.title" }}
-{{ range .Alerts }}
-{{ if eq .Status "resolved" }}[RESOLVED] {{ else }}[FIRING] {{ end }}{{ .Annotations.summary }}{{ end }}
-{{ end }}
+{{ range .Alerts }}{{ if eq .Status "resolved" }}[RESOLVED] {{ else }}[FIRING] {{ end }}{{ .Annotations.summary }}{{ end }}{{ end }}
