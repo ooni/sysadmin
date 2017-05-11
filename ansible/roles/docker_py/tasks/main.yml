@@ -1,11 +1,10 @@
 ---
 
-- name: installs apt-https-transport and required kernel packages
+- name: installs apt-https-transport
   apt: >
     name={{ item }}
     state=present
   with_items:
-    - "linux-image-{{ ansible_kernel }}"
     - apt-transport-https
     - python-virtualenv
 
@@ -20,7 +19,7 @@
     update_cache=yes
 
 - name: installs docker-engine package
-  apt: name=docker-engine
+  apt: name=docker-engine{{ docker_apt_ver }}
 
 - name: enables and starts docker service
   service: >
@@ -28,8 +27,13 @@
     enabled=yes
     state=started
 
+# 1. ansible 2.2.2 declares 1.7.0+ as a requirement, but it's really 1.8.0+
+#    https://github.com/ansible/ansible-modules-core/issues/5515
+#    https://github.com/ansible/ansible/issues/20776
+# 2. 2.0 is probably unsupported due to renaming of `docker.Client` to `docker.APIClient`
+#    https://docker-py.readthedocs.io/en/stable/change-log.html
 - name: Install docker-py via pip in virtualenv
   pip: >
     name="docker-py"
-    version="1.7.0"
-    virtualenv="{{ ansible_env.HOME }}/venv"
+    version="1.10.6"
+    virtualenv="{{ ansible_venv }}"

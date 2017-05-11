@@ -1,0 +1,121 @@
+#!/bin/bash
+#
+# Ability to execute arbituary docker commands equals to root-shell, so this
+# script does some whitelisting.  The script should be launched with:
+#
+#   sudo --non-interactive /foo/bar/trampoline.sh \
+#         do-something-awesome.py \
+#         "{{ ds }}" \
+#         "{{ execution_date.isoformat() }}" \
+#         "{{ (execution_date + dag.schedule_interval).isoformat() }}" \
+#         other CLI arguments to script
+
+# FIXME: 1000 = `id -u benchmark` at the datacollector dom0
+uidno=1000
+
+script="$1"
+bucket="$2"
+isofrom="$3" # execution_date
+isotill="$4" # execution_date + schedule_interval
+shift 4
+
+(
+shopt -s extglob
+for var in "$bucket" "$isofrom" "$isotill"; do
+    # NB: `.` (dot) delimits microseconds in isoformat() but they are not welcome here
+    if [ -z "$var" -o -n "${var/+([-0-9T:])/}" ]; then
+        echo "$0: bad arg <$var> -> <${var/+([-0-9T:])/}>" 1>&2
+        exit 1
+    fi
+done
+) || exit 1
+
+docksafe="--rm --interactive --read-only"
+docknet="--network none"
+
+private=/data/ooni/private
+public=/data/ooni/public
+volargs=""
+case "$script" in
+    # FIXME: it's file-based polling as I'm a bit afraid of upgrading 1.7.1.3
+    # to 1.8.0 right now and HTTP-based polling is broken (network failure is
+    # treated as success).
+    is-reports-raw-ready)
+    exec docker run $docksafe --network none "--volume=$private/reports-raw-ready:$private/reports-raw-ready:ro" debian:jessie \
+        /bin/bash -c "test -f $private/reports-raw-ready/${bucket} && exit 42 || exit 13"
+    # NB: no fallthrough
+    ;;
+
+    canning.py)
+    docker run $docksafe --network none -v=$private/canned:$private/canned debian:jessie /bin/bash -c "mkdir -p $private/canned/${bucket} && chown $uidno $private/canned/${bucket}"
+    volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
+    volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
+    ;;
+
+    autoclaving.py)
+    docker run $docksafe --network none -v=$public/autoclaved:$public/autoclaved debian:jessie /bin/bash -c "mkdir -p $public/autoclaved/${bucket} && chown $uidno $public/autoclaved/${bucket}"
+    volargs="${volargs} --volume=$private/bridge_db:$private/bridge_db:ro"
+    volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:rw"
+    ;;
+
+    centrifugation.py)
+    docker run $docksafe --network none -v=$public/simhash:$public/simhash debian:jessie /bin/bash -c "chown $uidno $public/simhash"
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
+    volargs="${volargs} --volume=$public/simhash:$public/simhash:rw"
+    docknet="--net af_default --link af_oometa_1:metadb" # FIXME:too hardcoded
+    ;;
+
+    reports_raw_s3_ls)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
+    volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:rw"
+    script=""
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/reports-raw/yaml/$bucket" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
+    ;;
+
+    reports_raw_cleanup)
+    volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:ro"
+    volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
+    volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-root "$private/canned" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
+    ;;
+
+    sanitised_s3_ls)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
+    volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:rw"
+    script=""
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-public/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
+    ;;
+
+    sanitised_check)
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
+    volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:ro"
+    volargs="${volargs} --volume=$public/santoken:$public/santoken:rw"
+    script=""
+    set -- /usr/local/bin/check_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}"
+    ;;
+
+    sanitised_cleanup)
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
+    volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:ro"
+    volargs="${volargs} --volume=$public/santoken:$public/santoken:ro"
+    volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
+    ;;
+
+    *)
+    echo "$0: unknown script <$script>" 1>&2
+    exit 1
+    ;;
+esac
+
+# FIXME: hardcoded uid of the `benchmark` user at `datacollector`
+if [ -n "$script" ]; then
+    set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
+fi
+set -o xtrace
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.4 "$@"

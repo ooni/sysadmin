@@ -1,0 +1,38 @@
+---
+- name: chmod & chown {{ dockname }} home
+  file: path=/srv/{{ dockname }} state=directory mode=0750 owner={{ login }} group={{ login }}
+- name: check {{ dockname }} airflow.cfg
+  stat: path=/srv/{{ dockname }}/airflow.cfg
+  register: afcfg
+- name: create new {{ dockname }} airflow.cfg
+  copy: src=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg dest=/srv/{{ dockname }}/airflow.cfg mode=0600 owner={{ login }} group={{ login }} remote_src=true
+  when: not afcfg.stat.exists
+- name: airflow service -- {{ command }}
+  docker_container:
+    image: openobservatory/airflow{{ image_ext | default('') }}:{{ airflow_tag }}
+    name: "{{ dockname }}"
+    hostname: "{{ dockname }}"
+    networks: [ "{{ {'name': 'af'} | combine(
+      ipv4_address | default(False) | ternary({'ipv4_address': ipv4_address}, {})
+    ) }}" ]
+    purge_networks: true
+    volumes: "{{ [
+      '/srv/etc/af-share-' + airflow_tag + '/passwd:/etc/passwd:ro',
+      '/srv/etc/af-share-' + airflow_tag + '/group:/etc/group:ro',
+      '/srv/' + dockname + ':/usr/local/airflow:rw',
+      '/srv/airflow-dags:/usr/local/airflow/dags:ro',
+    ] | union(
+      volume_ext | default([])
+    ) }}"
+    env:
+      LOAD_EX: n
+      EXECUTOR: Celery
+      FERNET_KEY: "{{ airflow_fernet_key }}"
+      REDIS_HOST: af-redis
+      REDIS_PASSWORD: "{{ airflow_redis_password }}"
+      POSTGRES_HOST: af-psql
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
+    command: "{{ command }}"
+    user: "{{ passwd[login].id }}:{{ passwd[login].id }}"
+    restart_policy: unless-stopped
