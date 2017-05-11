@@ -50,6 +50,7 @@ receivers:
 - name: 'team-all'
   email_configs:
   - to: 'team@openobservatory.org'
+    send_resolved: true
   slack_configs:
   - send_resolved: true
     text: '{% raw %}{{ template "slack.ooni.text" . }}{% endraw %}'
