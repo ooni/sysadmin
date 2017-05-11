@@ -10,6 +10,7 @@
       <host HostId="77079882" Name="blog" Type="CNAME" Address="openo.ghost.io." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="98370665" Name="@" Type="MX" Address="mx.runbox.com." MXPref="10" TTL="1799" AssociatedAppTitle="MX" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="101566748" Name="@" Type="TXT" Address="v=spf1 redirect=spf.runbox.com" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114020488" Name="_amazonses" Type="TXT" Address="sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="76053923" Name="@" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="76053924" Name="www" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
