@@ -1,0 +1,43 @@
+---
+- include: create-certs.yml
+
+- name: Install required apt packages
+  environment:
+    RUNLEVEL: 1
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "nginx"
+    - "python-passlib"
+
+- name: Remove default nginx virtual host config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  register: nginx
+
+- name: Add node_exporter nginx virtual host config
+  template:
+    src: node_exporter_nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/node_exporter
+    owner: root
+    group: root
+    mode: 0644
+  register: nginx
+
+- name: Create password file for nginx
+  htpasswd:
+    path: /etc/nginx/prometheus.htpasswd
+    name: "{{ prometheus_basic_auth_user }}"
+    password: "{{ prometheus_basic_auth_password }}"
+    owner: root
+    group: www-data
+    mode: 0640
+  register: nginx
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  when: nginx.changed

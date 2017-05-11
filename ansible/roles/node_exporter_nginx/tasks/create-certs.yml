@@ -1,0 +1,66 @@
+---
+- name: Ensure openssl is installed
+  apt:
+    name: "openssl"
+    state: present
+
+- name: Generate host private key
+  command: openssl genrsa -out {{ node_exporter_ssl_key_path }} 4096 creates={{ node_exporter_ssl_key_path }}
+
+- name: Set private key permissions
+  file:
+    path: "{{ node_exporter_ssl_key_path }}"
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    mode: "0700"
+
+- name: Generate CSR request
+  command: openssl req -new -sha256 -subj "{{ inventory_hostname }}" -key {{ node_exporter_ssl_key_path }} -out {{ node_exporter_ssl_csr_path }} creates={{ node_exporter_ssl_csr_path }}
+
+- name: Set CSR permissions
+  file:
+    path: "{{ node_exporter_ssl_csr_path }}"
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    mode: "0700"
+
+- name: create temporary directory to store secrets
+  tempfile:
+    state: directory
+	register: priv_tmp
+
+- name: write the root ca private key to temporary directory
+	copy:
+    content: "{{ vault_prometheus_root_ca_key }}"
+    dest: "{{ priv_tmp.path }}/root_ca.key"
+
+- name: Set root ca key permissions
+  file:
+    path: "{{ priv_tmp.path }}/root_ca.key"
+    mode: "0700"
+
+- name: write the root ca cert to temporary directory
+	copy:
+    content: "{{ vault_prometheus_root_ca_pem }}"
+    dest: "{{ priv_tmp.path }}/root_ca.pem"
+
+- name: Set root ca cert permissions
+  file:
+    path: "{{ priv_tmp.path }}/root_ca.pem"
+    mode: "0700"
+
+- name: Generate signed SSL certificate
+  command: openssl req -nodes -x509 -sha256 -days 1024 -in {{ node_exporter_ssl_csr_path }} -CA "{{ priv_tmp.path }}/root_ca.pem" -CAKey "{{ priv_tmp.path }}/root_ca.key" -CAcreateserial -out {{ node_exporter_ssl_cert_path }} -extensions v3_ca creates={{ node_exporter_ssl_cert_path }}
+
+- name: Set signed cert permissions
+  file:
+    path: "{{ node_exporter_ssl_cert_path }}"
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    mode: "0700"
+
+# XXX there should be a way to delete this even if the previous steps fail
+- name: Delete temporary directory
+  file:
+    path: "{{ priv_tmp.path }}"
+    state: absent

@@ -1,0 +1,8 @@
+prometheus_basic_auth_user: "prometheus"
+prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
+node_exporter_user: "prometheus"
+node_exporter_group: "prometheus"
+node_exporter_private_path: "/srv/node_exporter/private"
+node_exporter_ssl_key_path: "{{ node_exporter_private_path }}/{{ inventory_hostname }}.pem"
+node_exporter_ssl_csr_path: "{{ node_exporter_private_path }}/{{ inventory_hostname }}.csr"
+node_exporter_ssl_cert_path: "{{ node_exporter_private_path }}/{{ inventory_hostname }}.cert"
