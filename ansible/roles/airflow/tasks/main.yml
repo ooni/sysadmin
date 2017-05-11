@@ -54,8 +54,7 @@
       - /srv/af-redis:/data:rw
     command: /usr/local/etc/redis.conf
     user: "{{ passwd.afredis.id}}:{{ passwd.afredis.id}}"
-    restart_policy: on-failure
-    restart_retries: 2
+    restart_policy: unless-stopped
 
 # 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 # 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
@@ -79,8 +78,7 @@
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
     user: "{{ passwd.afpsql.id }}:{{ passwd.afpsql.id }}"
-    restart_policy: on-failure
-    restart_retries: 2
+    restart_policy: unless-stopped
 
 - name: shared airflow config templates
   file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750

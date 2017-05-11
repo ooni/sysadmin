@@ -35,5 +35,4 @@
       POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
     command: "{{ command }}"
     user: "{{ passwd[login].id }}:{{ passwd[login].id }}"
-    restart_policy: on-failure
-    restart_retries: 2
+    restart_policy: unless-stopped
