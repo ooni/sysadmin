@@ -14,7 +14,7 @@
         socks5: '{{ 32767 | random(1024) }}'
         jumphost: '{{ namecheap_jumphosts | random }}'
     - name: ssh jumphost ({{ jumphost }})
-      command: ssh -D {{ socks5 }} {{ jumphost }} sleep 60
+      command: ssh -D {{ socks5 }} -o BatchMode=yes -N {{ jumphost }}
       async: 60
       poll: 0
     - wait_for: port={{ socks5 }} timeout=10
