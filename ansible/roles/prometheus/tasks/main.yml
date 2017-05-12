@@ -72,3 +72,6 @@
     state: started
     enabled: yes
     daemon_reload: yes
+
+- include: setup-nginx.yml
+  when: ( prometheus_nginx is defined and prometheus_nginx|bool == true )

@@ -1,0 +1,40 @@
+---
+- name: Install nginx
+  environment:
+    RUNLEVEL: 1
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nginx
+
+- name: Remove default nginx virtual host
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  register: nginx
+
+- name: Add nginx virtual host config
+  template:
+    src: prometheus_nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/prometheus
+    owner: root
+    group: root
+    mode: 0644
+  register: nginx
+
+- name: Create password file for nginx
+  htpasswd:
+    path: /etc/nginx/prometheus.htpasswd
+    name: "{{ prometheus_basic_auth_user }}"
+    password: "{{ prometheus_basic_auth_password }}"
+    owner: root
+    group: www-data
+    mode: 0640
+  register: nginx
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  when: nginx.changed

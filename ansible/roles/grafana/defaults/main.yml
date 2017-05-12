@@ -1,2 +1,3 @@
 grafana_config_path: /src/grafana/etc
 grafana_lib_path: /src/grafana/lib
+grafana_listen_address: "3001"
