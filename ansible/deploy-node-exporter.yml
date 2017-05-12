@@ -14,7 +14,7 @@
 - hosts: monitored
   gather_facts: true
   vars:
-    letsencrypt_nginx: yes
+    node_exporter_listen_address: "127.0.0.1:9001"
   roles:
     - node_exporter
     - node_exporter_nginx

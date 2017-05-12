@@ -33,7 +33,18 @@
 # 2. 2.0 is probably unsupported due to renaming of `docker.Client` to `docker.APIClient`
 #    https://docker-py.readthedocs.io/en/stable/change-log.html
 - name: Install docker-py via pip in virtualenv
-  pip: >
-    name="docker-py"
-    version="1.10.6"
-    virtualenv="{{ ansible_venv }}"
+  pip:
+    name: "docker-py"
+    version: "1.10.6"
+    virtualenv: "{{ ansible_venv }}"
+
+- name: Copy into the virtualenv the system python-apt
+  shell: "cp -R /usr/lib/python2.7/dist-packages/apt* {{ ansible_venv }}/lib/python2.7/site-packages/"
+
+- name: Install other python dependencies
+  pip:
+    name: "{{ item }}"
+    virtualenv: "{{ ansible_venv }}"
+  with_items:
+    - "simplejson"
+    - "passlib"

@@ -39,3 +39,10 @@
 
 - name: sudoers.d/adm
   template: src=sudoers dest=/etc/sudoers.d/adm owner=root group=root mode=0440 validate='visudo -cf %s'
+
+- name: install sudo
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "vim"

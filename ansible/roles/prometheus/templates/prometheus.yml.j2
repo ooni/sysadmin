@@ -24,7 +24,7 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['{{ prometheus_listen_address }}']
 
 {% for bbjob in blackbox_jobs %}
   - job_name: {{ bbjob.name }}
@@ -51,10 +51,16 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endfor %}
 
-#  - job_name: 'node'
-#    scrape_interval: 5s
-#    static_configs:
-#      - targets:
-#{% for host in hostvars %}
-#        - {{ host }}:9100
-#{% endfor %}
+  - job_name: 'node'
+    scrape_interval: 5s
+    scheme: https
+    basic_auth:
+      username: "{{ prometheus_basic_auth_user }}"
+      password: "{{ prometheus_basic_auth_password }}"
+    tls_config:
+      ca_file: "{{ prometheus_monitoring_cert }}"
+    static_configs:
+      - targets:
+{% for host in groups.monitored %}
+        - {{ host }}:9100
+{% endfor %}
