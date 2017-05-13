@@ -1,0 +1,54 @@
+---
+- include: ansible-version.yml
+
+- hosts: orchestration
+  become: false
+  remote_user: root
+  gather_facts: true
+  roles:
+    - role: adm
+      adm_passwd:
+        - "{{ passwd.art }}"
+        - "{{ passwd.darkk }}"
+
+- hosts: orchestration
+  gather_facts: false # already gathered
+  roles:
+    - docker_py
+
+- hosts: db-1.proteus.test.ooni.io
+  gather_facts: false
+  vars:
+    psql_db_name: proteus
+    psql_db_user: proteus
+    psql_db_passwd: "{{ vault_proteus_database_password }}"
+  roles:
+    - postgresql
+    - proteus-db
+
+- hosts: registry.proteus.test.ooni.io
+  gather_facts: false # already gathered
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - proteus-registry
+
+- hosts: events.proteus.test.ooni.io
+  gather_facts: false # already gathered
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - proteus-events
+
+- hosts: notify.proteus.test.ooni.io
+  gather_facts: false # already gathered
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - proteus-notify

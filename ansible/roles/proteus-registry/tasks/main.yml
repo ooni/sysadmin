@@ -1,0 +1,63 @@
+- name: create Proteus group
+  group: name={{ proteus_group }}  state=present
+
+- name: create Proteus user
+  user:
+    name: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    createhome: no
+    shell: /sbin/nologin
+    comment: "Proteus User"
+    state: present
+
+- name: set permissions, owner and group
+  file:
+    path: "{{ proteus_install_path }}"
+    state: directory
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ proteus_data_path }}"
+    - "{{ proteus_config_path }}"
+
+- name: untar proteus tarball
+  unarchive:
+    src: "{{ proteus_tarball_url }}"
+    dest: "{{ proteus_install_path }}"
+    mode: 0755
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    copy: no
+
+- name: Configure Proteus
+  notify:
+  - reload proteus
+  template:
+    src: proteus-registry.toml.j2
+    dest: "{{ proteus_config_path }}/proteus-registry.toml"
+
+- name: Install proteus systemd service file
+  notify:
+  - restart proteus
+  template:
+    src: proteus-registry.service
+    dest: /etc/systemd/system/proteus-registry.service
+
+- name: Enable and start proteus service
+  systemd:
+    name: proteus-registry.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- include: setup-nginx.yml

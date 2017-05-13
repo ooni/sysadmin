@@ -1,0 +1,22 @@
+go_arch: amd64
+
+proteus_user:   proteus
+proteus_group:  proteus
+
+proteus_install_path: /srv/proteus
+proteus_data_path: /srv/proteus/data
+proteus_config_path: /srv/proteus/config
+
+proteus_environment: "production"
+proteus_log_level: "info"
+proteus_api_port: 9081
+proteus_api_address: "127.0.0.1"
+proteus_https_port: 8081
+proteus_database_url: "{{ vault_proteus_database_url }}"
+proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
+
+proteus_version: "0.1.0-dev"
+proteus_download_url: https://github.com/thetorproject/proteus/releases/download
+
+proteus_tarball_url: "{{ proteus_download_url }}/v{{ proteus_version }}/proteus-registry-{{ proteus_version }}.linux-{{ go_arch }}.tar.gz"
+proteus_path: "{{ proteus_install_path }}/proteus-registry-{{ proteus_version }}.linux-{{ go_arch }}"

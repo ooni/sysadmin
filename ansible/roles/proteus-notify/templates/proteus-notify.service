@@ -1,0 +1,13 @@
+[Unit]
+Description=Proteus Notify service
+
+[Service]
+User={{ proteus_user }}
+Group={{ proteus_group }}
+ExecStart={{ proteus_path }}/proteus-notify --config {{ proteus_config_path }}/proteus-notify.toml
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

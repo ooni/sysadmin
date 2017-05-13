@@ -1,0 +1,13 @@
+---
+- name: Create database schema files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ proteus_db_schema_path }}"
+    mode: 0644
+  with_items: "{{ proteus_db_files }}"
+
+- name: Run database schema commands
+  shell: "psql -U {{ proteus_db_user}} -h localhost -d {{ proteus_db_name }} -f {{ proteus_db_schema_path}}/{{ item }}"
+  environment:
+    PGPASSWORD: "{{ proteus_db_password }}"
+  with_items: "{{ proteus_db_files }}"

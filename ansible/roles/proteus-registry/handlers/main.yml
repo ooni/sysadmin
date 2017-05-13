@@ -1,0 +1,4 @@
+- name: restart proteus
+  systemd: name=proteus-registry.service state=restarted
+- name: reload proteus
+  systemd: name=proteus-registry.service state=reloaded
