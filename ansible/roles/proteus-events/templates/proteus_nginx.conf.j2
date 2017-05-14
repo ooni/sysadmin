@@ -1,8 +1,8 @@
 server {
     server_name _;
 
-    listen {{ proteus_https_port }} ssl default_server;
-    listen [::]:{{ proteus_https_port }} ssl default_server;
+    listen {{ proteus_events_https_port }} ssl default_server;
+    listen [::]:{{ proteus_events_https_port }} ssl default_server;
 
     ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/privkey.pem;

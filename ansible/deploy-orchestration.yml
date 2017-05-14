@@ -30,6 +30,7 @@
   gather_facts: false # already gathered
   vars:
     letsencrypt_nginx: yes
+    proteus_registry_https_port: 443
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:
     - letsencrypt
@@ -38,6 +39,7 @@
 - hosts: events.proteus.test.ooni.io
   gather_facts: false # already gathered
   vars:
+    proteus_events_https_port: 443
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:
@@ -47,6 +49,7 @@
 - hosts: notify.proteus.test.ooni.io
   gather_facts: false # already gathered
   vars:
+    proteus_notify_https_port: 443
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:

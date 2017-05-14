@@ -4,7 +4,7 @@ Description=Proteus Registry service
 [Service]
 User={{ proteus_user }}
 Group={{ proteus_group }}
-ExecStart={{ proteus_path }}/proteus-registry --config {{ proteus_config_path }}/proteus-registry.toml
+ExecStart={{ proteus_path }}/proteus-registry --config {{ proteus_config_path }}/proteus-registry.toml start
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
