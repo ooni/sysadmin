@@ -1,4 +1,6 @@
 ---
+grafana_admin_password: "{{ vault_grafana_admin_password }}"
+
 blackbox_jobs:
   - name: "ooni web_connectivity test helpers"
     module: "ooni_web_connectivity_ok"
