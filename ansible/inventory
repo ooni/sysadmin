@@ -12,6 +12,7 @@ a.echo.th.ooni.io
 c.web-connectivity.th.ooni.io
 munin.ooni.io
 b.collector.ooni.io
+shwdc.ooni.io
 
 # The machines below maybe can be discontinued
 ooni-proxy-dc.infra.ooni.io
