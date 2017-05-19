@@ -1545,10 +1545,162 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "1725", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 f7:82:8f:5c:55:22:5a:4a:33:80:70:86:40:c3:50:f1\n", 
+                "ssh_ecdsa": "256 63:55:ee:0b:d9:7b:57:fa:a5:bf:7a:a7:aa:37:85:9b\n", 
+                "ssh_rsa": "2048 b9:ed:80:a1:b9:3d:5d:83:c4:9d:40:93:a5:2b:aa:d5\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "afwrk01", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.158", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "4"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "1726", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 10:2e:1b:55:f6:50:6e:f4:03:86:05:9a:df:fa:a4:85\n", 
+                "ssh_ecdsa": "256 eb:89:2b:78:e5:52:61:34:7d:f0:62:70:7c:f6:ed:3a\n", 
+                "ssh_rsa": "2048 a8:a8:38:e3:eb:ab:8f:44:cb:b1:5d:86:98:3e:ac:b8\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "afwrk02", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.159", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "4"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "1727", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 11:0b:c5:3e:42:7f:e0:c8:56:56:9c:eb:6c:8c:fe:a1\n", 
+                "ssh_ecdsa": "256 11:4c:d1:d8:9c:76:4c:e3:15:51:f1:4f:01:f0:c7:b0\n", 
+                "ssh_rsa": "2048 87:48:cc:a1:c2:a8:a0:08:e9:af:4a:b0:58:4d:73:fe\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "afwrk03", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.160", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "4"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "1728", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 23:bb:f2:57:34:46:e7:8c:93:05:a8:43:96:22:d0:f2\n", 
+                "ssh_ecdsa": "256 f4:a4:3a:d7:3d:bc:e9:72:64:c5:4c:bc:a9:ad:a0:03\n", 
+                "ssh_rsa": "2048 9b:61:b1:db:02:d3:28:1a:96:b3:b6:99:50:6b:55:5b\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "afwrk04", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.162", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "4"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 41
+        "total": 45
     }
 }
