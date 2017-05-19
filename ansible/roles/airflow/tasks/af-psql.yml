@@ -4,7 +4,7 @@
 - name: airflow postgres tmp directory
   file: dest=/srv/tmp/af-psql state=directory owner=afpsql group=afpsql mode=0750
 - name: airflow postgres /data directory
-  file: dest=/srv/af-psql state=directory owner=afpsql group=afpsql mode=0750
+  file: dest=/srv/af-psql state=directory owner=afpsql group=afpsql mode=0700
 - name: docker run airflow postgres
   docker_container:
     image: postgres:9.6
