@@ -36,49 +36,9 @@
       subnet: 172.26.43.0/24
       gateway: 172.26.43.1
 
-- name: redis .../etc directory
-  file: dest=/srv/etc/af-redis state=directory owner=root group=root mode=0755
-- name: redis .../etc/redis.conf
-  template: dest=/srv/etc/af-redis/redis.conf src=af-redis.conf mode=0640 owner=root group=afredis
-- name: redis /data directory
-  file: dest=/srv/af-redis state=directory owner=afredis group=afredis mode=0750
-- name: docker run redis
-  docker_container:
-    image: redis:3.2
-    name: af-redis
-    hostname: af-redis
-    networks: [{name: af}]
-    purge_networks: true # drop `bridge` network
-    volumes:
-      - /srv/etc/af-redis:/usr/local/etc:ro
-      - /srv/af-redis:/data:rw
-    command: /usr/local/etc/redis.conf
-    user: "{{ passwd.afredis.id}}:{{ passwd.afredis.id}}"
-    restart_policy: unless-stopped
+- include: af-redis.yml
 
-# 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
-# 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
-#    https://github.com/ansible/ansible/pull/22646
-- name: airflow postgres tmp directory
-  file: dest=/srv/tmp/af-psql state=directory owner=afpsql group=afpsql mode=0750
-- name: airflow postgres /data directory
-  file: dest=/srv/af-psql state=directory owner=afpsql group=afpsql mode=0750
-- name: docker run airflow postgres
-  docker_container:
-    image: postgres:9.6
-    name: af-psql
-    hostname: af-psql
-    networks: [{name: af}]
-    purge_networks: true # drop `bridge` network
-    volumes:
-      - /srv/tmp/af-psql:/run/postgresql:rw
-      - /srv/af-psql:/srv/af-psql:rw
-    env:
-      PGDATA: /srv/af-psql
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
-    user: "{{ passwd.afpsql.id }}:{{ passwd.afpsql.id }}"
-    restart_policy: unless-stopped
+- include: af-psql.yml
 
 - name: shared airflow config templates
   file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750
