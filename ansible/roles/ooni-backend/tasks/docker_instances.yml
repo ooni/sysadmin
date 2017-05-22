@@ -98,17 +98,13 @@
     - "{{ tcp_echo_port }}"
     - "{{ daphn3_port }}"
     - "{{ dns_port_tcp }}"
-    - "{{ dns_discover_port_tcp }}"
     - "{{ dns_port_udp }}"
-    - "{{ dns_discover_port_udp }}"
     ports:
     - "{{ docker_ip }}:{{ http_return_json_headers_port }}:{{ http_return_json_headers_port }}"
     - "{{ docker_ip }}:{{ tcp_echo_port }}:{{ tcp_echo_port }}"
     - "{{ docker_ip }}:{{ daphn3_port }}:{{ daphn3_port }}"
     - "{{ docker_ip }}:{{ dns_port_tcp }}:{{ dns_port_tcp }}"
-    - "{{ docker_ip }}:{{ dns_discover_port_tcp }}:{{ dns_discover_port_tcp }}"
     - "{{ docker_ip }}:{{ dns_port_udp }}:{{ dns_port_udp }}/udp"
-    - "{{ docker_ip }}:{{ dns_discover_port_udp }}:{{ dns_discover_port_udp }}/udp"
     volumes:
     - "{{ bind_deck_dir }}:{{ deck_dir }}"
     - "{{ bind_input_dir }}:{{ input_dir }}"
