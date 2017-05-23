@@ -50,11 +50,11 @@
       <host HostId="109672442" Name="mail.test" Type="A" Address="199.119.112.12" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111938124" Name="datacollector.infra" Type="A" Address="37.218.240.67" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976281" Name="seedling.infra" Type="A" Address="37.218.240.134" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="112976282" Name="ooni-pipeline-db.infra" Type="A" Address="37.218.242.87" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976283" Name="ooniprobe-app.infra" Type="A" Address="37.218.242.109" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976284" Name="ooni-probe-demo.infra" Type="A" Address="37.218.242.169" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976285" Name="lepidopter-update-test.infra" Type="A" Address="37.218.242.199" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976287" Name="ooni-measurements-db.infra" Type="A" Address="37.218.242.232" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="112976288" Name="ssdams.infra" Type="A" Address="37.218.242.236" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976289" Name="prometheus.infra" Type="A" Address="37.218.245.43" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976290" Name="ooni-fdroid-build.infra" Type="A" Address="199.119.112.14" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976291" Name="lepidopter-funbox.infra" Type="A" Address="199.119.112.158" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -77,7 +77,6 @@
       <host HostId="102615644" Name="ubuilder.infra" Type="A" Address="37.218.242.223" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="106105738" Name="test-monitoring" Type="A" Address="199.119.112.171" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976280" Name="vpn-gate-runner.infra" Type="A" Address="37.218.240.133" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="112976288" Name="ssdams.infra" Type="A" Address="37.218.242.236" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976292" Name="tipitpitap.infra" Type="A" Address="199.119.112.177" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114020346" Name="_amazonses" Type="TXT" Address="azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114106152" Name="ssdamsterdam.infra" Type="A" Address="37.218.242.236" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

@@ -686,44 +686,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 300, 
-            "features": [], 
-            "id": "1266", 
-            "kernel": {
-                "id": "16", 
-                "name": "Ubuntu 16.04 LTS (Xenial) Latest", 
-                "version": "xenial-latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 f1:e8:10:96:dd:02:eb:b7:74:89:c6:fd:ca:34:53:6f\n", 
-                "ssh_ecdsa": "256 e8:f5:1d:b3:79:79:25:ce:f8:88:37:12:57:ad:bc:9b\n", 
-                "ssh_rsa": "2048 06:56:09:b1:b9:4c:5f:55:23:c3:b3:fe:62:69:78:ad\n"
-            }, 
-            "locked": false, 
-            "memory": "16384", 
-            "name": "ooni-pipeline-db", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.87", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "4"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 15, 
             "features": [], 
             "id": "1282", 
@@ -1701,6 +1663,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 45
+        "total": 44
     }
 }
