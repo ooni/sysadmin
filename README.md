@@ -62,6 +62,19 @@ ansible host-group -i hosts-inventory-file -m raw -a \
 "apt-get update && apt-get -y install python-simplejson"
 ```
 
+Rule of thumb: if you need some python packages **only** for ansible module to
+work and don't need it in system-wide pip repository, then you should put these
+modules in separate virtual environment and set proper
+`ansible_python_interpreter` for the play. See `docker_py` role and grep for
+`/root/venv` for examples.
+
+If you need to store secrets in repository then store them as vaults using
+`ansible/vault` script as a wrapper for `ansible-vault`. Store encrypted
+variables with `vault_` prefix to make world [a more grepable place]
+(http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults).
+`ansible/play` wrapper for `ansible-playbook` will execute a playbook with
+proper vault secret and inventory.
+
 ## ooni-backend
 
 This ansible role installs ooni-backend from git repo via pip in a python

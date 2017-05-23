@@ -1,0 +1,7 @@
+---
+- hosts: ooni-get
+  vars:
+    letsencrypt_nginx: yes
+  roles:
+    - letsencrypt
+    - nginx
