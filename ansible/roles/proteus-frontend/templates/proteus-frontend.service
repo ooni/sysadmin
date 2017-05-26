@@ -1,0 +1,13 @@
+[Unit]
+Description=Proteus Frontend service
+
+[Service]
+User={{ proteus_user }}
+Group={{ proteus_group }}
+WorkingDirectory={{ proteus_install_path }}/proteus/proteus-frontend/
+EnvironmentFile={{ proteus_install_path }}/proteus-frontend.env
+ExecStart=/usr/bin/npm run start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

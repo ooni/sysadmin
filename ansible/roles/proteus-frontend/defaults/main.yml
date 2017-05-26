@@ -1,0 +1,15 @@
+#proteus_notify_url: "https://notify.proteus.test.ooni.io"
+proteus_registry_url: "https://registry.proteus.test.ooni.io"
+proteus_events_url: "https://events.proteus.test.ooni.io"
+
+proteus_user:   proteus
+proteus_group:  proteus
+
+proteus_frontend_port: 3000
+proteus_frontend_address: "127.0.0.1"
+proteus_frontend_https_port: 443
+
+proteus_environment: production
+proteus_install_path: /srv/proteus
+proteus_version: "0.1.0-dev"
+proteus_git_url: https://github.com/thetorproject/proteus
