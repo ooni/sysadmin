@@ -1,0 +1,8 @@
+- hosts: registry.proteus.test.ooni.io
+  vars:
+    letsencrypt_nginx: yes
+    proteus_registry_https_port: 443
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - proteus-registry

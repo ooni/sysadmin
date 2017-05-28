@@ -1,0 +1,8 @@
+- hosts: events.proteus.test.ooni.io
+  vars:
+    proteus_events_https_port: 443
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - proteus-events

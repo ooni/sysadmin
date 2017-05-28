@@ -26,32 +26,10 @@
     - postgresql
     - proteus-db
 
-- hosts: registry.proteus.test.ooni.io
-  gather_facts: false # already gathered
-  vars:
-    letsencrypt_nginx: yes
-    proteus_registry_https_port: 443
-    letsencrypt_domains: "{{ inventory_hostname }}"
-  roles:
-    - letsencrypt
-    - proteus-registry
+- include: deploy-proteus-registry.yml
 
-- hosts: events.proteus.test.ooni.io
-  gather_facts: false # already gathered
-  vars:
-    proteus_events_https_port: 443
-    letsencrypt_nginx: yes
-    letsencrypt_domains: "{{ inventory_hostname }}"
-  roles:
-    - letsencrypt
-    - proteus-events
+- include: deploy-proteus-events.yml
 
-- hosts: notify.proteus.test.ooni.io
-  gather_facts: false # already gathered
-  vars:
-    proteus_notify_https_port: 443
-    letsencrypt_nginx: yes
-    letsencrypt_domains: "{{ inventory_hostname }}"
-  roles:
-    - letsencrypt
-    - proteus-notify
+- include: deploy-proteus-notify.yml
+
+- include: deploy-proteus-frontend.yml

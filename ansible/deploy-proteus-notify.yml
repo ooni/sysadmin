@@ -1,0 +1,8 @@
+- hosts: notify.proteus.test.ooni.io
+  vars:
+    proteus_notify_https_port: 443
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - proteus-notify

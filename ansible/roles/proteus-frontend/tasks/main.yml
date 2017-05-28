@@ -35,6 +35,9 @@
   command: npm run build
   args:
     chdir: "{{ proteus_install_path }}/proteus/proteus-frontend"
+  environment:
+    REGISTRY_URL: "{{ proteus_registry_url }}"
+    EVENTS_URL: "{{ proteus_events_url }}"
 
 - name: set permissions, owner and group
   file:

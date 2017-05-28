@@ -46,6 +46,13 @@
     src: proteus-notify.toml.j2
     dest: "{{ proteus_config_path }}/proteus-notify.toml"
 
+- name: Write Proteus APN key
+  notify:
+  - reload proteus
+  copy:
+    content: "{{ proteus_apn_key_content }}"
+    dest: "{{ proteus_config_path }}/apn-key.pem"
+
 - name: Install proteus systemd service file
   notify:
   - restart proteus
