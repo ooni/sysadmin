@@ -89,3 +89,23 @@ separate.bouncer.test.ooni.io # DELETE
 separate.a.web-connectivity.th.test.ooni.io # DELETE
 seedling.infra.ooni.io # DELETE
 reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
+
+[test-helpers:children] # oonibackend test-helpers group
+http-test-helpers
+echo-test-helpers
+
+[http-test-helpers] # oonibackend http test-helper group
+a.http.th.ooni.io http_return_json_headers_address=37.218.247.95 dns_test_helper_address=37.218.247.95:57004
+
+[http-test-helpers:vars]
+enable_tcp_echo_helper=no
+enable_daphn3_helper=no
+http_return_json_headers_port=80
+
+[echo-test-helpers] # oonibackend echo test-helper group
+a.echo.th.ooni.io tcp_echo_address=199.119.112.49 dns_test_helper_address=199.119.112.49:57004
+c.echo.th.ooni.io tcp_echo_address=37.218.247.110 dns_test_helper_address=37.218.247.110:57004
+
+[echo-test-helpers:vars]
+enable_http_return_json_headers_helper=no
+tcp_echo_port=80

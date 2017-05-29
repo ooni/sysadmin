@@ -105,6 +105,17 @@ golang-go package.
 ansible-playbook -i "hosts-inventory" ansible/install-ooniprobe.yml -v
 ```
 
+## ooni-backend
+
+This ansible role deploys ooni-backend dns, tcp_echo and
+http_return_json_headers test-helpers.
+
+### execute role
+
+```
+ansible-playbook -i ansible/inventory ansible/install-oonibackend.yml
+```
+
 ## Third party tools
 
 This ansible role install third party tools required for some ooniprobe

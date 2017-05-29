@@ -21,7 +21,7 @@ helpers:
   dns_discovery:
     address: null
     resolver_address: null
-{% if enable_dns_discovery_helper %}
+{% if enable_dns_discovery_helper | default('') %}
     tcp_port: {{ dns_discover_port_tcp }}
     udp_port: {{ dns_discover_port_udp }}
 {% else %}
