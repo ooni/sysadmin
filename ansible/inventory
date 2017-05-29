@@ -89,3 +89,6 @@ separate.bouncer.test.ooni.io # DELETE
 separate.a.web-connectivity.th.test.ooni.io # DELETE
 seedling.infra.ooni.io # DELETE
 reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
+
+[slackin]
+slack.openobservatory.org

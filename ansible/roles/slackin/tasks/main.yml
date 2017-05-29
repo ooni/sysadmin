@@ -6,8 +6,8 @@
     state: directory
 
 - name: Create slack-irc-bridge config
-  template:
-    src: config.json.secrets
+  copy:
+    content: {{ slack_irc_config }}
     dest: "{{ slack_irc_dir }}/config.json"
 
 - name: Deploy slackin, letsecnrypt and slack irc bridge containers

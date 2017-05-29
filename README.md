@@ -207,7 +207,7 @@ irc bridge.
 ### execute role
 
 ```
-ansible-playbook -i "hosts-inventory" ansible/deploy-slackin.yml -v
+ansible/play -i ansible/inventory ansible/deploy-slackin.yml
 ```
 
 # Instructions
