@@ -6,4 +6,4 @@
     name=python-pip
 
 - name: Install pip package docker-compose
-  pip: name=docker-compose
+  pip: name=docker-compose version=1.9.0

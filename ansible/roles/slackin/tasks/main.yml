@@ -1,0 +1,53 @@
+---
+
+- name: Create {{ slack_irc_dir }} dir
+  file:
+    path: "{{ slack_irc_dir }}"
+    state: directory
+
+- name: Create slack-irc-bridge config
+  copy:
+    content: {{ slack_irc_config }}
+    dest: "{{ slack_irc_dir }}/config.json"
+
+- name: Deploy slackin, letsecnrypt and slack irc bridge containers
+  docker_service:
+    project_name: slackin
+    definition:
+      version: '2'
+      services:
+        https-portal:
+          image: steveltn/https-portal:1.0.0
+          restart: always
+          environment:
+            DOMAINS: "{{ slackin_domains }}"
+            PRODUCTION: "TRUE"
+          ports:
+            - "80:80"
+            - "443:443"
+          links:
+            - slackin
+        slackin:
+          image: chk1/slackin
+          restart: always
+          ports:
+            - "3000:3000"
+          environment:
+            SLACKIN_VERSION: latest
+            SLACK_ORG: "{{ slack_org }}"
+            SLACK_TOKEN: "{{ slack_token }}"
+
+- name: Create slack-irc-bridge container
+  docker_container:
+    name: slack-irc-bridge
+    image: chihchun/slack-ircbridge
+    restart_policy: always
+    volumes:
+      - "{{ slack_irc_dir }}:/slack-irc"
+
+- name: Wait for services to start
+  pause: minutes=1
+
+- name: Check that Slackin website returns HTTP status 200
+  uri:
+    url: https://{{ slackin_domains.split(' ')[0] }}
