@@ -15,7 +15,7 @@
 
 - name: grafana service
   docker_container:
-    image: grafana/grafana
+    image: "{{ grafana_docker_image }}"
     name: grafana
     ports:
       - "{{ grafana_listen_address }}:3000"

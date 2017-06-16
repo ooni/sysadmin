@@ -1,7 +1,7 @@
 go_arch: amd64
 
-alertmanager_user:   prometheus
-alertmanager_group:  prometheus
+alertmanager_user:   alertmanager
+alertmanager_group:  alertmanager
 
 alertmanager_install_path:        /srv/alertmanager
 alertmanager_config_path:         /srv/alertmanager/config

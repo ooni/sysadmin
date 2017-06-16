@@ -4,8 +4,14 @@
 # point of truth for the keys, unknown keys are dropped, that's why
 # `authorized_key` ansible module is not used.
 
-- name: install sudo
-  apt: name=sudo state=latest
+- name: install some common packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - "sudo"
+    - "vim"
 
 - name: create group
   group: name={{ item.login }} gid={{ item.id }} state=present
@@ -40,9 +46,3 @@
 - name: sudoers.d/adm
   template: src=sudoers dest=/etc/sudoers.d/adm owner=root group=root mode=0440 validate='visudo -cf %s'
 
-- name: install sudo
-  apt:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - "vim"

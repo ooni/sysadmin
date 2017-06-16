@@ -7,7 +7,7 @@
     group: "{{ alertmanager_group }}"
     createhome: no
     shell: /sbin/nologin
-    comment: "Prometheus User"
+    comment: "Alertmanager User"
     state: present
 
 - name: set permissions, owner and group
@@ -37,8 +37,8 @@
     src: "{{ alertmanager_tarball_url }}"
     dest: "{{ alertmanager_install_path }}"
     mode: 0755
-    owner: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
+    owner: "root"
+    group: "root"
     copy: no
 
 - name: Configure Alertmanager

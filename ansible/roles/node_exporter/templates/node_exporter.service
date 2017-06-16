@@ -2,8 +2,8 @@
 Description=Prometheus Node Exporter
 
 [Service]
-User=nobody
-Group=nogroup
+User=node_exporter
+Group=node_exporter
 EnvironmentFile=-/etc/default/node_exporter
 ExecStart={{ node_exporter_path }}/node_exporter -collectors.enabled ${COLLECTORS} -collector.textfile.directory {{ node_exporter_textfiles_path }} -web.listen-address {{ node_exporter_listen_address }}
 KillMode=process
