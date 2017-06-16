@@ -32,41 +32,55 @@
     group: "{{ node_exporter_group }}"
     mode: "0700"
 
-- name: write the root ca private key to temporary directory
+- name: Create local private dir
+  file:
+    path: "{{ local_private_path }}"
+    state: directory
+    mode: 0700
+  delegate_to: localhost
+
+- name: Fetch the CSR from the host
+  fetch:
+    src: "{{ node_exporter_ssl_csr_path }}"
+    dest: "{{ local_private_path }}/{{ inventory_hostname }}.csr"
+    flat: yes
+
+# -- BEGIN RUN ON THE CONTROLLER HOST --
+
+- name: Write the root ca private key to the private dir
   copy:
     content: "{{ vault_prometheus_root_ca_key }}"
-    dest: "{{ node_exporter_private_path }}/root_ca.key"
+    dest: "{{ local_private_path }}/prometheus_root_ca.key"
+  delegate_to: localhost
 
 - name: Set root ca key permissions
   file:
-    path: "{{ node_exporter_private_path }}/root_ca.key"
+    path: "{{ local_private_path }}/prometheus_root_ca.key"
     mode: "0700"
+  delegate_to: localhost
 
 - name: write the root ca cert to temporary directory
   copy:
     content: "{{ vault_prometheus_root_ca_pem }}"
-    dest: "{{ node_exporter_private_path }}/root_ca.pem"
+    dest: "{{ local_private_path }}/prometheus_root_ca.pem"
+  delegate_to: localhost
 
 - name: Set root ca cert permissions
   file:
-    path: "{{ node_exporter_private_path }}/root_ca.pem"
+    path: "{{ local_private_path }}/prometheus_root_ca.pem"
     mode: "0700"
+  delegate_to: localhost
 
 - name: Generate signed SSL certificate
-  command: openssl x509 -req -sha256 -days 1024 -in {{ node_exporter_ssl_csr_path }} -CA "{{ node_exporter_private_path }}/root_ca.pem" -CAkey "{{ node_exporter_private_path }}/root_ca.key" -CAcreateserial -out {{ node_exporter_ssl_cert_path }} -extensions v3_ca creates={{ node_exporter_ssl_cert_path }}
+  command: openssl x509 -req -sha256 -days 1024 -in "{{ local_private_path }}/{{inventory_hostname}}.csr" -CA "{{ local_private_path }}/prometheus_root_ca.pem" -CAkey "{{ local_private_path }}/prometheus_root_ca.key" -CAcreateserial -out "{{ local_private_path }}/{{ inventory_hostname }}.cert" -extensions v3_ca creates="{{ local_private_path }}/{{ inventory_hostname }}.cert"
+  delegate_to: localhost
 
-- name: Set signed cert permissions
-  file:
-    path: "{{ node_exporter_ssl_cert_path }}"
+# -- END RUN ON THE CONTROLLER HOST --
+
+- name: Copy to remote machine the signed certificate
+  copy:
+    src: "{{ local_private_path }}/{{ inventory_hostname }}.cert"
+    dest: "{{ node_exporter_ssl_cert_path }}"
     owner: "{{ node_exporter_user }}"
     group: "{{ node_exporter_group }}"
     mode: "0700"
-
-# XXX there should be a way to delete this even if the previous steps fail
-- name: Delete temporary files
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - "{{ node_exporter_private_path }}/root_ca.key"
-    - "{{ node_exporter_private_path }}/root_ca.pem"

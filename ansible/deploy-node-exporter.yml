@@ -1,15 +1,15 @@
 ---
 - include: ansible-version.yml
 
-#- hosts: monitored
-#  become: false
-#  remote_user: root
-#  gather_facts: true
-#  roles:
-#    - role: adm
-#      adm_passwd:
-#        - "{{ passwd.art }}"
-#        - "{{ passwd.darkk }}"
+- hosts: monitored
+  become: false
+  remote_user: root
+  gather_facts: true
+  roles:
+    - role: adm
+      adm_passwd:
+        - "{{ passwd.art }}"
+        - "{{ passwd.darkk }}"
 
 - hosts: monitored
   gather_facts: true

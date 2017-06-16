@@ -7,3 +7,4 @@ node_exporter_ssl_key_path: "{{ node_exporter_private_path }}/{{ inventory_hostn
 node_exporter_ssl_csr_path: "{{ node_exporter_private_path }}/{{ inventory_hostname }}.csr"
 node_exporter_ssl_cert_path: "{{ node_exporter_private_path }}/{{ inventory_hostname }}.cert"
 node_exporter_ssl_cert_subj: "/C=ZZ/ST=Internet/L=Internet/O=Open Observatory of Network Interfernce Monitoring/CN={{ inventory_hostname }}"
+local_private_path: "~/.ooni-sysadmin/private/"
