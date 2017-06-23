@@ -21,7 +21,6 @@
 
 - name: clone proteus-frontend repo
   git:
-    depth: 1
     repo: "{{ proteus_git_url }}"
     dest: "{{ proteus_install_path }}/proteus"
     version: "{{ proteus_version }}"

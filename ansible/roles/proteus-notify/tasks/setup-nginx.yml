@@ -6,12 +6,23 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - nginx
+    - "nginx"
+    - "python-passlib"
 
 - name: Remove default nginx virtual host
   file:
     name: /etc/nginx/sites-enabled/default
     state: absent
+  register: nginx
+
+- name: Create password file for nginx
+  htpasswd:
+    path: /etc/nginx/proteus.htpasswd
+    name: "{{ proteus_notify_basic_auth_user }}"
+    password: "{{ proteus_notify_basic_auth_password }}"
+    owner: root
+    group: www-data
+    mode: 0640
   register: nginx
 
 - name: Add nginx virtual host config

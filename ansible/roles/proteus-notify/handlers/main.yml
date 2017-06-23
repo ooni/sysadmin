@@ -2,3 +2,7 @@
   systemd: name=proteus-notify.service state=restarted
 - name: reload proteus
   systemd: name=proteus-notify.service state=reloaded
+- name: reload gorush
+  systemd: name=gorush.service state=reloaded
+- name: restart gorush
+  systemd: name=gorush.service state=restarted

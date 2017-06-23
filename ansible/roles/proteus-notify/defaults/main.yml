@@ -26,3 +26,12 @@ proteus_download_url: https://github.com/thetorproject/proteus/releases/download
 
 proteus_tarball_url: "{{ proteus_download_url }}/v{{ proteus_version }}/proteus-notify-{{ proteus_version }}.linux-{{ go_arch }}.tar.gz"
 proteus_path: "{{ proteus_install_path }}/proteus-notify-{{ proteus_version }}.linux-{{ go_arch }}"
+
+gorush_version: "1.9.0"
+gorush_download_url: "https://github.com/appleboy/gorush/releases/download"
+gorush_url: "{{ gorush_download_url }}/v{{ gorush_version }}/gorush-v{{ gorush_version }}-linux-{{ go_arch }}"
+gorush_path: "{{ proteus_install_path }}/gorush-v{{ gorush_version }}-linux-{{ go_arch }}"
+
+notification_backend: "gorush"
+proteus_notify_basic_auth_user: "proteus"
+proteus_notify_basic_auth_password: "{{ vault_proteus_notify_basic_auth_password }}"

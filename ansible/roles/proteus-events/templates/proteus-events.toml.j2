@@ -1,10 +1,14 @@
 [core]
 environment = "{{ proteus_environment }}"
 log-level = "{{ proteus_log_level }}"
-notify-url = "{{ proteus_notify_url }}"
+gorush-url = "{{ proteus_notify_url }}"
+notify-topic-ios = "org.openobservatory.NetProbe"
+notify-topic-android = "org.openobservatory.NetProbe"
 
 [auth]
 jwt-secret = "{{ proteus_auth_jwt_secret }}"
+gorush-basic-auth-user = "{{ proteus_notify_basic_auth_user }}"
+gorush-basic-auth-password = "{{ proteus_notify_basic_auth_password }}"
 
 [api]
 port = {{ proteus_api_port }}
@@ -15,5 +19,7 @@ url = "{{ proteus_database_url }}"
 active-probes-table = "active_probes"
 probe-updates-table = "probe_updates"
 jobs-table = "jobs"
+job-alerts-table = "job_alerts"
+job-tasks-table = "job_tasks"
 tasks-table = "tasks"
 accounts-table = "accounts"
