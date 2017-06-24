@@ -296,7 +296,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -334,7 +334,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -372,7 +372,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -410,7 +410,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -448,7 +448,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -486,7 +486,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -524,7 +524,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -562,7 +562,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -600,7 +600,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -638,7 +638,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -752,7 +752,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -790,7 +790,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -942,7 +942,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -980,7 +980,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1056,7 +1056,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1094,7 +1094,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1132,7 +1132,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1155,15 +1155,7 @@
             "memory": "512", 
             "name": "delete.me", 
             "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.83", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
+                "v4": []
             }, 
             "region": {
                 "available": "1", 
@@ -1189,15 +1181,7 @@
             "memory": "512", 
             "name": "delete.me", 
             "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.84", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
+                "v4": []
             }, 
             "region": {
                 "available": "1", 
@@ -1223,15 +1207,7 @@
             "memory": "2048", 
             "name": "delete.me", 
             "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.85", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
+                "v4": []
             }, 
             "region": {
                 "available": "1", 
@@ -1519,9 +1495,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 f7:82:8f:5c:55:22:5a:4a:33:80:70:86:40:c3:50:f1\n", 
-                "ssh_ecdsa": "256 63:55:ee:0b:d9:7b:57:fa:a5:bf:7a:a7:aa:37:85:9b\n", 
-                "ssh_rsa": "2048 b9:ed:80:a1:b9:3d:5d:83:c4:9d:40:93:a5:2b:aa:d5\n"
+                "ssh_dsa": "1024 c1:7e:da:21:7c:fe:e0:0e:4d:50:ba:d8:6f:8d:28:15\n", 
+                "ssh_ecdsa": "256 aa:12:23:14:93:53:c8:39:8f:47:8e:ab:34:5d:44:9b\n", 
+                "ssh_rsa": "2048 8b:fe:07:39:4f:53:87:8c:8a:09:3e:b9:47:27:56:1e\n"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1557,9 +1533,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 10:2e:1b:55:f6:50:6e:f4:03:86:05:9a:df:fa:a4:85\n", 
-                "ssh_ecdsa": "256 eb:89:2b:78:e5:52:61:34:7d:f0:62:70:7c:f6:ed:3a\n", 
-                "ssh_rsa": "2048 a8:a8:38:e3:eb:ab:8f:44:cb:b1:5d:86:98:3e:ac:b8\n"
+                "ssh_dsa": "1024 cb:37:22:d1:33:01:ef:27:78:fe:9d:ed:09:80:2c:61\n", 
+                "ssh_ecdsa": "256 ed:82:4c:7d:6a:c4:7f:15:d8:92:77:ad:20:d4:24:33\n", 
+                "ssh_rsa": "2048 df:03:1c:50:6e:bb:d7:0f:f2:d8:d8:32:50:b2:b8:2d\n"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1595,9 +1571,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 11:0b:c5:3e:42:7f:e0:c8:56:56:9c:eb:6c:8c:fe:a1\n", 
-                "ssh_ecdsa": "256 11:4c:d1:d8:9c:76:4c:e3:15:51:f1:4f:01:f0:c7:b0\n", 
-                "ssh_rsa": "2048 87:48:cc:a1:c2:a8:a0:08:e9:af:4a:b0:58:4d:73:fe\n"
+                "ssh_dsa": "1024 ed:06:96:01:df:3e:1d:1c:23:2c:4e:ba:fb:25:1f:af\n", 
+                "ssh_ecdsa": "256 ee:14:12:f8:87:25:36:36:85:38:e0:23:74:86:3c:9d\n", 
+                "ssh_rsa": "2048 b0:0d:55:a5:e8:b8:08:f0:1b:cb:f1:56:72:2a:41:a0\n"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1633,9 +1609,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 23:bb:f2:57:34:46:e7:8c:93:05:a8:43:96:22:d0:f2\n", 
-                "ssh_ecdsa": "256 f4:a4:3a:d7:3d:bc:e9:72:64:c5:4c:bc:a9:ad:a0:03\n", 
-                "ssh_rsa": "2048 9b:61:b1:db:02:d3:28:1a:96:b3:b6:99:50:6b:55:5b\n"
+                "ssh_dsa": "1024 10:84:ac:ea:4e:34:5d:ef:1d:d6:a8:44:87:79:93:32\n", 
+                "ssh_ecdsa": "256 40:d0:72:18:c9:cb:0d:16:46:06:34:8e:88:b2:70:18\n", 
+                "ssh_rsa": "2048 ab:ce:7f:24:52:0f:1b:07:f1:80:eb:f6:96:3a:d7:e7\n"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1659,10 +1635,238 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "4"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "1795", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 d3:d2:f4:6a:21:36:79:97:7c:e6:43:c8:e8:21:6e:39\n", 
+                "ssh_ecdsa": "256 63:cc:65:4f:ca:88:e6:bd:a7:f7:48:ba:d3:ef:01:cb\n", 
+                "ssh_rsa": "2048 ae:b6:7b:d7:18:6d:5d:9a:c2:ba:3d:aa:15:be:98:c3\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "proteus.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.62", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "2"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "1796", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 1a:30:51:d5:9a:0a:52:1c:60:77:44:f6:1b:bb:2e:6c\n", 
+                "ssh_ecdsa": "256 88:a4:87:27:e9:44:bf:7a:06:f1:90:84:e9:7a:49:b4\n", 
+                "ssh_rsa": "2048 1f:db:7c:ae:44:cb:96:88:4f:03:22:c9:1b:60:7e:ec\n"
+            }, 
+            "locked": false, 
+            "memory": "6144", 
+            "name": "events.proteus.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.63", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "2"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "1798", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 c1:2e:ee:fe:33:8a:fa:15:c3:11:dc:4a:fa:4b:45:a6\n", 
+                "ssh_ecdsa": "256 93:77:65:30:90:4f:2a:59:c7:1a:88:61:22:94:7c:06\n", 
+                "ssh_rsa": "2048 a5:94:b0:17:b5:84:66:25:bd:48:4c:8a:a4:02:d8:f1\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "registry.proteus.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.65", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "2"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "1799", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 73:23:0c:9c:9b:4f:c0:04:81:30:45:40:88:21:b2:04\n", 
+                "ssh_ecdsa": "256 cc:e3:81:6f:29:33:b1:6d:1b:70:e0:79:9e:da:1b:8d\n", 
+                "ssh_rsa": "2048 fa:41:53:27:f3:c2:c2:93:88:3a:7a:fe:e5:aa:dc:d9\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "notify.proteus.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.67", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "stopped", 
+            "vcpus": "2"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 200, 
+            "features": [], 
+            "id": "1800", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 40:44:ab:52:95:9e:af:14:f1:2f:22:e6:b0:ed:10:56\n", 
+                "ssh_ecdsa": "256 45:5d:c9:b0:d9:b5:c8:bb:af:bf:e0:cd:29:4c:c5:a2\n", 
+                "ssh_rsa": "2048 a9:2a:fe:2c:8b:5c:b8:13:70:ec:01:a5:9b:dd:af:5f\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "db-1.proteus.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.79", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "stopped", 
+            "vcpus": "2"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 150, 
+            "features": [], 
+            "id": "1811", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 d7:0d:f6:33:0b:46:3b:9b:e7:64:9d:b5:0a:a0:64:ac\n", 
+                "ssh_ecdsa": "256 81:6a:8c:83:66:1b:a9:f2:1d:f9:29:10:92:5b:b0:df\n", 
+                "ssh_rsa": "2048 46:6e:76:fd:bf:bc:ee:16:da:81:bf:05:b3:95:02:cb\n"
+            }, 
+            "locked": false, 
+            "memory": "16384", 
+            "name": "hkgmetadb.infra.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.56", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "4"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 44
+        "total": 50
     }
 }
