@@ -21,7 +21,7 @@ dag = DAG(
     dag_id='hist_canning',
     schedule_interval=timedelta(days=1),
     start_date=datetime(2012, 12, 5),
-    end_date=datetime(2017, 4, 22), # NB: end_date is included
+    end_date=datetime(2017, 6, 20), # NB: end_date is included
     default_args={
         'email': 'leon+airflow@darkk.net.ru',
         'retries': 1,
@@ -45,12 +45,7 @@ BashOperator(
     bash_command='simhash_text.sh',
     dag=dag)
 
-BashOperator(
-    pool='datacollector_disk_io',
-    task_id='meta_pg',
-    bash_command='meta_pg.sh',
-    dag=dag)
-
+BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_s3_ls', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_cleanup', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_s3_ls', bash_command='shovel_jump.sh', dag=dag)

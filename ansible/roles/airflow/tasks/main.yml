@@ -97,6 +97,7 @@
 - name: mkdir etc/af-worker
   file: dest=/srv/etc/af-worker state=directory owner=root group=root mode=0700
 - template: dest=/srv/etc/af-worker/s3read.env src=af-worker-s3read.env owner=root group=root mode=0400
+- template: dest=/srv/etc/af-worker/hkgmetadb.env src=af-worker-hkgmetadb.env owner=root group=root mode=0400
 
 - name: mkdir af-worker-bin
   file: dest=/srv/af-worker-bin state=directory owner=root group=root mode=0755

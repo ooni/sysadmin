@@ -59,11 +59,22 @@ case "$script" in
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:rw"
     ;;
 
+    # TODO: kill it when simhash is enabled
     centrifugation.py)
     docker run $docksafe --network none -v=$public/simhash:$public/simhash debian:jessie /bin/bash -c "chown $uidno $public/simhash"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
     volargs="${volargs} --volume=$public/simhash:$public/simhash:rw"
     docknet="--net af_default --link af_oometa_1:metadb" # FIXME:too hardcoded
+    ;;
+
+    meta_pg)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/hkgmetadb.env"
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
+    script=""
+    set -- /usr/local/bin/centrifugation.py --start "$isofrom" --end "$isotill" \
+        --autoclaved-root /data/ooni/public/autoclaved \
+        --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
     ;;
 
     reports_raw_s3_ls)
@@ -118,4 +129,4 @@ if [ -n "$script" ]; then
     set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
 fi
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.4 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.5 "$@"

@@ -1,0 +1,2 @@
+---
+shovel_postgres_password: "{{ vault_shovel_postgres_password }}"
