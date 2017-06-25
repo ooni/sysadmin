@@ -44,10 +44,3 @@
     restart_policy: always
     volumes:
       - "{{ slack_irc_dir }}:/slack-irc"
-
-- name: Wait for services to start
-  pause: minutes=1
-
-- name: Check that Slackin website returns HTTP status 200
-  uri:
-    url: https://{{ slackin_domains.split(' ')[0] }}

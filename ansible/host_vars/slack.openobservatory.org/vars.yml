@@ -2,6 +2,7 @@
 slackin_domains: slack.openobservatory.org -> http://slackin:3000'
 slack_org: '{{ vault_slack_org }}'
 slack_token: '{{ vault_slack_token }}'
+slack_irc_dir: "/etc/slack-irc"
 slack_irc_config: |
   [
     {
