@@ -9,11 +9,19 @@ slack_irc_config: |
   [
     {
       "nickname": "slacktopus",
-      "autoSendCommands": [
-        ["PRIVMSG", "NickServ", "GHOST slacktopus {{ vault_slacktopus_password }}" ],
-        ["NICK", "slacktopus"],
-        ["PRIVMSG", "NickServ", "IDENTIFY {{ vault_slacktopus_password }}"]
-      ],
+      "ircOptions": {
+        "realName": "OONI Slack relay",
+        "stripColors": true,
+        "retryCount": 60,
+        "retryDelay": 5000,
+        "port": 6697,
+        "secure": true,
+        "autoSendCommands": [
+          ["PRIVMSG", "NickServ", "GHOST slacktopus {{ vault_slacktopus_password }}" ],
+          ["NICK", "slacktopus"],
+          ["PRIVMSG", "NickServ", "IDENTIFY {{ vault_slacktopus_password }}"]
+        ],
+      },
       "server": "irc.oftc.net",
       "token": "{{ vault_slack_irc_token }}",
       "channelMapping": {
@@ -21,6 +29,7 @@ slack_irc_config: |
         "{{ channel.slack }}": "{{ channel.irc }}",
         {% endfor %}
         "#ooni": "#ooni",
+        "#ooni-bots": "#ooni-bots",
         "#ooni-entropy": "#ooni-entropy"
       }
     }

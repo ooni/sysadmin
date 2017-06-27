@@ -1,17 +1,20 @@
 ---
 
 - name: Create {{ slack_irc_dir }} dir
+  tags: slack-irc
   file:
     path: "{{ slack_irc_dir }}"
     state: directory
 
 - name: Create slack-irc-bridge config
+  tags: slack-irc
   copy:
     content: "{{ slack_irc_config }}"
     dest: "{{ slack_irc_dir }}/config.json"
   notify: restart slack-irc-bridge
 
 - name: Deploy slackin, letsecnrypt containers
+  tags: slackin
   docker_service:
     project_name: slackin
     definition:
@@ -39,6 +42,7 @@
             SLACK_TOKEN: "{{ slack_token }}"
 
 - name: Deploy slack-irc-bridge container
+  tags: slack-irc
   docker_container:
     name: slack-irc-bridge
     image: chihchun/slack-ircbridge
