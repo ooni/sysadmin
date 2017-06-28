@@ -38,8 +38,8 @@
             - "3000:3000"
           environment:
             SLACKIN_VERSION: latest
-            SLACK_ORG: "{{ slack_org }}"
-            SLACK_TOKEN: "{{ slack_token }}"
+            SLACK_ORG: "{{ slackin_org }}"
+            SLACK_TOKEN: "{{ slackin_token }}"
 
 - name: Deploy slack-irc-bridge container
   tags: slack-irc
