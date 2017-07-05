@@ -1,8 +1,8 @@
 go_arch: amd64
 
-prometheus_user:   prometheus
-prometheus_group:  prometheus
-prometheus_uid:  2001
+prometheus_user:   "{{ passwd.prometh.user }}"
+prometheus_group:  "{{ passwd.prometh.group }}"
+prometheus_uid:  "{{ passwd.prometh.id }}"
 
 prometheus_install_path:         /srv/prometheus
 prometheus_config_path:          /srv/prometheus/config

@@ -9,6 +9,9 @@ passwd:
   afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
   plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
+  nodeexp:  {login: nodeexp,  group: nodeexp, id: 2200, comment: Node Exporter}
+  prometh:  {login: prometh,  group: prometh, id: 2201, comment: Prometheus}
+  alertman: {login: alertman, group: alertman, id: 2202, comment: Alert Manager}
   # people
   agrabeli:
     login: agrabeli
