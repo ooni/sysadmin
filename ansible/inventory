@@ -42,7 +42,7 @@ c.echo.th.ooni.io
 c.collector.ooni.io
 ooni-measurements-db.infra.ooni.io
 ooni-pipeline-db.infra.ooni.io
-ssdamsterdam.infra.ooni.io
+ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
 ubuilder.infra.ooni.io
