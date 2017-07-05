@@ -2,6 +2,7 @@ go_arch: amd64
 
 node_exporter_user: node_exporter
 node_exporter_group: node_exporter
+node_exporter_uid: 2000
 
 node_exporter_install_path: /srv/node_exporter
 node_exporter_textfiles_path: /srv/node_exporter/textfiles

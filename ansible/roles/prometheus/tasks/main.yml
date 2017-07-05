@@ -5,6 +5,7 @@
   user:
     name: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
+    uid: "{{ prometheus_uid }}"
     createhome: no
     shell: /sbin/nologin
     comment: "Prometheus User"

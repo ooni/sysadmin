@@ -5,6 +5,7 @@
   user:
     name: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
+    uid: "{{ alertmanager_uid }}"
     createhome: no
     shell: /sbin/nologin
     comment: "Alertmanager User"

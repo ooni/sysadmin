@@ -2,6 +2,7 @@ go_arch: amd64
 
 prometheus_user:   prometheus
 prometheus_group:  prometheus
+prometheus_uid:  2001
 
 prometheus_install_path:         /srv/prometheus
 prometheus_config_path:          /srv/prometheus/config
