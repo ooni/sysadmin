@@ -37,33 +37,43 @@ private=/data/ooni/private
 public=/data/ooni/public
 volargs=""
 case "$script" in
-    # FIXME: it's file-based polling as I'm a bit afraid of upgrading 1.7.1.3
-    # to 1.8.0 right now and HTTP-based polling is broken (network failure is
-    # treated as success).
-    is-reports-raw-ready)
-    exec docker run $docksafe --network none "--volume=$private/reports-raw-ready:$private/reports-raw-ready:ro" debian:jessie \
-        /bin/bash -c "test -f $private/reports-raw-ready/${bucket} && exit 42 || exit 13"
-    # NB: no fallthrough
+    reports_raw_sensor)
+    volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
+    volargs="${volargs} --volume=$private/reports-raw-shals:$private/reports-raw-shals:ro"
+    exec docker run $docksafe $docknet $volargs debian:jessie \
+        /bin/bash -c "cd $private/reports-raw/${bucket} && stat --printf='%n %s\n' * | LC_ALL=C sort | sha256sum --check $private/reports-raw-shals/${bucket} && exit 42 || exit 13"
     ;;
 
-    canning.py)
+    canning)
     docker run $docksafe --network none -v=$private/canned:$private/canned debian:jessie /bin/bash -c "mkdir -p $private/canned/${bucket} && chown $uidno $private/canned/${bucket}"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/canning.py --start "$isofrom" --end "$isotill" \
+        --reports-raw-root $private/reports-raw \
+        --canned-root $private/canned
     ;;
 
-    autoclaving.py)
+    autoclaving)
     docker run $docksafe --network none -v=$public/autoclaved:$public/autoclaved debian:jessie /bin/bash -c "mkdir -p $public/autoclaved/${bucket} && chown $uidno $public/autoclaved/${bucket}"
     volargs="${volargs} --volume=$private/bridge_db:$private/bridge_db:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/autoclaving.py --start "$isofrom" --end "$isotill" \
+        --canned-root $private/canned \
+        --bridge-db $private/bridge_db/bridge_db.json \
+        --autoclaved-root $public/autoclaved
     ;;
 
-    centrifugation.py)
-    docker run $docksafe --network none -v=$public/simhash:$public/simhash debian:jessie /bin/bash -c "chown $uidno $public/simhash"
+    meta_pg)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/hkgmetadb.env"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
-    volargs="${volargs} --volume=$public/simhash:$public/simhash:rw"
-    docknet="--net af_default --link af_oometa_1:metadb" # FIXME:too hardcoded
+    script=""
+    set -- /usr/local/bin/centrifugation.py --start "$isofrom" --end "$isotill" \
+        --autoclaved-root /data/ooni/public/autoclaved \
+        --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
     ;;
 
     reports_raw_s3_ls)
@@ -118,4 +128,4 @@ if [ -n "$script" ]; then
     set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
 fi
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.4 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.7 "$@"
