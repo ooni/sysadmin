@@ -21,30 +21,17 @@ dag = DAG(
     dag_id='hist_canning',
     schedule_interval=timedelta(days=1),
     start_date=datetime(2012, 12, 5),
-    end_date=datetime(2017, 7, 5), # NB: end_date is included
+    end_date=datetime(2017, 7, 6), # NB: end_date is included
     default_args={
         'email': 'leon+airflow@darkk.net.ru',
         'retries': 1,
     })
 
-BashOperator(
-    pool='datacollector_disk_io',
-    task_id='canning',
-    bash_command='canning.sh',
-    dag=dag)
+# NB: removing an Operator from DAG leaves some trash in the database tracking
+# old state of that operator, but it seems to trigger no issues with 1.8.0
 
-BashOperator(
-    pool='datacollector_disk_io',
-    task_id='autoclaving',
-    bash_command='autoclaving.sh',
-    dag=dag)
-
-BashOperator(
-    pool='datacollector_disk_io',
-    task_id='simhash_text',
-    bash_command='simhash_text.sh',
-    dag=dag)
-
+BashOperator(pool='datacollector_disk_io', task_id='canning', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='autoclaving', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_s3_ls', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_cleanup', bash_command='shovel_jump.sh', dag=dag)
@@ -53,7 +40,6 @@ BashOperator(pool='datacollector_disk_io', task_id='sanitised_check', bash_comma
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_cleanup', bash_command='shovel_jump.sh', dag=dag)
 
 dag.set_dependency('canning', 'autoclaving')
-dag.set_dependency('autoclaving', 'simhash_text')
 dag.set_dependency('autoclaving', 'meta_pg')
 
 dag.set_dependency('reports_raw_s3_ls', 'reports_raw_cleanup')

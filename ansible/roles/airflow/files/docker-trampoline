@@ -46,25 +46,26 @@ case "$script" in
     # NB: no fallthrough
     ;;
 
-    canning.py)
+    canning)
     docker run $docksafe --network none -v=$private/canned:$private/canned debian:jessie /bin/bash -c "mkdir -p $private/canned/${bucket} && chown $uidno $private/canned/${bucket}"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
+    script=""
+    set -- /usr/local/bin/canning.py --start "$isofrom" --end "$isotill" \
+        --reports-raw-root $private/reports-raw \
+        --canned-root $private/canned
     ;;
 
-    autoclaving.py)
+    autoclaving)
     docker run $docksafe --network none -v=$public/autoclaved:$public/autoclaved debian:jessie /bin/bash -c "mkdir -p $public/autoclaved/${bucket} && chown $uidno $public/autoclaved/${bucket}"
     volargs="${volargs} --volume=$private/bridge_db:$private/bridge_db:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:rw"
-    ;;
-
-    # TODO: kill it when simhash is enabled
-    centrifugation.py)
-    docker run $docksafe --network none -v=$public/simhash:$public/simhash debian:jessie /bin/bash -c "chown $uidno $public/simhash"
-    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
-    volargs="${volargs} --volume=$public/simhash:$public/simhash:rw"
-    docknet="--net af_default --link af_oometa_1:metadb" # FIXME:too hardcoded
+    script=""
+    set -- /usr/local/bin/autoclaving.py --start "$isofrom" --end "$isotill" \
+        --canned-root $private/canned \
+        --bridge-db $private/bridge_db/bridge_db.json \
+        --autoclaved-root $public/autoclaved
     ;;
 
     meta_pg)
