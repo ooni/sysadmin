@@ -37,13 +37,11 @@ private=/data/ooni/private
 public=/data/ooni/public
 volargs=""
 case "$script" in
-    # FIXME: it's file-based polling as I'm a bit afraid of upgrading 1.7.1.3
-    # to 1.8.0 right now and HTTP-based polling is broken (network failure is
-    # treated as success).
-    is-reports-raw-ready)
-    exec docker run $docksafe --network none "--volume=$private/reports-raw-ready:$private/reports-raw-ready:ro" debian:jessie \
-        /bin/bash -c "test -f $private/reports-raw-ready/${bucket} && exit 42 || exit 13"
-    # NB: no fallthrough
+    reports_raw_sensor)
+    volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
+    volargs="${volargs} --volume=$private/reports-raw-shals:$private/reports-raw-shals:ro"
+    exec docker run $docksafe $docknet $volargs debian:jessie \
+        /bin/bash -c "cd $private/reports-raw/${bucket} && stat --printf='%n %s\n' * | LC_ALL=C sort | sha256sum --check $private/reports-raw-shals/${bucket} && exit 42 || exit 13"
     ;;
 
     canning)
