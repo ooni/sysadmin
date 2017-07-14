@@ -18,3 +18,8 @@
         - "{{ passwd.weasel }}"
         - "{{ passwd.art }}"
         - "{{ passwd.darkk }}"
+
+- hosts: have_fw
+  gather_facts: false
+  roles:
+    - role: fw

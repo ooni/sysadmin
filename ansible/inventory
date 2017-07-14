@@ -30,8 +30,11 @@ hkgmetadb.infra.ooni.io
 vpn-gate-runner.infra.ooni.io
 stage.ooni.io # NOT-GH, ooni-zoo
 test.ooni.io # NOT-GH, ooni-zoo
-
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
+
+[have_fw]
+datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
 
 [ams]
 explorer.ooni.io
