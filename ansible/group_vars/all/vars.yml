@@ -9,7 +9,7 @@ passwd:
   afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
   plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
-  # people
+  # people have id >= 10000
   agrabeli:
     login: agrabeli
     id: 10000
