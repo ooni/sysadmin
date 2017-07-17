@@ -1,0 +1,40 @@
+---
+- name: "Install dependencies"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'unzip'
+    - 'vim'
+
+# Environment
+- name: create piwik group
+  group:
+    name: "{{ piwik_group }}"
+    state: present
+
+- name: create piwik user
+  user:
+    name: "{{ piwik_user }}"
+    group: "{{ piwik_group }}"
+    uid: "{{ piwik_uid }}"
+    createhome: no
+    shell: /sbin/nologin
+    comment: "{{ piwik_user_comment }}"
+    state: present
+
+- name: Create folder
+  file:
+    path: "{{ deploy_path | default(app_path, true) }}{{ item }}"
+    owner: "{{ deploy_owner | default(app_user, true) }}"
+    group: "{{ deploy_group | default(app_user, true) }}"
+    state: directory
+  with_items: "{{ deploy_create_folders }}"
+
+- name: Configure
+  template:
+    src: config.ini.php.j2
+    dest: "{{ deploy_path | default(app_path, true) }}/shared/config/config.ini.php"
+
+- include: setup-mysql.yml
+- include: setup-php.yml
+- include: setup-nginx.yml
+- include: setup-piwik.yml

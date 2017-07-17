@@ -54,6 +54,8 @@ debuilder.infra.ooni.io
 staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 
+analytics.ooni.io
+
 # The machines below can maybe be discontinued
 ooni-probe-demo.infra.ooni.io
 lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update

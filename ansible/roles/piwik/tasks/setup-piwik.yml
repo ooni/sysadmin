@@ -1,0 +1,46 @@
+---
+- name: Define release id
+  set_fact:
+    PIWIK_RELEASE_ID: "{{ [ansible_date_time.year, ansible_date_time.month, ansible_date_time.day, ansible_date_time.hour, ansible_date_time.minute, ansible_date_time.second] | join('') }}"
+
+- name: Download files
+  get_url: url={{ piwik_download_path }} dest={{ app_path }}/tmp/piwik.zip
+
+- name: Create release folder
+  file:
+    path: "{{ deploy_path | default(app_path, true) }}/releases/{{ PIWIK_RELEASE_ID }}"
+    owner: "{{ deploy_owner | default(app_user, true) }}"
+    group: "{{ deploy_group | default(app_user, true) }}"
+    state: directory
+
+- name: Extract archive
+  unarchive:
+    remote_src: true
+    src: "{{ app_path }}/tmp/piwik.zip"
+    dest: "{{ app_path }}/tmp"
+
+- name: Move piwik files
+  command: mv {{ app_path }}/tmp/piwik {{ app_path }}/releases/{{ PIWIK_RELEASE_ID }}/
+
+- name: Link config file
+  file:
+    path: "{{ app_path }}/releases/{{ PIWIK_RELEASE_ID }}/piwik/config/config.ini.php"
+    src: "{{ app_path }}/shared/config/config.ini.php"
+    state: link
+    force: yes
+
+- name: Link current
+  file:
+    path: "{{ app_path }}/current"
+    src: "{{ app_path }}/releases/{{ PIWIK_RELEASE_ID }}"
+    state: link
+    force: yes
+  notify:
+    - restart nginx
+
+- name: Cleanup
+  shell: "ls -dt {{ app_path }}/releases/* | egrep '[0-9]+' | tail -n +6 | xargs rm -rfv"
+  register: deploy_cleanup_result
+  changed_when: "'removed' in deploy_cleanup_result.stdout"
+  sudo: yes
+  sudo_user: root
