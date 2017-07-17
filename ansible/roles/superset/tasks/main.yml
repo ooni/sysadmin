@@ -1,9 +1,39 @@
 ---
+- name: create superset group
+  group:
+    name: "{{ superset_group }}"
+    state: present
+
+- name: create superset user
+  user:
+    name: "{{ superset_user }}"
+    group: "{{ superset_group }}"
+    uid: "{{ superset_uid }}"
+    createhome: yes # Superset needs a home
+    shell: /bin/bash # XXX maybe we can harden this
+    comment: "{{ superset_user_comment }}"
+    state: present
+
+- name: install apt requirements
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - "build-essential"
+    - "libssl-dev"
+    - "libffi-dev"
+    - "python-dev"
+    - "python-pip"
+    - "libsasl2-dev"
+    - "libldap2-dev"
+    - "libpq-dev"
+
 - name: mkdir for config and data
   file:
     path: "{{ item }}"
     state: directory
     mode: "u=rwx,g=rx,o="
+    owner: "{{ superset_user }}"
+    group: "{{ superset_group }}"
   with_items:
     - "{{ superset_path }}"
     - "{{ superset_config_path }}"
@@ -13,17 +43,47 @@
     src: superset_config.py.j2
     dest: "{{ superset_config_path }}/superset_config.py"
 
-- name: superset service
-  docker_container:
-    image: "{{ superset_docker_image }}"
-    name: superset
-    ports:
-      - "{{ superset_port }}:3000"
-    volumes:
-      - "{{ superset_config_path }}:/home/superset/.superset"
+- name: create superset virtualenv
+  pip:
+    name: "{{ item }}"
+    virtualenv: "{{ superset_venv_path }}"
+  with_items:
+    - "superset=={{ superset_version }}"
+    - "psycopg2"
+  become: true
+  become_user: "{{ superset_user }}"
 
-# XXX also do:
-# docker run --detach --name superset [options] amancevice/superset
-# docker exec -it superset superset-init
+- name: create admin user
+  command: "{{ superset_venv_path}}/fabmanager create-admin --app superset --app superset --username {{ superset_admin_username}} --password {{ superset_admin_password }} --firstname admin --lastname admin --email admin@openobservatory.org"
+	environment:
+    PYTHONPATH: "{{ superset_config_path }}" # We pass the PYTHONPATH so that superset can get our custom config
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: upgrade db
+  command: "{{ superset_venv_path}}/superset db upgrade"
+	environment:
+    PYTHONPATH: "{{ superset_config_path }}"
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: init db
+  command: "{{ superset_venv_path}}/superset init"
+	environment:
+    PYTHONPATH: "{{ superset_config_path }}"
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: Install superset.service
+  template:
+    src: superset.service.j2
+    dest: "/etc/systemd/system/superset.service"
+
+- name: Start superset.service
+  systemd:
+    name: superset.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
 
 - include: setup-nginx.yml

@@ -1,6 +1,16 @@
 superset_path: /srv/superset
 superset_config_path: "{{ superset_path }}/config"
-superset_port: "3001"
+superset_venv_path: "{{ superset_path }}/venv"
+superset_port: "8088"
 superset_listen_address: "127.0.0.1:{{ superset_port }}"
-superset_secret_key: "XXXCHANGEMEXXX"
-superset_docker_image: "amancevice/superset:0.18.5"
+superset_secret_key: "{{ vault_superset_secret_key }}"
+superset_version: "0.18.5"
+
+superset_admin_username: "admin"
+superset_admin_password: "{{ vault_superset_admin_password }}"
+
+superset_user: "{{ passwd.superset.login }}"
+superset_group: "{{ passwd.superset.group }}"
+superset_uid: "{{ passwd.superset.id }}"
+superset_user_comment: "{{ passwd.superset.comment }}"
+

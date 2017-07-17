@@ -12,6 +12,8 @@ passwd:
   nodeexp:  {login: nodeexp,  group: nodeexp, id: 2200, comment: Node Exporter}
   prometh:  {login: prometh,  group: prometh, id: 2201, comment: Prometheus}
   alertman: {login: alertman, group: alertman, id: 2202, comment: Alert Manager}
+
+  superset: {login: superset, group: superset, id: 2400, comment: Superset User}
   # people
   agrabeli:
     login: agrabeli
