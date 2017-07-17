@@ -16,6 +16,7 @@ a.echo.th.ooni.io
 c.web-connectivity.th.ooni.io
 munin.ooni.io
 b.collector.ooni.io
+shwdc.ooni.io
 
 # The machines below maybe can be discontinued
 ooni-proxy-dc.infra.ooni.io
@@ -28,12 +29,16 @@ apk-build-test.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 
 [hkg]
 datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
 # irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
 vpn-gate-runner.infra.ooni.io
 stage.ooni.io # NOT-GH, ooni-zoo
 test.ooni.io # NOT-GH, ooni-zoo
-
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
+
+[have_fw]
+datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
 
 [ams]
 explorer.ooni.io
@@ -45,7 +50,7 @@ c.echo.th.ooni.io
 c.collector.ooni.io
 ooni-measurements-db.infra.ooni.io
 ooni-pipeline-db.infra.ooni.io
-ssdamsterdam.infra.ooni.io
+ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
 ubuilder.infra.ooni.io
@@ -80,6 +85,10 @@ hammerhead.infra.ooni.io # NOT-GH, [ber] as of 2017-04-18
 ns.dnsth.ooni.nu # NOT-GH, [ovh] France
 pipeline.infra.ooni.nu # NOT-GH
 
+[psk_hkgmetadb]
+datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
+
 [todelete]
 polaris.infra.ooni.io # DELETE
 vps770.greenhost.nl # DELETE discontinued, old-collector
@@ -92,3 +101,6 @@ separate.bouncer.test.ooni.io # DELETE
 separate.a.web-connectivity.th.test.ooni.io # DELETE
 seedling.infra.ooni.io # DELETE
 reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
+
+[slackin]
+slack.openobservatory.org

@@ -1,0 +1,46 @@
+---
+- set_fact:
+    svc_passwd:
+      - "{{ passwd.plpsql }}"
+- group: name={{ item.login }} gid={{ item.id }} state=present
+  with_items: "{{ svc_passwd }}"
+- user:
+    name: "{{ item.login }}"
+    group: "{{ item.login }}"
+    uid: "{{ item.id }}"
+    comment: "{{ item.comment }}"
+    shell: /usr/sbin/nologin
+    createhome: no
+    home: /nonexistent
+    state: present
+  with_items: "{{ svc_passwd }}"
+
+- name: shared tmp directory to workaround lack of tmpfs support in docker_container
+  file: dest=/srv/tmp state=directory owner=root group=root mode=0750
+
+# 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
+# 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
+#    https://github.com/ansible/ansible/pull/22646
+- name: pipeline postgres tmp directory
+  file: dest=/srv/tmp/pl-psql state=directory owner=plpsql group=plpsql mode=0750
+- name: pipelie postgres /data directory
+  file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
+- name: docker run pipeline postgres
+  docker_container:
+    image: postgres:9.6
+    name: pl-psql
+    hostname: pl-psql
+    network_mode: 'host'
+    purge_networks: true # drop `bridge` network
+    volumes:
+      - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
+      - /etc/group:/etc/group:ro # to make `initdb` happy
+      - /srv/tmp/pl-psql:/run/postgresql:rw
+      - /srv/pl-psql:/srv/pl-psql:rw
+    env:
+      PGDATA: /srv/pl-psql
+      POSTGRES_DB: metadb
+      POSTGRES_USER: shovel
+      POSTGRES_PASSWORD: "{{ shovel_postgres_password }}"
+    user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
+    restart_policy: unless-stopped

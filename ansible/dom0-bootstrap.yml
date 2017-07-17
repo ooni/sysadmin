@@ -15,6 +15,17 @@
   roles:
     - role: adm
       adm_passwd:
-        #- "{{ passwd.weasel }}"
+        - "{{ passwd.weasel }}"
         - "{{ passwd.art }}"
         - "{{ passwd.darkk }}"
+
+- hosts: gh
+  gather_facts: false
+  roles:
+    # every known UID should be reserved to avoid occasional clash with `useradd`
+    - role: passwd
+
+- hosts: have_fw
+  gather_facts: false
+  roles:
+    - role: fw

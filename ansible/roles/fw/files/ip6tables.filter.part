@@ -1,0 +1,7 @@
+# ansible-managed in ooni-sysadmin.git
+# IPv6 is not currently suported by eclips.is platform
+*filter
+:INPUT DROP
+:FORWARD DROP
+:OUTPUT DROP
+COMMIT

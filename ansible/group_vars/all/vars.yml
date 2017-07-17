@@ -12,7 +12,7 @@ passwd:
   nodeexp:  {login: nodeexp,  group: nodeexp, id: 2200, comment: Node Exporter}
   prometh:  {login: prometh,  group: prometh, id: 2201, comment: Prometheus}
   alertman: {login: alertman, group: alertman, id: 2202, comment: Alert Manager}
-  # people
+  # people have id >= 10000
   agrabeli:
     login: agrabeli
     id: 10000
