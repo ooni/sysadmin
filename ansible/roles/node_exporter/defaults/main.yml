@@ -1,0 +1,10 @@
+go_arch: amd64
+
+node_exporter_install_path: /srv/node_exporter
+node_exporter_textfiles_path: /srv/node_exporter/textfiles
+node_exporter_collectors: diskstats,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname
+node_exporter_version: 0.13.0
+node_exporter_download_url: https://github.com/prometheus/node_exporter/releases/download
+
+node_exporter_tarball_url: "{{ node_exporter_download_url }}/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+node_exporter_path: "{{ node_exporter_install_path }}/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}"
