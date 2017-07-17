@@ -14,7 +14,7 @@ proteus_api_address: "127.0.0.1"
 proteus_events_https_port: 8082
 proteus_database_url: "{{ vault_proteus_database_url }}"
 proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
-proteus_notify_url: "https://notify.proteus.test.ooni.io:8081"
+proteus_notify_url: "https://notify.proteus.test.ooni.io"
 
 proteus_version: "0.1.0-beta.4"
 proteus_download_url: https://github.com/thetorproject/proteus/releases/download

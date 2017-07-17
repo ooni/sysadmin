@@ -3,6 +3,21 @@
     letsencrypt_nginx: yes
     proteus_registry_https_port: 443
     letsencrypt_domains: "{{ inventory_hostname }}"
+    proteus_database_url: "{{ vault_proteus_database_url_testing }}"
+    proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret_testing }}"
+    proteus_auth_admin_password : "{{ vault_proteus_admin_password_testing }}"
+  roles:
+    - letsencrypt
+    - proteus-registry
+
+- hosts: registry.proteus.ooni.io
+  vars:
+    letsencrypt_nginx: yes
+    proteus_registry_https_port: 443
+    letsencrypt_domains: "{{ inventory_hostname }}"
+    proteus_database_url: "{{ vault_proteus_database_url }}"
+    proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
+    proteus_auth_admin_password : "{{ vault_proteus_admin_password }}"
   roles:
     - letsencrypt
     - proteus-registry

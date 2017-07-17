@@ -25,6 +25,12 @@ registry.proteus.test.ooni.io
 db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 
+notify.proteus.ooni.io
+events.proteus.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
 [wdc]
 a.echo.th.ooni.io
 c.web-connectivity.th.ooni.io
@@ -76,6 +82,12 @@ ubuilder.infra.ooni.io
 debuilder.infra.ooni.io
 staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+notify.proteus.ooni.io
+events.proteus.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
 
 # The machines below can maybe be discontinued
 ooni-probe-demo.infra.ooni.io

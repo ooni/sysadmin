@@ -21,6 +21,16 @@
   vars:
     psql_db_name: proteus
     psql_db_user: proteus
+    psql_db_passwd: "{{ vault_proteus_database_password_testing }}"
+  roles:
+    - postgresql
+    - proteus-db
+
+- hosts: db-1.proteus.ooni.io
+  gather_facts: false
+  vars:
+    psql_db_name: proteus
+    psql_db_user: proteus
     psql_db_passwd: "{{ vault_proteus_database_password }}"
   roles:
     - postgresql
