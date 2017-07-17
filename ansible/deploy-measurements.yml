@@ -1,0 +1,30 @@
+---
+- include: ansible-version.yml
+
+- hosts: measurements-beta.ooni.io
+  roles:
+    - role: docker_py
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_pre_hook: ''
+      letsencrypt_post_hook: '' # FIXME: I don't want to spend time understanding the role :-(
+      letsencrypt_domains: measurements-beta.ooni.io
+
+- hosts: hkgmetadb.infra.ooni.io
+  gather_facts: false # no useful facts there :)
+  roles:
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      db: metadb
+      name: oomsm-beta
+      password: '{{ oomsm_beta_postgres_password }}'
+
+- hosts: measurements-beta.ooni.io
+  gather_facts: false # already gathered
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: ooni-measurements
+      oomsm_domain: measurements-beta.ooni.io
+      tags: debug

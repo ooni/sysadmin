@@ -1,19 +1,29 @@
 ---
+- template: src=ngx-oomsm-web dest=/etc/nginx/sites-enabled/oomsm-web
+  notify: reload nginx
 
-- name: Checkout "{{ ooni_measurements_repo }}" repository
-  git: >
-    depth=1
-    dest="{{ ooni_measurements_path }}"
-    repo="{{ ooni_measurements_repo }}"
-    force=yes
-    version="{{ ooni_measurements_repo_version }}"
+- name: docker network for measurements
+  docker_network:
+    name: msm
+    driver_options:
+      com.docker.network.bridge.name: brmsm
+    ipam_options:
+      subnet: 172.25.232.0/24
+      gateway: 172.25.232.1
 
-- name: Template secrets
-  template: >
-    src="{{ ooni_measurements_secrets }}"
-    dest="{{ ooni_measurements_secrets_path }}"
-
-- name: Build ooni-measurements production target
-  make:
-    chdir: "{{ ooni_measurements_path }}"
-    target: production
+- name: ooni-measurements webservice
+  docker_container:
+    image: openobservatory/ooni-measurements:{{ oomsm_tag }}
+    name: oomsm-web
+    hostname: oomsm-web
+    networks: [{name: msm, ipv4_address: '{{ oomsm_backend_ipv4 }}'}]
+    purge_networks: true
+    env:
+      APP_ENV: production
+      PRODUCTION: 'TRUE' # FIXME: is it ever used?
+      DATABASE_URL: 'postgresql://oomsm-beta:{{ oomsm_beta_postgres_password }}@hkgmetadb.infra.ooni.io/metadb' # FIXME: ?sslmode=require
+      AUTOCLAVED_BASED_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: drop this as soon as code is fixed
+      AUTOCLAVED_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
+    command: gunicorn --bind 0.0.0.0:{{ oomsm_backend_port }} --workers 4 --timeout 30 measurements.wsgi
+    user: "{{ passwd.oomsmweb.id }}:{{ passwd.oomsmweb.id }}"
+    restart_policy: unless-stopped

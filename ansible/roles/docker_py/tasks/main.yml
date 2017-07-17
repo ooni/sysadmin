@@ -1,9 +1,11 @@
 ---
 
 - name: installs apt-https-transport
-  apt: >
-    name={{ item }}
-    state=present
+  apt:
+    name: '{{ item }}'
+    state: present
+    update_cache: true
+    cache_valid_time: 28800
   with_items:
     - apt-transport-https
     - python-virtualenv
