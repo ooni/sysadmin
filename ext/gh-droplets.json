@@ -2279,10 +2279,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "2"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "1877", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 c3:78:69:74:32:c0:61:45:70:85:e2:f6:78:87:7f:4b\n", 
+                "ssh_ecdsa": "256 ad:e6:b4:c4:96:2d:ca:23:50:42:6c:c0:f8:7b:76:b0\n", 
+                "ssh_rsa": "2048 fb:97:a6:3d:a8:17:40:4c:f6:bd:6e:bf:51:4f:de:c8\n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "measurements-beta.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.179", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "2"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 60
+        "total": 61
     }
 }
