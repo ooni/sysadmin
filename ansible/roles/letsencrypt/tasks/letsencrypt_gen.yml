@@ -6,6 +6,19 @@
     repo='deb http://httpredir.debian.org/debian {{ ansible_distribution_release }}-backports main'
   when: ansible_distribution == "Debian"
 
+- name: Add certbot repository on Ubuntu
+  apt_repository: >
+    state=present
+    repo='ppa:certbot/certbot'
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Letsencrypt certbot
+  apt: >
+    name=certbot
+    state=latest
+    update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+
 - name: Install Letsencrypt certbot
   apt: >
     name=certbot

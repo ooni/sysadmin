@@ -1,0 +1,83 @@
+---
+
+- name: Install apt-transport-https
+  apt:
+    name: apt-transport-https
+
+- name: Add NodeSource apt package signing key
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+
+- name: Add Mongodb apt package signing key
+  apt_key:
+    url: "https://www.mongodb.org/static/pgp/server-3.4.asc"
+
+- name: Add MongoDB apt repository
+  apt_repository:
+    repo: 'deb http://repo.mongodb.org/apt/ubuntu {{ ansible_distribution_release }}/mongodb-org/3.4 multiverse'
+
+- name: Add NodeSource apt repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/node_7.x {{ ansible_distribution_release }} main'
+
+- name: Install required apt packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - git-core
+    - nodejs
+    - nginx
+    - mongodb-org
+    - bzip2
+
+- name: Create wiki user
+  user:
+    name: "{{ wiki_user }}"
+
+- name: Creating wiki dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ wiki_user_path }}"
+
+- name: Remove default nginx virtual host config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  register: nginx
+
+- name: Add wiki nginx virtual host config
+  template:
+    src: wiki_nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/wiki
+    owner: root
+    group: root
+    mode: 0644
+  register: nginx
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  when: nginx.changed
+
+- name: Install wiki.js package
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - wiki.js
+
+- name: Install node-wiki.service
+  template:
+    src: node-wiki.service.j2
+    dest: "{{ node_wiki_unit_path }}"
+
+- name: Start node-wiki.service
+  systemd:
+    name: node-wiki.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

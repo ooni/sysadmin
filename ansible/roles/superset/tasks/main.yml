@@ -1,0 +1,29 @@
+---
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ superset_path }}"
+    - "{{ superset_config_path }}"
+
+- name: configure superset
+  template:
+    src: superset_config.py.j2
+    dest: "{{ superset_config_path }}/superset_config.py"
+
+- name: superset service
+  docker_container:
+    image: "{{ superset_docker_image }}"
+    name: superset
+    ports:
+      - "{{ superset_port }}:3000"
+    volumes:
+      - "{{ superset_config_path }}:/home/superset/.superset"
+
+# XXX also do:
+# docker run --detach --name superset [options] amancevice/superset
+# docker exec -it superset superset-init
+
+- include: setup-nginx.yml

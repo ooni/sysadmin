@@ -1,0 +1,3 @@
+wiki_user: wiki
+wiki_user_path: "/home/{{ wiki_user }}/data"
+node_wiki_unit_path: /etc/systemd/system/node-wiki.service

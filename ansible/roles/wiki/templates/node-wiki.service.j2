@@ -1,0 +1,11 @@
+[Service]
+ExecStart=/usr/bin/node wiki start
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+User={{ wiki_user }}
+Group={{ wiki_user }}
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target

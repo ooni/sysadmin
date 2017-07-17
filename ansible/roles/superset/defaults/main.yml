@@ -1,0 +1,6 @@
+superset_path: /srv/superset
+superset_config_path: "{{ superset_path }}/config"
+superset_port: "3001"
+superset_listen_address: "127.0.0.1:{{ superset_port }}"
+superset_secret_key: "XXXCHANGEMEXXX"
+superset_docker_image: "amancevice/superset:0.18.5"

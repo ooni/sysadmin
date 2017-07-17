@@ -32,6 +32,8 @@ datacollector.infra.ooni.io
 vpn-gate-runner.infra.ooni.io
 stage.ooni.io # NOT-GH, ooni-zoo
 test.ooni.io # NOT-GH, ooni-zoo
+hkgsuperset.ooni.io
+wiki.ooni.io
 
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 
