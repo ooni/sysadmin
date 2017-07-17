@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+for item in iptables ip6tables; do
+  /sbin/${item}-save -t filter >/run/fw-
+  xtables-merge /etc/network/${item}.filter.part </run/fw- >/run/fw+
+  /sbin/${item}-restore </run/fw+
+  rm -f /run/fw- /run/fw+
+done
