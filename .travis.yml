@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  - NAME="ooni-backend" TEST_DIR="docker/backend/" DETACH="true"
+  - NAME="ooni-bouncer" TEST_DIR="docker/bouncer/" DETACH="true"
+  - NAME="ooni-probe" TEST_DIR="docker/ooniprobe/" DETACH="false"
+     RUN_ARG="ooniprobe -i /tmp/src/ooniprobe/data/decks/fast_no_root.deck"
+
+install:
+  - docker build -t $NAME $TEST_DIR
+  - docker run --detach=$DETACH $NAME $RUN_ARG
+
+script:
+  - if [ $NAME != ooni-probe ]; then docker ps | grep ooni; fi
