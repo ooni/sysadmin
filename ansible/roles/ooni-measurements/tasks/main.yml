@@ -22,7 +22,6 @@
       APP_ENV: production
       PRODUCTION: 'TRUE' # FIXME: is it ever used?
       DATABASE_URL: 'postgresql://oomsm-beta:{{ oomsm_beta_postgres_password }}@hkgmetadb.infra.ooni.io/metadb' # FIXME: ?sslmode=require
-      AUTOCLAVED_BASED_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: drop this as soon as code is fixed
       AUTOCLAVED_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
     command: gunicorn --bind 0.0.0.0:{{ oomsm_backend_port }} --workers 4 --timeout 30 measurements.wsgi
     user: "{{ passwd.oomsmweb.id }}:{{ passwd.oomsmweb.id }}"
