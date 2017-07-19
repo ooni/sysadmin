@@ -9,6 +9,7 @@
     - role: adm
       adm_passwd:
         - "{{ passwd.art }}"
+        - "{{ passwd.sbs }}"
         - "{{ passwd.darkk }}"
 
 - hosts: orchestration
