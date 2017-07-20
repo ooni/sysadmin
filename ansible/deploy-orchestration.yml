@@ -25,7 +25,6 @@
     psql_db_passwd: "{{ vault_proteus_database_password_testing }}"
   roles:
     - postgresql
-    - proteus-db
 
 - hosts: db-1.proteus.ooni.io
   gather_facts: false
@@ -35,7 +34,6 @@
     psql_db_passwd: "{{ vault_proteus_database_password }}"
   roles:
     - postgresql
-    - proteus-db
 
 - include: deploy-proteus-registry.yml
 
