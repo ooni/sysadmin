@@ -11,6 +11,7 @@ passwd:
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
 
   piwik:    {login: piwik, id: 2300, group: piwik, comment: Piwik user}
+  grav:     {login: grav, id: 2400, group: grav, comment: Grav user}
   # people have id >= 10000
   agrabeli:
     login: agrabeli
