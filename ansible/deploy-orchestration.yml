@@ -2,18 +2,7 @@
 - include: ansible-version.yml
 
 - hosts: orchestration
-  become: false
-  remote_user: root
   gather_facts: true
-  roles:
-    - role: adm
-      adm_passwd:
-        - "{{ passwd.art }}"
-        - "{{ passwd.sbs }}"
-        - "{{ passwd.darkk }}"
-
-- hosts: orchestration
-  gather_facts: false # already gathered
   roles:
     - docker_py
 
