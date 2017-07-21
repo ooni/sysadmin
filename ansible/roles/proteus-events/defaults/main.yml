@@ -12,7 +12,7 @@ proteus_log_level: "info"
 proteus_api_port: 3000
 proteus_api_address: "127.0.0.1"
 proteus_events_https_port: 8082
-proteus_database_url: "postgres://proteus:{{ vault_proteus_database_password }}:5432/proteus?sslmode=require"
+proteus_database_url: "postgres://proteus:{{ vault_proteus_database_password }}@{{ poroteus_db_hostname }}:5432/proteus?sslmode=require"
 proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
 proteus_notify_url: "https://notify.proteus.test.ooni.io"
 
