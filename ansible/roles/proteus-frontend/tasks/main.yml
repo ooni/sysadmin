@@ -25,6 +25,11 @@
     dest: "{{ proteus_install_path }}/proteus"
     version: "{{ proteus_version }}"
 
+- name: install yarn globally
+  npm:
+    name: yarn
+    global: yes
+
 - name: run yarn install
   command: yarn install
   args:
