@@ -54,7 +54,7 @@
 
 - name: Configure Proteus
   notify:
-  - reload proteus
+  - restart proteus
   template:
     src: proteus-frontend.env.j2
     dest: "{{ proteus_install_path }}/proteus-frontend.env"
