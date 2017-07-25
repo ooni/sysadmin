@@ -1,12 +1,18 @@
 [Unit]
 Description=Prometheus Blackbox Exporter
 
+# capabilities are given using `AmbientCapabilities` instead of `setcap` as
+# I consider RCE in any other service followed by abuse of setcap-ed
+# blackbox_exporter binary more likely than blackbox_exporter forking something
+# dangerous that will keep CAP_NET_RAW due to keep-caps implied by
+# AmbientCapabilities
+
 [Service]
 User=nobody
 Group=nogroup
 EnvironmentFile=-/etc/default/blackbox_exporter
-PermissionsStartOnly=true
-ExecStartPre=/sbin/setcap 'cap_net_raw+ep' {{ blackbox_exporter_path }}/blackbox_exporter
+AmbientCapabilities=CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_RAW
 ExecStart={{ blackbox_exporter_path }}/blackbox_exporter -config.file {{ blackbox_exporter_install_path }}/blackbox.yml -web.listen-address "{{ blackbox_exporter_listen_address }}"
 KillMode=process
 Restart=always
