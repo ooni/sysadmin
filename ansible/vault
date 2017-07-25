@@ -1,2 +1,2 @@
 #!/bin/sh
-exec ansible-vault --vault-password-file ./password-pipe "$@"
+exec ansible-vault --vault-password-file "$(git rev-parse --show-toplevel)"/ansible/password-pipe "$@"
