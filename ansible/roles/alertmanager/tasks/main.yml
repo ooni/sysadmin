@@ -1,16 +1,3 @@
-- name: create Alertmanager group
-  group: name={{ alertmanager_group }}  state=present
-
-- name: create Alertmanager user
-  user:
-    name: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    uid: "{{ alertmanager_uid }}"
-    createhome: no
-    shell: /sbin/nologin
-    comment: "Alertmanager User"
-    state: present
-
 - name: set permissions, owner and group
   file:
     path: "{{ alertmanager_install_path }}"

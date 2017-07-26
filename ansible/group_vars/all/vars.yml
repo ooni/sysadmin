@@ -1,17 +1,23 @@
 ---
 passwd:
   # services
+  # - uid [2000, 10000), grouped together by "service"
+  # - base for next service is `echo $(( 2000 + 50*($RANDOM % 160) ))`
+  # - login name must be <= 8 chars to be nice to `top` util
   afredis:  {login: afredis,  id: 2000, comment: Airflow Redis}
   afpsql:   {login: afpsql,   id: 2001, comment: Airflow Postgresql}
   afsched:  {login: afsched,  id: 2002, comment: Airflow Scheduler}
   afwebsrv: {login: afwebsrv, id: 2003, comment: Airflow Webserver}
   afworker: {login: afworker, id: 2004, comment: Airflow Worker}
   afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
+
   plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
-  nodeexp:  {login: nodeexp,  group: nodeexp, id: 2200, comment: Node Exporter}
-  prometh:  {login: prometh,  group: prometh, id: 2201, comment: Prometheus}
-  alertman: {login: alertman, group: alertman, id: 2202, comment: Alert Manager}
+
+  nodeexp:  {login: nodeexp,  id: 2200, comment: Prometheus Agent}
+  prometh:  {login: prometh,  id: 2201, comment: Prometheus Poller}
+  alertman: {login: alertman, id: 2202, comment: Prometheus Alert Manager}
+
   # people have id >= 10000
   agrabeli:
     login: agrabeli

@@ -1,8 +1,7 @@
 go_arch: amd64
 
 node_exporter_user: "{{ passwd.nodeexp.login }}"
-node_exporter_group: "{{ passwd.nodeexp.group }}"
-node_exporter_uid: "{{ passwd.nodeexp.id }}"
+node_exporter_group: "{{ passwd.nodeexp.login }}"
 
 node_exporter_install_path: /srv/node_exporter
 node_exporter_textfiles_path: /srv/node_exporter/textfiles

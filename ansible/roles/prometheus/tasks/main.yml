@@ -1,16 +1,3 @@
-- name: create Prometheus group
-  group: name={{ prometheus_group }}  state=present
-
-- name: create Prometheus user
-  user:
-    name: "{{ prometheus_user }}"
-    group: "{{ prometheus_group }}"
-    uid: "{{ prometheus_uid }}"
-    createhome: no
-    shell: /sbin/nologin
-    comment: "Prometheus User"
-    state: present
-
 - name: set permissions, owner and group
   file:
     path: "{{ prometheus_install_path }}"

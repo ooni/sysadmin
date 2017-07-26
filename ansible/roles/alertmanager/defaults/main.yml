@@ -1,8 +1,7 @@
 go_arch: amd64
 
 alertmanager_user:   "{{ passwd.alertman.login }}"
-alertmanager_group:  "{{ passwd.alertman.group }}"
-alertmanager_uid:    "{{ passwd.alertman.id }}"
+alertmanager_group:  "{{ passwd.alertman.login }}"
 
 alertmanager_install_path:        /srv/alertmanager
 alertmanager_config_path:         /srv/alertmanager/config

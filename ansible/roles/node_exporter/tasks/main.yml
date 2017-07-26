@@ -1,16 +1,3 @@
-- name: create Node exporter group
-  group: name={{ node_exporter_group }}  state=present
-
-- name: create Node exporter user
-  user:
-    name: "{{ node_exporter_user }}"
-    group: "{{ node_exporter_group }}"
-    uid: "{{ node_exporter_uid }}"
-    createhome: no
-    shell: /sbin/nologin
-    comment: "Node Exporter User"
-    state: present
-
 - name: Creating node_exporter dirs
   file:
     path: "{{ item }}"
