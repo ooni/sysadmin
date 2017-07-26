@@ -1,4 +1,7 @@
 ---
+# I have no idea how it is implemented, but it reduces playbook runtime by factor of three!
+ansible_ssh_pipelining: true
+
 passwd:
   # services
   # - uid [2000, 10000), grouped together by "service"
