@@ -1,4 +1,6 @@
 ---
+adm_logins: [ weasel, art, darkk, superq ]
+
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
 
 blackbox_jobs:

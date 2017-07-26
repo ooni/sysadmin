@@ -1,4 +1,6 @@
 # ansible-managed in ooni-sysadmin.git
 {% for login in adm_logins %}
-{{ passwd[login].login }} ALL=(ALL:ALL) NOPASSWD: ALL
+{% for k in passwd[login]['keys'] %}
+{{ k }}
+{% endfor %}
 {% endfor %}
