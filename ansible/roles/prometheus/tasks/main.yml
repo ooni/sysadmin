@@ -38,7 +38,7 @@
 
 - name: write the root ca cert
   copy:
-    content: "{{ vault_prometheus_root_ca_pem }}"
+    content: "{{ prometheus_root_ca_pem }}"
     dest: "{{ prometheus_monitoring_cert }}"
     owner: root
     group: root

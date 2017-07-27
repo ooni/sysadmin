@@ -1,0 +1,31 @@
+#!/usr/bin/env python2
+
+import sys, os, yaml, glob
+
+vpath, = sys.argv[1:]
+vltfd, travfd = sys.stdin, sys.stdout
+
+assert os.path.isfile(vpath)
+
+with vltfd:
+    vault = {k: "TRAVIS_" + os.urandom(8).encode("hex") for k in yaml.load(vltfd).keys()}
+
+plaintext = {}
+for fname in glob.glob(os.path.join(os.path.dirname(vpath), '*.yml')):
+    with open(fname, 'r') as fd:
+        plaintext.update(yaml.load(fd))
+
+for secret in vault:
+    assert secret.startswith('vault_'), ('variable without `vault_` prefix in vault file', secret)
+    var = secret[6:]
+    assert var in plaintext, ('corresponding variable missing in plaintext files', var)
+    assert plaintext[var] == '{{ ' + secret + ' }}', ('unexpected variable value in plaintext file', var, plaintext[var])
+
+for var, value in plaintext.iteritems():
+    if isinstance(value, basestring) and 'vault_' in value:
+        secret = value.lstrip('{ ').rstrip(' }')
+        assert 'vault_' + var == secret, ('unexpected variable link between plaintext and vault', var, secret)
+        assert secret in vault, ('no expected secret variable in vault file', secret)
+
+with travfd:
+    yaml.safe_dump(vault, travfd, default_flow_style=False)

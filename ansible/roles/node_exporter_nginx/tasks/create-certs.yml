@@ -49,7 +49,7 @@
 
 - name: Write the root ca private key to the private dir
   copy:
-    content: "{{ vault_prometheus_root_ca_key }}"
+    content: "{{ prometheus_root_ca_key }}"
     dest: "{{ local_private_path }}/prometheus_root_ca.key"
   delegate_to: localhost
 
@@ -61,7 +61,7 @@
 
 - name: write the root ca cert to temporary directory
   copy:
-    content: "{{ vault_prometheus_root_ca_pem }}"
+    content: "{{ prometheus_root_ca_pem }}"
     dest: "{{ local_private_path }}/prometheus_root_ca.pem"
   delegate_to: localhost
 

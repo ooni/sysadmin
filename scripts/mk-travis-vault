@@ -4,8 +4,8 @@ export TRAVIS_VAULT_SECRET=$("$gitroot/ansible/vault" view "$gitroot/ansible/.tr
 set -o xtrace
 set -o errexit
 cd "$gitroot/ansible"
-for vault in $(find . -type f -name vault ! -perm /111); do
-    ./vault view "$vault" \
-        | python -c 'import sys, os, yaml; yaml.safe_dump({k: "TRAVIS_" + os.urandom(8).encode("hex") for k in yaml.load(sys.stdin).keys()}, sys.stdout, default_flow_style=False)' \
-        | ansible-vault --vault-password-file ./.travis.password-pipe encrypt --output "${vault%/vault}/.travis.vault"
-done
+# to re-make only modified files
+make -j1 -f /dev/stdin $(find . -type f -name vault ! -perm /111 | sed s,/vault$,/.travis.vault,) <<'EOF'
+%/.travis.vault : %/vault
+	./vault view "$^" | ../scripts/mk-travis-vault-single "$^" | ansible-vault --vault-password-file ./.travis.password-pipe encrypt --output "$@"
+EOF

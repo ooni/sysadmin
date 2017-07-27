@@ -1,2 +1,5 @@
-#!/bin/sh
-exec ansible-vault --vault-password-file "$(git rev-parse --show-toplevel)"/ansible/password-pipe "$@"
+#!/bin/sh -ex
+ansible-vault --vault-password-file "$(git rev-parse --show-toplevel)"/ansible/password-pipe "$@"
+if [ "$1" != view ] && [ "$1" != decrypt ] && [ "$1" != rekey ]; then
+  ../scripts/mk-travis-vault
+fi

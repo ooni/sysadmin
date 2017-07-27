@@ -2,6 +2,14 @@
 # I have no idea how it is implemented, but it reduces playbook runtime by factor of three!
 ansible_ssh_pipelining: true
 
+# link vault to plaintext
+weasel_login: "{{ vault_weasel_login }}"
+weasel_comment: "{{ vault_weasel_comment }}"
+weasel_keys: "{{ vault_weasel_keys }}"
+prometheus_basic_auth_password: '{{ vault_prometheus_basic_auth_password }}'
+prometheus_root_ca_key: '{{ vault_prometheus_root_ca_key }}'
+prometheus_root_ca_pem: '{{ vault_prometheus_root_ca_pem }}'
+
 passwd:
   # services
   # - uid [2000, 10000), grouped together by "service"
@@ -30,10 +38,10 @@ passwd:
     comment: Maria Xynou
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD0JSwM+t3Uz9lS3Mjoz9oo4vOToWyzboZhYQbP8JY5HvFtAvWanWHnUBO91t6hkgKIMiUqhdCJn26fqkhSGe/bRBaFUocOmuyfcmZoRdi0qzAskmycJsj/w6vWR4x6MYkmJvSeI/MGxjEFt4s2MfOG1tP8CBLUYft9qUleeJa7Jln8c+xbnqB7YngaI190icQHE9NuIB2CXvzbmo3tLtHNMagEwI7VoBDj6mxzTxBd9JhuhF4w5uGxxm0Gp1hzk+15obNnaBS+Anr7jXz8FPwwxCH+XhBZxB1PPpcIayKrf9iLyGtwmhkdDoWCqYAr1mue3LxFso+TZF4bwE4Cjt1 agrabelh@agrabelh"]
   weasel:
-    login: "{{ vault_weasel_login }}"
+    login: "{{ weasel_login }}"
     id: 10001
-    comment: "{{ vault_weasel_comment }}"
-    keys: "{{ vault_weasel_keys }}"
+    comment: "{{ weasel_comment }}"
+    keys: "{{ weasel_keys }}"
   art:
     login: art
     id: 10002
