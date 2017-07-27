@@ -2,21 +2,24 @@
 - include: ansible-version.yml
 
 - hosts: prometheus.infra.ooni.io
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "prometheus.infra.ooni.io"
+    prometheus_listen_address: "127.0.0.1:8090"
+    prometheus_nginx: yes
   roles:
     - docker_py
+    - letsencrypt
+    # prometheus roles do not need extra `pip` modules and `local_action` should use default python
+    - alertmanager
+    - prometheus
+    - blackbox_exporter
 
 - hosts: prometheus.infra.ooni.io
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
-    letsencrypt_nginx: yes
     letsencrypt_domains: "prometheus.infra.ooni.io"
-    prometheus_listen_address: "127.0.0.1:8090"
-    grafana_listen_address: "127.0.0.1:3001"
     prometheus_nginx: yes
   roles:
-    - letsencrypt
-    - alertmanager
-    - prometheus
-    - blackbox_exporter
     - grafana

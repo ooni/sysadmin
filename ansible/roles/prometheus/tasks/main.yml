@@ -1,32 +1,48 @@
-- name: set permissions, owner and group
-  file:
-    path: "{{ prometheus_install_path }}"
-    state: directory
-    owner: "{{ prometheus_user }}"
-    group: "{{ prometheus_group }}"
-    mode: "go-w"
-    recurse: yes
+- name: cache SHA256SUMS locally
+  local_action: get_url url={{ prometheus_sha256sums_url }} dest={{ prometheus_sha256sums }}
+- set_fact:
+    tarball_checksum: "sha256:{{ lookup('pipe', 'awk -v FNAME=' ~ prometheus_basename ~ '.tar.gz -f ' ~ playbook_dir ~ '/../scripts/get-sum.awk ' ~ prometheus_sha256sums) }}"
 
-- name: mkdir for config and data
+- name: set permissions, owner and group
+  file: path={{ item }} state=directory owner=root group=root mode=0755
+  with_items:
+    - "{{ prometheus_base }}"
+    - "{{ prometheus_base }}/dist"
+    - "{{ prometheus_config_path }}"
+    - "{{ prometheus_rule_path }}"
+    - "{{ prometheus_file_sd_config_path }}"
+
+- name: mkdir for data
   file:
     path: "{{ item }}"
     state: directory
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
-    mode: "u=rwx,g=rx,o="
+    mode: 0750
   with_items:
-    - "{{ prometheus_rule_path }}"
-    - "{{ prometheus_file_sd_config_path }}"
     - "{{ prometheus_db_path }}"
+
+- name: fetch prometheus tarball
+  get_url:
+    url: "{{ prometheus_tarball_url }}"
+    dest: "{{ prometheus_base }}/dist/{{ prometheus_basename }}.tar.gz"
+    checksum: "{{ tarball_checksum }}"
 
 - name: untar prometheus tarball
   unarchive:
-    src: "{{ prometheus_tarball_url }}"
-    dest: "{{ prometheus_install_path }}"
-    mode: 0755
-    owner: "root"
-    group: "root"
-    copy: no
+    src: "{{ prometheus_base }}/dist/{{ prometheus_basename }}.tar.gz"
+    dest: "{{ prometheus_base }}"
+    owner: root
+    group: root
+    remote_src: true
+
+- name: write the root ca cert
+  copy:
+    content: "{{ vault_prometheus_root_ca_pem }}"
+    dest: "{{ prometheus_monitoring_cert }}"
+    owner: root
+    group: root
+    mode: 0644
 
 - name: Configure Prometheus
   notify:
@@ -34,13 +50,16 @@
   template:
     src: prometheus.yml.j2
     dest: "{{ prometheus_config_path }}/prometheus.yml"
+    owner: root
+    group: "{{ prometheus_group }}"
+    mode: 0640
 
 - name: Configure rules files
   copy:
     src: "{{ item }}"
     dest: "{{ prometheus_rule_path }}/"
-    owner: "{{ prometheus_user }}"
-    group: "{{ prometheus_group }}"
+    owner: root
+    group: root
     mode: 0644
   with_fileglob:
     - rules/*.rules

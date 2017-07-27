@@ -1,3 +1,5 @@
+# ansible-managed in ooni-sysadmin.git
+
 [Unit]
 Description=Prometheus Alertmanager
 

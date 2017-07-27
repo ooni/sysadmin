@@ -17,9 +17,11 @@ passwd:
   plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
 
-  nodeexp:  {login: nodeexp,  id: 2200, comment: Prometheus Agent}
+  nodeexp:  {login: nodeexp,  id: 2200, comment: Prometheus Node Exporter}
   prometh:  {login: prometh,  id: 2201, comment: Prometheus Poller}
   alertman: {login: alertman, id: 2202, comment: Prometheus Alert Manager}
+  prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
+  grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
 
   # people have id >= 10000
   agrabeli:

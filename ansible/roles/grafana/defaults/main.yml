@@ -1,4 +1,5 @@
-grafana_config_path: /src/grafana/etc
-grafana_lib_path: /src/grafana/lib
-grafana_listen_address: "3001"
-grafana_docker_image: "grafana/grafana:4.3.2"
+grafana_config_path: /srv/grafana/etc
+grafana_lib_path: /srv/grafana/lib
+grafana_backend_ipv4: "172.26.55.254"
+grafana_backend_port: 26738
+grafana_docker_tag: "4.3.2"

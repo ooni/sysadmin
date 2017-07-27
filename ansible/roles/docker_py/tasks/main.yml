@@ -38,6 +38,7 @@
     version: "1.10.6"
     virtualenv: "{{ ansible_venv }}"
 
+# FIXME: that's uber-ugly way as it always reports "changed"
 - name: Copy into the virtualenv the system python-apt
   shell: "cp -R /usr/lib/python2.7/dist-packages/apt* {{ ansible_venv }}/lib/python2.7/site-packages/"
 

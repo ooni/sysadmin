@@ -2,6 +2,7 @@
 adm_logins: [ weasel, art, darkk, superq ]
 
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
+grafana_secret_key: "{{ vault_grafana_secret_key }}" # to sign cookies
 
 blackbox_jobs:
   - name: "ooni web_connectivity test helpers"
