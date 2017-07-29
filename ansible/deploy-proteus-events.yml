@@ -7,6 +7,7 @@
     proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret_testing }}"
     proteus_notify_url: "https://notify.proteus.test.ooni.io"
     proteus_notify_basic_auth_password: "{{ vault_proteus_notify_basic_auth_password_testing }}"
+    proteus_notify_topic_ios: "org.openobservatory.NetProbe"
   roles:
     - letsencrypt
     - proteus-events
@@ -20,6 +21,7 @@
     proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
     proteus_notify_url: "https://notify.proteus.ooni.io"
     proteus_notify_basic_auth_password: "{{ vault_proteus_notify_basic_auth_password }}"
+    proteus_notify_topic_ios: "org.openobservatory.NetProbe"
   roles:
     - letsencrypt
     - proteus-events
