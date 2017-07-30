@@ -2,8 +2,7 @@
 environment = "{{ proteus_environment }}"
 log-level = "{{ proteus_log_level }}"
 gorush-url = "{{ proteus_notify_url }}"
-notify-topic-ios = "org.openobservatory.NetProbe"
-notify-topic-android = "org.openobservatory.NetProbe"
+notify-topic-ios = "{{ proteus_notify_topic_ios }}"
 
 [auth]
 jwt-secret = "{{ proteus_auth_jwt_secret }}"
