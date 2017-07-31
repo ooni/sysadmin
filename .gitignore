@@ -1,3 +1,4 @@
+.DS_Store
 logging.cfg
 *.log
 invoke.yaml
@@ -6,3 +7,4 @@ invoke.yaml
 *.swo
 backend-files/
 secrets.env.j2
+/venv
