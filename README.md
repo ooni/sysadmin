@@ -8,21 +8,11 @@ infrastructure that are part of OONI.
 This is the section for using ansible roles to install and configure OONI
 components.
 
-It is required that you are running the following ansible version: `2.2.2`.
+It is required for all OONI team to run the same ansible version to monimise
+compatibility issues. It is enforced by including `ansible-version.yml` play in
+the playbooks.
 
-Note: In order to use ansible you need Python 2.4 or later, but if you are
-running less than Python 2.5 on the remote hosts, you will also need the
-[python-simplejson]
-(https://docs.ansible.com/ansible/intro_installation.html#managed-node-requirements)
-package.
-
-For Debian like systems you could use something similar to:
-```
-ansible host-group -i hosts-inventory-file -m raw -a \
-"apt-get update && apt-get -y install python-simplejson"
-```
-
-Rule of thumb: if you need some python packages **only** for ansible module to
+If you need some python packages **only** for ansible module to
 work and don't need it in system-wide pip repository, then you should put these
 modules in separate virtual environment and set proper
 `ansible_python_interpreter` for the play. See `docker_py` role and grep for
@@ -33,6 +23,7 @@ If you need to store secrets in repository then store them as vaults using
 variables with `vault_` prefix to make world [a more grepable place]
 (http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults)
 and link location of the variable using same name without prefix in corresponding `vars.yml`.
+`scripts/ansible-syntax-check` checks links between vaults and plaintext files during Travis build.
 `ansible/play` wrapper for `ansible-playbook` will execute a playbook with
 proper vault secret and inventory.
 
