@@ -1,5 +1,5 @@
 prometheus_basic_auth_user: "prometheus"
-prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
+prometheus_basic_auth_password: "{{ CHANGE_ME }}"
 node_exporter_user: "{{ passwd.nodeexp.login }}"
 node_exporter_group: "{{ passwd.nodeexp.login }}"
 node_exporter_private_path: "/srv/node_exporter/private"

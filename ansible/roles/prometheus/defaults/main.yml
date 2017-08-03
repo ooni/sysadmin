@@ -22,6 +22,6 @@ prometheus_path: "{{ prometheus_base }}/{{ prometheus_basename }}"
 
 prometheus_monitoring_cert: "{{ prometheus_base }}/prometheus.monitoring.pem"
 prometheus_basic_auth_user: "prometheus"
-prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
+prometheus_basic_auth_password: "{{ CHANGE_ME }}"
 
 alertmanager_url: "http://127.0.0.1:9093"

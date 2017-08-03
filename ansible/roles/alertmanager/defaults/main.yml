@@ -13,7 +13,7 @@ alertmanager_listen_address: "127.0.0.1:9093"
 alertmanager_version: 0.6.1
 alertmanager_download_url: https://github.com/prometheus/alertmanager/releases/download
 
-alertmanager_slack_api_url: "{{ vault_alertmanager_slack_api_url }}"
+alertmanager_slack_api_url: '{{ CHANGE_ME }}'
 
 alertmanager_basename: "alertmanager-{{ alertmanager_version }}.linux-{{ go_arch }}"
 alertmanager_tarball_url: "{{ alertmanager_download_url }}/v{{ alertmanager_version }}/{{ alertmanager_basename }}.tar.gz"
@@ -23,5 +23,5 @@ alertmanager_path: "{{ alertmanager_base }}/{{ alertmanager_basename }}"
 
 alertmanager_smtp_from: "notifcations@ooni.io"
 alertmanager_smtp_smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-alertmanager_smtp_username: "{{ vault_alertmanager_smtp_username }}"
-alertmanager_smtp_password: "{{ vault_alertmanager_smtp_password }}"
+alertmanager_smtp_username: "{{ CHANGE_ME }}"
+alertmanager_smtp_password: "{{ CHANGE_ME }}"
