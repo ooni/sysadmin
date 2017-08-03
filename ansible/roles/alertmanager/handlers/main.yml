@@ -1,0 +1,4 @@
+- name: restart alertmanager
+  systemd: name=alertmanager.service state=restarted
+- name: reload alertmanager
+  systemd: name=alertmanager.service state=reloaded

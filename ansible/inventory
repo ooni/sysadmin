@@ -7,6 +7,10 @@ ber
 tpo
 bigv
 
+[monitored]
+#datacollector.infra.ooni.io
+test.ooni.io
+
 [wdc]
 a.echo.th.ooni.io
 c.web-connectivity.th.ooni.io

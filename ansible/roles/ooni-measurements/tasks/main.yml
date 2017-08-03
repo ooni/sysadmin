@@ -1,6 +1,6 @@
 ---
 
-- name: Checkout "{{ ooni_measurements_repo }}" repository
+- name: "Checkout {{ ooni_measurements_repo }} repository"
   git: >
     depth=1
     dest="{{ ooni_measurements_path }}"

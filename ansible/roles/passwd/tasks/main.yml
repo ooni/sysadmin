@@ -1,3 +1,12 @@
+# different system may have different places for bash and nologin
+- name: get shell path
+  stat: path={{ item }} get_md5=no get_checksum=no
+  register: shell_path
+  with_items: [ /bin/bash, /usr/sbin/nologin ]
+
+# combination of `assert` and `with_items` produces lots of visual noise
+- name: check shell path
+  assert: { that: 'shell_path.results | selectattr("stat.executable", "equalto", true) | list | length == shell_path.results | length' }
 
 - name: create group
   group: name={{ item.login }} gid={{ item.id }} state=present

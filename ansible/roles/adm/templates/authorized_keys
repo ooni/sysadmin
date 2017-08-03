@@ -1,4 +1,4 @@
 # ansible-managed in ooni-sysadmin.git
-{% for k in item['keys'] %}
+{% for k in passwd[item]['keys'] %}
 {{ k }}
 {% endfor %}

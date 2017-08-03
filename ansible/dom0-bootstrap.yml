@@ -14,10 +14,6 @@
   #    changed_when: output.stdout != ""
   roles:
     - role: adm
-      adm_passwd:
-        - "{{ passwd.weasel }}"
-        - "{{ passwd.art }}"
-        - "{{ passwd.darkk }}"
 
 - hosts: gh
   gather_facts: false
