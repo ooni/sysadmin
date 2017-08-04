@@ -30,6 +30,7 @@ apk-build-test.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 [hkg]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
+measurements-beta.ooni.io
 # irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
 vpn-gate-runner.infra.ooni.io
 stage.ooni.io # NOT-GH, ooni-zoo
@@ -39,6 +40,7 @@ test-lists.openobservatory.org # This was used for testing out test-lists web in
 [have_fw]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
+measurements-beta.ooni.io
 
 [ams]
 explorer.ooni.io
@@ -88,6 +90,10 @@ pipeline.infra.ooni.nu # NOT-GH
 [psk_hkgmetadb]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
+
+[psk_oomsm_beta]
+hkgmetadb.infra.ooni.io
+measurements-beta.ooni.io
 
 [todelete]
 polaris.infra.ooni.io # DELETE

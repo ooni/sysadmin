@@ -31,6 +31,8 @@ passwd:
   prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
   grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
 
+  oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
+
   # people have id >= 10000
   agrabeli:
     login: agrabeli
@@ -76,4 +78,3 @@ adm_logins: [ weasel, art, darkk ]
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
 docker_apt_ver: ""
-airflow_tag: "1.8.0-oo3"
