@@ -17,15 +17,7 @@ c.web-connectivity.th.ooni.io
 munin.ooni.io
 b.collector.ooni.io
 shwdc.ooni.io
-
-# The machines below maybe can be discontinued
-ooni-proxy-dc.infra.ooni.io
-ooni-backend-testing.infra.ooni.io
-oonibackend-stress-test.infra.ooni.io
-
-tipitpitap.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
-apk-build-test.infra.ooni.io # Art-NO-ACCESS - no idea what this is
 
 [hkg]
 datacollector.infra.ooni.io
@@ -52,7 +44,6 @@ b.web-connectivity.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
 ooni-measurements-db.infra.ooni.io
-ooni-pipeline-db.infra.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
@@ -61,14 +52,8 @@ debuilder.infra.ooni.io
 staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 
-# The machines below can maybe be discontinued
-ooni-probe-demo.infra.ooni.io
-lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
-ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
-
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
-puppet-master-1.infra.ooni.io # NOT-GH, Art-NO-ACCESS, java1.interoperability.gr - Is this still even alive?
 
 [ber] # Humboldt-Universitaet zu Berlin
 chameleon.infra.ooni.io # NOT-GH
@@ -82,12 +67,6 @@ deb.ooni.nu # NOT-GH
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
-[dead]
-api-1.infra.ooni.io # NOT-GH, [aws], as of 2017-04-18 ooni-explorer-api-aws
-hammerhead.infra.ooni.io # NOT-GH, [ber] as of 2017-04-18
-ns.dnsth.ooni.nu # NOT-GH, [ovh] France
-pipeline.infra.ooni.nu # NOT-GH
-
 [psk_hkgmetadb]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
@@ -96,18 +75,13 @@ hkgmetadb.infra.ooni.io
 hkgmetadb.infra.ooni.io
 measurements-beta.ooni.io
 
-[todelete]
-polaris.infra.ooni.io # DELETE
-vps770.greenhost.nl # DELETE discontinued, old-collector
-#211.149.218.16 old-probe
-87.107.121.133 # DELETE discontinued, old-probe
-mail.ooni.io # DELETE
-mail.test.ooni.io # DELETE
-separate.b.collector.test.ooni.io # DELETE
-separate.bouncer.test.ooni.io # DELETE
-separate.a.web-connectivity.th.test.ooni.io # DELETE
-seedling.infra.ooni.io # DELETE
-reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
-
 [slackin]
 slack.openobservatory.org
+
+### TO DELETE. Stopped VMs that should be deleted from GH and DNS after some grace period:
+# since 2017-08-04 # ooni-proxy-dc.infra.ooni.io
+# since 2017-08-04 # ooni-backend-testing.infra.ooni.io
+# since 2017-08-04 # oonibackend-stress-test.infra.ooni.io
+# since 2017-08-04 # ooni-probe-demo.infra.ooni.io
+# since 2017-08-04 # lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
+# since 2017-08-04 # ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
