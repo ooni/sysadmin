@@ -415,7 +415,7 @@
                 "slug": "Amsterdam"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "3"
         }, 
         {
