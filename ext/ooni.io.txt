@@ -55,6 +55,7 @@ ooni-fdroid-build.infra		A	199.119.112.14
 ooni-measurements-db.infra		A	37.218.242.232
 ooni-probe-demo.infra		A	37.218.242.169
 ooni-proxy-dc.infra		A	199.119.112.184
+ooni-zoo.infra		A	37.218.240.138
 oonibackend-stress-test.infra		A	199.119.112.233
 ooniprobe-app.infra		A	37.218.242.109
 prometheus.infra		A	37.218.245.43
@@ -75,4 +76,4 @@ ubuilder.infra		A	37.218.242.223
 vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 23513a4571f66d7553b242c738137d2aaf6120fe4cc578c6fca060385020b8ff
+; generated from ooni.io.xml with SHA256 3fa31c84c06c08f89351fd8f30b8e428323826a381f90ce5e70e500806e992d9

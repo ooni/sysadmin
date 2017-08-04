@@ -37,7 +37,6 @@
       <host HostId="84883574" Name="measurements" Type="A" Address="37.218.242.217" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="88526130" Name="irc-bouncer.service" Type="A" Address="37.218.240.126" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90103867" Name="get" Type="A" Address="37.218.242.157" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="91215315" Name="stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="100213445" Name="demo.probe" Type="A" Address="37.218.242.41" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="102615663" Name="debuilder.infra" Type="A" Address="37.218.242.229" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="109187558" Name="munin" Type="A" Address="199.119.112.171" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -68,9 +67,11 @@
       <host HostId="117328496" Name="db-1.proteus" Type="A" Address="37.218.242.79" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117347169" Name="measurements-beta" Type="A" Address="37.218.240.100" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117523751" Name="msg" Type="A" Address="37.218.242.179" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="118542543" Name="ooni-zoo.infra" Type="A" Address="37.218.240.138" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85876993" Name="@" Type="TXT" Address="v=spf1 include:spf.efwd.registrar-servers.com ~all" MXPref="10" TTL="1800" AssociatedAppTitle="FWD" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965200" Name="@" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965209" Name="www" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="91215315" Name="stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="91215329" Name="test" Type="A" Address="37.218.240.140" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="101748396" Name="staging.measurements" Type="A" Address="37.218.242.231" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="102615644" Name="ubuilder.infra" Type="A" Address="37.218.242.223" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
