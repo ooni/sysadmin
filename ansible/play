@@ -1,16 +1,16 @@
 #!/bin/sh
 
 if [ -z ${OONI_SYSADMIN_HOME+x} ]; then
-    export OONI_SYSADMIN_HOME=$HOME/.ooni-sysadmin
+    OONI_SYSADMIN_HOME=$HOME/.ooni-sysadmin
 fi
-LOGS_DIR=$OONI_SYSADMIN_HOME/logs/
-PRIVATE_DIR=$OONI_SYSADMIN_HOME/private/
+LOGS_DIR=$OONI_SYSADMIN_HOME/logs
+PRIVATE_DIR=$OONI_SYSADMIN_HOME/private
 
 if [ ! -d "$OONI_SYSADMIN_HOME" ]; then
-    mkdir -p $OONI_SYSADMIN_HOME
-    mkdir -p $LOGS_DIR
-    mkdir -p $PRIVATE_DIR
-    chmod 700 $PRIVATE_DIR
+    mkdir -p "$OONI_SYSADMIN_HOME"
+    mkdir -p "$LOGS_DIR"
+    mkdir -p "$PRIVATE_DIR"
+    chmod 700 "$PRIVATE_DIR"
 fi
 
 if [ -t 0 -a -t 1 -a -t 2 ]; then
