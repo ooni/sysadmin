@@ -1,0 +1,14 @@
+$ORIGIN ooni.nu
+$TTL 1800
+@		URL	https://ooni.torproject.org
+bouncer.infra		A	62.217.125.6
+censorshipwiki		URL301	https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki
+deb		A	81.7.15.106
+dnsth	90	NS	ns.dnsth.ooni.nu.
+dnstunnel		NS	ooni.nu.
+mirror1.reports		A	213.138.109.232
+ns.dnsth	90	A	91.121.146.117
+pipeline.infra		A	104.193.9.122
+reports		A	213.108.108.100
+www		URL	https://ooni.torproject.org
+; generated from ooni.nu.xml with SHA256 b1b429f6d498fca4579c1586bb6676aa1ef205ec7d8b67eb4497c5406e340332
