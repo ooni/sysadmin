@@ -53,6 +53,7 @@ mail-test		A	199.119.112.12
 mail.test		A	199.119.112.12
 measurements	60	A	37.218.242.217
 measurements-beta		A	37.218.240.100
+msg		A	37.218.242.179
 munin		A	199.119.112.171
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
@@ -79,6 +80,7 @@ ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
 stage		A	37.218.240.139
 staging.measurements		A	37.218.242.231
+superset		A	37.218.240.92
 test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 tipitpitap.infra		A	199.119.112.177
@@ -86,4 +88,4 @@ ubuilder.infra		A	37.218.242.223
 vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 facf09b3193855a0babfb184198a579f3df05eac0c0ee4cd7dd069ef5b81fdc4
+; generated from ooni.io.xml with SHA256 983b33398dfc82b254ae883d7f8eab07c16de6ba699d4181f97642a970ca6625

@@ -1028,44 +1028,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 75, 
-            "features": [], 
-            "id": "1328", 
-            "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 83:98:d3:bc:0b:40:2e:a3:21:0d:c8:a0:17:0e:d5:c7\n", 
-                "ssh_ecdsa": "256 c7:c1:55:8d:7f:6c:9b:9f:cd:12:e0:eb:fe:62:43:b3\n", 
-                "ssh_rsa": "2048 80:11:1c:dc:29:c3:46:c0:a1:2b:93:69:67:f2:c0:99\n"
-            }, 
-            "locked": false, 
-            "memory": "4096", 
-            "name": "apk-build-test", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.244", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "4"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 140, 
             "features": [], 
             "id": "1338", 
@@ -1788,44 +1750,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
-            "id": "1768", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux LTS latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 60:5b:40:77:39:aa:ca:6e:74:81:20:0b:c5:4c:07:6c\n", 
-                "ssh_ecdsa": "256 4d:8b:05:24:3a:98:4f:06:9d:7e:b6:f5:0a:e1:ce:e1\n", 
-                "ssh_rsa": "2048 eb:b1:a9:ae:1e:b4:41:24:8b:2c:5e:f5:75:e7:6e:f0\n"
-            }, 
-            "locked": false, 
-            "memory": "1024", 
-            "name": "ooniprobe-test", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.167", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 20, 
             "features": [], 
             "id": "1795", 
@@ -2291,13 +2215,13 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 c3:78:69:74:32:c0:61:45:70:85:e2:f6:78:87:7f:4b\n", 
-                "ssh_ecdsa": "256 ad:e6:b4:c4:96:2d:ca:23:50:42:6c:c0:f8:7b:76:b0\n", 
-                "ssh_rsa": "2048 fb:97:a6:3d:a8:17:40:4c:f6:bd:6e:bf:51:4f:de:c8\n"
+                "ssh_dsa": "1024 fe:20:05:fe:28:cd:7d:87:f3:fe:27:f1:db:d9:00:69\n", 
+                "ssh_ecdsa": "256 04:87:2d:6d:89:9a:0b:89:5b:a6:1f:75:17:f1:56:7b\n", 
+                "ssh_rsa": "2048 c0:2a:e8:92:ee:3b:7d:a5:16:33:70:65:6d:26:06:6b\n"
             }, 
             "locked": false, 
-            "memory": "4096", 
-            "name": "measurements-beta.ooni.io", 
+            "memory": "2048", 
+            "name": "msg.ooni.io", 
             "networks": {
                 "v4": [
                     {
@@ -2315,8 +2239,8 @@
                 "slug": "Amsterdam"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "2"
+            "status": "running", 
+            "vcpus": "1"
         }, 
         {
             "backup_ids": [], 
@@ -2359,6 +2283,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 62
+        "total": 60
     }
 }
