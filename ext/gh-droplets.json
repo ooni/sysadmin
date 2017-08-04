@@ -2,44 +2,6 @@
     "droplets": [
         {
             "backup_ids": [], 
-            "disk": 200, 
-            "features": [], 
-            "id": "500", 
-            "kernel": {
-                "id": "1", 
-                "name": "Linux 3.14.17", 
-                "version": "3.14.17"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 f1:79:34:4d:24:de:8e:f5:26:e5:02:25:6f:e7:8c:bb \n", 
-                "ssh_ecdsa": "256 4f:a7:13:82:37:17:c1:c6:d2:40:32:fc:7f:22:92:11 \n", 
-                "ssh_rsa": "2048 94:28:a9:83:04:13:4d:c3:24:aa:74:e2:aa:c1:18:59 \n"
-            }, 
-            "locked": false, 
-            "memory": "8192", 
-            "name": "tipitpitap", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.177", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "4"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 25, 
             "features": [], 
             "id": "609", 
@@ -2283,6 +2245,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 60
+        "total": 59
     }
 }
