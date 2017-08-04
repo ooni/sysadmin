@@ -78,5 +78,3 @@ adm_logins: [ weasel, art, darkk ]
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
 docker_apt_ver: ""
-airflow_tag: "1.8.0-oo3"
-oomsm_tag: "1.0.0-beta.3"
