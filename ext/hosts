@@ -3,6 +3,8 @@
 # Build hosts-like file with data from external inventory (DNS, droplets API)
 
 import json
+import sys
+import re
 import socket
 from  subprocess import check_output
 import xml.etree.ElementTree as ElementTree
@@ -24,7 +26,25 @@ for vm in droplets['droplets']:
     for net in vm['networks']['v4']: # no IPv6 support there yet
         gh[net['ip_address']] = vm['name']
 
-all_ips = dns.viewkeys() | gh.viewkeys()
+inventory = {}
+with open('../ansible/inventory') as fd:
+    for fqdn in fd:
+        fqdn = fqdn.strip()
+        if not fqdn:
+            continue
+        fqdn = fqdn.split()[0]
+        if not re.match('^[-0-9a-z\.]+$', fqdn) or '.' not in fqdn:
+            continue
+        try:
+            ip = [_[4][0] for _ in socket.getaddrinfo(fqdn, 22, socket.AF_INET, socket.SOCK_STREAM)]
+        except Exception:
+            print >>sys.stderr, 'FQDN:', fqdn
+            raise
+        if len(ip) != 1:
+            raise RuntimeError('ansible/inventory with ambiguous FQDN', fqdn, ip)
+        inventory[ip[0]] = fqdn
+
+all_ips = dns.viewkeys() | gh.viewkeys() | inventory.viewkeys()
 
 nmap = check_output(['sudo', 'nmap', '-v', '-sn', '-oX', '-'] + list(all_ips))
 nmap = ElementTree.fromstring(nmap)
@@ -52,6 +72,6 @@ def maxlen(d):
 def keyip(s):
     return tuple(map(int, s.split('.')))
 
-fmt = '{:15} {:'+maxlen(ptr)+'} {:4} {:'+maxlen(gh)+'} {}'
+fmt = '{:15} {:'+maxlen(ptr)+'} {:4} {:5} {:'+maxlen(gh)+'} {}'
 for ip in sorted(all_ips, key=keyip):
-    print fmt.format(ip, ptr.get(ip, 'NO-PTR'), state.get(ip, '?'), gh.get(ip, 'NOT-GH'), ' '.join(sorted(dns.get(ip, []))))
+    print fmt.format(ip, ptr.get(ip, 'NO-PTR'), state.get(ip, '?'), 'ANSBL' if ip in inventory else '???', gh.get(ip, 'NOT-GH'), ' '.join(sorted(dns.get(ip, []))))
