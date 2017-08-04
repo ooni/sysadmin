@@ -1,7 +1,7 @@
 ---
 - include: ansible-version.yml
 
-- hosts: gh # TODO: it eventually should become `all`
+- hosts: gh:!no_passwd # TODO: it eventually should become `all`
   become: false
   remote_user: root
   gather_facts: false
@@ -15,7 +15,7 @@
   roles:
     - role: adm
 
-- hosts: gh
+- hosts: gh:!no_passwd
   gather_facts: false
   roles:
     # every known UID should be reserved to avoid occasional clash with `useradd`
