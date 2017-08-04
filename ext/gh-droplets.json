@@ -1043,7 +1043,7 @@
             }, 
             "locked": false, 
             "memory": "16384", 
-            "name": "test-qemu", 
+            "name": "test-qemu.infra.ooni.io", 
             "networks": {
                 "v4": [
                     {

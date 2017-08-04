@@ -17,7 +17,6 @@ afwrk03.infra		A	37.218.240.160
 afwrk04.infra		A	37.218.240.162
 alpha.measurements		A	37.218.242.231
 analytics		A	199.119.112.42
-api-1.infra		A	52.70.141.81
 apk-build-test.infra		A	199.119.112.244
 b.collector	60	A	199.119.112.178
 b.collector.stage		A	37.218.240.139
@@ -41,16 +40,12 @@ events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.173
 get		A	37.218.242.157
-hammerhead.infra	1800	A	141.20.103.19
 hkgmetadb.infra		A	37.218.240.56
 hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
 irc-bouncer.service	1800	A	37.218.240.126
 lepidopter-funbox.infra		A	199.119.112.158
 lepidopter-update-test.infra		A	37.218.242.199
-mail		A	199.119.112.11
-mail-test		A	199.119.112.12
-mail.test		A	199.119.112.12
 measurements	60	A	37.218.242.217
 measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
@@ -64,17 +59,12 @@ ooni-probe-demo.infra		A	37.218.242.169
 ooni-proxy-dc.infra		A	199.119.112.184
 oonibackend-stress-test.infra		A	199.119.112.233
 ooniprobe-app.infra		A	37.218.242.109
-polaris.infra		A	141.20.103.26
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
 puppet-master-1.infra		A	83.212.170.134
 registry.proteus		A	37.218.242.65
 registry.proteus.test		A	37.218.240.148
-seedling.infra		A	37.218.240.134
-separate.a.web-connectivity.th.test	60	A	199.119.112.140
-separate.b.collector.test	60	A	199.119.112.135
-separate.bouncer.test	60	A	199.119.112.139
 shwdc		A	199.119.112.89
 ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
@@ -83,9 +73,10 @@ staging.measurements		A	37.218.242.231
 superset		A	37.218.240.92
 test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
+test-qemu.infra		A	199.119.112.12
 tipitpitap.infra		A	199.119.112.177
 ubuilder.infra		A	37.218.242.223
 vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 983b33398dfc82b254ae883d7f8eab07c16de6ba699d4181f97642a970ca6625
+; generated from ooni.io.xml with SHA256 4a1bc274136682b01330fd73da527be50919cef8d7ae268bc3171e8f41e7f8f3
