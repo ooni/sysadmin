@@ -1,0 +1,42 @@
+- name: Creating node_exporter dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ node_exporter_install_path }}"
+    - "{{ node_exporter_textfiles_path }}"
+
+- name: untar node_exporter tarball
+  unarchive:
+    src: "{{ node_exporter_tarball_url }}"
+    dest: "{{ node_exporter_install_path }}"
+    mode: 0755
+    owner: root
+    group: root
+    copy: no
+
+- name: Install node_exporter systemd service file
+  notify:
+  - reload systemd
+  - restart node_exporter
+  template:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+
+- name: Enable and start node_exporter service
+  systemd:
+    name: node_exporter.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- name: Install node_exporter defaults file
+  template:
+    src: defaults
+    dest: /etc/default/node_exporter
+  notify:
+  - restart node_exporter
+
+# We don't need smartmon metrics at the moment.
+# - include: smartmon_metrics.yml

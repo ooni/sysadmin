@@ -1,0 +1,13 @@
+go_arch: amd64
+
+blackbox_exporter_base: /srv/blackbox_exporter
+blackbox_exporter_version: 0.7.0
+blackbox_exporter_download_url: https://github.com/prometheus/blackbox_exporter/releases/download
+
+blackbox_exporter_listen_address: "127.0.0.1:9115"
+
+blackbox_exporter_basename: "blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ go_arch }}"
+blackbox_exporter_tarball_url: "{{ blackbox_exporter_download_url }}/v{{ blackbox_exporter_version }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+blackbox_exporter_sha256sums_url: "{{ blackbox_exporter_download_url }}/v{{ blackbox_exporter_version }}/sha256sums.txt"
+blackbox_exporter_sha256sums: "{{ playbook_dir }}/cache/blackbox_exporter-{{ blackbox_exporter_version}}.SHA256SUMS"
+blackbox_exporter_path: "{{ blackbox_exporter_base }}/blackbox_exporter-{{ blackbox_exporter_version }}.linux-{{ go_arch }}"

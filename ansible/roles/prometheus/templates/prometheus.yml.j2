@@ -1,0 +1,66 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'ooni-monitor'
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - "rules/node.rules"
+  - "rules/alert.rules"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ['{{ prometheus_listen_address }}']
+
+{% for bbjob in blackbox_jobs %}
+  - job_name: {{ bbjob.name }}
+    metrics_path: /probe
+    params:
+      module: [{{ bbjob.module }}]
+    static_configs:
+      - targets:
+{% for target in bbjob.targets %}
+        - {{ target }}
+{% endfor %}
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*)(:80)?
+        target_label: __param_target
+        replacement: ${1}
+      - source_labels: [__param_target]
+        regex: (.*)
+        target_label: instance
+        replacement: ${1}
+      - source_labels: []
+        regex: .*
+        target_label: __address__
+        replacement: 127.0.0.1:9115
+{% endfor %}
+
+  - job_name: 'node'
+    scrape_interval: 5s
+    scheme: https
+    basic_auth:
+      username: "{{ prometheus_basic_auth_user }}"
+      password: "{{ prometheus_basic_auth_password }}"
+    tls_config:
+      ca_file: "{{ prometheus_monitoring_cert }}"
+    static_configs:
+      - targets:
+{% for host in groups.monitored %}
+        - {{ host }}:9100
+{% endfor %}

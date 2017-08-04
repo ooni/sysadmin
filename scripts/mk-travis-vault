@@ -1,0 +1,11 @@
+#!/bin/bash
+gitroot=$(git rev-parse --show-toplevel)
+export TRAVIS_VAULT_SECRET=$("$gitroot/ansible/vault" view "$gitroot/ansible/.travis.vaultpw")
+set -o xtrace
+set -o errexit
+cd "$gitroot/ansible"
+# to re-make only modified files
+make -j1 -f /dev/stdin $(find . -type f -name vault ! -perm /111 | sed s,/vault$,/.travis.vault,) <<'EOF'
+%/.travis.vault : %/vault
+	./vault view "$^" | ../scripts/mk-travis-vault-single "$^" | ansible-vault --vault-password-file ./.travis.password-pipe encrypt --output "$@"
+EOF

@@ -1,0 +1,84 @@
+modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+  http_post_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+  tcp_connect:
+    prober: tcp
+    timeout: 5s
+  pop3s_banner:
+    prober: tcp
+    tcp:
+      query_response:
+      - expect: "^+OK"
+      tls: true
+      tls_config:
+        insecure_skip_verify: false
+  ssh_banner:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+      - expect: "^SSH-2.0-"
+  irc_banner:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+      - send: "NICK prober"
+      - send: "USER prober prober prober :prober"
+      - expect: "PING :([^ ]+)"
+        send: "PONG ${1}"
+      - expect: "^:[^ ]+ 001"
+  icmp:
+    prober: icmp
+    timeout: 5s
+
+  # When using this prober, be sure to target:
+  # https://collector.ooni.io/invalidpath
+  ooni_collector_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [404]
+      method: GET
+  # When using this prober, be sure to target:
+  # https://bouncer.ooni.io/bouncer
+  ooni_bouncer_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [405]
+      method: GET
+
+  # When using this prober, be sure to target:
+  # https://web-connectivity.th.ooni.io/status
+  ooni_web_connectivity_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [200]
+      method: GET
+      fail_if_not_matches_regexp:
+        - ".+?\"status\".+?\"ok\".+?"
+
+  ooni_tcp_echo_ok:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+        - send: "TEST"
+        - expect: "TEST"
+
+  ooni_http_return_json_headers_ok:
+    prober: http
+    http:
+      valid_status_codes: [200]
+      method: GET
+      fail_if_not_matches_regexp:
+        - ".+?\"headers_dict\".+?"
