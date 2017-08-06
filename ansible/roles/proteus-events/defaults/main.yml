@@ -17,7 +17,7 @@ proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
 proteus_notify_url: "https://notify.proteus.test.ooni.io"
 proteus_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
 
-proteus_version: "0.1.0-beta.8"
+proteus_version: "0.1.0-beta.9"
 proteus_download_url: https://github.com/thetorproject/proteus/releases/download
 
 proteus_tarball_url: "{{ proteus_download_url }}/v{{ proteus_version }}/proteus-events-{{ proteus_version }}.linux-{{ go_arch }}.tar.gz"
