@@ -31,12 +31,8 @@
     enabled: yes
     daemon_reload: yes
 
-- name: Install node_exporter defaults file
-  template:
-    src: defaults
-    dest: /etc/default/node_exporter
-  notify:
-  - restart node_exporter
+- name: Cleanup stale files
+  file: path=/etc/default/node_exporter state=absent
 
 # We don't need smartmon metrics at the moment.
 # - include: smartmon_metrics.yml

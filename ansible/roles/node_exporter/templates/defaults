@@ -1,2 +1,0 @@
-# Managed by ansible.
-COLLECTORS="{{ node_exporter_collectors }}"
