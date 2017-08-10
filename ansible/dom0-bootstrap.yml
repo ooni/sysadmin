@@ -25,3 +25,9 @@
   gather_facts: false
   roles:
     - role: fw
+
+- hosts: monitored
+  gather_facts: false
+  roles:
+    - role: nginx-prometheus
+    - role: node_exporter

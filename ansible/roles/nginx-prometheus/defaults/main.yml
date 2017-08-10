@@ -1,0 +1,12 @@
+prometheus_scraper_password: '{{ CHANGE_ME }}'
+ngxprom_apr1_hash_seed: '{{ CHANGE_ME }}'
+ngxprom_apr1_salt: "{{ ((inventory_hostname + ngxprom_apr1_hash_seed) | hash).decode('hex').encode('base64')[:8] }}"
+
+ngxprom_base: /srv/ngxprom
+ngxprom_ssl_dir: '{{ ngxprom_base }}/ssl'
+ngxprom_ssl_base: '{{ ngxprom_ssl_dir }}/{{ inventory_hostname }}'
+ngxprom_ssl_subj: '/O=OONI/OU=Prometheus Exporter/CN={{ inventory_hostname }}'
+
+# default is to forward only `node_exporter`
+ngxprom_exporter_ports: [ 9100 ]
+ngxprom_exporter_ipv4: '{{ CHANGE_ME }}'

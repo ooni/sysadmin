@@ -20,7 +20,7 @@ prometheus_sha256sums_url: "{{ prometheus_download_url }}/v{{ prometheus_version
 prometheus_sha256sums: "{{ playbook_dir }}/cache/prometheus-{{ prometheus_version}}.SHA256SUMS"
 prometheus_path: "{{ prometheus_base }}/{{ prometheus_basename }}"
 
-prometheus_monitoring_cert: "{{ prometheus_base }}/prometheus.monitoring.pem"
+prometheus_monitoring_cert: "{{ prometheus_base }}/exporter_ca.cert"
 prometheus_basic_auth_user: "prometheus"
 prometheus_basic_auth_password: "{{ CHANGE_ME }}"
 

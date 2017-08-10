@@ -6,9 +6,8 @@ ansible_ssh_pipelining: true
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"
 weasel_keys: "{{ vault_weasel_keys }}"
-prometheus_basic_auth_password: '{{ vault_prometheus_basic_auth_password }}'
-prometheus_root_ca_key: '{{ vault_prometheus_root_ca_key }}'
-prometheus_root_ca_pem: '{{ vault_prometheus_root_ca_pem }}'
+prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}" # whatever it is, it's used for more than one purpose, so it should be killed :-(
+prometheus_scraper_password: "{{ vault_prometheus_scraper_password }}" # for `prometheus_scraper`
 
 passwd:
   # services
@@ -30,6 +29,7 @@ passwd:
   alertman: {login: alertman, id: 2202, comment: Prometheus Alert Manager}
   prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
   grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
+  ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
 
   oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
 
@@ -78,3 +78,8 @@ adm_logins: [ weasel, art, darkk ]
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
 docker_apt_ver: ""
+
+# that's common for roles nginx-prometheus and various exporters
+ngxprom_exporter_ipv4: "127.139.92.143"
+# for some reason it's impossible to add vault to role defaults, so it's here :-/
+ngxprom_apr1_hash_seed: '{{ vault_ngxprom_apr1_hash_seed }}'

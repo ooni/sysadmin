@@ -36,13 +36,16 @@
     group: root
     remote_src: true
 
-- name: write the root ca cert
+- name: Copy Exporter CA cert
   copy:
-    content: "{{ prometheus_root_ca_pem }}"
+    src: exporter_ca.cert
     dest: "{{ prometheus_monitoring_cert }}"
     owner: root
     group: root
     mode: 0644
+
+- name: Cleanup stale cert
+  file: path="{{ prometheus_base }}/prometheus.monitoring.pem" state=absent
 
 - name: Configure Prometheus
   notify:
