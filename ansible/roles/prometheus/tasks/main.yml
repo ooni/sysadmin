@@ -39,7 +39,7 @@
 - name: Copy Exporter CA cert
   copy:
     src: exporter_ca.cert
-    dest: "{{ prometheus_monitoring_cert }}"
+    dest: "{{ prometheus_exporter_cert }}"
     owner: root
     group: root
     mode: 0644

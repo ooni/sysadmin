@@ -58,7 +58,7 @@ scrape_configs:
       username: prometheus_scraper
       password: "{{ prometheus_scraper_password }}"
     tls_config:
-      ca_file: "{{ prometheus_monitoring_cert }}"
+      ca_file: "{{ prometheus_exporter_cert }}"
     static_configs:
       - targets:
 {% for host in groups.monitored %}
