@@ -34,7 +34,7 @@
     dest: "{{ prometheus_base }}"
     owner: root
     group: root
-    remote_src: true
+    remote_src: true # file is ALREADY on the remote system. sigh.
 
 - name: Copy Exporter CA cert
   copy:

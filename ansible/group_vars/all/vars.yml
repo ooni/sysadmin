@@ -79,7 +79,8 @@ adm_logins: [ weasel, art, darkk ]
 ansible_venv: /root/venv
 docker_apt_ver: ""
 
-# that's common for roles nginx-prometheus and various exporters
+# that's common for roles nginx-prometheus, fw and various exporters
 ngxprom_exporter_ipv4: "127.139.92.143"
+ngxprom_exporter_ports: [ 9100 ]
 # for some reason it's impossible to add vault to role defaults, so it's here :-/
 ngxprom_apr1_hash_seed: '{{ vault_ngxprom_apr1_hash_seed }}'
