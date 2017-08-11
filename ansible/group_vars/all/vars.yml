@@ -2,6 +2,9 @@
 # I have no idea how it is implemented, but it reduces playbook runtime by factor of three!
 ansible_ssh_pipelining: true
 
+# default: login as user & get sudo
+ansible_become: true
+
 # link vault to plaintext
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"

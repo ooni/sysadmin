@@ -86,7 +86,8 @@ ooni-fdroid-build.infra.ooni.io   # no root for darkk
 vpn-gate-runner.infra.ooni.io     # no root for darkk
 deb.ooni.nu                       # no root for darkk
 staticiforme.torproject.org       # tor LDAP
-b.echo.th.ooni.io                 # box deployed on ~2013-12-13 with lots of other users
+bouncer.infra.ooni.nu             # ongoing renumbering...
+chameleon.infra.ooni.io           # ongoing renumbering...
 
 [slackin]
 slack.openobservatory.org
