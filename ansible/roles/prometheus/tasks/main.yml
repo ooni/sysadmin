@@ -56,6 +56,7 @@
     owner: root
     group: "{{ prometheus_group }}"
     mode: 0640
+  tags: prometheus-conf
 
 - name: Configure rules files
   copy:
@@ -68,6 +69,7 @@
     - rules/*.rules
   notify:
   - reload prometheus
+  tags: prometheus-conf
 
 - name: Install prometheus systemd service file
   notify:

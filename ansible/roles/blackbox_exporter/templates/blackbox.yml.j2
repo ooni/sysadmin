@@ -25,6 +25,9 @@ modules:
     tcp:
       query_response:
       - expect: "^SSH-2.0-"
+        send: "SSH-2.0-blackbox_exporter OONI-prometheus-0.0\x0d" # WTF: \x0a is auto-added https://github.com/prometheus/blackbox_exporter/blob/master/tcp.go#L127
+      # FIXME: `blackbox_exporter` waits for newline, so we can't wait for handshake :-(
+      # - expect: "diffie-hellman-group14-sha1.*ssh-dss.*hmac-sha1.*hmac-sha1.*none.*none"
   irc_banner:
     prober: tcp
     timeout: 5s
