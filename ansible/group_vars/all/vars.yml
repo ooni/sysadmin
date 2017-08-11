@@ -9,7 +9,6 @@ ansible_become: true
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"
 weasel_keys: "{{ vault_weasel_keys }}"
-prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}" # whatever it is, it's used for more than one purpose, so it should be killed :-(
 prometheus_scraper_password: "{{ vault_prometheus_scraper_password }}" # for `prometheus_scraper`
 
 passwd:

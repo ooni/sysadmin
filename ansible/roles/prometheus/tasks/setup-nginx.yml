@@ -25,7 +25,7 @@
 
 - name: Create password file for nginx
   htpasswd:
-    path: /etc/nginx/prometheus.htpasswd
+    path: /etc/nginx/prometheus_webfront.htpasswd
     name: "{{ prometheus_basic_auth_user }}"
     password: "{{ prometheus_basic_auth_password }}"
     owner: root
