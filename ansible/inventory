@@ -71,10 +71,6 @@ measurements-beta.ooni.io
 ########################################################################
 # role tags
 
-[monitored]
-#datacollector.infra.ooni.io
-ooni-zoo.infra.ooni.io
-
 [have_fw]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
@@ -86,8 +82,9 @@ ooni-fdroid-build.infra.ooni.io   # no root for darkk
 vpn-gate-runner.infra.ooni.io     # no root for darkk
 deb.ooni.nu                       # no root for darkk
 staticiforme.torproject.org       # tor LDAP
-bouncer.infra.ooni.nu             # ongoing renumbering...
-chameleon.infra.ooni.io           # ongoing renumbering...
+
+[no_nodeexp:children]
+no_passwd # no passwd => no nodeexp user ;-)
 
 [slackin]
 slack.openobservatory.org

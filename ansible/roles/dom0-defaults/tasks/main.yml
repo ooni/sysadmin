@@ -1,0 +1,18 @@
+---
+- name: install some common packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 28800
+    install_recommends: false
+  with_items:
+    - ca-certificates
+    - tmux
+    - vim
+    - lsof
+    - strace
+    - tcpdump
+    - curl
+    - mtr
+...

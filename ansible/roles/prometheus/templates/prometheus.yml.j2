@@ -61,6 +61,6 @@ scrape_configs:
       ca_file: "{{ prometheus_exporter_cert }}"
     static_configs:
       - targets:
-{% for host in groups.monitored %}
+{% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}

@@ -37,13 +37,23 @@
   template:
     src: node_exporter.service
     dest: /etc/systemd/system/node_exporter.service
+  when: ansible_service_mgr == 'systemd'
+
+- name: Create node_exporter upstart service file
+  template: src=node_exporter.upstart dest=/etc/init/node_exporter.conf owner=root group=root mode=0444
+  notify: restart node_exporter
+  when: ansible_service_mgr == 'upstart'
+
+- name: Create node_exporter sysvinit service file
+  template: src=node_exporter.rc dest=/etc/init.d/node_exporter owner=root group=root mode=0555
+  notify: restart node_exporter
+  when: ansible_service_mgr == 'sysvinit'
 
 - name: Enable and start node_exporter service
-  systemd:
-    name: node_exporter.service
+  service:
+    name: node_exporter
     state: started
     enabled: yes
-    daemon_reload: yes
 
 - name: Cleanup stale services
   service:

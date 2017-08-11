@@ -1,0 +1,10 @@
+description "Prometheus Node Exporter"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+respawn
+setuid nodeexp
+setgid nodeexp
+
+exec {{ node_exporter_path }}/node_exporter -collectors.enabled {{ node_exporter_collectors }} -collector.textfile.directory {{ node_exporter_textfiles_path }} -web.listen-address {{ node_exporter_listen_address }} -collector.ntp.server 127.0.0.1

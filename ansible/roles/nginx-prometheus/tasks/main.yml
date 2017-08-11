@@ -31,6 +31,8 @@
     - /etc/nginx/sites-enabled/node_exporter
     - /etc/nginx/prometheus.htpasswd
     - /srv/node_exporter/private
+    - /etc/init/nginx-prometheus.upstart
+    - /etc/init.d/nginx-prometheus.rc
   notify: reload nginx
 
 - name: Create nginx conf file
@@ -47,6 +49,23 @@
   template: src=scraper.htpasswd dest={{ngxprom_base}}/ owner=root group=ngxprom mode=0440
   notify: reload nginx-prometheus
 
-- name: Create nginx service
+- name: Create nginx systemd service file
   template: src=nginx-prometheus.service dest=/etc/systemd/system/ owner=root group=root mode=0444
   notify: restart nginx-prometheus
+  when: ansible_service_mgr == 'systemd'
+
+- name: Create nginx upstart service file
+  template: src=nginx-prometheus.upstart dest=/etc/init/nginx-prometheus.conf owner=root group=root mode=0444
+  notify: restart nginx-prometheus
+  when: ansible_service_mgr == 'upstart'
+
+- name: Create nginx sysvinit service file
+  template: src=nginx-prometheus.rc dest=/etc/init.d/nginx-prometheus owner=root group=root mode=0555
+  notify: restart nginx-prometheus
+  when: ansible_service_mgr == 'sysvinit'
+
+- name: Enable and start nginx-prometheus service
+  service:
+    name: nginx-prometheus
+    state: started
+    enabled: yes

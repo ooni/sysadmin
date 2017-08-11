@@ -1,18 +1,17 @@
 ---
 - name: restart nginx-prometheus
-  systemd:
-    name: nginx-prometheus.service
+  service:
+    name: nginx-prometheus
     state: restarted
     enabled: true
-    daemon_reload: true
 
 - name: reload nginx-prometheus
-  systemd:
-    name: nginx-prometheus.service
+  service:
+    name: nginx-prometheus
     state: reloaded
     enabled: true
 
 - name: reload nginx
-  systemd:
-    name: nginx.service
+  service:
+    name: nginx
     state: reloaded
