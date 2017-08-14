@@ -1,0 +1,17 @@
+---
+- name: restart nginx-prometheus
+  service:
+    name: nginx-prometheus
+    state: restarted
+    enabled: true
+
+- name: reload nginx-prometheus
+  service:
+    name: nginx-prometheus
+    state: reloaded
+    enabled: true
+
+- name: reload nginx
+  service:
+    name: nginx
+    state: reloaded

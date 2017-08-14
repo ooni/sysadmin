@@ -1,7 +1,7 @@
 ---
 - include: ansible-version.yml
 
-- hosts: gh:!no_passwd # TODO: it eventually should become `all`
+- hosts: all:!no_passwd
   become: false
   remote_user: root
   gather_facts: false
@@ -15,13 +15,20 @@
   roles:
     - role: adm
 
-- hosts: gh:!no_passwd
+- hosts: all:!no_passwd
   gather_facts: false
   roles:
     # every known UID should be reserved to avoid occasional clash with `useradd`
     - role: passwd
+    - role: dom0-defaults
 
 - hosts: have_fw
   gather_facts: false
   roles:
     - role: fw
+
+- hosts: all:!no_nodeexp
+  gather_facts: true # to gather `ansible_service_mgr`
+  roles:
+    - role: nginx-prometheus
+    - role: node_exporter

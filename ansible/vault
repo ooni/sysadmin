@@ -1,5 +1,6 @@
 #!/bin/sh -ex
-ansible-vault --vault-password-file "$(git rev-parse --show-toplevel)"/ansible/password-pipe "$@"
+gitroot=$(git rev-parse --show-toplevel)
+ansible-vault --vault-password-file "${gitroot}/ansible/password-pipe" "$@"
 if [ "$1" != view ] && [ "$1" != decrypt ] && [ "$1" != rekey ]; then
-  ../scripts/mk-travis-vault
+  "${gitroot}/scripts/mk-travis-vault"
 fi

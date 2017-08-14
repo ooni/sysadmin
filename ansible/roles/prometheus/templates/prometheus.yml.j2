@@ -55,12 +55,12 @@ scrape_configs:
     scrape_interval: 5s
     scheme: https
     basic_auth:
-      username: "{{ prometheus_basic_auth_user }}"
-      password: "{{ prometheus_basic_auth_password }}"
+      username: prometheus_scraper
+      password: "{{ prometheus_scraper_password }}"
     tls_config:
-      ca_file: "{{ prometheus_monitoring_cert }}"
+      ca_file: "{{ prometheus_exporter_cert }}"
     static_configs:
       - targets:
-{% for host in groups.monitored %}
+{% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}

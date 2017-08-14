@@ -4,15 +4,12 @@
 # point of truth for the keys, unknown keys are dropped, that's why
 # `authorized_key` ansible module is not used.
 
-- name: install some common packages
+- name: install sudo
   apt:
-    name: "{{ item }}"
+    name: sudo
     state: latest
     update_cache: yes
     cache_valid_time: 28800
-  with_items:
-    - "sudo"
-    - "vim"
 
 - name: create group
   group: name={{ item }} gid={{ passwd[item].id }} state=present

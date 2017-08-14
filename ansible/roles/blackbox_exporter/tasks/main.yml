@@ -37,6 +37,7 @@
     mode: 0644
   notify:
   - restart blackbox_exporter
+  tags: prometheus-conf
 
 - name: Install blackbox_exporter systemd service file
   notify:

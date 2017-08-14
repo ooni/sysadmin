@@ -34,15 +34,18 @@
     dest: "{{ prometheus_base }}"
     owner: root
     group: root
-    remote_src: true
+    remote_src: true # file is ALREADY on the remote system. sigh.
 
-- name: write the root ca cert
+- name: Copy Exporter CA cert
   copy:
-    content: "{{ prometheus_root_ca_pem }}"
-    dest: "{{ prometheus_monitoring_cert }}"
+    src: exporter_ca.cert
+    dest: "{{ prometheus_exporter_cert }}"
     owner: root
     group: root
     mode: 0644
+
+- name: Cleanup stale cert
+  file: path="{{ prometheus_base }}/prometheus.monitoring.pem" state=absent
 
 - name: Configure Prometheus
   notify:
@@ -53,6 +56,7 @@
     owner: root
     group: "{{ prometheus_group }}"
     mode: 0640
+  tags: prometheus-conf
 
 - name: Configure rules files
   copy:
@@ -65,6 +69,7 @@
     - rules/*.rules
   notify:
   - reload prometheus
+  tags: prometheus-conf
 
 - name: Install prometheus systemd service file
   notify:
