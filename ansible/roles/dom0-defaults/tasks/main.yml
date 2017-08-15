@@ -16,4 +16,30 @@
     - tcpdump
     - curl
     - mtr
+
+- name: create Ed25519 host key
+  command: ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
+  args:
+    creates: /etc/ssh/ssh_host_ed25519_key
+  register: ed25519
+
+# XXX: should we re-generate /etc/ssh/modili as well before going deeper with KexAlgorithms/Ciphers/MACs ?
+
+- name: copy sshd_config
+  copy: src=sshd_config dest=/etc/ssh/ owner=root group=root mode=0444
+  register: sshd_config
+
+- name: test sshd_config
+  command: sshd -t
+  notify: restart ssh # do not notify `restart ssh` till configuration is tested
+  when: ed25519.changed or sshd_config.changed
+
+- name: drop possibly insecure host keys
+  file: path={{item}} state=absent
+  notify: restart ssh
+  with_items:
+    - /etc/ssh/ssh_host_dsa_key
+    - /etc/ssh/ssh_host_dsa_key.pub
+    - /etc/ssh/ssh_host_ecdsa_key
+    - /etc/ssh/ssh_host_ecdsa_key.pub
 ...

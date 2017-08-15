@@ -1,3 +1,5 @@
+# ansible-managed in ooni-sysadmin.git
+
 # Package generated configuration file
 # See the sshd_config(5) manpage for details
 
@@ -9,8 +11,8 @@ Port 22
 Protocol 2
 # HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_dsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
+# HostKey /etc/ssh/ssh_host_dsa_key # disabled as DSA is possibly broken -- https://security.stackexchange.com/questions/5096/rsa-vs-dsa-for-ssh-authentication-keys
+# HostKey /etc/ssh/ssh_host_ecdsa_key # disabled as ECDSA is not NSA-proof :-) following *.tpo sshd config
 HostKey /etc/ssh/ssh_host_ed25519_key
 #Privilege Separation is turned on for security
 UsePrivilegeSeparation yes
@@ -21,7 +23,7 @@ ServerKeyBits 1024
 
 # Logging
 SyslogFacility AUTH
-LogLevel INFO
+LogLevel INFO # Old versions of sshd do not log SSH key fingerprint with INFO, and that's useful when `root` user is used. Modern do.
 
 # Authentication:
 LoginGraceTime 120
@@ -30,7 +32,7 @@ StrictModes yes
 
 RSAAuthentication yes
 PubkeyAuthentication yes
-#AuthorizedKeysFile	%h/.ssh/authorized_keys
+#AuthorizedKeysFile	%h/.ssh/authorized_keys # TODO: *.tpo has nice idea of global `AuthorizedKeysFile /etc/ssh/userkeys/%u`
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
@@ -49,7 +51,7 @@ PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 
 # Change to no to disable tunnelled clear text passwords
-#PasswordAuthentication yes
+PasswordAuthentication no # we don't use passwords for SSH auth in OONI infra
 
 # Kerberos options
 #KerberosAuthentication no
@@ -86,3 +88,5 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
+
+UseDNS no # To kill useless `reverse mapping checking getaddrinfo for ... failed` and reduce login latency.
