@@ -13,7 +13,11 @@ Protocol 2
 HostKey /etc/ssh/ssh_host_rsa_key
 # HostKey /etc/ssh/ssh_host_dsa_key # disabled as DSA is possibly broken -- https://security.stackexchange.com/questions/5096/rsa-vs-dsa-for-ssh-authentication-keys
 # HostKey /etc/ssh/ssh_host_ecdsa_key # disabled as ECDSA is not NSA-proof :-) following *.tpo sshd config
+{% if ed25519_pub.stat.exists  %}
 HostKey /etc/ssh/ssh_host_ed25519_key
+{% else %}
+# HostKey /etc/ssh/ssh_host_ed25519_key # not suported :-( OpenSSH 6.5+ is required
+{% endif %}
 #Privilege Separation is turned on for security
 UsePrivilegeSeparation yes
 

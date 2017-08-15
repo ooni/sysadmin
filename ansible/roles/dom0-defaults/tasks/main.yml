@@ -22,17 +22,24 @@
   args:
     creates: /etc/ssh/ssh_host_ed25519_key
   register: ed25519
+  failed_when: ed25519.rc != 0 and not (ed25519.rc == 1 and ed25519.stderr == "unknown key type ed25519")
+
+- name: check if Ed25519 host key is supported
+  stat: path=/etc/ssh/ssh_host_ed25519_key.pub get_md5=no get_checksum=no
+  register: ed25519_pub
 
 # XXX: should we re-generate /etc/ssh/modili as well before going deeper with KexAlgorithms/Ciphers/MACs ?
 
 - name: copy sshd_config
-  copy: src=sshd_config dest=/etc/ssh/ owner=root group=root mode=0444
+  template: src=sshd_config dest=/etc/ssh/ owner=root group=root mode=0444
   register: sshd_config
 
 - name: test sshd_config
   command: sshd -t
   notify: restart ssh # do not notify `restart ssh` till configuration is tested
-  when: ed25519.changed or sshd_config.changed
+  when: (ed25519.changed and ed25519_pub.stat.exists) or sshd_config.changed
+  register: sshd_t
+  failed_when: sshd_t.rc or sshd_t.stderr or sshd_t.stdout # yes, default checking `rc` is not enough!
 
 - name: drop possibly insecure host keys
   file: path={{item}} state=absent
