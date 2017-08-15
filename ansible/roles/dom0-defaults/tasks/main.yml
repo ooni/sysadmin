@@ -9,6 +9,7 @@
   with_items:
     - ca-certificates
     - tmux
+    - screen # art@ prefers :) old-school
     - vim
     - lsof
     - strace
