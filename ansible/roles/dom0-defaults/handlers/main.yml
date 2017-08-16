@@ -1,4 +1,11 @@
 ---
-- name: restart ssh
+# Order of these two actions is important so `test sshd_config` may block `restart ssh service`
+- name: test sshd_config
+  command: sshd -t
+  register: sshd_t
+  failed_when: sshd_t.rc or sshd_t.stderr or sshd_t.stdout # yes, default checking `rc` is not enough!
+  listen: "restart ssh"
+- name: restart ssh service
   service: name=ssh state=restarted
+  listen: "restart ssh"
 ...

@@ -1,0 +1,72 @@
+# This playbook checks sanity of ooni-sysadmin.git/ansible/inventory file
+---
+- include: ansible-version.yml
+
+- hosts: all
+  gather_facts: true # to get SSH keys and workaround https://github.com/ansible/ansible/issues/27816
+  tasks:
+    - name: mktemp
+      set_fact:
+        tmp: "{{ lookup('pipe', 'mktemp -dt oouniq.XXXXXXXX') }}"
+      run_once: true
+
+    - name: get kernel.random.boot_id
+      command: cat /proc/sys/kernel/random/boot_id
+      changed_when: false
+      register: boot_id
+    - name: unwrap kernel.random.boot_id
+      set_fact:
+        boot_id: '{{ boot_id.stdout }}'
+
+    - name: boot_id
+      copy:
+        content: '{{ boot_id }}'
+        dest: '{{tmp}}/boot_id.{{inventory_hostname}}'
+      delegate_to: localhost
+      when: ansible_play_hosts | length != ansible_play_hosts | map('extract', hostvars, 'boot_id') | unique | length
+
+    - name: ed25519_pub
+      copy:
+        content: '{{ ansible_ssh_host_key_ed25519_public | default("NULL") }}'
+        dest: '{{tmp}}/ed25519_pub.{{inventory_hostname}}'
+      delegate_to: localhost
+      when: ansible_play_hosts | length != ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_ed25519_public') | unique | length
+
+    - name: rsa_pub
+      copy:
+        content: '{{ ansible_ssh_host_key_rsa_public | default("NULL") }}'
+        dest: '{{tmp}}/rsa_pub.{{inventory_hostname}}'
+      delegate_to: localhost
+      when: ansible_play_hosts | length != ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_rsa_public') | unique | length
+
+    - name: check mdstat as it disabled in node_exporter_collectors
+      stat: path=/proc/mdstat
+      register: mdstat
+
+    - name: check / device
+      stat: path=/.
+      register: rootfs
+    - name: check /run device
+      stat: path=/run/.
+      register: runfs
+
+    - name: check host assertions
+      assert:
+        that:
+          - not mdstat.stat.exists or mdstat.stat.md5 == 'e14b9187aaa8c5f5ef4241a3e70842b0' # Personalities : \nunused devices: <none>
+          - rootfs.stat.dev != runfs.stat.dev # /run is a separate FS (likely, tmpfs :-))
+          - ansible_ssh_host_key_dsa_public is not defined
+          - ansible_ssh_host_key_ecdsa_public is not defined
+          - ansible_ssh_host_key_rsa_public | length >= 372 # >= RSA-2048
+          - ansible_ssh_host_key_rsa_public != 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCwEsXoJcsOryYgjdtF6ZwJ6iecjvG/TVyOTcfdYJCPzZXA3Pj6CPmq0R1HrfnQLq3orgQG+uxAFdkJw3jFTJVYI47MWigfFum10Mu8/URGANd50Ahn0NxRBAqgjSBog5r9xEDPc1OLur91VHCV95sKK+Qfh18h9MGdyB2ypN4puON1JXLkxdUmlOt80vs5tX6mLTik9JzV6QQrJN0I2GZfVWg46y0jPQehl3OS+3z8Z4RBKXUaxQPoHx/G+VukUL76hQUMlqEzH2pF9nrkkM1uHDOftBBeiWZo3X/89ljsrDrP9wurQ+/bzEUiEbg3ZW1ZIe/T3FFrAUi2r3giyEEf'
+          - (ansible_ssh_host_key_ed25519_public | default('NULL')) != 'AAAAC3NzaC1lZDI1NTE5AAAAIBCDE5UIs0f3+k0gNSM0kKgNRl+4TfNOoK478wClEsE1'
+
+    - name: check inventory-wide assertions
+      assert:
+        that:
+          - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'boot_id') | unique | length # no duplicate nodes in inventory
+          - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_ed25519_public') | unique | length # no duplicate keys
+          - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_rsa_public') | unique | length # no duplicate keys
+        msg: "Check {{tmp}}"
+      run_once: true
+...
