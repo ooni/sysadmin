@@ -57,6 +57,12 @@
   stat: path=/etc/ssh/ssh_host_ed25519_key.pub get_md5=no get_checksum=no
   register: ed25519_pub
 
+- name: chmod public RSA host key # ssh-keygen creates files with 0600 umask, ansible `setup` module reads public files
+  file: path=/etc/ssh/ssh_host_rsa_key.pub state=file mode=0444 owner=root group=root
+- name: chmod public Ed25519 host key # ssh-keygen creates files with 0600 umask, ansible `setup` module reads public files
+  file: path=/etc/ssh/ssh_host_ed25519_key.pub state=file mode=0444 owner=root group=root
+  when: ed25519_pub.stat.exists
+
 # XXX: should we re-generate /etc/ssh/moduli as well before going deeper with KexAlgorithms/Ciphers/MACs ?
 
 - name: copy sshd_config
