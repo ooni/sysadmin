@@ -1,5 +1,5 @@
 ---
-adm_logins: [ weasel, art, darkk, superq ]
+adm_logins: [ weasel, art, darkk, sbs, superq ]
 
 prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
 alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
