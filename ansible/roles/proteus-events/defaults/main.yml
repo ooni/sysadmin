@@ -12,8 +12,8 @@ proteus_log_level: "info"
 proteus_api_port: 3000
 proteus_api_address: "127.0.0.1"
 proteus_events_https_port: 8082
-proteus_database_url: "postgres://proteus:{{ vault_proteus_database_password }}@{{ proteus_db_hostname }}:5432/proteus?sslmode=require"
-proteus_auth_jwt_secret : "{{ vault_proteus_auth_jwt_secret }}"
+proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@{{ proteus_db_hostname }}:5432/proteus?sslmode=require"
+proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
 proteus_notify_url: "https://notify.proteus.test.ooni.io"
 proteus_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
 
@@ -23,4 +23,4 @@ proteus_download_url: https://github.com/thetorproject/proteus/releases/download
 proteus_tarball_url: "{{ proteus_download_url }}/v{{ proteus_version }}/proteus-events-{{ proteus_version }}.linux-{{ go_arch }}.tar.gz"
 proteus_path: "{{ proteus_install_path }}/proteus-events-{{ proteus_version }}.linux-{{ go_arch }}"
 proteus_notify_basic_auth_user: "proteus"
-proteus_notify_basic_auth_password: "{{ vault_proteus_notify_basic_auth_password }}"
+proteus_notify_basic_auth_password: "{{ proteus_notify_basic_auth_password }}"
