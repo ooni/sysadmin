@@ -3,6 +3,8 @@
 - include: ansible-version.yml
 
 - hosts: all
+  vars:
+    ansible_become: false # root is not required here, also it's not `become: false` as variable declraed for `all` has precedence over directive :-/
   gather_facts: true # to get SSH keys and workaround https://github.com/ansible/ansible/issues/27816
   tasks:
     - name: mktemp
@@ -68,5 +70,14 @@
           - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_ed25519_public') | unique | length # no duplicate keys
           - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_rsa_public') | unique | length # no duplicate keys
         msg: "Check {{tmp}}"
+      run_once: true
+
+    - name: build inventory checksum
+      debug:
+        var: groups.all | sort | join('|') | hash('sha256')
+      run_once: true
+
+    - name: stamp the inventory that was checked
+      assert: { that: groups.all | sort | join('|') | hash('sha256') == '6c33ef51c143acce246a2121c04d9b76f2720ad5864032040ec3b36a51414095' }
       run_once: true
 ...
