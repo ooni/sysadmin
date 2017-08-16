@@ -1,45 +1,42 @@
-- name: create Alertmanager group
-  group: name={{ alertmanager_group }}  state=present
-
-- name: create Alertmanager user
-  user:
-    name: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    createhome: no
-    shell: /sbin/nologin
-    comment: "Prometheus User"
-    state: present
+- name: cache SHA256SUMS locally
+  local_action: get_url url={{ alertmanager_sha256sums_url }} dest={{ alertmanager_sha256sums }}
+- set_fact:
+    tarball_checksum: "sha256:{{ lookup('pipe', 'awk -v FNAME=' ~ alertmanager_basename ~ '.tar.gz -f ' ~ playbook_dir ~ '/../scripts/get-sum.awk ' ~ alertmanager_sha256sums) }}"
 
 - name: set permissions, owner and group
   file:
-    path: "{{ alertmanager_install_path }}"
-    state: directory
-    owner: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    mode: "go-w"
-    recurse: yes
-
-- name: mkdir for config and data
-  file:
     path: "{{ item }}"
     state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - "{{ alertmanager_base }}"
+    - "{{ alertmanager_base }}/dist"
+    - "{{ alertmanager_config_path }}"
+    - "{{ alertmanager_templates_path }}"
+
+- name: mkdir for data
+  file:
+    path: "{{ alertmanager_data_path }}"
+    state: directory
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
-    mode: "u=rwx,g=rx,o="
-  with_items:
-    - "{{ alertmanager_install_path }}"
-    - "{{ alertmanager_config_path }}"
-    - "{{ alertmanager_data_path }}"
-    - "{{ alertmanager_templates_path }}"
+    mode: 0750
+
+- name: fetch alertmanager tarball
+  get_url:
+    url: "{{ alertmanager_tarball_url }}"
+    dest: "{{ alertmanager_base }}/dist/{{ alertmanager_basename }}.tar.gz"
+    checksum: "{{ tarball_checksum }}"
 
 - name: untar alertmanager tarball
   unarchive:
-    src: "{{ alertmanager_tarball_url }}"
-    dest: "{{ alertmanager_install_path }}"
-    mode: 0755
-    owner: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    copy: no
+    src: "{{ alertmanager_base }}/dist/{{ alertmanager_basename }}.tar.gz"
+    dest: "{{ alertmanager_base }}"
+    owner: root
+    group: root
+    remote_src: true
 
 - name: Configure Alertmanager
   notify:
@@ -47,6 +44,10 @@
   template:
     src: alertmanager.yml.j2
     dest: "{{ alertmanager_config_path }}/alertmanager.yml"
+    owner: root
+    group: "{{ alertmanager_group }}"
+    mode: 0640
+  tags: prometheus-conf
 
 - name: Configure Alertmanager templates
   notify:
@@ -54,11 +55,12 @@
   copy:
     src: "{{ item }}"
     dest: "{{ alertmanager_templates_path }}"
-    owner: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    mode: "u=rwx,g=rx,o="
+    owner: root
+    group: root
+    mode: 0644
   with_fileglob:
     - templates/*.tmpl
+  tags: prometheus-conf
 
 - name: Install alertmanager systemd service file
   notify:

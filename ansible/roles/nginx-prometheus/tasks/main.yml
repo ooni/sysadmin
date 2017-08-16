@@ -1,0 +1,71 @@
+---
+- name: Install required apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest # openssl and nginx should rather be `latest` :-)
+  environment:
+    RUNLEVEL: 1 # To avoid nginx being launched right after it's installed
+  with_items:
+    - openssl
+    - nginx
+
+- name: Remove default nginx virtual host config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Create nginx/Prometheus directories
+  file: path={{ item }} state=directory owner=root group=root mode=0755
+  with_items:
+    - '{{ ngxprom_base }}'
+    - '{{ ngxprom_base }}/log'
+
+- include: create-certs.yml
+
+- name: Upload Scraper CA
+  copy: src=scraper_ca.cert dest={{ngxprom_ssl_dir}}/ owner=root group=root mode=0444
+
+- name: cleanup stale files
+  file: name={{item}} state=absent
+  with_items:
+    - /etc/nginx/sites-enabled/node_exporter
+    - /etc/nginx/prometheus.htpasswd
+    - /srv/node_exporter/private
+    - /etc/init/nginx-prometheus.upstart
+    - /etc/init.d/nginx-prometheus.rc
+  notify: reload nginx
+
+- name: Create nginx conf file
+  template:
+    src: nginx.conf
+    dest: "{{ ngxprom_base }}/nginx.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload nginx-prometheus
+
+# template with local `openssl` call is a bit nicer than installing python-passlib :)
+- name: Create password file for nginx
+  template: src=scraper.htpasswd dest={{ngxprom_base}}/ owner=root group=ngxprom mode=0440
+  notify: reload nginx-prometheus
+
+- name: Create nginx systemd service file
+  template: src=nginx-prometheus.service dest=/etc/systemd/system/ owner=root group=root mode=0444
+  notify: restart nginx-prometheus
+  when: ansible_service_mgr == 'systemd'
+
+- name: Create nginx upstart service file
+  template: src=nginx-prometheus.upstart dest=/etc/init/nginx-prometheus.conf owner=root group=root mode=0444
+  notify: restart nginx-prometheus
+  when: ansible_service_mgr == 'upstart'
+
+- name: Create nginx sysvinit service file
+  template: src=nginx-prometheus.rc dest=/etc/init.d/nginx-prometheus owner=root group=root mode=0555
+  notify: restart nginx-prometheus
+  when: ansible_service_mgr == 'sysvinit'
+
+- name: Enable and start nginx-prometheus service
+  service:
+    name: nginx-prometheus
+    state: started
+    enabled: yes

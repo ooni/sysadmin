@@ -1,11 +1,21 @@
 go_arch: amd64
 
-node_exporter_install_path: /srv/node_exporter
+# cpu is related to freq/throttling and others
+# vmstat is not enabled as meminfo is enough
+# ntp is useful enough to monitor local ntp daemon
+# systemd provides TOO many useless metrics, although unit-whitelist may be used
+# TODO: check if diskstats / netdev should ignore some devices
+node_exporter_collectors: diskstats,entropy,filefd,filesystem,loadavg,meminfo,netdev,netstat,sockstat,stat,time,ntp
+
+node_exporter_base: /srv/node_exporter
 node_exporter_textfiles_path: /srv/node_exporter/textfiles
-node_exporter_collectors: diskstats,filefd,filesystem,loadavg,mdadm,meminfo,netdev,netstat,sockstat,stat,textfile,time,uname
-node_exporter_version: 0.13.0
+node_exporter_version: 0.14.0
 node_exporter_download_url: https://github.com/prometheus/node_exporter/releases/download
 
-node_exporter_tarball_url: "{{ node_exporter_download_url }}/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}.tar.gz"
-node_exporter_path: "{{ node_exporter_install_path }}/node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}"
-node_exporter_listen_address: "127.0.0.1:9100"
+node_exporter_basename: "node_exporter-{{ node_exporter_version }}.linux-{{ go_arch }}"
+node_exporter_tarball_url: "{{ node_exporter_download_url }}/v{{ node_exporter_version }}/{{ node_exporter_basename}}.tar.gz"
+node_exporter_sha256sums_url: "{{ node_exporter_download_url }}/v{{ node_exporter_version }}/sha256sums.txt"
+node_exporter_sha256sums: "{{ playbook_dir }}/cache/node_exporter-{{ node_exporter_version}}.SHA256SUMS"
+node_exporter_path: "{{ node_exporter_base }}/{{ node_exporter_basename }}"
+
+node_exporter_listen_address: "{{ ngxprom_exporter_ipv4 }}:9100"

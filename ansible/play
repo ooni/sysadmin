@@ -1,4 +1,32 @@
 #!/bin/sh
+
+if [ -z ${OONI_SYSADMIN_HOME+x} ]; then
+    OONI_SYSADMIN_HOME=$HOME/.ooni-sysadmin
+fi
+LOGS_DIR=$OONI_SYSADMIN_HOME/logs
+PRIVATE_DIR=$OONI_SYSADMIN_HOME/private
+
+if [ ! -d "$OONI_SYSADMIN_HOME" ]; then
+    mkdir -p "$OONI_SYSADMIN_HOME"
+    mkdir -p "$LOGS_DIR"
+    mkdir -p "$PRIVATE_DIR"
+    chmod 700 "$PRIVATE_DIR"
+fi
+
+cmd=$(basename "$0")
+case "$cmd" in
+  play)
+    binary=ansible-playbook
+    ;;
+  ansible)
+    binary=ansible
+    ;;
+  *)
+    echo "Unknown command in argv0: $0" 1>&2
+    exit 1
+    ;;
+esac
+
 if [ -t 0 -a -t 1 -a -t 2 ]; then
   uname=`uname -s`
   if [ "$uname" = Linux ]; then
@@ -6,16 +34,16 @@ if [ -t 0 -a -t 1 -a -t 2 ]; then
       exec bash "$0" "$@"
     else
       # I need some internal bash `printf` supporting %q
-      name=$(echo "play" "$@" | sed s/[^-+=a-zA-Z0-9_]/_/g).$(date +%Y.%m.%d.%H.%M.%S).$$.$(tput cols)x$(tput lines)
+      name=$(echo "$cmd" "$@" | sed s/[^-+=a-zA-Z0-9_]/_/g).$(date +%Y.%m.%d.%H.%M.%S).$$.$(tput cols)x$(tput lines)
       args=$(printf "%q " "$@")
-      exec /usr/bin/script --append --return --timing="./${name}.timing" -c "ansible-playbook --vault-password-file ./password-pipe --inventory-file ./inventory $args" "./${name}.log"
+      exec /usr/bin/script --append --return --timing="$LOGS_DIR/${name}.timing" -c "$binary --vault-password-file ./password-pipe --inventory-file ./inventory $args" "$LOGS_DIR/${name}.log"
     fi
   elif [ "$uname" = Darwin ]; then
-    name=`echo "play" "$@" | sed s/[^-+=a-zA-Z0-9_]/_/g`.`date +%Y.%m.%d.%H.%M.%S`.$$.log
-    exec script -a "$name" ansible-playbook --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
+    name=`echo "$cmd" "$@" | sed s/[^-+=a-zA-Z0-9_]/_/g`.`date +%Y.%m.%d.%H.%M.%S`.$$.log
+    exec script -a "$LOGS_DIR/$name" "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
   else
     echo "$0: don't know how to launch \`script\` at $uname." 1>&2
     # fall-through
   fi
 fi
-exec ansible-playbook --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
+exec "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory "$@"

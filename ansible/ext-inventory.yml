@@ -53,8 +53,12 @@
         content: '{{ droplets.json | to_nice_json }}'
         dest: '{{ extroot }}/gh-droplets.json'
 
+    - name: convert zones from XML to TXT
+      command: ../scripts/namecheap2zone {{extroot}}/{{item}}.xml {{extroot}}/{{item}}.txt
+      with_items: [ ooni.io, ooni.nu, openobservatory.org ]
+
     - set_fact:
-        files: '{{extroot}}/ooni.io.xml {{extroot}}/ooni.nu.xml {{extroot}}/openobservatory.org.xml {{extroot}}/gh-droplets.json'
+        files: '{{extroot}}/ooni.io.xml {{extroot}}/ooni.io.txt {{extroot}}/ooni.nu.xml {{extroot}}/ooni.nu.txt {{extroot}}/openobservatory.org.xml {{extroot}}/openobservatory.org.txt {{extroot}}/gh-droplets.json'
     - name: git add
       command: git add {{ files }}
       changed_when: false

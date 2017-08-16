@@ -1,4 +1,13 @@
 ---
+adm_logins: [ weasel, art, darkk, sbs, superq ]
+
+prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
+alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
+alertmanager_smtp_username: '{{ vault_alertmanager_smtp_username }}'
+alertmanager_smtp_password: '{{ vault_alertmanager_smtp_password }}'
+grafana_admin_password: "{{ vault_grafana_admin_password }}"
+grafana_secret_key: "{{ vault_grafana_secret_key }}" # to sign cookies
+
 blackbox_jobs:
   - name: "ooni web_connectivity test helpers"
     module: "ooni_web_connectivity_ok"
