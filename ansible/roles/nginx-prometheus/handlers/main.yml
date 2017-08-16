@@ -1,15 +1,23 @@
 ---
-- name: restart nginx-prometheus
+- name: test nginx-prometheus config
+  command: /usr/sbin/nginx -t -c {{ ngxprom_base }}/nginx.conf
+  listen:
+    - restart nginx-prometheus
+    - reload nginx-prometheus
+
+- name: restart nginx-prometheus service
   service:
     name: nginx-prometheus
     state: restarted
     enabled: true
+  listen: restart nginx-prometheus
 
-- name: reload nginx-prometheus
+- name: reload nginx-prometheus service
   service:
     name: nginx-prometheus
     state: reloaded
     enabled: true
+  listen: reload nginx-prometheus
 
 - name: reload nginx
   service:

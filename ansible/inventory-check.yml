@@ -43,10 +43,18 @@
       stat: path=/proc/mdstat
       register: mdstat
 
+    - name: check / device
+      stat: path=/.
+      register: rootfs
+    - name: check /run device
+      stat: path=/run/.
+      register: runfs
+
     - name: check host assertions
       assert:
         that:
           - not mdstat.stat.exists or mdstat.stat.md5 == 'e14b9187aaa8c5f5ef4241a3e70842b0' # Personalities : \nunused devices: <none>
+          - rootfs.stat.dev != runfs.stat.dev # /run is a separate FS (likely, tmpfs :-))
           - ansible_ssh_host_key_dsa_public is not defined
           - ansible_ssh_host_key_ecdsa_public is not defined
           - ansible_ssh_host_key_rsa_public | length >= 372 # >= RSA-2048
