@@ -1,11 +1,6 @@
 ---
 - include: ansible-version.yml
 
-- hosts: orchestration
-  gather_facts: true
-  roles:
-    - docker_py
-
 - hosts: db-1.proteus.test.ooni.io
   gather_facts: false
   vars:
