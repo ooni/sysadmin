@@ -1,0 +1,62 @@
+---
+- name: check if Ed25519 host key is default one
+  stat: path=/etc/ssh/ssh_host_ed25519_key.pub checksum_algorithm=sha256
+  register: ed25519_pub
+
+- name: drop insecure Ed25519 host key
+  file: path={{item}} state=absent
+  notify: restart ssh
+  when: ed25519_pub.stat.exists and ed25519_pub.stat.checksum == '2c326166f62c16e069fea6a4dda17c73d43e35cbf08a023244e41d97d71a13a2'
+  with_items:
+    - /etc/ssh/ssh_host_ed25519_key
+    - /etc/ssh/ssh_host_ed25519_key.pub
+
+- name: check if RSA host key is default one
+  stat: path=/etc/ssh/ssh_host_rsa_key.pub checksum_algorithm=sha256
+  register: rsa_pub
+
+- name: drop insecure RSA host key
+  file: path={{item}} state=absent
+  notify: restart ssh
+  when: rsa_pub.stat.checksum == '753d4874ec3bde1d65c8b3a9eaa435f6ba037b12c1ddca622591a7f93a2e63da'
+  with_items:
+    - /etc/ssh/ssh_host_rsa_key
+    - /etc/ssh/ssh_host_rsa_key.pub
+
+- name: create host key
+  command: ssh-keygen -f /etc/ssh/ssh_host_{{item}}_key -N '' -t {{item}}
+  args:
+    creates: /etc/ssh/ssh_host_{{item}}_key
+  register: keygen
+  failed_when: keygen.rc != 0 and not (keygen.rc == 1 and keygen.stderr == "unknown key type " + item)
+  changed_when: keygen.rc == 0 and 'delta' in keygen
+  notify: restart ssh
+  with_items:
+    - rsa
+    - ed25519
+
+- name: check if Ed25519 host key is supported
+  stat: path=/etc/ssh/ssh_host_ed25519_key.pub get_md5=no get_checksum=no
+  register: ed25519_pub
+
+- name: chmod public RSA host key # ssh-keygen creates files with 0600 umask, ansible `setup` module reads public files
+  file: path=/etc/ssh/ssh_host_rsa_key.pub state=file mode=0444 owner=root group=root
+- name: chmod public Ed25519 host key # ssh-keygen creates files with 0600 umask, ansible `setup` module reads public files
+  file: path=/etc/ssh/ssh_host_ed25519_key.pub state=file mode=0444 owner=root group=root
+  when: ed25519_pub.stat.exists
+
+# XXX: should we re-generate /etc/ssh/moduli as well before going deeper with KexAlgorithms/Ciphers/MACs ?
+
+- name: copy sshd_config
+  template: src=sshd_config dest=/etc/ssh/ owner=root group=root mode=0444
+  notify: restart ssh
+
+- name: drop possibly insecure host keys
+  file: path={{item}} state=absent
+  notify: restart ssh
+  with_items:
+    - /etc/ssh/ssh_host_dsa_key
+    - /etc/ssh/ssh_host_dsa_key.pub
+    - /etc/ssh/ssh_host_ecdsa_key
+    - /etc/ssh/ssh_host_ecdsa_key.pub
+...
