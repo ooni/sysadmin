@@ -1,0 +1,13 @@
+---
+- include: ansible-version.yml
+
+- hosts: hkgmetadb.infra.ooni.io
+  gather_facts: false # no useful facts there :)
+  roles:
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      db: metadb
+      name: oosuperset
+      password: '{{ hkgsuperset_postgres_password }}'
+...
