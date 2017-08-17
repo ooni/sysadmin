@@ -68,6 +68,10 @@ hkgmetadb.infra.ooni.io
 hkgmetadb.infra.ooni.io
 measurements-beta.ooni.io
 
+[psk_superset_hkgmetadb]
+hkgsuperset.ooni.io
+hkgmetadb.infra.ooni.io
+
 ########################################################################
 # role tags
 
