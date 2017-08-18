@@ -2,8 +2,8 @@
 proteus_registry_url: "https://registry.proteus.test.ooni.io"
 proteus_events_url: "https://events.proteus.test.ooni.io"
 
-proteus_user:   proteus
-proteus_group:  proteus
+proteus_user:   prtfront
+proteus_group:  prtfront
 
 proteus_frontend_port: 3000
 proteus_frontend_address: "127.0.0.1"

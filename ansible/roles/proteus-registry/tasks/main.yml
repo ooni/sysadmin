@@ -1,15 +1,3 @@
-- name: create Proteus group
-  group: name={{ proteus_group }}  state=present
-
-- name: create Proteus user
-  user:
-    name: "{{ proteus_user }}"
-    group: "{{ proteus_group }}"
-    createhome: no
-    shell: /sbin/nologin
-    comment: "Proteus User"
-    state: present
-
 - name: set permissions, owner and group
   file:
     path: "{{ proteus_install_path }}"

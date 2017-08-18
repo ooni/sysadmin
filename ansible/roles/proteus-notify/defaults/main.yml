@@ -1,7 +1,7 @@
 go_arch: amd64
 
-proteus_user:   proteus
-proteus_group:  proteus
+proteus_user:   prtnotif
+proteus_group:  prtnotif
 
 proteus_install_path: /srv/proteus
 proteus_data_path: /srv/proteus/data
