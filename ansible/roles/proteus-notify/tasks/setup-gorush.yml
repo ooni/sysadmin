@@ -13,14 +13,14 @@
 
 - name: Write Proteus APN key
   notify:
-  - reload proteus
+  - reload gorush
   copy:
     content: "{{ proteus_apn_key_content }}"
     dest: "{{ proteus_config_path }}/apn-key.pem"
 
 - name: Install gorush systemd service file
   notify:
-  - restart proteus
+  - restart gorush
   template:
     src: gorush.service
     dest: /etc/systemd/system/gorush.service
