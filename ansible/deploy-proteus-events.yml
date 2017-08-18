@@ -18,9 +18,9 @@
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
     proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@db-1.proteus.ooni.io:5432/proteus?sslmode=require"
-    proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
+    # proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
     proteus_notify_url: "https://notify.proteus.ooni.io"
-    proteus_notify_basic_auth_password: "{{ proteus_notify_basic_auth_password }}"
+    # proteus_notify_basic_auth_password: "{{ proteus_notify_basic_auth_password }}"
     proteus_notify_topic_ios: "org.openobservatory.ooniprobe"
   roles:
     - letsencrypt

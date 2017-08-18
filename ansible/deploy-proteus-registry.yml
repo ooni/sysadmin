@@ -16,7 +16,7 @@
     proteus_registry_https_port: 443
     letsencrypt_domains: "{{ inventory_hostname }}"
     proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@db-1.proteus.ooni.io:5432/proteus?sslmode=require"
-    proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
+    # proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
     proteus_auth_admin_password : "{{ proteus_admin_password }}"
   roles:
     - letsencrypt

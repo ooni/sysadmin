@@ -20,12 +20,12 @@
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
     proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@db-1.proteus.ooni.io:5432/proteus?sslmode=require"
-    proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
+    # proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
     proteus_fcm_server_key: "{{ fcm_server_key }}"
-    proteus_apn_key_password: "{{ proteus_apn_key_password }}"
-    proteus_apn_key_content: "{{ proteus_apn_key_content }}"
+    # proteus_apn_key_password: "{{ proteus_apn_key_password }}"
+    # proteus_apn_key_content: "{{ proteus_apn_key_content }}"
     proteus_environment: "production"
-    proteus_notify_basic_auth_password: "{{ proteus_notify_basic_auth_password }}"
+    # proteus_notify_basic_auth_password: "{{ proteus_notify_basic_auth_password }}"
   roles:
     - letsencrypt
     - proteus-notify
