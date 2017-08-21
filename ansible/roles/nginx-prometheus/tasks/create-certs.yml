@@ -30,16 +30,16 @@
   stat: path={{ ngxprom_ssl_base }}.cert
   register: ssl_cert
 
+- name: mktemp @ localhost
+  set_fact:
+    tmp: "{{ lookup('pipe', 'mktemp -dt ooni-csr.XXXXXXXX') }}"
+  run_once: true
+
+- name: Copy Exporter CA key to tmpdir from vault
+  local_action: copy src=exporter_ca.key.vault dest={{ tmp }}/exporter_ca.key
+  run_once: true
+
 - block:
-  - name: mktemp @ localhost
-    set_fact:
-      tmp: "{{ lookup('pipe', 'mktemp -dt ooni-csr.XXXXXXXX') }}"
-    run_once: true
-
-  - name: Copy Exporter CA key to tmpdir from vault
-    local_action: copy src=exporter_ca.key.vault dest={{ tmp }}/exporter_ca.key
-    run_once: true
-
   - name: Fetch the CSR from the host
     fetch:
       src: "{{ ngxprom_ssl_base }}.csr"
@@ -59,8 +59,8 @@
       owner: root
       group: root
       mode: 0400
-
-  - name: cleanup local tmp dir
-    local_action: file path={{ tmp }} state=absent
-    run_once: true
   when: not ssl_cert.stat.exists
+
+- name: cleanup local tmp dir
+  local_action: file path={{ tmp }} state=absent
+  run_once: true
