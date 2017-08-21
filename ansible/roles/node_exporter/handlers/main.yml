@@ -2,7 +2,3 @@
   service:
     name: node_exporter
     state: restarted
-- name: reload systemd
-  service:
-    name: node_exporter
-    state: reloaded
