@@ -21,3 +21,4 @@ for vault in $(find . -type f -name .travis.vault); do
 done
 ansible-playbook --vault-password-file ./.travis.password-pipe --inventory-file ./inventory ansible-version.yml
 for pb in *.yml; do ansible-playbook --vault-password-file ./.travis.password-pipe --inventory-file ./inventory --syntax-check $pb; done
+ansible-playbook --vault-password-file ./.travis.password-pipe --inventory-file ./inventory inventory-check.yml --start-at-task 'build inventory checksum'

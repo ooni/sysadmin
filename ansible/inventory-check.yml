@@ -72,12 +72,15 @@
         msg: "Check {{tmp}}"
       run_once: true
 
+- hosts: all
+  gather_facts: false
+  tasks:
     - name: build inventory checksum
       debug:
         var: groups.all | sort | join('|') | hash('sha256')
       run_once: true
 
     - name: stamp the inventory that was checked
-      assert: { that: groups.all | sort | join('|') | hash('sha256') == '6c33ef51c143acce246a2121c04d9b76f2720ad5864032040ec3b36a51414095' }
+      assert: { that: groups.all | sort | join('|') | hash('sha256') == '36511e24b1b9f2d5debae2630fadd12f35a4701ba5aa3174f297515fda7df47b' }
       run_once: true
 ...
