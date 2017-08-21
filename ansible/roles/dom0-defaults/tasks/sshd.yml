@@ -45,6 +45,29 @@
   file: path=/etc/ssh/ssh_host_ed25519_key.pub state=file mode=0444 owner=root group=root
   when: ed25519_pub.stat.exists
 
+- name: mktemp @ localhost
+  set_fact:
+    tmp: "{{ lookup('pipe', 'mktemp -dt ooni-known.XXXXXXXX') }}"
+  run_once: true
+
+- name: fetch public RSA host key
+  fetch: src=/etc/ssh/ssh_host_rsa_key.pub dest="{{ tmp }}/{{ inventory_hostname }}_rsa_key.pub" flat=yes
+- name: fetch public Ed25519 host key
+  fetch: src=/etc/ssh/ssh_host_ed25519_key.pub dest="{{ tmp }}/{{ inventory_hostname }}_ed25519_key.pub" flat=yes
+  when: ed25519_pub.stat.exists
+
+- name: merge known_hosts
+  local_action: template src=known_hosts dest={{tmp}}/known_hosts
+  run_once: true
+
+- name: update known_hosts
+  local_action: command sort --unique {{tmp}}/known_hosts --output {{inventory_dir}}/../ext/known_hosts
+  run_once: true
+
+- name: cleanup local tmp dir
+  local_action: file path={{ tmp }} state=absent
+  run_once: true
+
 # XXX: should we re-generate /etc/ssh/moduli as well before going deeper with KexAlgorithms/Ciphers/MACs ?
 
 - name: copy sshd_config
