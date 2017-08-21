@@ -1,0 +1,33 @@
+- name: download gorush exe
+  get_url:
+    url: "{{ gorush_url }}"
+    dest: "{{ proteus_install_path }}"
+    mode: 0755
+
+- name: Configure gorush
+  notify:
+  - reload gorush
+  template:
+    src: gorush.yml.j2
+    dest: "{{ proteus_config_path }}/gorush.yml"
+
+- name: Write Proteus APN key
+  notify:
+  - reload gorush
+  copy:
+    content: "{{ proteus_apn_key_content }}"
+    dest: "{{ proteus_config_path }}/apn-key.pem"
+
+- name: Install gorush systemd service file
+  notify:
+  - restart gorush
+  template:
+    src: gorush.service
+    dest: /etc/systemd/system/gorush.service
+
+- name: Enable and start gorush service
+  systemd:
+    name: gorush.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

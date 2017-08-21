@@ -1,0 +1,23 @@
+go_arch: amd64
+
+proteus_user:   prtreg
+proteus_group:  prtreg
+
+proteus_install_path: /srv/proteus
+proteus_data_path: /srv/proteus/data
+proteus_config_path: /srv/proteus/config
+
+proteus_environment: "production"
+proteus_log_level: "info"
+proteus_api_port: 3000
+proteus_api_address: "127.0.0.1"
+proteus_registry_https_port: 8081
+proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@{{ proteus_db_hostname }}:5432/proteus?sslmode=require"
+proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
+proteus_auth_admin_password : "{{ proteus_admin_password }}"
+
+proteus_version: "0.1.0-beta.9"
+proteus_download_url: https://github.com/thetorproject/proteus/releases/download
+
+proteus_tarball_url: "{{ proteus_download_url }}/v{{ proteus_version }}/proteus-registry-{{ proteus_version }}.linux-{{ go_arch }}.tar.gz"
+proteus_path: "{{ proteus_install_path }}/proteus-registry-{{ proteus_version }}.linux-{{ go_arch }}"

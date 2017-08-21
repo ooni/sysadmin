@@ -33,6 +33,11 @@ passwd:
   grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
   ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
 
+  prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
+  prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}
+  prtnotif: {login: prtnotif, id: 4802, comment: Orchestration Notifications}
+  prtfront: {login: prtfront, id: 4803, comment: Orchestration Front}
+
   oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
 
   # people have id >= 10000

@@ -1,0 +1,25 @@
+- name: set permissions, owner and group
+  file:
+    path: "{{ proteus_install_path }}"
+    state: directory
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ proteus_data_path }}"
+    - "{{ proteus_config_path }}"
+
+- include: setup-proteus-notify.yml
+  when: notification_backend == 'proteus-notify'
+- include: setup-gorush.yml
+  when: notification_backend == 'gorush'
+- include: setup-nginx.yml

@@ -20,8 +20,7 @@ modules in separate virtual environment and set proper
 
 If you need to store secrets in repository then store them as vaults using
 `ansible/vault` script as a wrapper for `ansible-vault`. Store encrypted
-variables with `vault_` prefix to make world [a more grepable place]
-(http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults)
+variables with `vault_` prefix to make world [a more grepable place](http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults)
 and link location of the variable using same name without prefix in corresponding `vars.yml`.
 `scripts/ansible-syntax-check` checks links between vaults and plaintext files during Travis build.
 `ansible/play` wrapper for `ansible-playbook` will execute a playbook with

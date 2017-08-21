@@ -1,0 +1,18 @@
+---
+proteus_db_hostname: "db-1.proteus.test.ooni.io"
+
+proteus_admin_password: '{{ vault_proteus_admin_password }}'
+proteus_database_password: '{{ vault_proteus_database_password }}'
+proteus_auth_jwt_secret: '{{ vault_proteus_auth_jwt_secret }}'
+fcm_server_key: '{{ vault_fcm_server_key }}'
+proteus_apn_key_password: '{{ vault_proteus_apn_key_password }}'
+proteus_notify_basic_auth_password: '{{ vault_proteus_notify_basic_auth_password }}'
+proteus_apn_key_content: '{{ vault_proteus_apn_key_content }}'
+proteus_admin_password_testing: '{{ vault_proteus_admin_password_testing }}'
+proteus_database_password_testing: '{{ vault_proteus_database_password_testing }}'
+proteus_auth_jwt_secret_testing: '{{ vault_proteus_auth_jwt_secret_testing }}'
+fcm_server_key_testing: '{{ vault_fcm_server_key_testing }}'
+proteus_apn_key_password_testing: '{{ vault_proteus_apn_key_password_testing }}'
+proteus_notify_basic_auth_password_testing: '{{ vault_proteus_notify_basic_auth_password_testing }}'
+proteus_apn_key_content_testing: '{{ vault_proteus_apn_key_content_testing }}'
+...

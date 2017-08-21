@@ -1,11 +1,17 @@
-[gh:children] # group to gather new-style ACL
+########################################################################
+# dom0 tags (showing diversity of our infra, huh)
+
+[dom0:children] # `all` should be equal to `dom0`, so it's here to catch errors
+gh
+ath
+ber
+tpo
+bigv
+
+[gh:children]
 wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
 hkg
 ams
-# ath
-# ber
-# tpo
-# bigv
 
 ########################################################################
 # location tags
@@ -20,9 +26,14 @@ ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
 
 [hkg]
 datacollector.infra.ooni.io
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
 hkgmetadb.infra.ooni.io
 measurements-beta.ooni.io
-# irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
+irc-bouncer.service.ooni.io
 vpn-gate-runner.infra.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
@@ -42,6 +53,12 @@ slack.openobservatory.org
 prometheus.infra.ooni.io
 staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+notify.proteus.ooni.io
+events.proteus.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -68,6 +85,18 @@ hkgmetadb.infra.ooni.io
 hkgmetadb.infra.ooni.io
 measurements-beta.ooni.io
 
+[psk_orchestration]
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
+notify.proteus.ooni.io
+events.proteus.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
 [psk_superset_hkgmetadb]
 hkgsuperset.ooni.io
 hkgmetadb.infra.ooni.io
@@ -89,6 +118,13 @@ staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]
 no_passwd # no passwd => no nodeexp user ;-)
+
+[testing]
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
 
 [slackin]
 slack.openobservatory.org
