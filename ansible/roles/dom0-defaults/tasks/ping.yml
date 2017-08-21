@@ -1,0 +1,13 @@
+---
+- name: fix /bin/ping permissions
+  command: dpkg-reconfigure iputils-ping
+  args:
+    creates: /etc/flag_iputils-ping_reconfigured
+  register: ping
+
+- name: store dpkg-reconfigure iputils-ping flag
+  copy:
+    content: '{{ ping.stdout }}'
+    dest: /etc/flag_iputils-ping_reconfigured
+  when: ping | changed
+...

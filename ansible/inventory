@@ -97,6 +97,10 @@ registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 
+[psk_superset_hkgmetadb]
+hkgsuperset.ooni.io
+hkgmetadb.infra.ooni.io
+
 ########################################################################
 # role tags
 
