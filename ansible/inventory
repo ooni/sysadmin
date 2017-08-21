@@ -38,6 +38,9 @@ vpn-gate-runner.infra.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 notify.proteus.test.ooni.io
+ntp.tmp.ooni.io
+openntpd.tmp.ooni.io
+chrony.tmp.ooni.io
 
 [ams]
 explorer.ooni.io
@@ -125,6 +128,11 @@ events.proteus.test.ooni.io
 registry.proteus.test.ooni.io
 db-1.proteus.test.ooni.io
 proteus.test.ooni.io
+
+[test_ntp]
+ntp.tmp.ooni.io
+openntpd.tmp.ooni.io
+chrony.tmp.ooni.io
 
 [slackin]
 slack.openobservatory.org
