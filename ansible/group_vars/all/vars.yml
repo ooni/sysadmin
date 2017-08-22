@@ -33,6 +33,8 @@ passwd:
   grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
   ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
 
+  piwik:    {login: piwik,    id: 2300, comment: Piwik user}
+
   prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
   prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}
   prtnotif: {login: prtnotif, id: 4802, comment: Orchestration Notifications}

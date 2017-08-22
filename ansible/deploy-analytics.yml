@@ -1,0 +1,11 @@
+---
+- include: ansible-version.yml
+
+- hosts: analytics.ooni.io
+  gather_facts: true
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "analytics.ooni.io"
+  roles:
+    #- letsencrypt
+    - piwik
