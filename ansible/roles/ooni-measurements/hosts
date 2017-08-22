@@ -1,6 +1,0 @@
-[production]
-hostname
-
-[production:vars]
-# Path of secrets file default:templates/secrets.env.j2
-# ooni_measurements_secrets_path

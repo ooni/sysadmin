@@ -1,0 +1,64 @@
+---
+adm_logins: [ weasel, art, darkk, sbs, superq ]
+
+prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
+alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
+alertmanager_smtp_username: '{{ vault_alertmanager_smtp_username }}'
+alertmanager_smtp_password: '{{ vault_alertmanager_smtp_password }}'
+grafana_admin_password: "{{ vault_grafana_admin_password }}"
+grafana_secret_key: "{{ vault_grafana_secret_key }}" # to sign cookies
+
+blackbox_jobs:
+  - name: "ooni web_connectivity test helpers"
+    module: "ooni_web_connectivity_ok"
+    targets:
+      #- "https://a.web-connectivity.th.ooni.io/status"
+      - "https://b.web-connectivity.th.ooni.io/status"
+      - "https://c.web-connectivity.th.ooni.io/status"
+  - name: "ooni collector"
+    module: "ooni_collector_ok"
+    targets:
+      #- "https://a.collector.ooni.io/invalidpath"
+      - "https://b.collector.ooni.io/invalidpath"
+      - "https://c.collector.ooni.io/invalidpath"
+      # Testing collectors
+      - "https://b.collector.test.ooni.io/invalidpath"
+  - name: "ooni bouncer"
+    module: "ooni_bouncer_ok"
+    targets:
+      - "https://bouncer.ooni.io/bouncer"
+
+  - name: "ooni tcp echo"
+    module: "ooni_tcp_echo_ok"
+    targets:
+      - "37.218.247.110:80"
+      - "213.138.109.232:80"
+  - name: "ooni http return json headers"
+    module: "ooni_http_return_json_headers_ok"
+    targets:
+      - "http://38.107.216.10:80"
+
+  - name: "ooni explorer countByCountry"
+    module: "http_2xx"
+    targets:
+      - "https://explorer.ooni.torproject.org/api/reports/countByCountry"
+
+  - name: "ooni measurements API files"
+    module: "http_2xx"
+    targets:
+      - "https://measurements.ooni.torproject.org/api/v1/files"
+
+  - name: "slack inviter"
+    module: "http_2xx"
+    targets:
+      - "https://slack.openobservatory.org"
+
+  - name: "ooni website"
+    module: "http_2xx"
+    targets:
+      - "https://ooni.torproject.org"
+
+  - name: "ooni get"
+    module: "http_2xx"
+    targets:
+      - "https://get.ooni.torproject.org"

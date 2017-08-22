@@ -1,0 +1,27 @@
+[core]
+environment = "{{ proteus_environment }}"
+log-level = "{{ proteus_log_level }}"
+# worker-num: 0 # defaults to CPU number
+# queue-size: 2048
+
+[auth]
+jwt-secret = "{{ proteus_auth_jwt_secret }}"
+
+[api]
+port = {{ proteus_api_port }}
+address = "{{ proteus_api_address }}"
+
+[database]
+url = "{{ proteus_database_url }}"
+active-probes-table = "active_probes"
+probe-updates-table = "probe_updates"
+
+[fcm]
+server-key = "{{ proteus_fcm_server_key }}"
+max-retries = 5
+
+[apn]
+max-retries = 5
+key-path = "{{ proteus_apn_key_path }}"
+key-password = "{{ proteus_apn_key_password }}"
+production = {{ proteus_apn_production }}

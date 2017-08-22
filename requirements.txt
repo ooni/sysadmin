@@ -1,3 +1,2 @@
-ansible
+ansible (== 2.2.2)
 boto
-invoke

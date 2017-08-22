@@ -1,17 +1,12 @@
 piwik_download_path: http://builds.piwik.org/piwik.zip
 
 piwik_admin_user: piwik_admin
-piwik_admin_password: "{{ vault_piwik_admin_pass }}"
 piwik_admin_email: "admin@openobservatory.org"
 
 mysql_host: 127.0.0.1
 mysql_admin_user: root
-mysql_admin_pass: "{{ vault_piwik_mysql_admin_pass }}"
 mysql_piwik_user: piwik
-mysql_piwik_pass: "{{ vault_piwik_mysql_piwik_pass }}"
 mysql_piwik_db: piwik_db
-mysql_piwik_salt: "{{ vault_piwik_mysql_piwik_salt }}"
-mysql_service: mysql
 
 deploy_create_folders:
 - ''
@@ -30,9 +25,7 @@ nginx_confd_templates:
   - confd_https
 
 piwik_user: "{{ passwd.piwik.login }}"
-piwik_group: "{{ passwd.piwik.group }}"
-piwik_uid: "{{ passwd.piwik.id }}"
-piwik_user_comment: "{{ passwd.piwik.comment }}"
+piwik_group: "{{ passwd.piwik.login }}"
 
 app_name: piwik
 app_user: "{{ piwik_user }}"

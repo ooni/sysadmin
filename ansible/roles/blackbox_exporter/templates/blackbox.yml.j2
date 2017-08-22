@@ -1,0 +1,87 @@
+modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+  http_post_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+  tcp_connect:
+    prober: tcp
+    timeout: 5s
+  pop3s_banner:
+    prober: tcp
+    tcp:
+      query_response:
+      - expect: "^+OK"
+      tls: true
+      tls_config:
+        insecure_skip_verify: false
+  ssh_banner:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+      - expect: "^SSH-2.0-"
+        send: "SSH-2.0-blackbox_exporter OONI-prometheus-0.0\x0d" # WTF: \x0a is auto-added https://github.com/prometheus/blackbox_exporter/blob/master/tcp.go#L127
+      # FIXME: `blackbox_exporter` waits for newline, so we can't wait for handshake :-(
+      # - expect: "diffie-hellman-group14-sha1.*ssh-dss.*hmac-sha1.*hmac-sha1.*none.*none"
+  irc_banner:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+      - send: "NICK prober"
+      - send: "USER prober prober prober :prober"
+      - expect: "PING :([^ ]+)"
+        send: "PONG ${1}"
+      - expect: "^:[^ ]+ 001"
+  icmp:
+    prober: icmp
+    timeout: 5s
+
+  # When using this prober, be sure to target:
+  # https://collector.ooni.io/invalidpath
+  ooni_collector_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [404]
+      method: GET
+  # When using this prober, be sure to target:
+  # https://bouncer.ooni.io/bouncer
+  ooni_bouncer_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [405]
+      method: GET
+
+  # When using this prober, be sure to target:
+  # https://web-connectivity.th.ooni.io/status
+  ooni_web_connectivity_ok:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [200]
+      method: GET
+      fail_if_not_matches_regexp:
+        - ".+?\"status\".+?\"ok\".+?"
+
+  ooni_tcp_echo_ok:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+        - send: "TEST"
+        - expect: "TEST"
+
+  ooni_http_return_json_headers_ok:
+    prober: http
+    http:
+      valid_status_codes: [200]
+      method: GET
+      fail_if_not_matches_regexp:
+        - ".+?\"headers_dict\".+?"

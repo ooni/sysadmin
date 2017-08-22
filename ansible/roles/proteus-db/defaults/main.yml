@@ -1,0 +1,4 @@
+proteus_db_user: "proteus"
+proteus_db_name: "proteus"
+proteus_db_password: "{{ proteus_database_password }}"
+proteus_db_schema_path: "/srv/proteus/schema/"

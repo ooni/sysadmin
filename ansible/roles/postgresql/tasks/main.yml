@@ -3,4 +3,4 @@
 - include: config.yml
   become: yes
   become_user: postgres
-  become_method: su
+  become_method: sudo
