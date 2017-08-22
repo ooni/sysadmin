@@ -17,7 +17,7 @@ ALERT SSLCertExpiringInAWeek
   }
 
 ALERT DiskWillFillInAWeek
-  IF predict_linear(node_filesystem_free[2d], 86400 * 7) < 0
+  IF node_filesystem_avail{fstype=~"(ext[34]|xfs)"} + delta(node_filesystem_avail{fstype=~"(ext[34]|xfs)"}[48h])*3.5 < 0
   FOR 1h
   LABELS { severity = "critical" }
   ANNOTATIONS {
