@@ -8,8 +8,8 @@ ALERT InstanceDown
   }
 
 ALERT SSLCertExpiringInAWeek
-  IF probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 7
-  FOR 10m
+  IF probe_ssl_earliest_cert_expiry - time() < 86400 * 7
+  FOR 1h
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "SSL Cert for {{ $labels.instance }} will expire in a week",
@@ -17,8 +17,8 @@ ALERT SSLCertExpiringInAWeek
   }
 
 ALERT DiskWillFillInAWeek
-  IF node_filesystem_free{job='node'} + delta(node_filesystem_free{job='node'}[2d])*3.5 < 0
-  FOR 5m
+  IF predict_linear(node_filesystem_free[2d], 86400 * 7)
+  FOR 1h
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "In a week {{ $labels.instance }} will run out of disk space",
