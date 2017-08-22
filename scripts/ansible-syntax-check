@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -o errexit
+gitroot=$(git rev-parse --show-toplevel)
+if [ -z "$TRAVIS_VAULT_SECRET" ]; then # just for debugging
+    echo '*************************************************************************'
+    echo '* WARNING: This will destroy vauls in the working copy, restore them with'
+    echo '* $ git checkout HEAD $(find . -type f -name vault ! -perm /111)'
+    echo '*************************************************************************'
+    export TRAVIS_VAULT_SECRET=$("$gitroot/ansible/vault" view "$gitroot/ansible/.travis.vaultpw")
+fi
+set -o xtrace
+cd "$gitroot/ansible"
+
+if git grep -l '\<vault_' | grep -v '^group_vars/\|^host_vars/'; then
+    echo '^^^ `vault_` variables outside of *_vars'
+    exit 1
+fi
+
+for vault in $(find . -type f -name .travis.vault); do
+    cp -a "${vault}" "${vault%/.travis.vault}/vault"
+done
+ansible-playbook --vault-password-file ./.travis.password-pipe --inventory-file ./inventory ansible-version.yml
+for pb in *.yml; do ansible-playbook --vault-password-file ./.travis.password-pipe --inventory-file ./inventory --syntax-check $pb; done
+ansible-playbook --vault-password-file ./.travis.password-pipe --inventory-file ./inventory inventory-check.yml --start-at-task 'build inventory checksum'

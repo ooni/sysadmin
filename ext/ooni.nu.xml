@@ -8,10 +8,6 @@
       <host HostId="67915505" Name="bouncer.infra" Type="A" Address="62.217.125.6" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="24786734" Name="deb" Type="A" Address="81.7.15.106" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="39585756" Name="mirror1.reports" Type="A" Address="213.138.109.232" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="47786094" Name="ns.dnsth" Type="A" Address="91.121.146.117" MXPref="0" TTL="90" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="67915506" Name="pipeline.infra" Type="A" Address="104.193.9.122" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="66286894" Name="reports" Type="A" Address="213.108.108.100" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="47786093" Name="dnsth" Type="NS" Address="ns.dnsth.ooni.nu." MXPref="0" TTL="90" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13643210" Name="dnstunnel" Type="NS" Address="ooni.nu." MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="12484213" Name="@" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="12484214" Name="www" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

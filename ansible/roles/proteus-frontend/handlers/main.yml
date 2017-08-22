@@ -1,0 +1,2 @@
+- name: restart proteus
+  systemd: name=proteus-frontend.service state=restarted

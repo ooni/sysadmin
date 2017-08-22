@@ -1,16 +1,47 @@
 ---
+# I have no idea how it is implemented, but it reduces playbook runtime by factor of three!
+ansible_ssh_pipelining: true
+
+# default: login as user & get sudo
+ansible_become: true
+
+# link vault to plaintext
+weasel_login: "{{ vault_weasel_login }}"
+weasel_comment: "{{ vault_weasel_comment }}"
+weasel_keys: "{{ vault_weasel_keys }}"
+prometheus_scraper_password: "{{ vault_prometheus_scraper_password }}" # for `prometheus_scraper`
+
 passwd:
   # services
+  # - uid [2000, 10000), grouped together by "service"
+  # - base for next service is `echo $(( 2000 + 50*($RANDOM % 160) ))`
+  # - login name must be <= 8 chars to be nice to `top` util
   afredis:  {login: afredis,  id: 2000, comment: Airflow Redis}
   afpsql:   {login: afpsql,   id: 2001, comment: Airflow Postgresql}
   afsched:  {login: afsched,  id: 2002, comment: Airflow Scheduler}
   afwebsrv: {login: afwebsrv, id: 2003, comment: Airflow Webserver}
   afworker: {login: afworker, id: 2004, comment: Airflow Worker}
   afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
+
   plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
 
-  piwik:    {login: piwik, id: 2300, group: piwik, comment: Piwik user}
+  nodeexp:  {login: nodeexp,  id: 2200, comment: Prometheus Node Exporter}
+  prometh:  {login: prometh,  id: 2201, comment: Prometheus Poller}
+  alertman: {login: alertman, id: 2202, comment: Prometheus Alert Manager}
+  prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
+  grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
+  ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
+
+  piwik:    {login: piwik,    id: 2300, comment: Piwik user}
+
+  prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
+  prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}
+  prtnotif: {login: prtnotif, id: 4802, comment: Orchestration Notifications}
+  prtfront: {login: prtfront, id: 4803, comment: Orchestration Front}
+
+  oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
+
   # people have id >= 10000
   agrabeli:
     login: agrabeli
@@ -18,10 +49,10 @@ passwd:
     comment: Maria Xynou
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD0JSwM+t3Uz9lS3Mjoz9oo4vOToWyzboZhYQbP8JY5HvFtAvWanWHnUBO91t6hkgKIMiUqhdCJn26fqkhSGe/bRBaFUocOmuyfcmZoRdi0qzAskmycJsj/w6vWR4x6MYkmJvSeI/MGxjEFt4s2MfOG1tP8CBLUYft9qUleeJa7Jln8c+xbnqB7YngaI190icQHE9NuIB2CXvzbmo3tLtHNMagEwI7VoBDj6mxzTxBd9JhuhF4w5uGxxm0Gp1hzk+15obNnaBS+Anr7jXz8FPwwxCH+XhBZxB1PPpcIayKrf9iLyGtwmhkdDoWCqYAr1mue3LxFso+TZF4bwE4Cjt1 agrabelh@agrabelh"]
   weasel:
-    login: "{{ vault_weasel_login }}"
+    login: "{{ weasel_login }}"
     id: 10001
-    comment: "{{ vault_weasel_comment }}"
-    keys: "{{ vault_weasel_keys }}"
+    comment: "{{ weasel_comment }}"
+    keys: "{{ weasel_keys }}"
   art:
     login: art
     id: 10002
@@ -44,8 +75,21 @@ passwd:
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChiA7/HyB2fcXulsT33NF7N+681A4u3JRjl/d85JCjYycnw+gYl2Q/aovZ31Y64VC3AYwXwHp6lx2GwfTe0R+4Wk0qriFYnDhnjG6uiFEdatJWb1/yyGkJ31XOMoOBEPRrqhjmpHDmLvyhD1J0UIfk+5jsV3SIOXUMTKO9NDbUT0fu4d85/IFGteip6tVu3eKHNVLHQJhxkvOwN9B4WLNbALW4TlFqYfUX0Stz4ijguVNKdeIjNq74DbyTYRWm/DEMFpwIrBDuupg8I2InXbYFRU8H7avIvBc7UWhFVm5yvLkTnq5DltERt6dDAEdT6PdGyrP9Zf0vgGgfvc6c8gFTKdm7xoGCUgYYMak/m6AOaiB/18HRGVF97XEwN1VUB0pOkGNOLwgS/DbrDvonrnDC4Du6nuGJ56Wz2mH1kxG0AWY++NamtCrm7gUrmbmeHhjIVwfea1AKaQUEwgxeV5woiW4NGX3Im/GWr1pwqvbIZ2ple9AGzA2+JBfHDetKJZOVhF0hdUzGXa1y+vLykRiZ+dCy5WFw2prBmREv9BvUutGIn9qwR9NbFHsft/P4n5BS8AzNox9nSog6YPm0Qbsg5LIDxfD0Z6uw9l9KsinrJ4fn/08rJrSIAvh2pORuXPWIXU3321Pt2o0nwmWncL/spVh2Fjrkt3Iuh5668c2wjw== simone@shelob"
       - "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOODb6hoif8TDyU2KZ73mfc0zjy4dy/1a6wZwpd3hmdLGmMHPEMtl8KjeLCo8uGVPK4dDE4NGBcWeYCPJofuQWk= sbasso@dunkerque.local"
+  superq:
+    login: superq
+    id: 10006
+    comment: Ben Kochie
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfYfZFTGkdHoRoUfnhzp8RLuOgOEgyTH4dncpP+eN2yBbTw5kY84t8sSa60vtjfiPFQGBYaBZdZV9hTdOZgR+wyQXeSWy2evM9e/6h9ZCwhV8vXiRsisV7cJyuqfTdeTaqwgggR24ETS6nTs8UEPRjfzXDTPGv8e4B4vcvoGjEtgkWfOD1V10RuULxZc+kccxYWopTsnpEdrO1o/3IDlno8+7cTNFYDV+HEdjr7BMWXJJvuqW+59WQzkwggQtLLL72gQD2VrDb9+1g0xWSRBd1Jp/Yv956uLJGaVGjJ2yOdyy5nNAqoTRYPoRniMnGOOHPk6fR1LsqXK5S4hxyInTEQvszKUwz0aRDITxtHxdBlruYaAotGB2VEMax3h4t2HJRYsEt+zxgh+ZEDJTsk0GgywO01obn9dgrCF2gwa4DUR2trcc4uaW0ZbqzQ9PiOZ6+ENYJiR6DkXWSrVXB75Vo9tw0DAC/ArxHJ6kl9W52h0Z7hFDQrniRAmYCWF7/jOhFYuqvzmeLOZJajJ9TE4Z5an0maeYchsISODeVaQWQ8ZPSR/9WjXFtVRMu57H+MVsvgNodaq/G2y7Y+S0djjKAUVtqPiM/AUDXCk88eHl0XfSgUEoveuMZiWfgcGW28LoF36OMihTwx6xJ5bLxVUp+FkLIM+3ET/foabLupCIAoQ== superq"
+
+adm_logins: [ weasel, art, darkk, sbs ]
 
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
 docker_apt_ver: ""
-airflow_tag: "1.8.0-oo3"
+
+# that's common for roles nginx-prometheus, fw and various exporters
+ngxprom_exporter_ipv4: "127.139.92.143"
+ngxprom_exporter_ports: [ 9100 ]
+# for some reason it's impossible to add vault to role defaults, so it's here :-/
+ngxprom_apr1_hash_seed: '{{ vault_ngxprom_apr1_hash_seed }}'

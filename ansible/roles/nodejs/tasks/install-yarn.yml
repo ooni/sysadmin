@@ -1,0 +1,12 @@
+---
+- name: Add YarnPkg apt package signing key
+  apt_key:
+    url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
+
+- name: Add YarnPkg apt repository
+  apt_repository:
+    repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
+
+- name: Install required yarn via apt
+  apt:
+    name: yarn

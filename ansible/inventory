@@ -1,11 +1,20 @@
-[gh:children] # group to gather new-style ACL
-wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
-hkg
-ams
+########################################################################
+# dom0 tags (showing diversity of our infra, huh)
+
+[dom0:children] # `all` should be equal to `dom0`, so it's here to catch errors
+gh
 ath
 ber
 tpo
 bigv
+
+[gh:children]
+wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
+hkg
+ams
+
+########################################################################
+# location tags
 
 [wdc]
 a.echo.th.ooni.io
@@ -14,27 +23,22 @@ munin.ooni.io
 b.collector.ooni.io
 shwdc.ooni.io
 
-# The machines below maybe can be discontinued
-ooni-proxy-dc.infra.ooni.io
-ooni-backend-testing.infra.ooni.io
-oonibackend-stress-test.infra.ooni.io
-
-tipitpitap.infra.ooni.io # Art-NO-ACCESS - no idea what this is
-ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
-apk-build-test.infra.ooni.io # Art-NO-ACCESS - no idea what this is
-
 [hkg]
 datacollector.infra.ooni.io
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
 hkgmetadb.infra.ooni.io
-# irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
-vpn-gate-runner.infra.ooni.io
-stage.ooni.io # NOT-GH, ooni-zoo
-test.ooni.io # NOT-GH, ooni-zoo
+measurements-beta.ooni.io
+irc-bouncer.service.ooni.io
+ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
-
-[have_fw]
-datacollector.infra.ooni.io
-hkgmetadb.infra.ooni.io
+notify.proteus.test.ooni.io
+ntp.tmp.ooni.io
+openntpd.tmp.ooni.io
+chrony.tmp.ooni.io
 
 [ams]
 explorer.ooni.io
@@ -45,60 +49,101 @@ b.web-connectivity.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
 ooni-measurements-db.infra.ooni.io
-ooni-pipeline-db.infra.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
-ubuilder.infra.ooni.io
-debuilder.infra.ooni.io
 staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
-
+notify.proteus.ooni.io
+events.proteus.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
 analytics.ooni.io
-
-# The machines below can maybe be discontinued
-ooni-probe-demo.infra.ooni.io
-lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
-ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
-puppet-master-1.infra.ooni.io # NOT-GH, Art-NO-ACCESS, java1.interoperability.gr - Is this still even alive?
 
 [ber] # Humboldt-Universitaet zu Berlin
 chameleon.infra.ooni.io # NOT-GH
 
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
-
 # The machines below can maybe be discontinued
-deb.ooni.nu # NOT-GH
+deb.ooni.nu # NOT-GH, moritz?
 
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
-[dead]
-api-1.infra.ooni.io # NOT-GH, [aws], as of 2017-04-18 ooni-explorer-api-aws
-hammerhead.infra.ooni.io # NOT-GH, [ber] as of 2017-04-18
-ns.dnsth.ooni.nu # NOT-GH, [ovh] France
-pipeline.infra.ooni.nu # NOT-GH
+########################################################################
+# PSK (pre-shared key) tags
 
 [psk_hkgmetadb]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 
-[todelete]
-polaris.infra.ooni.io # DELETE
-vps770.greenhost.nl # DELETE discontinued, old-collector
-#211.149.218.16 old-probe
-87.107.121.133 # DELETE discontinued, old-probe
-mail.ooni.io # DELETE
-mail.test.ooni.io # DELETE
-separate.b.collector.test.ooni.io # DELETE
-separate.bouncer.test.ooni.io # DELETE
-separate.a.web-connectivity.th.test.ooni.io # DELETE
-seedling.infra.ooni.io # DELETE
-reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
+[psk_oomsm_beta]
+hkgmetadb.infra.ooni.io
+measurements-beta.ooni.io
+
+[psk_orchestration]
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
+notify.proteus.ooni.io
+events.proteus.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
+[psk_superset_hkgmetadb]
+hkgsuperset.ooni.io
+hkgmetadb.infra.ooni.io
+
+########################################################################
+# role tags
+
+[have_fw]
+datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
+measurements-beta.ooni.io
+
+[no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
+irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
+deb.ooni.nu                       # no root for darkk
+staticiforme.torproject.org       # tor LDAP
+
+[no_nodeexp:children]
+no_passwd # no passwd => no nodeexp user ;-)
+
+[testing]
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
+
+[test_ntp]
+ntp.tmp.ooni.io
+openntpd.tmp.ooni.io
+chrony.tmp.ooni.io
 
 [slackin]
 slack.openobservatory.org
+
+########################################################################
+# TO DELETE.
+# Stopped VMs that should be deleted from GH and DNS after some grace period:
+#
+# since 2017-08-04 # ooni-proxy-dc.infra.ooni.io
+# since 2017-08-04 # ooni-backend-testing.infra.ooni.io
+# since 2017-08-04 # oonibackend-stress-test.infra.ooni.io
+# since 2017-08-04 # ooni-probe-demo.infra.ooni.io
+# since 2017-08-04 # lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
+# since 2017-08-04 # ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
+# since 2017-08-05 # debuilder.infra.ooni.io # compromised, https://virustotal.com/en/file/63210b24f42c05b2c5f8fd62e98dba6de45c7d751a2e55700d22983772886017/analysis/
+# since 2017-08-06 # ubuilder.infra.ooni.io # unused, so it's halted during https://github.com/TheTorProject/ooni-sysadmin/issues/123
+# since 2017-08-20 # vpn-gate-runner.infra.ooni.io # noone has access, see https://github.com/TheTorProject/ooni-sysadmin/issues/123
+# since 2017-08-20 # ooni-fdroid-build.infra.ooni.io   # noone has access, see https://github.com/TheTorProject/ooni-sysadmin/issues/123

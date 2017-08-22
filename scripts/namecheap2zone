@@ -1,0 +1,37 @@
+#!/usr/bin/env python2
+#
+# Build zone-like file with data from namecheap.domains.dns.gethosts API call
+# to make diff more readable as namecheap re-orders XML entries quite randomly.
+
+import sys
+import os
+import hashlib
+import xml.etree.ElementTree as ElementTree
+
+src, dst = sys.argv[1:]
+with open(src, 'r') as fd:
+    blob = fd.read()
+
+ns = {'NC': 'http://api.namecheap.com/xml.response'}
+tree = ElementTree.fromstring(blob)
+origin = tree.find('./NC:CommandResponse/NC:DomainDNSGetHostsResult', ns).attrib['Domain']
+zone = []
+ttl = {}
+for el in tree.findall('./NC:CommandResponse/NC:DomainDNSGetHostsResult/NC:host', ns):
+    rr = el.attrib
+    rrttl = int(rr['TTL'])
+    zone.append((rr['Name'], rrttl, rr['Type'], rr['Address']))
+    ttl.setdefault(rrttl, 0)
+    ttl[rrttl] += 1
+ttl = max(ttl.iteritems(), key=lambda x: x[1])[0]
+zone.sort()
+
+with open(dst, 'w') as fd:
+    print >>fd, '$ORIGIN %s' % (origin)
+    print >>fd, '$TTL %d' % (ttl)
+    for name, rrttl, rrtype, address in zone:
+        if rrttl == ttl:
+            print >>fd, '%s\t\t%s\t%s' % (name, rrtype, address)
+        else:
+            print >>fd, '%s\t%d\t%s\t%s' % (name, rrttl, rrtype, address)
+    print >>fd, '; generated from %s with SHA256 %s' % (os.path.basename(src), hashlib.sha256(blob).hexdigest())

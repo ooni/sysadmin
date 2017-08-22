@@ -1,68 +1,18 @@
 # OONI sysadmin
 
-In here shall go all code related to system administration of the OONI
-infrastructure.
-
-
-# OONI infrastructure overview
-
-
-## Backend infrastructure
-
-hostname | role | maintainers | notes |
-------------- | ------------- | ----------- |----------- |
-bouncer.infra.ooni.nu         | canonical bouncer, canonical collector |hellais, anadahz| |
-vps770.greenhost.nl  | collector bridge reachability,  |hellais, anadahz| |
-ooni-1.default.orgtech.uk0.bigv.io | collector, reports mirror |hellais, anadahz| |
-ooni-deb         | debian repository, collector |hellais, aagbsn | what should we do 'bout this? |
-marcello         | development/playground |hellais | |
-ooni-tpo-collector | backup collector |hellais, aagbsn | |
-manager.infra.ooni.nu         | DISCONTINUED |hellais | |
-pipeline.infra.ooni.nu | DISCONTINUED | hellais, anadahz| |
-
-## Probing infrastructure
-
-hostname | role | maintainers | notes | next due date
--------- | ---- | ---------- | ------ |------------- |
-probe ru | bridge reachability study | hellais, griffin | are these OK? | |
-probe ua | bridge reachability study | hellais, griffin | are these OK? | |
-probe cn | bridge reachability study | hellais | this is offline. | 2015-05-10 |
-probe ir | bridge reachability study | hellais | is this still live? /me thinks not | 2015-03-21 |
-
-hostname | role | maintainers | notes | cost | next due date
--------- | ---- | ---------- | ------ |----- |------------- |
-probe ru | bridge reachability study | hellais, griffin | | 0 EUR/month | |
-probe ua | bridge reachability study | hellais, griffin| | 0 EUR/month | |
-probe cn | bridge reachability study | hellais | | 10 USD/month | 2015-05-10
-probe ir | bridge reachability study | hellais | | 30 USD/month | 2015-03-21
-
-
-## Donate to support OONI infrastructure
-
-Send bitcoins to:
-![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
-```
-16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
-```
+In here live all the tools and scripts related to administering the
+infrastructure that are part of OONI.
 
 # Ansible roles
 
 This is the section for using ansible roles to install and configure OONI
 components.
 
-Note: In order to use ansible you need Python 2.4 or later, but if you are
-running less than Python 2.5 on the remote hosts, you will also need the
-[python-simplejson]
-(https://docs.ansible.com/ansible/intro_installation.html#managed-node-requirements)
-package.
+It is required for all OONI team to run the same ansible version to monimise
+compatibility issues. It is enforced by including `ansible-version.yml` play in
+the playbooks.
 
-For Debian like systems you could use something similar to:
-```
-ansible host-group -i hosts-inventory-file -m raw -a \
-"apt-get update && apt-get -y install python-simplejson"
-```
-
-Rule of thumb: if you need some python packages **only** for ansible module to
+If you need some python packages **only** for ansible module to
 work and don't need it in system-wide pip repository, then you should put these
 modules in separate virtual environment and set proper
 `ansible_python_interpreter` for the play. See `docker_py` role and grep for
@@ -70,8 +20,9 @@ modules in separate virtual environment and set proper
 
 If you need to store secrets in repository then store them as vaults using
 `ansible/vault` script as a wrapper for `ansible-vault`. Store encrypted
-variables with `vault_` prefix to make world [a more grepable place]
-(http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults).
+variables with `vault_` prefix to make world [a more grepable place](http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults)
+and link location of the variable using same name without prefix in corresponding `vars.yml`.
+`scripts/ansible-syntax-check` checks links between vaults and plaintext files during Travis build.
 `ansible/play` wrapper for `ansible-playbook` will execute a playbook with
 proper vault secret and inventory.
 
@@ -281,4 +232,12 @@ successfully upgraded, an example test:
 ```
 ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 --url http://ooni.io/
+```
+
+# Donate to support OONI infrastructure
+
+Send bitcoins to:
+![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
+```
+16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
 ```

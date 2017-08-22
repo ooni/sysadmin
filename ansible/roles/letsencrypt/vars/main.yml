@@ -1,6 +1,5 @@
 letsencrypt_admin_email: admin@openobservatory.org
 letsencrypt_workdir: /var/lib/letsencrypt
-letsencrypt_port: 80
 letsencrypt_webroot: /var/www/letsencrypt
 letsencrypt_confdir: /etc/letsencrypt
 nginx_post_hook: '/usr/sbin/service nginx reload'
