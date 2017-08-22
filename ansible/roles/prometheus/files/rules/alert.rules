@@ -1,8 +1,26 @@
 ALERT InstanceDown
   IF probe_success == 0
-  FOR 1m
+  FOR 5m
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "Instance {{ $labels.instance }} down",
     description = "{{ $labels.instance }} of job \"{{ $labels.job }}\" has been down for more than 1 minute.",
+  }
+
+ALERT SSLCertExpiringInAWeek
+  IF probe_ssl_earliest_cert_expiry{job="blackbox"} - time() < 86400 * 7
+  FOR 10m
+  LABELS { severity = "critical" }
+  ANNOTATIONS {
+    summary = "SSL Cert for {{ $labels.instance }} will expire in a week",
+    description = "The SSL certificate for {{ $labels.instance }} will expire in 7 days ()",
+  }
+
+ALERT DiskWillFillInAWeek
+  IF predict_linear(node_filesystem_free{job='node'}[1h], 86400 * 7) < 0
+  FOR 5m
+  LABELS { severity = "critical" }
+  ANNOTATIONS {
+    summary = "In a week {{ $labels.instance }} will run out of disk space",
+    description = "In a week {{ $labels.instance }} will run out of disk space. Predicted size: {{ $value }}",
   }

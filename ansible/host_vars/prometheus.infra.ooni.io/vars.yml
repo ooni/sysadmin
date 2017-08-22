@@ -47,3 +47,18 @@ blackbox_jobs:
     module: "http_2xx"
     targets:
       - "https://measurements.ooni.torproject.org/api/v1/files"
+
+  - name: "slack inviter"
+    module: "http_2xx"
+    targets:
+      - "https://slack.openobservatory.org"
+
+  - name: "ooni website"
+    module: "http_2xx"
+    targets:
+      - "https://ooni.torproject.org"
+
+  - name: "ooni get"
+    module: "http_2xx"
+    targets:
+      - "https://get.ooni.torproject.org"
