@@ -13,3 +13,12 @@ airflow_postgres_password: "{{ vault_airflow_postgres_password }}"
 # tokens to read https://s3.amazonaws.com/ooni-* buckets
 s3read_access_key_id: "{{ vault_s3read_access_key_id }}"
 s3read_secret_access_key: "{{ vault_s3read_secret_access_key }}"
+
+# User for Amazon Simple Email Service.
+# NB: airflow uses python `smtplib` from python2.7 that does not pass
+# `server_hostname` to `wrap_socket` till python3.4 and, probably, does no
+# verification at all.  puckel/docker-airflow was recently updated to
+# python3.6, but openobservatory/airflow does not use it yet:
+# https://github.com/puckel/docker-airflow/commit/87db6f5d788c78cf96c1792ebecc75f9e1bc9ea6
+airflow_smtp_username: '{{ vault_airflow_smtp_username }}'
+airflow_smtp_password: '{{ vault_airflow_smtp_password }}'

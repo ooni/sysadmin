@@ -1,26 +1,4 @@
 ---
-- set_fact:
-    svc_passwd:
-      - "{{ passwd.afredis }}"
-      - "{{ passwd.afpsql }}"
-      - "{{ passwd.afsched }}"
-      - "{{ passwd.afwebsrv }}"
-      - "{{ passwd.afworker }}"
-      - "{{ passwd.plpsql }}"
-      - "{{ passwd.plshovel}}"
-- group: name={{ item.login }} gid={{ item.id }} state=present
-  with_items: "{{ svc_passwd }}"
-- user:
-    name: "{{ item.login }}"
-    group: "{{ item.login }}"
-    uid: "{{ item.id }}"
-    comment: "{{ item.comment }}"
-    shell: /usr/sbin/nologin
-    createhome: no
-    home: /nonexistent
-    state: present
-  with_items: "{{ svc_passwd }}"
-
 - name: shared tmp directory to workaround lack of tmpfs support in docker_container
   file: dest=/srv/tmp state=directory owner=root group=root mode=0750
 

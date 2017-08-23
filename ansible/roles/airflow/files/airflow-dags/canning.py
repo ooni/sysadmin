@@ -23,7 +23,7 @@ dag = DAG(
     start_date=datetime(2012, 12, 5),
     #end_date=datetime(2017, 7, 7), # NB: end_date is included
     default_args={
-        'email': 'leon+airflow@darkk.net.ru',
+        'email': 'team@openobservatory.org', # prometheus/alertmanager sends there, so does airflow :)
         'retries': 1,
     })
 

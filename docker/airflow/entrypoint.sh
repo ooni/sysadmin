@@ -15,11 +15,56 @@ TRY_LOOP="20"
 : ${POSTGRES_PASSWORD:="airflow"}
 : ${POSTGRES_DB:="airflow"}
 
+: ${SMTP_HOST:=""}
+: ${SMTP_PORT:=""} # default is 465 for smtps, 587 for other
+: ${SMTP_SECURITY:="starttls"} # starttls / smtps (SMTP over TLS) / insecure
+: ${SMTP_USER:=""} # SMTP auth
+: ${SMTP_PASSWORD:=""}
+: ${SMTP_MAIL_FROM:=""} # both `From` header and `MAIL FROM` SMTP envelope
+
 : ${FERNET_KEY:=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")}
 
 if [ -n "$FERNET_KEY" ] && ! python -c 'import cryptography.fernet, sys; cryptography.fernet.Fernet(sys.argv[1])' "$FERNET_KEY"; then
     echo "$(date) - malformed FERNET_KEY disables encryption"
     exit 1
+fi
+
+# Configure SMTP
+if [ -n "$SMTP_HOST" ]; then
+    case "$SMTP_SECURITY" in
+        starttls)
+            sed -i "s/[# ]*smtp_ssl\>.*/smtp_ssl = False/; s/[# ]*smtp_starttls\>.*/smtp_starttls = True/" "$AIRFLOW_HOME"/airflow.cfg
+            grep -q '^smtp_starttls = True$' "$AIRFLOW_HOME"/airflow.cfg || exit 1 # defence against forgotten variable in airflow.cfg
+            ;;
+        smtps)
+            sed -i "s/[# ]*smtp_ssl\>.*/smtp_ssl = True/; s/[# ]*smtp_starttls\>.*/smtp_starttls = False/" "$AIRFLOW_HOME"/airflow.cfg
+            grep -q '^smtp_ssl = True$' "$AIRFLOW_HOME"/airflow.cfg || exit 1 # defence
+            ;;
+        insecure)
+            sed -i "s/[# ]*smtp_ssl\>.*/smtp_ssl = False/; s/[# ]*smtp_starttls\>.*/smtp_starttls = False/" "$AIRFLOW_HOME"/airflow.cfg
+            ;;
+        *)
+            echo "$(date) - malformed SMTP_SECURITY (${SMTP_SECURITY})"
+            exit 1
+            ;;
+    esac
+    sed -i "s/[# ]*smtp_host\>.*/smtp_host = ${SMTP_HOST}/" "$AIRFLOW_HOME"/airflow.cfg
+    if [ -z "$SMTP_PORT" ]; then
+        case "$SMTP_SECURITY" in
+            starttls|insecure) SMTP_PORT=587 ;;
+            smtps)             SMTP_PORT=465 ;;
+        esac
+    fi
+    sed -i "s/[# ]*smtp_port\>.*/smtp_port = ${SMTP_PORT}/" "$AIRFLOW_HOME"/airflow.cfg
+    if [ -n "$SMTP_USER" ]; then
+        sed -i "s/[# ]*smtp_user\>.*/smtp_user = ${SMTP_USER}/" "$AIRFLOW_HOME"/airflow.cfg
+    fi
+    if [ -n "$SMTP_PASSWORD" ]; then
+        sed -i "s/[# ]*smtp_password\>.*/smtp_password = ${SMTP_PASSWORD}/" "$AIRFLOW_HOME"/airflow.cfg
+    fi
+    if [ -n "$SMTP_MAIL_FROM" ]; then
+        sed -i "s/[# ]*smtp_mail_from\>.*/smtp_mail_from = ${SMTP_MAIL_FROM}/" "$AIRFLOW_HOME"/airflow.cfg
+    fi
 fi
 
 # Load DAGs examples (default: Yes)
