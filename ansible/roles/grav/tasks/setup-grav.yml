@@ -8,6 +8,11 @@
     src: "{{ grav_tmp_path }}/grav-{{ grav_version }}.zip"
     dest: "{{ grav_install_path }}"
 
+- name: Delete users directory
+  file:
+    state: absent
+    path: "{{ grav_install_path }}/grav-admin/user"
+
 - name: Create users directory symlink
   file:
     dest: "{{ grav_install_path }}/grav-admin/user"
