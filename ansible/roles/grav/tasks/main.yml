@@ -1,0 +1,22 @@
+---
+- name: "Install dependencies"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'unzip'
+    - 'openssl'
+    - 'zip'
+
+- name: Create grav install folder
+  file:
+    path: "{{ item }}"
+    owner: "{{ grav_user }}"
+    group: "{{ grav_group }}"
+    state: directory
+  with_items:
+  - "{{ grav_path }}"
+  - "{{ grav_tmp_path }}"
+  - "{{ grav_install_path }}"
+
+- include: setup-php.yml
+- include: setup-nginx.yml
+- include: setup-grav.yml

@@ -55,6 +55,7 @@ slack.openobservatory.org
 prometheus.infra.ooni.io
 staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+msg.ooni.io
 notify.proteus.ooni.io
 events.proteus.ooni.io
 registry.proteus.ooni.io

@@ -35,6 +35,8 @@ passwd:
 
   piwik:    {login: piwik,    id: 2300, comment: Piwik user}
 
+  grav:     {login: grav,     id: 2400, comment: Grav user}
+
   prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
   prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}
   prtnotif: {login: prtnotif, id: 4802, comment: Orchestration Notifications}

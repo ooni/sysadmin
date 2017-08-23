@@ -1,0 +1,29 @@
+---
+- name: Download files
+  get_url: url={{ grav_download_url }} dest={{ grav_tmp_path }}/grav-{{ grav_version }}.zip
+
+- name: Extract archive
+  unarchive:
+    remote_src: true
+    src: "{{ grav_tmp_path }}/grav-{{ grav_version }}.zip"
+    dest: "{{ grav_install_path }}"
+
+- name: Fixup permissions
+  file:
+    path: "{{ grav_install_path }}"
+    state: directory
+    owner: "{{ grav_user }}"
+    group: "{{ grav_group }}"
+    recurse: "yes"
+    mode: 0755
+  notify:
+    - restart nginx
+
+- name: Create users directory symlink
+  file:
+    src: "{{ grav_install_path }}/grav-admin/user"
+    dst: "{{ grav_user_path }}"
+    owner: "{{ grav_user }}"
+    group: "{{ grav_group }}"
+    force: "yes"
+    state: link
