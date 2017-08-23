@@ -3,22 +3,11 @@ grav_download_url: "https://github.com/getgrav/grav/releases/download/{{ grav_ve
 
 # XXX we currently don't create this
 grav_admin_user: grav_admin
-grav_admin_password: "{{ vault_grav_admin_pass }}"
+grav_admin_pass: '{{ CHANGE_ME }}'
 grav_admin_email: "admin@openobservatory.org"
 
-nginx_user: www-data
-nginx_pid: /var/run/nginx.pid
-nginx_worker_processes: 4
-nginx_events:
-  worker_connections: 4096
-nginx_http_conf: {}
-nginx_confd_templates:
-  - confd_https
-
 grav_user: "{{ passwd.grav.login }}"
-grav_group: "{{ passwd.grav.group }}"
-grav_uid: "{{ passwd.grav.id }}"
-grav_user_comment: "{{ passwd.grav.comment }}"
+grav_group: "{{ passwd.grav.login }}"
 
 grav_path: "/srv/grav"
 grav_tmp_path: "{{ grav_path }}/tmp"

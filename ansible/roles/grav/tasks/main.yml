@@ -6,22 +6,6 @@
     - 'openssl'
     - 'zip'
 
-# Environment
-- name: create grav group
-  group:
-    name: "{{ grav_group }}"
-    state: present
-
-- name: create grav user
-  user:
-    name: "{{ grav_user }}"
-    group: "{{ grav_group }}"
-    uid: "{{ grav_uid }}"
-    createhome: no
-    shell: /sbin/nologin
-    comment: "{{ grav_user_comment }}"
-    state: present
-
 - name: Create grav install folder
   file:
     path: "{{ item }}"
