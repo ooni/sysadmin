@@ -18,3 +18,12 @@
     mode: 0755
   notify:
     - restart nginx
+
+- name: Create users directory symlink
+  file:
+    src: "{{ grav_install_path }}/grav-admin/user"
+    dst: "{{ grav_user_path }}"
+    owner: "{{ grav_user }}"
+    group: "{{ grav_group }}"
+    force: "yes"
+    state: link
