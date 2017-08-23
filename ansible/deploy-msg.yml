@@ -6,9 +6,6 @@
   vars:
     letsencrypt_nginx: yes
     letsencrypt_domains: "msg.ooni.io"
-  pre_tasks:
-    - assert:
-        that: "'https://github.com/TheTorProject/ooni-sysadmin/issues/150' == 'FIXED'"
   roles:
     - letsencrypt
     - grav
