@@ -2,6 +2,11 @@
 - name: Download files
   get_url: url={{ grav_download_url }} dest={{ grav_tmp_path }}/grav-{{ grav_version }}.zip
 
+- name: Ensure users directory is absent
+  file:
+    state: absent
+    path: "{{ grav_install_path }}/grav-admin/user"
+
 - name: Extract archive
   unarchive:
     remote_src: true
