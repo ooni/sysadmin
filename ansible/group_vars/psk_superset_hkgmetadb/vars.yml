@@ -1,0 +1,3 @@
+---
+hkgsuperset_postgres_password: '{{ vault_hkgsuperset_postgres_password }}'
+...

@@ -8,9 +8,9 @@
 
 - name: Create release folder
   file:
-    path: "{{ deploy_path | default(app_path, true) }}/releases/{{ PIWIK_RELEASE_ID }}"
-    owner: "{{ deploy_owner | default(app_user, true) }}"
-    group: "{{ deploy_group | default(app_user, true) }}"
+    path: "{{ app_path }}/releases/{{ PIWIK_RELEASE_ID }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
     state: directory
 
 - name: Extract archive

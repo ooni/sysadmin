@@ -1,0 +1,11 @@
+$ORIGIN openobservatory.org
+$TTL 1799
+@		MX	mx.runbox.com.
+@		TXT	v=spf1 redirect=spf.runbox.com
+@		URL	http://ooni.torproject.org
+_amazonses		TXT	sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=
+blog		CNAME	openo.ghost.io.
+slack		A	37.218.247.42
+test-lists		A	37.218.240.141
+www		URL	http://ooni.torproject.org
+; generated from openobservatory.org.xml with SHA256 599e8957d2d1ac2068044210a53dd0e848bd88c3e56807d831c68de1f3daa6df

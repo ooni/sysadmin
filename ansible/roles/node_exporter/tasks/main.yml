@@ -1,0 +1,73 @@
+- name: cache SHA256SUMS locally
+  local_action: get_url url={{ node_exporter_sha256sums_url }} dest={{ node_exporter_sha256sums }}
+- set_fact:
+    tarball_checksum: "sha256:{{ lookup('pipe', 'awk -v FNAME=' ~ node_exporter_basename ~ '.tar.gz -f ' ~ playbook_dir ~ '/../scripts/get-sum.awk ' ~ node_exporter_sha256sums) }}"
+
+- name: check port configuration
+  assert: { that: 9100 in ngxprom_exporter_ports }
+
+- name: Creating node_exporter dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ node_exporter_base }}"
+    - "{{ node_exporter_base }}/dist"
+    - "{{ node_exporter_textfiles_path }}"
+
+- name: fetch node_exporter tarball
+  get_url:
+    url: "{{ node_exporter_tarball_url }}"
+    dest: "{{ node_exporter_base }}/dist/{{ node_exporter_basename }}.tar.gz"
+    checksum: "{{ tarball_checksum }}"
+
+- name: untar node_exporter tarball
+  unarchive:
+    src: "{{ node_exporter_base }}/dist/{{ node_exporter_basename }}.tar.gz"
+    dest: "{{ node_exporter_base }}"
+    owner: root
+    group: root
+    remote_src: true # file is ALREADY on the remote system. sigh.
+
+- name: Install node_exporter systemd service file
+  notify: restart node_exporter
+  template:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+  when: ansible_service_mgr == 'systemd'
+
+- name: Create node_exporter upstart service file
+  template: src=node_exporter.upstart dest=/etc/init/node_exporter.conf owner=root group=root mode=0444
+  notify: restart node_exporter
+  when: ansible_service_mgr == 'upstart'
+
+- name: Create node_exporter sysvinit service file
+  template: src=node_exporter.rc dest=/etc/init.d/node_exporter owner=root group=root mode=0555
+  notify: restart node_exporter
+  when: ansible_service_mgr == 'sysvinit'
+
+- name: Enable and start node_exporter service
+  service:
+    name: node_exporter
+    state: started
+    enabled: yes
+
+- name: Cleanup stale services
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  with_items:
+    - smartmon_metrics.service
+    - smartmon_metrics.timer
+  failed_when: false # if the service is already dead `service` fails
+
+- name: Cleanup stale files
+  file: path={{item}} state=absent
+  with_items:
+    - /etc/default/node_exporter
+    - /usr/local/sbin/smartmon_metrics.sh
+    - /etc/systemd/system/smartmon_metrics.service
+    - /etc/systemd/system/smartmon_metrics.timer
+    - /srv/node_exporter/textfiles/smartmon.prom

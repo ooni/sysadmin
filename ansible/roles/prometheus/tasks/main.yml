@@ -1,0 +1,89 @@
+- name: cache SHA256SUMS locally
+  local_action: get_url url={{ prometheus_sha256sums_url }} dest={{ prometheus_sha256sums }}
+- set_fact:
+    tarball_checksum: "sha256:{{ lookup('pipe', 'awk -v FNAME=' ~ prometheus_basename ~ '.tar.gz -f ' ~ playbook_dir ~ '/../scripts/get-sum.awk ' ~ prometheus_sha256sums) }}"
+
+- name: set permissions, owner and group
+  file: path={{ item }} state=directory owner=root group=root mode=0755
+  with_items:
+    - "{{ prometheus_base }}"
+    - "{{ prometheus_base }}/dist"
+    - "{{ prometheus_config_path }}"
+    - "{{ prometheus_rule_path }}"
+    - "{{ prometheus_file_sd_config_path }}"
+
+- name: mkdir for data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
+    mode: 0750
+  with_items:
+    - "{{ prometheus_db_path }}"
+
+- name: fetch prometheus tarball
+  get_url:
+    url: "{{ prometheus_tarball_url }}"
+    dest: "{{ prometheus_base }}/dist/{{ prometheus_basename }}.tar.gz"
+    checksum: "{{ tarball_checksum }}"
+
+- name: untar prometheus tarball
+  unarchive:
+    src: "{{ prometheus_base }}/dist/{{ prometheus_basename }}.tar.gz"
+    dest: "{{ prometheus_base }}"
+    owner: root
+    group: root
+    remote_src: true # file is ALREADY on the remote system. sigh.
+
+- name: Copy Exporter CA cert
+  copy:
+    src: exporter_ca.cert
+    dest: "{{ prometheus_exporter_cert }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Cleanup stale cert
+  file: path="{{ prometheus_base }}/prometheus.monitoring.pem" state=absent
+
+- name: Configure Prometheus
+  notify:
+  - reload prometheus
+  template:
+    src: prometheus.yml.j2
+    dest: "{{ prometheus_config_path }}/prometheus.yml"
+    owner: root
+    group: "{{ prometheus_group }}"
+    mode: 0640
+  tags: prometheus-conf
+
+- name: Configure rules files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ prometheus_rule_path }}/"
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+    - rules/*.rules
+  notify:
+  - reload prometheus
+  tags: prometheus-conf
+
+- name: Install prometheus systemd service file
+  notify:
+  - restart prometheus
+  template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+
+- name: Enable and start prometheus service
+  systemd:
+    name: prometheus.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- include: setup-nginx.yml
+  when: ( prometheus_nginx is defined and prometheus_nginx|bool == true )

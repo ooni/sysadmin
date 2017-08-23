@@ -1,0 +1,64 @@
+- name: set permissions, owner and group
+  file:
+    path: "{{ proteus_install_path }}"
+    state: directory
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: clone proteus-frontend repo
+  git:
+    repo: "{{ proteus_git_url }}"
+    dest: "{{ proteus_install_path }}/proteus"
+    version: "{{ proteus_version }}"
+
+- name: install yarn globally
+  npm:
+    name: yarn
+    global: yes
+
+- name: run yarn install
+  command: yarn install
+  args:
+    chdir: "{{ proteus_install_path }}/proteus/proteus-frontend"
+
+- name: run npm run build
+  command: npm run build
+  args:
+    chdir: "{{ proteus_install_path }}/proteus/proteus-frontend"
+  environment:
+    REGISTRY_URL: "{{ proteus_registry_url }}"
+    EVENTS_URL: "{{ proteus_events_url }}"
+
+- name: set permissions, owner and group
+  file:
+    path: "{{ proteus_install_path }}/proteus"
+    state: directory
+    owner: "{{ proteus_user }}"
+    group: "{{ proteus_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: Configure Proteus
+  notify:
+  - restart proteus
+  template:
+    src: proteus-frontend.env.j2
+    dest: "{{ proteus_install_path }}/proteus-frontend.env"
+
+- name: Install proteus systemd service file
+  notify:
+  - restart proteus
+  template:
+    src: proteus-frontend.service
+    dest: /etc/systemd/system/proteus-frontend.service
+
+- name: Enable and start proteus service
+  systemd:
+    name: proteus-frontend.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- include: setup-nginx.yml

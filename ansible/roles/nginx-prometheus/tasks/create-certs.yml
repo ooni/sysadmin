@@ -1,0 +1,66 @@
+---
+- name: Create nginx/Prometheus key directory
+  file: path={{ ngxprom_ssl_dir }} state=directory owner=root group=root mode=0700
+
+# RSA-2048 is used as there is no reason to generate keys longer than
+# letsencrypt that protects some other bits of infrastructure.
+- name: Generate private RSA-2048 key
+  command: openssl genrsa -out {{ ngxprom_ssl_base }}.key 2048
+  args:
+    creates: "{{ ngxprom_ssl_base }}.key"
+
+- name: Generate 2048-bit Diffie-Hellman parameters # to avoid https://weakdh.org/
+  command: openssl dhparam -out {{ ngxprom_ssl_base }}.dhparam 2048
+  args:
+    creates: "{{ ngxprom_ssl_base }}.dhparam"
+
+- name: Generate CSR
+  command: openssl req -new -sha256 -subj "{{ ngxprom_ssl_subj }}" -key {{ ngxprom_ssl_base }}.key -out {{ ngxprom_ssl_base }}.csr
+  args:
+    creates: "{{ ngxprom_ssl_base }}.csr"
+
+- name: Set key permissions
+  file: path={{ ngxprom_ssl_base ~ item }} owner=root group=root mode=0400
+  with_items:
+    - .key
+    - .dhparam
+    - .csr
+
+- name: Check cert existance
+  stat: path={{ ngxprom_ssl_base }}.cert
+  register: ssl_cert
+
+- name: mktemp @ localhost
+  set_fact:
+    tmp: "{{ lookup('pipe', 'mktemp -dt ooni-csr.XXXXXXXX') }}"
+  run_once: true
+
+- name: Copy Exporter CA key to tmpdir from vault
+  local_action: copy src=exporter_ca.key.vault dest={{ tmp }}/exporter_ca.key
+  run_once: true
+
+- block:
+  - name: Fetch the CSR from the host
+    fetch:
+      src: "{{ ngxprom_ssl_base }}.csr"
+      dest: "{{ tmp }}/{{ inventory_hostname }}.csr"
+      flat: yes
+
+  - name: Generate signed SSL certificate
+    local_action: command  openssl x509 -sha256 -days 3650 -req -in {{ inventory_hostname }}.csr -CA {{ inventory_dir }}/files/exporter_ca.cert -CAkey exporter_ca.key -set_serial {{ (2 ** 128) | random }} -out {{ inventory_hostname }}.cert
+    args:
+      creates: "{{ inventory_hostname }}.cert"
+      chdir: "{{ tmp }}"
+
+  - name: Upload the signed SSL certificate
+    copy:
+      src: "{{ tmp }}/{{ inventory_hostname }}.cert"
+      dest: "{{ ngxprom_ssl_base }}.cert"
+      owner: root
+      group: root
+      mode: 0400
+  when: not ssl_cert.stat.exists
+
+- name: cleanup local tmp dir
+  local_action: file path={{ tmp }} state=absent
+  run_once: true

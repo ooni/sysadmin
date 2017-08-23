@@ -1,0 +1,12 @@
+[Unit]
+Description=Prometheus Node Exporter
+
+[Service]
+User=nodeexp
+Group=nodeexp
+ExecStart={{ node_exporter_path }}/node_exporter -collectors.enabled {{ node_exporter_collectors }} -collector.textfile.directory {{ node_exporter_textfiles_path }} -web.listen-address {{ node_exporter_listen_address }} -collector.ntp.server 127.0.0.1
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
