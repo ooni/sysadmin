@@ -33,6 +33,11 @@
       POSTGRES_HOST: af-psql
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
+      SMTP_MAIL_FROM: noreply+airflow@ooni.io # don't forget to whitelist it at https://runbox.com/mail/rules
+      SMTP_HOST: email-smtp.us-east-1.amazonaws.com
+      SMTP_SECURITY: smtps
+      SMTP_USER: "{{ airflow_smtp_username }}"
+      SMTP_PASSWORD: "{{ airflow_smtp_password }}"
     command: "{{ command }}"
     user: "{{ passwd[login].id }}:{{ passwd[login].id }}"
     restart_policy: unless-stopped
