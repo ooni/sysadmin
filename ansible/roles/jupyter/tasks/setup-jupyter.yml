@@ -21,7 +21,7 @@
 
 - name: copy jupyter config
   template:
-    src: jupyter_notebook_config.py
+    src: jupyter_notebook_config.py.j2
     owner: "{{ jupyter_user }}"
     group: "{{ jupyter_user }}"
     dest: "{{ jupyter_config_path }}/jupyter_notebook_config.py"
@@ -30,7 +30,7 @@
   notify:
   - restart jupyter
   template:
-    src: jupyter.service
+    src: jupyter.service.j2
     dest: /etc/systemd/system/jupyter.service
 
 - name: Enable and start jupyter service
