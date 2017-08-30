@@ -29,3 +29,4 @@ jupyter_user: "{{ passwd.jupyter.login }}"
 jupyter_group: "{{ passwd.jupyter.login }}"
 
 jupyter_port: 8080
+jupyter_password_hash: "{{ CHANGE_ME }}"
