@@ -1,0 +1,67 @@
+---
+# Mostly stolen from: https://github.com/andrewrothstein/ansible-anaconda
+- name: check for installation of Anaconda
+  become: yes
+  stat:
+    path: '{{ anaconda_conda_bin }}'
+  changed_when: false
+  register: anaconda_conda_binary
+
+- when: not anaconda_conda_binary.stat.exists
+  block:
+    - name: download installer...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{anaconda_installer_url}}'
+        dest: /tmp/{{anaconda_installer_sh}}
+        timeout: 300
+        checksum: '{{ anaconda_checksum }}'
+        mode: 0755
+
+    - name: install...
+      become: yes
+      become_user: root
+      command: "bash /tmp/{{anaconda_installer_sh}} -b -p {{ anaconda_install_dir }}"
+      args:
+        creates: '{{anaconda_install_dir}}'
+
+  always:
+    - name: delete installer...
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{anaconda_installer_sh}}
+        state: absent
+
+- name: link anaconda...
+  become: yes
+  become_user: root
+  file:
+    src: '{{anaconda_install_dir}}'
+    dest: '{{anaconda_link_dir}}'
+    state: link
+
+- name: update conda pkgs...
+  become: yes
+  become_user: root
+  command: '{{anaconda_link_dir}}/bin/conda update -y --all'
+
+- name: install pkgs with conda
+  become: yes
+  become_user: root
+  command: '{{anaconda_link_dir}}/bin/conda install {{ item }}'
+  with_items: "{{ conda_pkgs }}"
+
+- name: install pkgs with pip
+  become: yes
+  become_user: root
+  command: '{{anaconda_link_dir}}/bin/pip install {{ item }}'
+  with_items: "{{ conda_pkgs }}"
+
+- name: remove conda-curl since it conflicts with the system curl
+  become: yes
+  become_user: root
+  command: '{{anaconda_conda_bin}} remove -y curl'
+  args:
+    removes: '{{anaconda_link_dir}}/lib/libcurl.a'

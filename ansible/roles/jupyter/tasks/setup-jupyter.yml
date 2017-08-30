@@ -1,0 +1,41 @@
+---
+- name: set permissions, owner and group
+  file:
+    path: "{{ jupyter_path }}"
+    state: directory
+    owner: "{{ jupyter_user }}"
+    group: "{{ jupyter_user }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ jupyter_user }}"
+    group: "{{ jupyter_user }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ jupyter_data_path }}"
+    - "{{ jupyter_config_path }}"
+
+- name: copy jupyter config
+  template:
+    src: jupyter_notebook_config.py
+    owner: "{{ jupyter_user }}"
+    group: "{{ jupyter_user }}"
+    dest: "{{ jupyter_config_path }}/jupyter_notebook_config.py"
+
+- name: Install jupyter systemd service file
+  notify:
+  - restart jupyter
+  template:
+    src: jupyter.service
+    dest: /etc/systemd/system/jupyter.service
+
+- name: Enable and start jupyter service
+  systemd:
+    name: jupyter.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
