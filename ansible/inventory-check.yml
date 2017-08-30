@@ -97,6 +97,6 @@
       run_once: true
 
     - name: stamp the inventory that was checked
-      assert: { that: groups.all | sort | join('|') | hash('sha256') == '2f901f46fcf5b1c09757db99e088d9c62a1148dfe70c0ad044a7100e5631fcdf' }
+      assert: { that: groups.all | sort | join('|') | hash('sha256') == '22fad4d186f9c0f806eaf23ce241ea3a559fb280fc4c420123f2af6d79e69155' }
       run_once: true
 ...
