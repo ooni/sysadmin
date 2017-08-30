@@ -18,6 +18,7 @@
   with_items:
     - "{{ jupyter_data_path }}"
     - "{{ jupyter_config_path }}"
+    - "{{ jupyter_home_path }}"
 
 - name: copy jupyter config
   template:

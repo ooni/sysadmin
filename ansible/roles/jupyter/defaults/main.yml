@@ -23,6 +23,7 @@ pip_pkgs:
 jupyter_path: '/srv/jupyter'
 jupyter_config_path: '{{ jupyter_path }}/config'
 jupyter_data_path: '{{ jupyter_path }}/data'
+jupyter_home_path: '{{ jupyter_path }}/home'
 
 jupyter_user: "{{ passwd.jupyter.login }}"
 jupyter_group: "{{ passwd.jupyter.login }}"
