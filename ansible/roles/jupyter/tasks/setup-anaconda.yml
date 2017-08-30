@@ -57,7 +57,7 @@
   become: yes
   become_user: root
   command: '{{anaconda_link_dir}}/bin/pip install {{ item }}'
-  with_items: "{{ conda_pkgs }}"
+  with_items: "{{ pip_pkgs }}"
 
 - name: remove conda-curl since it conflicts with the system curl
   become: yes
