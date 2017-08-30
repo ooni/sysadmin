@@ -30,7 +30,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -182,13 +182,65 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
             "status": "stopped", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 100, 
+            "features": [], 
+            "id": "876", 
+            "kernel": {
+                "id": "7", 
+                "name": "Linux 3.18.13", 
+                "version": "3.18.13"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 f9:48:1f:9f:23:16:ce:1f:9b:6a:ea:22:c8:96:62:4e \n", 
+                "ssh_ecdsa": "256 ab:80:ab:a8:56:db:2b:94:0c:68:f9:65:5a:9a:5c:81 \n", 
+                "ssh_rsa": "2048 35:e9:0f:e4:7c:8e:4b:20:b9:f1:fe:34:6b:3a:3c:e0 \n"
+            }, 
+            "locked": false, 
+            "memory": "4096", 
+            "name": "ooni-zoo", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.138", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }, 
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.139", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }, 
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.140", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "2"
         }, 
         {
             "backup_ids": [], 
@@ -258,7 +310,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -296,7 +348,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -334,7 +386,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -372,7 +424,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -410,7 +462,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -448,7 +500,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -486,7 +538,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -524,7 +576,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -562,7 +614,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -600,7 +652,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -638,7 +690,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -676,7 +728,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -714,7 +766,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -752,7 +804,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -790,7 +842,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -828,7 +880,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -866,7 +918,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -904,7 +956,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -942,7 +994,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -980,7 +1032,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -1018,7 +1070,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -1056,7 +1108,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -1094,7 +1146,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1132,7 +1184,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1170,7 +1222,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -1208,7 +1260,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1246,7 +1298,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1284,7 +1336,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1550,7 +1602,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -1740,7 +1792,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1778,7 +1830,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1816,7 +1868,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1854,7 +1906,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1892,7 +1944,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1973,7 +2025,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "2"
         }, 
         {
@@ -2006,7 +2058,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Washington DC", 
                 "slug": "Washington DC"
             }, 
@@ -2044,7 +2096,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -2082,7 +2134,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -2196,7 +2248,7 @@
                 ]
             }, 
             "region": {
-                "available": "1", 
+                "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -2355,10 +2407,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 200, 
+            "features": [], 
+            "id": "1990", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 64:11:a5:42:65:bf:25:68:f3:22:18:f2:32:53:27:67\n", 
+                "ssh_ecdsa": "256 c7:d1:7a:a9:d6:f5:25:d0:8b:4d:0a:6d:93:53:e8:7a\n", 
+                "ssh_rsa": "2048 fd:71:df:78:4d:24:8f:e9:4a:8f:81:1b:2a:f2:38:b3\n"
+            }, 
+            "locked": false, 
+            "memory": "16384", 
+            "name": "jupyter.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.205", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "4"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 62
+        "total": 64
     }
 }
