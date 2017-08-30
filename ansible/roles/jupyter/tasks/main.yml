@@ -6,6 +6,7 @@
     - 'openssl'
     - 'zip'
     - 'bzip2'
+    - 'build-essential'
 
 - name: Create install folders
   file:
