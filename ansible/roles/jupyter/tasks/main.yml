@@ -20,3 +20,4 @@
 - include: setup-anaconda.yml
 - include: setup-jupyter.yml
 - include: setup-nginx.yml
+- include: setup-ooni-sync.yml

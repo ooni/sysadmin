@@ -1,3 +1,6 @@
+go_arch: 'amd64'
+go_platform: 'linux'
+
 anaconda_mirror: 'https://repo.continuum.io/archive'
 anaconda_python_version: 3
 anaconda_version: '4.4.0'
@@ -25,8 +28,14 @@ jupyter_config_path: '{{ jupyter_path }}/config'
 jupyter_data_path: '{{ jupyter_path }}/data'
 jupyter_home_path: '{{ jupyter_path }}/home'
 
-jupyter_user: "{{ passwd.jupyter.login }}"
-jupyter_group: "{{ passwd.jupyter.login }}"
+jupyter_user: '{{ passwd.jupyter.login }}'
+jupyter_group: '{{ passwd.jupyter.login }}'
 
 jupyter_port: 8080
-jupyter_password_hash: "{{ CHANGE_ME }}"
+jupyter_password_hash: '{{ CHANGE_ME }}'
+
+ooni_sync_path: '/srv/ooni-sync'
+ooni_sync_version: '1.1.1'
+ooni_sync_install_path: '/srv/ooni-sync/{{ ooni_sync_version }}'
+ooni_sync_checksums:
+  ooni-sync_1.1.1_linux_amd64.tar.gz: sha256:c75a3fc32b09963b699ddd16fb8f9d13895939e2880fc306ac1ef68483d3ef56

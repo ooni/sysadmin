@@ -1,0 +1,24 @@
+---
+- name: mkdir for ooni-sync config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rwx,g=rx,o=x"
+  with_items:
+    - "{{ ooni_sync_path }}"
+    - "{{ ooni_sync_install_path }}"
+
+- name: untar ooni-sync tarball
+  unarchive:
+    src: "{{ ooni_sync_url }}"
+    dest: "{{ ooni_sync_install_path }}"
+    mode: 0755
+    copy: no
+    # https://github.com/ansible/ansible/issues/13665
+    # checksum: ooni_sync_checksum
+
+- name: link ooni-sync system wide
+  file:
+    src: "{{ ooni_sync_install_path }}/ooni-sync"
+    dest: "/usr/bin/ooni-sync"
+    state: link
