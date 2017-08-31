@@ -1,0 +1,14 @@
+[Service]
+ExecStart={{anaconda_link_dir}}/bin/jupyter notebook --no-browser
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+User={{ jupyter_user }}
+Group={{ jupyter_group }}
+RestartSec=15s
+WorkingDirectory={{ jupyter_home_path }}
+Environment=JUPYTER_CONFIG_DIR={{ jupyter_config_path }}
+Environment=JUPYTER_DATA_DIR={{ jupyter_data_path }}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1 @@
+jupyter_password_hash: "{{ vault_jupyter_password_hash }}"

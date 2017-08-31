@@ -44,6 +44,9 @@ passwd:
 
   oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
 
+  anaconda: {login: anaconda, id: 6000, comment: Anaconda python user}
+  jupyter: {login: jupyter, id: 6001, comment: Jupyter python user}
+
   # people have id >= 10000
   agrabeli:
     login: agrabeli

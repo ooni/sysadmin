@@ -1,0 +1,22 @@
+---
+- name: "Install dependencies"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'unzip'
+    - 'openssl'
+    - 'zip'
+    - 'bzip2'
+    - 'build-essential'
+
+- name: Create install folders
+  file:
+    path: "{{ item }}"
+    owner: "root"
+    group: "root"
+    state: directory
+  with_items:
+  - "{{ anaconda_parent_dir }}"
+
+- include: setup-anaconda.yml
+- include: setup-jupyter.yml
+- include: setup-nginx.yml
