@@ -1721,7 +1721,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "2"
         }, 
         {
@@ -2141,10 +2141,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "4"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "1999", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 0f:16:25:7f:d9:b6:7a:1c:41:cc:fe:cb:e5:94:7d:fc\n", 
+                "ssh_ecdsa": "256 b4:32:67:6e:23:f1:38:56:39:74:52:b6:e9:57:d5:1f\n", 
+                "ssh_rsa": "2048 0d:4c:42:dc:52:72:99:6e:3b:52:cb:f7:67:94:3c:cd\n"
+            }, 
+            "locked": false, 
+            "memory": "512", 
+            "name": "lvm.tmp.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.214", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "stopped", 
+            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 56
+        "total": 57
     }
 }
