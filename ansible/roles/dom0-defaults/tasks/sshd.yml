@@ -61,7 +61,7 @@
   run_once: true
 
 - name: update known_hosts
-  local_action: command sort --unique {{tmp}}/known_hosts --output {{inventory_dir}}/../ext/known_hosts
+  local_action: command env LC_ALL=C sort --unique {{tmp}}/known_hosts --output {{inventory_dir}}/../ext/known_hosts
   run_once: true
 
 - name: cleanup local tmp dir
