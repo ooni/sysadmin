@@ -44,6 +44,7 @@ hkgmetadb.infra		A	37.218.240.56
 hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
 irc-bouncer.service	1800	A	37.218.240.126
+jupyter		A	37.218.240.205
 lepidopter-update-test.infra		A	37.218.242.199
 measurements	60	A	37.218.242.217
 measurements-beta		A	37.218.240.100
@@ -79,4 +80,4 @@ ubuilder.infra		A	37.218.242.223
 vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 5879d47de6142be743f6e2cb07535c3a672d450698438a8ff8b6fb8139006620
+; generated from ooni.io.xml with SHA256 6b3ff9c4bf6703e83a0c4bfcae2389986a8319db5a81f8554aefc5fc96482926

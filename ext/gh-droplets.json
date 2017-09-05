@@ -2025,7 +2025,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
