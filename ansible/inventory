@@ -139,13 +139,5 @@ slack.openobservatory.org
 # TO DELETE.
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
 #
-# since 2017-08-04 # ooni-proxy-dc.infra.ooni.io
-# since 2017-08-04 # ooni-backend-testing.infra.ooni.io
-# since 2017-08-04 # oonibackend-stress-test.infra.ooni.io
-# since 2017-08-04 # ooni-probe-demo.infra.ooni.io
-# since 2017-08-04 # lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
-# since 2017-08-04 # ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
-# since 2017-08-05 # debuilder.infra.ooni.io # compromised, https://virustotal.com/en/file/63210b24f42c05b2c5f8fd62e98dba6de45c7d751a2e55700d22983772886017/analysis/
-# since 2017-08-06 # ubuilder.infra.ooni.io # unused, so it's halted during https://github.com/TheTorProject/ooni-sysadmin/issues/123
 # since 2017-08-20 # vpn-gate-runner.infra.ooni.io # noone has access, see https://github.com/TheTorProject/ooni-sysadmin/issues/123
 # since 2017-08-20 # ooni-fdroid-build.infra.ooni.io   # noone has access, see https://github.com/TheTorProject/ooni-sysadmin/issues/123
