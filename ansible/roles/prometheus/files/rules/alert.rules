@@ -8,11 +8,11 @@ ALERT InstanceDown
   }
 
 ALERT SSLCertExpiringInAWeek
-  IF probe_ssl_earliest_cert_expiry - time() / 86400 < 7
+  IF (probe_ssl_earliest_cert_expiry - time()) / 86400 < 7
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "SSL cert for {{ $labels.instance }} expires",
-    description = "SSL cert for {{ $labels.instance }} expires in {{ $value }} days",
+    description = "SSL cert for {{ $labels.instance }} expires in {{ printf '%.0f' $value }} days",
   }
 
 # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
@@ -22,7 +22,7 @@ ALERT DiskWillFillInAWeek
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "In a week {{ $labels.instance }} will run out of disk space",
-    description = "In a week {{ $labels.instance }} will run out of disk space. Predicted overcommit: {{ $value }} GiB",
+    description = 'In a week {{ $labels.instance }} will run out of disk space. Predicted overcommit: {{ printf "%.1f" $value }} GiB',
   }
 
 ALERT DiskSpaceOver80pct
@@ -30,7 +30,7 @@ ALERT DiskSpaceOver80pct
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "Disk usage at {{ $labels.instance }} over 80%",
-    description = "{{ $value }}% disk space available at {{ $labels.instance }}",
+    description = '{{ printf "%.1f" $value }}% disk space available at {{ $labels.instance }}',
   }
 
 ALERT DiskInodesOver50pct
@@ -38,5 +38,5 @@ ALERT DiskInodesOver50pct
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "Inode usage at {{ $labels.instance }} over 50%",
-    description = "{{ $value }}% inodes free at {{ $labels.instance }}",
+    description = "{{ printf '%.1f' $value }}% inodes free at {{ $labels.instance }}",
   }
