@@ -8,19 +8,35 @@ ALERT InstanceDown
   }
 
 ALERT SSLCertExpiringInAWeek
-  IF probe_ssl_earliest_cert_expiry - time() < 86400 * 7
-  FOR 1h
+  IF probe_ssl_earliest_cert_expiry - time() / 86400 < 7
   LABELS { severity = "critical" }
   ANNOTATIONS {
-    summary = "SSL Cert for {{ $labels.instance }} will expire in a week",
-    description = "The SSL certificate for {{ $labels.instance }} will expire in 7 days ()",
+    summary = "SSL cert for {{ $labels.instance }} expires",
+    description = "SSL cert for {{ $labels.instance }} expires in {{ $value }} days",
   }
 
+# NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
 ALERT DiskWillFillInAWeek
-  IF node_filesystem_avail{fstype=~"(ext[34]|xfs)"} + delta(node_filesystem_avail{fstype=~"(ext[34]|xfs)"}[48h])*3.5 < 0
+  IF (node_filesystem_avail{fstype=~"(ext[34]|xfs)"} + delta(node_filesystem_avail{fstype=~"(ext[34]|xfs)"}[48h])*3.5) / 1073741824 < 0
   FOR 1h
   LABELS { severity = "critical" }
   ANNOTATIONS {
     summary = "In a week {{ $labels.instance }} will run out of disk space",
-    description = "In a week {{ $labels.instance }} will run out of disk space. Predicted size: {{ $value }}",
+    description = "In a week {{ $labels.instance }} will run out of disk space. Predicted overcommit: {{ $value }} GiB",
+  }
+
+ALERT DiskSpaceOver80pct
+  IF node_filesystem_avail{fstype=~"(ext[34]|xfs)"} / node_filesystem_size{fstype=~"(ext[34]|xfs)"} * 100 < 20
+  LABELS { severity = "critical" }
+  ANNOTATIONS {
+    summary = "Disk usage at {{ $labels.instance }} over 80%",
+    description = "{{ $value }}% disk space available at {{ $labels.instance }}",
+  }
+
+ALERT DiskInodesOver50pct
+  IF node_filesystem_files_free{fstype=~"(ext[34]|xfs)"} / node_filesystem_files{fstype=~"(ext[34]|xfs)"} * 100 < 50
+  LABELS { severity = "critical" }
+  ANNOTATIONS {
+    summary = "Inode usage at {{ $labels.instance }} over 50%",
+    description = "{{ $value }}% inodes free at {{ $labels.instance }}",
   }
