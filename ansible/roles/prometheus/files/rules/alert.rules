@@ -12,8 +12,8 @@ ALERT SSLCertExpires
   IF (probe_ssl_earliest_cert_expiry - time()) / 86400 < 25
   LABELS { severity = "critical" }
   ANNOTATIONS {
-    summary = "SSL cert for {{ $labels.instance }} expires",
-    description = "SSL cert for {{ $labels.instance }} expires in {{ printf '%.0f' $value }} days",
+    summary = 'SSL cert for {{ $labels.instance }} expires',
+    description = 'SSL cert for {{ $labels.instance }} expires in {{ printf "%.0f" $value }} days',
   }
 
 # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
