@@ -34,10 +34,20 @@
   args:
     chdir: "{{ ooni_run_install_path }}/ooni-run/"
 
-- name: run yarn build
-  command: yarn run build
-  args:
-    chdir: "{{ ooni_run_install_path }}/ooni-run/"
+# XXX This currently fails on the run.ooni.io machine due to error code 137
+# after a bit of research it seems like this is a sign of node running out of
+# memory:
+# * https://github.com/npm/npm/issues/4008
+# * https://github.com/kasperisager/vanilla-bootstrap/issues/164
+# I tried a couple of mentioned workarounds to reduce memory usage (node
+# --max-old-space-size), but they don't seem to work.
+# For the moment I have solved it by just uploading the built `.next` directory
+# manually, but we should move this to a beafier box in the future.
+#
+#- name: run yarn run build
+#  command: yarn run build
+#  args:
+#    chdir: "{{ ooni_run_install_path }}/ooni-run/"
 
 
 - name: set permissions, owner and group

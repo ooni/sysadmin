@@ -1,9 +1,9 @@
 ooni_run_user: "{{ passwd.ooni_run.login }}"
 ooni_run_group: "{{ passwd.ooni_run.login }}"
-ooni_run_port: 3200
+ooni_run_port: 3000
 ooni_run_address: "127.0.0.1"
 ooni_run_https_port: 443
 
 ooni_run_install_path: /srv/ooni-run
-ooni_run_version: "v0.1.0-beta.2"
+ooni_run_version: "v0.1.0-beta.3"
 ooni_run_git_url: https://github.com/thetorproject/ooni-run
