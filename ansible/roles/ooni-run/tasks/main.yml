@@ -1,0 +1,54 @@
+- name: "Install dependencies"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'git'
+
+- name: set permissions, owner and group
+  file:
+    path: "{{ ooni_run_install_path }}"
+    state: directory
+    owner: "{{ ooni_run_user }}"
+    group: "{{ ooni_run_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: clone ooni-run repo
+  git:
+    repo: "{{ ooni_run_git_url }}"
+    dest: "{{ ooni_run_install_path }}/ooni-run"
+    version: "{{ ooni_run_version }}"
+
+- name: install yarn globally
+  npm:
+    name: yarn
+    global: yes
+
+- name: run yarn install
+  command: yarn install
+  args:
+    chdir: "{{ ooni_run_install_path }}/ooni-run/"
+
+- name: set permissions, owner and group
+  file:
+    path: "{{ ooni_run_install_path }}/ooni-run"
+    state: directory
+    owner: "{{ ooni_run_user }}"
+    group: "{{ ooni_run_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: Install ooni-run systemd service file
+  notify:
+  - restart ooni-run
+  template:
+    src: ooni-run.service
+    dest: /etc/systemd/system/ooni-run.service
+
+- name: Enable and start ooni-run service
+  systemd:
+    name: ooni-run.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- include: setup-nginx.yml

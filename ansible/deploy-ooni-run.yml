@@ -1,0 +1,9 @@
+---
+- hosts: run.ooni.io
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+  roles:
+    - letsencrypt
+    - nodejs
+    - ooni-run
