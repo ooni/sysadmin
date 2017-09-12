@@ -47,6 +47,8 @@ passwd:
   anaconda: {login: anaconda, id: 6000, comment: Anaconda python user}
   jupyter: {login: jupyter, id: 6001, comment: Jupyter python user}
 
+  ooni_run: {login: oonirun, id: 7000, comment: OONI Run user}
+
   # people have id >= 10000
   agrabeli:
     login: agrabeli

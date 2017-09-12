@@ -234,6 +234,20 @@ ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 --url http://ooni.io/
 ```
 
+# When adding new hosts
+
+When you add a new host you need to update the continous integration scripts to make travis happy.
+
+This can be done by doing:
+
+```
+./play inventory-check.yml
+```
+
+Then editing the line in the `inventory-check.yml` that says "stamp the
+inventory that was checked" with the output of the `build inventory check` task
+in the previous command.
+
 # Donate to support OONI infrastructure
 
 Send bitcoins to:
