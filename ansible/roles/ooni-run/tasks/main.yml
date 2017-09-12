@@ -34,6 +34,12 @@
   args:
     chdir: "{{ ooni_run_install_path }}/ooni-run/"
 
+- name: run yarn build
+  command: yarn run build
+  args:
+    chdir: "{{ ooni_run_install_path }}/ooni-run/"
+
+
 - name: set permissions, owner and group
   file:
     path: "{{ ooni_run_install_path }}/ooni-run"

@@ -5,7 +5,7 @@ Description=OONI Run service
 User={{ ooni_run_user }}
 Group={{ ooni_run_group }}
 WorkingDirectory={{ ooni_run_install_path }}/ooni-run
-ExecStart=/usr/bin/node index.js
+ExecStart=/usr/bin/yarn run start
 Restart=always
 
 [Install]
