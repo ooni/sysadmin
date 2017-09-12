@@ -51,7 +51,13 @@ inhibit_rules:
 receivers:
 - name: 'team-all'
   email_configs:
-  - to: 'team@openobservatory.org'
+  - to: 'arturo@openobservatory.org'
+    send_resolved: true
+  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
+    send_resolved: true
+  - to: 'simone@openobservatory.org'
+    send_resolved: true
+  - to: 'vasilis@openobservatory.org'
     send_resolved: true
   slack_configs:
   - send_resolved: true
