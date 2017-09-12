@@ -3,6 +3,12 @@
   with_items:
     - 'git'
 
+# npm needs to have a home directly set otherwise it will fail to start...
+- name: "Set ooni-run user home"
+  user:
+    name: "{{ ooni_run_user }}"
+    home: "{{ ooni_run_install_path }}"
+
 - name: set permissions, owner and group
   file:
     path: "{{ ooni_run_install_path }}"
