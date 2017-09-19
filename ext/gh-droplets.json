@@ -438,18 +438,18 @@
             "features": [], 
             "id": "1175", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/IAYn1p30qiLVbQH0WaB88jJqPUVltrrk5w5A3lY1nD5M/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/IAYn1p30qiLVbQH0WaB88jJqPUVltrrk5w5A3lY1nD5M/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/IAYn1p30qiLVbQH0WaB88jJqPUVltrrk5w5A3lY1nD5M/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 55:18:e5:cb:dc:59:8f:ae:b8:47:bb:32:57:c5:ba:5c\n", 
+                "ssh_ecdsa": "256 6e:9c:be:12:d1:23:b9:ab:1d:67:ea:a5:8a:34:9a:ea\n", 
+                "ssh_rsa": "2048 17:85:5a:52:7b:a4:89:c5:62:11:09:91:e3:10:26:4e\n"
             }, 
             "locked": false, 
             "memory": "512", 
-            "name": "test-ooniprobe-jes", 
+            "name": "run.ooni.io", 
             "networks": {
                 "v4": [
                     {
@@ -1650,7 +1650,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 150, 
+            "disk": 210, 
             "features": [], 
             "id": "1811", 
             "kernel": {
@@ -1659,9 +1659,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 d7:0d:f6:33:0b:46:3b:9b:e7:64:9d:b5:0a:a0:64:ac\n", 
-                "ssh_ecdsa": "256 81:6a:8c:83:66:1b:a9:f2:1d:f9:29:10:92:5b:b0:df\n", 
-                "ssh_rsa": "2048 46:6e:76:fd:bf:bc:ee:16:da:81:bf:05:b3:95:02:cb\n"
+                "ssh_dsa": "1024 0c:6e:81:42:5c:b4:b6:1d:2c:1c:8a:26:e5:ac:6b:73\n", 
+                "ssh_ecdsa": "256 2d:6c:d4:90:59:34:a2:bb:6c:cc:c9:99:4c:49:e5:8a\n", 
+                "ssh_rsa": "2048 94:b4:e6:25:64:7e:08:00:3d:fe:b2:7f:a2:14:41:aa\n"
             }, 
             "locked": false, 
             "memory": "16384", 

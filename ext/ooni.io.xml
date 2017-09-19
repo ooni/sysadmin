@@ -51,7 +51,6 @@
       <host HostId="112976288" Name="ssdams.infra" Type="A" Address="37.218.242.236" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976289" Name="prometheus.infra" Type="A" Address="37.218.245.43" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976290" Name="ooni-fdroid-build.infra" Type="A" Address="199.119.112.14" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114020346" Name="_amazonses" Type="TXT" Address="azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114106152" Name="ssdamsterdam.infra" Type="A" Address="37.218.242.236" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114156097" Name="notify.proteus.test" Type="A" Address="37.218.240.149" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114156109" Name="registry.proteus.test" Type="A" Address="37.218.240.148" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -75,8 +74,10 @@
       <host HostId="119321923" Name="ntp.tmp" Type="A" Address="37.218.240.177" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="119322024" Name="openntpd.tmp" Type="A" Address="37.218.240.178" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="119846743" Name="jupyter" Type="A" Address="37.218.240.205" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="120521007" Name="run" Type="A" Address="37.218.242.30" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965200" Name="@" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965209" Name="www" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114020346" Name="_amazonses" Type="TXT" Address="azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>
