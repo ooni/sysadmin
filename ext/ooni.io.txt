@@ -29,7 +29,6 @@ c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
 c.web-connectivity.th		A	199.119.112.164
 chameleon.infra	1800	A	141.20.103.17
-chrony.tmp		A	37.218.240.181
 datacollector.infra		A	37.218.240.67
 db-1.infra		A	141.20.103.17
 db-1.proteus		A	37.218.242.79
@@ -50,11 +49,9 @@ msg		A	37.218.242.179
 munin		A	199.119.112.171
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
-ntp.tmp		A	37.218.240.177
 ooni-fdroid-build.infra		A	199.119.112.14
 ooni-measurements-db.infra		A	37.218.242.232
 ooni-zoo.infra		A	37.218.240.138
-openntpd.tmp		A	37.218.240.178
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
@@ -73,4 +70,4 @@ test-qemu.infra		A	199.119.112.12
 vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 3f85962c2bf88c26aab6f0268aa8864a860d504f5287a8ace6cddae9774290f1
+; generated from ooni.io.xml with SHA256 31ec06d74aa37263fba80794f170f3e36c5e4c2b35c808d54592eea84333a942
