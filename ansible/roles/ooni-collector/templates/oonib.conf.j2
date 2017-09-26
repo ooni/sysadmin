@@ -9,8 +9,11 @@ main:
     archive_dir: {{ ooni_collector_archive_dir }}
     input_dir: {{ ooni_collector_input_dir }}
     deck_dir: {{ ooni_collector_deck_dir }}
-    policy_file: {{ ooni_collector_policy_file }} # TODO: add to repo
-    bouncer_file: {{ ooni_collector_bouncer_file }} # TODO: add to repo
+
+    # Note: we don't need these two settings because they only pertain
+    # to the bouncer and we're not deploying that role here.
+    policy_file: null
+    bouncer_file: null
 
     logfile: null     # TODO: okay?
     tor_binary: null
