@@ -1,0 +1,92 @@
+# oonib.conf.j2
+# -------------
+#
+# This is copied from the example configuration file of oonib and it is
+# adapted such that it only starts up a collector instance.
+
+main:
+    report_dir: {{ ooni_collector_report_dir }}
+    archive_dir: {{ ooni_collector_archive_dir }}
+    input_dir: {{ ooni_collector_input_dir }}
+    deck_dir: {{ ooni_collector_deck_dir }}
+    policy_file: {{ ooni_collector_policy_file }} # TODO: add to repo
+    bouncer_file: {{ ooni_collector_bouncer_file }} # TODO: add to repo
+
+    logfile: null     # TODO: okay?
+    tor_binary: null
+    socks_port: 9055
+    tor2webmode: false
+    pidfile: {{ ooni_collector_pidfile }}
+    nodaemon: true      # TODO: okay?
+    originalname: null
+    chroot: null
+    rundir: {{ ooni_collector_rundir }}
+    umask: null
+    euid: {{ ooni_collector_euid }}
+    uid: {{ ooni_collector_uid }}
+    gid: {{ ooni_collector_gid }}
+    no_save: true
+    debug: false
+    stale_time: 3600
+    # The supported options are:
+    # protocol, status, request_method, request_uri, remote_ip, request_time
+    log_format: "[{protocol}] {status} {request_method} {request_uri}  127.0.0.1 {request_time}ms"
+
+    tor_datadir: null
+
+    # Note: we are not deploying a bouncer here:
+    #bouncer_endpoints:
+    #- {type: tls, port: 10443, fullchain: "private/fullchain.pem", privkey: "private/ssl-key.pem"}
+    #- {type: tcp, port: 10080}
+    #- {type: onion, hsdir: /tmp/bouncer}
+
+    # TODO: I should probably teach nginx to route to these ports?
+
+    collector_endpoints:
+    - {type: tls, port: 11443, fullchain: {{ ooni_collector_tls_endpoint_fullchain }}, privkey: {{ ooni_collector_tls_endpoint_privkey }}}
+    #- {type: tcp, port: 11080}  # TODO: do we want to support this?
+    - {type: onion, hsdir: {{ ooni_collector_onion_endpoint_hsdir }} }
+
+    report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'
+
+# Note: we are not deploying helpers here:
+#helpers:
+#    http-return-json-headers:
+#        address: null
+#        port: 57001
+#        server_version: Apache
+#
+#    tcp-echo:
+#        address: null
+#        port: 57002
+#
+#    daphn3:
+#        address: null
+#        yaml_file: null
+#        pcap_file: null
+#        port: 57003
+#
+#    dns:
+#        address: null
+#        udp_port: 57004
+#        tcp_port: 57005
+#        resolver_address: '8.8.8.8:53'
+#
+#    dns_discovery:
+#        address: null
+#        udp_port: null
+#        tcp_port: null
+#        resolver_address: null
+#
+#    ssl:
+#        address: null
+#        private_key: 'private.key'
+#        certificate: 'certificate.crt'
+#        #port: 57006
+#        port: null
+#
+#    web_connectivity:
+#        endpoints:
+#        - {type: onion, hsdir: "/tmp/web_connectivity"}
+#        #- {type: tls, port: 12443, fullchain: "private/fullchain.pem", privkey: "private/ssl-key.pem"}
+#        #- {type: tcp, port: 12080}
