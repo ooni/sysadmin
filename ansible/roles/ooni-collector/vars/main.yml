@@ -1,2 +1,12 @@
 ---
-ooni_backend_tag: "v1.3.4"
+ooni_collector_version: 'v1.3.4'
+
+ooni_collector_archive_path: ''
+ooni_collector_deck_path: ''
+ooni_collector_input_path: ''
+
+ooni_collector_report_path: ''
+
+ooni_collector_log_path: ''
+ooni_collector_tor_data_path: ''
+ooni_collector__path: ''

@@ -136,6 +136,10 @@ chrony.tmp.ooni.io
 [slackin]
 slack.openobservatory.org
 
+[collector]
+b.collector.ooni.io
+c.collector.ooni.io
+
 ########################################################################
 # TO DELETE.
 # Stopped VMs that should be deleted from GH and DNS after some grace period:

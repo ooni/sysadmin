@@ -18,16 +18,13 @@
 # at the moment this is copied from ooni-measurements
 - name: ooni-backend webservice
   docker_container:
-    image: openobservatory/ooni-measurements:{{ ooni_backend_tag }}
-    name: ooni_backend-web
-    hostname: ooni_backend-web
-    networks: [{name: msm, ipv4_address: '{{ ooni_backend_backend_ipv4 }}'}]
+    image: openobservatory/ooni-collector:{{ ooni_collector_tag }}
+    name: ooni-collector
+    hostname: ooni-collector
+    networks: [{name: msm, ipv4_address: '{{ ooni_collector_tag }}'}]
     purge_networks: true
     env:
       APP_ENV: production
-      PRODUCTION: 'TRUE' # FIXME: is it ever used?
-      DATABASE_URL: 'postgresql://ooni_backend-beta:{{ ooni_backend_beta_postgres_password }}@hkgmetadb.infra.ooni.io/metadb' # FIXME: ?sslmode=require
-      AUTOCLAVED_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
-    command: gunicorn --bind 0.0.0.0:{{ ooni_backend_backend_port }} --workers 4 --timeout 30 measurements.wsgi
+    command: '/usr/local/bin/oonib -c {{ ooni_collector_config_path }}'
     user: "{{ passwd.ooni_backendweb.id }}:{{ passwd.ooni_backendweb.id }}"
     restart_policy: unless-stopped

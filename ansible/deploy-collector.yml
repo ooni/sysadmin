@@ -1,0 +1,19 @@
+---
+- include: ansible-version.yml
+
+- hosts: collector
+  roles:
+    - role: docker_py
+    # XXX this role is likely broken
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_pre_hook: ''
+      letsencrypt_post_hook: ''
+      letsencrypt_domains: '{{ inventory_hostname }}'
+
+- hosts: collector
+  gather_facts: false # already gathered
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - ooni-collector
