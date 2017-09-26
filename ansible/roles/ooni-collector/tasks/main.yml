@@ -1,0 +1,33 @@
+---
+
+# FIXME: do we _really_ need nginx in front of the collector?
+- template: src=ngx-ooni-backend-web dest=/etc/nginx/sites-enabled/ooni-backend-web
+  notify: reload nginx
+
+# FIXME what is this? Do we need this for the collector?!
+- name: docker network for backend
+  docker_network:
+    name: msm
+    driver_options:
+      com.docker.network.bridge.name: brmsm
+    ipam_options:
+      subnet: 172.25.232.0/24
+      gateway: 172.25.232.1
+
+# FIXME this is not the correct procedure to start it up
+# at the moment this is copied from ooni-measurements
+- name: ooni-backend webservice
+  docker_container:
+    image: openobservatory/ooni-measurements:{{ ooni_backend_tag }}
+    name: ooni_backend-web
+    hostname: ooni_backend-web
+    networks: [{name: msm, ipv4_address: '{{ ooni_backend_backend_ipv4 }}'}]
+    purge_networks: true
+    env:
+      APP_ENV: production
+      PRODUCTION: 'TRUE' # FIXME: is it ever used?
+      DATABASE_URL: 'postgresql://ooni_backend-beta:{{ ooni_backend_beta_postgres_password }}@hkgmetadb.infra.ooni.io/metadb' # FIXME: ?sslmode=require
+      AUTOCLAVED_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
+    command: gunicorn --bind 0.0.0.0:{{ ooni_backend_backend_port }} --workers 4 --timeout 30 measurements.wsgi
+    user: "{{ passwd.ooni_backendweb.id }}:{{ passwd.ooni_backendweb.id }}"
+    restart_policy: unless-stopped
