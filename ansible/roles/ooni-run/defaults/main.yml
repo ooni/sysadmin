@@ -5,5 +5,5 @@ ooni_run_address: "127.0.0.1"
 ooni_run_https_port: 443
 
 ooni_run_install_path: /srv/ooni-run
-ooni_run_version: "v0.1.0-beta.4"
+ooni_run_version: "v0.1.0-beta.17"
 ooni_run_git_url: https://github.com/thetorproject/ooni-run

@@ -42,13 +42,15 @@
 # I tried a couple of mentioned workarounds to reduce memory usage (node
 # --max-old-space-size), but they don't seem to work.
 # For the moment I have solved it by just uploading the built `.next` directory
-# manually, but we should move this to a beafier box in the future.
+# manually, but we should move this to a beafier box in the future
 #
 #- name: run yarn run build
 #  command: yarn run build
 #  args:
 #    chdir: "{{ ooni_run_install_path }}/ooni-run/"
 
+
+# https://registry.npmjs.org/ooni-run/-/ooni-run-0.1.0-beta.10.tgz
 
 - name: set permissions, owner and group
   file:
