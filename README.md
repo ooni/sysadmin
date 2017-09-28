@@ -248,6 +248,16 @@ Then editing the line in the `inventory-check.yml` that says "stamp the
 inventory that was checked" with the output of the `build inventory check` task
 in the previous command.
 
+# Updating firewall rules
+
+If you need to update the firewalling rules, because you added a new host to
+the `have_fw` group or you changed the hostname of a host, you should edit the
+file `templates/iptables.filter.part/$HOSTNAME` and then run:
+
+```
+./play dom0-bootstrap.yml -t fw
+```
+
 # Donate to support OONI infrastructure
 
 Send bitcoins to:
