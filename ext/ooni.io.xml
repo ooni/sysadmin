@@ -34,10 +34,11 @@
       <host HostId="114475854" Name="afwrk04.infra" Type="A" Address="37.218.240.162" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117190059" Name="analytics" Type="A" Address="199.119.112.42" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117328496" Name="db-1.proteus" Type="A" Address="37.218.242.79" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="119225771" Name="chrony.tmp" Type="A" Address="37.218.240.181" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="121512015" Name="api" Type="A" Address="37.218.240.100" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="70721963" Name="explorer" Type="A" Address="37.218.242.173" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="84883574" Name="measurements" Type="A" Address="37.218.242.217" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85876993" Name="@" Type="TXT" Address="v=spf1 include:spf.efwd.registrar-servers.com ~all" MXPref="10" TTL="1800" AssociatedAppTitle="FWD" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="85965200" Name="@" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="88526130" Name="irc-bouncer.service" Type="A" Address="37.218.240.126" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90103867" Name="get" Type="A" Address="37.218.242.157" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="91215315" Name="stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -72,10 +73,8 @@
       <host HostId="117523751" Name="msg" Type="A" Address="37.218.242.179" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="118528311" Name="test-qemu.infra" Type="A" Address="199.119.112.12" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="118542543" Name="ooni-zoo.infra" Type="A" Address="37.218.240.138" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="119321923" Name="ntp.tmp" Type="A" Address="37.218.240.177" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="119322024" Name="openntpd.tmp" Type="A" Address="37.218.240.178" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="119846743" Name="jupyter" Type="A" Address="37.218.240.205" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="85965200" Name="@" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="120521007" Name="run" Type="A" Address="37.218.242.30" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965209" Name="www" Type="URL" Address="https://ooni.torproject.org/" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
