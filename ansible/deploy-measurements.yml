@@ -1,7 +1,7 @@
 ---
 - include: ansible-version.yml
 
-- hosts: measurements-beta.ooni.io
+- hosts: api.ooni.io
   roles:
     - role: docker_py
     - role: letsencrypt
@@ -20,11 +20,11 @@
       name: oomsm-beta
       password: '{{ oomsm_beta_postgres_password }}'
 
-- hosts: measurements-beta.ooni.io
+- hosts: api.ooni.io
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: ooni-measurements
-      oomsm_domain: measurements-beta.ooni.io
+      oomsm_domain: api.ooni.io
       tags: debug
