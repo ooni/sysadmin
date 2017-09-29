@@ -128,11 +128,6 @@ registry.proteus.test.ooni.io
 db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 
-[test_ntp]
-ntp.tmp.ooni.io
-openntpd.tmp.ooni.io
-chrony.tmp.ooni.io
-
 [slackin]
 slack.openobservatory.org
 
