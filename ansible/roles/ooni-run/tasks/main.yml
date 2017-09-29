@@ -22,7 +22,7 @@
   git:
     repo: "{{ ooni_run_git_url }}"
     dest: "{{ ooni_run_install_path }}/ooni-run"
-    version: "{{ ooni_run_version }}"
+    version: "v{{ ooni_run_version }}"
 
 - name: install yarn globally
   npm:
@@ -42,13 +42,31 @@
 # I tried a couple of mentioned workarounds to reduce memory usage (node
 # --max-old-space-size), but they don't seem to work.
 # For the moment I have solved it by just uploading the built `.next` directory
-# manually, but we should move this to a beafier box in the future.
+# manually, but we should move this to a beafier box in the future
 #
 #- name: run yarn run build
 #  command: yarn run build
 #  args:
 #    chdir: "{{ ooni_run_install_path }}/ooni-run/"
 
+- name: Clean existing /tmp directory
+  file:
+    state: absent
+    path: '/tmp/package'
+
+- name: Download the ooni-run package
+  unarchive:
+    src: 'https://registry.npmjs.org/ooni-run/-/ooni-run-{{ ooni_run_version }}.tgz'
+    dest: /tmp/
+    remote_src: yes
+
+- name: Clean existing .next directory
+  file:
+    state: absent
+    path: '{{ ooni_run_install_path }}/ooni-run/.next'
+
+- name: Copy pre-built .next directory
+  command: 'cp -R /tmp/package/.next {{ ooni_run_install_path }}/ooni-run/.next'
 
 - name: set permissions, owner and group
   file:
