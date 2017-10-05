@@ -50,7 +50,6 @@ msg		A	37.218.242.179
 munin		A	199.119.112.171
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
-ooni-fdroid-build.infra		A	199.119.112.14
 ooni-measurements-db.infra		A	37.218.242.232
 ooni-zoo.infra		A	37.218.240.138
 prometheus.infra		A	37.218.245.43
@@ -68,7 +67,6 @@ superset		A	37.218.240.92
 test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
-vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 b55cec416ee994ceb9a23c63a89e77154edb03491af06d96c2db7deab87207c8
+; generated from ooni.io.xml with SHA256 7000b98fc78fbd1be64f749689e7dd4d5c4cd452e59531f0d3f19d4791c28418
