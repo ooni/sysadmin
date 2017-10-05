@@ -78,44 +78,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 50, 
-            "features": [], 
-            "id": "842", 
-            "kernel": {
-                "id": "1", 
-                "name": "Linux 3.14.17", 
-                "version": "3.14.17"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 2b:75:be:89:22:ac:74:4a:cb:f5:e0:78:45:54:45:f6 \n", 
-                "ssh_ecdsa": "256 5e:4f:d0:31:cf:bc:05:91:74:da:ea:c5:69:24:e6:6e \n", 
-                "ssh_rsa": "2048 fe:12:6c:da:1e:06:f7:55:11:fa:87:ce:c5:73:c6:6b \n"
-            }, 
-            "locked": false, 
-            "memory": "8192", 
-            "name": "vpn-gate-runner", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254", 
-                        "ip_address": "37.218.240.133", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.240.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "4"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 100, 
             "features": [], 
             "id": "876", 
@@ -772,44 +734,6 @@
             }, 
             "snapshot_ids": [], 
             "status": "running", 
-            "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 150, 
-            "features": [], 
-            "id": "1355", 
-            "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 71:b8:dc:12:51:0b:37:c4:16:e3:f5:a0:cf:18:a4:8f\n", 
-                "ssh_ecdsa": "256 5b:fa:92:b7:53:59:2f:f4:77:bc:0e:75:4a:b8:87:71\n", 
-                "ssh_rsa": "2048 5c:48:ac:98:b2:37:ba:d7:cd:44:eb:fd:ff:f9:62:98\n"
-            }, 
-            "locked": false, 
-            "memory": "6144", 
-            "name": "ooni-fdroid-build", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.14", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
             "vcpus": "2"
         }, 
         {
@@ -1931,7 +1855,7 @@
             }, 
             "locked": false, 
             "memory": "2048", 
-            "name": "measurements-beta.ooni.io", 
+            "name": "api.ooni.io", 
             "networks": {
                 "v4": [
                     {
@@ -1989,10 +1913,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "4"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "2046", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux LTS latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 b1:28:cb:83:11:07:01:b2:1e:c2:52:07:82:59:d2:a2\n", 
+                "ssh_ecdsa": "256 c2:7f:2a:3d:fe:ee:fa:98:b3:78:1c:ea:a8:a0:9b:f8\n", 
+                "ssh_rsa": "2048 09:d6:1c:f1:f1:b5:4a:a2:71:7f:54:8a:cf:6f:5f:46\n"
+            }, 
+            "locked": false, 
+            "memory": "2048", 
+            "name": "design.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.240.254", 
+                        "ip_address": "37.218.240.117", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.240.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "stopped", 
+            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 52
+        "total": 51
     }
 }
