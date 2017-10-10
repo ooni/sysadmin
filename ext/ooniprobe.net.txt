@@ -1,0 +1,5 @@
+$ORIGIN ooniprobe.net
+$TTL 1800
+@		URL	http://www.ooniprobe.net/
+www		CNAME	parkingpage.namecheap.com.
+; generated from ooniprobe.net.xml with SHA256 fbf198d39e800e0ea09daf0bf2f1dba8d30d51d9b0c984e18c8d36f4995c21ad

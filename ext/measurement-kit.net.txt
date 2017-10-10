@@ -1,0 +1,5 @@
+$ORIGIN measurement-kit.net
+$TTL 1800
+@		URL	http://www.measurement-kit.net/
+www		CNAME	parkingpage.namecheap.com.
+; generated from measurement-kit.net.xml with SHA256 f5401ac1d658a347041541b444429f234435ccb386a253aad3759ac0918b9f23
