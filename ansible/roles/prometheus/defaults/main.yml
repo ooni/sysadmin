@@ -4,6 +4,7 @@ prometheus_user:   "{{ passwd.prometh.login }}"
 prometheus_group:  "{{ passwd.prometh.login }}"
 
 prometheus_base:         /srv/prometheus
+prometheus_ssl_dir:              /srv/prometheus/ssl
 prometheus_config_path:          /srv/prometheus/config
 prometheus_db_path:              /srv/prometheus/data
 prometheus_rule_path:            "{{ prometheus_config_path }}/rules"

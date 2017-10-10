@@ -12,6 +12,11 @@
     - letsencrypt
     # prometheus roles do not need extra `pip` modules and `local_action` should use default python
     - alertmanager
+    - role: ooca-cert
+      ooca_ssl_dir: '{{ prometheus_ssl_dir }}'
+      ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
+      ooca_ca: scraper_ca
+      ooca_group: prometh
     - prometheus
     - blackbox_exporter
 
