@@ -1189,7 +1189,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "1"
         }, 
         {
@@ -1265,7 +1265,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1303,7 +1303,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1341,7 +1341,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1379,7 +1379,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1918,44 +1918,6 @@
             "backup_ids": [], 
             "disk": 20, 
             "features": [], 
-            "id": "2046", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux LTS latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 b1:28:cb:83:11:07:01:b2:1e:c2:52:07:82:59:d2:a2\n", 
-                "ssh_ecdsa": "256 c2:7f:2a:3d:fe:ee:fa:98:b3:78:1c:ea:a8:a0:9b:f8\n", 
-                "ssh_rsa": "2048 09:d6:1c:f1:f1:b5:4a:a2:71:7f:54:8a:cf:6f:5f:46\n"
-            }, 
-            "locked": false, 
-            "memory": "2048", 
-            "name": "design.ooni.io", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254", 
-                        "ip_address": "37.218.240.117", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.240.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 20, 
-            "features": [], 
             "id": "2065", 
             "kernel": {
                 "id": "13", 
@@ -1993,6 +1955,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 52
+        "total": 51
     }
 }
