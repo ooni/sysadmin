@@ -6,6 +6,12 @@ fi
 LOGS_DIR=$OONI_SYSADMIN_HOME/logs
 PRIVATE_DIR=$OONI_SYSADMIN_HOME/private
 
+# use tmpfs when on Linux, FIXME: add relevant clause for Darwin as well
+if [ -d "/run/user/$(id -u)" ]; then
+    TMPDIR="/run/user/$(id -u)"
+    export TMPDIR
+fi
+
 if [ ! -d "$OONI_SYSADMIN_HOME" ]; then
     mkdir -p "$OONI_SYSADMIN_HOME"
     mkdir -p "$LOGS_DIR"

@@ -37,9 +37,6 @@ irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 notify.proteus.test.ooni.io
-ntp.tmp.ooni.io
-openntpd.tmp.ooni.io
-chrony.tmp.ooni.io
 jupyter.ooni.io
 
 [ams]

@@ -360,44 +360,6 @@
             "backup_ids": [], 
             "disk": 5, 
             "features": [], 
-            "id": "1174", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux LTS latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 7b:d6:15:aa:33:39:5d:30:80:dd:4e:02:03:70:a4:1d /srv/installer/output/Fkwh1xeC7Vr1o8QnzYpy1kGshoAxgqggsyr1063ocGtu/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 0b:4a:31:70:84:d0:c5:a0:56:3e:6f:21:7e:b3:d4:a5 /srv/installer/output/Fkwh1xeC7Vr1o8QnzYpy1kGshoAxgqggsyr1063ocGtu/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 88:d9:03:b7:70:af:30:31:28:65:a8:c5:a9:14:35:6c /srv/installer/output/Fkwh1xeC7Vr1o8QnzYpy1kGshoAxgqggsyr1063ocGtu/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "test-ooniprobe-trusty", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.28", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
             "id": "1175", 
             "kernel": {
                 "id": "13", 
@@ -417,44 +379,6 @@
                     {
                         "gateway": "37.218.242.254", 
                         "ip_address": "37.218.242.30", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
-            "id": "1176", 
-            "kernel": {
-                "id": "16", 
-                "name": "Ubuntu 16.04 LTS (Xenial) Latest", 
-                "version": "xenial-latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 74:2c:1c:12:7f:41:d3:23:ff:d2:2c:68:e3:51:5c:8f /srv/installer/output/3RLJLY1OAZ3qFTRxiMQlqCrLZANC4Rhio5s1ridm2WES/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 f0:fb:fe:3e:3f:f3:be:9c:39:61:6c:6e:b6:07:2d:cc /srv/installer/output/3RLJLY1OAZ3qFTRxiMQlqCrLZANC4Rhio5s1ridm2WES/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 ba:0b:92:c3:b9:5d:e0:9e:fb:d8:c9:26:e5:29:a5:ca /srv/installer/output/3RLJLY1OAZ3qFTRxiMQlqCrLZANC4Rhio5s1ridm2WES/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "ooniprobe-test-xenial", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.32", 
                         "netmask": "255.255.255.0", 
                         "network": "37.218.242.0/24", 
                         "type": "public"
@@ -693,44 +617,6 @@
                 "available": "0", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 140, 
-            "features": [], 
-            "id": "1338", 
-            "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 fb:ad:f8:ca:a8:2f:69:ec:3a:a5:c5:4a:81:db:59:69\n", 
-                "ssh_ecdsa": "256 14:4d:ad:44:96:50:56:bf:3c:e4:98:d8:72:5e:47:d9\n", 
-                "ssh_rsa": "2048 a5:8f:da:aa:8d:b9:67:fc:4e:bc:b2:f8:a3:5a:48:eb\n"
-            }, 
-            "locked": false, 
-            "memory": "16384", 
-            "name": "test-qemu.infra.ooni.io", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.12", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
             "status": "running", 
@@ -1189,7 +1075,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "1"
         }, 
         {
@@ -1265,7 +1151,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1303,7 +1189,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1341,7 +1227,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1379,7 +1265,7 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "running", 
+            "status": "stopped", 
             "vcpus": "4"
         }, 
         {
@@ -1574,7 +1460,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 210, 
+            "disk": 410, 
             "features": [], 
             "id": "1811", 
             "kernel": {
@@ -1918,25 +1804,25 @@
             "backup_ids": [], 
             "disk": 20, 
             "features": [], 
-            "id": "2046", 
+            "id": "2065", 
             "kernel": {
                 "id": "13", 
                 "name": "Linux LTS latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 b1:28:cb:83:11:07:01:b2:1e:c2:52:07:82:59:d2:a2\n", 
-                "ssh_ecdsa": "256 c2:7f:2a:3d:fe:ee:fa:98:b3:78:1c:ea:a8:a0:9b:f8\n", 
-                "ssh_rsa": "2048 09:d6:1c:f1:f1:b5:4a:a2:71:7f:54:8a:cf:6f:5f:46\n"
+                "ssh_dsa": "1024 c1:2d:99:eb:a8:1d:ca:6a:55:27:7f:50:fa:fc:29:99\n", 
+                "ssh_ecdsa": "256 01:f5:4e:0e:48:8a:62:05:46:d3:e0:ea:b6:fe:02:38\n", 
+                "ssh_rsa": "2048 29:3e:b1:4b:6c:98:ab:eb:ba:de:a6:19:12:59:f6:93\n"
             }, 
             "locked": false, 
-            "memory": "2048", 
-            "name": "design.ooni.io", 
+            "memory": "8192", 
+            "name": "mk-build-machine-sbs", 
             "networks": {
                 "v4": [
                     {
                         "gateway": "37.218.240.254", 
-                        "ip_address": "37.218.240.117", 
+                        "ip_address": "37.218.240.189", 
                         "netmask": "255.255.255.0", 
                         "network": "37.218.240.0/24", 
                         "type": "public"
@@ -1949,12 +1835,12 @@
                 "slug": "Hong Kong"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "1"
+            "status": "running", 
+            "vcpus": "4"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 51
+        "total": 48
     }
 }

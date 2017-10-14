@@ -1,7 +1,13 @@
 $ORIGIN ooni.io
 $TTL 1799
+@		MX	ALT1.ASPMX.L.GOOGLE.COM.
+@		MX	ALT2.ASPMX.L.GOOGLE.COM.
+@		MX	ALT3.ASPMX.L.GOOGLE.COM.
+@		MX	ALT4.ASPMX.L.GOOGLE.COM.
+@		MX	ASPMX.L.GOOGLE.COM.
+@		TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
+@		TXT	v=spf1 include:_spf.google.com ~all
 @		URL	https://ooni.torproject.org/
-@	1800	TXT	v=spf1 include:spf.efwd.registrar-servers.com ~all
 _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
 a.collector		A	62.217.125.6
 a.collector.stage		A	37.218.240.139
@@ -69,4 +75,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 7000b98fc78fbd1be64f749689e7dd4d5c4cd452e59531f0d3f19d4791c28418
+; generated from ooni.io.xml with SHA256 cff390a1f9c9fae70dcfe1adcac5c5963c9c0c4c9ae33522457686055a0209d2
