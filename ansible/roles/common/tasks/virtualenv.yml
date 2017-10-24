@@ -4,3 +4,5 @@
   with_items:
     - virtualenv
     - virtualenvwrapper
+  tags:
+    - pip_venv

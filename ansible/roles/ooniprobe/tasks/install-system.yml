@@ -1,0 +1,23 @@
+---
+- name: install ooniprobe via pip
+  pip: >
+    state=latest
+    name=ooniprobe
+
+- name: template ooniprobe systemd unit
+  template: >
+    src=ooniprobe.service.j2
+    dest=/etc/systemd/system/ooniprobe.service
+
+- name: enable and start ooniprobe service
+  service: >
+    name=ooniprobe
+    state=started
+    enabled=yes
+
+- name: initialize ooniprobe service if there is user consent
+  command: >
+    touch {{ ooniprobe_init_path }}
+    creates={{ ooniprobe_init_path }}
+  when: user_consent is defined
+  notify: restart ooniprobe

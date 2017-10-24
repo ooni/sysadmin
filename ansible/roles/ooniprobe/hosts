@@ -2,8 +2,7 @@
 hostname
 
 [custom:vars]
-# Set true set_ooniprobe_pip to install ooniprobe via pip (git)
-# By default ooniprobe will be installed via apt (set_ooniprobe_pip unset)
-#set_ooniprobe_pip='true'
-# Set set_ooniprobe_go to true to install go
-#set_ooniprobe_go='true'
+# Set user_consent variable if you have read and understand the risks involved in
+# running ooniprobe:
+# https://github.com/TheTorProject/ooni-spec/blob/master/informed-consent/risks.md
+#user_consent=true
