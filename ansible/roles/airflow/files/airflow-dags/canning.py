@@ -37,6 +37,7 @@ BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shov
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_s3_ls', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_cleanup', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_s3_ls', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='sanitised_s3_cp', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_check', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_cleanup', bash_command='shovel_jump.sh', dag=dag)
 
@@ -48,7 +49,9 @@ dag.set_dependency('autoclaving', 'meta_pg')
 dag.set_dependency('reports_raw_s3_ls', 'reports_raw_cleanup')
 dag.set_dependency('canning', 'reports_raw_cleanup')
 
-dag.set_dependency('autoclaving', 'sanitised_check')
+dag.set_dependency('autoclaving', 'sanitised_s3_cp')
+
+dag.set_dependency('sanitised_s3_cp', 'sanitised_check')
 
 dag.set_dependency('autoclaving', 'sanitised_cleanup')
 dag.set_dependency('sanitised_s3_ls', 'sanitised_cleanup')

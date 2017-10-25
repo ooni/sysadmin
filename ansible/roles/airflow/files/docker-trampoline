@@ -76,6 +76,7 @@ case "$script" in
         --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
     ;;
 
+    # XXX the two raw s3 operations should now read from glacier and an extra stage writing to glacier should be added
     reports_raw_s3_ls)
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
@@ -92,12 +93,20 @@ case "$script" in
     set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-root "$private/canned" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
     ;;
 
+    sanitised_s3_cp)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
+    volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:ro"
+    script=""
+    set -- /usr/local/bin/aws_s3_cp.py --src "$public/sanitised/${bucket}" --dst "s3://ooni-data/sanitised/${bucket}"
+    ;;
+
     sanitised_s3_ls)
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
     volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:rw"
     script=""
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-public/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
     ;;
 
     sanitised_check)
