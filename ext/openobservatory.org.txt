@@ -1,12 +1,17 @@
 $ORIGIN openobservatory.org
 $TTL 1799
-@		MX	mx.runbox.com.
+@		MX	ALT1.ASPMX.L.GOOGLE.COM.
+@		MX	ALT2.ASPMX.L.GOOGLE.COM.
+@		MX	ALT3.ASPMX.L.GOOGLE.COM.
+@		MX	ALT4.ASPMX.L.GOOGLE.COM.
+@		MX	ASPMX.L.GOOGLE.COM.
 @		TXT	google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8
-@		TXT	v=spf1 redirect=spf.runbox.com
+@		TXT	v=spf1 include:_spf.google.com ~all
 @		URL	http://ooni.torproject.org
 _amazonses		TXT	sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=
 blog		CNAME	openo.ghost.io.
+google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX+361fwH2SJeu6WpEI3/6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS+EcIZ8MD/4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1/MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy/tB
 slack		A	37.218.247.42
 test-lists		A	37.218.240.141
 www		URL	http://ooni.torproject.org
-; generated from openobservatory.org.xml with SHA256 641e124ab151298feb645421a4ab0a9828f824403ff31ebac5d458afa9c55ad8
+; generated from openobservatory.org.xml with SHA256 e72695c3e5dda6cb5a434831727c98650abc4fff68da369fd310c3c91272a102

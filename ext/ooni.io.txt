@@ -45,6 +45,7 @@ events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.173
 get		A	37.218.242.157
+google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 hkgmetadb.infra		A	37.218.240.56
 hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
@@ -75,4 +76,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 cff390a1f9c9fae70dcfe1adcac5c5963c9c0c4c9ae33522457686055a0209d2
+; generated from ooni.io.xml with SHA256 07fcfb9845c8df8787f08c10358cbd3651f150d3d09942cca01f6de99080e232
