@@ -88,6 +88,8 @@
         that: 0 < (dc_rtt.stdout | float) < 2.0
         msg: "Bad intra-DC RTT ({{dc_rtt.stdout}}) ms"
 
+  # TODO: verify that prometheus was run, e.g. using https://nginx.ru/ru/docs/http/ngx_http_stub_status_module.html or grepping prometheus config
+
 - hosts: all
   gather_facts: false
   tasks:
@@ -97,6 +99,6 @@
       run_once: true
 
     - name: stamp the inventory that was checked
-      assert: { that: groups.all | sort | join('|') | hash('sha256') == '029e933d04189f9664db31f5cd9cb4d2b29dfb08c66231d7db8919954015cd62' }
+      assert: { that: groups.all | sort | join('|') | hash('sha256') == '4debade14b752f96878db0b3692eef6a2553fb2d5ed0c6580daa00cc03fa004f' }
       run_once: true
 ...
