@@ -1,4 +1,4 @@
 ---
-oomsm_tag: "1.0.0-beta.3"
+oomsm_tag: "1.0.1"
 oomsm_backend_ipv4: '172.25.232.254'
 oomsm_backend_port: 16868
