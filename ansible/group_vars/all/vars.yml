@@ -9,7 +9,6 @@ ansible_become: true
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"
 weasel_keys: "{{ vault_weasel_keys }}"
-prometheus_scraper_password: "{{ vault_prometheus_scraper_password }}" # for `prometheus_scraper`
 
 passwd:
   # services
@@ -98,5 +97,4 @@ docker_apt_ver: ""
 # that's common for roles nginx-prometheus, fw and various exporters
 ngxprom_exporter_ipv4: "127.139.92.143"
 ngxprom_exporter_ports: [ 9100 ]
-# for some reason it's impossible to add vault to role defaults, so it's here :-/
-ngxprom_apr1_hash_seed: '{{ vault_ngxprom_apr1_hash_seed }}'
+...

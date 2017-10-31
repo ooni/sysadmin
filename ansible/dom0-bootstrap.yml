@@ -30,5 +30,9 @@
 - hosts: all:!no_nodeexp
   gather_facts: true # to gather `ansible_service_mgr`
   roles:
+    - role: ooca-cert
+      ooca_ssl_dir: '{{ ngxprom_ssl_dir }}'
+      ooca_ssl_subj: '/O=OONI/OU=Prometheus Exporter/CN={{ inventory_hostname }}'
+      ooca_ca: exporter_ca
     - role: nginx-prometheus
     - role: node_exporter

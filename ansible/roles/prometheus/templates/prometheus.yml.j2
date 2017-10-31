@@ -54,11 +54,10 @@ scrape_configs:
   - job_name: 'node'
     scrape_interval: 5s
     scheme: https
-    basic_auth:
-      username: prometheus_scraper
-      password: "{{ prometheus_scraper_password }}"
     tls_config:
       ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
 {% for host in (groups.all | difference(groups.no_nodeexp)) %}

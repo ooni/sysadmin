@@ -10,7 +10,6 @@ slackin_token: '{{ vault_slackin_token }}'
 slack_irc_dir: "/etc/slack-irc"
 slack_irc_token: '{{ vault_slack_irc_token }}'
 slacktopus_password: '{{ vault_slacktopus_password }}'
-secret_channels: '{{ vault_secret_channels }}'
 
 # IPv4 address is added to ACCESS list as there is some sort of race between
 # services accepting IDENTIFY message and slack-irc trying to join. node-irc
@@ -45,9 +44,6 @@ slack_irc_config: |
       "server": "irc.oftc.net",
       "token": "{{ slack_irc_token }}",
       "channelMapping": {
-        {% for channel in secret_channels %}
-        "{{ channel.slack }}": "{{ channel.irc }}",
-        {% endfor %}
         "#ooni": "#ooni",
         "#ooni-bots": "#ooni-bots",
         "#ooni-entropy": "#ooni-entropy"

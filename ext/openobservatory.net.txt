@@ -1,0 +1,7 @@
+$ORIGIN openobservatory.net
+$TTL 1799
+@		URL	http://ooni.torproject.org
+blog		CNAME	openo.ghost.io.
+docs		CNAME	openobservatory.github.io.
+www		URL	http://ooni.torproject.org
+; generated from openobservatory.net.xml with SHA256 a1b409ef1db73863d87f0a257a1932dc630db9c6141e0c4d8a469c488c317b70

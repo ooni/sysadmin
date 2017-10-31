@@ -20,8 +20,6 @@
     - '{{ ngxprom_base }}'
     - '{{ ngxprom_base }}/log'
 
-- include: create-certs.yml
-
 - name: Upload Scraper CA
   copy: src=scraper_ca.cert dest={{ngxprom_ssl_dir}}/ owner=root group=root mode=0444
 
@@ -33,6 +31,7 @@
     - /srv/node_exporter/private
     - /etc/init/nginx-prometheus.upstart
     - /etc/init.d/nginx-prometheus.rc
+    - '{{ ngxprom_base }}/scraper.htpasswd'
   notify: reload nginx
 
 - name: Create nginx conf file
@@ -42,11 +41,6 @@
     owner: root
     group: root
     mode: 0644
-  notify: reload nginx-prometheus
-
-# template with local `openssl` call is a bit nicer than installing python-passlib :)
-- name: Create password file for nginx
-  template: src=scraper.htpasswd dest={{ngxprom_base}}/ owner=root group=ngxprom mode=0440
   notify: reload nginx-prometheus
 
 - name: Create nginx systemd service file

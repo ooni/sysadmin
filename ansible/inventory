@@ -37,9 +37,6 @@ irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 notify.proteus.test.ooni.io
-ntp.tmp.ooni.io
-openntpd.tmp.ooni.io
-chrony.tmp.ooni.io
 jupyter.ooni.io
 
 [ams]
@@ -135,5 +132,4 @@ slack.openobservatory.org
 # TO DELETE.
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
 #
-# since 2017-08-20 # vpn-gate-runner.infra.ooni.io # noone has access, see https://github.com/TheTorProject/ooni-sysadmin/issues/123
-# since 2017-08-20 # ooni-fdroid-build.infra.ooni.io   # noone has access, see https://github.com/TheTorProject/ooni-sysadmin/issues/123
+# since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/TheTorProject/ooni-sysadmin/issues/NNNN

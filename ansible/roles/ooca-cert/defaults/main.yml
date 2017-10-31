@@ -1,0 +1,9 @@
+# changable
+ooca_ca: '{{ CHANGE_ME }}'
+ooca_ssl_dir: '{{ CHANGE_ME }}'
+ooca_ssl_subj: '{{ CHANGE_ME }}'
+ooca_group: root
+ooca_basename: '{{ inventory_hostname }}'
+
+# just a glue
+ooca_ssl_base: '{{ ooca_ssl_dir }}/{{ ooca_basename }}'

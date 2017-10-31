@@ -1,0 +1,5 @@
+$ORIGIN ooni.pro
+$TTL 1800
+@		URL	http://www.ooni.pro/
+www		CNAME	parkingpage.namecheap.com.
+; generated from ooni.pro.xml with SHA256 b289f0825e82f3c1ef171004770d46d21a7b8ab57c6bb064630725252cef8bb7
