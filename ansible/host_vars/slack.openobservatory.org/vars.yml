@@ -45,7 +45,7 @@ slack_irc_config: |
       "token": "{{ slack_irc_token }}",
       "channelMapping": {
         "#ooni": "#ooni",
-        "#ooni-bots": "#ooni-bots",
+        "#ooni-dev": "#ooni-dev",
         "#ooni-entropy": "#ooni-entropy"
       }
     }
