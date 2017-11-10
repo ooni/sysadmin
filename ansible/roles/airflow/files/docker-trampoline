@@ -76,6 +76,7 @@ case "$script" in
         --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
     ;;
 
+    # XXX the two raw s3 operations should now read from glacier and an extra stage writing to glacier should be added
     reports_raw_s3_ls)
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
@@ -97,7 +98,7 @@ case "$script" in
     volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
     volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:rw"
     script=""
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-public/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
     ;;
 
     sanitised_check)
@@ -117,6 +118,26 @@ case "$script" in
     set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
     ;;
 
+    autoclaved_tarlz4_s3_sync)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
+    script=""
+    set -- aws s3 sync --size-only "$public/autoclaved/${bucket}/" "s3://ooni-data/autoclaved/jsonl.tar.lz4/${bucket}/"
+    ;;
+
+    autoclaved_jsonl_s3_sync)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
+    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
+    # disk-backed /tmp may be preferred as the largest report ever is ~1.4Gb,
+    # concurrent processing of alike reports may be affected. OTOH, the usual
+    # size of scratchpad is ~64M and it probably should not be an issue.
+    volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=1536m"
+    script=""
+    set -- /usr/local/bin/aws_s3_lz4cat_sync.py --src "$public/autoclaved/${bucket}" --dst "s3://ooni-data/autoclaved/jsonl"
+    ;;
+
     *)
     echo "$0: unknown script <$script>" 1>&2
     exit 1
@@ -128,4 +149,4 @@ if [ -n "$script" ]; then
     set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
 fi
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.14 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.15 "$@"
