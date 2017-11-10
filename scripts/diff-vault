@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -o errexit
+set -o xtrace
+
+gitroot=$(git rev-parse --show-toplevel)
+prefix=$(git rev-parse --show-prefix)
+
+file=$1
+test -r "$file" # || die
+
+if [ -z "$2" -a -z "$3" ]; then
+  curbranch=$(git rev-parse --abbrev-ref HEAD)
+  exec diff -u --label "${curbranch}:..." --label "${file}" \
+    <("${gitroot}/ansible/vault" view <(git show "${curbranch}:${prefix}${file}")) \
+    <("${gitroot}/ansible/vault" view "$file")
+elif [ -n "$2" -a -z "$3" ]; then
+  exec diff -u --label "${2}:..." --label "${file}" \
+    <("${gitroot}/ansible/vault" view <(git show "${2}:${prefix}${file}")) \
+    <("${gitroot}/ansible/vault" view "$file")
+elif [ -n "$2" -a -n "$3" ]; then
+  exec diff -u --label "${2}:..." --label "$3:..." \
+    <("${gitroot}/ansible/vault" view <(git show "${2}:${prefix}${file}")) \
+    <("${gitroot}/ansible/vault" view <(git show "${3}:${prefix}${file}"))
+fi
