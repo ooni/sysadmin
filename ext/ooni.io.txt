@@ -76,4 +76,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 07fcfb9845c8df8787f08c10358cbd3651f150d3d09942cca01f6de99080e232
+; generated from ooni.io.xml with SHA256 ab9789c497c010ee8b76713cbbda010e999a6c3801d5359e0229e96d3b96f37a

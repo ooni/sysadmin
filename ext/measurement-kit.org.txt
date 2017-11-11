@@ -2,4 +2,4 @@ $ORIGIN measurement-kit.org
 $TTL 1800
 @		URL	http://www.measurement-kit.org/
 www		CNAME	parkingpage.namecheap.com.
-; generated from measurement-kit.org.xml with SHA256 3b0e9944cedce8e5987713930f4a29116b700dd25bbb02cc24eb37e033f0d1f6
+; generated from measurement-kit.org.xml with SHA256 66e36758fef5998e95b4d72b962e1991d63feed25f59730448a16a5760ba558f

@@ -15,6 +15,6 @@
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>
-  <GMTTimeDifference>--4:00</GMTTimeDifference>
+  <GMTTimeDifference/>
   <ExecutionTime/>
 </ApiResponse>
