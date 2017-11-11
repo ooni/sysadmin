@@ -135,7 +135,7 @@ case "$script" in
     # size of scratchpad is ~64M and it probably should not be an issue.
     volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=1536m"
     script=""
-    set -- /usr/local/bin/aws_s3_lz4cat_sync.py --src "$public/autoclaved/${bucket}" --dst "s3://ooni-data/autoclaved/jsonl"
+    set -- /usr/local/bin/aws_s3_lz4cat_sync.py --src "$public/autoclaved/${bucket}" --dst "s3://ooni-data/autoclaved/jsonl/${bucket}"
     ;;
 
     *)
@@ -149,4 +149,4 @@ if [ -n "$script" ]; then
     set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
 fi
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.15 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/shovel:0.0.16 "$@"
