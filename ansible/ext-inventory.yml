@@ -58,7 +58,7 @@
       register: droplets
 
     - copy:
-        content: "{{ item.0.stdout | regex_replace('<Server>[^<]+</Server>', '<Server/>') | regex_replace('<ExecutionTime>[^<]+</ExecutionTime>', '<ExecutionTime/>') }}"
+        content: "{{ item.0.stdout | regex_replace('<Server>[^<]+</Server>', '<Server/>') | regex_replace('<ExecutionTime>[^<]+</ExecutionTime>', '<ExecutionTime/>')  | regex_replace('<GMTTimeDifference>[^<]+</GMTTimeDifference>', '<GMTTimeDifference/>')}}"
         dest: '{{ extroot }}/{{ item.1 }}.xml'
       with_together:
         - '{{ zones.results }}'
