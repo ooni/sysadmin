@@ -17,10 +17,6 @@ a.http.th		A	37.218.247.95
 a.web-connectivity.th		A	62.217.125.6
 a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
-afwrk01.infra		A	37.218.240.158
-afwrk02.infra		A	37.218.240.159
-afwrk03.infra		A	37.218.240.160
-afwrk04.infra		A	37.218.240.162
 alpha.measurements		A	37.218.242.231
 analytics		A	199.119.112.42
 api		A	37.218.240.100
@@ -76,4 +72,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 ab9789c497c010ee8b76713cbbda010e999a6c3801d5359e0229e96d3b96f37a
+; generated from ooni.io.xml with SHA256 ec240c9ba8c1e8daedaca3b4da32d8c4ca7315b7a6d851b475e6b3b2635ad2bd
