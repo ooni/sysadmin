@@ -135,6 +135,8 @@ case "$script" in
     # size of scratchpad is ~64M and it probably should not be an issue.
     volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=1536m"
     script=""
+    echo "$0: temporary disabled $script" 1>&2
+    exit 1
     set -- /usr/local/bin/aws_s3_lz4cat_sync.py --src "$public/autoclaved/${bucket}" --dst "s3://ooni-data/autoclaved/jsonl/${bucket}"
     ;;
 
