@@ -1,9 +1,11 @@
 ---
-- hosts: ooni-explorer
+- include: ansible-version.yml
+
+- hosts: explorer.ooni.io
   vars:
     letsencrypt_nginx: yes
+    letsencrypt_domains: 'explorer.ooni.io,explorer.ooni.torproject.org' # FIXME: comma-delimited string instead of list :-(
   roles:
-    - letsencrypt
+    ## - letsencrypt # temporary disabled
     - role: ooni-explorer
-      become: yes
-      become_method: su
+...

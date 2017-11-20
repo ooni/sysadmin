@@ -1,3 +1,8 @@
+map $cookie_ooniabt $api_endpoint {
+    default 127.0.0.1:3000;
+    debug   127.0.0.1:22674;
+}
+
 server {
     server_name _;
 
@@ -16,4 +21,36 @@ server {
     proxy_set_header Host $host;
     proxy_cache_bypass $http_upgrade;
   }
+
+{% for endpoint in '/reports'.split() %}
+    location = /api{{ endpoint }} {
+        if ($cookie_ooniabt = debug) {
+            rewrite ^/api{{ endpoint }} /api/legacy_explorer{{ endpoint }} break;
+        }
+        proxy_pass http://$api_endpoint; # can't use path in $api_endpoint to preserve $args
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+{% endfor %}
+
+    location = /.abt {
+        add_header Content-Type text/plain;
+        return 200 "OK\nEndpoint: $api_endpoint\nGOTO: /.abt/debug || /.abt/prod";
+    }
+
+    location = /.abt/debug {
+        add_header Content-Type text/plain;
+        add_header Set-Cookie "ooniabt=debug; Secure; HttpOnly; Path=/";
+        return 200 "OK\nDebug.";
+    }
+
+    location = /.abt/prod {
+        add_header Content-Type text/plain;
+        add_header Set-Cookie "ooniabt=deleted; Secure; HttpOnly; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        return 200 "OK\nProd.";
+    }
 }
