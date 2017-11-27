@@ -1,0 +1,33 @@
+---
+- name: get the current kernel version
+  shell: uname -r
+  register: uname_r
+
+- name: install required kernel image
+  apt:
+    name: "linux-image-{{ uname_r.stdout }}"
+    state: present
+
+- name: install https for apt
+  apt: name={{ item }} state=present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+
+- name: add docker apt repo key
+  apt_key: >
+    keyserver=hkp://p80.pool.sks-keyservers.net:80
+    id=58118E89F3A912897C070ADBF76221572C52609D
+    state=present
+
+- name: add docker debian apt repo
+  apt_repository: >
+    repo="deb https://apt.dockerproject.org/repo debian-jessie main"
+    state=present
+    update_cache=yes
+
+- name: install docker engine
+  apt: name="docker-engine" state=present
+
+- name: start the docker service
+  service: name=docker state=started

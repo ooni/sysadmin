@@ -1,0 +1,12 @@
+- name: update the apt cache
+  raw: apt-get update
+# This is required to run all the following tasks
+- name: bootstrap the system by installing python and python-simplejson
+  raw: apt-get install -y python python-simplejson
+- include: docker.yml
+- name: ensure public key for travis is setup on host
+  authorized_key: 
+    user: root
+    key: "{{ item }}"
+  with_file:
+    - files/id_rsa_travis.pub
