@@ -1,44 +1,45 @@
 ---
-## - include: apt.yml # temporary disabled
+#- name: Stop old node-ooni-explorer.service
+#  systemd:
+#    name: node-ooni-explorer.service
+#    state: stopped
+#    enabled: no
+#    daemon_reload: yes
 
-- name: Create {{ ooni_explorer_user }} user
-  user:
-    name: "{{ ooni_explorer_user }}"
+- name: Remove old node-ooni-explorer.service
+  file: name=/etc/systemd/system/node-ooni-explorer.service state=absent
 
-- name: Remove default nginx virtual host config
-  file:
-    name: /etc/nginx/sites-enabled/default
-    state: absent
+- name: Remove old ooni-explorer nginx virtual host config
+  file: name=/etc/nginx/sites-enabled/ooni-explorer state=absent
   notify: reload nginx
 
-- name: Add ooni-explorer nginx virtual host config
-  template:
-    src: nginx-ooni-explorer.conf.j2
-    dest: /etc/nginx/sites-enabled/ooni-explorer
-    owner: root
-    group: root
-    mode: 0444
+# NEW ##################################################################
+
+- template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
   notify: reload nginx
 
-## - include: build.yml # temporary disabled
+- name: docker network for explorer
+  docker_network:
+    name: explrr
+    driver_options:
+      com.docker.network.bridge.name: brexplrr
+    ipam_options:
+      subnet: 172.28.14.0/24
+      gateway: 172.28.14.1
 
-- name: Template {{ ooni_explorer_datasources }}
-  template:
-    src: datasources.production.js.j2
-    dest: "{{ ooni_explorer_datasources }}"
-    owner: root
-    group: "{{ ooni_explorer_user }}"
-    mode: 0440
-
-- name: Install node-ooni-explorer.service
-  template:
-    src: node-ooni-explorer.service.j2
-    dest: "{{ ooni_explorer_unit_path }}"
-
-- name: Start node-ooni-explorer.service
-  systemd:
-    name: node-ooni-explorer.service
-    state: started
-    enabled: yes
-    daemon_reload: yes
+- name: OONI Explorer webservice
+  docker_container:
+    image: openobservatory/explorer:{{ explorer_tag }}
+    name: explorer
+    hostname: explorer
+    networks: [{name: explrr, ipv4_address: '{{ explorer_backend_ipv4 }}'}]
+    purge_networks: true
+    env:
+      DB_HOST: '{{ ooni_pipeline_host }}'
+      DB_PORT: 5432
+      DB_NAME: '{{ ooni_pipeline_db }}'
+      DB_USERNAME: '{{ ooni_pipeline_user }}'
+      DB_PASSWORD: '{{ ooni_pipeline_passwd }}'
+    user: "{{ passwd.explorer.id }}:{{ passwd.explorer.id }}"
+    restart_policy: unless-stopped
 ...

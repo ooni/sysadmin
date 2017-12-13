@@ -6,6 +6,14 @@
     letsencrypt_nginx: yes
     letsencrypt_domains: 'explorer.ooni.io,explorer.ooni.torproject.org' # FIXME: comma-delimited string instead of list :-(
   roles:
+    - role: docker_py
     ## - letsencrypt # temporary disabled
+
+- hosts: explorer.ooni.io
+  gather_facts: false # already gathered
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7' # to control docker
+    explorer_domain: explorer.ooni.io
+  roles:
     - role: ooni-explorer
 ...
