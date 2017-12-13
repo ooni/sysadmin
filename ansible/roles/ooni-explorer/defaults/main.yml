@@ -4,6 +4,6 @@ ooni_pipeline_db: ooni_pipeline
 ooni_pipeline_user: ooni
 ooni_pipeline_passwd: '{{ CHANGE_ME }}'
 # for upgrade
-explorer_tag: '20171213-79a7cd1c'
+explorer_tag: '20171213-e4faa650'
 explorer_backend_ipv4: 172.28.14.254
 explorer_backend_port: 3000 # hardcoded in the image

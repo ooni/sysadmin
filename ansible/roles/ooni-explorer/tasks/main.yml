@@ -35,6 +35,7 @@
     networks: [{name: explrr, ipv4_address: '{{ explorer_backend_ipv4 }}'}]
     purge_networks: true
     env:
+      NODE_ENV: production # affects some PATHs
       DB_HOST: '{{ ooni_pipeline_host }}'
       DB_PORT: 5432
       DB_NAME: '{{ ooni_pipeline_db }}'
