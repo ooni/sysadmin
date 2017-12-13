@@ -30,6 +30,8 @@ server {
 
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
+        proxy_connect_timeout {{ oomsm_request_timeout }}s;
+        proxy_read_timeout {{ oomsm_request_timeout }}s;
         include proxy_params;
     }
 

@@ -8,7 +8,7 @@
       letsencrypt_nginx: true
       letsencrypt_pre_hook: ''
       letsencrypt_post_hook: '' # FIXME: I don't want to spend time understanding the role :-(
-      letsencrypt_domains: api.ooni.io
+      letsencrypt_domains: "api.ooni.io,measurements.ooni.io,measurements.ooni.torproject.org"
 
 - hosts: hkgmetadb.infra.ooni.io
   gather_facts: false # no useful facts there :)
