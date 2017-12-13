@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Build Dockerfile from clean git repo instead of working copy to prevent
+# mistakes with working copy being copied to docker image.
+#
+# That's the script to build and publish containers to
+# https://hub.docker.com/r/openobservatory/ for ooni-sysadmin convinence.
+# It's not a generic script to build "public" OONI images (there are no such images).
+
+if [ ! -r Dockerfile ]; then
+    echo "$0: No 'Dockerfile' in $PWD" 1>&2
+    exit 1
+fi
+
+git_head=$(git rev-parse HEAD)
+if [ ${#git_head} != 40 ]; then
+    echo "$0: Unable to get git HEAD" 1>&2
+    exit 1
+fi
+git_head8=${git_head:0:8}
+
+repo=$(git remote get-url --push origin | sed 's,.*/,,; s,\.git$,,; s,^ooni-,,')
+prefix=$(git rev-parse --show-prefix | sed 's,.*/,,; s,/$,,')
+if [ -z "$repo" ]; then
+    echo "$0: failed to get reasonable git repo slug" 1>&2
+    exit 1
+fi
+
+# git@github.com:TheTorProject/ooni-explorer.git -> explorer
+# git@github.com:TheTorProject/ooni-pipeline.git af/shovel/ -> pipeline-shovel
+if [ -n "$prefix" ]; then
+    img_slug="${repo}-${prefix}"
+else
+    img_slug="${repo}"
+fi
+img="openobservatory/$img_slug"
+
+ver="$1"
+if [ -z "$ver" ]; then
+    ver="$(date '+%Y%m%d')"
+fi
+ver="${ver}-${git_head8}" # tags in git repo are not used, so HEAD is stored as image version
+
+echo "Going to build $img:$ver & $img:latest"
+read -p "Press enter to continue, ^C if that's wrong"
+
+set -o errexit
+set -o pipefail
+
+(
+    set -o xtrace
+    git archive --format=tar "$git_head" | docker build -t "$img:$ver" -t "$img:latest" -
+)
+
+echo "Going to push $img:$ver & $img:latest"
+read -p "Press enter to continue, ^C if that's wrong"
+
+for tag in "$img:$ver" "$img:latest"; do (
+    set -o xtrace
+    docker push "$tag"
+) done
