@@ -20,7 +20,7 @@ fi
 git_head8=${git_head:0:8}
 
 repo=$(git remote get-url --push origin | sed 's,.*/,,; s,\.git$,,; s,^ooni-,,')
-prefix=$(git rev-parse --show-prefix | sed 's,.*/,,; s,/$,,')
+prefix=$(git rev-parse --show-prefix | sed 's,/$,,; s,.*/,,')
 if [ -z "$repo" ]; then
     echo "$0: failed to get reasonable git repo slug" 1>&2
     exit 1
