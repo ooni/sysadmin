@@ -97,6 +97,6 @@ ansible_venv: /root/venv
 docker_apt_ver: ""
 
 # that's common for roles nginx-prometheus, fw and various exporters
-ngxprom_exporter_ipv4: "127.139.92.143"
-ngxprom_exporter_ports: [ 9100 ]
+node_exporter_ipv4: "127.139.92.143" # this addr is not 127.0.0.1 to avoid confusion as external/9100 is SSL and lo/9100 is not
+ngxprom_exporter_ports: { 9100: '{{ node_exporter_ipv4 }}' }
 ...

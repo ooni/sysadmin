@@ -9,11 +9,6 @@
     - openssl
     - nginx
 
-- name: Remove default nginx virtual host config
-  file:
-    name: /etc/nginx/sites-enabled/default
-    state: absent
-
 - name: Create nginx/Prometheus directories
   file: path={{ item }} state=directory owner=root group=root mode=0755
   with_items:
@@ -45,7 +40,9 @@
 
 - name: Create nginx systemd service file
   template: src=nginx-prometheus.service dest=/etc/systemd/system/ owner=root group=root mode=0444
-  notify: restart nginx-prometheus
+  notify:
+  - systemctl daemon-reload
+  - restart nginx-prometheus
   when: ansible_service_mgr == 'systemd'
 
 - name: Create nginx upstart service file
@@ -58,8 +55,9 @@
   notify: restart nginx-prometheus
   when: ansible_service_mgr == 'sysvinit'
 
+# `state: started` is postponed till `restart nginx-prometheus` handler
+# otherwise daemon_reload is required for systemd, otherwise restart fails :)
 - name: Enable and start nginx-prometheus service
   service:
     name: nginx-prometheus
-    state: started
     enabled: yes

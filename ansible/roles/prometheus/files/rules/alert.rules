@@ -22,7 +22,7 @@ ALERT DiskWillFillInAWeek
   FOR 1h
   LABELS { severity = "critical" }
   ANNOTATIONS {
-    summary = "In a week {{ $labels.instance }} will run out of disk space",
+    summary = "In a week {{ $labels.instance }} becomes full",
     description = 'In a week {{ $labels.instance }} will run out of disk space. Predicted overcommit: {{ printf "%.1f" $value }} GiB',
   }
 

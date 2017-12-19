@@ -19,12 +19,26 @@ rule_files:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-
+    scheme: https
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
-      - targets: ['{{ prometheus_listen_address }}']
+    - targets:
+      - brie.darkk.net.ru:9090
+      - prometheus.infra.ooni.io:8090
+
+  - job_name: 'alertmanager'
+    scheme: https
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
+    static_configs:
+    - targets:
+      - brie.darkk.net.ru:9093
+      - prometheus.infra.ooni.io:9093
 
 {% for bbjob in blackbox_jobs %}
   - job_name: {{ bbjob.name }}
@@ -60,6 +74,7 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
+        - brie.darkk.net.ru:9100
 {% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}

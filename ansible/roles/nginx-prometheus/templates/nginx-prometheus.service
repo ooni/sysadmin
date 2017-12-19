@@ -12,18 +12,18 @@
 #
 # nginx signals reference doc:
 # http://nginx.org/en/docs/control.html
-#
+
 [Unit]
 Description=Separate nginx instance for Prometheus Exporters
 After=network.target
 
 [Service]
 Type=forking
-PIDFile=/run/ngxprom.pid
+PIDFile=/run/nginx-prometheus.pid
 ExecStartPre=/usr/sbin/nginx -t -q -c {{ ngxprom_base }}/nginx.conf -g 'daemon on; master_process on;'
 ExecStart=/usr/sbin/nginx -c {{ ngxprom_base }}/nginx.conf -g 'daemon on; master_process on;'
 ExecReload=/usr/sbin/nginx -c {{ ngxprom_base }}/nginx.conf -g 'daemon on; master_process on;' -s reload
-ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/ngxprom.pid
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx-prometheus.pid
 TimeoutStopSec=5
 KillMode=mixed
 

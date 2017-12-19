@@ -6,5 +6,4 @@ ngxprom_ssl_base: '{{ ngxprom_ssl_dir }}/{{ inventory_hostname }}'
 
 # default is to forward only `node_exporter`
 ngxprom_exporter_ports: '{{ CHANGE_ME }}'
-ngxprom_exporter_ipv4: '{{ CHANGE_ME }}'
 ...
