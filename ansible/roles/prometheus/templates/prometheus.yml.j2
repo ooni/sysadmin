@@ -1,4 +1,3 @@
-# my global config
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -9,10 +8,14 @@ global:
   external_labels:
       monitor: 'ooni-monitor'
 
-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+# the path is absolute as ansible `validates` temporary file in some temporary directory
 rule_files:
-  - "rules/node.rules"
-  - "rules/alert.rules"
+  - "{{ prometheus_config_path }}/alert_rules.yml"
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: [ '127.0.0.1:9093' ]
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.

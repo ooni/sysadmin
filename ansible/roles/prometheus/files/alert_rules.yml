@@ -1,0 +1,66 @@
+---
+groups:
+- name: Basic prometheus
+  rules:
+  # including http scraping failure
+  - alert: InstanceDown
+    expr: up != 1
+    annotations:
+      summary: '{{ $labels.instance }} is not `up`'
+
+  # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
+  - alert: DiskWillFillInAWeek
+    expr: (node_filesystem_avail{fstype=~"(ext[34]|xfs)"} + delta(node_filesystem_avail{fstype=~"(ext[34]|xfs)"}[24h])*7) < 0
+    for: 1h
+    annotations:
+      summary: 'In a week {{ $labels.instance }} becomes /dev/full'
+      description: 'In a week {{ $labels.mountpoint }} `df` will be ~ {{ $value | humanize1024 }}B.'
+
+  - alert: DiskSpaceOver80pct
+    expr: node_filesystem_avail{fstype=~"(ext[34]|xfs)"} / node_filesystem_size{fstype=~"(ext[34]|xfs)"} * 100 < 20
+    annotations:
+      summary: '`df` at {{ $labels.instance }} over 80%'
+      description: >
+        {{ printf "%.1f" $value }}%
+        ~ {{ (printf "node_filesystem_avail{instance='%s',mountpoint='%s'}" $labels.instance $labels.mountpoint) | query | first | value | humanize1024 }}B
+        available at {{ $labels.instance }}{{ $labels.mountpoint }}.
+
+  - alert: DiskInodesOver50pct
+    expr: node_filesystem_files_free{fstype=~"(ext[34]|xfs)"} / node_filesystem_files{fstype=~"(ext[34]|xfs)"} * 100 < 50
+    annotations:
+      summary: '`df -i` at {{ $labels.instance }} over 50%'
+      description: '{{ printf "%.1f" $value }}% inodes available at {{ $labels.mountpoint }}.'
+
+  # sub-scraping failure
+  - alert: TextfileError
+    expr: node_textfile_scrape_error > 0
+    annotations:
+      summary: 'Broken `textfile` at {{ $labels.instance }}'
+
+  # all the textfile are updated at least hourly
+  - alert: TextfileJam
+    expr: (node_textfile_mtime - ignoring(file) node_time) / -3600 > 2.0
+    annotations:
+      summary: 'Stale `textfile` at {{ $labels.instance }}'
+      description: '`{{ $labels.file }}` is {{ printf "%.0f" $value }}h old.'
+
+  # naive prometheus health monitoring
+  - alert: ScrapeSamplesLoss
+    expr: sum(scrape_samples_scraped) / sum(scrape_samples_scraped offset 24h) < 0.5
+    annotations:
+      summary: Lots of `scrape_samples_scraped` lost
+      description: Now ~ {{ "sum(scrape_samples_scraped)" | query | first | value | humanize }}, 24h ago ~ {{ "sum(scrape_samples_scraped offset 24h)" | query | first | value | humanize }}.
+
+  - alert: BlackboxDown
+    expr: probe_success == 0
+    for: 5m
+    annotations:
+      summary: "{{ $labels.instance }} endpoint down"
+
+  - alert: SSLCertExpires
+    expr: (probe_ssl_earliest_cert_expiry - time()) / 86400 < 25
+    labels: {severity: info}
+    annotations:
+      summary: '`certbot` failed at {{ $labels.instance }}'
+      description: 'SSL cert for  expires in {{ printf "%.0f" $value }} days.'
+...
