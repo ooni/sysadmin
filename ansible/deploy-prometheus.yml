@@ -11,7 +11,8 @@
     - docker_py
     - letsencrypt
     # prometheus roles do not need extra `pip` modules and `local_action` should use default python
-    - alertmanager
+    - role: alertmanager
+      tags: alertmanager
     - role: ooca-cert
       ooca_ssl_dir: '{{ prometheus_ssl_dir }}'
       ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
