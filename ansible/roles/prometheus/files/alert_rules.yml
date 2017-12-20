@@ -5,28 +5,30 @@ groups:
   # including http scraping failure
   - alert: InstanceDown
     expr: up != 1
+    for: 5m
     annotations:
       summary: '{{ $labels.instance }} is not `up`'
 
   # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
   - alert: DiskWillFillInAWeek
-    expr: (node_filesystem_avail{fstype=~"(ext[34]|xfs)"} + delta(node_filesystem_avail{fstype=~"(ext[34]|xfs)"}[24h])*7) < 0
+    expr: (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0
     for: 1h
     annotations:
       summary: 'In a week {{ $labels.instance }} becomes /dev/full'
       description: 'In a week {{ $labels.mountpoint }} `df` will be ~ {{ $value | humanize1024 }}B.'
 
-  - alert: DiskSpaceOver80pct
-    expr: node_filesystem_avail{fstype=~"(ext[34]|xfs)"} / node_filesystem_size{fstype=~"(ext[34]|xfs)"} * 100 < 20
+  # <10Gb and <20% available. Make some sense for huge storages and small ramdrives.
+  - alert: DiskFull
+    expr: (node_filesystem_avail < 10737418240) and (node_filesystem_avail / node_filesystem_size * 100 < 20)
     annotations:
-      summary: '`df` at {{ $labels.instance }} over 80%'
+      summary: '{{ $labels.instance }}{{ $labels.mountpoint }} is almost full'
       description: >
-        {{ printf "%.1f" $value }}%
-        ~ {{ (printf "node_filesystem_avail{instance='%s',mountpoint='%s'}" $labels.instance $labels.mountpoint) | query | first | value | humanize1024 }}B
+        {{ $value | humanize1024 }}B
+        ~ {{ (printf "round(node_filesystem_avail{instance='%s',mountpoint='%s'} / node_filesystem_size * 100)" $labels.instance $labels.mountpoint) | query | first | value }}%
         available at {{ $labels.instance }}{{ $labels.mountpoint }}.
 
   - alert: DiskInodesOver50pct
-    expr: node_filesystem_files_free{fstype=~"(ext[34]|xfs)"} / node_filesystem_files{fstype=~"(ext[34]|xfs)"} * 100 < 50
+    expr: node_filesystem_files_free / node_filesystem_files * 100 < 50
     annotations:
       summary: '`df -i` at {{ $labels.instance }} over 50%'
       description: '{{ printf "%.1f" $value }}% inodes available at {{ $labels.mountpoint }}.'
