@@ -20,7 +20,8 @@
       ooca_group: prometh
     - role: prometheus
       tags: prometheus
-    - blackbox_exporter
+    - role: blackbox_exporter
+      tags: blackbox_exporter
 
 - hosts: prometheus.infra.ooni.io
   gather_facts: false # already gathered
