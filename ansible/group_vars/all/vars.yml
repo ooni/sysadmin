@@ -5,6 +5,8 @@ ansible_ssh_pipelining: true
 # default: login as user & get sudo
 ansible_become: true
 
+apt_cache_valid_time: 28800 # 8h
+
 # link vault to plaintext
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"

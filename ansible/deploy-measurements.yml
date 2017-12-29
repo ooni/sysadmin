@@ -9,6 +9,7 @@
       letsencrypt_pre_hook: ''
       letsencrypt_post_hook: '' # FIXME: I don't want to spend time understanding the role :-(
       letsencrypt_domains: api.ooni.io
+    - role: nginx-stable
 
 - hosts: hkgmetadb.infra.ooni.io
   gather_facts: false # no useful facts there :)
@@ -27,4 +28,3 @@
   roles:
     - role: ooni-measurements
       oomsm_domain: api.ooni.io
-      tags: debug

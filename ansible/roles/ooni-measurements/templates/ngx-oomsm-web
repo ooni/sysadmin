@@ -33,8 +33,8 @@ server {
         include proxy_params;
     }
 
-{% for handle in ["runs_by_month", "countries_by_month", "asn_by_month"] %}
-    location = /api/_/{{ handle }} {
+{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/blockpage_detected", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
+    location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
         include proxy_params;
 
@@ -42,8 +42,9 @@ server {
         proxy_cache_valid 200 1h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
-        # proxy_cache_lock_age 58s; # NB: nginx/1.7.8
-        # proxy_cache_background_update on; # nginx/1.11.10
+        proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
+        proxy_cache_use_stale error timeout invalid_header updating;
+        proxy_cache_background_update on;
     }
 {% endfor %}
 }

@@ -1,5 +1,6 @@
 ---
-- template: src=ngx-oomsm-web dest=/etc/nginx/sites-enabled/oomsm-web
+- name: api.ooni.io nginx config
+  template: src=ngx-oomsm-web dest=/etc/nginx/sites-enabled/oomsm-web
   notify: reload nginx
 
 - name: docker network for measurements

@@ -1,0 +1,20 @@
+---
+- name: fetch and install nginx.org signing key
+  apt_key:
+    url: https://nginx.org/keys/nginx_signing.key
+    id: '573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62'
+
+- name: add nginx.org apt repository
+  apt_repository:
+    repo: deb https://nginx.org/packages/debian/ {{ansible_distribution_release}} nginx
+    state: present
+    update_cache: true
+
+- name: install nginx-stable from nginx.org
+  apt:
+    name: nginx{{ nginx_apt_ver }}
+    update_cache: true
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+
+# FIXME: nginx.conf from nginx.org is different from debian one and has no `sites-enabled` concept
+...
