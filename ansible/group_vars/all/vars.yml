@@ -33,6 +33,7 @@ passwd:
   prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
   grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
   ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
+  pushgw:   {login: pushgw,   id: 2206, comment: Prometheus Pushgateway}
 
   piwik:    {login: piwik,    id: 2300, comment: Piwik user}
 

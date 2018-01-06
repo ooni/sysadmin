@@ -11,6 +11,7 @@ global:
 # the path is absolute as ansible `validates` temporary file in some temporary directory
 rule_files:
   - "{{ prometheus_config_path }}/alert_rules.yml"
+  - "{{ prometheus_config_path }}/alert_ooni.yml"
 
 alerting:
   alertmanagers:
@@ -31,6 +32,12 @@ scrape_configs:
     - targets:
       - brie.darkk.net.ru:9090
       - prometheus.infra.ooni.io:8090
+
+  - job_name: pushgateway
+    scheme: http
+    static_configs:
+    - targets:
+      - localhost:9091
 
   - job_name: 'alertmanager'
     scheme: https

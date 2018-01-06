@@ -22,6 +22,8 @@
       tags: prometheus
     - role: blackbox_exporter
       tags: blackbox_exporter
+    - role: pushgateway
+      tags: pushgateway
 
 - hosts: prometheus.infra.ooni.io
   gather_facts: false # already gathered
