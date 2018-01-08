@@ -1,0 +1,10 @@
+---
+- hosts: testyourinter.net
+  vars:
+    letsencrypt_nginx: yes
+    website_domain: "testyourinter.net"
+    website_git_version: "master"
+    website_git_url: https://github.com/openobservatory/testyourinter.net
+  roles:
+    - letsencrypt
+    - static-website

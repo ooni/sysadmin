@@ -1,0 +1,14 @@
+- name: Create data file
+  file:
+    path: "/data/{{ website_domain }}"
+    state: directory
+    mode: "go-w"
+    recurse: yes
+
+- name: clone static-website repo
+  git:
+    repo: "{{ website_git_url }}"
+    dest: "/data/{{ website_domain }}"
+    version: "{{ website_git_version }}"
+
+- include: setup-nginx.yml

@@ -1,0 +1,21 @@
+server {
+  server_name {{ website_domain }};
+
+  listen 80;
+  listen [::]:80;
+
+  listen 443 ssl default_server;
+  listen [::]:443 ssl default_server;
+
+  ssl_certificate /etc/letsencrypt/live/{{ website_domain }}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{ website_domain }}/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/{{ website_domain }}/fullchain.pem;
+
+  root /data/{{ website_domain }};
+  index index.html;
+
+  location / {
+   default_type "text/html";
+   try_files $uri.html $uri $uri/ /index.html;
+  }
+}
