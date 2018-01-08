@@ -38,6 +38,7 @@ ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 notify.proteus.test.ooni.io
 jupyter.ooni.io
+testyourinter.net
 
 [ams]
 explorer.ooni.io
