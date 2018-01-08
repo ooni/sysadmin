@@ -1,4 +1,3 @@
-# my global config
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -9,22 +8,47 @@ global:
   external_labels:
       monitor: 'ooni-monitor'
 
-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+# the path is absolute as ansible `validates` temporary file in some temporary directory
 rule_files:
-  - "rules/node.rules"
-  - "rules/alert.rules"
+  - "{{ prometheus_config_path }}/alert_rules.yml"
+  - "{{ prometheus_config_path }}/alert_ooni.yml"
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: [ '127.0.0.1:9093' ]
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-
+    scheme: https
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
-      - targets: ['{{ prometheus_listen_address }}']
+    - targets:
+      - brie.darkk.net.ru:9090
+      - prometheus.infra.ooni.io:8090
+
+  - job_name: pushgateway
+    scheme: http
+    static_configs:
+    - targets:
+      - localhost:9091
+
+  - job_name: 'alertmanager'
+    scheme: https
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
+    static_configs:
+    - targets:
+      - brie.darkk.net.ru:9093
+      - prometheus.infra.ooni.io:9093
 
 {% for bbjob in blackbox_jobs %}
   - job_name: {{ bbjob.name }}
@@ -60,6 +84,7 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
+        - brie.darkk.net.ru:9100
 {% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}

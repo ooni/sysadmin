@@ -1,3 +1,4 @@
+---
 # ansible-managed in ooni-sysadmin.git
 
 global:
@@ -41,6 +42,9 @@ route:
 
   # The child route trees.
   routes:
+  - receiver: team-email
+    repeat_interval: 24h
+    match: {severity: info}
 
 # Inhibition rules allow to mute a set of alerts given that another alert is
 # firing.
@@ -64,3 +68,15 @@ receivers:
     text: '{% raw %}{{ template "slack.ooni.text" . }}{% endraw %}'
     title: '{% raw %}{{ template "slack.ooni.title" . }}{% endraw %}'
     channel: '#ooni-bots'
+
+- name: 'team-email' # no slack
+  email_configs:
+  - to: 'arturo@openobservatory.org'
+    send_resolved: true
+  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
+    send_resolved: true
+  - to: 'simone@openobservatory.org'
+    send_resolved: true
+  - to: 'vasilis@openobservatory.org'
+    send_resolved: true
+...

@@ -13,7 +13,9 @@ Group={{ passwd.prombbox.login }}
 EnvironmentFile=-/etc/default/blackbox_exporter
 AmbientCapabilities=CAP_NET_RAW
 CapabilityBoundingSet=CAP_NET_RAW
-ExecStart={{ blackbox_exporter_path }}/blackbox_exporter -config.file {{ blackbox_exporter_base }}/blackbox.yml -web.listen-address "{{ blackbox_exporter_listen_address }}"
+ExecStart={{ blackbox_exporter_path }}/blackbox_exporter \
+    --config.file={{ blackbox_exporter_base }}/blackbox.yml \
+    --web.listen-address={{ blackbox_exporter_listen_address }}
 KillMode=process
 Restart=always
 

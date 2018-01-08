@@ -55,7 +55,9 @@
     - name: check host assertions
       assert:
         that:
-          - not mdstat.stat.exists or mdstat.stat.md5 == 'e14b9187aaa8c5f5ef4241a3e70842b0' # Personalities : \nunused devices: <none>
+          # e14b9187aaa8c5f5ef4241a3e70842b0 ~ 'Personalities : \nunused devices: <none>\n'
+          # d17896fb810bea5073ffc38a2391af64 ~ 'Personalities : [linear] [raid0] [raid1] [raid10] [raid6] [raid5] [raid4] [multipath]\nunused devices: <none>\n'
+          - not mdstat.stat.exists or mdstat.stat.md5 in ['e14b9187aaa8c5f5ef4241a3e70842b0', 'd17896fb810bea5073ffc38a2391af64']
           - rootfs.stat.dev != runfs.stat.dev # /run is a separate FS (likely, tmpfs :-))
           - ansible_ssh_host_key_dsa_public is not defined
           - ansible_ssh_host_key_ecdsa_public is not defined
@@ -88,7 +90,19 @@
         that: 0 < (dc_rtt.stdout | float) < 2.0
         msg: "Bad intra-DC RTT ({{dc_rtt.stdout}}) ms"
 
-  # TODO: verify that prometheus was run, e.g. using https://nginx.ru/ru/docs/http/ngx_http_stub_status_module.html or grepping prometheus config
+- hosts: prometheus.infra.ooni.io
+  vars:
+    ansible_become: false # root is not required here
+  gather_facts: false
+  tasks:
+  - name: fetch prometheus config
+    uri: url=http://localhost:8090/config return_content=true
+    register: promconf
+- hosts: all:!no_nodeexp
+  gather_facts: false
+  tasks:
+  - name: check if host node_exporter is monitored
+    assert: { that: "' {}:9100'.format(inventory_hostname) in hostvars['prometheus.infra.ooni.io'].promconf.content" }
 
 - hosts: all
   gather_facts: false
@@ -99,6 +113,6 @@
       run_once: true
 
     - name: stamp the inventory that was checked
-      assert: { that: groups.all | sort | join('|') | hash('sha256') == '4debade14b752f96878db0b3692eef6a2553fb2d5ed0c6580daa00cc03fa004f' }
+      assert: { that: groups.all | sort | join('|') | hash('sha256') == 'cbf117dc4067367366856198ba42502676476b80b901915865d73313a87ca0a4' }
       run_once: true
 ...

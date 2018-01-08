@@ -5,6 +5,8 @@ ansible_ssh_pipelining: true
 # default: login as user & get sudo
 ansible_become: true
 
+apt_cache_valid_time: 28800 # 8h
+
 # link vault to plaintext
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"
@@ -31,6 +33,7 @@ passwd:
   prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
   grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
   ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
+  pushgw:   {login: pushgw,   id: 2206, comment: Prometheus Pushgateway}
 
   piwik:    {login: piwik,    id: 2300, comment: Piwik user}
 
@@ -97,6 +100,6 @@ ansible_venv: /root/venv
 docker_apt_ver: ""
 
 # that's common for roles nginx-prometheus, fw and various exporters
-ngxprom_exporter_ipv4: "127.139.92.143"
-ngxprom_exporter_ports: [ 9100 ]
+node_exporter_ipv4: "127.139.92.143" # this addr is not 127.0.0.1 to avoid confusion as external/9100 is SSL and lo/9100 is not
+ngxprom_exporter_ports: { 9100: '{{ node_exporter_ipv4 }}' }
 ...

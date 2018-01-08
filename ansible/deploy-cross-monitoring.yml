@@ -1,0 +1,29 @@
+---
+- include: ansible-version.yml
+
+# Most of monitoring configuration at that host is managed at separate repository,
+# but CAs are shared, so TLS keys and nginx-prometheus are here.
+- hosts: brie.darkk.net.ru
+  roles:
+  - role: ooca-cert
+    ooca_ssl_dir: /srv/prometheus/ssl
+    ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
+    ooca_ca: scraper_ca
+    ooca_group: prometh
+
+  - role: ooca-cert
+    ooca_ssl_dir: '{{ ngxprom_ssl_dir }}'
+    ooca_ssl_subj: '/O=OONI/OU=Prometheus Exporter/CN={{ inventory_hostname }}'
+    ooca_ca: exporter_ca
+
+  - role: nginx-prometheus
+  tasks:
+  # that's copy-paste from `prometheus` role with slightly different path
+  - name: Copy Exporter CA cert
+    copy:
+      src: exporter_ca.cert
+      dest: /srv/prometheus/ssl/exporter_ca.cert
+      owner: root
+      group: root
+      mode: 0644
+...

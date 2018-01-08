@@ -1,4 +1,10 @@
 ---
+# Notify handlers are always run in the same order they are defined, not in the
+# order listed in the notify-statement.
+# -- http://docs.ansible.com/ansible/latest/playbooks_intro.html
+- name: systemctl daemon-reload
+  command: systemctl daemon-reload
+
 - name: test nginx config
   command: /usr/sbin/nginx -t -c /etc/nginx/nginx.conf
   listen:

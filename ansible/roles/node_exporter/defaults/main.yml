@@ -18,4 +18,5 @@ node_exporter_sha256sums_url: "{{ node_exporter_download_url }}/v{{ node_exporte
 node_exporter_sha256sums: "{{ playbook_dir }}/cache/node_exporter-{{ node_exporter_version}}.SHA256SUMS"
 node_exporter_path: "{{ node_exporter_base }}/{{ node_exporter_basename }}"
 
-node_exporter_listen_address: "{{ ngxprom_exporter_ipv4 }}:9100"
+node_exporter_ipv4: '{{ CHANGE_ME }}'
+node_exporter_listen_address: "{{ node_exporter_ipv4 }}:9100"
