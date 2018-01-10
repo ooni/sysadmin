@@ -47,6 +47,7 @@ hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
 irc-bouncer.service	1800	A	37.218.240.126
 jupyter		A	37.218.240.205
+labs		A	37.218.241.30
 measurements	60	A	37.218.242.217
 measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
@@ -72,4 +73,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 ec240c9ba8c1e8daedaca3b4da32d8c4ca7315b7a6d851b475e6b3b2635ad2bd
+; generated from ooni.io.xml with SHA256 e155d982525283ff5f3a5f0df60a11829257e30813ade902fbe9b040e5e032fe
