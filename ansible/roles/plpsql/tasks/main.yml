@@ -1,7 +1,15 @@
 ---
-# if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: pipeline postgres PGDATA directory
   file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
+
+- name: place config in PGDATA
+  template: src={{item}} dest=/srv/pl-psql/{{item}} owner=plpsql group=plpsql mode=0444
+  notify: restart pl-psql
+  with_items:
+  - pg_hba.conf
+  - postgresql.conf
+
+# if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
     image: postgres:9.6.5
@@ -24,3 +32,4 @@
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
+...
