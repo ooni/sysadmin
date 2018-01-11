@@ -10,7 +10,8 @@
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
   roles:
-    - plpsql
+    - role: plpsql
+      tags: plpsql
 
 - hosts: datacollector.infra.ooni.io
   gather_facts: false # already gathered
