@@ -13,7 +13,7 @@ done |& less
 cd /data/ooni/private/reports-raw/yaml && for date in 2017-09-{01..30}; do
     ( # subshell instead of noisy `pushd` because of `cd`
         echo -n "$date -- "
-        cd $date && stat --printf='%n %s\n' * | LC_ALL=C sort | sha256sum
+        cd $date && find . -type f -printf '%f %s\n' | LC_ALL=C sort | sha256sum
     )
 done |& less
 
@@ -31,6 +31,6 @@ cd /data/ooni/public/sanitised && \
 for date in 2017-09-{01..30}; do
     echo -n "$date -- "
     (
-        cd $date && stat --printf='%n %s\n' * | LC_ALL=C sort | sha256sum
+        cd $date && find . -type f -printf '%f %s\n' | LC_ALL=C sort | sha256sum
     )
 done |& less
