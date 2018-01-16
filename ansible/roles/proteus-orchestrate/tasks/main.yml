@@ -31,19 +31,19 @@
   notify:
   - reload proteus
   template:
-    src: proteus-events.toml.j2
-    dest: "{{ proteus_config_path }}/proteus-events.toml"
+    src: proteus-orchestrate.toml.j2
+    dest: "{{ proteus_config_path }}/proteus-orchestrate.toml"
 
 - name: Install proteus systemd service file
   notify:
   - restart proteus
   template:
-    src: proteus-events.service
-    dest: /etc/systemd/system/proteus-events.service
+    src: proteus-orchestrate.service
+    dest: /etc/systemd/system/proteus-orchestrate.service
 
 - name: Enable and start proteus service
   systemd:
-    name: proteus-events.service
+    name: proteus-orchestrate.service
     state: started
     enabled: yes
     daemon_reload: yes

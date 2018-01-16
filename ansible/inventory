@@ -57,6 +57,7 @@ msg.ooni.io
 notify.proteus.ooni.io
 events.proteus.ooni.io
 registry.proteus.ooni.io
+orchestrate.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 run.ooni.io
@@ -97,6 +98,7 @@ db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 notify.proteus.ooni.io
 events.proteus.ooni.io
+orchestrate.ooni.io
 registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io

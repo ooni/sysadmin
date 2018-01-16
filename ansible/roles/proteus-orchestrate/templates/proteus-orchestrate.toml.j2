@@ -13,13 +13,7 @@ gorush-basic-auth-password = "{{ proteus_notify_basic_auth_password }}"
 [api]
 port = {{ proteus_api_port }}
 address = "{{ proteus_api_address }}"
+default-inputs-to-return = 10
 
 [database]
 url = "{{ proteus_database_url }}"
-active-probes-table = "active_probes"
-probe-updates-table = "probe_updates"
-jobs-table = "jobs"
-job-alerts-table = "job_alerts"
-job-tasks-table = "job_tasks"
-tasks-table = "tasks"
-accounts-table = "accounts"

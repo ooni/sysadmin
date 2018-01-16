@@ -10,11 +10,11 @@
     proteus_notify_topic_ios: "org.openobservatory.NetProbe"
   roles:
     - letsencrypt
-    - proteus-events
+    - proteus-orchestrate
 
-- hosts: events.proteus.ooni.io
+- hosts: orchestrate.ooni.io
   vars:
-    proteus_events_https_port: 443
+    proteus_orchestrate_https_port: 443
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
     proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@db-1.proteus.ooni.io:5432/proteus?sslmode=require"
@@ -24,4 +24,4 @@
     proteus_notify_topic_ios: "org.openobservatory.ooniprobe"
   roles:
     - letsencrypt
-    - proteus-events
+    - proteus-orchestrate
