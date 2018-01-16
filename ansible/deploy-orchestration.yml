@@ -21,7 +21,7 @@
 
 - include: deploy-proteus-registry.yml
 
-- include: deploy-proteus-events.yml
+- include: deploy-proteus-orchestration.yml
 
 - include: deploy-proteus-notify.yml
 
