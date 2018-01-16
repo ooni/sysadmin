@@ -12,11 +12,11 @@
     - letsencrypt
     - proteus-orchestrate
 
-- hosts: orchestrate.ooni.io
+- hosts: events.proteus.ooni.io
   vars:
     proteus_orchestrate_https_port: 443
     letsencrypt_nginx: yes
-    letsencrypt_domains: "{{ inventory_hostname }}"
+    letsencrypt_domains: "orchestrate.ooni.io"
     proteus_database_url: "postgres://proteus:{{ proteus_database_password }}@db-1.proteus.ooni.io:5432/proteus?sslmode=require"
     # proteus_auth_jwt_secret : "{{ proteus_auth_jwt_secret }}"
     proteus_notify_url: "https://notify.proteus.ooni.io"
