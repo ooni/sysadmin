@@ -5,6 +5,7 @@
   <RequestedCommand>namecheap.domains.dns.gethosts</RequestedCommand>
   <CommandResponse Type="namecheap.domains.dns.getHosts">
     <DomainDNSGetHostsResult Domain="ooni.nu" EmailType="FWD" IsUsingOurDNS="true">
+      <host HostId="129109250" Name="amsmetadb" Type="A" Address="37.218.242.175" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="67915505" Name="bouncer.infra" Type="A" Address="62.217.125.6" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="24786734" Name="deb" Type="A" Address="81.7.15.106" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="39585756" Name="mirror1.reports" Type="A" Address="213.138.109.232" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
