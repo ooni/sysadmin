@@ -238,11 +238,11 @@ ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 
 ## DNS name policy
 
-Public HTTP services are `${service}.ooni.io`.
+Public HTTP services are `${service}.ooni.io`. _Public_ means that it's part of some external system we can't control: published MK versions, web URLs and so on.
 
 Private HTTP services like monitoring, probe and data management are `${service}.ooni.nu`. Exceptions are various legacy redirects like `www.ooni.nu`.
 
-Multi-purpose VM SHOULD use 4...8 character name following the pattern:
+Multi-purpose VM SHOULD use 4...8 character name and have FQDN like `${deity}.ooni.nu`:
 - WDC ~ [fish name](https://en.wikipedia.org/wiki/List_of_common_fish_names)
 - AMS ~ [Roman deity](https://en.wikipedia.org/wiki/List_of_Roman_deities#Alphabetical_list)
 - HKG ~ [Slavic deity](https://en.wikipedia.org/wiki/Deities_of_Slavic_religion)
@@ -253,7 +253,7 @@ Various legacy names should be cleaned up during re-deploying VMs with newer bas
 
 ## New host in inventory
 
-When you add a new host to `ansible/inventory` you need to update the continous integration scripts to make travis happy.
+When you add a new host to `ansible/inventory` you need to update the continuous integration scripts to make Travis CI happy.
 
 This can be done by doing:
 
