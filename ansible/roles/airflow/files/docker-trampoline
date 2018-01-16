@@ -41,7 +41,7 @@ case "$script" in
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/reports-raw-shals:$private/reports-raw-shals:ro"
     exec docker run $docksafe $docknet $volargs debian:jessie \
-        /bin/bash -c "cd $private/reports-raw/${bucket} && stat --printf='%n %s\n' * | LC_ALL=C sort | sha256sum --check $private/reports-raw-shals/${bucket} && exit 42 || exit 13"
+        /bin/bash -c "set -o pipefail && find $private/reports-raw/${bucket} -type f -printf '%f %s\n' | LC_ALL=C sort | sha256sum --check $private/reports-raw-shals/${bucket} && exit 42 || exit 13"
     ;;
 
     canning)

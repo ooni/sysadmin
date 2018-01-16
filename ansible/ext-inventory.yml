@@ -36,7 +36,8 @@
       command: ssh -D {{ socks5 }} -o BatchMode=yes -N {{ jumphost }}
       async: 60
       poll: 0
-    - wait_for: port={{ socks5 }} timeout=10
+    - name: wait for jumphost connection
+      wait_for: port={{ socks5 }} timeout=10
 
     # curl is used instead of M(uri) to pass traffic through socks5 jumphost so cleartext
     # namecheap_token does not touch disk of jumphost as a temporary file created by ansible

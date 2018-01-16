@@ -236,7 +236,24 @@ ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 
 # When adding new hosts
 
-When you add a new host you need to update the continous integration scripts to make travis happy.
+## DNS name policy
+
+Public HTTP services are `${service}.ooni.io`.
+
+Private HTTP services like monitoring, probe and data management are `${service}.ooni.nu`. Exceptions are various legacy redirects like `www.ooni.nu`.
+
+Multi-purpose VM SHOULD use 4...8 character name following the pattern:
+- WDC ~ [fish name](https://en.wikipedia.org/wiki/List_of_common_fish_names)
+- AMS ~ [Roman deity](https://en.wikipedia.org/wiki/List_of_Roman_deities#Alphabetical_list)
+- HKG ~ [Slavic deity](https://en.wikipedia.org/wiki/Deities_of_Slavic_religion)
+
+Single-purpose VM names MAY use `${service}.ooni.nu` as an `inventory_hostname`.
+
+Various legacy names should be cleaned up during re-deploying VMs with newer base OS version.
+
+## New host in inventory
+
+When you add a new host to `ansible/inventory` you need to update the continous integration scripts to make travis happy.
 
 This can be done by doing:
 
@@ -255,6 +272,8 @@ Be also to then run:
 ```
 
 This will fetch updates to the DNS zone.
+
+`inventory_hostname` MUST NOT be renamed.
 
 # Updating firewall rules
 

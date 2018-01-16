@@ -9,6 +9,12 @@ groups:
     annotations:
       summary: '{{ $labels.instance }} is not `up`'
 
+  - alert: IOWaitHigh
+    expr: max(irate(node_cpu{mode="iowait"}[1m])) by (instance) > 0.9
+    for: 5m # matters to avoid spikes
+    annotations:
+      summary: '{{ $labels.instance }} %iowait over 90%'
+
   # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
   - alert: DiskWillFillInAWeek
     expr: (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0

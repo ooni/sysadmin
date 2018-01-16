@@ -1,17 +1,18 @@
 ---
-- name: shared tmp directory to workaround lack of tmpfs support in docker_container
-  file: dest=/srv/tmp state=directory owner=root group=root mode=0750
-
-# 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
-# 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
-#    https://github.com/ansible/ansible/pull/22646
-- name: pipeline postgres tmp directory
-  file: dest=/srv/tmp/pl-psql state=directory owner=plpsql group=plpsql mode=0750
-- name: pipelie postgres /data directory
+- name: pipeline postgres PGDATA directory
   file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
+
+- name: place config in PGDATA
+  template: src={{item}} dest=/srv/pl-psql/{{item}} owner=plpsql group=plpsql mode=0444
+  notify: restart pl-psql
+  with_items:
+  - pg_hba.conf
+  - postgresql.conf
+
+# if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
-    image: postgres:9.6
+    image: postgres:9.6.5
     name: pl-psql
     hostname: pl-psql
     network_mode: 'host'
@@ -19,12 +20,16 @@
     volumes:
       - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
       - /etc/group:/etc/group:ro # to make `initdb` happy
-      - /srv/tmp/pl-psql:/run/postgresql:rw
       - /srv/pl-psql:/srv/pl-psql:rw
+    tmpfs:
+      - /run/postgresql:size=1m,mode=0700,uid={{ passwd.plpsql.id }}
     env:
       PGDATA: /srv/pl-psql
       POSTGRES_DB: metadb
       POSTGRES_USER: shovel
       POSTGRES_PASSWORD: "{{ shovel_postgres_password }}"
     user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
+    stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
+    stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
+...
