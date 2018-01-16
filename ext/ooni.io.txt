@@ -56,6 +56,7 @@ notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
 ooni-measurements-db.infra		A	37.218.242.232
 ooni-zoo.infra		A	37.218.240.138
+orchestrate	300	A	37.218.242.63
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
@@ -73,4 +74,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 e155d982525283ff5f3a5f0df60a11829257e30813ade902fbe9b040e5e032fe
+; generated from ooni.io.xml with SHA256 632268936ac6f98f4029fef065189c85ba3c2fcf8fee16d7e89da1ddf3b876c4
