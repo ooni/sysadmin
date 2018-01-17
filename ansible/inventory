@@ -117,6 +117,7 @@ hkgmetadb.infra.ooni.io
 [have_fw]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
+amsmetadb.ooni.nu
 api.ooni.io
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons

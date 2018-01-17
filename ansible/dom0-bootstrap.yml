@@ -26,6 +26,7 @@
   gather_facts: false
   roles:
     - role: fw
+      tags: fw
 
 - hosts: all:!no_nodeexp
   gather_facts: true # to gather `ansible_service_mgr`
