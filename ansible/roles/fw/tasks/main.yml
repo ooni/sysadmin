@@ -2,8 +2,10 @@
   copy: src=xtables-merge dest=/usr/local/sbin/ owner=root group=root mode=0755
 - name: mkdir /run/fw
   file: dest=/run/fw state=directory owner=root group=root mode=0700
+  tags: fw
 - name: mkdir /var/log/fw
   file: dest=/var/log/fw state=directory owner=root group=root mode=0700
+  tags: fw
 
 - name: copy iptables.filter.part
   template: src=iptables.filter.part/{{inventory_hostname}} dest=/etc/network/iptables.filter.part owner=root group=root mode=0400
