@@ -60,6 +60,7 @@ registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 run.ooni.io
+amsmetadb.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
