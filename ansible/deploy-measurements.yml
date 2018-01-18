@@ -27,4 +27,5 @@
     ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: ooni-measurements
+      tags: measurements
       oomsm_domain: api.ooni.io
