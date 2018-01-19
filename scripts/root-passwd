@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# That's the script to update group_vars/all/vault with new root password
+# digest and mail it to openobservatory.org "admins".
+#
+
+set -o errexit
+
+gitroot=$(git rev-parse --show-toplevel)
+
+now=$(TZ=UTC date +%y%m%d%H%M)
+pw=$(dicepass)
+digest=$(echo "$pw" | mkpasswd --method=sha-512 --stdin)
+
+cd "$gitroot/ansible"
+EDITOR="sed -i 's,^vault_root_password_digest:.*,vault_root_password_digest: \"${digest}\",; s,^vault_root_password_mtime:.*,vault_root_password_mtime: ${now},'" ./vault edit group_vars/all/vault
+
+uid=$(id -u)
+cd /run/user/"${uid}"
+
+intro=$(genpass 70)
+outro=$(genpass 70)
+
+for u in leonid simone vasilis arturo; do
+    gpg --encrypt -r "${u}@openobservatory.org" >ooni-sysadmin.rootpw.gpg <<EOF
+==> ${intro} <==
+
+OONI Root ${now} password: $pw
+
+Consider re-generating the password if it's ever used for VNC.
+
+==> ${outro} <==
+EOF
+    mutt.tor -s 'OONI Root password' -a ooni-sysadmin.rootpw.gpg -- "${u}@openobservatory.org" <<EOF
+Hello, ${u}@ooni.
+
+That's some entropy for you.
+
+Keep secrets secret!
+EOF
+    shred --remove ooni-sysadmin.rootpw.gpg
+done
