@@ -31,7 +31,9 @@
     remote_src: true # file is ALREADY on the remote system. sigh.
 
 - name: Install node_exporter systemd service file
-  notify: restart node_exporter
+  notify:
+  - restart node_exporter
+  - systemctl daemon-reload
   template:
     src: node_exporter.service
     dest: /etc/systemd/system/node_exporter.service
@@ -52,6 +54,26 @@
     name: node_exporter
     state: started
     enabled: yes
+
+- name: Install seeksample
+  copy: src=seeksample.py dest=/usr/local/sbin/seeksample mode=0555
+  notify: restart seeksample
+
+- name: Install seeksample systemd service file
+  notify:
+  - restart seeksample
+  - systemctl daemon-reload
+  template:
+    src: seeksample.service
+    dest: /etc/systemd/system/seeksample.service
+  when: ansible_service_mgr == 'systemd'
+
+- name: Enable and start seeksample service
+  service:
+    name: seeksample
+    state: started
+    enabled: yes
+  when: ansible_service_mgr == 'systemd'
 
 - name: Cleanup stale services
   service:

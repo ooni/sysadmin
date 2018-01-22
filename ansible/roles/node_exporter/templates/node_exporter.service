@@ -2,9 +2,19 @@
 Description=Prometheus Node Exporter
 
 [Service]
+# `ExecStartPre=!` to gain privileges is systemd >= 231, ubuntu 16.04 ships 229-4ubuntu17
+PermissionsStartOnly=true
 User=nodeexp
 Group=nodeexp
-ExecStart={{ node_exporter_path }}/node_exporter -collectors.enabled {{ node_exporter_collectors }} -collector.textfile.directory {{ node_exporter_textfiles_path }} -web.listen-address {{ node_exporter_listen_address }} -collector.ntp.server 127.0.0.1
+
+ExecStartPre=/usr/bin/install --owner root --group root --mode 0755 --directory {{ node_exporter_textfiles_path }}
+
+ExecStart={{ node_exporter_path }}/node_exporter \
+  {{ node_exporter_collectors | trim }} \
+  {{ node_exporter_disk_ignored }} \
+  --collector.textfile.directory {{ node_exporter_textfiles_path }} \
+  --web.listen-address {{ node_exporter_listen_address }}
+
 KillMode=process
 Restart=always
 

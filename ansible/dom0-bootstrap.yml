@@ -40,3 +40,4 @@
       ooca_ca: exporter_ca
     - role: nginx-prometheus
     - role: node_exporter
+      tags: node_exporter

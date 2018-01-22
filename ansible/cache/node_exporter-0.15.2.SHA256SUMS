@@ -1,0 +1,10 @@
+64b5333f96306a55e006193e048815d954b573b49646d5b3841e4d06013a3ce4  node_exporter-0.15.2.darwin-386.tar.gz
+63fd66c15e2f50ef944ca164125aed1be3b2c596ecb780819d98d849c14e5a6c  node_exporter-0.15.2.darwin-amd64.tar.gz
+79a587717223235e67b355c41d15772b6bb0c221c80aaef9e4b2b51ca21fd96c  node_exporter-0.15.2.linux-386.tar.gz
+1ce667467e442d1f7fbfa7de29a8ffc3a7a0c84d24d7c695cc88b29e0752df37  node_exporter-0.15.2.linux-amd64.tar.gz
+6468205467960190d36297e6c83e73730e415432b9892fbae3343536ee11a2ee  node_exporter-0.15.2.linux-arm64.tar.gz
+ade093669cae4ec80a1a12920fa66f943b2d1b69d9798baa71ca659e9086d50b  node_exporter-0.15.2.linux-armv5.tar.gz
+067fb802baba29d3459771fc2f6b993e6510ae85cb175b761ffac76910360e34  node_exporter-0.15.2.linux-armv6.tar.gz
+cbb14364b341d7b60e7c26c51250a3f2027fd2e8db2d1f46d655e7bdd15465f0  node_exporter-0.15.2.linux-armv7.tar.gz
+85b47ece70ac7b539b84994314bb08ff1f15fb1b4179ecfba1670078c4d61431  node_exporter-0.15.2.netbsd-386.tar.gz
+94a384c75e356d95789af485784e6b6fbece49aec94b9207ef4128410dee1603  node_exporter-0.15.2.netbsd-amd64.tar.gz
