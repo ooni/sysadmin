@@ -1,3 +1,4 @@
 ---
 dc_group: ams
+ntp_pool: nl
 ...
