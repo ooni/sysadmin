@@ -51,7 +51,6 @@ ooni-measurements-db.infra.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
-staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 msg.ooni.io
 notify.proteus.ooni.io
@@ -61,6 +60,7 @@ db-1.proteus.ooni.io
 proteus.ooni.io
 run.ooni.io
 amsmetadb.ooni.nu
+amsapi.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
