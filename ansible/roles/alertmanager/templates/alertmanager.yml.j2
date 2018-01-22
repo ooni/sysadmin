@@ -42,6 +42,8 @@ route:
 
   # The child route trees.
   routes:
+  - receiver: darkk
+    match: {severity: keepalive_spb}
   - receiver: team-email
     repeat_interval: 24h
     match: {severity: info}
@@ -79,4 +81,9 @@ receivers:
     send_resolved: true
   - to: 'vasilis@openobservatory.org'
     send_resolved: true
+
+- name: darkk
+  email_configs:
+  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
+    send_resolved: false
 ...
