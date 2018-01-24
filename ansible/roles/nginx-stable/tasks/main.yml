@@ -16,5 +16,9 @@
     update_cache: true
     cache_valid_time: '{{ apt_cache_valid_time }}'
 
+- name: copy nginx.conf
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf mode=0444
+  notify: reload nginx
+
 # FIXME: nginx.conf from nginx.org is different from debian one and has no `sites-enabled` concept
 ...

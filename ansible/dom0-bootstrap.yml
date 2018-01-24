@@ -31,6 +31,15 @@
     - role: fw
       tags: fw
 
+- hosts: have_nginx
+  gather_facts: true # to gather `ansible_distribution_release`
+  roles:
+    # `nginx-stable` must be installed before `nginx-prometheus` or not installed at all,
+    # otherwise it conflicts with nginx-{light,full,code,doc,extras} packages
+    # and the conflict has to be resolved manually.
+    - role: nginx-stable
+      tags: nginx-stable
+
 - hosts: all:!no_nodeexp
   gather_facts: true # to gather `ansible_service_mgr`
   roles:
