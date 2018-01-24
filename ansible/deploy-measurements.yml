@@ -1,7 +1,7 @@
 ---
 - include: ansible-version.yml
 
-- hosts: api.ooni.io
+- hosts: [api.ooni.io, amsapi.ooni.nu]
   roles:
     - role: docker_py
     - role: letsencrypt
@@ -21,7 +21,14 @@
       name: oomsm-beta
       password: '{{ oomsm_beta_postgres_password }}'
 
-- hosts: api.ooni.io
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      db: metadb
+      name: amsapi
+      password: '{{ metadb_amsapi_password }}'
+
+- hosts: [api.ooni.io, amsapi.ooni.nu]
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: '/root/venv/bin/python2.7'

@@ -1,0 +1,3 @@
+---
+oomsm_db_url: 'postgresql://oomsm-beta:{{ oomsm_beta_postgres_password }}@hkgmetadb.infra.ooni.io/metadb'
+...

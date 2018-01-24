@@ -38,6 +38,7 @@
       ooca_ssl_dir: '{{ ngxprom_ssl_dir }}'
       ooca_ssl_subj: '/O=OONI/OU=Prometheus Exporter/CN={{ inventory_hostname }}'
       ooca_ca: exporter_ca
+    # FIXME: role `nginx-prometheus` conflicts with `nginx-stable`
     - role: nginx-prometheus
     - role: node_exporter
       tags: node_exporter

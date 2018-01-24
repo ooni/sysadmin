@@ -95,6 +95,10 @@ amsmetadb.ooni.nu
 hkgmetadb.infra.ooni.io
 api.ooni.io
 
+[psk_metadb_amsapi]
+hkgmetadb.infra.ooni.io
+amsapi.ooni.nu
+
 [psk_orchestration]
 notify.proteus.test.ooni.io
 events.proteus.test.ooni.io
