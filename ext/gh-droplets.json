@@ -1723,48 +1723,10 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
-            "id": "2253", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 b7:61:73:b0:2c:b8:45:38:91:ca:93:d7:fa:78:7a:3a\n", 
-                "ssh_ecdsa": "256 85:be:1b:fb:04:f2:73:f5:3a:46:09:b3:d0:5b:82:bc\n", 
-                "ssh_rsa": "2048 ea:ea:9e:ba:4b:a3:f5:05:ed:69:21:0b:6f:6a:62:0d\n"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "chpwhkg", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254", 
-                        "ip_address": "103.104.244.35", 
-                        "netmask": "255.255.255.0", 
-                        "network": "103.104.244.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 46
+        "total": 45
     }
 }
