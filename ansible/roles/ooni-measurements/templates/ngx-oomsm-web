@@ -30,13 +30,11 @@ server {
 
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
-        include proxy_params;
     }
 
 {% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/blockpage_detected", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
-        include proxy_params;
 
         proxy_cache api;
         proxy_cache_valid 200 1h;
