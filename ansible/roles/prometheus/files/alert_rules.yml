@@ -59,7 +59,7 @@ groups:
 
   # all the textfile are updated at least hourly
   - alert: TextfileJam
-    expr: (node_textfile_mtime - ignoring(file) node_time) / -3600 > 2.0
+    expr: (node_textfile_mtime - ON(instance,job) GROUP_LEFT() node_time) / -3600 > 2
     annotations:
       summary: 'Stale `textfile` at {{ $labels.instance }}'
       description: '`{{ $labels.file }}` is {{ printf "%.0f" $value }}h old.'
