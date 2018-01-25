@@ -4,7 +4,6 @@
     proteus_frontend_https_port: 443
     proteus_events_url: "https://events.proteus.test.ooni.io"
     proteus_registry_url: "https://registry.proteus.test.ooni.io"
-    proteus_version: "v0.1.0-beta.4"
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:
@@ -17,7 +16,6 @@
     proteus_frontend_https_port: 443
     proteus_events_url: "https://events.proteus.ooni.io"
     proteus_registry_url: "https://registry.proteus.ooni.io"
-    proteus_version: "v0.1.0-beta.4"
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:
