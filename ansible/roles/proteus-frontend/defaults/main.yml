@@ -11,5 +11,5 @@ proteus_frontend_https_port: 443
 
 proteus_environment: production
 proteus_install_path: /srv/proteus
-proteus_version: "v0.1.0-beta.9"
+proteus_version: "v0.2.0"
 proteus_git_url: https://github.com/thetorproject/proteus
