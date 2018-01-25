@@ -42,5 +42,5 @@
   shell: "ls -dt {{ app_path }}/releases/* | egrep '[0-9]+' | tail -n +6 | xargs rm -rfv"
   register: deploy_cleanup_result
   changed_when: "'removed' in deploy_cleanup_result.stdout"
-  sudo: yes
-  sudo_user: root
+  become_method: sudo
+  become_user: root
