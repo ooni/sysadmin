@@ -28,6 +28,8 @@ server {
     access_log  /var/log/nginx/{{ oomsm_domain }}.access.log mtail;
     error_log   /var/log/nginx/{{ oomsm_domain }}.error.log warn;
 
+    proxy_read_timeout {{ oomsm_timeout_s }}s;
+
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
     }
