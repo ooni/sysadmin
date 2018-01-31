@@ -18,6 +18,10 @@
 
 - include: af-psql.yml
 
+- name: copy nodeexp_airflow check
+  copy: src=nodeexp_airflow dest=/etc/cron.hourly/nodeexp_airflow mode=0555 owner=root group=root mode=0555
+  notify: restart af-worker # because the _file_ is bind-monted, not a directory
+
 - name: shared airflow config templates
   file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750
 - name: check shared airflow passwd

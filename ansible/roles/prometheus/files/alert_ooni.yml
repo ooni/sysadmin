@@ -17,4 +17,9 @@ groups:
     expr: node_time - ignoring(device) group_right node_seeksample_timestamp > 240
     annotations:
       summary: 'disk is silent for {{ $value | humanizeDuration }}'
+
+  - alert: AirflowFailed
+    expr: airflow_7day_task_count{state="failed"} > 0
+    annotations:
+      summary: '{{ $value }} tasks report failures last week'
 ...
