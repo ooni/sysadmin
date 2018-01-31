@@ -32,6 +32,7 @@ dag = DAG(
 
 ReportsRawReadySensor(task_id='reports_raw_sensor', poke_interval=5*60, timeout=12*3600, dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='canning', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='canned_s3_sync', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='autoclaving', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_s3_ls', bash_command='shovel_jump.sh', dag=dag)
@@ -43,6 +44,8 @@ BashOperator(pool='datacollector_disk_io', task_id='autoclaved_tarlz4_s3_sync', 
 BashOperator(pool='datacollector_disk_io', task_id='autoclaved_jsonl_s3_sync', bash_command='shovel_jump.sh', dag=dag)
 
 dag.set_dependency('reports_raw_sensor', 'canning')
+
+dag.set_dependency('canning', 'canned_s3_sync')
 
 dag.set_dependency('canning', 'autoclaving')
 

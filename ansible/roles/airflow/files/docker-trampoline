@@ -48,7 +48,6 @@ case "$script" in
     docker run $docksafe --network none -v=$private/canned:$private/canned debian:jessie /bin/bash -c "mkdir -p $private/canned/${bucket} && chown $uidno $private/canned/${bucket}"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
-    script=""
     set -- /usr/local/bin/canning.py --start "$isofrom" --end "$isotill" \
         --reports-raw-root $private/reports-raw \
         --canned-root $private/canned
@@ -59,7 +58,6 @@ case "$script" in
     volargs="${volargs} --volume=$private/bridge_db:$private/bridge_db:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:rw"
-    script=""
     set -- /usr/local/bin/autoclaving.py --start "$isofrom" --end "$isotill" \
         --canned-root $private/canned \
         --bridge-db $private/bridge_db/bridge_db.json \
@@ -70,7 +68,6 @@ case "$script" in
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/hkgmetadb.env"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
-    script=""
     set -- /usr/local/bin/centrifugation.py --start "$isofrom" --end "$isotill" \
         --autoclaved-root /data/ooni/public/autoclaved \
         --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
@@ -81,7 +78,6 @@ case "$script" in
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
     volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:rw"
-    script=""
     set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/reports-raw/yaml/$bucket" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
     ;;
 
@@ -89,7 +85,6 @@ case "$script" in
     volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:rw"
-    script=""
     set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-root "$private/canned" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
     ;;
 
@@ -97,7 +92,6 @@ case "$script" in
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
     volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:rw"
-    script=""
     set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
     ;;
 
@@ -105,7 +99,6 @@ case "$script" in
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
     volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:ro"
     volargs="${volargs} --volume=$public/santoken:$public/santoken:rw"
-    script=""
     set -- /usr/local/bin/check_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}"
     ;;
 
@@ -114,15 +107,20 @@ case "$script" in
     volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:ro"
     volargs="${volargs} --volume=$public/santoken:$public/santoken:ro"
     volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:rw"
-    script=""
     set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
+    ;;
+
+    canned_s3_sync)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env"
+    volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
+    set -- aws s3 sync --size-only "$private/canned/${bucket}/" "s3://ooni-private/canned/${bucket}/"
     ;;
 
     autoclaved_tarlz4_s3_sync)
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
-    script=""
     set -- aws s3 sync --size-only "$public/autoclaved/${bucket}/" "s3://ooni-data/autoclaved/jsonl.tar.lz4/${bucket}/"
     ;;
 
@@ -134,7 +132,6 @@ case "$script" in
     # concurrent processing of alike reports may be affected. OTOH, the usual
     # size of scratchpad is ~64M and it probably should not be an issue.
     volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=1536m"
-    script=""
     set -- /usr/local/bin/aws_s3_lz4cat_sync.py --src "$public/autoclaved/${bucket}" --s3-bucket "ooni-data" --s3-prefix "autoclaved/jsonl/${bucket}"
     ;;
 
@@ -145,8 +142,5 @@ case "$script" in
 esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
-if [ -n "$script" ]; then
-    set -- "/usr/local/bin/$script" --start "$isofrom" --end "$isotill" "$@"
-fi
 set -o xtrace
 exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20171214-ca143c08 "$@"
