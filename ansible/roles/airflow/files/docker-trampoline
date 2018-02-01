@@ -81,6 +81,15 @@ case "$script" in
     set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/reports-raw/yaml/$bucket" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
     ;;
 
+    tar_reports_raw)
+    # some `reports-raw` buckets were already removed from datacollector and have to be restored from `.tar.lz4` for compression
+    docker run $docksafe --network none -v=$private/reports-raw:$private/reports-raw debian:jessie /bin/bash -c "mkdir -p $private/reports-raw/${bucket} && chown $uidno $private/reports-raw/${bucket}"
+    volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:rw"
+    volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:rw"
+    volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
+    set -- /usr/local/bin/tar_reports_raw.py --bucket "$bucket" --reports-tgz "$private/reports-tgz" --reports-raw "$private/reports-raw" --canned "$private/canned"
+    ;;
+
     reports_raw_cleanup)
     volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
@@ -108,6 +117,13 @@ case "$script" in
     volargs="${volargs} --volume=$public/santoken:$public/santoken:ro"
     volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:rw"
     set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
+    ;;
+
+    reports_tgz_s3_sync)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env"
+    volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:ro"
+    set -- aws s3 sync --size-only "$private/reports-tgz/" s3://ooni-private/archives-raw/yaml/ --exclude '*' --include "${bucket}.tar.gz" --include "${bucket}.index.json.gz"
     ;;
 
     canned_s3_sync)
@@ -143,4 +159,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20171214-ca143c08 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180201-6c3f7cef "$@"
