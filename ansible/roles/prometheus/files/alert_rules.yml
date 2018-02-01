@@ -29,7 +29,7 @@ groups:
 
   # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
   - alert: DiskWillFillInAWeek
-    expr: (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0
+    expr: 8 * node_filesystem_avail - 7 * (node_filesystem_avail offset 1d) < 0 # x75 speedup of (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0
     for: 1h
     annotations:
       summary: 'In a week {{ $labels.instance }} becomes /dev/full'
