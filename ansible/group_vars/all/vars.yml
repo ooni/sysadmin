@@ -106,4 +106,5 @@ node_exporter_ipv4: "127.139.92.143" # this addr is not 127.0.0.1 to avoid confu
 ngxprom_exporter_ports: { 9100: '{{ node_exporter_ipv4 }}' }
 
 ntp_pool: debian
+have_ssd: false
 ...

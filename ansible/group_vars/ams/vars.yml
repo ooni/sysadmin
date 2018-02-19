@@ -1,4 +1,5 @@
 ---
 dc_group: ams
 ntp_pool: nl
+have_ssd: true
 ...
