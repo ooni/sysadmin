@@ -1,0 +1,17 @@
+[Unit]
+Description=Disk latency sampler
+
+[Service]
+User=root
+Group=root
+
+ExecStartPre=/usr/bin/install --owner root --group root --mode 0755 --directory {{ node_exporter_textfiles_path }}
+
+ExecStart=/usr/local/sbin/seeksample  \
+  --textfile {{ node_exporter_textfiles_path }}/seeksample.prom
+
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

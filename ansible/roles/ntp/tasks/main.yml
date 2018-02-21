@@ -1,0 +1,21 @@
+---
+- name: drop common ntpd packages
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+  - ntp
+  - openntpd
+
+- name: install chosen ntpd package
+  apt:
+    name: chrony
+    state: latest
+    update_cache: yes
+    cache_valid_time: 28800
+    install_recommends: false
+
+- name: configure chrony
+  template: src=chrony.conf dest=/etc/chrony/chrony.conf owner=root group=root mode=0444
+  notify: restart chrony
+...

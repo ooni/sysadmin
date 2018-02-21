@@ -1,3 +1,4 @@
 ---
 dc_group: hkg
+ntp_pool: asia
 ...

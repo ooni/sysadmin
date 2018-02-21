@@ -11,6 +11,8 @@ apt_cache_valid_time: 28800 # 8h
 weasel_login: "{{ vault_weasel_login }}"
 weasel_comment: "{{ vault_weasel_comment }}"
 weasel_keys: "{{ vault_weasel_keys }}"
+root_password_digest: '{{ vault_root_password_digest }}'
+root_password_mtime: '{{ vault_root_password_mtime }}'
 
 passwd:
   # services
@@ -102,4 +104,7 @@ docker_apt_ver: ""
 # that's common for roles nginx-prometheus, fw and various exporters
 node_exporter_ipv4: "127.139.92.143" # this addr is not 127.0.0.1 to avoid confusion as external/9100 is SSL and lo/9100 is not
 ngxprom_exporter_ports: { 9100: '{{ node_exporter_ipv4 }}' }
+
+ntp_pool: debian
+have_ssd: false
 ...

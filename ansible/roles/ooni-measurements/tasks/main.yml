@@ -21,8 +21,9 @@
     purge_networks: true
     env:
       APP_ENV: production
-      DATABASE_URL: 'postgresql://oomsm-beta:{{ oomsm_beta_postgres_password }}@hkgmetadb.infra.ooni.io/metadb' # FIXME: ?sslmode=require
-      AUTOCLAVED_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
+      DATABASE_URL: '{{ oomsm_db_url }}' # FIXME: ?sslmode=require
+      DATABASE_STATEMENT_TIMEOUT: '{{ (oomsm_timeout_s - 1) * 1000 }}'
+      AUTOCLAVED_BASE_URL: 'http://s3.amazonaws.com/ooni-data/autoclaved/jsonl.tar.lz4/' # HOTFIX 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
       CENTRIFUGATION_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/centrifugation/'
     command: gunicorn --bind 0.0.0.0:{{ oomsm_backend_port }} --workers 5 --timeout 60 measurements.wsgi
     user: "{{ passwd.oomsmweb.id }}:{{ passwd.oomsmweb.id }}"
