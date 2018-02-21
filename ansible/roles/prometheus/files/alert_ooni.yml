@@ -12,4 +12,14 @@ groups:
     for: 16h # rsync is launched at 08:00 and 22:00, that's 14h and 10h gap
     annotations:
       summary: '`rsync` exitcode: {{ $value }}'
+
+  - alert: DiskStuck
+    expr: node_time - ignoring(device) group_right node_seeksample_timestamp > 240
+    annotations:
+      summary: 'disk is silent for {{ $value | humanizeDuration }}'
+
+  - alert: AirflowFailed
+    expr: airflow_7day_task_count{state="failed"} > 0
+    annotations:
+      summary: '{{ $value }} tasks report failures last week'
 ...

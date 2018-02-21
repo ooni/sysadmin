@@ -4,7 +4,22 @@ start on runlevel [2345]
 stop on runlevel [016]
 
 respawn
-setuid nodeexp
-setgid nodeexp
 
-exec {{ node_exporter_path }}/node_exporter -collectors.enabled {{ node_exporter_collectors }} -collector.textfile.directory {{ node_exporter_textfiles_path }} -web.listen-address {{ node_exporter_listen_address }} -collector.ntp.server 127.0.0.1
+# have to pre-start as root, so can't use `setuid` and `setgid` from upstart :-(
+#setuid nodeexp
+#setgid nodeexp
+
+pre-start script
+  /usr/bin/install --owner root --group root --mode 0755 --directory {{ node_exporter_textfiles_path }}
+end script
+
+# NB: `chuid` is required as `user` does not set UID. BTW, `group` sets GID. Sigh.
+exec \
+  /sbin/start-stop-daemon --user nodeexp --group nodeexp --chuid nodeexp:nodeexp \
+  --exec  {{ node_exporter_path }}/node_exporter \
+  --start \
+  -- \
+  {{ node_exporter_collectors | trim }} \
+  '{{ node_exporter_disk_ignored }}' \
+  --collector.textfile.directory {{ node_exporter_textfiles_path }} \
+  --web.listen-address {{ node_exporter_listen_address }}

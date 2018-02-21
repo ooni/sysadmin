@@ -7,7 +7,7 @@
             "id": "786", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -44,9 +44,9 @@
             "features": [], 
             "id": "800", 
             "kernel": {
-                "id": "7", 
-                "name": "Linux 3.18.13", 
-                "version": "3.18.13"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 87:02:35:5e:6b:42:34:ca:71:e3:22:0a:e1:2a:bd:96 \n", 
@@ -82,9 +82,9 @@
             "features": [], 
             "id": "876", 
             "kernel": {
-                "id": "7", 
-                "name": "Linux 3.18.13", 
-                "version": "3.18.13"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 f9:48:1f:9f:23:16:ce:1f:9b:6a:ea:22:c8:96:62:4e \n", 
@@ -134,9 +134,9 @@
             "features": [], 
             "id": "922", 
             "kernel": {
-                "id": "3", 
-                "name": "Ubuntu 64-bit 3.13.0-35 (generic)", 
-                "version": "3.13.0-35-generic"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 d0:af:76:3a:3a:a3:e1:88:98:cc:68:43:c9:df:51:8c \n", 
@@ -172,9 +172,9 @@
             "features": [], 
             "id": "1134", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
@@ -210,18 +210,18 @@
             "features": [], 
             "id": "1155", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/Lg5I5dY0leuTSvwZqsUhtZlou41KXiLKOpEv6TidmkDi/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/Lg5I5dY0leuTSvwZqsUhtZlou41KXiLKOpEv6TidmkDi/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/Lg5I5dY0leuTSvwZqsUhtZlou41KXiLKOpEv6TidmkDi/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 9f:81:a8:e3:89:ba:66:08:f3:c0:41:bb:a9:ea:9a:6b\n", 
+                "ssh_ecdsa": "256 83:cf:ad:e4:c4:ed:99:fb:dc:c6:15:3d:ef:48:ca:b4\n", 
+                "ssh_rsa": "2048 47:22:b1:20:60:c4:78:63:a4:0c:09:02:3d:c4:d7:27\n"
             }, 
             "locked": false, 
             "memory": "4096", 
-            "name": "staging.measurements.ooni.io", 
+            "name": "amsapi.ooni.nu", 
             "networks": {
                 "v4": [
                     {
@@ -240,7 +240,7 @@
             }, 
             "snapshot_ids": [], 
             "status": "running", 
-            "vcpus": "1"
+            "vcpus": "2"
         }, 
         {
             "backup_ids": [], 
@@ -248,9 +248,9 @@
             "features": [], 
             "id": "1156", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
@@ -286,9 +286,9 @@
             "features": [], 
             "id": "1158", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
@@ -325,7 +325,7 @@
             "id": "1160", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -363,7 +363,7 @@
             "id": "1175", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -400,9 +400,9 @@
             "features": [], 
             "id": "1181", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
@@ -552,9 +552,9 @@
             "features": [], 
             "id": "1283", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 97:74:25:6d:bb:aa:1c:28:f1:27:d0:4f:ec:f0:f0:7a\n", 
@@ -590,9 +590,9 @@
             "features": [], 
             "id": "1307", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 89:04:1b:5e:94:e6:69:62:b1:61:4a:d6:5d:fc:d0:73\n", 
@@ -628,9 +628,9 @@
             "features": [], 
             "id": "1357", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 e5:b0:69:a8:a7:ac:3e:44:71:50:19:7b:c1:52:b9:da\n", 
@@ -666,9 +666,9 @@
             "features": [], 
             "id": "1455", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 bd:ba:2f:55:e0:ac:f1:a0:d7:69:a3:ab:5b:c2:91:8d\n", 
@@ -742,9 +742,9 @@
             "features": [], 
             "id": "1476", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 0f:40:6f:3e:71:50:d1:ca:0c:7d:a8:a0:fe:08:de:95\n", 
@@ -780,9 +780,9 @@
             "features": [], 
             "id": "1514", 
             "kernel": {
-                "id": "14", 
-                "name": "Debian 8.x (Jessie) Latest", 
-                "version": "jessie-latest"
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
             }, 
             "key_fingerprint": {
                 "ssh_dsa": "1024 07:a1:29:db:a8:0a:15:c5:b5:a8:83:76:87:f2:3a:b2\n", 
@@ -819,7 +819,7 @@
             "id": "1607", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -857,7 +857,7 @@
             "id": "1712", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -895,7 +895,7 @@
             "id": "1713", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -933,7 +933,7 @@
             "id": "1714", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -971,7 +971,7 @@
             "id": "1715", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1009,7 +1009,7 @@
             "id": "1716", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1047,7 +1047,7 @@
             "id": "1724", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1085,7 +1085,7 @@
             "id": "1795", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1123,7 +1123,7 @@
             "id": "1796", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1161,7 +1161,7 @@
             "id": "1798", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1199,7 +1199,7 @@
             "id": "1799", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1237,7 +1237,7 @@
             "id": "1800", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1275,7 +1275,7 @@
             "id": "1811", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1313,7 +1313,7 @@
             "id": "1847", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1346,22 +1346,22 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 150, 
+            "disk": 550, 
             "features": [], 
             "id": "1868", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 5c:bc:3a:3b:73:ce:68:b5:fb:09:76:c8:a2:2d:46:a5\n", 
-                "ssh_ecdsa": "256 4f:8d:85:25:0a:ff:4e:ef:c9:a0:f1:0a:c8:91:70:98\n", 
-                "ssh_rsa": "2048 4e:25:b5:e8:88:39:c2:90:16:21:1e:97:28:12:67:64\n"
+                "ssh_dsa": "1024 b8:90:ec:16:10:3c:e1:12:0f:9e:86:d6:f0:14:12:41\n", 
+                "ssh_ecdsa": "256 68:6b:1a:bd:6f:49:e6:b1:d4:4e:f9:bb:4c:5d:b8:96\n", 
+                "ssh_rsa": "2048 58:89:64:4d:c9:da:03:a1:5b:89:67:28:79:c5:24:ed\n"
             }, 
             "locked": false, 
             "memory": "16384", 
-            "name": "amsmetadb.infra.ooni.io", 
+            "name": "amsmetadb.ooni.nu", 
             "networks": {
                 "v4": [
                     {
@@ -1389,7 +1389,7 @@
             "id": "1869", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1427,7 +1427,7 @@
             "id": "1871", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1465,7 +1465,7 @@
             "id": "1873", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1503,7 +1503,7 @@
             "id": "1877", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1541,7 +1541,7 @@
             "id": "1878", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1579,7 +1579,7 @@
             "id": "1990", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1617,7 +1617,7 @@
             "id": "2065", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1655,7 +1655,7 @@
             "id": "2197", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {
@@ -1693,7 +1693,7 @@
             "id": "2231", 
             "kernel": {
                 "id": "13", 
-                "name": "Linux LTS latest", 
+                "name": "Linux Latest", 
                 "version": "latest"
             }, 
             "key_fingerprint": {

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+. <(docker inspect af-psql | jq -r '.[].Config.Env[] | select(startswith("POSTGRES_"))' | sed 's/^POSTGRES_/PG/')
+export PGUSER PGPASSWORD
+export PGHOSTADDR=`docker inspect af-psql | jq -r '.[].NetworkSettings.Networks.af.IPAddress'`
+
+dest=`mktemp -t textfile.XXXXXXXXXX`
+
+cat >"$dest" <<EOF
+# HELP airflow_7day_task_count The total number of TaskInstances within last 7 days in specific state.
+# TYPE airflow_7day_task_count gauge
+EOF
+  
+/sbin/start-stop-daemon --chuid daemon:daemon \
+  --exec /usr/bin/psql --start \
+  -- \
+  --no-align --tuples-only airflow >>"$dest" <<EOF
+WITH known_state (state) AS ( VALUES
+  ('None'), -- NB: JOIN on NULL is not possible
+  ('removed'),
+  ('scheduled'),
+  ('queued'),
+  ('running'),
+  ('success'),
+  ('shutdown'),
+  ('failed'),
+  ('up_for_retry'),
+  ('upstream_failed'),
+  ('skipped'))
+SELECT
+  'airflow_7day_task_count{state="' || state || '"} ' || COALESCE(cnt, 0)
+FROM
+  known_state
+LEFT JOIN (
+  SELECT COALESCE(state, 'None') as state, COUNT(*) AS cnt
+  FROM task_instance
+  WHERE execution_date >= NOW() - INTERVAL '7 DAYS'
+  GROUP BY state
+) t1 USING (state)
+EOF
+
+cp "$dest" /run/nodeexp/airflow.prom
+chmod 444 /run/nodeexp/airflow.prom
+rm -f "$dest"

@@ -18,6 +18,10 @@
 
 - include: af-psql.yml
 
+- name: copy nodeexp_airflow check
+  copy: src=nodeexp_airflow dest=/etc/cron.hourly/nodeexp_airflow mode=0555 owner=root group=root mode=0555
+  notify: restart af-worker # because the _file_ is bind-monted, not a directory
+
 - name: shared airflow config templates
   file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750
 - name: check shared airflow passwd
@@ -76,6 +80,7 @@
   file: dest=/srv/etc/af-worker state=directory owner=root group=root mode=0700
 - template: dest=/srv/etc/af-worker/s3read.env src=af-worker-s3read.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/s3root.env src=af-worker-s3root.env owner=root group=root mode=0400
+- template: dest=/srv/etc/af-worker/s3_ceo_backup_creator.env src=af-worker-s3_ceo_backup_creator.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/hkgmetadb.env src=af-worker-hkgmetadb.env owner=root group=root mode=0400
 
 - name: mkdir af-worker-bin

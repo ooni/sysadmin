@@ -1,17 +1,33 @@
 ---
 - include: ansible-version.yml
 
-- hosts: [datacollector.infra.ooni.io, hkgmetadb.infra.ooni.io]
+- hosts: [datacollector.infra.ooni.io, hkgmetadb.infra.ooni.io, amsmetadb.ooni.nu]
   roles:
     - docker_py
 
-- hosts: hkgmetadb.infra.ooni.io
+- hosts: [hkgmetadb.infra.ooni.io, amsmetadb.ooni.nu]
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
   roles:
     - role: plpsql
       tags: plpsql
+
+- hosts: hkgmetadb.infra.ooni.io
+  gather_facts: false
+  tasks:
+  - name: ensure replication user exists
+    postgresql_user:
+      login_host: localhost
+      login_user: shovel
+      login_password: '{{ shovel_postgres_password }}'
+      db: metadb # otherwise connection fail
+      name: amsrepl
+      password: '{{ amsrepl_hkgmetadb_password }}'
+      encrypted: true
+      role_attr_flags: 'REPLICATION,LOGIN'
+      state: present
+    tags: plpsql
 
 - hosts: datacollector.infra.ooni.io
   gather_facts: false # already gathered

@@ -2,6 +2,18 @@
 groups:
 - name: Basic prometheus
   rules:
+  - alert: SPbNoonCannon
+    expr: (hour() == 8) and (minute() >= 55)
+    labels: {severity: keepalive_spb}
+    annotations:
+      summary: 'Noon cannon in St.Petersburg fires soon'
+
+  # node_timex_sync_status is not enabled right now as old NTP daemons do not update `timex`
+  - alert: NTPOutOfSync
+    expr: (node_scrape_collector_success{collector="ntp"} != 1) or (node_ntp_sanity != 1) # or (node_timex_sync_status != 1)
+    for: 1h
+    labels: {severity: info}
+
   # including http scraping failure
   - alert: InstanceDown
     expr: up != 1
@@ -17,7 +29,7 @@ groups:
 
   # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
   - alert: DiskWillFillInAWeek
-    expr: (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0
+    expr: 8 * node_filesystem_avail - 7 * (node_filesystem_avail offset 1d) < 0 # x75 speedup of (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0
     for: 1h
     annotations:
       summary: 'In a week {{ $labels.instance }} becomes /dev/full'
@@ -47,7 +59,7 @@ groups:
 
   # all the textfile are updated at least hourly
   - alert: TextfileJam
-    expr: (node_textfile_mtime - ignoring(file) node_time) / -3600 > 2.0
+    expr: (node_textfile_mtime - ON(instance,job) GROUP_LEFT() node_time) / -3600 > 2
     annotations:
       summary: 'Stale `textfile` at {{ $labels.instance }}'
       description: '`{{ $labels.file }}` is {{ printf "%.0f" $value }}h old.'

@@ -1,10 +1,13 @@
 $ORIGIN ooni.nu
 $TTL 1800
 @		URL	https://ooni.torproject.org
+amsapi	1799	A	37.218.242.231
+amsmetadb	1799	A	37.218.242.175
 bouncer.infra		A	62.217.125.6
 censorshipwiki		URL301	https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki
 deb		A	81.7.15.106
 dnstunnel		NS	ooni.nu.
+hkgapi	1799	A	37.218.240.100
 mirror1.reports		A	213.138.109.232
 www		URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 09452b67b6a03c7d56706f279c097dca9b67025c410f586d33a262d0ffe7df04
+; generated from ooni.nu.xml with SHA256 ecfd4f16970e96b1e83b6435454ca54f8af27419afd3f8927e7ee1ca47fe2dd8

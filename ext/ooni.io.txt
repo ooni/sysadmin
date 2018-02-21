@@ -19,7 +19,7 @@ a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
 analytics		A	199.119.112.42
-api		A	37.218.240.100
+api		A	37.218.242.231
 b.collector	60	A	199.119.112.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
@@ -56,6 +56,7 @@ notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
 ooni-measurements-db.infra		A	37.218.242.232
 ooni-zoo.infra		A	37.218.240.138
+orchestrate	300	A	37.218.242.63
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
@@ -73,4 +74,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 e155d982525283ff5f3a5f0df60a11829257e30813ade902fbe9b040e5e032fe
+; generated from ooni.io.xml with SHA256 bc7bce5e7f30bd65bbb346f2a5343f52d9e5239c004085a550668fa82c7de84d
