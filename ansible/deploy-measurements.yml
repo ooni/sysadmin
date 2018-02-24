@@ -1,7 +1,7 @@
 ---
 - include: ansible-version.yml
 
-- hosts: [hkgapi.ooni.nu, amsapi.ooni.nu]
+- hosts: amsapi.ooni.nu
   roles:
     - role: docker_py
     - role: letsencrypt
@@ -27,7 +27,7 @@
       name: amsapi
       password: '{{ metadb_amsapi_password }}'
 
-- hosts: [hkgapi.ooni.nu, amsapi.ooni.nu]
+- hosts: amsapi.ooni.nu
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: '/root/venv/bin/python2.7'

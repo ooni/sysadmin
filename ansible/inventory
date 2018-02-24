@@ -32,7 +32,6 @@ registry.proteus.test.ooni.io
 db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 hkgmetadb.infra.ooni.io
-hkgapi.ooni.nu
 irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
@@ -93,7 +92,7 @@ amsmetadb.ooni.nu
 
 [psk_oomsm_beta]
 hkgmetadb.infra.ooni.io
-hkgapi.ooni.nu
+# FIXME: drop `oomsm-beta` user
 
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
@@ -122,11 +121,9 @@ hkgmetadb.infra.ooni.io
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
-hkgapi.ooni.nu
 
 [have_nginx]
 amsapi.ooni.nu
-hkgapi.ooni.nu
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
 irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
