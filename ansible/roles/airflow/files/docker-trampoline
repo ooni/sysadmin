@@ -48,6 +48,7 @@ case "$script" in
     docker run $docksafe --network none -v=$private/canned:$private/canned debian:jessie /bin/bash -c "mkdir -p $private/canned/${bucket} && chown $uidno $private/canned/${bucket}"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
+    volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=128m"
     set -- /usr/local/bin/canning.py --start "$isofrom" --end "$isotill" \
         --reports-raw-root $private/reports-raw \
         --canned-root $private/canned
@@ -159,4 +160,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180201-6c3f7cef "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180319-cd75d381 "$@"
