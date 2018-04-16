@@ -7,7 +7,7 @@
     mode: "go-w"
     recurse: yes
 
-- name: mkdir for config and data
+- name: mkdir for config, data and binary
   file:
     path: "{{ item }}"
     state: directory
@@ -17,11 +17,12 @@
   with_items:
     - "{{ orchestra_data_path }}"
     - "{{ orchestra_config_path }}"
+    - "{{ orchestra_path }}"
 
 - name: untar orchestra tarball
   unarchive:
     src: "{{ orchestra_tarball_url }}"
-    dest: "{{ orchestra_install_path }}"
+    dest: "{{ orchestra_path }}"
     mode: 0755
     owner: "{{ orchestra_user }}"
     group: "{{ orchestra_group }}"
@@ -31,19 +32,40 @@
   notify:
   - reload orchestra
   template:
-    src: ooni-registry.toml.j2
-    dest: "{{ orchestra_config_path }}/ooni-registry.toml"
+    src: ooni-orchestrate.toml.j2
+    dest: "{{ orchestra_config_path }}/ooni-orchestrate.toml"
+
+- name: Check if orchestra-events.service exists
+  stat: path=/etc/systemd/system/orchestra-events.service
+  register: orchestra_events
+
+- name: Stop orchestra-events service
+  systemd:
+    name: orchestra-events.service
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+  when: orchestra_events.stat.exists == True
+
+- name: Cleanup orchestra-events files
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "{{ orchestra_config_path }}/orchestra-events.toml"
+    - "/etc/systemd/system/orchestra-events.service"
+  when: orchestra_events.stat.exists == True
 
 - name: Install orchestra systemd service file
   notify:
   - restart orchestra
   template:
-    src: ooni-registry.service
-    dest: /etc/systemd/system/ooni-registry.service
+    src: ooni-orchestrate.service
+    dest: /etc/systemd/system/ooni-orchestrate.service
 
 - name: Enable and start orchestra service
   systemd:
-    name: ooni-registry.service
+    name: ooni-orchestrate.service
     state: started
     enabled: yes
     daemon_reload: yes

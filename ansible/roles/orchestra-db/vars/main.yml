@@ -1,5 +1,5 @@
 ---
-proteus_db_files:
+orchestra_db_files:
   - "accounts.1.sql"
   - "active_probes.1.sql"
   - "jobs.1.sql"

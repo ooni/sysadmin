@@ -1,7 +1,7 @@
-- name: restart proteus
-  systemd: name=proteus-notify.service state=restarted
-- name: reload proteus
-  systemd: name=proteus-notify.service state=reloaded
+- name: restart orchestra
+  systemd: name=orchestra-notify.service state=restarted
+- name: reload orchestra
+  systemd: name=orchestra-notify.service state=reloaded
 - name: reload gorush
   systemd: name=gorush.service state=reloaded
 - name: restart gorush

@@ -3,9 +3,9 @@ Description=GoRush Notify service
 After=network.target
 
 [Service]
-User={{ proteus_user }}
-Group={{ proteus_group }}
-ExecStart={{ gorush_path}} --config {{ proteus_config_path }}/gorush.yml
+User={{ orchestra_user }}
+Group={{ orchestra_group }}
+ExecStart={{ gorush_path}} --config {{ orchestra_config_path }}/gorush.yml
 Restart=always
 RestartSec=5
 StandardOutput=syslog

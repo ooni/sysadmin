@@ -1,2 +1,2 @@
-- name: restart proteus
-  systemd: name=proteus-frontend.service state=restarted
+- name: restart orchestra
+  systemd: name=orchestra-frontend.service state=restarted

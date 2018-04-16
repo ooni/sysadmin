@@ -26,16 +26,19 @@ analytics.ooni.io
 
 [hkg]
 datacollector.infra.ooni.io
+
+# XXX rename these to orchestra
 notify.proteus.test.ooni.io
 events.proteus.test.ooni.io
 registry.proteus.test.ooni.io
 db-1.proteus.test.ooni.io
 proteus.test.ooni.io
+notify.proteus.test.ooni.io
+
 hkgmetadb.infra.ooni.io
 irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
-notify.proteus.test.ooni.io
 jupyter.ooni.io
 
 [ams]
@@ -52,11 +55,14 @@ slack.openobservatory.org
 prometheus.infra.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 msg.ooni.io
+
+# XXX rename these to orchestra
 notify.proteus.ooni.io
 events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
 registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
+
 run.ooni.io
 amsmetadb.ooni.nu
 amsapi.ooni.nu
@@ -99,6 +105,8 @@ hkgmetadb.infra.ooni.io
 amsapi.ooni.nu
 
 [psk_orchestration]
+
+# XXX rename these to orchestra
 notify.proteus.test.ooni.io
 events.proteus.test.ooni.io
 registry.proteus.test.ooni.io
@@ -135,6 +143,7 @@ brie.darkk.net.ru                 # for `darkk` only
 no_passwd # no passwd => no nodeexp user ;-)
 
 [testing]
+# XXX rename these to orchestra
 notify.proteus.test.ooni.io
 events.proteus.test.ooni.io
 registry.proteus.test.ooni.io

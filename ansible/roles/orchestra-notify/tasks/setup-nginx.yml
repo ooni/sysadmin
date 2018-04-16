@@ -17,9 +17,9 @@
 
 - name: Create password file for nginx
   htpasswd:
-    path: /etc/nginx/proteus.htpasswd
-    name: "{{ proteus_notify_basic_auth_user }}"
-    password: "{{ proteus_notify_basic_auth_password }}"
+    path: /etc/nginx/orchestra.htpasswd
+    name: "{{ orchestra_notify_basic_auth_user }}"
+    password: "{{ orchestra_notify_basic_auth_password }}"
     owner: root
     group: www-data
     mode: 0640
@@ -27,8 +27,8 @@
 
 - name: Add nginx virtual host config
   template:
-    src: proteus_nginx.conf.j2
-    dest: /etc/nginx/sites-enabled/proteus
+    src: orchestra_nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/orchestra
     owner: root
     group: root
     mode: 0644

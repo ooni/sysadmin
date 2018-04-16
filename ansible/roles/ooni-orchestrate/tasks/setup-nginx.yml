@@ -16,8 +16,8 @@
 
 - name: Add nginx virtual host config
   template:
-    src: proteus_nginx.conf.j2
-    dest: /etc/nginx/sites-enabled/proteus
+    src: orchestra_nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/orchestra
     owner: root
     group: root
     mode: 0644

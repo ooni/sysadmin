@@ -1,0 +1,13 @@
+[Unit]
+Description=Proteus Registry service
+
+[Service]
+User={{ orchestra_user }}
+Group={{ orchestra_group }}
+ExecStart={{ orchestra_path }}/ooni-registry --config {{ orchestra_config_path }}/ooni-registry.toml start
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

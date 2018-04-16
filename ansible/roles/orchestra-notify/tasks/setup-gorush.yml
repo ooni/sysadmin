@@ -1,7 +1,7 @@
 - name: download gorush exe
   get_url:
     url: "{{ gorush_url }}"
-    dest: "{{ proteus_install_path }}"
+    dest: "{{ orchestra_install_path }}"
     mode: 0755
 
 - name: Configure gorush
@@ -9,14 +9,14 @@
   - reload gorush
   template:
     src: gorush.yml.j2
-    dest: "{{ proteus_config_path }}/gorush.yml"
+    dest: "{{ orchestra_config_path }}/gorush.yml"
 
 - name: Write Proteus APN key
   notify:
   - reload gorush
   copy:
-    content: "{{ proteus_apn_key_content }}"
-    dest: "{{ proteus_config_path }}/apn-key.pem"
+    content: "{{ orchestra_apn_key_content }}"
+    dest: "{{ orchestra_config_path }}/apn-key.pem"
 
 - name: Install gorush systemd service file
   notify:

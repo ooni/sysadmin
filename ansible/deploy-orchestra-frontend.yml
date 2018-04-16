@@ -1,24 +1,24 @@
 ---
 - hosts: proteus.test.ooni.io
   vars:
-    proteus_frontend_https_port: 443
-    proteus_orchestrate_url: "https://orchestrate.test.ooni.io"
-    proteus_registry_url: "https://registry.proteus.test.ooni.io"
+    orchestra_frontend_https_port: 443
+    orchestra_orchestrate_url: "https://proteus.test.ooni.io"
+    orchestra_registry_url: "https://registry.proteus.test.ooni.io"
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:
     - letsencrypt
     - nodejs
-    - proteus-frontend
+    - orchestra-frontend
 
 - hosts: proteus.ooni.io
   vars:
-    proteus_frontend_https_port: 443
-    proteus_orchestrate_url: "https://orchestrate.ooni.io"
-    proteus_registry_url: "https://registry.proteus.ooni.io"
+    orchestra_frontend_https_port: 443
+    orchestra_orchestrate_url: "https://proteus.ooni.io"
+    orchestra_registry_url: "https://registry.proteus.ooni.io"
     letsencrypt_nginx: yes
     letsencrypt_domains: "{{ inventory_hostname }}"
   roles:
     - letsencrypt
     - nodejs
-    - proteus-frontend
+    - orchestra-frontend
