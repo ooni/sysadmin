@@ -16,6 +16,7 @@
     - tcpdump
     - curl
     - mtr
+    - rsync
 
 - include: sshd.yml
 - include: ping.yml

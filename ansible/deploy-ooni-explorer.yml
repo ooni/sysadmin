@@ -16,4 +16,5 @@
     explorer_domain: explorer.ooni.io
   roles:
     - role: ooni-explorer
+      tags: explorer
 ...

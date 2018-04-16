@@ -275,6 +275,24 @@ This will fetch updates to the DNS zone.
 
 `inventory_hostname` MUST NOT be renamed.
 
+# PostgreSQL replica bootstrap
+
+[`pg_basebackup`](https://www.postgresql.org/docs/current/static/app-pgbasebackup.html)
+is nice, but does not support network traffic compression out of box and has no
+obvious way to resume interrupted backup. `rsync` solves that issue, but it
+needs either WAL archiving (to external storage) to be configured or
+`wal_keep_segments` to be non-zero, because otherwise WAL logs are rotated ASAP
+(`min_wal_size` and `max_wal_size` do not set amount of WAL log available to
+reader, these options set amount of disk space allocated to writer!).
+Also [replication slot](https://www.postgresql.org/docs/current/static/functions-admin.html#FUNCTIONS-REPLICATION)
+may reserve WAL on creation, but beware, it postpones WAL reservation till replica connection by default.
+
+[`pg_start_backup()`](https://www.postgresql.org/docs/current/static/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP)
++ `rsync -az --exclude pg_replslot --exclude postmaster.pid --exclude postmaster.opts` is a way to go.
+And, obviously, don't exclude `pg_wal` (aka `pg_xlog`) if neither WAL archiving nor replication slot is not set up.
+
+And don't forget to revoke `authorized_keys` if SSH was used for `rsync`!
+
 # Updating firewall rules
 
 If you need to update the firewalling rules, because you added a new host to

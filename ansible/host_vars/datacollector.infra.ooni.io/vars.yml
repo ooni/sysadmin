@@ -18,6 +18,10 @@ s3read_secret_access_key: "{{ vault_s3read_secret_access_key }}"
 s3root_access_key_id: "{{ vault_s3root_access_key_id }}"
 s3root_secret_access_key: "{{ vault_s3root_secret_access_key }}"
 
+# User: pipeline-backup-creator, policy: RawBackupCreator, AWS: OONI CEO
+s3_ceo_backup_creator_key_id: "AKIAIYIJHJXRPAXPEVLQ"
+s3_ceo_backup_creator_access_key: '{{ vault_s3_ceo_backup_creator_access_key }}'
+
 # User for Amazon Simple Email Service.
 # NB: airflow uses python `smtplib` from python2.7 that does not pass
 # `server_hostname` to `wrap_socket` till python3.4 and, probably, does no

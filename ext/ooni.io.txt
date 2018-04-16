@@ -19,7 +19,7 @@ a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
 analytics		A	199.119.112.42
-api		A	37.218.240.100
+api		A	37.218.242.231
 b.collector	60	A	199.119.112.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
@@ -54,8 +54,10 @@ msg		A	37.218.242.179
 munin		A	199.119.112.171
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
+ooni-explorer-next.test		A	103.104.244.44
 ooni-measurements-db.infra		A	37.218.242.232
 ooni-zoo.infra		A	37.218.240.138
+orchestrate	300	A	37.218.242.63
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
@@ -63,6 +65,7 @@ registry.proteus		A	37.218.242.65
 registry.proteus.test		A	37.218.240.148
 run		A	37.218.242.30
 shwdc		A	199.119.112.89
+slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
 stage		A	37.218.240.139
@@ -73,4 +76,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 e155d982525283ff5f3a5f0df60a11829257e30813ade902fbe9b040e5e032fe
+; generated from ooni.io.xml with SHA256 edadd1bdf4f27495873bbc3b9426dea0ff011afd63d380bf3d2151a195a8bc12

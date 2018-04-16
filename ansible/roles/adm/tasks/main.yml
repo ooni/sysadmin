@@ -39,3 +39,16 @@
 # FIXME: eventually /root/.ssh/authorized_keys will be enforced as well
 - name: root .ssh/authorized_keys2
   template: src=authorized_keys_root dest=/root/.ssh/authorized_keys2 owner=root group=root mode=0400
+
+- name: require gid=0 for su # to prevent any process doing `su` while knowing The Password
+  lineinfile:
+    path: /etc/pam.d/su
+    line: "auth required pam_wheel.so # ansible-managed in ooni-sysadmin.git"
+    insertafter: pam_wheel.so
+
+- name: set root password # to be able to recover via TTY
+  user:
+    name: root
+    comment: "OONI Root {{ root_password_mtime }}"
+    password: "{{ root_password_digest }}"
+...

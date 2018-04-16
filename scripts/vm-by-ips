@@ -1,0 +1,4 @@
+#!/bin/bash
+for h in "$@"; do
+    jq -c ".droplets[] | select(.networks.v4[].ip_address == \"$h\") | {v4: .networks.v4[].ip_address, name: .name, dc: .region.name}" < $(git rev-parse --show-toplevel)/ext/gh-droplets.json
+done | sed 's/^/- [ ] `/; s/$/`/' | sort

@@ -9,10 +9,20 @@
   - pg_hba.conf
   - postgresql.conf
 
+- name: place recovery.conf to PGDATA
+  template: src=recovery.conf dest=/srv/pl-psql/recovery.conf owner=plpsql group=plpsql mode=0444
+  notify: restart pl-psql
+  when: inventory_hostname != 'hkgmetadb.infra.ooni.io'
+
+- name: drop recovery.conf from PGDATA
+  file: name=/srv/pl-psql/recovery.conf state=absent
+  notify: restart pl-psql
+  when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
+
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
-    image: postgres:9.6.5
+    image: postgres:9.6.6
     name: pl-psql
     hostname: pl-psql
     network_mode: 'host'

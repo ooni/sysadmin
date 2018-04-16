@@ -1,0 +1,3 @@
+---
+metadb_amsapi_password: "{{ vault_metadb_amsapi_password }}"
+...

@@ -32,7 +32,6 @@ registry.proteus.test.ooni.io
 db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 hkgmetadb.infra.ooni.io
-api.ooni.io
 irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
@@ -51,7 +50,6 @@ ooni-measurements-db.infra.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
-staging.measurements.ooni.io
 demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
 msg.ooni.io
 notify.proteus.ooni.io
@@ -60,6 +58,8 @@ registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 run.ooni.io
+amsmetadb.ooni.nu
+amsapi.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -81,13 +81,22 @@ brie.darkk.net.ru # this VM is usually not listed as OONI VM, it's independent i
 ########################################################################
 # PSK (pre-shared key) tags
 
+[psk_amsrepl]
+hkgmetadb.infra.ooni.io
+amsmetadb.ooni.nu
+
 [psk_hkgmetadb]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
+amsmetadb.ooni.nu
 
 [psk_oomsm_beta]
 hkgmetadb.infra.ooni.io
-api.ooni.io
+# FIXME: drop `oomsm-beta` user
+
+[psk_metadb_amsapi]
+hkgmetadb.infra.ooni.io
+amsapi.ooni.nu
 
 [psk_orchestration]
 notify.proteus.test.ooni.io
@@ -111,7 +120,10 @@ hkgmetadb.infra.ooni.io
 [have_fw]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
-api.ooni.io
+amsmetadb.ooni.nu
+
+[have_nginx]
+amsapi.ooni.nu
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
 irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
