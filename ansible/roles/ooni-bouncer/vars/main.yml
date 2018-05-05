@@ -2,5 +2,5 @@
 bouncer_ipv4: "172.25.232.254"
 bouncer_port: 8888
 
-bouncer_tag: '20180405-1'
+bouncer_tag: '20180504-1'
 bouncer_data_dir: "/data/bouncer"

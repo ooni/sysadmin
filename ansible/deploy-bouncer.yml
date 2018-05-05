@@ -12,6 +12,8 @@
 
 - hosts: hkgbouncer.ooni.nu
   gather_facts: false # no useful facts there :)
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: ooni-bouncer
       bouncer_domain: hkgbouncer.ooni.nu
