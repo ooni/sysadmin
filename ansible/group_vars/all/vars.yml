@@ -55,6 +55,7 @@ passwd:
 
   ooni_run: {login: oonirun, id: 7000, comment: OONI Run user}
 
+  bouncer: {login: bouncer, id: 8000, comment: OONI Bouncer user}
   # people have id >= 10000
   agrabeli:
     login: agrabeli

@@ -1,0 +1,53 @@
+---
+- name: bouncer.ooni.io nginx config
+  template: src=ngx-bouncer dest=/etc/nginx/sites-enabled/oomsm-web
+  notify: reload nginx
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.bouncer.id }}"
+    group: "{{ passwd.bouncer.id }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ bouncer_data_dir }}"
+    - "{{ bouncer_data_dir }}/tor"
+    - "{{ bouncer_data_dir }}/logs"
+    - "{{ bouncer_data_dir }}/archive"
+    - "{{ bouncer_data_dir }}/raw_reports"
+    # This is legacy garbage
+    - "{{ bouncer_data_dir }}/decks"
+    - "{{ bouncer_data_dir }}/inputs"
+
+- name: Configure the bouncer file
+  template:
+    src: bouncer.yaml.j2
+    dest: "{{ bouncer_data_dir }}/bouncer.yaml"
+
+- name: Configure the bouncer oonibackend.conf
+  template:
+    src: oonibackend.conf.j2
+    dest: "{{ bouncer_data_dir }}/oonibackend.conf"
+
+- name: docker network for measurements
+  docker_network:
+    name: bouncer
+    driver_options:
+      com.docker.network.bridge.name: brbouncer
+    ipam_options:
+      subnet: 172.25.232.0/24
+      gateway: 172.25.232.1
+
+- name: ooni-bouncer webservice
+  docker_container:
+    image: openobservatory/bouncer:{{ bouncer_tag }}
+    name: ooni-bouncer
+    hostname: ooni-bouncer
+    networks: [{name: bouncer, ipv4_address: '{{ bouncer_ipv4 }}'}]
+    purge_networks: true
+    volumes:
+    - "/data/bouncer:/data/bouncer"
+    command: python bin/oonib --config /data/bouncer/oonibackend.conf
+    user: "{{ passwd.bouncer.id }}:{{ passwd.bouncer.id }}"
+    restart_policy: unless-stopped
