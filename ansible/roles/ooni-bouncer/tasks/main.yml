@@ -30,22 +30,13 @@
     src: oonibackend.conf.j2
     dest: "{{ bouncer_data_dir }}/oonibackend.conf"
 
-- name: docker network for measurements
-  docker_network:
-    name: bouncer
-    driver_options:
-      com.docker.network.bridge.name: brbouncer
-    ipam_options:
-      subnet: 172.25.232.0/24
-      gateway: 172.25.232.1
-
 - name: ooni-bouncer webservice
   docker_container:
     image: openobservatory/bouncer:{{ bouncer_tag }}
     name: ooni-bouncer
     hostname: ooni-bouncer
-    networks: [{name: bouncer, ipv4_address: '{{ bouncer_ipv4 }}'}]
-    purge_networks: true
+    ports:
+    - "{{ bouncer_port }}:{{ bouncer_port }}"
     volumes:
     - "/data/bouncer:/data/bouncer"
     command: python bin/oonib --config /data/bouncer/oonibackend.conf
