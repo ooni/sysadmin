@@ -20,10 +20,8 @@ server {
     ssl_stapling_verify on;
     ssl_trusted_certificate /etc/letsencrypt/live/{{ bouncer_domain }}/chain.pem;
 
-    map $remote_addr $remote_addr_stripped {
-        ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
-        ~(?P<ip>[^:]+:[^:]+):       $ip::;
-        default                     0.0.0.0;
+    if ($remote_addr ~ (\d+).(\d+).(\d+).(\d+)) {
+      set $remote_addr_stripped $1.$2.$3.0;
     }
     log_format strip_ip '$remote_addr_stripped - $remote_user - [$time_local] '
        '"$request" $status $body_bytes_sent '
@@ -37,5 +35,11 @@ server {
 
     location / {
         proxy_pass http://127.0.0.1:{{ bouncer_port }};
+    }
+
+    location /.well-known/acme-challenge {
+        default_type "text/plain";
+        root /var/www/letsencrypt;
+        try_files $uri $uri/ =404;
     }
 }
