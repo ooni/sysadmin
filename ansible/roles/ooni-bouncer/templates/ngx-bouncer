@@ -20,10 +20,17 @@ server {
     ssl_stapling_verify on;
     ssl_trusted_certificate /etc/letsencrypt/live/{{ bouncer_domain }}/chain.pem;
 
-    # FIXME: nginx/1.4.6 knows nothing about ssl_session_tickets
+    map $remote_addr $remote_addr_stripped {
+        ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
+        ~(?P<ip>[^:]+:[^:]+):       $ip::;
+        default                     0.0.0.0;
+    }
+    log_format strip_ip '$remote_addr_stripped - $remote_user - [$time_local] '
+       '"$request" $status $body_bytes_sent '
+       '"$http_referer" "$http_user_agent"';
 
     server_name {{ bouncer_domain }};
-    access_log  /var/log/nginx/{{ bouncer_domain }}.access.log;
+    access_log  /var/log/nginx/{{ bouncer_domain }}.access.log strip_ip;
     error_log   /var/log/nginx/{{ bouncer_domain }}.error.log warn;
 
     proxy_read_timeout 30s;
