@@ -275,6 +275,12 @@ This will fetch updates to the DNS zone.
 
 `inventory_hostname` MUST NOT be renamed.
 
+When you create the new machine you should also run the `dom0-boostrap.yml` playbook like this:
+
+```
+./play dom0-bootstrap.yml -l HOSTNAME.ooni.nu
+```
+
 # PostgreSQL replica bootstrap
 
 [`pg_basebackup`](https://www.postgresql.org/docs/current/static/app-pgbasebackup.html)
