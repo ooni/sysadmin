@@ -52,6 +52,38 @@
     user: "{{ passwd.collector.id }}:{{ passwd.collector.id }}"
     restart_policy: unless-stopped
 
+- name: Setup the sync-user account
+  user:
+    name: sync-user
+    shell: /bin/bash
+    home: "/home/sync-user"
+
+- name: mkdir for sync-user
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.sync_user.id }}"
+    group: "{{ passwd.sync_user.id }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "/home/sync-user/bin"
+    - "/home/sync-user/.ssh"
+
+- name: Write sync-user bin/rrysnc
+  template:
+    owner: "{{ passwd.sync_user.id }}"
+    group: "{{ passwd.sync_user.id }}"
+    mode: "u+rwx"
+    src: "rrsync"
+    dest: "/home/sync-user/bin/rrsync"
+
+- name: Write sync-user .ssh/authorized_keys
+  template:
+    owner: "{{ passwd.sync_user.id }}"
+    group: "{{ passwd.sync_user.id }}"
+    src: "sync-user_authorized_keys.j2"
+    dest: "/home/sync-user/.ssh/authorized_keys"
+
 - cron:
     name: "run the daily tasks"
     minute: "30"
