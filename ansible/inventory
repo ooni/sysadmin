@@ -38,6 +38,8 @@ test-lists.openobservatory.org # This was used for testing out test-lists web in
 notify.proteus.test.ooni.io
 jupyter.ooni.io
 hkgbouncer.ooni.nu
+hkgcollectora.ooni.nu
+hkgwebconnectivitya.ooni.nu
 
 [ams]
 explorer.ooni.io
