@@ -15,7 +15,7 @@
     - "{{ collector_data_dir }}/bin"
     - "{{ collector_data_dir }}/tor"
     - "{{ collector_data_dir }}/logs"
-    - "{{ collector_data_dir}}/archive"
+    - "{{ collector_data_dir }}/archive"
     - "{{ collector_data_dir }}/raw_reports"
     # This is legacy garbage
     - "{{ collector_data_dir }}/decks"
@@ -83,6 +83,18 @@
     group: "{{ passwd.sync_user.id }}"
     src: "sync-user_authorized_keys.j2"
     dest: "/home/sync-user/.ssh/authorized_keys"
+
+- name: mkdir for sync-user data files
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.collector.id }}"
+    group: "{{ passwd.collector.id }}"
+    mode: "u=rwx,g=rx,o=rx"
+  with_items:
+    - "{{ collector_data_dir }}"
+    - "{{ collector_data_dir }}/renamed"
+    - "{{ collector_data_dir }}/errored"
 
 - cron:
     name: "run the daily tasks"
