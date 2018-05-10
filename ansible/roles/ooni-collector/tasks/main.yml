@@ -1,5 +1,5 @@
 ---
-- name: *.collector.ooni.io nginx config
+- name: collector nginx config
   template: src=ngx-collector dest=/etc/nginx/sites-enabled/ooni-collector
   notify: reload nginx
 

@@ -34,7 +34,7 @@ server {
     proxy_read_timeout 30s;
 
     location / {
-        proxy_pass http://127.0.0.1:{{ bouncer_port }};
+        proxy_pass http://127.0.0.1:{{ collector_port }};
     }
 
     location /.well-known/acme-challenge {
