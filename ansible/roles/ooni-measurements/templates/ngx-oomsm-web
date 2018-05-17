@@ -47,4 +47,10 @@ server {
         proxy_cache_background_update on;
     }
 {% endfor %}
+
+    location /.well-known/acme-challenge {
+        default_type "text/plain";
+        root /var/www/letsencrypt;
+        try_files $uri $uri/ =404;
+    }
 }
