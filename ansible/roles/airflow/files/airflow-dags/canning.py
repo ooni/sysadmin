@@ -37,7 +37,6 @@ BashOperator(pool='datacollector_disk_io', task_id='reports_tgz_s3_sync', bash_c
 BashOperator(pool='datacollector_disk_io', task_id='canned_s3_sync', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='autoclaving', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shovel_jump.sh', dag=dag)
-BashOperator(pool='datacollector_disk_io', task_id='reports_raw_s3_ls', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_cleanup', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_s3_ls', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='sanitised_check', bash_command='shovel_jump.sh', dag=dag)
@@ -58,7 +57,8 @@ dag.set_dependency('canning', 'autoclaving')
 
 dag.set_dependency('autoclaving', 'meta_pg')
 
-dag.set_dependency('reports_raw_s3_ls', 'reports_raw_cleanup')
+# reports_raw_cleanup is done when both tasks are finished and have same data
+# reports_raw_cleanup does not remove unknown files as a safeguard
 dag.set_dependency('canning', 'reports_raw_cleanup')
 dag.set_dependency('tar_reports_raw', 'reports_raw_cleanup')
 

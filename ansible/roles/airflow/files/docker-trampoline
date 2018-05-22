@@ -92,10 +92,10 @@ case "$script" in
     ;;
 
     reports_raw_cleanup)
-    volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:ro"
+    volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:rw"
-    set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-root "$private/canned" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-index "$private/canned/${bucket}/index.json.gz" --reports-tgz-index "$private/reports-tgz/${bucket}.index.json.gz"
     ;;
 
     sanitised_s3_ls)
@@ -160,4 +160,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180319-cd75d381 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180522-0b6cb2e7 "$@"
