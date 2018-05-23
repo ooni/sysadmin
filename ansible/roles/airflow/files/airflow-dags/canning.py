@@ -34,7 +34,11 @@ ReportsRawReadySensor(task_id='reports_raw_sensor', poke_interval=5*60, timeout=
 BashOperator(pool='datacollector_disk_io', task_id='canning', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='tar_reports_raw', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_tgz_s3_sync', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='reports_tgz_s3_ls', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='reports_tgz_cleanup', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='canned_s3_sync', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='canned_s3_ls', bash_command='shovel_jump.sh', dag=dag)
+BashOperator(pool='datacollector_disk_io', task_id='canned_cleanup', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='autoclaving', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_cleanup', bash_command='shovel_jump.sh', dag=dag)
@@ -51,7 +55,21 @@ dag.set_dependency('canning', 'tar_reports_raw')
 
 dag.set_dependency('tar_reports_raw', 'reports_tgz_s3_sync')
 
+dag.set_dependency('reports_tgz_s3_sync', 'reports_tgz_s3_ls')
+
+# reports_raw_cleanup -> reports_tgz_cleanup is NOT a dependency as reports_raw_cleanup uses only index file
+dag.set_dependency('reports_tgz_s3_sync', 'reports_tgz_cleanup') # can't cleanup unless synced
+dag.set_dependency('reports_tgz_s3_ls', 'reports_tgz_cleanup') # data dependency
+
 dag.set_dependency('canning', 'canned_s3_sync')
+
+dag.set_dependency('canned_s3_sync', 'canned_s3_ls')
+
+# reports_raw_cleanup -> canned_cleanup is NOT a dependency as reports_raw_cleanup uses only index file
+dag.set_dependency('autoclaving', 'canned_cleanup') # uses `canned` data
+dag.set_dependency('tar_reports_raw', 'canned_cleanup') # may use `canned` data
+dag.set_dependency('canned_s3_sync', 'canned_cleanup') # can't cleanup unless synced
+dag.set_dependency('canned_s3_ls', 'canned_cleanup') # data dependency
 
 dag.set_dependency('canning', 'autoclaving')
 
