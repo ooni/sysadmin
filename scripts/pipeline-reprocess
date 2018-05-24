@@ -10,8 +10,8 @@ MAKEFLAGS = --jobs 5 --load-average 8 --keep-going # datacollector.infra.ooni.io
 
 # all flag files are created in separate directory
 # To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
-PRJ = can_clean
-AF_TASK = canned_cleanup
+PRJ = tgz_s3ls
+AF_TASK = reports_tgz_s3_ls
 AF_ARGS = # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `metapg`.
 -include $(PRJ)/af-deps
 
@@ -35,6 +35,7 @@ $(PRJ)/af-deps : $(PRJ)/.keep
 	SELECT 'reprocess : ' || :'prj' || '/' || execution_date::date || '.tiflag'
 	FROM task_instance
 	WHERE dag_id = 'hist_canning' AND task_id = 'canning'
+	      AND execution_date::date >= '2017-12-08'
 	EOF
 	mv $@.tmp $@
 
