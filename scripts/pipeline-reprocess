@@ -35,7 +35,6 @@ $(PRJ)/af-deps : $(PRJ)/.keep
 	SELECT 'reprocess : ' || :'prj' || '/' || execution_date::date || '.tiflag'
 	FROM task_instance
 	WHERE dag_id = 'hist_canning' AND task_id = 'canning'
-	      AND execution_date::date >= '2017-12-08'
 	EOF
 	mv $@.tmp $@
 
