@@ -10,8 +10,8 @@ MAKEFLAGS = --jobs 5 --load-average 8 --keep-going # datacollector.infra.ooni.io
 
 # all flag files are created in separate directory
 # To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
-PRJ = tgz_s3ls
-AF_TASK = reports_tgz_s3_ls
+PRJ = tgz_cleanup
+AF_TASK = reports_tgz_cleanup
 AF_ARGS = # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `metapg`.
 -include $(PRJ)/af-deps
 
