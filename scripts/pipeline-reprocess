@@ -9,8 +9,9 @@ MAKEFLAGS = --jobs 5 --load-average 8 --keep-going # datacollector.infra.ooni.io
 .PHONY: all clean reprocess
 
 # all flag files are created in separate directory
-PRJ = can_s3ls
-AF_TASK = canned_s3_ls
+# To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
+PRJ = can_clean
+AF_TASK = canned_cleanup
 AF_ARGS = # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `metapg`.
 -include $(PRJ)/af-deps
 
