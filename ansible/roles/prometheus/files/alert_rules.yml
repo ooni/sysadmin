@@ -36,8 +36,9 @@ groups:
       # NB: it looks strange, but having labels for EVERY series improves query latency
       description: >
         In {{ (printf "node_filesystem_avail{instance='%s',mountpoint='%s'} / ((node_filesystem_avail{instance='%s',mountpoint='%s'} offset 1d) - node_filesystem_avail{instance='%s',mountpoint='%s'}) * 86400" $labels.instance $labels.mountpoint $labels.instance $labels.mountpoint $labels.instance $labels.mountpoint) | query | first | value | humanizeDuration }}
-        {{ $labels.mountpoint }} `df` will be full,
-        ~ {{ $value | humanize1024 }}B in a week.'
+        `{{ $labels.mountpoint }}` will be full.
+        {{ (printf "node_filesystem_avail{instance='%s',mountpoint='%s'}" $labels.instance $labels.mountpoint) | query | first | value | humanize1024 }}B available,
+        {{ (printf "(node_filesystem_avail{instance='%s',mountpoint='%s'} offset 1d) - node_filesystem_avail{instance='%s',mountpoint='%s'}" $labels.instance $labels.mountpoint $labels.instance $labels.mountpoint) | query | first | value | humanize1024 }}B/day growth.
 
   # <10Gb and <20% available. Make some sense for huge storages and small ramdrives.
   - alert: DiskFull
