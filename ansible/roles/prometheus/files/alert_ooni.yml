@@ -18,6 +18,12 @@ groups:
     annotations:
       summary: 'disk is silent for {{ $value | humanizeDuration }}'
 
+  - alert: MirrorDiverged
+    expr: max(ooni_web_mtime) - min(ooni_web_mtime) != 0
+    annotations:
+      summary: 'Mirrors diverged by {{ $value | humanizeDuration }}'
+      description: 'Run `make update-site` if needed'
+
   - alert: AirflowFailed
     expr: airflow_7day_task_count{state="failed"} > 0
     annotations:
