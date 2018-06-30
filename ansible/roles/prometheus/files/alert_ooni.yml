@@ -20,6 +20,7 @@ groups:
 
   - alert: MirrorDiverged
     expr: max(ooni_web_mtime) - min(ooni_web_mtime) != 0
+    for: 6m # job_name=ooni-web scrape_interval is 5m
     annotations:
       summary: 'Mirrors diverged by {{ $value | humanizeDuration }}'
       description: 'Run `make update-site` if needed'
