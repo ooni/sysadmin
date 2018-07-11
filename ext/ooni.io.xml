@@ -70,6 +70,7 @@
       <host HostId="118528311" Name="test-qemu.infra" Type="A" Address="199.119.112.12" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117238711" Name="wiki" Type="A" Address="37.218.240.93" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="136341498" Name="@" Type="CNAME" Address="ooni.netlify.com." MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="140187497" Name="collector-sandbox" Type="CNAME" Address="ec2-52-15-125-134.us-east-2.compute.amazonaws.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="137316375" Name="design" Type="CNAME" Address="ooni-design.netlify.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="131506266" Name="slides" Type="CNAME" Address="ooni-slides.netlify.com." MXPref="10" TTL="1200" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965209" Name="www" Type="CNAME" Address="ooni.netlify.com." MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
