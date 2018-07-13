@@ -1,6 +1,10 @@
 ---
 adm_logins: [ weasel, art, darkk, sbs, superq ]
 
+# That's the password that other nodes do NOT store in config files,
+# other nodes store SSHA() of it that is in group_vars/all
+prometheus_scraper_password: '{{ vault_prometheus_scraper_password }}'
+
 prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
 alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
 alertmanager_smtp_username: '{{ vault_alertmanager_smtp_username }}'
@@ -67,3 +71,16 @@ blackbox_jobs:
     module: "http_2xx"
     targets:
       - "https://get.ooni.torproject.org"
+
+  - name: "orchestrate"
+    module: "ooni_orchestrate"
+    targets: [ "orchestrate.ooni.io:443" ]
+
+  - name: "registry"
+    module: "ooni_registry"
+    targets: [ "registry.proteus.ooni.io:443" ]
+
+  - name: "protheus"
+    module: "ooni_protheus"
+    targets: [ "protheus.ooni.io:443" ]
+...

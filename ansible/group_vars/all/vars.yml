@@ -14,6 +14,9 @@ weasel_keys: "{{ vault_weasel_keys }}"
 root_password_digest: '{{ vault_root_password_digest }}'
 root_password_mtime: '{{ vault_root_password_mtime }}'
 
+# One can generate SSHA with ../scripts/ngx-mkpasswd
+prometheus_scraper_ssha: '{{ vault_prometheus_scraper_ssha }}' # xref: prometheus_scraper_password
+
 passwd:
   # services
   # - uid [2000, 10000), grouped together by "service"

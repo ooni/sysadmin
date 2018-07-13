@@ -1,3 +1,4 @@
+---
 modules:
   http_2xx:
     prober: http
@@ -86,3 +87,22 @@ modules:
       method: GET
       fail_if_not_matches_regexp:
         - ".+?\"headers_dict\".+?"
+
+  ooni_orchestrate:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "Hello, this is proteus-events"
+
+  ooni_registry:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "Hello, this is ooni-registry"
+
+  ooni_protheus:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "OONI Proteus" # the admin JS-based frotnend
+...
