@@ -12,7 +12,7 @@ core:
   key_path: ""
   pid:
     enabled: false
-    path: "/srv/proteus/data/gorush.pid"
+    path: "/srv/orchestra/data/gorush.pid"
     override: true
   auto_tls:
     enabled: false # Automatically install TLS certificates from Let's Encrypt.
@@ -39,9 +39,9 @@ ios:
 
 log:
   format: "string" # string or json
-  access_log: "/srv/proteus/data/gorush-access.log" # stdout: output to console, or define log path like "log/access_log"
+  access_log: "/srv/orchestra/data/gorush-access.log" # stdout: output to console, or define log path like "log/access_log"
   access_level: "{{ orchestra_log_level }}"
-  error_log: "/srv/proteus/data/gorush-error.log" # stderr: output to console, or define log path like "log/error_log"
+  error_log: "/srv/orchestra/data/gorush-error.log" # stderr: output to console, or define log path like "log/error_log"
   error_level: "error"
   hide_token: false
 
@@ -52,9 +52,9 @@ stat:
     password: ""
     db: 0
   boltdb:
-    path: "/srv/proteus/data/gorush-bolt.db"
+    path: "/srv/orchestra/data/gorush-bolt.db"
     bucket: "gorush"
   buntdb:
     path: "bunt.db"
   leveldb:
-    path: "/srv/proteus/data/gorush-level.db"
+    path: "/srv/orchestra/data/gorush-level.db"
