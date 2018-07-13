@@ -1,0 +1,7 @@
+[tor]
+name=Tor repo
+enabled=1
+baseurl=https://deb.torproject.org/torproject.org/rpm/el/7/\$basearch/
+gpgcheck=1
+gpgkey=https://deb.torproject.org/torproject.org/rpm/RPM-GPG-KEY-torproject.org.asc
+repo_gpgcheck=1
