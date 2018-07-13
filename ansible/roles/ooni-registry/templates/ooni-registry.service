@@ -1,5 +1,5 @@
 [Unit]
-Description=Proteus Registry service
+Description=OONI Registry service
 
 [Service]
 User={{ orchestra_user }}

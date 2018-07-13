@@ -3,9 +3,9 @@ go_arch: amd64
 orchestra_user:   prtnotif
 orchestra_group:  prtnotif
 
-orchestra_install_path: /srv/proteus
-orchestra_data_path: /srv/proteus/data
-orchestra_config_path: /srv/proteus/config
+orchestra_install_path: /srv/orchestra
+orchestra_data_path: /srv/orchestra/data
+orchestra_config_path: /srv/orchestra/config
 
 orchestra_environment: "production"
 orchestra_log_level: "info"

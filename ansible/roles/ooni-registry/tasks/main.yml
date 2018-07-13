@@ -17,11 +17,12 @@
   with_items:
     - "{{ orchestra_data_path }}"
     - "{{ orchestra_config_path }}"
+    - "{{ orchestra_path }}"
 
 - name: untar orchestra tarball
   unarchive:
     src: "{{ orchestra_tarball_url }}"
-    dest: "{{ orchestra_install_path }}"
+    dest: "{{ orchestra_path }}"
     mode: 0755
     owner: "{{ orchestra_user }}"
     group: "{{ orchestra_group }}"

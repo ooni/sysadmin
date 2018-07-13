@@ -18,8 +18,5 @@
     - "{{ orchestra_data_path }}"
     - "{{ orchestra_config_path }}"
 
-- include: setup-orchestra-notify.yml
-  when: notification_backend == 'orchestra-notify'
 - include: setup-gorush.yml
-  when: notification_backend == 'gorush'
 - include: setup-nginx.yml
