@@ -40,12 +40,14 @@
     mode: "go-w"
     recurse: yes
 
-- name: Configure Proteus
+- name: Configure Orchestra frontend
   notify:
   - restart orchestra
   template:
     src: orchestra-frontend.env.j2
     dest: "{{ orchestra_install_path }}/orchestra-frontend.env"
+
+- include: cleanup-legacy.yml
 
 - name: Install orchestra systemd service file
   notify:

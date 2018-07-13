@@ -18,5 +18,6 @@
     - "{{ orchestra_data_path }}"
     - "{{ orchestra_config_path }}"
 
+- include: cleanup-legacy.yml
 - include: setup-gorush.yml
 - include: setup-nginx.yml
