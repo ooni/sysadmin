@@ -12,6 +12,7 @@
       <host HostId="24786734" Name="deb" Type="A" Address="81.7.15.106" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="137748127" Name="hkgbouncer" Type="A" Address="103.104.244.87" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="138171349" Name="hkgcollectora" Type="A" Address="103.104.244.110" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="143858219" Name="hkgjump" Type="A" Address="103.104.244.19" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="138172305" Name="hkgwebconnectivitya" Type="A" Address="103.104.244.111" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="39585756" Name="mirror1.reports" Type="A" Address="213.138.109.232" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13643210" Name="dnstunnel" Type="NS" Address="ooni.nu." MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

@@ -10,7 +10,8 @@ deb		A	81.7.15.106
 dnstunnel		NS	ooni.nu.
 hkgbouncer	1799	A	103.104.244.87
 hkgcollectora	1799	A	103.104.244.110
+hkgjump	1799	A	103.104.244.19
 hkgwebconnectivitya	1799	A	103.104.244.111
 mirror1.reports		A	213.138.109.232
 www		URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 d6acaa5557d7cb19d13ac3b54fc163041da91ec63a645cea18d053bbc2360733
+; generated from ooni.nu.xml with SHA256 3f36656937d837e61545f02f65f97db774e4c31f653883aa68ad5750303dcec4
