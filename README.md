@@ -278,7 +278,7 @@ This will fetch updates to the DNS zone.
 When you create the new machine you should also run the `dom0-boostrap.yml` playbook like this:
 
 ```
-./play dom0-bootstrap.yml -l HOSTNAME.ooni.nu
+./play dom0-bootstrap.yml -l HOSTNAME.ooni.nu,HOSTNAME2.ooni.io
 ```
 
 # PostgreSQL replica bootstrap
