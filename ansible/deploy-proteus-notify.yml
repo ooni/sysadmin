@@ -8,7 +8,7 @@
     proteus_fcm_server_key: "{{ fcm_server_key_testing }}"
     proteus_apn_key_password: "{{ proteus_apn_key_password_testing }}"
     proteus_apn_key_content: "{{ proteus_apn_key_content_testing }}"
-    proteus_environment: "production"
+    proteus_environment: "testing" # This leads to the sandbox being used in place of the production for iOS only
     proteus_notify_basic_auth_password: "{{ proteus_notify_basic_auth_password_testing }}"
   roles:
     - letsencrypt
