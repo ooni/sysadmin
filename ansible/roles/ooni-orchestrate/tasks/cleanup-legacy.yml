@@ -38,4 +38,4 @@
   with_items:
     - "{{ orchestra_config_path }}/proteus-orchestrate.toml"
     - "/etc/systemd/system/proteus-orchestrate.service"
-  when: proteus_orchestrate.stat.exists == True
+    - "/etc/nginx/sites-enabled/proteus"

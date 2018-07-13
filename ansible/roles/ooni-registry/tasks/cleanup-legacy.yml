@@ -17,4 +17,4 @@
   with_items:
     - "{{ orchestra_config_path }}/proteus-registry.toml"
     - "/etc/systemd/system/proteus-registry.service"
-  when: proteus_registry.stat.exists == True
+    - "/etc/nginx/sites-enabled/proteus"
