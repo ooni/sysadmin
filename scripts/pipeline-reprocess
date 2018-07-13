@@ -9,8 +9,10 @@ MAKEFLAGS = --jobs 5 --load-average 8 --keep-going # datacollector.infra.ooni.io
 .PHONY: all clean reprocess
 
 # all flag files are created in separate directory
-PRJ = upcan
-AF_TASK = canned_s3_sync
+# To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
+PRJ = tgz_cleanup
+AF_TASK = reports_tgz_cleanup
+AF_ARGS = # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `metapg`.
 -include $(PRJ)/af-deps
 
 ifndef TMUX
@@ -58,7 +60,7 @@ $(PRJ)/%.tiflag: $(PRJ)/.keep
 	export PGHOSTADDR=`sudo docker inspect af-psql | jq -r '.[].NetworkSettings.Networks.af.IPAddress'`
 	start=`psql --dbname airflow --no-align --tuples-only -c 'select CURRENT_TIMESTAMP'`
 	# flock is here to avoid concurrent start
-	flock $(PRJ)/.keep sudo docker exec -i af-websrv airflow run --force hist_canning $(AF_TASK) '$*T00:00:00'
+	flock $(PRJ)/.keep sudo docker exec -i af-websrv airflow run $(AF_ARGS) hist_canning $(AF_TASK) '$*T00:00:00'
 	while [ `psql --dbname airflow --no-align --tuples-only "--set=start=$$start" '--set=ex=$*T00:00:00' <<EOF
 	SELECT COUNT(*) FROM task_instance
 	WHERE dag_id = 'hist_canning' AND task_id = '$(AF_TASK)' AND execution_date = :'ex' AND :'start' < end_date

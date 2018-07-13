@@ -48,6 +48,7 @@ case "$script" in
     docker run $docksafe --network none -v=$private/canned:$private/canned debian:jessie /bin/bash -c "mkdir -p $private/canned/${bucket} && chown $uidno $private/canned/${bucket}"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
+    volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=128m"
     set -- /usr/local/bin/canning.py --start "$isofrom" --end "$isotill" \
         --reports-raw-root $private/reports-raw \
         --canned-root $private/canned
@@ -91,10 +92,10 @@ case "$script" in
     ;;
 
     reports_raw_cleanup)
-    volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:ro"
+    volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:ro"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:rw"
-    set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-root "$private/canned" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-index "$private/canned/${bucket}/index.json.gz" --reports-tgz-index "$private/reports-tgz/${bucket}.index.json.gz"
     ;;
 
     sanitised_s3_ls)
@@ -126,11 +127,38 @@ case "$script" in
     set -- aws s3 sync --size-only "$private/reports-tgz/" s3://ooni-private/archives-raw/yaml/ --exclude '*' --include "${bucket}.tar.gz" --include "${bucket}.index.json.gz"
     ;;
 
+    reports_tgz_s3_ls)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env" # FIXME: downgrade to `list-only` token
+    volargs="${volargs} --volume=$private/reports-tgz-s3-ls:$private/reports-tgz-s3-ls:rw"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/archives-raw/yaml/$bucket" --s3-ls "$private/reports-tgz-s3-ls/${bucket}.json.gz"
+    ;;
+
+    reports_tgz_cleanup)
+    volargs="${volargs} --volume=$private/reports-tgz-s3-ls:$private/reports-tgz-s3-ls:ro"
+    volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:rw"
+    set -- /usr/local/bin/cleanup_uploaded.py --dir "$private/reports-tgz" --s3-ls "$private/reports-tgz-s3-ls/${bucket}.json.gz" --exclude "$private/reports-tgz/${bucket}.index.json.gz"
+    ;;
+
     canned_s3_sync)
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
     set -- aws s3 sync --size-only "$private/canned/${bucket}/" "s3://ooni-private/canned/${bucket}/"
+    ;;
+
+    canned_s3_ls)
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env" # FIXME: downgrade to `list-only` token
+    volargs="${volargs} --volume=$private/canned-s3-ls:$private/canned-s3-ls:rw"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/canned/$bucket" --s3-ls "$private/canned-s3-ls/${bucket}.json.gz"
+    ;;
+
+    canned_cleanup)
+    volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:rw"
+    docker run $docksafe $docknet $volargs debian:jessie chmod u+w "$private/canned/${bucket}" # it's marked as read-only when it's done
+    volargs="${volargs} --volume=$private/canned-s3-ls:$private/canned-s3-ls:ro"
+    set -- /usr/local/bin/cleanup_uploaded.py --dir "$private/canned/${bucket}" --s3-ls "$private/canned-s3-ls/${bucket}.json.gz" --exclude "$private/canned/${bucket}/index.json.gz"
     ;;
 
     autoclaved_tarlz4_s3_sync)
@@ -159,4 +187,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180201-6c3f7cef "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180523-a083c7d8 "$@"
