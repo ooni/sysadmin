@@ -35,26 +35,7 @@
     src: ooni-orchestrate.toml.j2
     dest: "{{ orchestra_config_path }}/ooni-orchestrate.toml"
 
-- name: Check if orchestra-events.service exists
-  stat: path=/etc/systemd/system/orchestra-events.service
-  register: orchestra_events
-
-- name: Stop orchestra-events service
-  systemd:
-    name: orchestra-events.service
-    state: stopped
-    enabled: no
-    daemon_reload: yes
-  when: orchestra_events.stat.exists == True
-
-- name: Cleanup orchestra-events files
-  file:
-    state: absent
-    path: "{{ item }}"
-  with_items:
-    - "{{ orchestra_config_path }}/orchestra-events.toml"
-    - "/etc/systemd/system/orchestra-events.service"
-  when: orchestra_events.stat.exists == True
+- include: cleanup-legacy.yml
 
 - name: Install orchestra systemd service file
   notify:

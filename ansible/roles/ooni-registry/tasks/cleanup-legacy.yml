@@ -1,0 +1,20 @@
+- name: Check if proteus-registry.service exists
+  stat: path=/etc/systemd/system/proteus-registry.service
+  register: proteus_registry
+
+- name: Stop proteus-registry service
+  systemd:
+    name: proteus-registry.service
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+  when: proteus_registry.stat.exists == True
+
+- name: Cleanup proteus-registry files
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "{{ orchestra_config_path }}/proteus-registry.toml"
+    - "/etc/systemd/system/proteus-registry.service"
+  when: proteus_registry.stat.exists == True

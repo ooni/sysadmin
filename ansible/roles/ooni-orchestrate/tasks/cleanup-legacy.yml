@@ -1,0 +1,41 @@
+- name: Check if proteus-events.service exists
+  stat: path=/etc/systemd/system/proteus-events.service
+  register: proteus_events
+
+- name: Stop proteus-events service
+  systemd:
+    name: proteus-events.service
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+  when: proteus_events.stat.exists == True
+
+- name: Cleanup proteus-events files
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "{{ orchestra_config_path }}/proteus-events.toml"
+    - "/etc/systemd/system/proteus-events.service"
+  when: proteus_events.stat.exists == True
+
+- name: Check if proteus-orchestrate.service exists
+  stat: path=/etc/systemd/system/proteus-orchestrate.service
+  register: proteus_orchestrate
+
+- name: Stop proteus-orchestra service
+  systemd:
+    name: proteus-orchestrate.service
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+  when: proteus_orchestrate.stat.exists == True
+
+- name: Cleanup proteus-orchestrate files
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "{{ orchestra_config_path }}/proteus-orchestrate.toml"
+    - "/etc/systemd/system/proteus-orchestrate.service"
+  when: proteus_orchestrate.stat.exists == True

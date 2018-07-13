@@ -34,6 +34,8 @@
     src: ooni-registry.toml.j2
     dest: "{{ orchestra_config_path }}/ooni-registry.toml"
 
+- include: cleanup-legacy.yml
+
 - name: Install orchestra systemd service file
   notify:
   - restart orchestra
