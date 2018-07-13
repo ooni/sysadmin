@@ -13,7 +13,7 @@
   file:
     name: /etc/nginx/sites-enabled/default
     state: absent
-  register: nginx
+  notify: restart nginx
 
 - name: Create password file for nginx
   htpasswd:
@@ -23,7 +23,14 @@
     owner: root
     group: www-data
     mode: 0640
-  register: nginx
+
+- name: Create password file for prometheus endpoint
+  copy:
+    dest: /etc/nginx/orchestra-notify-prometheus.htpasswd
+    owner: root
+    group: www-data
+    mode: 0640
+    content: "prometheus_scraper:{SSHA}{{ prometheus_scraper_ssha }}\n"
 
 - name: Add nginx virtual host config
   template:
@@ -32,10 +39,5 @@
     owner: root
     group: root
     mode: 0644
-  register: nginx
-
-- name: Restart nginx
-  service:
-    name: nginx
-    state: restarted
-  when: nginx.changed
+  notify: restart nginx
+...
