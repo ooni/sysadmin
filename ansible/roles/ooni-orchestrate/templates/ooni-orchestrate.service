@@ -4,7 +4,7 @@ Description=Proteus Orchestrate service
 [Service]
 User={{ orchestra_user }}
 Group={{ orchestra_group }}
-ExecStart={{ orchestra_path }}/orchestra-orchestrate --config {{ orchestra_config_path }}/orchestra-orchestrate.toml start
+ExecStart={{ orchestra_path }}/ooni-orchestrate --config {{ orchestra_config_path }}/ooni-orchestrate.toml start
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
