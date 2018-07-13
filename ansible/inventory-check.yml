@@ -16,7 +16,7 @@
       assert:
         that:
           - gh_ips | difference(inventory_ips) | length == 0
-        msg: "GH IPs missing from `inventory`! Check ../scripts/vm-by-ips {{ gh_ips | difference(inventory_ips) | sort | join(' ') }}"
+        msg: "GH IPs missing from `inventory`! Run ../scripts/vm-by-ips {{ gh_ips | difference(inventory_ips) | sort | join(' ') }}"
       run_once: true
 
     - name: mktemp
