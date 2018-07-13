@@ -2,7 +2,7 @@
     "droplets": [
         {
             "backup_ids": [], 
-            "disk": 2000, 
+            "disk": 6800, 
             "features": [], 
             "id": "786", 
             "kernel": {
@@ -1399,7 +1399,7 @@
             }, 
             "locked": false, 
             "memory": "1024", 
-            "name": "dataproxy.infra.ooni.io", 
+            "name": "amsdataproxy.ooni.nu", 
             "networks": {
                 "v4": [
                     {
@@ -1574,44 +1574,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 20, 
-            "features": [], 
-            "id": "2065", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 c1:2d:99:eb:a8:1d:ca:6a:55:27:7f:50:fa:fc:29:99\n", 
-                "ssh_ecdsa": "256 01:f5:4e:0e:48:8a:62:05:46:d3:e0:ea:b6:fe:02:38\n", 
-                "ssh_rsa": "2048 29:3e:b1:4b:6c:98:ab:eb:ba:de:a6:19:12:59:f6:93\n"
-            }, 
-            "locked": false, 
-            "memory": "8192", 
-            "name": "mk-build-machine-sbs", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254", 
-                        "ip_address": "37.218.240.189", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.240.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "4"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 100, 
             "features": [], 
             "id": "2197", 
@@ -1723,10 +1685,154 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "2426", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 a2:84:cc:3d:95:e1:2b:8a:ac:1c:45:f5:e1:97:35:3f\n", 
+                "ssh_ecdsa": "256 4d:1f:b4:ba:9c:06:13:da:7c:e7:10:01:71:09:09:40\n", 
+                "ssh_rsa": "2048 a6:94:d8:5a:e5:e3:18:5a:d6:6d:46:73:2f:61:7b:57\n"
+            }, 
+            "locked": false, 
+            "memory": "2048", 
+            "name": "hkgbouncer.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "103.104.244.254", 
+                        "ip_address": "103.104.244.87", 
+                        "netmask": "255.255.255.0", 
+                        "network": "103.104.244.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 100, 
+            "features": [], 
+            "id": "2438", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 5f:6b:f3:e2:4b:26:27:5f:0f:7a:8d:ab:be:f1:a1:f7\n", 
+                "ssh_ecdsa": "256 b3:18:bf:fb:ff:3e:f5:41:66:3f:92:66:20:30:cc:67\n", 
+                "ssh_rsa": "2048 a0:4a:5d:f1:21:ed:c9:d6:1f:97:0d:21:51:2d:db:29\n"
+            }, 
+            "locked": false, 
+            "memory": "2048", 
+            "name": "hkgcollectora.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "103.104.244.254", 
+                        "ip_address": "103.104.244.110", 
+                        "netmask": "255.255.255.0", 
+                        "network": "103.104.244.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 50, 
+            "features": [], 
+            "id": "2439", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 77:2d:15:3a:a5:4b:58:a6:47:c1:78:6b:ff:68:49:f5\n", 
+                "ssh_ecdsa": "256 e3:74:20:72:27:5d:6e:91:2a:6c:1a:96:f4:a2:4b:a1\n", 
+                "ssh_rsa": "2048 fd:b7:35:fb:47:ee:11:89:70:f5:b3:e9:2f:14:01:18\n"
+            }, 
+            "locked": false, 
+            "memory": "2048", 
+            "name": "hkgwebconnectivitya.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "103.104.244.254", 
+                        "ip_address": "103.104.244.111", 
+                        "netmask": "255.255.255.0", 
+                        "network": "103.104.244.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 0, 
+            "features": [], 
+            "id": "2514", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 71:8f:f7:5e:9f:f7:ef:84:fc:bb:32:b7:c5:cf:6d:6e\n", 
+                "ssh_ecdsa": "256 aa:ec:fc:24:4b:cb:30:d2:63:46:6f:ae:5e:77:60:8e\n", 
+                "ssh_rsa": "2048 32:f0:12:14:30:1d:24:b5:89:d8:b8:fa:01:a6:fc:86\n"
+            }, 
+            "locked": false, 
+            "memory": "512", 
+            "name": "testing", 
+            "networks": {
+                "v4": []
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 45
+        "total": 48
     }
 }

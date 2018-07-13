@@ -1,0 +1,5 @@
+---
+bouncer_port: 8888
+
+bouncer_tag: '20180504-3'
+bouncer_data_dir: "/data/bouncer"

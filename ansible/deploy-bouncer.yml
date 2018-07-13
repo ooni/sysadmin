@@ -1,0 +1,19 @@
+---
+- include: ansible-version.yml
+
+- hosts: hkgbouncer.ooni.nu
+  roles:
+    - role: docker_py
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_pre_hook: ''
+      letsencrypt_post_hook: '' # FIXME: I don't want to spend time understanding the role :-(
+      letsencrypt_domains: bouncer.ooni.io
+
+- hosts: hkgbouncer.ooni.nu
+  gather_facts: false # no useful facts there :)
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: ooni-bouncer
+      bouncer_domain: bouncer.ooni.io

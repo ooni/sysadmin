@@ -1,5 +1,6 @@
 $ORIGIN ooni.io
 $TTL 1799
+@	300	CNAME	ooni.netlify.com.
 @		MX	ALT1.ASPMX.L.GOOGLE.COM.
 @		MX	ALT2.ASPMX.L.GOOGLE.COM.
 @		MX	ALT3.ASPMX.L.GOOGLE.COM.
@@ -7,9 +8,8 @@ $TTL 1799
 @		MX	ASPMX.L.GOOGLE.COM.
 @		TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
 @		TXT	v=spf1 include:_spf.google.com ~all
-@		URL	https://ooni.torproject.org/
 _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	62.217.125.6
+a.collector		A	103.104.244.110
 a.collector.stage		A	37.218.240.139
 a.collector.test		A	37.218.240.140
 a.echo.th	60	A	199.119.112.49
@@ -25,18 +25,20 @@ b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
 b.echo.th		A	213.138.109.232
 b.web-connectivity.th		A	37.218.242.234
-bouncer		A	62.217.125.6
+bouncer		A	103.104.244.87
 bouncer.stage		A	37.218.240.139
 bouncer.test		A	37.218.240.140
 c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
 c.web-connectivity.th		A	199.119.112.164
 chameleon.infra	1800	A	141.20.103.17
+collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
 db-1.infra		A	141.20.103.17
 db-1.proteus		A	37.218.242.79
 db-1.proteus.test		A	37.218.240.153
 demo.probe		A	37.218.242.41
+design		CNAME	ooni-design.netlify.com.
 events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.173
@@ -75,5 +77,5 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
-www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 edadd1bdf4f27495873bbc3b9426dea0ff011afd63d380bf3d2151a195a8bc12
+www	300	CNAME	ooni.netlify.com.
+; generated from ooni.io.xml with SHA256 8c5b0eeed155bb03125a374647e296ad7966def236ddf16ec2f81666d6907853

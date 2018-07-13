@@ -1,3 +1,4 @@
+---
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -83,3 +84,15 @@ scrape_configs:
 {% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}
+
+  - job_name: 'ooni-web'
+    scrape_interval: 5m
+    scheme: https
+    metrics_path: /_web.mtime.txt
+    static_configs:
+    - targets: # all mirrors listed in https://github.com/TheTorProject/ooni-web#ooni-web
+      - ooni.io
+      - ooni.torproject.org
+      - openobservatory.github.io
+      - ooni.netlify.com
+...

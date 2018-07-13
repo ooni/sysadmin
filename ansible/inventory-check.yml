@@ -16,7 +16,7 @@
       assert:
         that:
           - gh_ips | difference(inventory_ips) | length == 0
-        msg: "GH IPs missing from `inventory`! Check ../scripts/vm-by-ips {{ gh_ips | difference(inventory_ips) | sort | join(' ') }}"
+        msg: "GH IPs missing from `inventory`! Run ../scripts/vm-by-ips {{ gh_ips | difference(inventory_ips) | sort | join(' ') }}"
       run_once: true
 
     - name: mktemp
@@ -125,6 +125,6 @@
       run_once: true
 
     - name: stamp the inventory that was checked
-      assert: { that: groups.all | sort | join('|') | hash('sha256') == 'cbf117dc4067367366856198ba42502676476b80b901915865d73313a87ca0a4' }
+      assert: { that: groups.all | sort | join('|') | hash('sha256') == '10ab6129acb8143eaf6ebc26d90d27ce107aa60955dc2a0af0e66dedc69c749f'}
       run_once: true
 ...

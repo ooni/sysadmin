@@ -19,6 +19,7 @@ pip_pkgs:
   - "pyasn"
   - "py-radix"
   - "censys"
+  - "psycopg2-binary"
 
 jupyter_path: '/srv/jupyter'
 jupyter_config_path: '{{ jupyter_path }}/config'

@@ -21,7 +21,7 @@
       version: '2'
       services:
         https-portal:
-          image: steveltn/https-portal:1.0.0
+          image: steveltn/https-portal:1.2.4
           restart: always
           environment:
             DOMAINS: "{{ slackin_domains }}"

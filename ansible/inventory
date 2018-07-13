@@ -40,6 +40,13 @@ irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 jupyter.ooni.io
+hkgbouncer.ooni.nu
+hkgcollectora.ooni.nu
+hkgwebconnectivitya.ooni.nu
+ooni-explorer-next.test.ooni.io
+wiki.ooni.io
+labs.ooni.io
+hkgjump.ooni.nu
 
 [ams]
 explorer.ooni.io
@@ -66,6 +73,7 @@ proteus.ooni.io
 run.ooni.io
 amsmetadb.ooni.nu
 amsapi.ooni.nu
+amsdataproxy.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io

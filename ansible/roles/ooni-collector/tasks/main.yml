@@ -1,0 +1,104 @@
+---
+- name: collector nginx config
+  template: src=ngx-collector dest=/etc/nginx/sites-enabled/ooni-collector
+  notify: reload nginx
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.collector.id }}"
+    group: "{{ passwd.collector.id }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ collector_data_dir }}"
+    - "{{ collector_data_dir }}/bin"
+    - "{{ collector_data_dir }}/tor"
+    - "{{ collector_data_dir }}/logs"
+    - "{{ collector_data_dir }}/archive"
+    - "{{ collector_data_dir }}/raw_reports"
+    # This is legacy garbage
+    - "{{ collector_data_dir }}/decks"
+    - "{{ collector_data_dir}}/inputs"
+
+- name: Configure the collector oonibackend.conf
+  template:
+    owner: "{{ passwd.collector.id }}"
+    group: "{{ passwd.collector.id }}"
+    src: oonibackend.conf.j2
+    dest: "{{ collector_data_dir }}/oonibackend.conf"
+
+- name: Write bin files
+  template:
+    owner: "{{ passwd.collector.id }}"
+    group: "{{ passwd.collector.id }}"
+    mode: "u+rwx"
+    src: "{{ item }}.j2"
+    dest: "{{ collector_data_dir }}/bin/{{ item }}"
+  with_items:
+    - "archive-to-renamed.py"
+    - "daily-tasks.sh"
+
+- name: ooni-collector webservice
+  docker_container:
+    image: openobservatory/collector:{{ collector_tag }}
+    name: ooni-collector
+    hostname: ooni-collector
+    ports:
+    - "{{ collector_port }}:{{ collector_port }}"
+    volumes:
+    - "{{ collector_data_dir }}:{{ collector_data_dir }}"
+    command: "python bin/oonib --config {{ collector_data_dir }}/oonibackend.conf"
+    user: "{{ passwd.collector.id }}:{{ passwd.collector.id }}"
+    restart_policy: unless-stopped
+
+- name: Setup the sync-user account
+  user:
+    name: sync-user
+    shell: /bin/bash
+    home: "/home/sync-user"
+
+- name: mkdir for sync-user
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.sync_user.id }}"
+    group: "{{ passwd.sync_user.id }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "/home/sync-user/bin"
+    - "/home/sync-user/.ssh"
+
+- name: Write sync-user bin/rrysnc
+  template:
+    owner: "{{ passwd.sync_user.id }}"
+    group: "{{ passwd.sync_user.id }}"
+    mode: "u+rwx"
+    src: "rrsync"
+    dest: "/home/sync-user/bin/rrsync"
+
+- name: Write sync-user .ssh/authorized_keys
+  template:
+    owner: "{{ passwd.sync_user.id }}"
+    group: "{{ passwd.sync_user.id }}"
+    src: "sync-user_authorized_keys.j2"
+    dest: "/home/sync-user/.ssh/authorized_keys"
+
+- name: mkdir for sync-user data files
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.collector.id }}"
+    group: "{{ passwd.collector.id }}"
+    mode: "u=rwx,g=rx,o=rx"
+  with_items:
+    - "{{ collector_data_dir }}"
+    - "{{ collector_data_dir }}/renamed"
+    - "{{ collector_data_dir }}/errored"
+
+- cron:
+    name: "run the daily tasks"
+    minute: "30"
+    hour: "0"
+    user: "{{ passwd.collector.login }}"
+    job: "{{ collector_data_dir }}/bin/daily-tasks.sh"
