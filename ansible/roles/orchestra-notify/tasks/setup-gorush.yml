@@ -6,14 +6,14 @@
 
 - name: Configure gorush
   notify:
-  - reload gorush
+  - restart gorush
   template:
     src: gorush.yml.j2
     dest: "{{ orchestra_config_path }}/gorush.yml"
 
 - name: Write Proteus APN key
   notify:
-  - reload gorush
+  - restart gorush
   copy:
     content: "{{ orchestra_apn_key_content }}"
     dest: "{{ orchestra_config_path }}/apn-key.pem"

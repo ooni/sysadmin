@@ -1,8 +1,2 @@
-- name: restart orchestra
-  systemd: name=orchestra-notify.service state=restarted
-- name: reload orchestra
-  systemd: name=orchestra-notify.service state=reloaded
-- name: reload gorush
-  systemd: name=gorush.service state=reloaded
 - name: restart gorush
   systemd: name=gorush.service state=restarted
