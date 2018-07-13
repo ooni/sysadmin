@@ -12,6 +12,8 @@
     mode: "u=rwx,g=rx,o="
   with_items:
     - "{{ bouncer_data_dir }}"
+    # The bouncer tor/bouncer/hostname and private_key files need to be
+    # provisioned externally.
     - "{{ bouncer_data_dir }}/tor"
     - "{{ bouncer_data_dir }}/logs"
     - "{{ bouncer_data_dir }}/archive"
