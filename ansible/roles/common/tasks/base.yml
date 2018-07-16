@@ -1,6 +1,0 @@
----
-- name: install bare required packages
-  apt:
-    pkg: "{{ item }}"
-    state: latest
-  with_items: ["sudo", "git-core", "tcpdump"]

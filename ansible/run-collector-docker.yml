@@ -1,6 +1,0 @@
----
-- hosts: collectors
-  sudo: yes
-  tasks:
-  - name: ensure ooni-backend collectors are running
-    docker: image=ooni/collector command="/usr/local/bin/oonib -c /etc/oonibackend.conf" state="running"

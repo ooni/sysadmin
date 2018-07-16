@@ -1,5 +1,0 @@
----
-- name: ensure human user exists
-  user: >
-    name="human"
-    state="present"

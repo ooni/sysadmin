@@ -1,6 +1,0 @@
----
-# file: group_vars/production
-letsencrypt_domain_list:
-  - {domain: 'bouncer.ooni.io', role: 'bouncer'}
-  - {domain: 'a.collector.ooni.io', role: 'collector'}
-  - {domain: 'a.web-connectivity.th.ooni.io', role: 'web-connectivity'}
