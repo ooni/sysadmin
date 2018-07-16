@@ -1,0 +1,23 @@
+- hosts: registry.proteus.test.ooni.io
+  vars:
+    letsencrypt_nginx: yes
+    orchestra_registry_https_port: 443
+    letsencrypt_domains: "{{ inventory_hostname }}"
+    orchestra_database_url: "{{ orchestra_database_url_testing }}"
+    orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret_testing }}"
+    orchestra_auth_admin_password : "{{ orchestra_admin_password_testing }}"
+  roles:
+    - letsencrypt
+    - ooni-registry
+
+- hosts: registry.proteus.ooni.io
+  vars:
+    letsencrypt_nginx: yes
+    orchestra_registry_https_port: 443
+    letsencrypt_domains: "{{ inventory_hostname }}"
+    # orchestra_database_url: "{{ orchestra_database_url }}"
+    # orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+    orchestra_auth_admin_password : "{{ orchestra_admin_password }}"
+  roles:
+    - letsencrypt
+    - ooni-registry

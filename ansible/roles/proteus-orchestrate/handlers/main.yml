@@ -1,4 +1,0 @@
-- name: restart proteus
-  systemd: name=proteus-orchestrate.service state=restarted
-- name: reload proteus
-  systemd: name=proteus-orchestrate.service state=reloaded

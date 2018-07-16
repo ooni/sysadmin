@@ -1,0 +1,27 @@
+- hosts: events.proteus.test.ooni.io
+  vars:
+    orchestra_orchestrate_https_port: 443
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+    orchestra_database_url: "{{ orchestra_database_url_testing }}"
+    orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret_testing }}"
+    orchestra_notify_url: "https://notify.proteus.test.ooni.io"
+    orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password_testing }}"
+    orchestra_notify_topic_ios: "org.openobservatory.NetProbe"
+  roles:
+    - letsencrypt
+    - ooni-orchestrate
+
+- hosts: events.proteus.ooni.io
+  vars:
+    orchestra_orchestrate_https_port: 443
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "events.proteus.ooni.io"
+    # orchestra_database_url: "{{ orchestra_database_url }}"
+    # orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+    orchestra_notify_url: "https://notify.proteus.ooni.io"
+    # orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password }}"
+    orchestra_notify_topic_ios: "org.openobservatory.ooniprobe"
+  roles:
+    - letsencrypt
+    - ooni-orchestrate

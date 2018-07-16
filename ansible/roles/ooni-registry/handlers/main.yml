@@ -1,0 +1,4 @@
+- name: restart orchestra
+  systemd: name=ooni-registry.service state=restarted
+- name: reload orchestra
+  systemd: name=ooni-registry.service state=reloaded
