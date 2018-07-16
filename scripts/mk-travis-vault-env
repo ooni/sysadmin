@@ -1,4 +1,4 @@
 #!/bin/sh
 gitroot=$(git rev-parse --show-toplevel)
 TRAVIS_VAULT_SECRET=$("$gitroot/ansible/vault" view "$gitroot/ansible/.travis.vaultpw")
-docker run --rm -ti ubuntu:16.04 bash -c "apt update && apt install -y --no-install-recommends ruby ruby-dev libffi-dev ruby-ffi && gem install travis && echo n | travis encrypt -r TheTorProject/ooni-sysadmin TRAVIS_VAULT_SECRET=${TRAVIS_VAULT_SECRET}"
+docker run --rm -ti ubuntu:16.04 bash -c "apt update && apt install -y --no-install-recommends ruby ruby-dev libffi-dev ruby-ffi && gem install travis && echo n | travis encrypt -r ooni/sysadmin TRAVIS_VAULT_SECRET=${TRAVIS_VAULT_SECRET}"
