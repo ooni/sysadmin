@@ -1,5 +1,5 @@
 ---
-- include: ansible-version.yml
+- import_playbook: ansible-version.yml
 
 # Most of monitoring configuration at that host is managed at separate repository,
 # but CAs are shared, so TLS keys and nginx-prometheus are here.

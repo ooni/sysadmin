@@ -1,5 +1,5 @@
 ---
-- include: ansible-version.yml
+- import_playbook: ansible-version.yml
 
 - hosts: hkgcollectora.ooni.nu
   roles:

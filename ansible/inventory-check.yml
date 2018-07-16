@@ -1,6 +1,6 @@
 # This playbook checks sanity of ooni-sysadmin.git/ansible/inventory file
 ---
-- include: ansible-version.yml
+- import_playbook: ansible-version.yml
 
 - hosts: all
   vars:
