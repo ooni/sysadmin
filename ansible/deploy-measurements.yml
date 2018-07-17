@@ -1,13 +1,11 @@
 ---
-- include: ansible-version.yml
+- import_playbook: ansible-version.yml
 
 - hosts: amsapi.ooni.nu
   roles:
     - role: docker_py
     - role: letsencrypt
       letsencrypt_nginx: true
-      letsencrypt_pre_hook: ''
-      letsencrypt_post_hook: '' # FIXME: I don't want to spend time understanding the role :-(
       letsencrypt_domains: api.ooni.io
 
 - hosts: hkgmetadb.infra.ooni.io

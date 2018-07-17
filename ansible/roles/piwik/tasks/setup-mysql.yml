@@ -6,7 +6,6 @@
     - 'python-mysqldb' # Install MySQLdb Python package, mandatory to manage MySQL with ansible
 
 - name: "Start MySQL service"
-  sudo: yes
   action: service name=mysql state=started enabled=yes
 
 - name: "Check if empty MySQL admin password"

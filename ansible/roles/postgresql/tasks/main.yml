@@ -1,6 +1,6 @@
 ---
-- include: install.yml
-- include: config.yml
+- import_tasks: install.yml
+- import_tasks: config.yml
   become: yes
   become_user: postgres
   become_method: sudo

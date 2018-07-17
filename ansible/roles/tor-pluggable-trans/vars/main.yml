@@ -1,3 +1,0 @@
-custom_debian_release_name: stretch
-custom_debian_repository: "deb http://httpredir.debian.org/debian/ {{ custom_debian_release_name  }} main"
-infinity0_repo: 'deb https://people.debian.org/~infinity0/apt/ unstable contrib'

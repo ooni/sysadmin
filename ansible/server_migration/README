@@ -1,7 +1,0 @@
-This ansible recipe aims to automate the process of migrating OONI
-data-pipeline to a new server.
-
-It should be run with:
-ansible-playbook -i hosts pipeline.yml -vvvv
-
-hosts file contains the user/server/variables configuration

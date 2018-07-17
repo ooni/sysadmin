@@ -1,6 +1,0 @@
----
-- name: Install fteproxy dependencies
-  apt: name=libgmp-dev
-
-- name: Install fteproxy via pip
-  pip: name=fteproxy
