@@ -3,10 +3,8 @@
 
 global:
   # The smarthost and SMTP sender used for mail notifications.
-  smtp_smarthost: '{{ alertmanager_smtp_smarthost }}'
+  smtp_hello: {{ inventory_hostname }}
   smtp_from: '{{ alertmanager_smtp_from }}'
-  smtp_auth_username: '{{ alertmanager_smtp_username }}'
-  smtp_auth_password: '{{ alertmanager_smtp_password }}'
   slack_api_url: '{{ alertmanager_slack_api_url }}'
 
 # The directory from which notification templates are read.
@@ -54,17 +52,21 @@ route:
 # already critical.
 inhibit_rules:
 
+{# # One may expect `min` instead of `sort|first`, but that's jinja 2.10+ and 2.8 is used now. #}
+{% set am_mx_darkk = (lookup('dig', 'darkk.net.ru/MX', 'flat=0') | sort(attribute='preference') | first).exchange.rstrip('.').lower() %}
+{% set am_mx_openobservatory = (lookup('dig', 'openobservatory.org/MX', 'flat=0') | sort(attribute='preference') | first).exchange.rstrip('.').lower() %}
+
 receivers:
 - name: 'team-all'
   email_configs:
-  - to: 'arturo@openobservatory.org'
-    send_resolved: true
   - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
     send_resolved: true
-  - to: 'simone@openobservatory.org'
+    smarthost: {{ am_mx_darkk }}:25
+{% for u in ['arturo', 'simone', 'vasilis'] %}
+  - to: '{{ u }}@openobservatory.org'
     send_resolved: true
-  - to: 'vasilis@openobservatory.org'
-    send_resolved: true
+    smarthost: {{ am_mx_openobservatory }}:25
+{% endfor %}
   slack_configs:
   - send_resolved: true
     text: '{% raw %}{{ template "slack.ooni.text" . }}{% endraw %}'
@@ -73,17 +75,18 @@ receivers:
 
 - name: 'team-email' # no slack
   email_configs:
-  - to: 'arturo@openobservatory.org'
-    send_resolved: true
   - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
     send_resolved: true
-  - to: 'simone@openobservatory.org'
+    smarthost: {{ am_mx_darkk }}:25
+{% for u in ['arturo', 'simone', 'vasilis'] %}
+  - to: '{{ u }}@openobservatory.org'
     send_resolved: true
-  - to: 'vasilis@openobservatory.org'
-    send_resolved: true
+    smarthost: {{ am_mx_openobservatory }}:25
+{% endfor %}
 
 - name: darkk
   email_configs:
   - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
     send_resolved: false
+    smarthost: {{ am_mx_darkk }}:25
 ...
