@@ -15,5 +15,5 @@
   apt:
     name: nodejs
 
-- include: install-yarn.yml
+- import_tasks: install-yarn.yml
   when: install_yarn | bool == true

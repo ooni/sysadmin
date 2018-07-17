@@ -41,5 +41,5 @@
       GF_SERVER_HTTP_PORT: "{{ grafana_backend_port }}"
     restart_policy: unless-stopped
 
-- include: setup-nginx.yml
+- import_tasks: setup-nginx.yml
   when: (prometheus_nginx is defined and prometheus_nginx|bool == true)

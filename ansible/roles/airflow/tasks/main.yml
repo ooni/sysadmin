@@ -14,9 +14,9 @@
       subnet: 172.26.43.0/24
       gateway: 172.26.43.1
 
-- include: af-redis.yml
+- import_tasks: af-redis.yml
 
-- include: af-psql.yml
+- import_tasks: af-psql.yml
 
 - name: copy nodeexp_airflow check
   copy: src=nodeexp_airflow dest=/etc/cron.hourly/nodeexp_airflow mode=0555 owner=root group=root mode=0555
@@ -97,9 +97,9 @@
   synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes
   notify: restart airflow
 
-- include: af-container.yml dockname=af-sched  login=afsched  command=scheduler
-- include: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
-- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
+- import_tasks: af-container.yml dockname=af-sched  login=afsched  command=scheduler
+- import_tasks: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
+- import_tasks: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
   vars:
     volume_ext:
       - /var/run/docker.sock:/var/run/docker.sock

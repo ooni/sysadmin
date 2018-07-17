@@ -1,3 +1,3 @@
 ---
-- include: letsencrypt_gen.yml
-- include: letsencrypt_renew.yml
+- import_tasks: letsencrypt_gen.yml
+- import_tasks: letsencrypt_renew.yml

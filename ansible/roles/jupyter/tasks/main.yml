@@ -17,6 +17,6 @@
   with_items:
   - "{{ anaconda_parent_dir }}"
 
-- include: setup-anaconda.yml
-- include: setup-jupyter.yml
-- include: setup-nginx.yml
+- import_tasks: setup-anaconda.yml
+- import_tasks: setup-jupyter.yml
+- import_tasks: setup-nginx.yml

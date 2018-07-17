@@ -91,4 +91,4 @@
     enabled: yes
     daemon_reload: yes
 
-- include: setup-nginx.yml
+- import_tasks: setup-nginx.yml

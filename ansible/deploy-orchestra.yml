@@ -19,10 +19,10 @@
   roles:
     - postgresql
 
-- include: deploy-ooni-registry.yml
+- import_playbook: deploy-ooni-registry.yml
 
-- include: deploy-ooni-orchestrate.yml
+- import_playbook: deploy-ooni-orchestrate.yml
 
-- include: deploy-orchestra-notify.yml
+- import_playbook: deploy-orchestra-notify.yml
 
-- include: deploy-orchestra-frontend.yml
+- import_playbook: deploy-orchestra-frontend.yml

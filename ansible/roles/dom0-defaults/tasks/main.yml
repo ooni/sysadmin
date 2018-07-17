@@ -18,6 +18,6 @@
     - mtr
     - rsync
 
-- include: sshd.yml
-- include: ping.yml
+- import_tasks: sshd.yml
+- import_tasks: ping.yml
 ...
