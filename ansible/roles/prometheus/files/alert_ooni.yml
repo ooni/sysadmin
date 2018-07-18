@@ -29,4 +29,9 @@ groups:
     expr: airflow_7day_task_count{state="failed"} > 0
     annotations:
       summary: '{{ $value }} tasks report failures last week'
+
+  - alert: SlacktopusGone
+    expr: time() - slacktopus_ctcp_pong_time > 660 # it's randomized */5 crontab
+    annotations:
+      summary: Slacktopus is gone for {{ $value | humanizeDuration }} (maybe that's just darkk's WeeChat)
 ...
