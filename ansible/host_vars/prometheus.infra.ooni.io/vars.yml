@@ -7,8 +7,6 @@ prometheus_scraper_password: '{{ vault_prometheus_scraper_password }}'
 
 prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
 alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
-alertmanager_smtp_username: '{{ vault_alertmanager_smtp_username }}'
-alertmanager_smtp_password: '{{ vault_alertmanager_smtp_password }}'
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
 grafana_secret_key: "{{ vault_grafana_secret_key }}" # to sign cookies
 

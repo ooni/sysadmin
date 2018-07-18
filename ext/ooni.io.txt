@@ -1,13 +1,13 @@
 $ORIGIN ooni.io
 $TTL 1799
-@	300	CNAME	ooni.netlify.com.
+@	300	A	104.198.14.52
 @		MX	ALT1.ASPMX.L.GOOGLE.COM.
 @		MX	ALT2.ASPMX.L.GOOGLE.COM.
 @		MX	ALT3.ASPMX.L.GOOGLE.COM.
 @		MX	ALT4.ASPMX.L.GOOGLE.COM.
 @		MX	ASPMX.L.GOOGLE.COM.
 @		TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
-@		TXT	v=spf1 include:_spf.google.com ~all
+@		TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
 a.collector		A	103.104.244.110
 a.collector.stage		A	37.218.240.139
@@ -78,4 +78,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 8c5b0eeed155bb03125a374647e296ad7966def236ddf16ec2f81666d6907853
+; generated from ooni.io.xml with SHA256 9dc7a27ff0ee753bf5c7978cfe617cb0a8b001baf2ed1565ea11700aac8390ea
