@@ -20,9 +20,3 @@ alertmanager_tarball_url: "{{ alertmanager_download_url }}/v{{ alertmanager_vers
 alertmanager_sha256sums_url: "{{ alertmanager_download_url }}/v{{ alertmanager_version }}/sha256sums.txt"
 alertmanager_sha256sums: "{{ playbook_dir }}/cache/alertmanager-{{ alertmanager_version}}.SHA256SUMS"
 alertmanager_path: "{{ alertmanager_base }}/{{ alertmanager_basename }}"
-
-alertmanager_smtp_from: "noreply+prometheus@ooni.io" # don't forget to whitelist it at https://runbox.com/mail/rules
-# TODO: drop alertmanager_smtp_smarthost, doing MX-delivery
-alertmanager_smtp_smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-alertmanager_smtp_username: "{{ CHANGE_ME }}"
-alertmanager_smtp_password: "{{ CHANGE_ME }}"

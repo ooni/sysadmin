@@ -2,9 +2,13 @@
 # ansible-managed in ooni-sysadmin.git
 
 global:
-  # The smarthost and SMTP sender used for mail notifications.
+  # While sending alerts directly to MX don't forget to:
+  # - whitelist IP addressess on MX SPAM filters so recepients don't drop the messages on ingress,
+  #   the instruction to do that for G Suite MX can be found at https://support.google.com/a/answer/60751?hl=en
+  #   see also `openobservatory_smtp_whitelist` variable
+  # - amend SPF records for domain name used in `smtp_from` so messages don't look fishy on egress
   smtp_hello: {{ inventory_hostname }}
-  smtp_from: '{{ alertmanager_smtp_from }}'
+  smtp_from: noreply+prometheus@ooni.io
   slack_api_url: '{{ alertmanager_slack_api_url }}'
 
 # The directory from which notification templates are read.
