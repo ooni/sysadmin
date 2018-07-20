@@ -100,8 +100,8 @@ scrape_configs:
     metrics_path: /_web.mtime.txt
     static_configs:
     - targets: # all mirrors listed in https://github.com/TheTorProject/ooni-web#ooni-web
-      - ooni.io
-      - ooni.torproject.org
-      - openobservatory.github.io
-      - ooni.netlify.com
+      - ooni.io:443
+      - ooni.torproject.org:443
+      - openobservatory.github.io:443
+      - ooni.netlify.com:443
 ...

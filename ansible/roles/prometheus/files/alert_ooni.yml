@@ -19,11 +19,11 @@ groups:
       summary: 'disk is silent for {{ $value | humanizeDuration }}'
 
   - alert: MirrorDiverged
-    expr: max(ooni_web_mtime) - min(ooni_web_mtime) != 0
+    expr: scalar(max(ooni_web_mtime)) - ooni_web_mtime > 0
     for: 11m # job_name=ooni-web scrape_interval is 5m, 8m10s is still "ordinary" delay
     annotations:
-      summary: 'Mirrors diverged by {{ $value | humanizeDuration }}'
-      description: 'Run `make update-site` if needed'
+      summary: 'Mirror {{ $labels.instance }} lags by {{ $value | humanizeDuration }}'
+      description: '{{ if eq $labels.instance "ooni.torproject.org:443" }}Run `make update-site`.{{ end }}'
 
   - alert: AirflowFailed
     expr: airflow_7day_task_count{state="failed"} > 0
