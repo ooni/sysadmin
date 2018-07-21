@@ -27,12 +27,6 @@
     - "{{ letsencrypt_workdir }}"
     - "{{ letsencrypt_confdir }}"
 
-- name: Creates backend TLS dir
-  file: >
-    state=directory
-    path="{{ bind_oonibackend_tls_dir }}"
-  when: bind_oonibackend_tls_dir is defined
-
 - name: Install nginx apt package
   apt: name=nginx
   when: ( ansible_distribution == "Debian" and letsencrypt_nginx is defined and letsencrypt_nginx|bool == true )
@@ -61,16 +55,6 @@
 
 - name: Generate Letsencrypt certificate with certbot package
   shell: "certbot {{ letsencrypt_certbot_cmd }}"
-
-- name: Copy TLS specific backend files
-  copy: >
-    src="{{ item }}"
-    dest="{{ bind_oonibackend_tls_dir }}"
-    remote_src=True
-  with_items:
-    - "{{ letsencrypt_live_dir }}/privkey.pem"
-    - "{{ letsencrypt_live_dir }}/fullchain.pem"
-  when: bind_oonibackend_tls_dir is defined
 
 - name: Force Letsencrypt certificate(s) renewal
   command: "{{ letsencrypt_renew_cmd }}"
