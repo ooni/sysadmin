@@ -183,7 +183,7 @@
             }, 
             "locked": false, 
             "memory": "4096", 
-            "name": "measurements.ooni.io", 
+            "name": "amstorth.ooni.nu", 
             "networks": {
                 "v4": [
                     {

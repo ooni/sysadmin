@@ -50,7 +50,7 @@ hkgsuperset		A	37.218.240.92
 irc-bouncer.service	1800	A	37.218.240.126
 jupyter		A	37.218.240.205
 labs		A	37.218.241.30
-measurements	60	A	37.218.242.217
+measurements		A	37.218.242.231
 measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
 munin		A	199.119.112.171
@@ -78,4 +78,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 9dc7a27ff0ee753bf5c7978cfe617cb0a8b001baf2ed1565ea11700aac8390ea
+; generated from ooni.io.xml with SHA256 fcd4e181b31cadb755912434e2affdcd446ea118da5147ee78edd84a3a5e6032
