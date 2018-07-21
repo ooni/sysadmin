@@ -7,6 +7,10 @@
     - role: letsencrypt
       letsencrypt_nginx: true
       letsencrypt_domains: api.ooni.io
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: measurements.ooni.io,measurements.ooni.torproject.org
+      tags: legacy
 
 - hosts: hkgmetadb.infra.ooni.io
   gather_facts: false # no useful facts there :)

@@ -2,6 +2,7 @@
 - name: api.ooni.io nginx config
   template: src=ngx-oomsm-web dest=/etc/nginx/sites-enabled/oomsm-web
   notify: reload nginx
+  tags: legacy
 
 - name: docker network for measurements
   docker_network:

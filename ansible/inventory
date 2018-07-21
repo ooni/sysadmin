@@ -50,7 +50,7 @@ hkgjump.ooni.nu
 
 [ams]
 explorer.ooni.io
-measurements.ooni.io
+amstorth.ooni.nu
 get.ooni.io
 a.http.th.ooni.io
 b.web-connectivity.th.ooni.io
@@ -60,7 +60,7 @@ ooni-measurements-db.infra.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
-demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+demo.probe.ooni.io
 msg.ooni.io
 
 # XXX rename these to orchestra
