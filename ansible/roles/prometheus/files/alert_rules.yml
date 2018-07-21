@@ -83,7 +83,7 @@ groups:
       summary: "{{ $labels.instance }} endpoint down"
 
   - alert: SSLCertExpires
-    expr: (probe_ssl_earliest_cert_expiry - time()) / 86400 < 25
+    expr: (probe_ssl_earliest_cert_expiry{job!="tor testhelper"} - time()) / 86400 < 25
     labels: {severity: info}
     annotations:
       summary: '`certbot` failed at {{ $labels.instance }}'

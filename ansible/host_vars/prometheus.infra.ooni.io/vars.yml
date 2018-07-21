@@ -81,4 +81,8 @@ blackbox_jobs:
   - name: "protheus"
     module: "ooni_protheus"
     targets: [ "protheus.ooni.io:443" ]
+
+  - name: "tor testhelper" # see also SSLCertExpires in roles/prometheus/files/alert_rules.yml
+    module: tls_snakeoil
+    targets: "{{ groups['have_tor'] | map('regex_replace', '$', ':9001') | list }}"
 ...

@@ -44,6 +44,13 @@ modules:
     prober: icmp
     timeout: 5s
 
+  tls_snakeoil:
+    prober: tcp
+    tcp:
+      tls: true
+      tls_config:
+        insecure_skip_verify: true
+
   # When using this prober, be sure to target:
   # https://collector.ooni.io/invalidpath
   ooni_collector_ok:
