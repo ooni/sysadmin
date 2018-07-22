@@ -20,6 +20,6 @@ exec \
   --start \
   -- \
   {{ node_exporter_collectors | trim }} \
-  '{{ node_exporter_disk_ignored }}' \
+  {% if node_exporter_disk_ignored %}'{{ node_exporter_disk_ignored }}'{% endif %} \
   --collector.textfile.directory {{ node_exporter_textfiles_path }} \
   --web.listen-address {{ node_exporter_listen_address }}
