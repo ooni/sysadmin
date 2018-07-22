@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+#
+# Script to parse output of xfs_bmap to understand if any file is affected by
+# the bad sector.
+#
+# ext3/4 can do it with debugfs and `icheck`:
+# https://www.smartmontools.org/wiki/BadBlockHowto
+#
+# XFS also has alike option in `xfs_db`, but
+# - it's super confusing to get block number right
+# - xfs_db blockget does not work on mounted FS
+# - xfs_db blockget may use lots of RAM according:
+# > Blockget - yes it will. It just does the traversal internally to build
+# > the mapping. With large filesystems xfs_db can run out of memory building
+# > the mapping, which is why I've used the explicit traverse+xfs_bmap method
+# > in the past....
+# -- http://xfs.9218.n7.nabble.com/Map-a-disk-LBA-to-filename-td21879.html
+#
+# Also.
+# - XFS is quite complex, http://ftp.ntu.edu.tw/linux/utils/fs/xfs/docs/xfs_filesystem_structure.pdf
+# - same 512b offests can be obtained with `hdparm --fibmap` and `filefrag`,
+#   `xfs_bmap` is not the only option.
+# - see https://www.quora.com/Is-there-any-Linux-tool-to-see-on-disk-block-layout-of-my-files
+# - see http://www.randomnoun.com/wp/2013/09/12/determining-the-file-at-a-specific-vmdk-offset/
+#
+# Example:
+# $ ssh broken.ooni.nu 'sudo find / -xdev -type f -exec xfs_bmap "{}" + | xz' >broken.xfs_bmap.xz
+# $ xzcat broken.xfs_bmap.xz | ./xfs_icheck $(( 0x0FF5E4 * 8 )) $(( 4096 * 2 ))
+
+import re
+import sys
+
+def overlap(a, b): # holy stackoverflow https://stackoverflow.com/questions/2953967/built-in-function-for-computing-overlap-in-python
+    return max(0, min(a[1], b[1]) - max(a[0], b[0]))
+
+def main():
+    badfirst, badlen = map(int, sys.argv[1:]) # 512b blocks
+
+    extre = re.compile(r'^\t\d+: \[\d+\.\.\d+\]: (?:(?P<bfirst>\d+)\.\.(?P<blast>\d+)|hole)$')
+
+    fname = None
+    for line in sys.stdin:
+        line = line.rstrip()
+        m = extre.match(line)
+        if m is not None:
+            bfirst, blast = m.group('bfirst'), m.group('blast') # 512b blocks
+            if bfirst is None and blast is None:
+                pass # that's `hole`
+            elif overlap( (int(bfirst), int(blast)+1), (badfirst, badfirst+badlen) ) > 0:
+                print(u'{}: fs[{}..{}] ∩ bad[{}..{})'.format(fname, bfirst, blast, badfirst, badfirst+badlen))
+        elif line[0] == '/' and line[-1] == ':':
+            fname = line[:-1]
+        elif line[0] == '/' and line.endswith(': no extents'):
+            pass
+        else:
+            raise RuntimeError('Bad line', line)
+
+if __name__ == '__main__':
+    main()
