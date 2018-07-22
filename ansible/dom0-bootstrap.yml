@@ -17,7 +17,7 @@
       tags: adm
 
 - hosts: all:!no_passwd
-  gather_facts: false
+  gather_facts: true # to gather ansible_distribution_release
   roles:
     # every known UID should be reserved to avoid occasional clash with `useradd`
     - role: passwd

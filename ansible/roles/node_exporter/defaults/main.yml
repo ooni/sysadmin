@@ -2,13 +2,13 @@ go_arch: amd64
 
 # cpu is related to freq/throttling and others
 # vmstat is not enabled as meminfo is enough
-# ntp is useful enough to monitor local ntp daemon
+# ntp is useful enough to monitor local ntp daemon, but 1ms is too low for NTP Pool
 # systemd provides TOO many useless metrics, although unit-whitelist may be used
 # TODO: check if diskstats / netdev should ignore some devices
 node_exporter_collectors: >
   --no-collector.arp --no-collector.bcache --no-collector.infiniband
   --no-collector.ipvs --no-collector.wifi --no-collector.zfs
-  --collector.ntp
+  --collector.ntp --collector.ntp.local-offset-tolerance=5ms
 
 node_exporter_disk_ignored: ""
 
