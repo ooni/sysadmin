@@ -40,10 +40,11 @@ blackbox_jobs:
     targets:
       - "37.218.247.110:80"
       - "213.138.109.232:80"
+
   - name: "ooni http return json headers"
     module: "ooni_http_return_json_headers_ok"
     targets:
-      - "http://38.107.216.10:80"
+      - "http://37.218.247.95:80"
 
   - name: "ooni explorer countByCountry"
     module: "http_2xx"
