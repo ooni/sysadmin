@@ -40,10 +40,11 @@ blackbox_jobs:
     targets:
       - "37.218.247.110:80"
       - "213.138.109.232:80"
+
   - name: "ooni http return json headers"
     module: "ooni_http_return_json_headers_ok"
     targets:
-      - "http://38.107.216.10:80"
+      - "http://37.218.247.95:80"
 
   - name: "ooni explorer countByCountry"
     module: "http_2xx"
@@ -78,9 +79,9 @@ blackbox_jobs:
     module: "ooni_registry"
     targets: [ "registry.proteus.ooni.io:443" ]
 
-  - name: "protheus"
-    module: "ooni_protheus"
-    targets: [ "protheus.ooni.io:443" ]
+  - name: "proteus"
+    module: "ooni_proteus"
+    targets: [ "proteus.ooni.io:443" ]
 
   - name: "tor testhelper" # see also SSLCertExpires in roles/prometheus/files/alert_rules.yml
     module: tls_snakeoil
