@@ -5,10 +5,7 @@ infrastructure that are part of OONI.
 
 # Ansible roles
 
-This is the section for using ansible roles to install and configure OONI
-components.
-
-It is required for all OONI team to run the same ansible version to monimise
+It is required for all OONI team to run the same ansible version to minimise
 compatibility issues. It is enforced by including `ansible-version.yml` play in
 the playbooks.
 
@@ -27,41 +24,17 @@ and link location of the variable using same name without prefix in correspondin
 proper vault secret and inventory.
 
 # M-Lab deployment
-M-Lab [deployment process]
-(https://github.com/m-lab/ooni-support/#m-lab-deployment-process).
+
+M-Lab [deployment process](https://github.com/m-lab/ooni-support/#m-lab-deployment-process).
 
 # Upgrading OONI infrastructure
 
-## ooni-backend
-
-Collected notes on how to successful upgrade a running ooni-backend (bouncer
-and collector).
-
-1. Build the docker image of the new bouncer.
-2. Start the new docker image mapping a new bouncer directory that is not the
-   live one.
-3. Run a couple of tests against the newly created image by specifying a custom
-   bouncer and collector (the new one).
-4. Take down the old bouncer.
-5. Take up the new bouncer.
-
-Currently ooni-backend is running in a docker build the most painful way to
-upgrade to a new backend version is to create a new docker build image and use
-temporary mapping volume directories.
-After successfully building (you have already test it right?) the docker image
-we should re-run the newly created docker image *but* with the correct (the
-ones in the build script) volume directories.
-The reports in progress will fail and schedule retries once the new bouncer and
-collector are back up.
-
-### Common pitfalls
+## ooni-backend pitfalls
 
 * Ensure that the HS private keys of bouncer and collector are in right PATH
 (collector/private_key , bouncer/private_key).
 * Set the bouncer address in bouncer.yaml to the correct HS address.
 * ooni-backend will *not* generate missing directories and fail to start
-
-### Testing
 
 Running a short ooni-probe test will ensure that the backend has been
 successfully upgraded, an example test:
@@ -71,11 +44,23 @@ ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 --url http://ooni.io/
 ```
 
-# When adding new hosts
+# New host HOWTO
+
+- come up with a name for $name.ooni.tld using DNS name policy
+- create a VM to allocate IP address
+- create `A` record for the domain name in namecheap web UI (API is hell)
+- fetch external inventory with `./play ext-inventory.yml`, it'll create a git commit
+- add $name.ooni.tld to _location tags_ section of `inventory` file, git-commit it
+- write firewall rules to `templates/iptables.filter.part/$name.ooni.tld` if needed, git-commit it
+- bootstrap VM with `./play dom0-bootstrap.yml -l $name.ooni.tld`
+- update Prometheus with `./play deploy-prometheus.yml -t prometheus-conf`
+- check `inventory` sanity with `./play inventory-check.yml` (everything should be `ok`, no changes, no failures), update `inventory-check.yml` with new checksum, git-commit it
+- `git push` those commits
 
 ## DNS name policy
 
-Public HTTP services are `${service}.ooni.io`. _Public_ means that it's part of some external system we can't control: published MK versions, web URLs and so on.
+Public HTTP services are `${service}.ooni.io`. _Public_ means that it's part of some external system we can't control: published APP or MK versions, web URLs and so on.
+Public name should __never__ be used as an `inventory_hostname` to ease migration.
 
 Private HTTP services like monitoring, probe and data management are `${service}.ooni.nu`. Exceptions are various legacy redirects like `www.ooni.nu`.
 
@@ -85,38 +70,27 @@ Multi-purpose VM SHOULD use 4...8 character name and have FQDN like `${deity}.oo
 - HKG ~ [Slavic deity](https://en.wikipedia.org/wiki/Deities_of_Slavic_religion)
 
 Single-purpose VM names MAY use `${service}.ooni.nu` as an `inventory_hostname`.
+If the service has several geo-distributed instances, it should be `${dc}${svc}.ooni.nu`.
+If the service has just a single instance, it should be just `${svc}.oonu.nu`.
 
 Various legacy names should be cleaned up during re-deploying VMs with newer base OS version.
 
-## New host in inventory
+# Rename host HOWTO
 
-When you add a new host to `ansible/inventory` you need to update the continuous integration scripts to make Travis CI happy.
+First, try hard to avoid renaming hosts. It's pain:
 
-This can be done by doing:
+- inventory_hostname is stamped in Prometheus SSL certificates
+- inventory_hostname is stamped as FQDN inside of firewall rules
+- inventory_hostname is stamped as filename for firewall rules
+- hostname is stamped in `/etc/hosts` on the host
+- hostname is stamped as `kernel.hostname` on the host
+- some applications use hostname as configuration value, e.g. [MongoDB](https://docs.mongodb.com/manual/tutorial/change-hostnames-in-a-replica-set/)
 
-```
-./play inventory-check.yml
-```
+But re-deploying is not also an options sometimes due to GH platform limitations.  So...
 
-Then editing the line in the `inventory-check.yml` that says "stamp the
-inventory that was checked" with the output of the `build inventory check` task
-in the previous command.
-
-Be also to then run:
-
-```
-./play ext-inventory.yml
-```
-
-This will fetch updates to the DNS zone.
-
-`inventory_hostname` MUST NOT be renamed.
-
-When you create the new machine you should also run the `dom0-boostrap.yml` playbook like this:
-
-```
-./play dom0-bootstrap.yml -l HOSTNAME.ooni.nu,HOSTNAME2.ooni.io
-```
+- use _New host HOWTO_ as a checklist to keep in mind
+- `on-rename` tag can save some time while running `dom0-bootstrap`: `./play dom0-bootstrap.yml -t on-rename -l $newname.ooni.tld`
+- grep ooni/sysadmin for `inventory_hostname`, $oldname, $newname (NB: not just oldname.ooni.tld, short name may be used somewhere as well)
 
 # PostgreSQL replica bootstrap
 
