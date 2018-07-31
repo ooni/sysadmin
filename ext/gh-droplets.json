@@ -1829,10 +1829,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 20, 
+            "features": [], 
+            "id": "2548", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 c9:9a:e9:f2:17:14:c2:a7:db:9e:a3:f6:0f:d1:72:23\n", 
+                "ssh_ecdsa": "256 30:21:03:cf:b2:82:d7:02:d2:e0:a7:90:89:f0:fe:d9\n", 
+                "ssh_rsa": "2048 54:c0:a4:07:62:82:35:cf:12:26:09:f4:83:ee:2f:63\n"
+            }, 
+            "locked": false, 
+            "memory": "2048", 
+            "name": "shark.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "199.119.112.1", 
+                        "ip_address": "199.119.112.120", 
+                        "netmask": "255.255.255.0", 
+                        "network": "199.119.112.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "0", 
+                "name": "Washington DC", 
+                "slug": "Washington DC"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "2"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 48
+        "total": 49
     }
 }
