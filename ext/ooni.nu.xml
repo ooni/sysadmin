@@ -16,6 +16,7 @@
       <host HostId="143858219" Name="hkgjump" Type="A" Address="103.104.244.19" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="138172305" Name="hkgwebconnectivitya" Type="A" Address="103.104.244.111" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="39585756" Name="mirror1.reports" Type="A" Address="213.138.109.232" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="145250659" Name="shark" Type="A" Address="199.119.112.120" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13643210" Name="dnstunnel" Type="NS" Address="ooni.nu." MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="12484213" Name="@" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="12484214" Name="www" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

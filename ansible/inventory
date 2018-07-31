@@ -23,6 +23,7 @@ munin.ooni.io
 b.collector.ooni.io
 shwdc.ooni.io
 analytics.ooni.io
+shark.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
