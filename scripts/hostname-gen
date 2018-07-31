@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+
+"""
+OONI DNS name policy, see: https://github.com/ooni/sysadmin#dns-name-policy
+
+tl;dr
+
+- Public HTTP services are ${service}.ooni.io
+
+- Multi-purpose VM SHOULD use 4...8 character name and have FQDN like ${deity}.ooni.nu:
+
+    WDC ~ fish name
+    AMS ~ Roman deity
+    HKG ~ Slavic deity
+
+- Single-purpose VM names MAY use ${service}.ooni.nu
+
+- If the service has several geo-distributed instances, it should be ${dc}${svc}.ooni.nu
+
+- If the service has just a single instance, it should be just ${svc}.oonu.nu
+"""
+
+import os
+import random
+import argparse
+
+root = os.path.dirname(os.path.realpath(__file__))
+
+supported_wordlists = [
+    'fish',
+    'roman-deity',
+    'slavic-deity'
+]
+
+def parse_args():
+    p = argparse.ArgumentParser(description='hostname-gen: generates a OONI compatible hostname')
+    p.add_argument('--limit', metavar='CHARCOUNT', type=int, help='Limit the maximum length of the picked word', required=False)
+    p.add_argument('--count', metavar='COUNT', default=8, type=int, help='Number of domains to generate', required=False)
+    p.add_argument('--wordlist', metavar='wordlist', help='Which wordlist to draw from (WDC = fish, AMS roman-deity, HKG slavic-deity)', required=False)
+    opt = p.parse_args()
+    if  opt.wordlist not in supported_wordlists:
+        p.error('You must choose one of --wordlist in: ' + ','.join(supported_wordlists))
+    return opt
+
+def name_gen(wordlistname, max_len, count):
+    names = []
+    with open(os.path.join(root, 'wordlists', '{}-names.txt'.format(wordlistname))) as in_file:
+        wordlist = map(lambda x: x.strip(), in_file.readlines())
+
+    if max_len:
+        wordlist = list(filter(lambda x: len(x) <= max_len, wordlist))
+
+    for i in range(count):
+        if len(wordlist) == 0:
+            break
+        idx = random.randint(0, len(wordlist) - 1)
+        names.append(wordlist.pop(idx))
+
+    return names
+
+def print_name(name):
+    hostname = name.lower().replace(' ', '-')
+    print("- {}.ooni.nu ({})".format(hostname, name))
+
+def main():
+    opt = parse_args()
+    names = name_gen(opt.wordlist, opt.limit, opt.count)
+    print("# {} hostnames".format(opt.wordlist))
+    for name in names:
+        print_name(name)
+
+if __name__ == '__main__':
+    main()
+
