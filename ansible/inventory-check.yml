@@ -113,11 +113,13 @@
   gather_facts: false
   tasks:
     - name: build inventory checksum
-      debug:
-        var: groups.all | sort | join('|') | hash('sha256')
+      set_fact:
+        inventory_hash: "{{ groups.all | sort | join('|') | hash('sha256') }}"
       run_once: true
 
     - name: stamp the inventory that was checked
-      assert: { that: groups.all | sort | join('|') | hash('sha256') == 'f82c96077853610824dbb8cd1c50b7b9565209ea2ac6ace0a4427efced51d8d9'}
+      assert:
+        that: "'{{ inventory_hash }}' == 'f82c96077853610824dbb8cd1c50b7b9565209ea2ac6ace0a4427efced51d8d9'"
+        msg: "inventory_hash should be: {{ inventory_hash }}. Edit the `build inventory checksum` task in ansible/inventory-check.yml"
       run_once: true
 ...
