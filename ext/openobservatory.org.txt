@@ -1,10 +1,10 @@
 $ORIGIN openobservatory.org
 $TTL 1799
+@	300	MX	ASPMX.L.GOOGLE.COM.
 @		MX	ALT1.ASPMX.L.GOOGLE.COM.
 @		MX	ALT2.ASPMX.L.GOOGLE.COM.
 @		MX	ALT3.ASPMX.L.GOOGLE.COM.
 @		MX	ALT4.ASPMX.L.GOOGLE.COM.
-@		MX	ASPMX.L.GOOGLE.COM.
 @		TXT	google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8
 @		TXT	v=spf1 include:_spf.google.com ~all
 @		URL	http://ooni.torproject.org
@@ -14,4 +14,4 @@ google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK
 slack		A	37.218.247.42
 test-lists		A	37.218.240.141
 www		URL	http://ooni.torproject.org
-; generated from openobservatory.org.xml with SHA256 553cbe688e6280d65fc98359cbf5547fd58df742d802daa774211995638369e4
+; generated from openobservatory.org.xml with SHA256 7d25817fd5f6406e36ef81a13bb376e3be75a2deb96dcc87dddfbd56a0ecccea
