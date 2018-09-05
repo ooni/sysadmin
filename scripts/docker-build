@@ -27,7 +27,8 @@ if [ -z "$repo" ]; then
 fi
 
 # git@github.com:TheTorProject/ooni-explorer.git -> explorer
-# git@github.com:TheTorProject/ooni-pipeline.git af/shovel/ -> pipeline-shovel
+# git@github.com:ooni/explorer.git -> explorer
+# git@github.com:ooni/pipeline.git af/shovel/ -> pipeline-shovel
 if [ -n "$prefix" ]; then
     img_slug="${repo}-${prefix}"
 else

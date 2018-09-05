@@ -171,4 +171,4 @@ slack.openobservatory.org
 # TO DELETE.
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
 #
-# since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/TheTorProject/ooni-sysadmin/issues/NNNN
+# since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/ooni/sysadmin/issues/NNNN
