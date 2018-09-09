@@ -1,22 +1,4 @@
+---
+letsencrypt_domains: '{{ CHANGE_ME }}' # must be list
 letsencrypt_admin_email: admin@openobservatory.org
-letsencrypt_workdir: /var/lib/letsencrypt
-letsencrypt_webroot: /var/www/letsencrypt
-letsencrypt_confdir: /etc/letsencrypt
-nginx_post_hook: '/usr/sbin/service nginx reload'
-letsencrypt_certbot_cmd: >
-    certonly
-    {% if letsencrypt_nginx is defined -%}
-    --webroot -w {{ letsencrypt_webroot }}
-    {%- else -%}
-    --standalone
-    {% endif %}
-    {% if letsencrypt_test_cert is defined -%} --test-cert {% endif -%}
-    --preferred-challenges http-01 --noninteractive --text --agree-tos
-    --email {{ letsencrypt_admin_email }} --domains {{ letsencrypt_domains }}
-    {% if letsencrypt_nginx is defined -%}
-    --post-hook "{{ nginx_post_hook }}"
-    {%- endif -%}
-letsencrypt_renew_cmd: >
-    certbot
-    {% if letsencrypt_force_renew is defined -%} --force-renew {% endif -%}
-    {{ letsencrypt_certbot_cmd }}
+...

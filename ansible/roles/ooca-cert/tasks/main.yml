@@ -9,6 +9,8 @@
   args:
     creates: "{{ ooca_ssl_base }}.key"
 
+# TODO: https://wiki.mozilla.org/Security/Server_Side_TLS#Pre-defined_DHE_groups
+# suggests ffdhe2048 instead of `openssl dhparam` to avoid https://weakdh.org/
 - name: Generate 2048-bit Diffie-Hellman parameters # to avoid https://weakdh.org/
   command: openssl dhparam -out {{ ooca_ssl_base }}.dhparam 2048
   args:
