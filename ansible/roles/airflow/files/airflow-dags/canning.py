@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import subprocess
 from airflow import DAG
 from airflow.exceptions import AirflowException # signal ERROR
@@ -6,16 +7,17 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.sensors import BaseSensorOperator
 from datetime import datetime, timedelta
 
-class ReportsRawReadySensor(BaseSensorOperator):
+class OOBashSensor(BaseSensorOperator):
     def poke(self, context):
-        retcode = subprocess.call(['sudo', '--non-interactive', '/usr/local/bin/docker-trampoline', 'reports_raw_sensor',
-            context['ds'], context['execution_date'].isoformat(), (context['execution_date'] + context['dag'].schedule_interval).isoformat()])
+        retcode = subprocess.call(['sudo', '--non-interactive', '/usr/local/bin/docker-trampoline', self.task_id,
+            context['ds'], context['execution_date'].isoformat(), (context['execution_date'] + context['dag'].schedule_interval).isoformat()] +
+            self.params.get('argv', []))
         if retcode == 42:
             return True
         elif retcode == 13:
             return False
         else:
-            raise AirflowException('Unexpected `is-reports-raw-ready` exit code: {:d}'.format(retcode))
+            raise AirflowException('Unexpected exit code: {:d}'.format(retcode))
 
 dag = DAG(
     dag_id='hist_canning',
@@ -30,7 +32,7 @@ dag = DAG(
 # NB: removing an Operator from DAG leaves some trash in the database tracking
 # old state of that operator, but it seems to trigger no issues with 1.8.0
 
-ReportsRawReadySensor(task_id='reports_raw_sensor', poke_interval=5*60, timeout=12*3600, dag=dag)
+OOBashSensor(task_id='reports_raw_sensor', poke_interval=5*60, timeout=12*3600, retries=0, dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='canning', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='tar_reports_raw', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_tgz_s3_sync', bash_command='shovel_jump.sh', dag=dag)
@@ -42,9 +44,6 @@ BashOperator(pool='datacollector_disk_io', task_id='canned_cleanup', bash_comman
 BashOperator(pool='datacollector_disk_io', task_id='autoclaving', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='meta_pg', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='reports_raw_cleanup', bash_command='shovel_jump.sh', dag=dag)
-BashOperator(pool='datacollector_disk_io', task_id='sanitised_s3_ls', bash_command='shovel_jump.sh', dag=dag)
-BashOperator(pool='datacollector_disk_io', task_id='sanitised_check', bash_command='shovel_jump.sh', dag=dag)
-BashOperator(pool='datacollector_disk_io', task_id='sanitised_cleanup', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='autoclaved_tarlz4_s3_sync', bash_command='shovel_jump.sh', dag=dag)
 BashOperator(pool='datacollector_disk_io', task_id='autoclaved_jsonl_s3_sync', bash_command='shovel_jump.sh', dag=dag)
 
@@ -80,12 +79,28 @@ dag.set_dependency('autoclaving', 'meta_pg')
 dag.set_dependency('canning', 'reports_raw_cleanup')
 dag.set_dependency('tar_reports_raw', 'reports_raw_cleanup')
 
-dag.set_dependency('autoclaving', 'sanitised_check')
-
 dag.set_dependency('autoclaving', 'autoclaved_tarlz4_s3_sync')
 
 dag.set_dependency('autoclaving', 'autoclaved_jsonl_s3_sync')
 
-dag.set_dependency('autoclaving', 'sanitised_cleanup')
-dag.set_dependency('sanitised_s3_ls', 'sanitised_cleanup')
-dag.set_dependency('sanitised_check', 'sanitised_cleanup')
+with open('/usr/local/airflow/dags/have_collector.json') as fd:
+    have_collector = json.load(fd)
+    name_collector = [_.split('.ooni.')[0] for _ in have_collector]
+
+with DAG(
+    dag_id='fetcher',
+    schedule_interval=timedelta(days=1),
+    start_date=datetime(2018, 9, 14),
+    catchup=False,
+    default_args={
+        'email': 'leonid@openobservatory.org', # prometheus/alertmanager sends to team@ but airflow is more chatty
+        'retries': 1,
+        'pool': 'datacollector_disk_io',
+    }) as fetcher:
+
+    BashOperator(task_id='reports_raw_merge', bash_command='shovel_jump.sh', params={'argv': have_collector})
+    for fqdn, name in zip(have_collector, name_collector):
+        OOBashSensor(task_id='collector_sensor_{}'.format(name), poke_interval=5*60, timeout=3600, retries=0, params={'argv': [fqdn]})
+        BashOperator(task_id='rsync_collector_{}'.format(name), bash_command='shovel_jump.sh', params={'argv': [fqdn]}, trigger_rule='all_done') # either wait or fall-through
+        fetcher.set_dependency('collector_sensor_{}'.format(name), 'rsync_collector_{}'.format(name))
+        fetcher.set_dependency('rsync_collector_{}'.format(name), 'reports_raw_merge')

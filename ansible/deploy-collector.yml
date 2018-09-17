@@ -2,6 +2,7 @@
 - import_playbook: ansible-version.yml
 
 - hosts: hkgcollectora.ooni.nu
+  # TODO: `have_collector` instead of `hkgcollectora.ooni.nu`
   roles:
     - role: docker_py
     - role: letsencrypt

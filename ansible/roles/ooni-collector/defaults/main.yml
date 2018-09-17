@@ -1,0 +1,6 @@
+---
+collector_port: 8888
+
+collector_tag: '20180510-1'
+collector_data_dir: '{{ CHANGE_ME }}' # it varies across collectors
+...

@@ -18,6 +18,12 @@
 
 - import_tasks: af-psql.yml
 
+- import_tasks: collector_ssh.yml
+  tags: collector_ssh
+- name: collector spool directories
+  file: dest=/data/ooni/private/spool/{{ item }} state=directory owner=benchmark group=root mode=0755
+  with_items: '{{ groups.have_collector }}'
+
 - name: copy nodeexp_airflow check
   copy: src=nodeexp_airflow dest=/etc/cron.hourly/nodeexp_airflow mode=0555 owner=root group=root mode=0555
   notify: restart af-worker # because the _file_ is bind-monted, not a directory
@@ -82,6 +88,7 @@
 - template: dest=/srv/etc/af-worker/s3root.env src=af-worker-s3root.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/s3_ceo_backup_creator.env src=af-worker-s3_ceo_backup_creator.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/hkgmetadb.env src=af-worker-hkgmetadb.env owner=root group=root mode=0400
+- copy: dest=/srv/etc/af-worker/collector_ssh.env src=collector_ssh.env owner=root group=root mode=0400
 
 - name: mkdir af-worker-bin
   file: dest=/srv/af-worker-bin state=directory owner=root group=root mode=0755
@@ -96,11 +103,27 @@
   tags: airflow-dags
   synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes
   notify: restart airflow
+- template: src=have_collector.json dest=/srv/airflow-dags/have_collector.json owner=root group=root mode=0444 # NB: `synchronize` with delete=yes may drop it
+  tags: airflow-dags
+  notify: restart airflow
 
-- import_tasks: af-container.yml dockname=af-sched  login=afsched  command=scheduler
-- import_tasks: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
-- import_tasks: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
+- import_tasks: af-container.yml
   vars:
+    dockname: af-sched
+    login: afsched
+    command: scheduler
+- import_tasks: af-container.yml
+  vars:
+    dockname: af-websrv
+    login: afwebsrv
+    command: webserver
+    ipv4_address: 172.26.43.254
+- import_tasks: af-container.yml
+  vars:
+    dockname: af-worker
+    login: afworker
+    command: worker
+    image_ext: -worker
     volume_ext:
       - /var/run/docker.sock:/var/run/docker.sock
       - /srv/af-worker-bin/docker-trampoline:/usr/local/bin/docker-trampoline:ro

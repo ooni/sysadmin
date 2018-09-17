@@ -148,6 +148,11 @@ amstorth.ooni.nu
 munin.ooni.io
 wiki.ooni.io
 
+[have_collector]
+hkgcollectora.ooni.nu
+b.collector.ooni.io
+c.collector.ooni.io
+
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
 irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
 deb.ooni.nu                       # no root for darkk
