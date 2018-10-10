@@ -1,4 +1,4 @@
-piwik_download_path: http://builds.piwik.org/piwik.zip
+piwik_download_path: http://builds.piwik.org/piwik-3.6.0.zip
 
 piwik_admin_user: piwik_admin
 piwik_admin_email: "admin@openobservatory.org"
