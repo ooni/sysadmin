@@ -7,5 +7,5 @@
     letsencrypt_nginx: yes
     letsencrypt_domains: "analytics.ooni.io"
   roles:
-    #- letsencrypt
+    - letsencrypt
     - piwik
