@@ -1,3 +1,6 @@
+# -*- mode: nginx; mode: flyspell-prog; mode: autopair; ispell-local-dictionary: "american" -*-
+### Nginx configuration for Piwik.
+
 server {
     server_name {{ server_name}};
 
@@ -8,60 +11,34 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/privkey.pem;
     ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
 
-  if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-    return 444;
-  }
 
-  root  {{ app_path }}/current/piwik;
-  index  index.php index.html;
-  # Disallow any usage of piwik assets if referer is non valid.
-  location ~* ^.+\.(?:jpg|png|css|gif|jpeg|js|swf)$ {
-    # Defining the valid referers.
-    #valid_referers none blocked *.mysite.com othersite.com;
+    ## listen [fe80::202:b3ff:fe1e:8329]:80 ipv6only=on;
 
-    expires max;
-    break;
-  }
+    limit_conn arbeit 64;
 
-  # Support for favicon. Return a 204 (No Content) if the favicon
-  # doesn't exist.
-  location = /favicon.ico {
-    try_files /favicon.ico =204;
-  }
+    ## Access and error log files.
+    access_log /var/log/nginx/{{ server_name }}_access.log;
+    error_log /var/log/nginx/{{ server_name }}_error.log;
 
-  # Try all locations and relay to index.php as a fallback.
-  location / {
-    try_files $uri /index.php;
-  }
+    ## See the blacklist.conf file at the parent dir: /etc/nginx.
+    ## Deny access based on the User-Agent header.
 
-  # Relay all index.php requests to fastcgi.
-  location ~* ^/(?:index|piwik)\.php$ {
-    fastcgi_pass unix:/var/run/php5-fpm.sock;
-    fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param REMOTE_ADDR $http_x_real_ip;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host            $host;
-    include fastcgi_params;
-  }
+    ## -> Uncomment the lines below to enable bad bot blocking based
+    ## on UA string.
+    # if ($bad_bot) {
+    #     return 444;
+    # }
+    ## -> Uncomment the lines below to enable bad bot blocking based
+    ## on referer header.
+    ## Deny access based on the Referer header.
+    # if ($bad_referer) {
+    #     return 444;
+    # }
 
-  # Any other attempt to access PHP files returns a 404.
-  location ~* ^.+\.php$ {
-    return 404;
-  }
+    root  {{ app_path }}/current/piwik;
+    index index.php;
 
-  # Return a 404 for all text files.
-  location ~* ^/(?:README|LICENSE[^.]*|LEGALNOTICE)(?:\.txt)*$ {
-    return 404;
-  }
+    ## Include the piwik configuration.
+    include apps/piwik/piwik.conf;
 
-  # # The 404 is signaled through a static page.
-  error_page  404  /404.html;
-
-  # ## All server error pages go to 50x.html at the document root.
-  # error_page 500 502 503 504  /50x.html;
-  # location = /50x.html {
-  #   root   /var/www/nginx-default;
-  # }
 } # server

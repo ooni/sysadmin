@@ -16,8 +16,8 @@
 
 - name: Configure nginx
   template:
-    src: nginx.conf.j2
-    dest: /etc/nginx/nginx.conf
+    src: etc-nginx/
+    dest: /etc/nginx/
 
 - name: Configure piwiks virtual host
   template:
