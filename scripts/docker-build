@@ -50,7 +50,7 @@ set -o pipefail
 
 (
     set -o xtrace
-    git archive --format=tar "$git_head" | docker build -t "$img:$ver" -t "$img:latest" -
+    git archive --format=tgz "$git_head" | docker build -t "$img:$ver" -t "$img:latest" -
 )
 
 echo "Going to push $img:$ver & $img:latest"
