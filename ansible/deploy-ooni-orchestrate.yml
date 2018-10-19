@@ -7,7 +7,8 @@
     orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret_testing }}"
     orchestra_notify_url: "https://notify.proteus.test.ooni.io"
     orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password_testing }}"
-    orchestra_notify_topic_ios: "org.openobservatory.NetProbe"
+    orchestra_notify_topic_ios: "org.openobservatory.ooniprobe"
+    orchestra_apn_production: "false"
   roles:
     - letsencrypt
     - ooni-orchestrate
