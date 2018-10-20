@@ -65,6 +65,7 @@
 
 - name: Install alertmanager systemd service file
   notify:
+  - systemctl daemon-reload
   - restart alertmanager
   template:
     src: alertmanager.service

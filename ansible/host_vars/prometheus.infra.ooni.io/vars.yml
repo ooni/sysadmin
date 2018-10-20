@@ -10,6 +10,11 @@ alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
 grafana_secret_key: "{{ vault_grafana_secret_key }}" # to sign cookies
 
+prometheus_listen_address: "127.0.0.1:8090"
+alertmanager_listen_address: "127.0.0.1:9093"
+grafana_backend_ipv4: "172.26.55.254"
+grafana_backend_port: 26738
+
 ngxprom_exporter_ports:
   9100: '{{ node_exporter_ipv4 }}'
   8090: '127.0.0.1' # FIXME: unusual port for prometheus

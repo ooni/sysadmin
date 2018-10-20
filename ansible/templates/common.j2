@@ -1,0 +1,40 @@
+{# location_letsencrypt() makes sense for port80, it's meaningless on port443 #}
+{% macro location_letsencrypt() -%}
+
+    location /.well-known/acme-challenge {
+        default_type "text/plain";
+        root /var/www/letsencrypt;
+        try_files $uri $uri/ =404;
+    }
+
+    # Hide /acme-challenge subdirectory and return 404 on all requests.
+    location = /.well-known/acme-challenge/ {
+        return 404;
+    }
+
+{%- endmacro %}
+
+{% macro server_letsencrypt(domains) -%}
+server {
+    listen 80;
+    server_name {{ domains | join(' ') }};
+
+    location / {
+        return https://$host$request_uri;
+    }
+
+    {{ location_letsencrypt() }}
+}
+{%- endmacro %}
+
+{% macro ssl_letsencrypt(main_domain, ssl_conf='ssl_intermediate.conf') -%}
+    include /etc/nginx/{{ ssl_conf }};
+
+    ssl_certificate /etc/letsencrypt/live/{{ main_domain }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ main_domain }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ main_domain }}/chain.pem; # for ssl_stapling_verify
+{%- endmacro %}
+
+{% macro add_header_hsts() -%}
+add_header Strict-Transport-Security max-age=15768000; # HSTS (15768000 seconds = 6 months)
+{%- endmacro %}

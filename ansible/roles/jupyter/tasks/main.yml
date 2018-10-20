@@ -3,7 +3,6 @@
   apt: name={{ item }} update_cache=yes state=latest
   with_items:
     - 'unzip'
-    - 'openssl'
     - 'zip'
     - 'bzip2'
     - 'build-essential'

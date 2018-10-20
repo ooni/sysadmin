@@ -1,5 +1,5 @@
 grafana_config_path: /srv/grafana/etc
 grafana_lib_path: /srv/grafana/lib
-grafana_backend_ipv4: "172.26.55.254"
-grafana_backend_port: 26738
+grafana_backend_ipv4: '{{ CHANGE_ME }}'
+grafana_backend_port: '{{ CHANGE_ME }}'
 grafana_docker_tag: "4.3.2"

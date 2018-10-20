@@ -98,28 +98,6 @@ case "$script" in
     set -- /usr/local/bin/cleanup_reports_raw.py --bucket "${bucket}" --reports-raw-root "$private/reports-raw" --canned-index "$private/canned/${bucket}/index.json.gz" --reports-tgz-index "$private/reports-tgz/${bucket}.index.json.gz"
     ;;
 
-    sanitised_s3_ls)
-    docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
-    volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:rw"
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data/sanitised/$bucket" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
-    ;;
-
-    sanitised_check)
-    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
-    volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:ro"
-    volargs="${volargs} --volume=$public/santoken:$public/santoken:rw"
-    set -- /usr/local/bin/check_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}"
-    ;;
-
-    sanitised_cleanup)
-    volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
-    volargs="${volargs} --volume=$public/sanitised-s3-ls:$public/sanitised-s3-ls:ro"
-    volargs="${volargs} --volume=$public/santoken:$public/santoken:ro"
-    volargs="${volargs} --volume=$public/sanitised/${bucket}:$public/sanitised/${bucket}:rw"
-    set -- /usr/local/bin/cleanup_sanitised.py --bucket "${bucket}" --sanitised-root "$public/sanitised" --autoclaved-root "$public/autoclaved" --santoken "$public/santoken/${bucket}" --s3-ls "$public/sanitised-s3-ls/${bucket}.json.gz"
-    ;;
-
     reports_tgz_s3_sync)
     docknet="" # no `--network none'
     volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env"
@@ -179,6 +157,38 @@ case "$script" in
     set -- /usr/local/bin/aws_s3_lz4cat_sync.py --src "$public/autoclaved/${bucket}" --s3-bucket "ooni-data" --s3-prefix "autoclaved/jsonl/${bucket}"
     ;;
 
+    collector_sensor_*)
+    fqdn="$1"
+    ping -nq -c 5 -i 0.2 "$fqdn" || exit 1 # poor-man input validation
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/collector_ssh.env"
+    volargs="${volargs} --volume=/srv/etc/collector_ssh:/etc/collector_ssh:ro"
+    volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=64m"
+    # if it's non-empty and does not grow
+    set -- /bin/bash -c 'set -ex; cd /tmp; mkfifo f; rsync "$0": >f & f=$(wc -l <f); wait -n; if [ $f -gt 1 ] && sleep 60 && [ $f -eq $(rsync "$0": | wc -l) ]; then exit 42; else exit 13; fi' "$fqdn"
+    ;;
+
+    rsync_collector_*)
+    fqdn="$1"
+    ping -nq -c 5 -i 0.2 "$fqdn" || exit 1 # poor-man input validation
+    docknet="" # no `--network none'
+    volargs="${volargs} --env-file=/etc/af-worker/collector_ssh.env"
+    volargs="${volargs} --volume=/srv/etc/collector_ssh:/etc/collector_ssh:ro"
+    volargs="${volargs} --volume=$private/spool/$fqdn:/spool/$fqdn:rw"
+    set -- rsync --remove-source-files -azP "${fqdn}:" "/spool/$fqdn/"
+    ;;
+
+    reports_raw_merge)
+    for fqdn in "$@"; do
+        ping -nq -c 5 -i 0.2 "$fqdn" || exit 1 # poor-man input validation
+    done
+    docker run $docksafe --network none -v=$private/reports-raw:/reports-raw:rw debian:jessie /bin/bash -c "mkdir -p /reports-raw/${bucket} && chown $uidno /reports-raw/${bucket}"
+    volargs="${volargs} --volume=$private/spool:/spool:rw"
+    volargs="${volargs} --volume=$private/reports-raw/${bucket}:/reports-raw/${bucket}:rw"
+    volargs="${volargs} --volume=$private/reports-raw-shals:/reports-raw-shals:rw"
+    set -- /bin/bash -c 'set -Cex; cd /spool; find "$@" -type f -execdir mv --no-clobber --target-directory "/reports-raw/$0" {} +; find "/reports-raw/$0/" -type f -printf "%f %s\n" | LC_ALL=C sort | sha256sum >"/reports-raw-shals/$0"' "${bucket}" "$@"
+    ;;
+
     *)
     echo "$0: unknown script <$script>" 1>&2
     exit 1
@@ -187,4 +197,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180523-a083c7d8 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20180914-b5046e33 "$@"

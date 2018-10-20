@@ -1,0 +1,6 @@
+---
+prometheus_listen_address: '{{ CHANGE_ME }}'
+alertmanager_listen_address: '{{ CHANGE_ME }}'
+grafana_backend_ipv4: '{{ CHANGE_ME }}'
+grafana_backend_port: '{{ CHANGE_ME }}'
+...

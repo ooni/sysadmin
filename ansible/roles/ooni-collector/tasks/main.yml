@@ -79,10 +79,11 @@
 
 - name: Write sync-user .ssh/authorized_keys
   template:
-    owner: "{{ passwd.sync_user.id }}"
-    group: "{{ passwd.sync_user.id }}"
+    owner: sync-user
+    group: sync-user
     src: "sync-user_authorized_keys.j2"
     dest: "/home/sync-user/.ssh/authorized_keys"
+  tags: collector_ssh
 
 - name: mkdir for sync-user data files
   file:

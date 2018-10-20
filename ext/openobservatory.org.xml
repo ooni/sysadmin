@@ -8,7 +8,7 @@
       <host HostId="109814312" Name="slack" Type="A" Address="37.218.247.42" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="112976321" Name="test-lists" Type="A" Address="37.218.240.141" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="77079882" Name="blog" Type="CNAME" Address="openo.ghost.io." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123108525" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123108525" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="300" AssociatedAppTitle="" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="123108558" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="123108577" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="123108599" Name="@" Type="MX" Address="ALT3.ASPMX.L.GOOGLE.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

@@ -17,6 +17,7 @@
     - curl
     - mtr
     - rsync
+    - openssl # at least for ooca-cert
 
 - import_tasks: sshd.yml
 - import_tasks: ping.yml

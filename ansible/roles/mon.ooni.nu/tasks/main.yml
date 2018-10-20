@@ -1,0 +1,16 @@
+---
+- name: copy ooni_monitoring.htpasswd
+  copy: src=mon.ooni.nu.htpasswd dest=/etc/nginx/mon.ooni.nu.htpasswd mode=0440 owner=root group=nginx
+
+- name: add mon.ooni.nu config
+  notify: reload nginx
+  template: src=mon.ooni.nu.conf dest=/etc/nginx/sites-enabled/mon.ooni.nu.conf mode=0444 owner=root group=root
+
+- name: clean stale files
+  file: path={{item}} state=absent
+  notify: reload nginx
+  with_items:
+    - /etc/nginx/sites-enabled/grafana
+    - /etc/nginx/sites-enabled/prometheus
+    - /etc/nginx/prometheus_webfront.htpasswd
+...

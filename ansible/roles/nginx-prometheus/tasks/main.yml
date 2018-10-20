@@ -1,13 +1,10 @@
 ---
-- name: Install required apt packages
+- name: install nginx if absent # should be installed as part of nginx-stable
   apt:
-    name: "{{ item }}"
-    state: latest # openssl and nginx should rather be `latest` :-)
+    name: nginx
+    state: present
   environment:
     RUNLEVEL: 1 # To avoid nginx being launched right after it's installed
-  with_items:
-    - openssl
-    - nginx
 
 - name: Create nginx/Prometheus directories
   file: path={{ item }} state=directory owner=root group=root mode=0755

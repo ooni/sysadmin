@@ -83,6 +83,4 @@
   systemd:
     name: prometheus.service
     enabled: yes
-
-- import_tasks: setup-nginx.yml
-  when: ( prometheus_nginx is defined and prometheus_nginx|bool == true )
+...

@@ -1,3 +1,42 @@
 ---
-- import_tasks: letsencrypt_gen.yml
-- import_tasks: letsencrypt_renew.yml
+- name: Add Debian stable backports repository
+  apt_repository:
+    state: present
+    repo: deb http://httpredir.debian.org/debian {{ ansible_lsb.codename }}-backports main
+  when: ansible_lsb.id == "Debian" and ansible_lsb.codename == "jessie"
+
+- name: Install Letsencrypt certbot
+  apt:
+    name: certbot
+    state: latest
+    update_cache: yes
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+
+- name: Creates letsencrypt webroot
+  file: state=directory path=/var/www/letsencrypt mode=0755 owner=root group=root
+
+- name: Find stale letsencrypt_renew_certs cron jobs
+  find:
+    paths: /etc/cron.d
+    patterns: 'letsencrypt_renew_certs-*'
+  register: find_results
+
+- name: Remove stale letsencrypt_renew_certs cron jobs
+  file:
+    path: '{{ item.path }}'
+    state: absent
+  with_items: '{{ find_results.files }}'
+- name: Remove state letsencrypt vhost
+  file: path=/etc/nginx/sites-enabled/letsencrypt state=absent
+
+# NB: --standalone is not supported
+- name: Generate Letsencrypt certificate with certbot package
+  command: >
+    certbot certonly
+    --webroot -w /var/www/letsencrypt --preferred-challenges http
+    --noninteractive --text --agree-tos
+    --email {{ letsencrypt_admin_email }}
+    --domains {{ letsencrypt_domains | join(',') }}
+    --post-hook '/usr/sbin/service nginx reload'
+  args: { creates: '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' }
+...

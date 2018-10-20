@@ -74,7 +74,7 @@
       <host HostId="137316375" Name="design" Type="CNAME" Address="ooni-design.netlify.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="131506266" Name="slides" Type="CNAME" Address="ooni-slides.netlify.com." MXPref="10" TTL="1200" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="85965209" Name="www" Type="CNAME" Address="ooni.netlify.com." MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="122751563" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="1799" AssociatedAppTitle="MX" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="122751563" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="300" AssociatedAppTitle="MX" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="122751565" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="122751568" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="122751574" Name="@" Type="MX" Address="ALT3.ASPMX.L.GOOGLE.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
