@@ -5,7 +5,7 @@ orchestra_database_username: "proteus"
 orchestra_database_name: "proteus"
 
 orchestra_admin_password: '{{ vault_orchestra_admin_password }}'
-orchestra_database_password: '{{ vault_orchestra_database_password }}'
+orchestra_database_password: '{{ vault_orchestra_database_password }}' # FIXME: duplicated in group_vars/psk_orchestra_db_prod/vars.yml
 orchestra_auth_jwt_secret: '{{ vault_orchestra_auth_jwt_secret }}'
 fcm_server_key: '{{ vault_fcm_server_key }}'
 orchestra_apn_key_password: '{{ vault_orchestra_apn_key_password }}'

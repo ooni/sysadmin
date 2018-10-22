@@ -88,7 +88,13 @@
 - template: dest=/srv/etc/af-worker/s3root.env src=af-worker-s3root.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/s3_ceo_backup_creator.env src=af-worker-s3_ceo_backup_creator.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/hkgmetadb.env src=af-worker-hkgmetadb.env owner=root group=root mode=0400
+- template: dest=/srv/etc/af-worker/orchestradb.env src=af-worker-orchestradb.env owner=root group=root mode=0400
 - copy: dest=/srv/etc/af-worker/collector_ssh.env src=collector_ssh.env owner=root group=root mode=0400
+
+- name: mkdir /etc/ssl/ooca-cert/
+  file: dest=/etc/ssl/ooca-cert state=directory owner=root group=root mode=0755
+- name: copy postgres_ca.cert to /etc/ssl/ooca-cert
+  copy: src=postgres_ca.cert dest=/etc/ssl/ooca-cert/ owner=root group=root mode=0644
 
 - name: mkdir af-worker-bin
   file: dest=/srv/af-worker-bin state=directory owner=root group=root mode=0755

@@ -1,0 +1,3 @@
+---
+orchestra_db_prod_password: '{{ vault_orchestra_db_prod_password }}' # FIXME: duplicated in group_vars/psk_orchestration/vars.yml
+...
