@@ -34,4 +34,5 @@
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
   roles:
-    - airflow
+    - role: airflow
+      tags: airflow

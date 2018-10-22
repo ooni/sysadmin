@@ -18,6 +18,10 @@ scraper_ca.cert: scraper_ca.key.vault
 pusher_ca.cert: pusher_ca.key.vault
 	../vault view $^ | openssl req -x509 -new -key /dev/stdin -sha256 -days 3650 -subj '/O=OONI/OU=CA/CN=Prometheus Pusher CA' -out $@
 
+# certificate to sign keys for PostgreSQL servers for `sslmode=verify-full`
+postgres_ca.cert: postgres_ca.key.vault
+	../vault view $^ | openssl req -x509 -new -key /dev/stdin -sha256 -days 3650 -subj '/O=OONI/OU=CA/CN=PostgreSQL Server CA' -out $@
+
 # This rule is here to record CN for the certificate.
 hellais_nas.cert: hellais_nas.key pusher_ca.cert pusher_ca.key.vault
 	openssl req -new -key hellais_nas.key -sha256 -days 3650 -subj '/O=OONI/OU=Prometheus Pusher/CN=hellais NAS' | \

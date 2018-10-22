@@ -2,22 +2,22 @@
 - import_playbook: ansible-version.yml
 
 - hosts: db-1.proteus.test.ooni.io
-  gather_facts: false
   vars:
     psql_db_name: proteus
     psql_db_user: proteus
     psql_db_passwd: "{{ orchestra_database_password_testing }}"
   roles:
-    - postgresql
+    - role: postgresql
+      tags: postgresql
 
 - hosts: db-1.proteus.ooni.io
-  gather_facts: false
   vars:
     psql_db_name: "{{ orchestra_database_username }}"
     psql_db_user: "{{ orchestra_database_name }}"
     psql_db_passwd: "{{ orchestra_database_password }}"
   roles:
-    - postgresql
+    - role: postgresql
+      tags: postgresql
 
 - import_playbook: deploy-ooni-registry.yml
 

@@ -114,7 +114,7 @@ hkgmetadb.infra.ooni.io
 amsapi.ooni.nu
 
 [psk_orchestration]
-
+# FIXME: all in one bin as testing should have access to production! :)
 # XXX rename these to orchestra
 notify.proteus.test.ooni.io
 events.proteus.test.ooni.io
@@ -127,6 +127,11 @@ registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 
+[psk_orchestra_db_prod]
+# FIXME: untie `psk_orchestration` into something more manageable
+db-1.proteus.ooni.io
+datacollector.infra.ooni.io
+
 [psk_superset_hkgmetadb]
 hkgsuperset.ooni.io
 hkgmetadb.infra.ooni.io
@@ -138,6 +143,8 @@ hkgmetadb.infra.ooni.io
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
+# db-1.proteus.test.ooni.io
+# db-1.proteus.ooni.io
 
 [have_nginx]
 amsapi.ooni.nu
