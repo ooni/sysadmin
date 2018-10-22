@@ -18,7 +18,7 @@ orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
 orchestra_notify_url: "https://notify.orchestra.test.ooni.io"
 orchestra_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
 
-orchestra_version: "0.2.1"
+orchestra_version: "0.2.2"
 orchestra_download_url: https://github.com/ooni/orchestra/releases/download
 
 orchestra_tarball_url: "{{ orchestra_download_url }}/v{{ orchestra_version }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}.tar.gz"
