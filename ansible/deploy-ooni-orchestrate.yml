@@ -9,8 +9,9 @@
   roles:
     - role: letsencrypt
       tags: letsencrypt
-      letsencrypt_domains: "{{ inventory_hostname }}" # BTW, that's strong anti-pattern
-    - ooni-orchestrate
+      letsencrypt_domains: ["{{ inventory_hostname }}"] # BTW, that's strong anti-pattern
+    - role: ooni-orchestrate
+      letsencrypt_domains: ["{{ inventory_hostname }}"]
 
 - hosts: events.proteus.ooni.io
   vars:
@@ -25,4 +26,5 @@
       tags: letsencrypt
       # orchestrate.* is "canonical" name, events.proteus.* is "legacy" from MK that was never released as OONI Probe (and may be eventually dropped)
       letsencrypt_domains: ["orchestrate.ooni.io", "events.proteus.ooni.io"]
-    - ooni-orchestrate
+    - role: ooni-orchestrate
+      letsencrypt_domains: ["orchestrate.ooni.io", "events.proteus.ooni.io"]
