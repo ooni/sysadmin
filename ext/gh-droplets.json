@@ -11,9 +11,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 83:7d:3b:6b:99:75:05:08:ff:d8:0e:f1:cc:37:6d:87 \n", 
-                "ssh_ecdsa": "256 79:91:06:fe:c2:c3:f7:c4:47:d0:8c:a3:5f:5b:af:d3 \n", 
-                "ssh_rsa": "2048 69:1f:95:a9:7d:f0:c6:64:7a:06:9d:5c:09:8e:e7:16 \n"
+                "ssh_dsa": "1024 83:7d:3b:6b:99:75:05:08:ff:d8:0e:f1:cc:37:6d:87 ", 
+                "ssh_ecdsa": "256 79:91:06:fe:c2:c3:f7:c4:47:d0:8c:a3:5f:5b:af:d3 ", 
+                "ssh_rsa": "2048 69:1f:95:a9:7d:f0:c6:64:7a:06:9d:5c:09:8e:e7:16 "
             }, 
             "locked": false, 
             "memory": "16384", 
@@ -49,9 +49,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 87:02:35:5e:6b:42:34:ca:71:e3:22:0a:e1:2a:bd:96 \n", 
-                "ssh_ecdsa": "256 f4:91:fa:1c:fa:8f:37:19:33:52:d5:64:f9:a9:d7:53 \n", 
-                "ssh_rsa": "2048 7f:ab:9b:97:63:a5:fe:cc:ae:f0:f5:a4:e5:9d:24:08 \n"
+                "ssh_dsa": "1024 87:02:35:5e:6b:42:34:ca:71:e3:22:0a:e1:2a:bd:96 ", 
+                "ssh_ecdsa": "256 f4:91:fa:1c:fa:8f:37:19:33:52:d5:64:f9:a9:d7:53 ", 
+                "ssh_rsa": "2048 7f:ab:9b:97:63:a5:fe:cc:ae:f0:f5:a4:e5:9d:24:08 "
             }, 
             "locked": false, 
             "memory": "512", 
@@ -87,9 +87,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 f9:48:1f:9f:23:16:ce:1f:9b:6a:ea:22:c8:96:62:4e \n", 
-                "ssh_ecdsa": "256 ab:80:ab:a8:56:db:2b:94:0c:68:f9:65:5a:9a:5c:81 \n", 
-                "ssh_rsa": "2048 35:e9:0f:e4:7c:8e:4b:20:b9:f1:fe:34:6b:3a:3c:e0 \n"
+                "ssh_dsa": "1024 f9:48:1f:9f:23:16:ce:1f:9b:6a:ea:22:c8:96:62:4e ", 
+                "ssh_ecdsa": "256 ab:80:ab:a8:56:db:2b:94:0c:68:f9:65:5a:9a:5c:81 ", 
+                "ssh_rsa": "2048 35:e9:0f:e4:7c:8e:4b:20:b9:f1:fe:34:6b:3a:3c:e0 "
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -139,9 +139,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 d0:af:76:3a:3a:a3:e1:88:98:cc:68:43:c9:df:51:8c \n", 
-                "ssh_ecdsa": "256 78:8d:36:8e:0d:87:37:e3:01:cd:83:69:d8:87:45:8b \n", 
-                "ssh_rsa": "2048 a2:eb:ae:2a:10:8f:9d:23:a0:7c:99:f8:fa:91:3f:09 \n"
+                "ssh_dsa": "1024 d0:af:76:3a:3a:a3:e1:88:98:cc:68:43:c9:df:51:8c ", 
+                "ssh_ecdsa": "256 78:8d:36:8e:0d:87:37:e3:01:cd:83:69:d8:87:45:8b ", 
+                "ssh_rsa": "2048 a2:eb:ae:2a:10:8f:9d:23:a0:7c:99:f8:fa:91:3f:09 "
             }, 
             "locked": false, 
             "memory": "512", 
@@ -177,9 +177,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -196,7 +196,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -215,9 +215,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 9f:81:a8:e3:89:ba:66:08:f3:c0:41:bb:a9:ea:9a:6b\n", 
-                "ssh_ecdsa": "256 83:cf:ad:e4:c4:ed:99:fb:dc:c6:15:3d:ef:48:ca:b4\n", 
-                "ssh_rsa": "2048 47:22:b1:20:60:c4:78:63:a4:0c:09:02:3d:c4:d7:27\n"
+                "ssh_dsa": "1024 9f:81:a8:e3:89:ba:66:08:f3:c0:41:bb:a9:ea:9a:6b", 
+                "ssh_ecdsa": "256 83:cf:ad:e4:c4:ed:99:fb:dc:c6:15:3d:ef:48:ca:b4", 
+                "ssh_rsa": "2048 47:22:b1:20:60:c4:78:63:a4:0c:09:02:3d:c4:d7:27"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -234,7 +234,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -253,9 +253,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -272,7 +272,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -291,9 +291,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/hRK2Hxd83FHZoQTnxIJAH8YvV0MgvqhS61b0NYSQHV65/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -310,7 +310,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -329,9 +329,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -348,7 +348,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -367,9 +367,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 55:18:e5:cb:dc:59:8f:ae:b8:47:bb:32:57:c5:ba:5c\n", 
-                "ssh_ecdsa": "256 6e:9c:be:12:d1:23:b9:ab:1d:67:ea:a5:8a:34:9a:ea\n", 
-                "ssh_rsa": "2048 17:85:5a:52:7b:a4:89:c5:62:11:09:91:e3:10:26:4e\n"
+                "ssh_dsa": "1024 55:18:e5:cb:dc:59:8f:ae:b8:47:bb:32:57:c5:ba:5c", 
+                "ssh_ecdsa": "256 6e:9c:be:12:d1:23:b9:ab:1d:67:ea:a5:8a:34:9a:ea", 
+                "ssh_rsa": "2048 17:85:5a:52:7b:a4:89:c5:62:11:09:91:e3:10:26:4e"
             }, 
             "locked": false, 
             "memory": "512", 
@@ -386,7 +386,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -405,9 +405,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_dsa_key.pub (DSA)\n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)\n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_rsa_key.pub (RSA)\n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
             "memory": "512", 
@@ -424,7 +424,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -443,9 +443,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba \n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 \n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 \n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba ", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 ", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 "
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -481,9 +481,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba \n", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 \n", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 \n"
+                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba ", 
+                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 ", 
+                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 "
             }, 
             "locked": false, 
             "memory": "6144", 
@@ -519,9 +519,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 e6:d9:90:d4:0d:e6:fa:9c:f6:66:be:e6:9d:1e:e9:c6\n", 
-                "ssh_ecdsa": "256 c2:f4:81:aa:08:e3:67:fc:eb:43:59:e8:e0:17:d2:4b\n", 
-                "ssh_rsa": "2048 c3:b0:26:d9:09:89:c0:ee:23:42:b2:a4:b6:0b:42:87\n"
+                "ssh_dsa": "1024 e6:d9:90:d4:0d:e6:fa:9c:f6:66:be:e6:9d:1e:e9:c6", 
+                "ssh_ecdsa": "256 c2:f4:81:aa:08:e3:67:fc:eb:43:59:e8:e0:17:d2:4b", 
+                "ssh_rsa": "2048 c3:b0:26:d9:09:89:c0:ee:23:42:b2:a4:b6:0b:42:87"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -557,9 +557,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 97:74:25:6d:bb:aa:1c:28:f1:27:d0:4f:ec:f0:f0:7a\n", 
-                "ssh_ecdsa": "256 99:03:da:a2:7b:07:f3:8f:3a:6a:c4:37:c4:0b:e0:0d\n", 
-                "ssh_rsa": "2048 fb:d5:99:cd:7e:53:71:c4:fb:ec:14:14:d1:52:f7:fd\n"
+                "ssh_dsa": "1024 97:74:25:6d:bb:aa:1c:28:f1:27:d0:4f:ec:f0:f0:7a", 
+                "ssh_ecdsa": "256 99:03:da:a2:7b:07:f3:8f:3a:6a:c4:37:c4:0b:e0:0d", 
+                "ssh_rsa": "2048 fb:d5:99:cd:7e:53:71:c4:fb:ec:14:14:d1:52:f7:fd"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -576,7 +576,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -595,9 +595,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 89:04:1b:5e:94:e6:69:62:b1:61:4a:d6:5d:fc:d0:73\n", 
-                "ssh_ecdsa": "256 9b:80:4b:43:25:2f:4e:fb:29:7a:a8:17:54:32:3a:80\n", 
-                "ssh_rsa": "2048 fd:ea:85:3c:84:5d:cc:f3:b2:30:0b:ff:a4:f3:e3:8e\n"
+                "ssh_dsa": "1024 89:04:1b:5e:94:e6:69:62:b1:61:4a:d6:5d:fc:d0:73", 
+                "ssh_ecdsa": "256 9b:80:4b:43:25:2f:4e:fb:29:7a:a8:17:54:32:3a:80", 
+                "ssh_rsa": "2048 fd:ea:85:3c:84:5d:cc:f3:b2:30:0b:ff:a4:f3:e3:8e"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -614,7 +614,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -633,9 +633,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 e5:b0:69:a8:a7:ac:3e:44:71:50:19:7b:c1:52:b9:da\n", 
-                "ssh_ecdsa": "256 14:4c:9b:2f:2c:85:c0:7c:04:6b:65:b2:77:b5:30:08\n", 
-                "ssh_rsa": "2048 b2:36:23:ff:17:23:92:6c:67:93:9d:b2:81:33:be:95\n"
+                "ssh_dsa": "1024 e5:b0:69:a8:a7:ac:3e:44:71:50:19:7b:c1:52:b9:da", 
+                "ssh_ecdsa": "256 14:4c:9b:2f:2c:85:c0:7c:04:6b:65:b2:77:b5:30:08", 
+                "ssh_rsa": "2048 b2:36:23:ff:17:23:92:6c:67:93:9d:b2:81:33:be:95"
             }, 
             "locked": false, 
             "memory": "1024", 
@@ -652,7 +652,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -671,9 +671,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 bd:ba:2f:55:e0:ac:f1:a0:d7:69:a3:ab:5b:c2:91:8d\n", 
-                "ssh_ecdsa": "256 a1:dd:92:5f:67:9c:4e:17:27:c8:11:ef:57:41:c0:d1\n", 
-                "ssh_rsa": "2048 15:ca:e2:84:cd:2a:05:35:af:59:54:17:3d:0b:25:16\n"
+                "ssh_dsa": "1024 bd:ba:2f:55:e0:ac:f1:a0:d7:69:a3:ab:5b:c2:91:8d", 
+                "ssh_ecdsa": "256 a1:dd:92:5f:67:9c:4e:17:27:c8:11:ef:57:41:c0:d1", 
+                "ssh_rsa": "2048 15:ca:e2:84:cd:2a:05:35:af:59:54:17:3d:0b:25:16"
             }, 
             "locked": false, 
             "memory": "3072", 
@@ -690,7 +690,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -709,9 +709,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 f2:eb:38:57:62:32:fa:4f:e2:e2:7c:c4:f8:8f:80:02\n", 
-                "ssh_ecdsa": "256 d5:ce:57:84:c6:27:51:cd:7e:2c:57:34:58:31:50:b3\n", 
-                "ssh_rsa": "2048 3a:75:ff:03:eb:71:b6:28:bf:3a:74:80:85:ee:03:1f\n"
+                "ssh_dsa": "1024 f2:eb:38:57:62:32:fa:4f:e2:e2:7c:c4:f8:8f:80:02", 
+                "ssh_ecdsa": "256 d5:ce:57:84:c6:27:51:cd:7e:2c:57:34:58:31:50:b3", 
+                "ssh_rsa": "2048 3a:75:ff:03:eb:71:b6:28:bf:3a:74:80:85:ee:03:1f"
             }, 
             "locked": false, 
             "memory": "3072", 
@@ -747,9 +747,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 0f:40:6f:3e:71:50:d1:ca:0c:7d:a8:a0:fe:08:de:95\n", 
-                "ssh_ecdsa": "256 7f:5e:d5:89:db:7e:89:35:44:be:13:d3:2c:5b:4a:71\n", 
-                "ssh_rsa": "2048 f6:8d:f8:db:99:dd:c6:63:47:20:27:fd:8a:f5:3a:c9\n"
+                "ssh_dsa": "1024 0f:40:6f:3e:71:50:d1:ca:0c:7d:a8:a0:fe:08:de:95", 
+                "ssh_ecdsa": "256 7f:5e:d5:89:db:7e:89:35:44:be:13:d3:2c:5b:4a:71", 
+                "ssh_rsa": "2048 f6:8d:f8:db:99:dd:c6:63:47:20:27:fd:8a:f5:3a:c9"
             }, 
             "locked": false, 
             "memory": "3072", 
@@ -766,7 +766,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -785,9 +785,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 07:a1:29:db:a8:0a:15:c5:b5:a8:83:76:87:f2:3a:b2\n", 
-                "ssh_ecdsa": "256 03:ea:31:90:a2:e0:ec:6a:ae:c8:23:ab:67:9e:cb:c7\n", 
-                "ssh_rsa": "2048 d4:72:70:92:90:9d:cd:34:f9:04:b6:d8:59:61:b1:a1\n"
+                "ssh_dsa": "1024 07:a1:29:db:a8:0a:15:c5:b5:a8:83:76:87:f2:3a:b2", 
+                "ssh_ecdsa": "256 03:ea:31:90:a2:e0:ec:6a:ae:c8:23:ab:67:9e:cb:c7", 
+                "ssh_rsa": "2048 d4:72:70:92:90:9d:cd:34:f9:04:b6:d8:59:61:b1:a1"
             }, 
             "locked": false, 
             "memory": "1024", 
@@ -804,7 +804,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -823,9 +823,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 1e:a3:84:a2:fc:38:dd:54:c5:44:8e:b3:de:f1:f3:d2\n", 
-                "ssh_ecdsa": "256 94:c4:9f:1f:fc:5d:90:d7:38:83:ff:f9:c9:31:0a:35\n", 
-                "ssh_rsa": "2048 ab:28:58:b2:39:ea:ad:36:3e:2b:53:43:29:ca:10:68\n"
+                "ssh_dsa": "1024 1e:a3:84:a2:fc:38:dd:54:c5:44:8e:b3:de:f1:f3:d2", 
+                "ssh_ecdsa": "256 94:c4:9f:1f:fc:5d:90:d7:38:83:ff:f9:c9:31:0a:35", 
+                "ssh_rsa": "2048 ab:28:58:b2:39:ea:ad:36:3e:2b:53:43:29:ca:10:68"
             }, 
             "locked": false, 
             "memory": "6144", 
@@ -842,7 +842,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -861,9 +861,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 26:f9:8c:0f:15:b4:7a:66:1b:98:28:ec:0e:c9:c3:7b\n", 
-                "ssh_ecdsa": "256 af:ae:fc:3c:bc:56:80:9b:46:1c:31:32:d7:38:29:5a\n", 
-                "ssh_rsa": "2048 f0:28:2b:2b:f5:c0:43:b2:4d:3a:6a:d5:28:77:78:68\n"
+                "ssh_dsa": "1024 26:f9:8c:0f:15:b4:7a:66:1b:98:28:ec:0e:c9:c3:7b", 
+                "ssh_ecdsa": "256 af:ae:fc:3c:bc:56:80:9b:46:1c:31:32:d7:38:29:5a", 
+                "ssh_rsa": "2048 f0:28:2b:2b:f5:c0:43:b2:4d:3a:6a:d5:28:77:78:68"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -899,9 +899,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 24:16:69:01:f1:13:7d:d0:0a:d5:4d:0a:cf:7b:06:9c\n", 
-                "ssh_ecdsa": "256 fd:67:5b:39:97:19:5c:d8:de:c3:56:30:86:5e:c2:12\n", 
-                "ssh_rsa": "2048 b3:b3:69:e4:d7:92:b4:ec:f9:2f:7a:e6:77:0d:0a:1a\n"
+                "ssh_dsa": "1024 24:16:69:01:f1:13:7d:d0:0a:d5:4d:0a:cf:7b:06:9c", 
+                "ssh_ecdsa": "256 fd:67:5b:39:97:19:5c:d8:de:c3:56:30:86:5e:c2:12", 
+                "ssh_rsa": "2048 b3:b3:69:e4:d7:92:b4:ec:f9:2f:7a:e6:77:0d:0a:1a"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -937,9 +937,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 8c:cc:3e:04:34:76:dc:37:02:11:0f:fe:c5:2c:8c:a7\n", 
-                "ssh_ecdsa": "256 af:07:ac:a8:85:f2:c0:f7:fe:36:c0:bd:c1:1f:46:d7\n", 
-                "ssh_rsa": "2048 c6:da:cd:78:11:f9:80:21:19:b8:f9:10:1a:79:19:9a\n"
+                "ssh_dsa": "1024 8c:cc:3e:04:34:76:dc:37:02:11:0f:fe:c5:2c:8c:a7", 
+                "ssh_ecdsa": "256 af:07:ac:a8:85:f2:c0:f7:fe:36:c0:bd:c1:1f:46:d7", 
+                "ssh_rsa": "2048 c6:da:cd:78:11:f9:80:21:19:b8:f9:10:1a:79:19:9a"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -975,9 +975,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 1d:01:7d:3c:c2:94:e4:fb:40:55:8b:dc:18:b9:72:ac\n", 
-                "ssh_ecdsa": "256 c2:50:2d:ef:fd:20:07:bc:a0:d0:5c:21:6d:22:dd:ba\n", 
-                "ssh_rsa": "2048 50:39:22:b8:d6:30:77:63:da:f2:2c:61:26:de:fc:e2\n"
+                "ssh_dsa": "1024 1d:01:7d:3c:c2:94:e4:fb:40:55:8b:dc:18:b9:72:ac", 
+                "ssh_ecdsa": "256 c2:50:2d:ef:fd:20:07:bc:a0:d0:5c:21:6d:22:dd:ba", 
+                "ssh_rsa": "2048 50:39:22:b8:d6:30:77:63:da:f2:2c:61:26:de:fc:e2"
             }, 
             "locked": false, 
             "memory": "1024", 
@@ -1013,9 +1013,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 c8:aa:0d:12:31:ba:2a:1b:3b:b0:cb:05:d3:75:cc:6a\n", 
-                "ssh_ecdsa": "256 87:9b:cd:46:b7:04:f0:83:21:be:5a:5b:e3:87:42:07\n", 
-                "ssh_rsa": "2048 72:05:de:7b:04:6c:dc:0e:f4:be:2b:b0:f3:d2:bd:63\n"
+                "ssh_dsa": "1024 c8:aa:0d:12:31:ba:2a:1b:3b:b0:cb:05:d3:75:cc:6a", 
+                "ssh_ecdsa": "256 87:9b:cd:46:b7:04:f0:83:21:be:5a:5b:e3:87:42:07", 
+                "ssh_rsa": "2048 72:05:de:7b:04:6c:dc:0e:f4:be:2b:b0:f3:d2:bd:63"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1051,9 +1051,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 eb:1f:f7:18:42:79:19:2b:38:22:6b:aa:63:d4:67:25\n", 
-                "ssh_ecdsa": "256 7b:86:92:14:c7:a4:d0:15:18:5c:c9:88:25:c9:3f:c7\n", 
-                "ssh_rsa": "2048 94:7f:4c:ea:d6:d5:c2:9e:59:79:f0:5a:45:4e:a7:25\n"
+                "ssh_dsa": "1024 eb:1f:f7:18:42:79:19:2b:38:22:6b:aa:63:d4:67:25", 
+                "ssh_ecdsa": "256 7b:86:92:14:c7:a4:d0:15:18:5c:c9:88:25:c9:3f:c7", 
+                "ssh_rsa": "2048 94:7f:4c:ea:d6:d5:c2:9e:59:79:f0:5a:45:4e:a7:25"
             }, 
             "locked": false, 
             "memory": "512", 
@@ -1089,9 +1089,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 d3:d2:f4:6a:21:36:79:97:7c:e6:43:c8:e8:21:6e:39\n", 
-                "ssh_ecdsa": "256 63:cc:65:4f:ca:88:e6:bd:a7:f7:48:ba:d3:ef:01:cb\n", 
-                "ssh_rsa": "2048 ae:b6:7b:d7:18:6d:5d:9a:c2:ba:3d:aa:15:be:98:c3\n"
+                "ssh_dsa": "1024 d3:d2:f4:6a:21:36:79:97:7c:e6:43:c8:e8:21:6e:39", 
+                "ssh_ecdsa": "256 63:cc:65:4f:ca:88:e6:bd:a7:f7:48:ba:d3:ef:01:cb", 
+                "ssh_rsa": "2048 ae:b6:7b:d7:18:6d:5d:9a:c2:ba:3d:aa:15:be:98:c3"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1108,7 +1108,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1127,9 +1127,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 1a:30:51:d5:9a:0a:52:1c:60:77:44:f6:1b:bb:2e:6c\n", 
-                "ssh_ecdsa": "256 88:a4:87:27:e9:44:bf:7a:06:f1:90:84:e9:7a:49:b4\n", 
-                "ssh_rsa": "2048 1f:db:7c:ae:44:cb:96:88:4f:03:22:c9:1b:60:7e:ec\n"
+                "ssh_dsa": "1024 1a:30:51:d5:9a:0a:52:1c:60:77:44:f6:1b:bb:2e:6c", 
+                "ssh_ecdsa": "256 88:a4:87:27:e9:44:bf:7a:06:f1:90:84:e9:7a:49:b4", 
+                "ssh_rsa": "2048 1f:db:7c:ae:44:cb:96:88:4f:03:22:c9:1b:60:7e:ec"
             }, 
             "locked": false, 
             "memory": "6144", 
@@ -1146,7 +1146,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1165,9 +1165,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 c1:2e:ee:fe:33:8a:fa:15:c3:11:dc:4a:fa:4b:45:a6\n", 
-                "ssh_ecdsa": "256 93:77:65:30:90:4f:2a:59:c7:1a:88:61:22:94:7c:06\n", 
-                "ssh_rsa": "2048 a5:94:b0:17:b5:84:66:25:bd:48:4c:8a:a4:02:d8:f1\n"
+                "ssh_dsa": "1024 c1:2e:ee:fe:33:8a:fa:15:c3:11:dc:4a:fa:4b:45:a6", 
+                "ssh_ecdsa": "256 93:77:65:30:90:4f:2a:59:c7:1a:88:61:22:94:7c:06", 
+                "ssh_rsa": "2048 a5:94:b0:17:b5:84:66:25:bd:48:4c:8a:a4:02:d8:f1"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1184,7 +1184,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1203,9 +1203,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 73:23:0c:9c:9b:4f:c0:04:81:30:45:40:88:21:b2:04\n", 
-                "ssh_ecdsa": "256 cc:e3:81:6f:29:33:b1:6d:1b:70:e0:79:9e:da:1b:8d\n", 
-                "ssh_rsa": "2048 fa:41:53:27:f3:c2:c2:93:88:3a:7a:fe:e5:aa:dc:d9\n"
+                "ssh_dsa": "1024 73:23:0c:9c:9b:4f:c0:04:81:30:45:40:88:21:b2:04", 
+                "ssh_ecdsa": "256 cc:e3:81:6f:29:33:b1:6d:1b:70:e0:79:9e:da:1b:8d", 
+                "ssh_rsa": "2048 fa:41:53:27:f3:c2:c2:93:88:3a:7a:fe:e5:aa:dc:d9"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1222,7 +1222,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1241,9 +1241,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 40:44:ab:52:95:9e:af:14:f1:2f:22:e6:b0:ed:10:56\n", 
-                "ssh_ecdsa": "256 45:5d:c9:b0:d9:b5:c8:bb:af:bf:e0:cd:29:4c:c5:a2\n", 
-                "ssh_rsa": "2048 a9:2a:fe:2c:8b:5c:b8:13:70:ec:01:a5:9b:dd:af:5f\n"
+                "ssh_dsa": "1024 40:44:ab:52:95:9e:af:14:f1:2f:22:e6:b0:ed:10:56", 
+                "ssh_ecdsa": "256 45:5d:c9:b0:d9:b5:c8:bb:af:bf:e0:cd:29:4c:c5:a2", 
+                "ssh_rsa": "2048 a9:2a:fe:2c:8b:5c:b8:13:70:ec:01:a5:9b:dd:af:5f"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1260,7 +1260,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1270,7 +1270,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 410, 
+            "disk": 810, 
             "features": [], 
             "id": "1811", 
             "kernel": {
@@ -1279,9 +1279,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 0c:6e:81:42:5c:b4:b6:1d:2c:1c:8a:26:e5:ac:6b:73\n", 
-                "ssh_ecdsa": "256 2d:6c:d4:90:59:34:a2:bb:6c:cc:c9:99:4c:49:e5:8a\n", 
-                "ssh_rsa": "2048 94:b4:e6:25:64:7e:08:00:3d:fe:b2:7f:a2:14:41:aa\n"
+                "ssh_dsa": "1024 0c:6e:81:42:5c:b4:b6:1d:2c:1c:8a:26:e5:ac:6b:73", 
+                "ssh_ecdsa": "256 2d:6c:d4:90:59:34:a2:bb:6c:cc:c9:99:4c:49:e5:8a", 
+                "ssh_rsa": "2048 94:b4:e6:25:64:7e:08:00:3d:fe:b2:7f:a2:14:41:aa"
             }, 
             "locked": false, 
             "memory": "16384", 
@@ -1317,9 +1317,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 ae:25:26:e3:b7:21:b4:a9:a9:db:44:67:10:72:7c:05\n", 
-                "ssh_ecdsa": "256 d0:cd:24:85:3d:16:cb:c6:d0:99:12:4d:df:d1:3a:59\n", 
-                "ssh_rsa": "2048 66:24:0d:17:af:d2:af:24:55:30:e3:5b:bf:76:da:d3\n"
+                "ssh_dsa": "1024 ae:25:26:e3:b7:21:b4:a9:a9:db:44:67:10:72:7c:05", 
+                "ssh_ecdsa": "256 d0:cd:24:85:3d:16:cb:c6:d0:99:12:4d:df:d1:3a:59", 
+                "ssh_rsa": "2048 66:24:0d:17:af:d2:af:24:55:30:e3:5b:bf:76:da:d3"
             }, 
             "locked": false, 
             "memory": "6144", 
@@ -1346,7 +1346,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 550, 
+            "disk": 950, 
             "features": [], 
             "id": "1868", 
             "kernel": {
@@ -1355,9 +1355,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 b8:90:ec:16:10:3c:e1:12:0f:9e:86:d6:f0:14:12:41\n", 
-                "ssh_ecdsa": "256 68:6b:1a:bd:6f:49:e6:b1:d4:4e:f9:bb:4c:5d:b8:96\n", 
-                "ssh_rsa": "2048 58:89:64:4d:c9:da:03:a1:5b:89:67:28:79:c5:24:ed\n"
+                "ssh_dsa": "1024 b8:90:ec:16:10:3c:e1:12:0f:9e:86:d6:f0:14:12:41", 
+                "ssh_ecdsa": "256 68:6b:1a:bd:6f:49:e6:b1:d4:4e:f9:bb:4c:5d:b8:96", 
+                "ssh_rsa": "2048 58:89:64:4d:c9:da:03:a1:5b:89:67:28:79:c5:24:ed"
             }, 
             "locked": false, 
             "memory": "16384", 
@@ -1374,7 +1374,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1393,9 +1393,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 fc:7b:a1:ff:ce:50:f1:8e:83:fe:73:eb:e9:c6:4d:e5\n", 
-                "ssh_ecdsa": "256 81:51:8d:86:78:86:e0:fd:1f:c7:35:95:d1:3c:ca:0f\n", 
-                "ssh_rsa": "2048 d0:de:7c:cd:5d:3f:9f:1f:ff:59:1f:d2:44:40:f5:d6\n"
+                "ssh_dsa": "1024 fc:7b:a1:ff:ce:50:f1:8e:83:fe:73:eb:e9:c6:4d:e5", 
+                "ssh_ecdsa": "256 81:51:8d:86:78:86:e0:fd:1f:c7:35:95:d1:3c:ca:0f", 
+                "ssh_rsa": "2048 d0:de:7c:cd:5d:3f:9f:1f:ff:59:1f:d2:44:40:f5:d6"
             }, 
             "locked": false, 
             "memory": "1024", 
@@ -1412,7 +1412,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1431,9 +1431,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 f9:12:7f:22:e1:13:e7:b2:e4:48:88:a8:02:36:6e:b4\n", 
-                "ssh_ecdsa": "256 65:a1:14:70:61:a4:8f:17:13:f5:3c:fd:32:97:80:5c\n", 
-                "ssh_rsa": "2048 f3:fd:35:5f:2b:69:63:a6:20:20:ab:9e:5f:34:36:5d\n"
+                "ssh_dsa": "1024 f9:12:7f:22:e1:13:e7:b2:e4:48:88:a8:02:36:6e:b4", 
+                "ssh_ecdsa": "256 65:a1:14:70:61:a4:8f:17:13:f5:3c:fd:32:97:80:5c", 
+                "ssh_rsa": "2048 f3:fd:35:5f:2b:69:63:a6:20:20:ab:9e:5f:34:36:5d"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -1469,9 +1469,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 3b:e9:45:57:7d:23:4b:10:a3:e4:5f:ad:34:25:67:39\n", 
-                "ssh_ecdsa": "256 96:08:82:1b:05:35:9f:89:cf:e0:c6:61:fe:50:73:79\n", 
-                "ssh_rsa": "2048 99:a5:23:6f:5a:06:5b:9d:69:bf:24:e9:73:5c:09:0c\n"
+                "ssh_dsa": "1024 3b:e9:45:57:7d:23:4b:10:a3:e4:5f:ad:34:25:67:39", 
+                "ssh_ecdsa": "256 96:08:82:1b:05:35:9f:89:cf:e0:c6:61:fe:50:73:79", 
+                "ssh_rsa": "2048 99:a5:23:6f:5a:06:5b:9d:69:bf:24:e9:73:5c:09:0c"
             }, 
             "locked": false, 
             "memory": "1024", 
@@ -1507,9 +1507,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 fe:20:05:fe:28:cd:7d:87:f3:fe:27:f1:db:d9:00:69\n", 
-                "ssh_ecdsa": "256 04:87:2d:6d:89:9a:0b:89:5b:a6:1f:75:17:f1:56:7b\n", 
-                "ssh_rsa": "2048 c0:2a:e8:92:ee:3b:7d:a5:16:33:70:65:6d:26:06:6b\n"
+                "ssh_dsa": "1024 fe:20:05:fe:28:cd:7d:87:f3:fe:27:f1:db:d9:00:69", 
+                "ssh_ecdsa": "256 04:87:2d:6d:89:9a:0b:89:5b:a6:1f:75:17:f1:56:7b", 
+                "ssh_rsa": "2048 c0:2a:e8:92:ee:3b:7d:a5:16:33:70:65:6d:26:06:6b"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -1526,7 +1526,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
             }, 
@@ -1545,9 +1545,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 64:11:a5:42:65:bf:25:68:f3:22:18:f2:32:53:27:67\n", 
-                "ssh_ecdsa": "256 c7:d1:7a:a9:d6:f5:25:d0:8b:4d:0a:6d:93:53:e8:7a\n", 
-                "ssh_rsa": "2048 fd:71:df:78:4d:24:8f:e9:4a:8f:81:1b:2a:f2:38:b3\n"
+                "ssh_dsa": "1024 64:11:a5:42:65:bf:25:68:f3:22:18:f2:32:53:27:67", 
+                "ssh_ecdsa": "256 c7:d1:7a:a9:d6:f5:25:d0:8b:4d:0a:6d:93:53:e8:7a", 
+                "ssh_rsa": "2048 fd:71:df:78:4d:24:8f:e9:4a:8f:81:1b:2a:f2:38:b3"
             }, 
             "locked": false, 
             "memory": "16384", 
@@ -1583,9 +1583,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 f5:8a:16:ba:f3:a4:d6:c7:a3:6f:7c:d9:89:a8:36:a1\n", 
-                "ssh_ecdsa": "256 8a:13:ff:6a:05:7a:74:68:93:6b:86:36:b1:f2:7c:9b\n", 
-                "ssh_rsa": "2048 51:bf:d2:97:6c:da:c4:a5:ad:eb:c1:04:3d:2c:38:ed\n"
+                "ssh_dsa": "1024 f5:8a:16:ba:f3:a4:d6:c7:a3:6f:7c:d9:89:a8:36:a1", 
+                "ssh_ecdsa": "256 8a:13:ff:6a:05:7a:74:68:93:6b:86:36:b1:f2:7c:9b", 
+                "ssh_rsa": "2048 51:bf:d2:97:6c:da:c4:a5:ad:eb:c1:04:3d:2c:38:ed"
             }, 
             "locked": false, 
             "memory": "4096", 
@@ -1621,9 +1621,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 a4:06:73:4c:bf:a0:db:ec:58:92:d7:9b:3a:07:06:6d\n", 
-                "ssh_ecdsa": "256 5b:69:c8:40:34:5e:f8:50:56:9b:f8:62:a7:1c:d8:ed\n", 
-                "ssh_rsa": "2048 6e:5a:b6:d7:eb:a8:79:b3:35:90:d4:0e:0d:33:eb:a4\n"
+                "ssh_dsa": "1024 a4:06:73:4c:bf:a0:db:ec:58:92:d7:9b:3a:07:06:6d", 
+                "ssh_ecdsa": "256 5b:69:c8:40:34:5e:f8:50:56:9b:f8:62:a7:1c:d8:ed", 
+                "ssh_rsa": "2048 6e:5a:b6:d7:eb:a8:79:b3:35:90:d4:0e:0d:33:eb:a4"
             }, 
             "locked": false, 
             "memory": "512", 
@@ -1659,9 +1659,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 8e:f7:b5:0a:4e:78:4f:bc:8b:d1:6f:86:08:b5:fb:d7\n", 
-                "ssh_ecdsa": "256 14:1a:dd:fa:58:83:4f:51:34:85:d7:28:3d:17:22:39\n", 
-                "ssh_rsa": "2048 5d:d5:4d:8a:61:31:b9:78:bc:f2:b2:3a:fe:10:a8:a1\n"
+                "ssh_dsa": "1024 8e:f7:b5:0a:4e:78:4f:bc:8b:d1:6f:86:08:b5:fb:d7", 
+                "ssh_ecdsa": "256 14:1a:dd:fa:58:83:4f:51:34:85:d7:28:3d:17:22:39", 
+                "ssh_rsa": "2048 5d:d5:4d:8a:61:31:b9:78:bc:f2:b2:3a:fe:10:a8:a1"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -1697,9 +1697,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 a2:84:cc:3d:95:e1:2b:8a:ac:1c:45:f5:e1:97:35:3f\n", 
-                "ssh_ecdsa": "256 4d:1f:b4:ba:9c:06:13:da:7c:e7:10:01:71:09:09:40\n", 
-                "ssh_rsa": "2048 a6:94:d8:5a:e5:e3:18:5a:d6:6d:46:73:2f:61:7b:57\n"
+                "ssh_dsa": "1024 a2:84:cc:3d:95:e1:2b:8a:ac:1c:45:f5:e1:97:35:3f", 
+                "ssh_ecdsa": "256 4d:1f:b4:ba:9c:06:13:da:7c:e7:10:01:71:09:09:40", 
+                "ssh_rsa": "2048 a6:94:d8:5a:e5:e3:18:5a:d6:6d:46:73:2f:61:7b:57"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -1735,9 +1735,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 5f:6b:f3:e2:4b:26:27:5f:0f:7a:8d:ab:be:f1:a1:f7\n", 
-                "ssh_ecdsa": "256 b3:18:bf:fb:ff:3e:f5:41:66:3f:92:66:20:30:cc:67\n", 
-                "ssh_rsa": "2048 a0:4a:5d:f1:21:ed:c9:d6:1f:97:0d:21:51:2d:db:29\n"
+                "ssh_dsa": "1024 5f:6b:f3:e2:4b:26:27:5f:0f:7a:8d:ab:be:f1:a1:f7", 
+                "ssh_ecdsa": "256 b3:18:bf:fb:ff:3e:f5:41:66:3f:92:66:20:30:cc:67", 
+                "ssh_rsa": "2048 a0:4a:5d:f1:21:ed:c9:d6:1f:97:0d:21:51:2d:db:29"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -1773,9 +1773,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 77:2d:15:3a:a5:4b:58:a6:47:c1:78:6b:ff:68:49:f5\n", 
-                "ssh_ecdsa": "256 e3:74:20:72:27:5d:6e:91:2a:6c:1a:96:f4:a2:4b:a1\n", 
-                "ssh_rsa": "2048 fd:b7:35:fb:47:ee:11:89:70:f5:b3:e9:2f:14:01:18\n"
+                "ssh_dsa": "1024 77:2d:15:3a:a5:4b:58:a6:47:c1:78:6b:ff:68:49:f5", 
+                "ssh_ecdsa": "256 e3:74:20:72:27:5d:6e:91:2a:6c:1a:96:f4:a2:4b:a1", 
+                "ssh_rsa": "2048 fd:b7:35:fb:47:ee:11:89:70:f5:b3:e9:2f:14:01:18"
             }, 
             "locked": false, 
             "memory": "2048", 
@@ -1811,9 +1811,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 71:8f:f7:5e:9f:f7:ef:84:fc:bb:32:b7:c5:cf:6d:6e\n", 
-                "ssh_ecdsa": "256 aa:ec:fc:24:4b:cb:30:d2:63:46:6f:ae:5e:77:60:8e\n", 
-                "ssh_rsa": "2048 32:f0:12:14:30:1d:24:b5:89:d8:b8:fa:01:a6:fc:86\n"
+                "ssh_dsa": "1024 71:8f:f7:5e:9f:f7:ef:84:fc:bb:32:b7:c5:cf:6d:6e", 
+                "ssh_ecdsa": "256 aa:ec:fc:24:4b:cb:30:d2:63:46:6f:ae:5e:77:60:8e", 
+                "ssh_rsa": "2048 32:f0:12:14:30:1d:24:b5:89:d8:b8:fa:01:a6:fc:86"
             }, 
             "locked": false, 
             "memory": "512", 
@@ -1841,9 +1841,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 c9:9a:e9:f2:17:14:c2:a7:db:9e:a3:f6:0f:d1:72:23\n", 
-                "ssh_ecdsa": "256 30:21:03:cf:b2:82:d7:02:d2:e0:a7:90:89:f0:fe:d9\n", 
-                "ssh_rsa": "2048 54:c0:a4:07:62:82:35:cf:12:26:09:f4:83:ee:2f:63\n"
+                "ssh_dsa": "1024 c9:9a:e9:f2:17:14:c2:a7:db:9e:a3:f6:0f:d1:72:23", 
+                "ssh_ecdsa": "256 30:21:03:cf:b2:82:d7:02:d2:e0:a7:90:89:f0:fe:d9", 
+                "ssh_rsa": "2048 54:c0:a4:07:62:82:35:cf:12:26:09:f4:83:ee:2f:63"
             }, 
             "locked": false, 
             "memory": "2048", 
