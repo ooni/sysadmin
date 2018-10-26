@@ -4,16 +4,16 @@
 .ONESHELL: # to use here-docs
 .SHELLFLAGS = -xec # xtrace, errexit, command
 SHELL = /bin/bash
-MAKEFLAGS = --jobs 5 --load-average 8 --keep-going # datacollector.infra.ooni.io specs
+MAKEFLAGS = --jobs 4 --load-average 8 --keep-going # datacollector.infra.ooni.io specs
 
 .PHONY: all clean reprocess
 
 # all flag files are created in separate directory
 # To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
-PRJ = tgz_cleanup
-AF_TASK = reports_tgz_cleanup
-AF_ARGS = # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `metapg`.
--include $(PRJ)/af-deps
+PRJ = simhash
+AF_TASK = meta_pg
+AF_ARGS = --force # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `meta_pg`.
+-include $(PRJ)/metadb-deps
 
 ifndef TMUX
     $(error Run this makefile under TMUX)
@@ -47,8 +47,8 @@ $(PRJ)/metadb-deps : $(PRJ)/.keep
 	SELECT 'reprocess : ' || :'prj' || '/' || bucket_date || '.tiflag'
 	FROM autoclaved
 	GROUP BY bucket_date
-	HAVING MIN(code_ver) < 4
-	ORDER BY bucket_date
+	HAVING MIN(code_ver) < 5
+	ORDER BY bucket_date DESC
 	EOF
 	mv $@.tmp $@
 
@@ -64,5 +64,5 @@ $(PRJ)/%.tiflag: $(PRJ)/.keep
 	while [ `psql --dbname airflow --no-align --tuples-only "--set=start=$$start" '--set=ex=$*T00:00:00' <<EOF
 	SELECT COUNT(*) FROM task_instance
 	WHERE dag_id = 'hist_canning' AND task_id = '$(AF_TASK)' AND execution_date = :'ex' AND :'start' < end_date
-	EOF` != 1 ]; do sleep 5; done
+	EOF` != 1 ]; do sleep 30; done
 	date >$@
