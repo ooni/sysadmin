@@ -139,4 +139,11 @@ groups:
     annotations:
       summary: '`certbot` failed at {{ $labels.instance }}'
       description: 'SSL cert for  expires in {{ printf "%.0f" $value }} days.'
+
+- name: Prometheus self-care
+  rules:
+  - alert: AlertmanagerNotificationsFailing
+    expr: rate(alertmanager_notifications_failed_total[1m]) > 0
+    annotations:
+      summary: 'Alertmanager {{ $labels.instance }} fails {{ $labels.integration }} notifications.'
 ...
