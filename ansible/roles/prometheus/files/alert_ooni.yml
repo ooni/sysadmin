@@ -13,6 +13,8 @@ groups:
     annotations:
       summary: '`rsync` exitcode: {{ $value }}'
 
+  # Some nodes may have it broken, but it usually works, here is expr to validate it.
+  # expr: (max without (device) (node_seeksample_timestamp{job="node"}) or up{job="node"}) == 1
   - alert: DiskStuck
     expr: node_time - ignoring(device) group_right node_seeksample_timestamp > 240
     annotations:

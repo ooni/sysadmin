@@ -117,7 +117,9 @@ def exporter(dataq, fpath):
             '# HELP node_seeksample_timestamp Unixtime of last successful seek() sampling.\n'
             '# TYPE node_seeksample_timestamp gauge\n'
         ]+ ['node_seeksample_timestamp{device="%s"} %f\n' % (d, stats[d]['timestamp']) for d in stats])
-        with open(fpath, 'r+') as fd: # `r+` instead of `w` should prevent memory allocation that may be hard during OOM
+        # `r+` instead of `w` should prevent memory allocation that may be hard during OOM
+        mode = 'r+' if os.path.exists(fpath) else 'w'
+        with open(fpath, mode) as fd:
             size = os.path.getsize(fpath)
             if size > len(prom):
                 prom += '#' * (size - len(prom) - 1) # pseudo-atomicity to have fixed-size file
