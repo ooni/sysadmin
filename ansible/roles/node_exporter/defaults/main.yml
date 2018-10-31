@@ -9,6 +9,9 @@ node_exporter_collectors: >
   --no-collector.arp --no-collector.bcache --no-collector.infiniband
   --no-collector.ipvs --no-collector.wifi --no-collector.zfs
   --collector.ntp --collector.ntp.local-offset-tolerance=5ms
+  {% if ansible_service_mgr == 'systemd' %}
+  --collector.systemd --collector.systemd.unit-whitelist=^$
+  {% endif %}
 
 node_exporter_disk_ignored: ""
 

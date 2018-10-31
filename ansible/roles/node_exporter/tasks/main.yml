@@ -29,6 +29,17 @@
     owner: root
     group: root
     remote_src: true # file is ALREADY on the remote system. sigh.
+    creates: '{{ node_exporter_base }}/{{ node_exporter_basename }}/node_exporter'
+
+# for some unknown reason some nodes do not have `dbus`, but systemd depends on it :-/
+- name: install dbus to punch hole to systemd
+  apt:
+    name: dbus
+    state: present
+    update_cache: yes
+    cache_valid_time: 28800
+    install_recommends: false
+  when: ansible_service_mgr == 'systemd'
 
 - name: Install node_exporter systemd service file
   notify:

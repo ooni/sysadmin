@@ -11,7 +11,8 @@ Description=Prometheus Blackbox Exporter
 User={{ passwd.prombbox.login }}
 Group={{ passwd.prombbox.login }}
 EnvironmentFile=-/etc/default/blackbox_exporter
-AmbientCapabilities=CAP_NET_RAW
+# TODO: AmbientCapabilities needs systemd-229 we currently have systemd-215
+# AmbientCapabilities=CAP_NET_RAW
 CapabilityBoundingSet=CAP_NET_RAW
 ExecStart={{ blackbox_exporter_path }}/blackbox_exporter \
     --config.file={{ blackbox_exporter_base }}/blackbox.yml \

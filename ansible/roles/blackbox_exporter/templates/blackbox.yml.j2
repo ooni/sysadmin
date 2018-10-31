@@ -25,6 +25,7 @@ modules:
     prober: tcp
     timeout: 5s
     tcp:
+      preferred_ip_protocol: ip4
       query_response:
       - expect: "^SSH-2.0-"
         send: "SSH-2.0-blackbox_exporter OONI-prometheus-0.0\x0d" # WTF: \x0a is auto-added https://github.com/prometheus/blackbox_exporter/blob/master/tcp.go#L127
@@ -43,6 +44,8 @@ modules:
   icmp:
     prober: icmp
     timeout: 5s
+    icmp:
+      preferred_ip_protocol: ip4
 
   tls_snakeoil:
     prober: tcp

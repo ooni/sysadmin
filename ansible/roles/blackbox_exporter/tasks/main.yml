@@ -28,6 +28,13 @@
     group: root
     remote_src: true
 
+# TODO: AmbientCapabilities needs systemd-229 we currently have systemd-215
+- name: Set cap_net_raw for blackbox_exporter
+  capabilities:
+    path: '{{ blackbox_exporter_path }}/blackbox_exporter'
+    capability: cap_net_raw+ep
+    state: present
+
 - name: Install config file
   template:
     src: blackbox.yml.j2
@@ -41,6 +48,7 @@
 
 - name: Install blackbox_exporter systemd service file
   notify:
+  - systemctl daemon-reload
   - restart blackbox_exporter
   template:
     src: blackbox_exporter.service

@@ -21,11 +21,55 @@ groups:
     annotations:
       summary: '{{ $labels.instance }} is not `up`'
 
+  - alert: systemd # yes, just "systemd", it's unclear what's going wrong :-)
+    expr: node_systemd_system_running != 1 # that's basically output of `systemctl is-system-running`
+    annotations:
+      summary: '{{ $labels.instance }} is not OK, check `systemctl list-units | grep failed`'
+
   - alert: IOWaitHigh
-    expr: max(irate(node_cpu{mode="iowait"}[1m])) by (instance) > 0.9
+    expr: sum without (cpu) (irate(node_cpu{mode="iowait"}[1m])) > 0.9
     for: 5m # matters to avoid spikes
     annotations:
       summary: '{{ $labels.instance }} %iowait over 90%'
+
+  # the difference between node_disk_{io,read,write}_time_ms is not clear, `io` is NOT `read + write`, it may be greater, it may be less...
+  # All the nodes have `node_disk_io_time_ms`, but it can be verified with expr: (sum without(device) (node_disk_io_time_ms{job="node"}) or up{job="node"}) == 1
+  - alert: IOHigh
+    expr: irate(node_disk_io_time_ms{device!~"(nbd[0-9]+|dm-[0-9]+|ram[0-9]+|sr[0-9]+|md[0-9]+)"}[1m]) > 800
+    for: 2h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} spends {{ $value }}ms/s in IO over 2 hours'
+
+  - alert: CPUHigh
+    expr: sum without (mode, cpu) (irate(node_cpu{mode!="idle"}[1m])) > 0.75
+    for: 8h
+    annotations:
+      summary: '{{ $labels.instance }} has {{ printf "%.2f" $value }} CPU used over 8 hours'
+
+  - alert: NetworkRXHigh
+    expr: irate(node_network_receive_bytes{device!~"(docker0|veth[0-9a-f]{7}|lo|br[-a-z].*|dummy0)"}[1m]) * 8 > 50 * 1024 * 1024 # OONITestHelper has BandwidthRate 20MBits
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} gets {{ $value | humanize }}bit/s'
+
+  - alert: NetworkTXHigh
+    expr: irate(node_network_transmit_bytes{device!~"(docker0|veth[0-9a-f]{7}|lo|br[-a-z].*|dummy0)"}[1m]) * 8 > 50 * 1024 * 1024 # OONITestHelper has BandwidthRate 20MBits
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} sends {{ $value | humanize }}bit/s'
+
+  - alert: LoadAverageHigh
+    expr: node_load15 > 8 # largest node available has NCPU=4
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }} has LA15 {{ printf "%.1f" $value }}'
+
+  # chameleon.infra.ooni.io and b.echo.th.ooni.io do not have MemAvailable signal that is an _estimate_ of RAM available for userspace allocations provided by kernel.
+  # These old nodes can be listed with expr: (node_memory_MemAvailable or (up - 1)) / node_memory_MemTotal == 0
+  - alert: MemoryLow
+    expr: ((node_memory_MemAvailable) / node_memory_MemTotal or ((node_memory_MemFree + node_memory_Buffers + node_memory_Cached) / node_memory_MemTotal)) * 100 < 20
+    annotations:
+      summary: '{{ $labels.instance }} has {{ printf "%.0f" $value }}% RAM available'
 
   - alert: NodeSwapping
     expr: rate(node_vmstat_pgmajfault[1m]) > 100 # and instance:node_memory_available:ratio < 0.05
@@ -95,4 +139,11 @@ groups:
     annotations:
       summary: '`certbot` failed at {{ $labels.instance }}'
       description: 'SSL cert for  expires in {{ printf "%.0f" $value }} days.'
+
+- name: Prometheus self-care
+  rules:
+  - alert: AlertmanagerNotificationsFailing
+    expr: rate(alertmanager_notifications_failed_total[1m]) > 0
+    annotations:
+      summary: 'Alertmanager {{ $labels.instance }} fails {{ $labels.integration }} notifications.'
 ...

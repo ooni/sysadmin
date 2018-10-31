@@ -91,4 +91,13 @@ blackbox_jobs:
   - name: "tor testhelper" # see also SSLCertExpires in roles/prometheus/files/alert_rules.yml
     module: tls_snakeoil
     targets: "{{ groups['have_tor'] | map('regex_replace', '$', ':9001') | list }}"
+
+  - name: ssh
+    module: ssh_banner
+    # staticiforme.torproject.org ssh port is only reachable via jumphost
+    targets: "{{ groups['all'] | difference(['staticiforme.torproject.org']) | map('regex_replace', '$', ':22') | list }}"
+
+  - name: icmp
+    module: icmp
+    targets: "{{ groups['all'] | list }}"
 ...
