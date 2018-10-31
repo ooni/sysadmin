@@ -27,6 +27,14 @@ groups:
     annotations:
       summary: '{{ $labels.instance }} %iowait over 90%'
 
+  # the difference between node_disk_{io,read,write}_time_ms is not clear, `io` is NOT `read + write`, it may be greater, it may be less...
+  # All the nodes have `node_disk_io_time_ms`, but it can be verified with expr: (sum without(device) (node_disk_io_time_ms{job="node"}) or up{job="node"}) == 1
+  - alert: IOHigh
+    expr: irate(node_disk_io_time_ms{device!~"(nbd[0-9]+|dm-[0-9]+|ram[0-9]+|sr[0-9]+|md[0-9]+)"}[1m]) > 800
+    for: 2h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} spends {{ $value }}ms/s in IO over 2 hours'
+
   - alert: CPUHigh
     expr: sum without (mode, cpu) (irate(node_cpu{mode!="idle"}[1m])) > 0.75
     for: 8h
