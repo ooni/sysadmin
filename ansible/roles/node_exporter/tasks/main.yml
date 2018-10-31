@@ -39,7 +39,6 @@
     update_cache: yes
     cache_valid_time: 28800
     install_recommends: false
-  tags: debug
   when: ansible_service_mgr == 'systemd'
 
 - name: Install node_exporter systemd service file
