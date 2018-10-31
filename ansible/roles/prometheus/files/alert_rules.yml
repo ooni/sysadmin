@@ -21,6 +21,11 @@ groups:
     annotations:
       summary: '{{ $labels.instance }} is not `up`'
 
+  - alert: systemd # yes, just "systemd", it's unclear what's going wrong :-)
+    expr: node_systemd_system_running != 1 # that's basically output of `systemctl is-system-running`
+    annotations:
+      summary: '{{ $labels.instance }} is not OK, check `systemctl list-units | grep failed`'
+
   - alert: IOWaitHigh
     expr: sum without (cpu) (irate(node_cpu{mode="iowait"}[1m])) > 0.9
     for: 5m # matters to avoid spikes
