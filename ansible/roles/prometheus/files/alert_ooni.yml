@@ -26,9 +26,9 @@ groups:
       description: '{{ if eq $labels.instance "ooni.torproject.org:443" }}Run `make update-site`.{{ end }}'
 
   - alert: AirflowFailed
-    expr: airflow_7day_task_count{state="failed"} > 0
+    expr: airflow_7d_failed_count > 0
     annotations:
-      summary: '{{ $value }} tasks report failures last week'
+      summary: '{{ $value }} task `{{ $labels.task }}` failures last week'
 
   - alert: SlacktopusGone
     expr: time() - slacktopus_ctcp_pong_time > 660 # it's randomized */5 crontab
