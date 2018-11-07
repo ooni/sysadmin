@@ -108,7 +108,8 @@
   tags: airflow-dags
   synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes
   notify: restart airflow
-- template: src=have_collector.json dest=/srv/airflow-dags/have_collector.json owner=root group=root mode=0444 # NB: `synchronize` with delete=yes may drop it
+- name: store `have_collector` group in have_collector.json
+  template: src=have_collector.json dest=/srv/airflow-dags/have_collector.json owner=root group=root mode=0444 # NB: `synchronize` with delete=yes may drop it
   tags: airflow-dags
   notify: restart airflow
 
