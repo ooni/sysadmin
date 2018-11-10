@@ -18,7 +18,7 @@ groups:
   - alert: DiskStuck
     expr: node_time - ignoring(device) group_right node_seeksample_timestamp > 240
     annotations:
-      summary: 'disk is silent for {{ $value | humanizeDuration }}'
+      summary: '{{ $labels.instance }} has `{{ $labels.device }}` silent for {{ $value | humanizeDuration }}'
 
   - alert: MirrorDiverged
     expr: scalar(max(ooni_web_mtime)) - ooni_web_mtime > 0
