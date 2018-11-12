@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# IP address within the subnet is the last usable one as docker takes first
+# usable ones if it's not specified (that's good for other containers, but it
+# may interfere with static configuration).
+echo "lo:   127.$(($RANDOM % 256)).$(($RANDOM % 256)).$(($RANDOM % 256))"
+
+echo "IPv4: 172.$((16 + ($RANDOM % 16))).$(($RANDOM % 256)).254"
+
+# 32768 is lower bound of net.ipv4.ip_local_port_range, ports from
+# ip_local_port_range should never be used to listen for services.
+echo "Port: $((1024 + ($RANDOM % (32768 - 1024))))"
