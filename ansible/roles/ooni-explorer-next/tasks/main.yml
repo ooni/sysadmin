@@ -8,8 +8,8 @@
     driver_options:
       com.docker.network.bridge.name: brexplrr
     ipam_options:
-      subnet: 172.28.14.0/24
-      gateway: 172.28.14.1
+      subnet: 172.27.33.0/24
+      gateway: 172.27.33.1
 
 - name: OONI Explorer webservice
   docker_container:
