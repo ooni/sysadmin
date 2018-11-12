@@ -27,7 +27,7 @@ server {
     error_log   /var/log/nginx/{{ explorer_domain }}.error.log;
 
     location / {
-        proxy_pass http://{{ explorer_backend_ipv4 }}:{{ explorer_backend_port }};
+        proxy_pass http://{{ explorer_next_backend_ipv4 }}:{{ explorer_next_backend_port }};
         include proxy_params;
     }
 }

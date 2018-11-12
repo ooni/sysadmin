@@ -13,10 +13,10 @@
 
 - name: OONI Explorer webservice
   docker_container:
-    image: openobservatory/explorer-next:{{ explorer_tag }}
+    image: openobservatory/explorer-next:{{ explorer_next_tag }}
     name: explorer
     hostname: explorer
-    networks: [{name: explrr, ipv4_address: '{{ explorer_backend_ipv4 }}'}]
+    networks: [{name: explrr, ipv4_address: '{{ explorer_next_backend_ipv4 }}'}]
     purge_networks: true
     env:
       NODE_ENV: production
