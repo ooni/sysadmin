@@ -34,7 +34,12 @@ if [ -n "$prefix" ]; then
 else
     img_slug="${repo}"
 fi
-img="openobservatory/$img_slug"
+
+if [ -z ${IMG_SLUG} ]; then
+    img="openobservatory/$img_slug"
+else
+    img="openobservatory/${IMG_SLUG}"
+fi
 
 ver="$1"
 if [ -z "$ver" ]; then
