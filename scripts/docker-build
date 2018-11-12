@@ -34,7 +34,13 @@ if [ -n "$prefix" ]; then
 else
     img_slug="${repo}"
 fi
+
 img="openobservatory/$img_slug"
+# Special case for OONI Explorer next
+# XXX remove once we are ready for the stable release
+if [ "$(git remote get-url --push origin)" = "git@github.com:ooni/explorer.git" ];then
+    img="openobservatory/explorer-next"
+fi
 
 ver="$1"
 if [ -z "$ver" ]; then
