@@ -1,0 +1,25 @@
+---
+- template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
+  notify: reload nginx
+
+- name: docker network for explorer
+  docker_network:
+    name: explrr
+    driver_options:
+      com.docker.network.bridge.name: brexplrr
+    ipam_options:
+      subnet: 172.28.14.0/24
+      gateway: 172.28.14.1
+
+- name: OONI Explorer webservice
+  docker_container:
+    image: openobservatory/explorer-next:{{ explorer_tag }}
+    name: explorer
+    hostname: explorer
+    networks: [{name: explrr, ipv4_address: '{{ explorer_backend_ipv4 }}'}]
+    purge_networks: true
+    env:
+      NODE_ENV: production
+    user: "{{ passwd.explorer.id }}:{{ passwd.explorer.id }}"
+    restart_policy: unless-stopped
+...
