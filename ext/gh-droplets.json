@@ -30,7 +30,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -68,7 +68,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -120,7 +120,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -158,7 +158,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -880,7 +880,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -918,7 +918,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -956,7 +956,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -994,7 +994,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1032,7 +1032,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1298,7 +1298,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1450,7 +1450,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1488,7 +1488,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1564,7 +1564,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1593,16 +1593,16 @@
             "networks": {
                 "v4": [
                     {
-                        "gateway": "37.218.241.254", 
-                        "ip_address": "37.218.241.30", 
+                        "gateway": "103.104.244.254", 
+                        "ip_address": "103.104.244.162", 
                         "netmask": "255.255.255.0", 
-                        "network": "37.218.241.0/24", 
+                        "network": "103.104.244.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1640,7 +1640,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1678,7 +1678,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1716,7 +1716,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1754,7 +1754,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1792,7 +1792,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 
@@ -1822,7 +1822,7 @@
                 "v4": []
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "Hong Kong", 
                 "slug": "Hong Kong"
             }, 

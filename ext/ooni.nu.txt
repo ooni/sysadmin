@@ -17,4 +17,4 @@ mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 shark	1800	A	199.119.112.120
 www	1800	URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 b0d581146af4d39df91f6922c2f0a58149499a66b7424f9a5ea781660dc41c61
+; generated from ooni.nu.xml with SHA256 1b5cd87f613657e5c2aa3dd9def4f3553a0452afb18777aad8f62ab0bf60ee30

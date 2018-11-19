@@ -14,4 +14,4 @@ google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK
 slack		A	37.218.247.42
 test-lists		A	37.218.240.141
 www		URL	http://ooni.torproject.org
-; generated from openobservatory.org.xml with SHA256 7d25817fd5f6406e36ef81a13bb376e3be75a2deb96dcc87dddfbd56a0ecccea
+; generated from openobservatory.org.xml with SHA256 cd50479672ce494c6aa14b65f50fecba8580c4a6164302e4cf3178f45a3b04eb
