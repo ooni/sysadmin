@@ -44,7 +44,7 @@
 - name: Install pushgateway nginx frontend
   notify: reload nginx
   template: src=pushgateway_nginx.conf dest=/etc/nginx/sites-enabled/pushgateway.conf
-  tags: prometheus-conf
+  tags: [prometheus-conf, on-renumber]
 
 - name: Enable and start pushgateway service
   systemd:
