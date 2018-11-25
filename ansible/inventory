@@ -19,9 +19,9 @@ ams
 
 [wdc]
 # TODO a.echo.th.ooni.io
-# TODO c.web-connectivity.th.ooni.io
+c.web-connectivity.th.ooni.io
 #gone munin.ooni.io # disk idle since 2018-11-25
-# TODO b.collector.ooni.io
+miacollector.ooni.nu
 #gone shwdc.ooni.io
 # TODO analytics.ooni.io
 #gone shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
@@ -160,7 +160,7 @@ wiki.ooni.io
 
 [have_collector]
 hkgcollectora.ooni.nu
-b.collector.ooni.io
+miacollector.ooni.nu
 c.collector.ooni.io
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
