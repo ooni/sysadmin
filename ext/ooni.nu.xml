@@ -22,6 +22,7 @@
       <host HostId="143858219" Name="hkgjump" Type="A" Address="103.104.244.19" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="145250659" Name="shark" Type="A" Address="199.119.112.120" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="148367412" Name="mon" Type="A" Address="37.218.245.43" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="155919885" Name="miacollector" Type="A" Address="199.119.112.178" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>
