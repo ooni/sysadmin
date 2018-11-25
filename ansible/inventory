@@ -18,13 +18,13 @@ ams
 # location tags
 
 [wdc]
-a.echo.th.ooni.io
-c.web-connectivity.th.ooni.io
+# TODO a.echo.th.ooni.io
+# TODO c.web-connectivity.th.ooni.io
 #gone munin.ooni.io # disk idle since 2018-11-25
-b.collector.ooni.io
+# TODO b.collector.ooni.io
 #gone shwdc.ooni.io
-analytics.ooni.io
-shark.ooni.nu
+# TODO analytics.ooni.io
+#gone shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
 
 [hkg]
 datacollector.infra.ooni.io
