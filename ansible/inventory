@@ -20,9 +20,9 @@ ams
 [wdc]
 a.echo.th.ooni.io
 c.web-connectivity.th.ooni.io
-munin.ooni.io
+#gone munin.ooni.io # disk idle since 2018-11-25
 b.collector.ooni.io
-shwdc.ooni.io
+#gone shwdc.ooni.io
 analytics.ooni.io
 shark.ooni.nu
 
@@ -155,7 +155,7 @@ prometheus.infra.ooni.io
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
-munin.ooni.io
+#gone munin.ooni.io
 wiki.ooni.io
 
 [have_collector]
