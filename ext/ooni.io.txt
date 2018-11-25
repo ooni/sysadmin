@@ -12,7 +12,7 @@ _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
 a.collector		A	103.104.244.110
 a.collector.stage		A	37.218.240.139
 a.collector.test		A	37.218.240.140
-a.echo.th	60	A	199.119.112.49
+a.echo.th	60	A	37.218.247.110
 a.http.th		A	37.218.247.95
 a.web-connectivity.th		A	62.217.125.6
 a.web-connectivity.th.stage		A	37.218.240.139
@@ -76,4 +76,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 a4dc3d9a0b13c7d817fde34ee05f1e8266b7ca9cea9195790c10aa1ec90687a7
+; generated from ooni.io.xml with SHA256 e2d45728cc79a3cb822066edbed95e5e8cea346ba74e95610c98c40840fe2e4d

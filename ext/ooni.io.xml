@@ -9,7 +9,7 @@
       <host HostId="90304440" Name="a.collector" Type="A" Address="103.104.244.110" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="91215321" Name="a.collector.stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90922066" Name="a.collector.test" Type="A" Address="37.218.240.140" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="109032818" Name="a.echo.th" Type="A" Address="199.119.112.49" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="155904076" Name="a.echo.th" Type="A" Address="37.218.247.110" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111031494" Name="a.http.th" Type="A" Address="37.218.247.95" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90304416" Name="bouncer" Type="A" Address="103.104.244.87" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90304484" Name="a.web-connectivity.th" Type="A" Address="62.217.125.6" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
