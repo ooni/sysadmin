@@ -40,4 +40,5 @@
   pip:
     name: "docker-py"
     version: "1.10.6"
+    virtualenv_site_packages: yes
     virtualenv: "{{ ansible_venv }}"
