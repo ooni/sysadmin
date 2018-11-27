@@ -11,6 +11,7 @@ ARCHIVE_DIR = '{{ collector_data_dir }}/archive'
 RENAMED_DIR = '{{ collector_data_dir }}/renamed'
 # Must contain three directories failed, empty, invalid
 ERRORED_DIR = '{{ collector_data_dir }}/errored'
+RENAMED_LOG_DIR = '{{ collector_data_dir }}/logs'
 
 test_name_mappings = {
     "http_host": "http_host",
@@ -147,7 +148,7 @@ def get_report_filename(file_path):
             dst_filename
         )
 
-log_name = os.path.join("rename-logs", "rename-" + str(datetime.now()) + ".log")
+log_name = os.path.join(RENAMED_LOG_DIR, "rename-" + str(datetime.now()) + ".log")
 rename_log = open(log_name, "a+")
 last_tick = time.time()
 counter = 0

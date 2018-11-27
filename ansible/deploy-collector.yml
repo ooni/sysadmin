@@ -7,7 +7,7 @@
     - role: docker_py
     - role: letsencrypt
       letsencrypt_nginx: true
-      letsencrypt_domains: a.collector.ooni.io
+      letsencrypt_domains: ["a.collector.ooni.io"]
 
 - hosts: hkgcollectora.ooni.nu
   gather_facts: false
