@@ -97,6 +97,11 @@
     - "{{ collector_data_dir }}/renamed"
     - "{{ collector_data_dir }}/errored"
 
+- name: "Install pyyaml for the daily-task"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'python-yaml'
+
 - cron:
     name: "run the daily tasks"
     minute: "30"
