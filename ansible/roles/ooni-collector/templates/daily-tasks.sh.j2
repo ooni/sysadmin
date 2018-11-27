@@ -18,6 +18,4 @@ echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting archive to renamed" >> $LOGFILE
 END_TIME=$(date +%s)
 RUNTIME_SECS=$(( END_TIME - START_TIME ))
 RUNTIME=$(convertsecs $RUNTIME_SECS)
-# This is a bit sub-optimal
-chmod -R 777 {{ collector_data_dir }}/renamed/*
 echo "DONE archive-to-renamed: $RUNTIME $RUNTIME_SECS" >> $LOGFILE
