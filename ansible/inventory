@@ -160,7 +160,7 @@ wiki.ooni.io
 
 [have_collector]
 hkgcollectora.ooni.nu
-miacollector.ooni.nu
+#disable during maintenance miacollector.ooni.nu
 c.collector.ooni.io
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
