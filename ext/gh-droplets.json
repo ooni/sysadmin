@@ -453,18 +453,18 @@
             "networks": {
                 "v4": [
                     {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.178", 
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.178", 
                         "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
+                        "network": "37.218.241.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
                 "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
             "status": "stopped", 
@@ -491,18 +491,18 @@
             "networks": {
                 "v4": [
                     {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.164", 
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.164", 
                         "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
+                        "network": "37.218.241.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
                 "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
             "status": "stopped", 
@@ -1213,18 +1213,18 @@
             "networks": {
                 "v4": [
                     {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.42", 
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.42", 
                         "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
+                        "network": "37.218.241.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
                 "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
             "status": "stopped", 
