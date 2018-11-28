@@ -1,8 +1,0 @@
----
-# This role is part of the bootstrap process and does changes specific to the
-# eclipsis platform
-
-- name: Disable the apparmor service, since the kernel doesn't support it
-  systemd:
-    enabled: no
-    name: apparmor

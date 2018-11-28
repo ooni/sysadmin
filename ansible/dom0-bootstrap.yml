@@ -58,5 +58,5 @@
 - hosts: gh
   gather_facts: false
   roles:
-    - role: eclipsis
+    - role: gh
       tags: gh

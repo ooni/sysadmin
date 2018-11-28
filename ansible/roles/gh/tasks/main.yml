@@ -1,0 +1,29 @@
+---
+# This role is part of the bootstrap process and does changes specific to the
+# eclipsis platform
+
+#- name: Disable the apparmor service, since the kernel doesn't support it
+#  systemd:
+#    enabled: no
+#    name: apparmor
+
+- name: Check if smartd exists
+  stat: path=/etc/init.d/smartmontools
+  register: smartd_init
+
+- name: Disable the smartd as we are in a virtualized environment
+  systemd:
+    daemon_reload: yes
+    enabled: no
+    state: stopped
+    name: smartd
+  when: smartd_init.stat.exists
+  register: systemd_reload_failed
+
+# XXX it's unclear what would be the best way to do this conditionally on if it
+# having just been removed.
+# This currently has the side-effect of resetting the failed state of all
+# systemd units.
+- name: Reset the failed state of systemd
+  command: systemctl reset-failed
+  when: systemd_reload_failed
