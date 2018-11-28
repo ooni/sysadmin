@@ -54,3 +54,9 @@
       tags: on-rename
     - role: node_exporter
       tags: node_exporter
+
+- hosts: gh
+  gather_facts: false
+  roles:
+    - role: eclipsis
+      tags: gh
