@@ -467,7 +467,7 @@
                 "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "4"
         }, 
         {
@@ -505,7 +505,7 @@
                 "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
@@ -1227,7 +1227,7 @@
                 "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
-            "status": "stopped", 
+            "status": "running", 
             "vcpus": "2"
         }, 
         {
