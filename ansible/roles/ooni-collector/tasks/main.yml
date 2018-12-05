@@ -85,7 +85,7 @@
     dest: "/home/sync-user/.ssh/authorized_keys"
   tags: collector_ssh
 
-- name: mkdir for sync-user data files
+- name: mkdir for collector data dir
   file:
     path: "{{ item }}"
     state: directory
@@ -94,8 +94,22 @@
     mode: "u=rwx,g=rx,o=rx"
   with_items:
     - "{{ collector_data_dir }}"
+
+- name: mkdir for sync-user data files
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.collector.id }}"
+    group: "sync-user"
+    mode: "u=rwx,g=rwx,o=rx"
+  with_items:
     - "{{ collector_data_dir }}/renamed"
     - "{{ collector_data_dir }}/errored"
+
+- name: "Install pyyaml for the daily-task"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'python-yaml'
 
 - cron:
     name: "run the daily tasks"

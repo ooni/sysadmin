@@ -26,6 +26,12 @@
     - role: ntp
       tags: ntp
 
+- hosts: gh
+  gather_facts: false
+  roles:
+    - role: gh
+      tags: gh
+
 - hosts: have_fw
   gather_facts: false
   roles:
@@ -54,3 +60,4 @@
       tags: on-rename
     - role: node_exporter
       tags: node_exporter
+

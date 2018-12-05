@@ -3,6 +3,17 @@
 In here live all the tools and scripts related to administering the
 infrastructure that are part of OONI.
 
+# Getting started
+
+It is recommended you use a [python virtualenv](https://virtualenv.pypa.io/en/latest/) to install ansible.
+
+Once you activate the virtualenv you can install the correct version of ansible with:
+
+```
+pip install ansible==2.4.2.0
+```
+
+
 # Ansible roles
 
 It is required for all OONI team to run the same ansible version to minimise
