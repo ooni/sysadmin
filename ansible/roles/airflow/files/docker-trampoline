@@ -196,7 +196,7 @@ case "$script" in
     volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=64m"
     set -o xtrace
     exec docker run $docksafe --user "$uidno" $docknet ${volargs} \
-      openobservatory/orchestra-scripts:20181022-1f800a5b \
+      openobservatory/orchestra-scripts:20181206-3be1378e \
       sync-test-lists.py \
         --working-dir /tmp \
         --postgres 'host=db-1.proteus.ooni.io user=proteus dbname=proteus sslmode=verify-full sslrootcert=/ooca-cert/postgres_ca.cert'
