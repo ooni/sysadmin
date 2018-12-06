@@ -462,7 +462,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "US East (Miami)", 
                 "slug": "US East (Miami)"
             }, 
@@ -500,7 +500,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "US East (Miami)", 
                 "slug": "US East (Miami)"
             }, 
@@ -1222,7 +1222,7 @@
                 ]
             }, 
             "region": {
-                "available": "0", 
+                "available": "1", 
                 "name": "US East (Miami)", 
                 "slug": "US East (Miami)"
             }, 

@@ -19,9 +19,9 @@
       <host HostId="100291397" Name="b.collector.stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="104415045" Name="alpha.measurements" Type="A" Address="37.218.242.231" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="106564735" Name="b.web-connectivity.th" Type="A" Address="37.218.242.234" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="106564765" Name="b.collector" Type="A" Address="103.104.244.110" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="106564765" Name="b.collector" Type="A" Address="37.218.241.178" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111031495" Name="b.echo.th" Type="A" Address="213.138.109.232" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="117190059" Name="analytics" Type="A" Address="37.218.242.175" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="117190059" Name="analytics" Type="A" Address="37.218.241.42" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="121512015" Name="api" Type="A" Address="37.218.242.231" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="70721963" Name="explorer" Type="A" Address="37.218.242.173" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="77759294" Name="db-1.infra" Type="A" Address="141.20.103.17" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -32,7 +32,7 @@
       <host HostId="91215320" Name="bouncer.stage" Type="A" Address="37.218.240.139" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="91215333" Name="bouncer.test" Type="A" Address="37.218.240.140" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="100213445" Name="demo.probe" Type="A" Address="37.218.242.41" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="107842378" Name="c.web-connectivity.th" Type="A" Address="199.119.112.164" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="107842378" Name="c.web-connectivity.th" Type="A" Address="37.218.241.164" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="107842384" Name="c.collector" Type="A" Address="37.218.242.210" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111086165" Name="c.echo.th" Type="A" Address="37.218.247.110" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111938124" Name="datacollector.infra" Type="A" Address="37.218.240.67" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

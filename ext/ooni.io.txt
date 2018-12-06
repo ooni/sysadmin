@@ -18,9 +18,9 @@ a.web-connectivity.th		A	62.217.125.6
 a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
-analytics		A	37.218.242.175
+analytics		A	37.218.241.42
 api		A	37.218.242.231
-b.collector	60	A	103.104.244.110
+b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
 b.echo.th		A	213.138.109.232
@@ -30,7 +30,7 @@ bouncer.stage		A	37.218.240.139
 bouncer.test		A	37.218.240.140
 c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
-c.web-connectivity.th		A	199.119.112.164
+c.web-connectivity.th		A	37.218.241.164
 chameleon.infra	1800	A	141.20.103.17
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
@@ -76,4 +76,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 8cc874573274029c07127c67498ce6b9a9775067f6666fdbf0fc560b87df4bdc
+; generated from ooni.io.xml with SHA256 cb5c4392b0f65cbc00148e7899101237117a539f325cba749f8f4fbf522a66df
