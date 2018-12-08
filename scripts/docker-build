@@ -34,19 +34,26 @@ if [ -n "$prefix" ]; then
 else
     img_slug="${repo}"
 fi
-
-img="openobservatory/$img_slug"
 # Special case for OONI Explorer next
 # XXX remove once we are ready for the stable release
 if [ "$(git remote get-url --push origin)" = "git@github.com:ooni/explorer.git" ];then
-    img="openobservatory/explorer-next"
+    img_slug="explorer-next"
 fi
+
+# That's image for https://hub.docker.com/r/openobservatory/
+img="openobservatory/$img_slug"
 
 ver="$1"
 if [ -z "$ver" ]; then
     ver="$(date '+%Y%m%d')"
 fi
 ver="${ver}-${git_head8}" # tags in git repo are not used, so HEAD is stored as image version
+
+if [ -n "$(git status --short .)" ]; then
+    echo "$0: WARNING: the image is built from HEAD (${git_head8}), but the working copy is dirty:" 1>&2
+    git status --short . 1>&2
+    echo "^^ consider committing those files or adding them to \`.gitignore'" 1>&2
+fi
 
 echo "Going to build $img:$ver & $img:latest"
 read -p "Press enter to continue, ^C if that's wrong"
