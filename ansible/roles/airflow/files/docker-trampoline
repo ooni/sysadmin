@@ -21,10 +21,13 @@ shift 4
 
 (
 shopt -s extglob
-for var in "$bucket" "$isofrom" "$isotill"; do
-    # NB: `.` (dot) delimits microseconds in isoformat() but they are not welcome here
-    if [ -z "$var" -o -n "${var/+([-0-9T:])/}" ]; then
-        echo "$0: bad arg <$var> -> <${var/+([-0-9T:])/}>" 1>&2
+if [ -z "$bucket" -o -n "${bucket/+([-0-9])/}" ]; then
+    echo "$0: bad arg <$bucket> -> <${bucket/+([-0-9])/}>" 1>&2
+    exit 1
+fi
+for var in "$isofrom" "$isotill"; do
+    if [ -z "$var" -o -n "${var/+([-0-9T:.])/}" ]; then
+        echo "$0: bad arg <$var> -> <${var/+([-0-9T:.])/}>" 1>&2
         exit 1
     fi
 done
