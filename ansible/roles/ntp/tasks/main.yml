@@ -18,4 +18,10 @@
 - name: configure chrony
   template: src=chrony.conf dest=/etc/chrony/chrony.conf owner=root group=root mode=0444
   notify: restart chrony
+
+- name: purge ntp to avoid ntp.service from running
+  apt:
+    name: ntp
+    state: absent
+    purge: yes
 ...
