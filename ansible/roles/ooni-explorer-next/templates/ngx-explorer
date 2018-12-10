@@ -26,6 +26,10 @@ server {
     access_log  /var/log/nginx/{{ explorer_domain }}.access.log; # FIXME: log_format
     error_log   /var/log/nginx/{{ explorer_domain }}.error.log;
 
+    location /data/ {
+        root {{ explorer_country_data_path }};
+    }
+
     location / {
         proxy_pass http://{{ explorer_next_backend_ipv4 }}:{{ explorer_next_backend_port }};
         include proxy_params;
