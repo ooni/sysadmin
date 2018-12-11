@@ -22,4 +22,12 @@
       NODE_ENV: production
     user: "{{ passwd.explorer.id }}:{{ passwd.explorer.id }}"
     restart_policy: unless-stopped
+
+- name: Directory to serve data from
+  file:
+    path: "{{ explorer_country_data_path }}"
+    state: directory
+    owner: "{{ passwd.explorer.id }}"
+    group: "{{ passwd.explorer.id }}"
+    mode: "u=rxw,g=rx,o="
 ...
