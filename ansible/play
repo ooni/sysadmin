@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [ -z ${OONI_SYSADMIN_HOME+x} ]; then
     OONI_SYSADMIN_HOME=$HOME/.ooni-sysadmin
@@ -32,6 +32,10 @@ case "$cmd" in
     exit 1
     ;;
 esac
+
+ANSIBLE_SLACK_CMD=`printf "%q " "$0" "$@"`
+ANSIBLE_SLACK_CMD="${ANSIBLE_SLACK_CMD% }" # strip trailing whitespace
+export ANSIBLE_SLACK_CMD
 
 if [ -t 0 -a -t 1 -a -t 2 ]; then
   uname=`uname -s`

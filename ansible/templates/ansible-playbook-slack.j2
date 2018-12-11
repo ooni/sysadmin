@@ -1,0 +1,5 @@
+{% set cleanness = 'dirty' if lookup('pipe', 'git status -s') else 'clean' %}
+{% set head = lookup('pipe', 'git rev-parse HEAD') %}
+{% set head7 = lookup('pipe', 'git rev-parse --short HEAD') %}
+{% set branch = lookup('pipe', 'git describe --always --exact-match --all HEAD') | replace('heads/', '') %}
+{{ lookup('pipe', 'whoami') }}@{{ lookup('pipe', 'hostname') }} runs `{{ lookup('env', 'ANSIBLE_SLACK_CMD' ) }}` on top of {{ cleanness }} `<https://github.com/ooni/sysadmin/commit/{{ head }}|{{ head7 }}>` (`{{ branch }}`)
