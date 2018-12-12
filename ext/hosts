@@ -19,7 +19,9 @@ for domain in ('openobservatory.org', 'ooni.io', 'ooni.nu'):
     tree = ElementTree.parse(domain + '.xml')
     for el in tree.findall('./NC:CommandResponse/NC:DomainDNSGetHostsResult/NC:host', ns):
         if el.get('Type') == 'A':
-            dns.setdefault(el.get('Address'), set()).add(el.get('Name') + '.' + domain)
+            name = el.get('Name')
+            name = (name + '.' + domain) if name != '@' else domain
+            dns.setdefault(el.get('Address'), set()).add(name)
 
 droplets = json.load(open('gh-droplets.json'))
 for vm in droplets['droplets']:
