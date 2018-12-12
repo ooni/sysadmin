@@ -44,7 +44,7 @@ case "$script" in
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:$private/reports-raw/${bucket}:ro"
     volargs="${volargs} --volume=$private/reports-raw-shals:$private/reports-raw-shals:ro"
     exec docker run $docksafe $docknet $volargs debian:jessie \
-        /bin/bash -c "set -o pipefail && find $private/reports-raw/${bucket} -type f -printf '%f %s\n' | LC_ALL=C sort | sha256sum --check $private/reports-raw-shals/${bucket} && exit 42 || exit 13"
+        /bin/bash -c "set -o pipefail && find $private/reports-raw/${bucket} -type f -printf '%f %s\n' | LC_ALL=C sort --buffer-size=96M | sha256sum --check $private/reports-raw-shals/${bucket} && exit 42 || exit 13"
     ;;
 
     canning)
@@ -189,7 +189,8 @@ case "$script" in
     volargs="${volargs} --volume=$private/spool:/spool:rw"
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:/reports-raw/${bucket}:rw"
     volargs="${volargs} --volume=$private/reports-raw-shals:/reports-raw-shals:rw"
-    set -- /bin/bash -c 'set -Cex; cd /spool; find "$@" -type f -execdir mv --no-clobber --target-directory "/reports-raw/$0" {} +; find "/reports-raw/$0/" -type f -printf "%f %s\n" | LC_ALL=C sort | sha256sum >"/reports-raw-shals/$0"' "${bucket}" "$@"
+    # sort's `--buffer-size` is intentionally lower here then in another place: # if it fails because of RAM, checksum should differ.
+    set -- /bin/bash -c 'set -ex; set -o pipefail; set -o noclobber; cd /spool; find "$@" -type f -execdir mv --no-clobber --target-directory "/reports-raw/$0" {} +; find "/reports-raw/$0/" -type f -printf "%f %s\n" | LC_ALL=C sort --buffer-size=64M | sha256sum >"/reports-raw-shals/$0"' "${bucket}" "$@"
     ;;
 
     sync_test_lists)
