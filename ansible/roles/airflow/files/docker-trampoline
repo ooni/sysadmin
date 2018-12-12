@@ -21,10 +21,13 @@ shift 4
 
 (
 shopt -s extglob
-for var in "$bucket" "$isofrom" "$isotill"; do
-    # NB: `.` (dot) delimits microseconds in isoformat() but they are not welcome here
-    if [ -z "$var" -o -n "${var/+([-0-9T:])/}" ]; then
-        echo "$0: bad arg <$var> -> <${var/+([-0-9T:])/}>" 1>&2
+if [ -z "$bucket" -o -n "${bucket/+([-0-9])/}" ]; then
+    echo "$0: bad arg <$bucket> -> <${bucket/+([-0-9])/}>" 1>&2
+    exit 1
+fi
+for var in "$isofrom" "$isotill"; do
+    if [ -z "$var" -o -n "${var/+([-0-9T:.])/}" ]; then
+        echo "$0: bad arg <$var> -> <${var/+([-0-9T:.])/}>" 1>&2
         exit 1
     fi
 done
@@ -196,7 +199,7 @@ case "$script" in
     volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=64m"
     set -o xtrace
     exec docker run $docksafe --user "$uidno" $docknet ${volargs} \
-      openobservatory/orchestra-scripts:20181022-1f800a5b \
+      openobservatory/orchestra-scripts:20181206-3be1378e \
       sync-test-lists.py \
         --working-dir /tmp \
         --postgres 'host=db-1.proteus.ooni.io user=proteus dbname=proteus sslmode=verify-full sslrootcert=/ooca-cert/postgres_ca.cert'
