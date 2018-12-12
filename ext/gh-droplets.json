@@ -182,7 +182,7 @@
                 "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
-            "memory": "4096", 
+            "memory": "1024", 
             "name": "amstorth.ooni.nu", 
             "networks": {
                 "v4": [
@@ -202,7 +202,7 @@
             }, 
             "snapshot_ids": [], 
             "status": "running", 
-            "vcpus": "2"
+            "vcpus": "1"
         }, 
         {
             "backup_ids": [], 
@@ -449,7 +449,7 @@
             }, 
             "locked": false, 
             "memory": "6144", 
-            "name": "b.collector.ooni.io", 
+            "name": "miacollector.ooni.nu", 
             "networks": {
                 "v4": [
                     {
@@ -1208,7 +1208,7 @@
                 "ssh_rsa": "2048 66:24:0d:17:af:d2:af:24:55:30:e3:5b:bf:76:da:d3"
             }, 
             "locked": false, 
-            "memory": "6144", 
+            "memory": "1024", 
             "name": "analytics.ooni.io", 
             "networks": {
                 "v4": [
@@ -1228,7 +1228,7 @@
             }, 
             "snapshot_ids": [], 
             "status": "running", 
-            "vcpus": "2"
+            "vcpus": "1"
         }, 
         {
             "backup_ids": [], 
