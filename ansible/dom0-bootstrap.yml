@@ -60,4 +60,7 @@
       tags: on-rename
     - role: node_exporter
       tags: node_exporter
-
+  tasks: # that's likely one-time cleanup
+    - apt: name=munin-node state=absent purge=yes
+      tags: munin-node
+...
