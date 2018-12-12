@@ -10,21 +10,17 @@ bigv
 fra
 
 [gh:children]
-wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
+mia
 hkg
 ams
 
 ########################################################################
 # location tags
 
-[wdc]
-# TODO a.echo.th.ooni.io
+[mia]
 c.web-connectivity.th.ooni.io
-#gone munin.ooni.io # disk idle since 2018-11-25
 miacollector.ooni.nu
-#gone shwdc.ooni.io
-# TODO analytics.ooni.io
-#gone shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
+analytics.ooni.io
 
 [hkg]
 datacollector.infra.ooni.io
@@ -160,7 +156,7 @@ wiki.ooni.io
 
 [have_collector]
 hkgcollectora.ooni.nu
-#disable during maintenance miacollector.ooni.nu
+miacollector.ooni.nu
 c.collector.ooni.io
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
@@ -188,3 +184,6 @@ slack.openobservatory.org
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
 #
 # since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/ooni/sysadmin/issues/NNNN
+# since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
+# since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
+# since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
