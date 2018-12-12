@@ -20,5 +20,6 @@
         token: "{{ ansible_slack_token }}"
         channel: "#ooni-bots"
         msg: "{{ lookup('template', 'ansible-playbook-slack.j2') }}"
+      delegate_to: localhost
       run_once: true
 ...
