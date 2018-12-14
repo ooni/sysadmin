@@ -104,6 +104,7 @@
 
 - name: mkdir airflow-dags
   file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
+# FIXME: `rsync --delete` followed by `template dest=/srv/airflow-dags/have_collector.json` always provides "changed" state
 - name: copy airflow-dags # depends on `rsync`
   tags: airflow-dags
   synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes

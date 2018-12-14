@@ -20,5 +20,7 @@
     - openssl # at least for ooca-cert
 
 - import_tasks: sshd.yml
+  tags: sshd
 - import_tasks: ping.yml
+  tags: ping
 ...

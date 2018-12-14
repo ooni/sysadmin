@@ -182,7 +182,7 @@
                 "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
-            "memory": "4096", 
+            "memory": "1024", 
             "name": "amstorth.ooni.nu", 
             "networks": {
                 "v4": [
@@ -202,7 +202,7 @@
             }, 
             "snapshot_ids": [], 
             "status": "running", 
-            "vcpus": "2"
+            "vcpus": "1"
         }, 
         {
             "backup_ids": [], 
@@ -434,44 +434,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 10, 
-            "features": [], 
-            "id": "1239", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba ", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 ", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 "
-            }, 
-            "locked": false, 
-            "memory": "2048", 
-            "name": "munin.ooni.io", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.171", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 200, 
             "features": [], 
             "id": "1252", 
@@ -487,22 +449,22 @@
             }, 
             "locked": false, 
             "memory": "6144", 
-            "name": "b.collector.ooni.io", 
+            "name": "miacollector.ooni.nu", 
             "networks": {
                 "v4": [
                     {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.178", 
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.178", 
                         "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
+                        "network": "37.218.241.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
             "status": "running", 
@@ -529,18 +491,18 @@
             "networks": {
                 "v4": [
                     {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.164", 
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.164", 
                         "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
+                        "network": "37.218.241.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
             "status": "running", 
@@ -693,44 +655,6 @@
                 "available": "1", 
                 "name": "Amsterdam", 
                 "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 10, 
-            "features": [], 
-            "id": "1456", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 f2:eb:38:57:62:32:fa:4f:e2:e2:7c:c4:f8:8f:80:02", 
-                "ssh_ecdsa": "256 d5:ce:57:84:c6:27:51:cd:7e:2c:57:34:58:31:50:b3", 
-                "ssh_rsa": "2048 3a:75:ff:03:eb:71:b6:28:bf:3a:74:80:85:ee:03:1f"
-            }, 
-            "locked": false, 
-            "memory": "3072", 
-            "name": "a.echo.th.ooni.io", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.49", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
             }, 
             "snapshot_ids": [], 
             "status": "running", 
@@ -1042,44 +966,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 5, 
-            "features": [], 
-            "id": "1724", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 eb:1f:f7:18:42:79:19:2b:38:22:6b:aa:63:d4:67:25", 
-                "ssh_ecdsa": "256 7b:86:92:14:c7:a4:d0:15:18:5c:c9:88:25:c9:3f:c7", 
-                "ssh_rsa": "2048 94:7f:4c:ea:d6:d5:c2:9e:59:79:f0:5a:45:4e:a7:25"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "shwdc.ooni.io", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.89", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 20, 
             "features": [], 
             "id": "1795", 
@@ -1322,27 +1208,27 @@
                 "ssh_rsa": "2048 66:24:0d:17:af:d2:af:24:55:30:e3:5b:bf:76:da:d3"
             }, 
             "locked": false, 
-            "memory": "6144", 
+            "memory": "1024", 
             "name": "analytics.ooni.io", 
             "networks": {
                 "v4": [
                     {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.42", 
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.42", 
                         "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
+                        "network": "37.218.241.0/24", 
                         "type": "public"
                     }
                 ]
             }, 
             "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
             }, 
             "snapshot_ids": [], 
             "status": "running", 
-            "vcpus": "2"
+            "vcpus": "1"
         }, 
         {
             "backup_ids": [], 
@@ -1829,48 +1715,10 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 20, 
-            "features": [], 
-            "id": "2548", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 c9:9a:e9:f2:17:14:c2:a7:db:9e:a3:f6:0f:d1:72:23", 
-                "ssh_ecdsa": "256 30:21:03:cf:b2:82:d7:02:d2:e0:a7:90:89:f0:fe:d9", 
-                "ssh_rsa": "2048 54:c0:a4:07:62:82:35:cf:12:26:09:f4:83:ee:2f:63"
-            }, 
-            "locked": false, 
-            "memory": "2048", 
-            "name": "shark.ooni.nu", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "199.119.112.1", 
-                        "ip_address": "199.119.112.120", 
-                        "netmask": "255.255.255.0", 
-                        "network": "199.119.112.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "0", 
-                "name": "Washington DC", 
-                "slug": "Washington DC"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "2"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 49
+        "total": 45
     }
 }

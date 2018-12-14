@@ -14,4 +14,5 @@
     ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: ooni-bouncer
+      tags: ooni-bouncer
       bouncer_domain: bouncer.ooni.io

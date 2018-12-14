@@ -27,8 +27,13 @@ groups:
       summary: 'Mirror {{ $labels.instance }} lags by {{ $value | humanizeDuration }}'
       description: '{{ if eq $labels.instance "ooni.torproject.org:443" }}Run `make update-site`.{{ end }}'
 
-  - alert: AirflowFailed
-    expr: airflow_7d_failed_count > 0
+  - alert: AirflowDagFailed
+    expr: airflow_7d_dag_failed_count > 0
+    annotations:
+      summary: '{{ $value }} DAG `{{ $labels.dag }}` failures last week'
+
+  - alert: AirflowTaskFailed
+    expr: airflow_7d_task_failed_count > 0
     annotations:
       summary: '{{ $value }} task `{{ $labels.task }}` failures last week'
 

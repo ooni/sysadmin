@@ -14,3 +14,13 @@
           - ansible_version.revision == 2
           - playbook_dir == inventory_dir
       run_once: true
+
+    - name: "notify #ooni-bots at openobservatory.slack.com"
+      slack:
+        token: "{{ ansible_slack_token }}"
+        channel: "#ooni-bots"
+        msg: "{{ lookup('template', 'ansible-playbook-slack.j2') }}"
+      delegate_to: localhost
+      run_once: true
+      when: lookup('env', 'TRAVIS_VAULT_SECRET' ) | length == 0
+...

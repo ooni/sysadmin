@@ -1,0 +1,2 @@
+{# meta-template to ensure that the templated configuration file is at least valid yaml #}
+{{ lookup('template', 'bouncer.yaml.j2') | from_yaml | to_nice_yaml }}

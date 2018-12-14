@@ -10,19 +10,33 @@ dest=`mktemp -t textfile.XXXXXXXXXX`
 # TaskInstances within last 7 days in specific state). It turned out that only
 # `failed` state matters.
 cat >"$dest" <<EOF
-# HELP airflow_7d_failed_count The total number of failed TaskInstances within last 7 days.
-# TYPE airflow_7d_failed_count gauge
+# HELP airflow_7d_task_failed_count The total number of failed TaskInstances within last 7 days.
+# TYPE airflow_7d_task_failed_count gauge
 EOF
-  
 /sbin/start-stop-daemon --chuid daemon:daemon \
   --exec /usr/bin/psql --start \
   -- \
   --no-align --tuples-only airflow >>"$dest" <<EOF
 SELECT
-  'airflow_7d_failed_count{task="' || task_id || '",dag="' || dag_id || '"} ' || SUM(CASE WHEN state = 'failed' THEN 1 ELSE 0 END)
+  'airflow_7d_task_failed_count{task="' || task_id || '",dag="' || dag_id || '"} ' || SUM(CASE WHEN state = 'failed' THEN 1 ELSE 0 END)
 FROM task_instance
 WHERE execution_date >= NOW() - INTERVAL '7 DAYS'
 GROUP BY task_id, dag_id
+EOF
+
+cat >>"$dest" <<EOF
+# HELP airflow_7d_dag_failed_count The total number of failed DAGRuns within last 7 days.
+# TYPE airflow_7d_dag_failed_count gauge
+EOF
+/sbin/start-stop-daemon --chuid daemon:daemon \
+  --exec /usr/bin/psql --start \
+  -- \
+  --no-align --tuples-only airflow >>"$dest" <<EOF
+SELECT
+  'airflow_7d_dag_failed_count{dag="' || dag_id || '"} ' || SUM(CASE WHEN state = 'failed' THEN 1 ELSE 0 END)
+FROM dag_run
+WHERE execution_date >= NOW() - INTERVAL '7 DAYS'
+GROUP BY dag_id
 EOF
 
 cp "$dest" /run/nodeexp/airflow.prom

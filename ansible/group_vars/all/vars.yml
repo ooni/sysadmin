@@ -13,6 +13,7 @@ weasel_comment: "{{ vault_weasel_comment }}"
 weasel_keys: "{{ vault_weasel_keys }}"
 root_password_digest: '{{ vault_root_password_digest }}'
 root_password_mtime: '{{ vault_root_password_mtime }}'
+ansible_slack_token: '{{ vault_ansible_slack_token }}'
 
 # One can generate SSHA with ../scripts/ngx-mkpasswd
 prometheus_scraper_ssha: '{{ vault_prometheus_scraper_ssha }}' # xref: prometheus_scraper_password

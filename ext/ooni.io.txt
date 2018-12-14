@@ -12,15 +12,15 @@ _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
 a.collector		A	103.104.244.110
 a.collector.stage		A	37.218.240.139
 a.collector.test		A	37.218.240.140
-a.echo.th	60	A	199.119.112.49
+a.echo.th	60	A	37.218.247.110
 a.http.th		A	37.218.247.95
 a.web-connectivity.th		A	62.217.125.6
 a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
-analytics		A	199.119.112.42
+analytics		A	37.218.241.42
 api		A	37.218.242.231
-b.collector	60	A	199.119.112.178
+b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
 b.echo.th		A	213.138.109.232
@@ -30,7 +30,7 @@ bouncer.stage		A	37.218.240.139
 bouncer.test		A	37.218.240.140
 c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
-c.web-connectivity.th		A	199.119.112.164
+c.web-connectivity.th		A	37.218.241.164
 chameleon.infra	1800	A	141.20.103.17
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
@@ -53,7 +53,6 @@ labs		A	103.104.244.162
 measurements		A	37.218.242.231
 measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
-munin		A	199.119.112.171
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
 ooni-explorer-next.test		A	103.104.244.44
@@ -66,7 +65,6 @@ proteus.test		A	37.218.240.152
 registry.proteus		A	37.218.242.65
 registry.proteus.test		A	37.218.240.148
 run		A	37.218.242.30
-shwdc		A	199.119.112.89
 slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
@@ -78,4 +76,4 @@ test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 wiki		A	37.218.240.93
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 b078f6985dbe3465c468377311fd0f39eae5f06a0c9546b277f99fb7995fb27b
+; generated from ooni.io.xml with SHA256 cb5c4392b0f65cbc00148e7899101237117a539f325cba749f8f4fbf522a66df
