@@ -17,8 +17,13 @@ pip install ansible==2.4.2.0
 # Ansible roles
 
 It is required for all OONI team to run the same ansible version to minimise
-compatibility issues. It is enforced by including `ansible-version.yml` play in
-the playbooks.
+compatibility issues.
+All playbooks should include `ansible-version.yml` at the beginning of the
+playbook, by including:
+```
+---
+- import_playbook: ansible-version.yml
+```
 
 If you need some python packages **only** for ansible module to
 work and don't need it in system-wide pip repository, then you should put these
