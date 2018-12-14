@@ -8,9 +8,9 @@ alertmanager_config_path:         /srv/alertmanager/config
 alertmanager_templates_path:      /srv/alertmanager/config/templates
 alertmanager_data_path:           /srv/alertmanager/data
 
-alertmanager_listen_address: "127.0.0.1:9093"
+alertmanager_listen_address: '{{ CHANGE_ME }}'
 
-alertmanager_version: 0.6.1
+alertmanager_version: 0.12.0
 alertmanager_download_url: https://github.com/prometheus/alertmanager/releases/download
 
 alertmanager_slack_api_url: '{{ CHANGE_ME }}'
@@ -20,8 +20,3 @@ alertmanager_tarball_url: "{{ alertmanager_download_url }}/v{{ alertmanager_vers
 alertmanager_sha256sums_url: "{{ alertmanager_download_url }}/v{{ alertmanager_version }}/sha256sums.txt"
 alertmanager_sha256sums: "{{ playbook_dir }}/cache/alertmanager-{{ alertmanager_version}}.SHA256SUMS"
 alertmanager_path: "{{ alertmanager_base }}/{{ alertmanager_basename }}"
-
-alertmanager_smtp_from: "noreply+prometheus@ooni.io" # don't forget to whitelist it at https://runbox.com/mail/rules
-alertmanager_smtp_smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-alertmanager_smtp_username: "{{ CHANGE_ME }}"
-alertmanager_smtp_password: "{{ CHANGE_ME }}"

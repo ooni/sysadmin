@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApiResponse Status="OK" xmlns="http://api.namecheap.com/xml.response">
+  <Errors />
+  <Warnings />
+  <RequestedCommand>namecheap.domains.dns.gethosts</RequestedCommand>
+  <CommandResponse Type="namecheap.domains.dns.getHosts">
+    <DomainDNSGetHostsResult Domain="openobservatory.net" EmailType="FWD" IsUsingOurDNS="true">
+      <host HostId="77079989" Name="blog" Type="CNAME" Address="openo.ghost.io." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="77349483" Name="docs" Type="CNAME" Address="openobservatory.github.io." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053915" Name="@" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053918" Name="www" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+    </DomainDNSGetHostsResult>
+  </CommandResponse>
+  <Server/>
+  <GMTTimeDifference/>
+  <ExecutionTime/>
+</ApiResponse>

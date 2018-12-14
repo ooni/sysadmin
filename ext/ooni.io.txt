@@ -1,72 +1,71 @@
 $ORIGIN ooni.io
 $TTL 1799
-@		URL	https://ooni.torproject.org/
-@	1800	TXT	v=spf1 include:spf.efwd.registrar-servers.com ~all
+@	300	A	104.198.14.52
+@	300	MX	ASPMX.L.GOOGLE.COM.
+@		MX	ALT1.ASPMX.L.GOOGLE.COM.
+@		MX	ALT2.ASPMX.L.GOOGLE.COM.
+@		MX	ALT3.ASPMX.L.GOOGLE.COM.
+@		MX	ALT4.ASPMX.L.GOOGLE.COM.
+@		TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
+@		TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	62.217.125.6
+a.collector		A	103.104.244.110
 a.collector.stage		A	37.218.240.139
 a.collector.test		A	37.218.240.140
-a.echo.th	60	A	199.119.112.49
+a.echo.th	60	A	37.218.247.110
 a.http.th		A	37.218.247.95
 a.web-connectivity.th		A	62.217.125.6
 a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
-afwrk01.infra		A	37.218.240.158
-afwrk02.infra		A	37.218.240.159
-afwrk03.infra		A	37.218.240.160
-afwrk04.infra		A	37.218.240.162
 alpha.measurements		A	37.218.242.231
-analytics		A	199.119.112.42
-b.collector	60	A	199.119.112.178
+analytics		A	37.218.241.42
+api		A	37.218.242.231
+b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
 b.echo.th		A	213.138.109.232
 b.web-connectivity.th		A	37.218.242.234
-bouncer		A	62.217.125.6
+bouncer		A	103.104.244.87
 bouncer.stage		A	37.218.240.139
 bouncer.test		A	37.218.240.140
 c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
-c.web-connectivity.th		A	199.119.112.164
+c.web-connectivity.th		A	37.218.241.164
 chameleon.infra	1800	A	141.20.103.17
-chrony.tmp		A	37.218.240.181
+collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
 db-1.infra		A	141.20.103.17
 db-1.proteus		A	37.218.242.79
 db-1.proteus.test		A	37.218.240.153
-debuilder.infra		A	37.218.242.229
 demo.probe		A	37.218.242.41
+design		CNAME	ooni-design.netlify.com.
 events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.173
 get		A	37.218.242.157
+google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 hkgmetadb.infra		A	37.218.240.56
 hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
 irc-bouncer.service	1800	A	37.218.240.126
-lepidopter-update-test.infra		A	37.218.242.199
-measurements	60	A	37.218.242.217
+jupyter		A	37.218.240.205
+labs		A	103.104.244.162
+measurements		A	37.218.242.231
 measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
-munin		A	199.119.112.171
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
-ntp.tmp		A	37.218.240.177
-ooni-backend-testing.infra		A	199.119.112.211
-ooni-fdroid-build.infra		A	199.119.112.14
+ooni-explorer-next.test		A	103.104.244.44
 ooni-measurements-db.infra		A	37.218.242.232
-ooni-probe-demo.infra		A	37.218.242.169
-ooni-proxy-dc.infra		A	199.119.112.184
 ooni-zoo.infra		A	37.218.240.138
-oonibackend-stress-test.infra		A	199.119.112.233
-ooniprobe-app.infra		A	37.218.242.109
-openntpd.tmp		A	37.218.240.178
+orchestrate	300	A	37.218.242.63
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
 registry.proteus		A	37.218.242.65
 registry.proteus.test		A	37.218.240.148
-shwdc		A	199.119.112.89
+run		A	37.218.242.30
+slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
 stage		A	37.218.240.139
@@ -75,8 +74,6 @@ superset		A	37.218.240.92
 test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
-ubuilder.infra		A	37.218.242.223
-vpn-gate-runner.infra		A	37.218.240.133
 wiki		A	37.218.240.93
-www		URL	https://ooni.torproject.org/
-; generated from ooni.io.xml with SHA256 5879d47de6142be743f6e2cb07535c3a672d450698438a8ff8b6fb8139006620
+www	300	CNAME	ooni.netlify.com.
+; generated from ooni.io.xml with SHA256 cb5c4392b0f65cbc00148e7899101237117a539f325cba749f8f4fbf522a66df

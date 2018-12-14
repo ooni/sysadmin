@@ -1,9 +1,0 @@
----
-- name: download get-pip.py
-  get_url: url="https://bootstrap.pypa.io/get-pip.py" dest="/tmp/get-pip.py"
-
-- name: install a secure version of pip
-  shell: python /tmp/get-pip.py
-
-- name: set the default pip to be the secure one
-  shell: update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip 0

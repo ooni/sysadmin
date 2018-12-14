@@ -1,0 +1,85 @@
+---
+- name: Create ssl key directory
+  file: path={{ ooca_ssl_dir }} state=directory owner=root group={{ ooca_group }} mode=0710
+
+# RSA-2048 is used as there is no reason to generate keys longer than
+# letsencrypt that protects some other bits of infrastructure.
+- name: Generate private RSA-2048 key
+  command: openssl genrsa -out {{ ooca_ssl_base }}.key 2048
+  args:
+    creates: "{{ ooca_ssl_base }}.key"
+
+# TODO: https://wiki.mozilla.org/Security/Server_Side_TLS#Pre-defined_DHE_groups
+# suggests ffdhe2048 instead of `openssl dhparam` to avoid https://weakdh.org/
+- name: Generate 2048-bit Diffie-Hellman parameters # to avoid https://weakdh.org/
+  command: openssl dhparam -out {{ ooca_ssl_base }}.dhparam 2048
+  args:
+    creates: "{{ ooca_ssl_base }}.dhparam"
+
+- name: Generate CSR
+  command: openssl req -new -sha256 -subj "{{ ooca_ssl_subj }}" -key {{ ooca_ssl_base }}.key -out {{ ooca_ssl_base }}.csr
+  args:
+    creates: "{{ ooca_ssl_base }}.csr"
+
+- name: Set key permissions
+  file: path={{ ooca_ssl_base ~ item }} owner=root group={{ ooca_group }} mode=0440
+  with_items:
+    - .key
+    - .dhparam
+    - .csr
+
+- name: Check cert existance
+  stat: path={{ ooca_ssl_base }}.cert
+  register: ssl_cert
+
+- name: mktemp @ localhost
+  set_fact:
+    tmp: "{{ lookup('pipe', 'mktemp -dt ooni-csr.XXXXXXXX') }}"
+  run_once: true
+
+- name: Copy CA key to tmpdir from vault
+  local_action: copy src={{ ooca_ca }}.key.vault dest={{ tmp }}/{{ ooca_ca }}.key
+  run_once: true
+
+- block:
+  - name: Fetch the CSR from the host
+    fetch:
+      src: "{{ ooca_ssl_base }}.csr"
+      dest: "{{ tmp }}/{{ ooca_basename }}.csr"
+      flat: yes
+
+  - name: Generate signed SSL certificate
+    local_action: command  openssl x509 -sha256 -days 3650 -req -in {{ ooca_basename }}.csr -CA {{ inventory_dir }}/files/{{ ooca_ca }}.cert -CAkey {{ ooca_ca }}.key -set_serial {{ (2 ** 128) | random }} -out {{ ooca_basename }}.cert
+    args:
+      creates: "{{ ooca_basename }}.cert"
+      chdir: "{{ tmp }}"
+
+  - name: Upload the signed SSL certificate
+    copy:
+      src: "{{ tmp }}/{{ ooca_basename }}.cert"
+      dest: "{{ ooca_ssl_base }}.cert"
+      owner: root
+      group: "{{ ooca_group }}"
+      mode: 0440
+  when: not ssl_cert.stat.exists
+
+- name: cleanup local tmp dir
+  local_action: file path={{ tmp }} state=absent
+  run_once: true
+
+- name: Upload CA used to sign key
+  copy:
+    src: "{{ inventory_dir }}/files/{{ ooca_ca }}.cert"
+    dest: "{{ ooca_ssl_dir }}/{{ ooca_ca }}.cert"
+    owner: root
+    group: "{{ ooca_group }}"
+    mode: 0440
+
+- name: Chain certificate and CA together
+  shell: cat {{ ooca_basename }}.cert {{ ooca_ca }}.cert >{{ ooca_basename }}.chain
+  args:
+    chdir: "{{ ooca_ssl_dir }}"
+    creates: "{{ ooca_ssl_base }}.chain"
+
+- name: Set chain permissions
+  file: path={{ ooca_ssl_base }}.chain owner=root group={{ ooca_group }} mode=0440

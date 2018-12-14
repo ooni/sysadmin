@@ -1,0 +1,12 @@
+[Unit]
+Description=OONI Run service
+
+[Service]
+User={{ ooni_run_user }}
+Group={{ ooni_run_group }}
+WorkingDirectory={{ ooni_run_install_path }}/ooni-run
+ExecStart=/usr/bin/yarn run start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

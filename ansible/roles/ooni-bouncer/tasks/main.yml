@@ -1,0 +1,49 @@
+---
+- name: bouncer.ooni.io nginx config
+  template: src=ngx-bouncer dest=/etc/nginx/sites-enabled/ooni-bouncer
+  notify: reload nginx
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ passwd.bouncer.id }}"
+    group: "{{ passwd.bouncer.id }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ bouncer_data_dir }}"
+    # The bouncer tor/bouncer/hostname and private_key files need to be
+    # provisioned externally.
+    - "{{ bouncer_data_dir }}/tor"
+    - "{{ bouncer_data_dir }}/logs"
+    - "{{ bouncer_data_dir }}/archive"
+    - "{{ bouncer_data_dir }}/raw_reports"
+    # This is legacy garbage
+    - "{{ bouncer_data_dir }}/decks"
+    - "{{ bouncer_data_dir }}/inputs"
+
+- name: Configure the bouncer file
+  template:
+    src: bouncer.metayaml
+    dest: "{{ bouncer_data_dir }}/bouncer.yaml"
+  notify: restart ooni-bouncer
+  tags: on-renumber
+
+- name: Configure the bouncer oonibackend.conf
+  template:
+    src: oonibackend.conf.j2
+    dest: "{{ bouncer_data_dir }}/oonibackend.conf"
+  notify: restart ooni-bouncer
+
+- name: ooni-bouncer webservice
+  docker_container:
+    image: openobservatory/bouncer:{{ bouncer_tag }}
+    name: ooni-bouncer
+    hostname: ooni-bouncer
+    ports:
+    - "{{ bouncer_port }}:{{ bouncer_port }}"
+    volumes:
+    - "/data/bouncer:/data/bouncer"
+    command: python bin/oonib --config /data/bouncer/oonibackend.conf
+    user: "{{ passwd.bouncer.id }}:{{ passwd.bouncer.id }}"
+    restart_policy: unless-stopped

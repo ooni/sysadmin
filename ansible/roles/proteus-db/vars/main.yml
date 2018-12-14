@@ -1,7 +1,0 @@
----
-proteus_db_files:
-  - "accounts.1.sql"
-  - "active_probes.1.sql"
-  - "jobs.1.sql"
-  - "probe_updates.1.sql"
-  - "tasks.1.sql"

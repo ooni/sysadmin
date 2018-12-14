@@ -1,0 +1,9 @@
+---
+ansible_become: false
+ansible_user: root
+
+ngxprom_exporter_ports:
+  9100: '127.0.0.1'
+  9090: '127.0.0.1'
+  9093: '127.0.0.1'
+...

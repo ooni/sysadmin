@@ -1,8 +1,0 @@
----
-- include: install.yml
-  when: set_ooniprobe_pip is not defined
-- include: install-git.yml
-  when: set_ooniprobe_pip is defined and set_ooniprobe_pip == 'true'
-- include: cron.yml
-- include: install-go.yml
-  when: set_ooniprobe_go is defined and set_ooniprobe_go == 'true'

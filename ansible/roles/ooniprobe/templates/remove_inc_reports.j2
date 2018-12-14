@@ -1,7 +1,0 @@
-#Ansible: remove_inc_reports
-#!/bin/bash
-# Remove incomplete ooniprobe reports
-oonireport -f {{ ooniprobe_config }} status |
-sed -n -e '/^Incomplete reports/,$s/^\* //p' | while read path; do
-    rm -f "$path"
-done

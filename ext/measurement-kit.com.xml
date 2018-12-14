@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApiResponse Status="OK" xmlns="http://api.namecheap.com/xml.response">
+  <Errors />
+  <Warnings />
+  <RequestedCommand>namecheap.domains.dns.gethosts</RequestedCommand>
+  <CommandResponse Type="namecheap.domains.dns.getHosts">
+    <DomainDNSGetHostsResult Domain="measurement-kit.com" EmailType="FWD" IsUsingOurDNS="true">
+      <host HostId="121341281" Name="www" Type="CNAME" Address="parkingpage.namecheap.com." MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="CNAME Record" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="121341280" Name="@" Type="URL" Address="http://www.measurement-kit.com/" MXPref="10" TTL="1800" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+    </DomainDNSGetHostsResult>
+  </CommandResponse>
+  <Server/>
+  <GMTTimeDifference/>
+  <ExecutionTime/>
+</ApiResponse>

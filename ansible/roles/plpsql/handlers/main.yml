@@ -1,0 +1,4 @@
+---
+- name: restart pl-psql
+  command: docker restart pl-psql # XXX: is `stop_timeout` respected?
+...

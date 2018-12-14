@@ -26,6 +26,13 @@ for el in tree.findall('./NC:CommandResponse/NC:DomainDNSGetHostsResult/NC:host'
 ttl = max(ttl.iteritems(), key=lambda x: x[1])[0]
 zone.sort()
 
+cname_check = {}
+for name, rrttl, rrtype, address in zone:
+    cname_check.setdefault(name, set()).add(rrtype)
+for name, rrtype in cname_check.iteritems():
+    if 'CNAME' in rrtype and len(rrtype) != 1:
+        raise RuntimeError('CNAME hides some records', name, rrtype)
+
 with open(dst, 'w') as fd:
     print >>fd, '$ORIGIN %s' % (origin)
     print >>fd, '$TTL %d' % (ttl)

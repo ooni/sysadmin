@@ -1,0 +1,11 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: run.ooni.io
+  roles:
+    - role: letsencrypt
+      letsencrypt_domains: ['run.ooni.io']
+      letsencrypt_nginx: yes
+    - role: nodejs
+    - role: ooni-run
+      letsencrypt_domains: ['run.ooni.io']

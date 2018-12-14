@@ -3,7 +3,6 @@
   apt: name={{ item }} update_cache=yes state=latest
   with_items:
     - 'unzip'
-    - 'openssl'
     - 'zip'
 
 - name: Create grav install folder
@@ -17,6 +16,6 @@
   - "{{ grav_tmp_path }}"
   - "{{ grav_install_path }}"
 
-- include: setup-php.yml
-- include: setup-nginx.yml
-- include: setup-grav.yml
+- import_tasks: setup-php.yml
+- import_tasks: setup-nginx.yml
+- import_tasks: setup-grav.yml

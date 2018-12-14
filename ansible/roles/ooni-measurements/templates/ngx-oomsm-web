@@ -1,5 +1,7 @@
 # ansible-managed in ooni-sysadmin.git
 
+proxy_cache_path /var/cache/nginx-api keys_zone=api:1M;
+
 server {
     listen 80;
     listen 443 ssl spdy;
@@ -23,11 +25,68 @@ server {
     # FIXME: nginx/1.4.6 knows nothing about ssl_session_tickets
 
     server_name {{ oomsm_domain }};
-    access_log  /var/log/nginx/{{ oomsm_domain }}.access.log; # FIXME: log_format
-    error_log   /var/log/nginx/{{ oomsm_domain }}.error.log;
+    access_log  /var/log/nginx/{{ oomsm_domain }}.access.log mtail;
+    error_log   /var/log/nginx/{{ oomsm_domain }}.error.log warn;
+
+    proxy_read_timeout {{ oomsm_timeout_s }}s;
 
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
-        include proxy_params;
+    }
+
+{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/blockpage_detected", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
+    location = {{ handle }} {
+        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
+
+        proxy_cache api;
+        proxy_cache_valid 200 1h;
+        proxy_cache_lock on;
+        proxy_cache_lock_timeout 58s;
+        proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
+        proxy_cache_use_stale error timeout invalid_header updating;
+        proxy_cache_background_update on;
+    }
+{% endfor %}
+
+    location /.well-known/acme-challenge {
+        default_type "text/plain";
+        root /var/www/letsencrypt;
+        try_files $uri $uri/ =404;
+    }
+}
+
+server {
+    listen 80;
+    listen 443 ssl spdy;
+
+    keepalive_timeout 120 120; # http://kb.mozillazine.org/Network.http.keep-alive.timeout
+    ssl_certificate     /etc/letsencrypt/live/measurements.ooni.io/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/measurements.ooni.io/privkey.pem;
+    # FIXME: add ssl_dhparam         /etc/nginx/ssl/dhparam.pem;
+
+    ssl_prefer_server_ciphers on;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers kEECDH+AESGCM+AES128:kEECDH+AES128:kRSA+AESGCM+AES128:kRSA+AES128:DES-CBC3-SHA:!RC4:!aNULL:!eNULL:!MD5:!EXPORT:!LOW:!SEED:!CAMELLIA:!IDEA:!PSK:!SRP:!SSLv2;
+
+    ssl_session_cache    shared:SSL:8m;
+    ssl_session_timeout  28h;
+
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    ssl_trusted_certificate /etc/letsencrypt/live/measurements.ooni.io/chain.pem;
+
+    # FIXME: nginx/1.4.6 knows nothing about ssl_session_tickets
+
+    server_name measurements.ooni.torproject.org measurements.ooni.io;
+
+    access_log  /var/log/nginx/measurements.ooni.io.access.log mtail;
+    error_log   /var/log/nginx/measurements.ooni.io.error.log warn;
+
+    location / {
+        return $scheme://api.ooni.io$request_uri;
+    }
+
+    location = / {
+        return 301 https://api.ooni.io/;
     }
 }

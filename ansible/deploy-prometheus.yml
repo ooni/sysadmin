@@ -1,25 +1,36 @@
 ---
-- include: ansible-version.yml
+- import_playbook: ansible-version.yml
 
 - hosts: prometheus.infra.ooni.io
-  vars:
-    letsencrypt_nginx: yes
-    letsencrypt_domains: "prometheus.infra.ooni.io"
-    prometheus_listen_address: "127.0.0.1:8090"
-    prometheus_nginx: yes
   roles:
     - docker_py
-    - letsencrypt
+    - role: mon.ooni.nu
+      tags: mon.ooni.nu
+    - role: letsencrypt
+      letsencrypt_domains: ['mon.ooni.nu']
+      tags: mon.ooni.nu
     # prometheus roles do not need extra `pip` modules and `local_action` should use default python
-    - alertmanager
-    - prometheus
-    - blackbox_exporter
+    - role: alertmanager
+      tags: alertmanager
+    - role: ooca-cert
+      ooca_ssl_dir: '{{ prometheus_ssl_dir }}'
+      ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
+      ooca_ca: scraper_ca
+      ooca_group: prometh
+    - role: prometheus
+      tags: prometheus
+    - role: blackbox_exporter
+      tags: blackbox_exporter
+    - role: pushgateway
+      tags: pushgateway
+    - role: letsencrypt
+      letsencrypt_domains: ['prometheus.infra.ooni.io'] # legacy hostname-based pushgateway domain
+      tags: pushgateway
 
 - hosts: prometheus.infra.ooni.io
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: "/root/venv/bin/python2.7"
-    letsencrypt_domains: "prometheus.infra.ooni.io"
-    prometheus_nginx: yes
   roles:
-    - grafana
+    - role: grafana
+      tags: grafana

@@ -61,7 +61,7 @@
   run_once: true
 
 - name: update known_hosts
-  local_action: command sort --unique {{tmp}}/known_hosts --output {{inventory_dir}}/../ext/known_hosts
+  local_action: command env LC_ALL=C sort --unique {{tmp}}/known_hosts --output {{inventory_dir}}/../ext/known_hosts
   run_once: true
 
 - name: cleanup local tmp dir
@@ -70,8 +70,14 @@
 
 # XXX: should we re-generate /etc/ssh/moduli as well before going deeper with KexAlgorithms/Ciphers/MACs ?
 
+- name: check if SSHv1 is deprecated
+  command: /usr/sbin/sshd -o 'ServerKeyBits 1024' -f /dev/null -t
+  register: sshd_v1
+
 - name: copy sshd_config
   template: src=sshd_config dest=/etc/ssh/ owner=root group=root mode=0444
+  args:
+    validate: '/usr/sbin/sshd -t -f %s' # that is from `ansible-doc template` and it does not alert on deprecated options, TODO: report ;)
   notify: restart ssh
 
 - name: drop possibly insecure host keys

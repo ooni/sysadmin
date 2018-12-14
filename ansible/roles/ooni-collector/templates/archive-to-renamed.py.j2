@@ -1,0 +1,178 @@
+#!/usr/bin/python
+
+import time
+import os
+import yaml
+import json
+import traceback
+from datetime import datetime
+
+ARCHIVE_DIR = '{{ collector_data_dir }}/archive'
+RENAMED_DIR = '{{ collector_data_dir }}/renamed'
+# Must contain three directories failed, empty, invalid
+ERRORED_DIR = '{{ collector_data_dir }}/errored'
+RENAMED_LOG_DIR = '{{ collector_data_dir }}/logs'
+
+test_name_mappings = {
+    "http_host": "http_host",
+    "HTTP Host": "http_host",
+
+    "http_requests_test": "http_requests",
+    "http_requests":"http_requests",
+    "HTTP Requests Test": "http_requests",
+
+    "bridge_reachability": "bridge_reachability",
+    "bridgereachability": "bridge_reachability",
+
+    "TCP Connect": "tcp_connect",
+    "tcp_connect": "tcp_connect",
+
+    "DNS tamper": "dns_consistency",
+    "dnstamper": "dns_consistency",
+    "dns_consistency": "dns_consistency",
+
+    "HTTP Invalid Request Line": "http_invalid_request_line",
+    "http_invalid_request_line": "http_invalid_request_line",
+
+    "http_header_field_manipulation": "http_header_field_manipulation",
+    "HTTP Header Field Manipulation": "http_header_field_manipulation",
+
+    "Multi Protocol Traceroute Test": "multi_protocol_traceroute",
+    "multi_protocol_traceroute_test": "multi_protocol_traceroute",
+    "multi_protocol_traceroute": "multi_protocol_traceroute",
+    "traceroute": "multi_protocol_traceroute",
+
+    "parasitic_traceroute_test": "parasitic_traceroute",
+    "parasitic_tcp_traceroute_test": "parasitic_traceroute",
+
+    "tls-handshake": "tls_handshake",
+
+    "dns_injection": "dns_injection",
+
+    "captivep": "captive_portal",
+    "captiveportal": "captive_portal",
+
+    "HTTPFilteringBypass": "http_filtering_bypass",
+    "httpfilteringbypass": "http_filtering_bypass",
+
+    "HTTPTrix": "http_trix",
+    "httptrix": "http_trix",
+    "http_test": "http_test",
+    "http_url_list": "http_url_list",
+    "dns_spoof": "dns_spoof",
+    "netalyzrwrapper": "netalyzr_wrapper",
+
+
+    "this_test_is_nameless": "this_test_is_nameless",
+
+    "test_get_random_capitalization": "http_header_field_manipulation",
+    "test_put_random_capitalization": "http_header_field_manipulation",
+    "test_post_random_capitalization": "http_header_field_manipulation",
+
+    "test_random_big_request_method": "http_invalid_request_line",
+    "test_random_invalid_field_count": "http_invalid_request_line",
+
+    "summary": "invalid",
+    "test_get": "invalid",
+    "test_post": "invalid",
+    "test_put": "invalid",
+    "test_send_host_header": "invalid"
+}
+
+def canonical_test_name(test_name):
+    return test_name_mappings.get(test_name, test_name)
+
+def get_report_filename(file_path):
+    fh = open(file_path)
+    report = None
+    if file_path.endswith(".json"):
+        header = json.loads(fh.readline())
+        ext = "json"
+    elif file_path.endswith(".yaml") or file_path.endswith(".yamloo"):
+        report = yaml.load_all(fh, Loader=yaml.CLoader)
+        header = report.next()
+        ext = "yaml"
+    else:
+        fh.close()
+        raise Exception("Invalid file_path %s" % file_path)
+    test_name = canonical_test_name(header["test_name"])
+    report_id = header.get("report_id")
+    if not report_id:
+        report_id = "no_report_id"
+    report_id = report_id.replace("-", "")
+    if header.get('test_start_time'):
+        test_start_time = datetime.strptime(header['test_start_time'],
+                                            "%Y-%m-%d %H:%M:%S")
+    elif header.get('start_time'):
+        test_start_time = datetime.utcfromtimestamp(
+                header["start_time"]
+            )
+    else:
+        raise Exception("Could not find timestamp in %s" % file_path)
+
+    if header.get('data_format_version'):
+        df_version = header.get('data_format_version')
+    else:
+        df_version = '0.1.0'
+
+    dst_filename = \
+        "{timestamp}-{probe_cc}-{probe_asn}-{test_name}-{report_id}-{df_version}-probe.{ext}".format(
+            timestamp=test_start_time.strftime("%Y%m%dT%H%M%SZ"),
+            probe_cc=header["probe_cc"],
+            probe_asn=header["probe_asn"],
+            test_name=test_name,
+            report_id=report_id,
+            df_version=df_version,
+            ext=ext
+    )
+    try:
+        if report is not None: report.next()
+        elif not header: raise StopIteration
+    except StopIteration:
+        fh.close()
+        return os.path.join(
+            ERRORED_DIR,
+            "empty",
+            dst_filename
+        )
+    fh.close()
+    if test_name == "invalid":
+        return os.path.join(
+            ERRORED_DIR,
+            "invalid",
+            dst_filename
+        )
+    else:
+        return os.path.join(
+            RENAMED_DIR,
+            dst_filename
+        )
+
+log_name = os.path.join(RENAMED_LOG_DIR, "rename-" + str(datetime.now()) + ".log")
+rename_log = open(log_name, "a+")
+last_tick = time.time()
+counter = 0
+
+for root, dirs, files in os.walk(ARCHIVE_DIR):
+    for filename in files:
+        if not any(map(lambda x: filename.endswith(x), [".yaml", ".yamloo", ".json"])):
+            continue
+        src_path = os.path.join(root, filename)
+        try:
+            dst_path = get_report_filename(src_path)
+        except Exception as exc:
+            dst_path = os.path.join(ERRORED_DIR, "failed", os.path.basename(src_path))
+            print "FAILED %s" % src_path
+            print exc
+            traceback.print_exc()
+        log_line = "%s %s" % (dst_path, src_path)
+        rename_log.write(log_line + "\n")
+        os.rename(src_path, dst_path)
+        # print log_line
+        counter += 1
+        if counter >= 1000:
+            print "Speed: %s" % (1000.0 / (time.time() - last_tick))
+            last_tick = time.time()
+            counter = 0
+
+rename_log.close()

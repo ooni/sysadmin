@@ -1,4 +1,10 @@
+---
 - name: restart node_exporter
   service:
     name: node_exporter
     state: restarted
+- name: restart seeksample
+  service:
+    name: seeksample
+    state: restarted
+...

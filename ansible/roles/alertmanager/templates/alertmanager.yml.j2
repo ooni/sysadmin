@@ -1,11 +1,14 @@
+---
 # ansible-managed in ooni-sysadmin.git
 
 global:
-  # The smarthost and SMTP sender used for mail notifications.
-  smtp_smarthost: '{{ alertmanager_smtp_smarthost }}'
-  smtp_from: '{{ alertmanager_smtp_from }}'
-  smtp_auth_username: '{{ alertmanager_smtp_username }}'
-  smtp_auth_password: '{{ alertmanager_smtp_password }}'
+  # While sending alerts directly to MX don't forget to:
+  # - whitelist IP addressess on MX SPAM filters so recepients don't drop the messages on ingress,
+  #   the instruction to do that for G Suite MX can be found at https://support.google.com/a/answer/60751?hl=en
+  #   see also `openobservatory_smtp_whitelist` variable
+  # - amend SPF records for domain name used in `smtp_from` so messages don't look fishy on egress
+  smtp_hello: {{ inventory_hostname }}
+  smtp_from: noreply+prometheus@ooni.io
   slack_api_url: '{{ alertmanager_slack_api_url }}'
 
 # The directory from which notification templates are read.
@@ -14,19 +17,12 @@ templates:
 
 # The root route on which each incoming alert enters.
 route:
-  # The labels by which incoming alerts are grouped together. For example,
-  # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
-  # be batched into a single group.
-  group_by: ['alertname', 'cluster', 'service']
-
-  # When a new group of alerts is created by an incoming alert, wait at least
-  # 'group_wait' to send the initial notification. This way ensures that you
-  # get multiple alerts for the same group that start firing shortly after
-  # another are batched together on the first notification.
+  # The labels by which incoming alerts are grouped together.
+  # Batching using `alertname` leads to over-grouping and OONI currently has no
+  # _defined_ notion of clusters and/or service, so grouping is done using
+  # `instance` tag. That sort of grouping is useful for disk-space alerts.
+  group_by: ['alertname', 'instance']
   group_wait: 30s
-
-  # When the first notification was sent, wait 'group_interval' to send a batch
-  # of new alerts that started firing for that group.
   group_interval: 5m
 
   # If an alert has successfully been sent, wait 'repeat_interval' to
@@ -38,9 +34,12 @@ route:
 
   # All the above attributes are inherited by all child routes and can
   # overwritten on each.
-
-  # The child route trees.
   routes:
+  - receiver: darkk
+    match: {severity: keepalive_spb}
+  - receiver: team-email
+    repeat_interval: 24h
+    match: {severity: info}
 
 # Inhibition rules allow to mute a set of alerts given that another alert is
 # firing.
@@ -48,13 +47,41 @@ route:
 # already critical.
 inhibit_rules:
 
+{# # One may expect `min` instead of `sort|first`, but that's jinja 2.10+ and 2.8 is used now. #}
+{% set am_mx_darkk = (lookup('dig', 'darkk.net.ru/MX', 'flat=0') | sort(attribute='preference') | first).exchange.rstrip('.').lower() %}
+{% set am_mx_openobservatory = (lookup('dig', 'openobservatory.org/MX', 'flat=0') | sort(attribute='preference') | first).exchange.rstrip('.').lower() %}
+
 receivers:
 - name: 'team-all'
   email_configs:
-  - to: 'team@openobservatory.org'
+  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
     send_resolved: true
+    smarthost: {{ am_mx_darkk }}:25
+{% for u in ['arturo', 'simone', 'vasilis'] %}
+  - to: '{{ u }}@openobservatory.org'
+    send_resolved: true
+    smarthost: {{ am_mx_openobservatory }}:25
+{% endfor %}
   slack_configs:
   - send_resolved: true
     text: '{% raw %}{{ template "slack.ooni.text" . }}{% endraw %}'
     title: '{% raw %}{{ template "slack.ooni.title" . }}{% endraw %}'
     channel: '#ooni-bots'
+
+- name: 'team-email' # no slack
+  email_configs:
+  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
+    send_resolved: true
+    smarthost: {{ am_mx_darkk }}:25
+{% for u in ['arturo', 'simone', 'vasilis'] %}
+  - to: '{{ u }}@openobservatory.org'
+    send_resolved: true
+    smarthost: {{ am_mx_openobservatory }}:25
+{% endfor %}
+
+- name: darkk
+  email_configs:
+  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
+    send_resolved: false
+    smarthost: {{ am_mx_darkk }}:25
+...

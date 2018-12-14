@@ -1,0 +1,36 @@
+- name: untar orchestra tarball
+  unarchive:
+    src: "{{ orchestra_tarball_url }}"
+    dest: "{{ orchestra_install_path }}"
+    mode: 0755
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    copy: no
+
+- name: Configure Proteus
+  notify:
+  - reload orchestra
+  template:
+    src: orchestra-notify.toml.j2
+    dest: "{{ orchestra_config_path }}/orchestra-notify.toml"
+
+- name: Write Proteus APN key
+  notify:
+  - reload orchestra
+  copy:
+    content: "{{ orchestra_apn_key_content }}"
+    dest: "{{ orchestra_config_path }}/apn-key.pem"
+
+- name: Install orchestra systemd service file
+  notify:
+  - restart orchestra
+  template:
+    src: orchestra-notify.service
+    dest: /etc/systemd/system/orchestra-notify.service
+
+- name: Enable and start orchestra service
+  systemd:
+    name: orchestra-notify.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

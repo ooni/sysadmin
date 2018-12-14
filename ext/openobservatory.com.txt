@@ -1,0 +1,6 @@
+$ORIGIN openobservatory.com
+$TTL 1799
+@		MX	mx.runbox.com.
+@		URL	http://ooni.torproject.org
+www		URL	http://ooni.torproject.org
+; generated from openobservatory.com.xml with SHA256 eb2db74ccc6143dc3c7674bb64e130bf281ab1dff25ff91c4f110cace7e37fe6

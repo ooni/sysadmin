@@ -1,0 +1,149 @@
+---
+groups:
+- name: Basic prometheus
+  rules:
+  - alert: SPbNoonCannon
+    expr: (hour() == 8) and (minute() >= 55)
+    labels: {severity: keepalive_spb}
+    annotations:
+      summary: 'Noon cannon in St.Petersburg fires soon'
+
+  # node_timex_sync_status is not enabled right now as old NTP daemons do not update `timex`
+  - alert: NTPOutOfSync
+    expr: (node_scrape_collector_success{collector="ntp"} != 1) or (node_ntp_sanity != 1) # or (node_timex_sync_status != 1)
+    for: 1h
+    labels: {severity: info}
+
+  # including http scraping failure
+  - alert: InstanceDown
+    expr: up != 1
+    for: 5m
+    annotations:
+      summary: '{{ $labels.instance }} is not `up`'
+
+  - alert: systemd # yes, just "systemd", it's unclear what's going wrong :-)
+    expr: node_systemd_system_running != 1 # that's basically output of `systemctl is-system-running`
+    annotations:
+      summary: '{{ $labels.instance }} is not OK, check `systemctl list-units | grep failed`'
+
+  - alert: IOWaitHigh
+    expr: sum without (cpu) (irate(node_cpu{mode="iowait"}[1m])) > 0.9
+    for: 5m # matters to avoid spikes
+    annotations:
+      summary: '{{ $labels.instance }} %iowait {{ printf "%.2f" $value }} of CPU core'
+
+  # the difference between node_disk_{io,read,write}_time_ms is not clear, `io` is NOT `read + write`, it may be greater, it may be less...
+  # All the nodes have `node_disk_io_time_ms`, but it can be verified with expr: (sum without(device) (node_disk_io_time_ms{job="node"}) or up{job="node"}) == 1
+  - alert: IOHigh
+    expr: irate(node_disk_io_time_ms{device!~"(nbd[0-9]+|dm-[0-9]+|ram[0-9]+|sr[0-9]+|md[0-9]+)"}[1m]) > 800
+    for: 2h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} spends {{ $value }}ms/s in IO over 2 hours'
+
+  - alert: CPUHigh
+    expr: sum without (mode, cpu) (irate(node_cpu{mode!="idle"}[1m])) > 0.75
+    for: 8h
+    annotations:
+      summary: '{{ $labels.instance }} has {{ printf "%.2f" $value }} of CPU core used over 8 hours'
+
+  - alert: NetworkRXHigh
+    expr: irate(node_network_receive_bytes{device!~"(docker0|veth[0-9a-f]{7}|lo|br[-a-z].*|dummy0)"}[1m]) * 8 > 50 * 1024 * 1024 # OONITestHelper has BandwidthRate 20MBits
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} gets {{ $value | humanize }}bit/s'
+
+  - alert: NetworkTXHigh
+    expr: irate(node_network_transmit_bytes{device!~"(docker0|veth[0-9a-f]{7}|lo|br[-a-z].*|dummy0)"}[1m]) * 8 > 50 * 1024 * 1024 # OONITestHelper has BandwidthRate 20MBits
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }}/{{ $labels.device }} sends {{ $value | humanize }}bit/s'
+
+  - alert: LoadAverageHigh
+    expr: node_load15 > 8 # largest node available has NCPU=4
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }} has LA15 {{ printf "%.1f" $value }}'
+
+  # chameleon.infra.ooni.io and b.echo.th.ooni.io do not have MemAvailable signal that is an _estimate_ of RAM available for userspace allocations provided by kernel.
+  # These old nodes can be listed with expr: (node_memory_MemAvailable or (up - 1)) / node_memory_MemTotal == 0
+  - alert: MemoryLow
+    expr: ((node_memory_MemAvailable) / node_memory_MemTotal or ((node_memory_MemFree + node_memory_Buffers + node_memory_Cached) / node_memory_MemTotal)) * 100 < 20
+    annotations:
+      summary: '{{ $labels.instance }} has {{ printf "%.0f" $value }}% RAM available'
+
+  - alert: NodeSwapping
+    expr: rate(node_vmstat_pgmajfault[1m]) > 100 # and instance:node_memory_available:ratio < 0.05
+    for: 15m # number stolen from https://dev.gitlab.org/cookbooks/runbooks/blob/master/rules/node.yml
+    labels: {severity: info}
+    annotations:
+      summary: '{{ $labels.instance }} has {{ $value }} pagefaults/second.'
+
+  # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
+  - alert: DiskWillFillInAWeek
+    expr: 8 * node_filesystem_avail - 7 * (node_filesystem_avail offset 1d) < 0 # x75 speedup of (node_filesystem_avail + delta(node_filesystem_avail[24h])*7) < 0
+    for: 1h
+    annotations:
+      summary: '{{ $labels.instance }} becomes /dev/full soon'
+      # NB: it looks strange, but having labels for EVERY series improves query latency
+      description: >
+        In {{ (printf "node_filesystem_avail{instance='%s',mountpoint='%s'} / ((node_filesystem_avail{instance='%s',mountpoint='%s'} offset 1d) - node_filesystem_avail{instance='%s',mountpoint='%s'}) * 86400" $labels.instance $labels.mountpoint $labels.instance $labels.mountpoint $labels.instance $labels.mountpoint) | query | first | value | humanizeDuration }}
+        `{{ $labels.mountpoint }}` will be full.
+        {{ (printf "node_filesystem_avail{instance='%s',mountpoint='%s'}" $labels.instance $labels.mountpoint) | query | first | value | humanize1024 }}B available,
+        {{ (printf "(node_filesystem_avail{instance='%s',mountpoint='%s'} offset 1d) - node_filesystem_avail{instance='%s',mountpoint='%s'}" $labels.instance $labels.mountpoint $labels.instance $labels.mountpoint) | query | first | value | humanize1024 }}B/day growth.
+
+  # <10Gb and <20% available. Make some sense for huge storages and small ramdrives.
+  - alert: DiskFull
+    expr: (node_filesystem_avail < 10737418240) and (node_filesystem_avail / node_filesystem_size * 100 < 20)
+    annotations:
+      summary: '{{ $labels.instance }}{{ $labels.mountpoint }} is almost full'
+      description: >
+        {{ $value | humanize1024 }}B
+        ~ {{ (printf "round(node_filesystem_avail{instance='%s',mountpoint='%s'} / node_filesystem_size * 100)" $labels.instance $labels.mountpoint) | query | first | value }}%
+        available at {{ $labels.instance }}{{ $labels.mountpoint }}.
+
+  - alert: DiskInodesOver50pct
+    expr: node_filesystem_files_free / node_filesystem_files * 100 < 50
+    annotations:
+      summary: '`df -i` at {{ $labels.instance }} over 50%'
+      description: '{{ printf "%.1f" $value }}% inodes available at {{ $labels.mountpoint }}.'
+
+  # sub-scraping failure
+  - alert: TextfileError
+    expr: node_textfile_scrape_error > 0
+    annotations:
+      summary: 'Broken `textfile` at {{ $labels.instance }}'
+
+  # all the textfile are updated at least hourly
+  - alert: TextfileJam
+    expr: (node_textfile_mtime - ON(instance,job) GROUP_LEFT() node_time) / -3600 > 2
+    annotations:
+      summary: 'Stale `textfile` at {{ $labels.instance }}'
+      description: '`{{ $labels.file }}` is {{ printf "%.0f" $value }}h old.'
+
+  # naive prometheus health monitoring
+  - alert: ScrapeSamplesLoss
+    expr: sum(scrape_samples_scraped) / sum(scrape_samples_scraped offset 24h) < 0.5
+    annotations:
+      summary: Lots of `scrape_samples_scraped` lost
+      description: Now ~ {{ "sum(scrape_samples_scraped)" | query | first | value | humanize }}, 24h ago ~ {{ "sum(scrape_samples_scraped offset 24h)" | query | first | value | humanize }}.
+
+  - alert: BlackboxDown
+    expr: probe_success == 0
+    for: 5m
+    annotations:
+      summary: "{{ $labels.instance }} endpoint down"
+
+  - alert: SSLCertExpires
+    expr: (probe_ssl_earliest_cert_expiry{job!="tor testhelper"} - time()) / 86400 < 25
+    labels: {severity: info}
+    annotations:
+      summary: '`certbot` failed at {{ $labels.instance }}'
+      description: 'SSL cert for  expires in {{ printf "%.0f" $value }} days.'
+
+- name: Prometheus self-care
+  rules:
+  - alert: AlertmanagerNotificationsFailing
+    expr: rate(alertmanager_notifications_failed_total[1m]) > 0
+    annotations:
+      summary: 'Alertmanager {{ $labels.instance }} fails {{ $labels.integration }} notifications.'
+...

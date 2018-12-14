@@ -1,0 +1,24 @@
+go_arch: amd64
+
+orchestra_user:   prtreg
+orchestra_group:  prtreg
+
+# XXX maybe change these paths
+orchestra_install_path: /srv/orchestra
+orchestra_data_path: /srv/orchestra/data
+orchestra_config_path: /srv/orchestra/config
+
+orchestra_environment: "production"
+orchestra_log_level: "info"
+orchestra_api_port: 3000
+orchestra_api_address: "127.0.0.1"
+orchestra_registry_https_port: 8081
+orchestra_database_url: "postgres://proteus:{{ orchestra_database_password }}@{{ orchestra_db_hostname }}:5432/proteus?sslmode=require"
+orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+orchestra_auth_admin_password : "{{ orchestra_admin_password }}"
+
+orchestra_version: "0.2.1"
+orchestra_download_url: https://github.com/ooni/orchestra/releases/download
+
+orchestra_tarball_url: "{{ orchestra_download_url }}/v{{ orchestra_version }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}.tar.gz"
+orchestra_path: "{{ orchestra_install_path }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}"

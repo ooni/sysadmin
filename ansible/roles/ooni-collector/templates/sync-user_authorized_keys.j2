@@ -1,0 +1,1 @@
+from="{{ lookup('dig', 'datacollector.infra.ooni.io/A') }}",command="$HOME/bin/rrsync {{ collector_data_dir }}/renamed/",no-port-forwarding,no-x11-forwarding,no-agent-forwarding,no-pty,no-user-rc {{ lookup('file', inventory_dir + '/files/sync-user@datacollector.infra.ooni.io.pub') }}

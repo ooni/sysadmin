@@ -1,0 +1,52 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: hkgmetadb.infra.ooni.io
+  gather_facts: false
+  vars:
+    local_ddl: "{{ 'oometa/*.install.sql' | fileglob | difference(['oometa/000-A-versioning.install.sql']) | map('basename') | sort }}"
+  tasks:
+  - name: fetch applied DDLs
+    command: docker exec -i pl-psql psql -U shovel metadb -At -c "SELECT patch_name || '.install.sql' FROM _v.patches"
+    register: remote_ddl
+    changed_when: false
+
+  - name: massage applied DDLs
+    set_fact:
+      remote_ddl: "{{ remote_ddl.stdout_lines | sort }}"
+
+  - name: list local DDLs
+    debug: var=local_ddl
+
+  - name: list applied DDLs
+    debug: var=remote_ddl
+
+  - name: verify that all applied DDLs are already local
+    # if it fails do $(ln -s .../ooni-pipeline/af/oometa) :-)
+    assert: {that: remote_ddl | difference(local_ddl) | length == 0}
+
+  - name: set DDLs to apply
+    set_fact:
+      new_ddl: "{{ local_ddl | difference(remote_ddl) | sort }}"
+
+  - name: list new DDLs
+    debug: var=new_ddl
+
+  - block:
+    - pause:
+        prompt: "is this fine? Type `This is fine.` if this is (-"
+      register: the_dog
+
+    - assert: {that: the_dog.user_input | upper == "THIS IS FINE."}
+
+    - name: create dir for DDLs
+      file: dest=/srv/pl-psql/ooni_ddl state=directory owner=root group=plpsql mode=0750 # this directory is bind-mounted inside of pl-pslq container
+    when: new_ddl | length > 0
+
+  - name: upload DDLs
+    copy: src={{ inventory_dir }}/oometa/{{ item }} dest=/srv/pl-psql/ooni_ddl/{{ item }}
+    with_items: "{{ new_ddl }}"
+
+  - name: apply DDLs
+    command: docker exec -i pl-psql psql -U shovel metadb -f /srv/pl-psql/ooni_ddl/{{ item }}
+    with_items: "{{ new_ddl }}"

@@ -1,5 +1,5 @@
 ---
-- include: ansible-version.yml
+- import_playbook: ansible-version.yml
 
 - hosts: all:!no_passwd
   become: false
@@ -14,21 +14,53 @@
   #    changed_when: output.stdout != ""
   roles:
     - role: adm
+      tags: adm
 
 - hosts: all:!no_passwd
-  gather_facts: false
+  gather_facts: true # to gather ansible_distribution_release
   roles:
     # every known UID should be reserved to avoid occasional clash with `useradd`
     - role: passwd
     - role: dom0-defaults
+      tags: on-rename
+    - role: ntp
+      tags: ntp
+
+- hosts: gh
+  gather_facts: false
+  roles:
+    - role: gh
+      tags: gh
 
 - hosts: have_fw
   gather_facts: false
   roles:
     - role: fw
+      tags: fw
+
+- hosts: have_nginx
+  gather_facts: true # to gather `ansible_distribution_release`
+  roles:
+    # `nginx-stable` must be installed before `nginx-prometheus` or not installed at all,
+    # otherwise it conflicts with nginx-{light,full,code,doc,extras} packages
+    # and the conflict has to be resolved manually.
+    - role: nginx-stable
+      tags: nginx-stable
 
 - hosts: all:!no_nodeexp
   gather_facts: true # to gather `ansible_service_mgr`
   roles:
+    - role: ooca-cert
+      ooca_ssl_dir: '{{ ngxprom_ssl_dir }}'
+      ooca_ssl_subj: '/O=OONI/OU=Prometheus Exporter/CN={{ inventory_hostname }}'
+      ooca_ca: exporter_ca
+      tags: on-rename
+    # FIXME: role `nginx-prometheus` conflicts with `nginx-stable`
     - role: nginx-prometheus
+      tags: on-rename
     - role: node_exporter
+      tags: node_exporter
+  tasks: # that's likely one-time cleanup
+    - apt: name=munin-node state=absent purge=yes
+      tags: munin-node
+...

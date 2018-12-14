@@ -1,0 +1,31 @@
+- hosts: notify.proteus.test.ooni.io
+  vars:
+    orchestra_notify_https_port: 443
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+    orchestra_database_url: "{{ orchestra_database_url_testing }}"
+    orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret_testing }}"
+    orchestra_fcm_server_key: "{{ fcm_server_key_testing }}"
+    orchestra_apn_key_password: "{{ orchestra_apn_key_password_testing }}"
+    orchestra_apn_key_content: "{{ orchestra_apn_key_content_testing }}"
+    orchestra_environment: "production"
+    orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password_testing }}"
+  roles:
+    - letsencrypt
+    - orchestra-notify
+
+- hosts: notify.proteus.ooni.io
+  vars:
+    orchestra_notify_https_port: 443
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "{{ inventory_hostname }}"
+    orchestra_database_url: "{{ orchestra_database_url }}"
+    # orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+    orchestra_fcm_server_key: "{{ fcm_server_key }}"
+    # orchestra_apn_key_password: "{{ orchestra_apn_key_password }}"
+    # orchestra_apn_key_content: "{{ orchestra_apn_key_content }}"
+    orchestra_environment: "production"
+    # orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password }}"
+  roles:
+    - letsencrypt
+    - orchestra-notify

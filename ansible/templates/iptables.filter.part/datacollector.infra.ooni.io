@@ -14,7 +14,5 @@
 -A INPUT -p tcp -m tcp --dport 111 -j NFS
 -A INPUT -p udp -m udp --dport 2049:2051 -j NFS
 -A INPUT -p tcp -m tcp --dport 2049:2051 -j NFS
-{% for ndx in range(1, 5) %}
--A NFS -s {{ lookup('dig', 'afwrk0' ~ ndx ~ '.infra.ooni.io/A') }}/32 -j ACCEPT
-{% endfor %}
+# -A NFS -s 2.4.6.8 -j ACCEPT
 {% endblock %}

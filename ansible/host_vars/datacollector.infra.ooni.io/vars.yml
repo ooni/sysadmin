@@ -10,9 +10,17 @@ airflow_fernet_key: "{{ vault_airflow_fernet_key }}"
 airflow_redis_password: "{{ vault_airflow_redis_password }}"
 airflow_postgres_password: "{{ vault_airflow_postgres_password }}"
 
-# tokens to read https://s3.amazonaws.com/ooni-* buckets
+# tokens to read https://s3.amazonaws.com/ooni-* buckets from Open Observatory CEO personal S3 account
 s3read_access_key_id: "{{ vault_s3read_access_key_id }}"
 s3read_secret_access_key: "{{ vault_s3read_secret_access_key }}"
+
+# tokens to fill https://s3.amazonaws.com/ooni-data buckets from https://aws.amazon.com/public-datasets/
+s3root_access_key_id: "{{ vault_s3root_access_key_id }}"
+s3root_secret_access_key: "{{ vault_s3root_secret_access_key }}"
+
+# User: pipeline-backup-creator, policy: RawBackupCreator, AWS: OONI CEO
+s3_ceo_backup_creator_key_id: "AKIAIYIJHJXRPAXPEVLQ"
+s3_ceo_backup_creator_access_key: '{{ vault_s3_ceo_backup_creator_access_key }}'
 
 # User for Amazon Simple Email Service.
 # NB: airflow uses python `smtplib` from python2.7 that does not pass

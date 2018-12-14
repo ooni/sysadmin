@@ -18,8 +18,4 @@
     state: reloaded
     enabled: true
   listen: reload nginx-prometheus
-
-- name: reload nginx
-  service:
-    name: nginx
-    state: reloaded
+...

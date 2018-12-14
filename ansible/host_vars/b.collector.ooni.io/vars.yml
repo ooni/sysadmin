@@ -1,0 +1,3 @@
+---
+collector_data_dir: "/data/b.collector.ooni.io"
+...

@@ -3,7 +3,6 @@
   apt: name={{ item }} update_cache=yes state=latest
   with_items:
     - 'unzip'
-    - 'openssl'
     - 'zip'
     - 'bzip2'
     - 'build-essential'
@@ -17,7 +16,7 @@
   with_items:
   - "{{ anaconda_parent_dir }}"
 
-- include: setup-anaconda.yml
-- include: setup-jupyter.yml
-- include: setup-nginx.yml
-- include: setup-ooni-sync.yml
+- import_tasks: setup-anaconda.yml
+- import_tasks: setup-jupyter.yml
+- import_tasks: setup-nginx.yml
+- import_tasks: setup-ooni-sync.yml

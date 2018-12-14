@@ -1,0 +1,6 @@
+---
+- name: reload nginx
+  service: name=nginx state=reloaded
+- name: restart ooni-bouncer
+  docker_container: name=ooni-bouncer restart=true
+...

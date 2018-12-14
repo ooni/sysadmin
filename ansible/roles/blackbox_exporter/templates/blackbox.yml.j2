@@ -1,8 +1,10 @@
+---
 modules:
   http_2xx:
     prober: http
     timeout: 5s
     http:
+      preferred_ip_protocol: ip4
   http_post_2xx:
     prober: http
     timeout: 5s
@@ -23,6 +25,7 @@ modules:
     prober: tcp
     timeout: 5s
     tcp:
+      preferred_ip_protocol: ip4
       query_response:
       - expect: "^SSH-2.0-"
         send: "SSH-2.0-blackbox_exporter OONI-prometheus-0.0\x0d" # WTF: \x0a is auto-added https://github.com/prometheus/blackbox_exporter/blob/master/tcp.go#L127
@@ -41,6 +44,15 @@ modules:
   icmp:
     prober: icmp
     timeout: 5s
+    icmp:
+      preferred_ip_protocol: ip4
+
+  tls_snakeoil:
+    prober: tcp
+    tcp:
+      tls: true
+      tls_config:
+        insecure_skip_verify: true
 
   # When using this prober, be sure to target:
   # https://collector.ooni.io/invalidpath
@@ -85,3 +97,22 @@ modules:
       method: GET
       fail_if_not_matches_regexp:
         - ".+?\"headers_dict\".+?"
+
+  ooni_orchestrate:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "Hello, this is ooni-orchestrate"
+
+  ooni_registry:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "Hello, this is ooni-registry"
+
+  ooni_proteus:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "OONI Proteus" # the admin JS-based frontend
+...

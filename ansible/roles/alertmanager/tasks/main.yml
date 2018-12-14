@@ -38,17 +38,6 @@
     group: root
     remote_src: true
 
-- name: Configure Alertmanager
-  notify:
-  - reload alertmanager
-  template:
-    src: alertmanager.yml.j2
-    dest: "{{ alertmanager_config_path }}/alertmanager.yml"
-    owner: root
-    group: "{{ alertmanager_group }}"
-    mode: 0640
-  tags: prometheus-conf
-
 - name: Configure Alertmanager templates
   notify:
   - reload alertmanager
@@ -62,8 +51,21 @@
     - templates/*.tmpl
   tags: prometheus-conf
 
+- name: Configure Alertmanager
+  notify:
+  - reload alertmanager
+  template:
+    src: alertmanager.yml.j2
+    dest: "{{ alertmanager_config_path }}/alertmanager.yml"
+    owner: root
+    group: root
+    mode: 0644
+    validate: '{{ alertmanager_path }}/amtool check-config %s'
+  tags: prometheus-conf
+
 - name: Install alertmanager systemd service file
   notify:
+  - systemctl daemon-reload
   - restart alertmanager
   template:
     src: alertmanager.service

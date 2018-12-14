@@ -14,9 +14,18 @@
       subnet: 172.26.43.0/24
       gateway: 172.26.43.1
 
-- include: af-redis.yml
+- import_tasks: af-redis.yml
 
-- include: af-psql.yml
+- import_tasks: af-psql.yml
+
+- import_tasks: collector_ssh.yml
+  tags: collector_ssh
+- name: collector spool directories
+  file: dest=/data/ooni/private/spool/{{ item }} state=directory owner=benchmark group=root mode=0755
+  with_items: '{{ groups.have_collector }}'
+
+- name: copy nodeexp_airflow check
+  copy: src=nodeexp_airflow dest=/etc/cron.hourly/nodeexp_airflow mode=0555 owner=root group=root mode=0555
 
 - name: shared airflow config templates
   file: dest=/srv/etc/af-share-{{ airflow_tag }} state=directory owner=root group=root mode=0750
@@ -75,7 +84,16 @@
 - name: mkdir etc/af-worker
   file: dest=/srv/etc/af-worker state=directory owner=root group=root mode=0700
 - template: dest=/srv/etc/af-worker/s3read.env src=af-worker-s3read.env owner=root group=root mode=0400
+- template: dest=/srv/etc/af-worker/s3root.env src=af-worker-s3root.env owner=root group=root mode=0400
+- template: dest=/srv/etc/af-worker/s3_ceo_backup_creator.env src=af-worker-s3_ceo_backup_creator.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/hkgmetadb.env src=af-worker-hkgmetadb.env owner=root group=root mode=0400
+- template: dest=/srv/etc/af-worker/orchestradb.env src=af-worker-orchestradb.env owner=root group=root mode=0400
+- copy: dest=/srv/etc/af-worker/collector_ssh.env src=collector_ssh.env owner=root group=root mode=0400
+
+- name: mkdir /etc/ssl/ooca-cert/
+  file: dest=/etc/ssl/ooca-cert state=directory owner=root group=root mode=0755
+- name: copy postgres_ca.cert to /etc/ssl/ooca-cert
+  copy: src=postgres_ca.cert dest=/etc/ssl/ooca-cert/ owner=root group=root mode=0644
 
 - name: mkdir af-worker-bin
   file: dest=/srv/af-worker-bin state=directory owner=root group=root mode=0755
@@ -86,15 +104,33 @@
 
 - name: mkdir airflow-dags
   file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
+# FIXME: `rsync --delete` followed by `template dest=/srv/airflow-dags/have_collector.json` always provides "changed" state
 - name: copy airflow-dags # depends on `rsync`
   tags: airflow-dags
   synchronize: src=airflow-dags/ dest=/srv/airflow-dags/ archive=no recursive=yes checksum=yes delete=yes
   notify: restart airflow
+- name: store `have_collector` group in have_collector.json
+  template: src=have_collector.json dest=/srv/airflow-dags/have_collector.json owner=root group=root mode=0444 # NB: `synchronize` with delete=yes may drop it
+  tags: airflow-dags
+  notify: restart airflow
 
-- include: af-container.yml dockname=af-sched  login=afsched  command=scheduler
-- include: af-container.yml dockname=af-websrv login=afwebsrv command=webserver ipv4_address=172.26.43.254
-- include: af-container.yml dockname=af-worker login=afworker command=worker image_ext=-worker
+- import_tasks: af-container.yml
   vars:
+    dockname: af-sched
+    login: afsched
+    command: scheduler
+- import_tasks: af-container.yml
+  vars:
+    dockname: af-websrv
+    login: afwebsrv
+    command: webserver
+    ipv4_address: 172.26.43.254
+- import_tasks: af-container.yml
+  vars:
+    dockname: af-worker
+    login: afworker
+    command: worker
+    image_ext: -worker
     volume_ext:
       - /var/run/docker.sock:/var/run/docker.sock
       - /srv/af-worker-bin/docker-trampoline:/usr/local/bin/docker-trampoline:ro

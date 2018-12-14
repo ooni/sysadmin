@@ -1,0 +1,20 @@
+# ansible-managed in ooni-sysadmin.git
+Nickname OONITestHelper
+ContactInfo operatorurl:ooni.io pgp:4C15DDA996C6C0CF48BD33096B2943F00CB177B7
+
+# TODO: enable DirPort if/when other services migrate from these hald-dead machines
+OrPort 9001
+ExitRelay 0
+BandwidthRate 20MBits
+
+# MyFamily for {{ groups['have_tor'] | sort | join(', ') }}
+{% for fpr in groups['have_tor'] | sort | map('extract', hostvars, 'tor_fingerprint') %}
+MyFamily {{ fpr }}
+{% endfor %}
+
+Sandbox 1
+NoExec 1
+
+# disable ports from /usr/share/tor/tor-service-defaults-torrc
+SocksPort 0
+ControlSocket 0

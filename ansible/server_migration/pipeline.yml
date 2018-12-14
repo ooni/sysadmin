@@ -1,3 +1,0 @@
----
-- include: install-docker.yml
-- include: deploy-pipeline-containers.yml

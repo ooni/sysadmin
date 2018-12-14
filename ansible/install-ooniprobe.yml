@@ -1,5 +1,0 @@
----
-- hosts: local:custom
-  roles:
-  - common
-  - ooniprobe

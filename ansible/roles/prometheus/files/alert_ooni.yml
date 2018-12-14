@@ -1,0 +1,44 @@
+---
+groups:
+- name: OONI Alerts
+  rules:
+  - alert: NASBackupSilent
+    expr: time() - push_time_seconds{exported_instance="hellais-nas"} > 16 * 3600
+    annotations:
+      summary: 'hellais-nas is silent for {{ $value | humanizeDuration }}'
+
+  - alert: NASRsyncFailure
+    expr: rsync_returncode{exported_instance="hellais-nas"} != 0
+    for: 16h # rsync is launched at 08:00 and 22:00, that's 14h and 10h gap
+    annotations:
+      summary: '`rsync` exitcode: {{ $value }}'
+
+  # Some nodes may have it broken, but it usually works, here is expr to validate it.
+  # expr: (max without (device) (node_seeksample_timestamp{job="node"}) or up{job="node"}) == 1
+  - alert: DiskStuck
+    expr: node_time - ignoring(device) group_right node_seeksample_timestamp > 240
+    annotations:
+      summary: '{{ $labels.instance }} has `{{ $labels.device }}` silent for {{ $value | humanizeDuration }}'
+
+  - alert: MirrorDiverged
+    expr: scalar(max(ooni_web_mtime)) - ooni_web_mtime > 0
+    for: 11m # job_name=ooni-web scrape_interval is 5m, 8m10s is still "ordinary" delay
+    annotations:
+      summary: 'Mirror {{ $labels.instance }} lags by {{ $value | humanizeDuration }}'
+      description: '{{ if eq $labels.instance "ooni.torproject.org:443" }}Run `make update-site`.{{ end }}'
+
+  - alert: AirflowDagFailed
+    expr: airflow_7d_dag_failed_count > 0
+    annotations:
+      summary: '{{ $value }} DAG `{{ $labels.dag }}` failures last week'
+
+  - alert: AirflowTaskFailed
+    expr: airflow_7d_task_failed_count > 0
+    annotations:
+      summary: '{{ $value }} task `{{ $labels.task }}` failures last week'
+
+  - alert: SlacktopusGone
+    expr: time() - slacktopus_ctcp_pong_time > 660 # it's randomized */5 crontab
+    annotations:
+      summary: Slacktopus is gone for {{ $value | humanizeDuration }} (maybe that's just darkk's WeeChat)
+...

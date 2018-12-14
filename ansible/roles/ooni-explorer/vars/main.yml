@@ -1,5 +1,0 @@
-ooni_explorer_user: ooni-explorer
-ooni_explorer_git: https://github.com/TheTorProject/ooni-explorer
-ooni_explorer_path: "/home/{{ ooni_explorer_user }}/ooni-explorer"
-ooni_explorer_unit_path: /etc/systemd/system/node-ooni-explorer.service
-ooni_explorer_datasources: "{{ ooni_explorer_path }}/server/datasources.production.js"

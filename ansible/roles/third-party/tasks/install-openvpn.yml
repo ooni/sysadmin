@@ -1,6 +1,0 @@
----
-- name: Install OpenVPN package
-  apt: >
-    update_cache=yes
-    state=latest
-    name=openvpn
