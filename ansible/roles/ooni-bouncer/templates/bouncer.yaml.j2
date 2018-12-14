@@ -1,7 +1,7 @@
 collector:
-  httpo://42q7ug46dspcsvkw.onion:
+  httpo://ganriuwqt5vgbgnj.onion:
     collector-alternate:
-    - {address: 'https://c.collector.ooni.io:443', type: https}
+    - {address: 'https://b.collector.ooni.io:443', type: https}
     - {address: 'https://das0y2z2ribx3.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
     test-helper: {dns: '37.218.247.110:57004', http-return-json-headers: 'http://37.218.247.95:80',
       ssl: 'https://37.218.247.110', tcp-echo: 37.218.247.110, traceroute: 37.218.247.110,
@@ -9,4 +9,16 @@ collector:
     test-helper-alternate:
       web-connectivity:
       - {address: 'https://b.web-connectivity.th.ooni.io:443', type: https}
+      - {address: 'https://d2vt18apel48hw.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
+
+  httpo://42q7ug46dspcsvkw.onion:
+    collector-alternate:
+    - {address: 'https://c.collector.ooni.io:443', type: https}
+    - {address: 'https://das0y2z2ribx3.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
+    test-helper: {dns: '37.218.247.110:57004', http-return-json-headers: 'http://37.218.247.95:80',
+      ssl: 'https://37.218.247.110', tcp-echo: 37.218.247.110, traceroute: 37.218.247.110,
+      web-connectivity: 'httpo://y3zq5fwelrzkkv3s.onion'}
+    test-helper-alternate:
+      web-connectivity:
+      - {address: 'https://c.web-connectivity.th.ooni.io:443', type: https}
       - {address: 'https://d2vt18apel48hw.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
