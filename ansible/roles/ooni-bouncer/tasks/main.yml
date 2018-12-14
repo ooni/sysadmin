@@ -24,9 +24,10 @@
 
 - name: Configure the bouncer file
   template:
-    src: bouncer.yaml.j2
+    src: bouncer.metayaml
     dest: "{{ bouncer_data_dir }}/bouncer.yaml"
   notify: restart ooni-bouncer
+  tags: on-renumber
 
 - name: Configure the bouncer oonibackend.conf
   template:
