@@ -77,14 +77,6 @@ case "$script" in
         --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
     ;;
 
-    # XXX the two raw s3 operations should now read from glacier and an extra stage writing to glacier should be added
-    reports_raw_s3_ls)
-    docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3read.env"
-    volargs="${volargs} --volume=$private/reports-raw-s3-ls:$private/reports-raw-s3-ls:rw"
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/reports-raw/yaml/$bucket" --s3-ls "$private/reports-raw-s3-ls/${bucket}.json.gz"
-    ;;
-
     tar_reports_raw)
     # some `reports-raw` buckets were already removed from datacollector and have to be restored from `.tar.lz4` for compression
     docker run $docksafe --network none -v=$private/reports-raw:$private/reports-raw debian:jessie /bin/bash -c "mkdir -p $private/reports-raw/${bucket} && chown $uidno $private/reports-raw/${bucket}"
@@ -103,16 +95,16 @@ case "$script" in
 
     reports_tgz_s3_sync)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env"
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env"
     volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:ro"
-    set -- aws s3 sync --size-only "$private/reports-tgz/" s3://ooni-private/archives-raw/yaml/ --exclude '*' --include "${bucket}.tar.gz" --include "${bucket}.index.json.gz"
+    set -- aws s3 sync --size-only "$private/reports-tgz/" s3://ooni-data-private/archives-raw/yaml/ --exclude '*' --include "${bucket}.tar.gz" --include "${bucket}.index.json.gz"
     ;;
 
     reports_tgz_s3_ls)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env" # FIXME: downgrade to `list-only` token
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env" # maybe downgrade to `list-only` user?
     volargs="${volargs} --volume=$private/reports-tgz-s3-ls:$private/reports-tgz-s3-ls:rw"
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/archives-raw/yaml/$bucket" --s3-ls "$private/reports-tgz-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data-private/archives-raw/yaml/$bucket" --s3-ls "$private/reports-tgz-s3-ls/${bucket}.json.gz"
     ;;
 
     reports_tgz_cleanup)
@@ -123,16 +115,16 @@ case "$script" in
 
     canned_s3_sync)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env"
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
-    set -- aws s3 sync --size-only "$private/canned/${bucket}/" "s3://ooni-private/canned/${bucket}/"
+    set -- aws s3 sync --size-only "$private/canned/${bucket}/" "s3://ooni-data-private/canned/${bucket}/"
     ;;
 
     canned_s3_ls)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ceo_backup_creator.env" # FIXME: downgrade to `list-only` token
+    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env" # maybe downgrade to `list-only` user?
     volargs="${volargs} --volume=$private/canned-s3-ls:$private/canned-s3-ls:rw"
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-private/canned/$bucket" --s3-ls "$private/canned-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data-private/canned/$bucket" --s3-ls "$private/canned-s3-ls/${bucket}.json.gz"
     ;;
 
     canned_cleanup)

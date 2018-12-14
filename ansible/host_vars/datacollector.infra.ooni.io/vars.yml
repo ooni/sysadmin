@@ -1,8 +1,4 @@
 ---
-ipv4: 37.218.240.67
-ipv4gw: 37.218.240.254
-ipv4mask: 24
-
 docker_apt_ver: "=1.12.6-0~debian-jessie" # should be in sync with openobservatory/airflow-worker image
 
 # bunch of containers is deployed only at this host
@@ -10,23 +6,10 @@ airflow_fernet_key: "{{ vault_airflow_fernet_key }}"
 airflow_redis_password: "{{ vault_airflow_redis_password }}"
 airflow_postgres_password: "{{ vault_airflow_postgres_password }}"
 
-# tokens to read https://s3.amazonaws.com/ooni-* buckets from Open Observatory CEO personal S3 account
-s3read_access_key_id: "{{ vault_s3read_access_key_id }}"
-s3read_secret_access_key: "{{ vault_s3read_secret_access_key }}"
-
 # tokens to fill https://s3.amazonaws.com/ooni-data buckets from https://aws.amazon.com/public-datasets/
-s3root_access_key_id: "{{ vault_s3root_access_key_id }}"
+s3root_access_key_id: "AKIAJURD7T4DTN5JMJ5Q" # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
 s3root_secret_access_key: "{{ vault_s3root_secret_access_key }}"
 
-# User: pipeline-backup-creator, policy: RawBackupCreator, AWS: OONI CEO
-s3_ceo_backup_creator_key_id: "AKIAIYIJHJXRPAXPEVLQ"
-s3_ceo_backup_creator_access_key: '{{ vault_s3_ceo_backup_creator_access_key }}'
-
-# User for Amazon Simple Email Service.
-# NB: airflow uses python `smtplib` from python2.7 that does not pass
-# `server_hostname` to `wrap_socket` till python3.4 and, probably, does no
-# verification at all.  puckel/docker-airflow was recently updated to
-# python3.6, but openobservatory/airflow does not use it yet:
-# https://github.com/puckel/docker-airflow/commit/87db6f5d788c78cf96c1792ebecc75f9e1bc9ea6
-airflow_smtp_username: '{{ vault_airflow_smtp_username }}'
-airflow_smtp_password: '{{ vault_airflow_smtp_password }}'
+s3_ooni_datacollector_key_id: "AKIAJ27S62Y27WZWPFKA" # arn:aws:iam::082866812839:user/ooni-datacollector, AWS: OONI Team
+s3_ooni_datacollector_access_key: '{{ vault_s3_ooni_datacollector_access_key }}'
+...

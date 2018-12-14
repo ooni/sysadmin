@@ -83,9 +83,10 @@
 
 - name: mkdir etc/af-worker
   file: dest=/srv/etc/af-worker state=directory owner=root group=root mode=0700
-- template: dest=/srv/etc/af-worker/s3read.env src=af-worker-s3read.env owner=root group=root mode=0400
+- file: dest=/srv/etc/af-worker/s3read.env state=absent # FIXME: drop when executed
 - template: dest=/srv/etc/af-worker/s3root.env src=af-worker-s3root.env owner=root group=root mode=0400
-- template: dest=/srv/etc/af-worker/s3_ceo_backup_creator.env src=af-worker-s3_ceo_backup_creator.env owner=root group=root mode=0400
+- file: dest=/srv/etc/af-worker/s3_ceo_backup_creator.env state=absent # FIXME: drop when executed
+- template: dest=/srv/etc/af-worker/s3_ooni_datacollector.env src=af-worker-s3_ooni_datacollector.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/hkgmetadb.env src=af-worker-hkgmetadb.env owner=root group=root mode=0400
 - template: dest=/srv/etc/af-worker/orchestradb.env src=af-worker-orchestradb.env owner=root group=root mode=0400
 - copy: dest=/srv/etc/af-worker/collector_ssh.env src=collector_ssh.env owner=root group=root mode=0400
