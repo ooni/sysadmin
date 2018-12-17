@@ -25,6 +25,21 @@ GROUP BY task_id, dag_id
 EOF
 
 cat >>"$dest" <<EOF
+# HELP airflow_7d_task_failed_last_time_seconds The execution_date of last failed TaskInstances within last 7 days.
+# TYPE airflow_7d_task_failed_last_time_seconds gauge
+EOF
+/sbin/start-stop-daemon --chuid daemon:daemon \
+  --exec /usr/bin/psql --start \
+  -- \
+  --no-align --tuples-only airflow >>"$dest" <<EOF
+SELECT
+  'airflow_7d_task_failed_last_time_seconds{task="' || task_id || '",dag="' || dag_id || '"} ' || MAX(CASE WHEN state = 'failed' THEN EXTRACT(EPOCH FROM execution_date) ELSE 0 END)
+FROM task_instance
+WHERE execution_date >= NOW() - INTERVAL '7 DAYS'
+GROUP BY task_id, dag_id
+EOF
+
+cat >>"$dest" <<EOF
 # HELP airflow_7d_dag_failed_count The total number of failed DAGRuns within last 7 days.
 # TYPE airflow_7d_dag_failed_count gauge
 EOF
@@ -34,6 +49,21 @@ EOF
   --no-align --tuples-only airflow >>"$dest" <<EOF
 SELECT
   'airflow_7d_dag_failed_count{dag="' || dag_id || '"} ' || SUM(CASE WHEN state = 'failed' THEN 1 ELSE 0 END)
+FROM dag_run
+WHERE execution_date >= NOW() - INTERVAL '7 DAYS'
+GROUP BY dag_id
+EOF
+
+cat >>"$dest" <<EOF
+# HELP airflow_7d_dag_failed_last_time_seconds The total number of failed DAGRuns within last 7 days.
+# TYPE airflow_7d_dag_failed_last_time_seconds gauge
+EOF
+/sbin/start-stop-daemon --chuid daemon:daemon \
+  --exec /usr/bin/psql --start \
+  -- \
+  --no-align --tuples-only airflow >>"$dest" <<EOF
+SELECT
+  'airflow_7d_dag_failed_last_time_seconds{dag="' || dag_id || '"} ' || MAX(CASE WHEN state = 'failed' THEN EXTRACT(EPOCH FROM execution_date) ELSE 0 END)
 FROM dag_run
 WHERE execution_date >= NOW() - INTERVAL '7 DAYS'
 GROUP BY dag_id

@@ -1,8 +1,5 @@
-{{ define "slack.ooni.text" }}
-{{ range .Alerts }}
-{{ .Annotations.description }}
-{{ end }}
-{{ end }}
+{{ define "slack.ooni.text" }}{{ range $i, $el := .Alerts }}{{ if gt $i 0 }}
+{{ end }}{{ $el.Annotations.description }}{{ end }}{{ end }}
 
 {{ define "slack.ooni.title" }}
 {{ range $i, $el := .Alerts }}{{ if gt $i 0 }}
