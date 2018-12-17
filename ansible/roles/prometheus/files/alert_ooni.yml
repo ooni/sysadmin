@@ -32,7 +32,7 @@ groups:
     annotations:
       summary: '{{ $value }} DAG `{{ $labels.dag }}` failures last week'
       description: >
-        Last `{{ $labels.dag }}` failure on {{ (printf "round(time() - airflow_7d_dag_failed_last_time_seconds{dag='%s'}, 3600)" $labels.dag) | query | first | value | humanizeDuration }}.
+        Last `{{ $labels.dag }}` failure {{ (printf "round(time() - airflow_7d_dag_failed_last_time_seconds{dag='%s'}, 3600)" $labels.dag) | query | first | value | humanizeDuration | reReplaceAll " 0m 0s$" "" }} ago.
         Yours <http://127.0.0.1:8080/admin/airflow/tree?dag_id={{ $labels.dag }}|airflow>.
 
   - alert: AirflowTaskFailed
@@ -40,7 +40,7 @@ groups:
     annotations:
       summary: '{{ $value }} task `{{ $labels.task }}` failures last week'
       description: >
-        Last `{{ $labels.task }}` failure on {{ (printf "round(time() - airflow_7d_task_failed_last_time_seconds{dag='%s',task='%s'}, 3600)" $labels.dag $labels.task) | query | first | value | humanizeDuration }}.
+        Last `{{ $labels.task }}` failure {{ (printf "round(time() - airflow_7d_task_failed_last_time_seconds{dag='%s',task='%s'}, 3600)" $labels.dag $labels.task) | query | first | value | humanizeDuration | reReplaceAll " 0m 0s$" "" }} ago.
 
   - alert: SlacktopusGone
     expr: time() - slacktopus_ctcp_pong_time > 660 # it's randomized */5 crontab
