@@ -76,7 +76,7 @@ groups:
     for: 15m # number stolen from https://dev.gitlab.org/cookbooks/runbooks/blob/master/rules/node.yml
     labels: {severity: info}
     annotations:
-      summary: '{{ $labels.instance }} has {{ $value }} pagefaults/second.'
+      summary: '{{ $labels.instance }} has {{ printf "%.1f" $value }} pagefaults/second.'
 
   # NB: node_filesystem_avail is for non-root users, node_filesystem_free is for root. They are equal for XFS.
   - alert: DiskWillFillInAWeek
