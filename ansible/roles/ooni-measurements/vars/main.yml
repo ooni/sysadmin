@@ -1,5 +1,5 @@
 ---
 oomsm_timeout_s: 60
-oomsm_tag: '20181012-210e8603'
+oomsm_tag: '20181218-6ab45a56'
 oomsm_backend_ipv4: '172.25.232.254'
 oomsm_backend_port: 16868
