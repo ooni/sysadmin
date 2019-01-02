@@ -17,11 +17,16 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_read_timeout 900;
   }
+}
+
+server {
+  server_name _;
+
+  listen 80;
 
   location /.well-known/acme-challenge {
     default_type "text/plain";
     root /var/www/letsencrypt;
     try_files $uri $uri/ =404;
   }
-
 }
