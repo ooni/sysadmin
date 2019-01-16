@@ -1,5 +1,7 @@
 # ansible-managed in ooni-sysadmin.git
 
+{% import 'common.j2' as c %}
+
 server {
     listen 80;
     listen 443 ssl spdy;
@@ -35,4 +37,6 @@ server {
         proxy_pass http://{{ explorer_next_backend_ipv4 }}:{{ explorer_next_backend_port }};
         include proxy_params;
     }
+
+    {{ c.location_letsencrypt() }}
 }
