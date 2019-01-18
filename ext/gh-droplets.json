@@ -372,7 +372,7 @@
                 "ssh_rsa": "2048 17:85:5a:52:7b:a4:89:c5:62:11:09:91:e3:10:26:4e"
             }, 
             "locked": false, 
-            "memory": "512", 
+            "memory": "1024", 
             "name": "run.ooni.io", 
             "networks": {
                 "v4": [
