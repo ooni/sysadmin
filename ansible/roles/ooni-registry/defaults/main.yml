@@ -17,7 +17,7 @@ orchestra_database_url: "postgres://proteus:{{ orchestra_database_password }}@{{
 orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
 orchestra_auth_admin_password : "{{ orchestra_admin_password }}"
 
-orchestra_version: "0.2.1"
+orchestra_version: "0.2.5"
 orchestra_download_url: https://github.com/ooni/orchestra/releases/download
 
 orchestra_tarball_url: "{{ orchestra_download_url }}/v{{ orchestra_version }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}.tar.gz"
