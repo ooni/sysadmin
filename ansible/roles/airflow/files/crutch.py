@@ -18,7 +18,8 @@ def is_bad(fpath):
         row = fd.readline()
     try:
         j = json.loads(row)
-    except Exception:
+    except Exception as exc:
+        print 'non-json:', fpath, str(exc)
         return False
     sw = j.get('software_name')
     ver = str(j.get('software_version'))
@@ -39,6 +40,8 @@ def main():
             print 'Bad:', fpath
             dest = os.path.join(opt.stash, fname)
             os.rename(fpath, dest)
+        else:
+            print 'Skip:', fpath
 
 if __name__ == '__main__':
     main()

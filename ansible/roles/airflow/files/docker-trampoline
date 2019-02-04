@@ -180,11 +180,14 @@ case "$script" in
     docker run $docksafe --network none -v=$private/reports-raw:/reports-raw:rw debian:jessie /bin/bash -c "mkdir -p /reports-raw/${bucket} && chown $uidno /reports-raw/${bucket}"
     volargs="${volargs} --volume=$private/spool:/spool:rw"
 
+    set -o xtrace
+    for fqdn in "$@"; do
     docker run $docksafe --user "$uidno" $docknet ${volargs} \
         --volume=/opt:/opt:ro \
         --volume=$private/stash:/stash:rw \
         openobservatory/pipeline-shovel:20181214-3ba73981 \
-        python2.7 /opt/crutch.py --bucket /spool --stash /stash
+        python2.7 /opt/crutch.py --bucket "/spool/${fqdn}" --stash /stash
+    done
 
     volargs="${volargs} --volume=$private/reports-raw/${bucket}:/reports-raw/${bucket}:rw"
     volargs="${volargs} --volume=$private/reports-raw-shals:/reports-raw-shals:rw"
