@@ -188,7 +188,7 @@ case "$script" in
     for fqdn in "$@"; do
     docker run $docksafe --user "$uidno" $docknet ${volargs} \
         --volume=/opt:/opt:ro \
-        openobservatory/pipeline-shovel:20181214-3ba73981 \
+        openobservatory/pipeline-shovel:20190213-3e9506ca \
         python2.7 /opt/crutch.py --bucket "/p/spool/${fqdn}" --stash /p/stash || exit 1
     done
 
@@ -218,4 +218,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20181214-3ba73981 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20190213-3e9506ca "$@"
