@@ -1837,10 +1837,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 5, 
+            "features": [], 
+            "id": "2803", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:XH//GB7H/IzUyD2YTHNrxvCVrlUJPDiNGn8yzXyfJLI", 
+                "ssh_ecdsa": "256 SHA256:NFwA8nD9wjrASMFuduRmSjn7H9/9TBc8hMiwvjW/bbg", 
+                "ssh_rsa": "2048 SHA256:EkbveL4JQ3kZHwrbni+D9ANsvtRgjRkiM/xgLusKqjo"
+            }, 
+            "locked": false, 
+            "memory": "1024", 
+            "name": "miatorth.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.28", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.241.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 48
+        "total": 49
     }
 }

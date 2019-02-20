@@ -15,8 +15,9 @@ hkgjump		A	103.104.244.19
 hkgtorth		A	103.104.244.76
 hkgwebconnectivitya		A	103.104.244.111
 miacollector		A	37.218.241.178
+miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 shark	1800	A	199.119.112.120
 www	1800	URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 bcc231770b7194d6aad328c7bd9b4631371e25291996c5dda3b9af02c5bb19f7
+; generated from ooni.nu.xml with SHA256 da5295036339eeb1c8399ea38d0e223fca0b20b43ff613e51f19881f493a82fb

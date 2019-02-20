@@ -12,7 +12,6 @@
       <host HostId="67915505" Name="bouncer.infra" Type="A" Address="62.217.125.6" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="24786734" Name="deb" Type="A" Address="81.7.15.106" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="12484213" Name="@" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="12484214" Name="www" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13643210" Name="dnstunnel" Type="NS" Address="ooni.nu." MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="39585756" Name="mirror1.reports" Type="A" Address="213.138.109.232" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="137748127" Name="hkgbouncer" Type="A" Address="103.104.244.87" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -23,6 +22,8 @@
       <host HostId="148367412" Name="mon" Type="A" Address="37.218.245.43" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="155919885" Name="miacollector" Type="A" Address="37.218.241.178" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="163335952" Name="hkgtorth" Type="A" Address="103.104.244.76" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="163342645" Name="miatorth" Type="A" Address="37.218.241.28" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="12484214" Name="www" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13864868" Name="censorshipwiki" Type="URL301" Address="https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
