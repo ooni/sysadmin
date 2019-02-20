@@ -168,7 +168,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 200, 
+            "disk": 5, 
             "features": [], 
             "id": "1134", 
             "kernel": {
@@ -177,9 +177,9 @@
                 "version": "latest"
             }, 
             "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/Q4reHsT7ZeKvDHZIMNFshVbLjhzHmfAg67cDgyzIFEso/etc/ssh/ssh_host_rsa_key.pub (RSA)"
+                "ssh_dsa": "1024 97:21:0c:7b:49:a9:98:36:bb:b2:fc:05:e2:ec:80:99", 
+                "ssh_ecdsa": "256 d5:93:6e:ef:5f:3e:e6:4f:e8:3d:95:e2:72:e8:e1:06", 
+                "ssh_rsa": "2048 92:1d:35:9e:d1:6a:1c:04:7c:7f:52:fc:98:c2:71:01"
             }, 
             "locked": false, 
             "memory": "1024", 
@@ -1346,44 +1346,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 100, 
-            "features": [], 
-            "id": "1873", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 3b:e9:45:57:7d:23:4b:10:a3:e4:5f:ad:34:25:67:39", 
-                "ssh_ecdsa": "256 96:08:82:1b:05:35:9f:89:cf:e0:c6:61:fe:50:73:79", 
-                "ssh_rsa": "2048 99:a5:23:6f:5a:06:5b:9d:69:bf:24:e9:73:5c:09:0c"
-            }, 
-            "locked": false, 
-            "memory": "1024", 
-            "name": "wiki.ooni.io", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254", 
-                        "ip_address": "37.218.240.93", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.240.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 50, 
             "features": [], 
             "id": "1877", 
@@ -1705,7 +1667,15 @@
             "memory": "512", 
             "name": "testing", 
             "networks": {
-                "v4": []
+                "v4": [
+                    {
+                        "gateway": "103.104.244.254", 
+                        "ip_address": "103.104.244.21", 
+                        "netmask": "255.255.255.0", 
+                        "network": "103.104.244.0/24", 
+                        "type": "public"
+                    }
+                ]
             }, 
             "region": {
                 "available": "1", 
@@ -1715,10 +1685,162 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 10, 
+            "features": [], 
+            "id": "2728", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:ULa3cEF0qv8doJUO7jsmMkI777TIEjggNpiaK4UP9kk", 
+                "ssh_ecdsa": "256 SHA256:DXQJg//tlIPKQZdaPOdBowyJhom7OKdIURwBONg1Vj4", 
+                "ssh_rsa": "2048 SHA256:4uiOuEnWVKR2459jWLm+xKzrUlyOYFFU0k+3w4m7MH4"
+            }, 
+            "locked": false, 
+            "memory": "512", 
+            "name": "cu-testing-s1", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.4", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.241.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 10, 
+            "features": [], 
+            "id": "2729", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 f5:6d:88:4f:b7:84:f8:59:3b:bc:04:14:40:98:e6:bb", 
+                "ssh_ecdsa": "256 0e:3d:26:ed:52:71:43:de:1c:a8:4d:10:1b:5a:7f:d2", 
+                "ssh_rsa": "2048 6e:0d:cc:79:4f:b6:b7:ed:1c:07:12:c9:71:5e:47:42"
+            }, 
+            "locked": false, 
+            "memory": "512", 
+            "name": "cu-testing-s2", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254", 
+                        "ip_address": "37.218.242.89", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.242.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Amsterdam", 
+                "slug": "Amsterdam"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 5, 
+            "features": [], 
+            "id": "2801", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 35:4f:f3:95:41:a8:19:09:23:b0:4b:1e:a5:b1:69:46", 
+                "ssh_ecdsa": "256 87:b4:3e:89:63:e4:32:25:29:7d:e0:94:04:75:29:c2", 
+                "ssh_rsa": "2048 44:bd:03:c9:ae:ae:3f:d3:8e:f9:4e:4b:34:d8:34:e7"
+            }, 
+            "locked": false, 
+            "memory": "1024", 
+            "name": "hkgtorth.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "103.104.244.254", 
+                        "ip_address": "103.104.244.76", 
+                        "netmask": "255.255.255.0", 
+                        "network": "103.104.244.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "Hong Kong", 
+                "slug": "Hong Kong"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 5, 
+            "features": [], 
+            "id": "2803", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:XH//GB7H/IzUyD2YTHNrxvCVrlUJPDiNGn8yzXyfJLI", 
+                "ssh_ecdsa": "256 SHA256:NFwA8nD9wjrASMFuduRmSjn7H9/9TBc8hMiwvjW/bbg", 
+                "ssh_rsa": "2048 SHA256:EkbveL4JQ3kZHwrbni+D9ANsvtRgjRkiM/xgLusKqjo"
+            }, 
+            "locked": false, 
+            "memory": "1024", 
+            "name": "miatorth.ooni.nu", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.28", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.241.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 45
+        "total": 48
     }
 }

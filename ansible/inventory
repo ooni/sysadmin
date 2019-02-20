@@ -21,6 +21,7 @@ ams
 c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
 analytics.ooni.io
+miatorth.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -42,10 +43,10 @@ hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
 hkgwebconnectivitya.ooni.nu
 ooni-explorer-next.test.ooni.io
-wiki.ooni.io
 labs.ooni.io
 hkgjump.ooni.nu
 hkgsuperset.ooni.io
+hkgtorth.ooni.nu
 
 [ams]
 explorer.ooni.io
@@ -144,6 +145,9 @@ amsmetadb.ooni.nu
 ssdams.infra.ooni.io
 # db-1.proteus.test.ooni.io
 # db-1.proteus.ooni.io
+hkgtorth.ooni.nu
+miatorth.ooni.nu
+amstorth.ooni.nu
 
 [have_nginx]
 amsapi.ooni.nu
@@ -151,8 +155,8 @@ prometheus.infra.ooni.io
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
-#gone munin.ooni.io
-wiki.ooni.io
+hkgtorth.ooni.nu
+miatorth.ooni.nu
 
 [have_collector]
 hkgcollectora.ooni.nu
