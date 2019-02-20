@@ -12,10 +12,11 @@ dnstunnel	1800	NS	ooni.nu.
 hkgbouncer		A	103.104.244.87
 hkgcollectora		A	103.104.244.110
 hkgjump		A	103.104.244.19
+hkgtorth		A	103.104.244.76
 hkgwebconnectivitya		A	103.104.244.111
 miacollector		A	37.218.241.178
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 shark	1800	A	199.119.112.120
 www	1800	URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 5b871cbc4e8959a5bfed3c46a3dff94b88bf04a018b96671c5b65bcd302083b8
+; generated from ooni.nu.xml with SHA256 bcc231770b7194d6aad328c7bd9b4631371e25291996c5dda3b9af02c5bb19f7
