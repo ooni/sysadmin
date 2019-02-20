@@ -11,7 +11,7 @@ groups:
     expr: rsync_returncode{exported_instance="hellais-nas"} != 0
     for: 16h # rsync is launched at 08:00 and 22:00, that's 14h and 10h gap
     annotations:
-      summary: '`rsync` exitcode: {{ $value }}'
+      summary: 'hellais-nas `rsync` exitcode: {{ $value }}'
 
   # Some nodes may have it broken, but it usually works, here is expr to validate it.
   # expr: (max without (device) (node_seeksample_timestamp{job="node"}) or up{job="node"}) == 1
