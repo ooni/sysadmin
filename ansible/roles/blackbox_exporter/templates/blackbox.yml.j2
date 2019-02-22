@@ -62,14 +62,19 @@ modules:
     http:
       valid_status_codes: [404]
       method: GET
+
   # When using this prober, be sure to target:
-  # https://bouncer.ooni.io/bouncer
+  # https://bouncer.ooni.io/bouncer/net-tests
   ooni_bouncer_ok:
     prober: http
     timeout: 5s
     http:
-      valid_status_codes: [405]
-      method: GET
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: '{"net-tests":[{"input-hashes":null,"name":"web_connectivity","test-helpers":["web-connectivity"],"version":"0.0.1"}]}'
+      fail_if_not_matches_regexp:
+      - '"web-connectivity":' # some bouncer-like response
 
   # When using this prober, be sure to target:
   # https://web-connectivity.th.ooni.io/status
