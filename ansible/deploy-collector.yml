@@ -5,9 +5,9 @@
   roles:
     - role: docker_py
 
-- hosts: hkgcollectora.ooni.nu
+- hosts: "hkgcollectora.ooni.nu"
   vars:
-    ansible_python_interpreter: '{{ ansible_venv }}/bin/python2.7'
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: letsencrypt
       letsencrypt_nginx: true
@@ -15,9 +15,9 @@
     - role: ooni-collector
       collector_domain: a.collector.ooni.io
 
-- hosts: miacollector.ooni.nu
+- hosts: "miacollector.ooni.nu"
   vars:
-    ansible_python_interpreter: '{{ ansible_venv }}/bin/python2.7'
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: letsencrypt
       letsencrypt_nginx: true
