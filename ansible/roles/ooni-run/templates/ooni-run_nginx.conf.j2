@@ -1,12 +1,13 @@
 server {
-    server_name _;
+  server_name _;
 
-    listen {{ ooni_run_https_port }} ssl default_server;
-    listen [::]:{{ ooni_run_https_port }} ssl default_server;
+  listen {{ ooni_run_https_port }} ssl default_server;
+  listen [::]:{{ ooni_run_https_port }} ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/privkey.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+  ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+  large_client_header_buffers 16 64k;
 
   location / {
     proxy_pass http://{{ ooni_run_address }}:{{ ooni_run_port }};
