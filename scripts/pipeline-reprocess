@@ -1,29 +1,60 @@
 #!/usr/bin/make -f
 
-.SILENT: # to avoid useless echo before `ONESHELL` invocation
-.ONESHELL: # to use here-docs
-.SHELLFLAGS = -xec # xtrace, errexit, command
-SHELL = /bin/bash
-MAKEFLAGS = --jobs 4 --load-average 8 --keep-going # datacollector.infra.ooni.io specs
-
-.PHONY: all clean reprocess
+########################################################################
+# Settings:
+#
 
 # all flag files are created in separate directory
 # To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
-PRJ = simhash
+PRJ = spill
+# sed-deps, af-deps, or metadb-deps -- something like that
+TYPEOF_DEPS = sed-deps
+
 AF_TASK = meta_pg
 AF_ARGS = --force # Use `--force` to ignore current TI state. It's not needed for new tasks, but it's useful for re-processing tasks like `meta_pg`.
--include $(PRJ)/metadb-deps
+
+########################################################################
+# Makefile targets & rules
+#
+
+.SILENT: # to avoid useless echo before `ONESHELL` invocation
+.ONESHELL: # to use here-docs
+.SHELLFLAGS = -o pipefail -xec # xtrace, errexit, command
+SHELL = /bin/bash
+MAKEFLAGS = --jobs 4 --load-average 8 --keep-going # datacollector.infra.ooni.io specs
+
+.PHONY: help all rc pause reprocess
 
 ifndef TMUX
     $(error Run this makefile under TMUX)
 endif
 
+THIS := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+
+help:
+	set +x
+	echo "Usage:"
+	echo "  $${EDITOR:-vi} $(THIS) -- to tune options"
+	echo "  make reprocess -- start spawning TaskInstances"
+	echo "  make pause -- grab a lock to prevent new TaskInstances from spawning"
+	echo "  make rc -- list exit() status for TaskInstances having flag in ./$(PRJ)/"
+
+rc:
+	cd $(PRJ) && sudo grep -F 'Task exited with return code' $$(ls *.tiflag | sed 's,^,/srv/af-worker/logs/hist_canning/$(AF_TASK)/,; s,.tiflag$$,T00:00:00,') | awk -F: '(key && key != $$1) {print acc} {key = $$1; acc = $$0;} END {print acc}'
+
+-include $(PRJ)/sed-deps
 all: reprocess
+
+pause: $(PRJ)/.keep
+	flock $(PRJ)/.keep sh -c 'while :; do date; ps -C flock -o pid,tty,user,lstart,command; sleep 5; done'
 
 $(PRJ)/.keep :
 	mkdir -p $(PRJ)
 	touch $@
+
+$(PRJ)/sed-deps : affected.bucket_date $(PRJ)/.keep
+	sed 's,^20[0-9][0-9]-[01][0-9]-[0-3][0-9]$$,reprocess : $(PRJ)/&.tiflag,' <affected.bucket_date >$@.tmp
+	mv $@.tmp $@
 
 $(PRJ)/af-deps : $(PRJ)/.keep
 	set +o xtrace
