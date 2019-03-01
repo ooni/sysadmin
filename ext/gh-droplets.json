@@ -1650,120 +1650,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 0, 
-            "features": [], 
-            "id": "2514", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 71:8f:f7:5e:9f:f7:ef:84:fc:bb:32:b7:c5:cf:6d:6e", 
-                "ssh_ecdsa": "256 aa:ec:fc:24:4b:cb:30:d2:63:46:6f:ae:5e:77:60:8e", 
-                "ssh_rsa": "2048 32:f0:12:14:30:1d:24:b5:89:d8:b8:fa:01:a6:fc:86"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "testing", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254", 
-                        "ip_address": "103.104.244.21", 
-                        "netmask": "255.255.255.0", 
-                        "network": "103.104.244.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Hong Kong", 
-                "slug": "Hong Kong"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 10, 
-            "features": [], 
-            "id": "2728", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:ULa3cEF0qv8doJUO7jsmMkI777TIEjggNpiaK4UP9kk", 
-                "ssh_ecdsa": "256 SHA256:DXQJg//tlIPKQZdaPOdBowyJhom7OKdIURwBONg1Vj4", 
-                "ssh_rsa": "2048 SHA256:4uiOuEnWVKR2459jWLm+xKzrUlyOYFFU0k+3w4m7MH4"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "cu-testing-s1", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.241.254", 
-                        "ip_address": "37.218.241.4", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.241.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "US East (Miami)", 
-                "slug": "US East (Miami)"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 10, 
-            "features": [], 
-            "id": "2729", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 f5:6d:88:4f:b7:84:f8:59:3b:bc:04:14:40:98:e6:bb", 
-                "ssh_ecdsa": "256 0e:3d:26:ed:52:71:43:de:1c:a8:4d:10:1b:5a:7f:d2", 
-                "ssh_rsa": "2048 6e:0d:cc:79:4f:b6:b7:ed:1c:07:12:c9:71:5e:47:42"
-            }, 
-            "locked": false, 
-            "memory": "512", 
-            "name": "cu-testing-s2", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.89", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 5, 
             "features": [], 
             "id": "2801", 
@@ -1841,6 +1727,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 48
+        "total": 45
     }
 }
