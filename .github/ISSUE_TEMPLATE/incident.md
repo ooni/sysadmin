@@ -20,8 +20,8 @@ What went wrong:
 - that was a disaster
 
 What is still unclear:
-- [ ] what should we do?
-- [ ] who is to blame?
+- [ ] what is to be done?
+- [ ] should Herzen's novel be read after Chernyshevsky's one?
 
 What could be done to prevent relapse and decrease impact:
 - [ ] alerting

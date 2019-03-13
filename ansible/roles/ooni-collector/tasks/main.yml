@@ -41,7 +41,7 @@
 
 - name: ooni-collector webservice
   docker_container:
-    image: openobservatory/collector:{{ collector_tag }}
+    image: openobservatory/backend:{{ collector_tag }}
     name: ooni-collector
     hostname: ooni-collector
     ports:

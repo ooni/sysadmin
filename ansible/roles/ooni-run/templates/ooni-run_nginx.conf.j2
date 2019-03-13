@@ -1,6 +1,7 @@
 server {
   server_name _;
 
+  listen 80;
   listen {{ ooni_run_https_port }} ssl default_server;
   listen [::]:{{ ooni_run_https_port }} ssl default_server;
 
@@ -18,4 +19,11 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_read_timeout 900;
   }
+
+  location /.well-known/acme-challenge {
+    default_type "text/plain";
+    root /var/www/letsencrypt;
+    try_files $uri $uri/ =404;
+  }
+
 }
