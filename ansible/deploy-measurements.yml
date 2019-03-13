@@ -29,6 +29,15 @@
       name: amsapi
       password: '{{ metadb_amsapi_password }}'
 
+- hosts: miaapi.ooni.nu
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: ooni-measurements
+      tags: measurements
+      oomsm_domain: api.test.ooni.io
+      oomsm_tag: '20190313-6eedf2ef'
+
 - hosts: amsapi.ooni.nu
   gather_facts: false # already gathered
   vars:
