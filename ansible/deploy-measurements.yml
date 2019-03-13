@@ -56,3 +56,4 @@
     - role: ooni-measurements
       tags: measurements
       oomsm_domain: api.ooni.io
+      oomsm_legacy_domains: ["measurements.ooni.io", "measurements.ooni.torproject.org"]
