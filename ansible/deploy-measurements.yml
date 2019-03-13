@@ -30,11 +30,18 @@
       password: '{{ metadb_amsapi_password }}'
 
 - hosts: miaapi.ooni.nu
+  roles:
+    - role: docker_py
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["api.test.ooni.io"]
+
+- hosts: miaapi.ooni.nu
   vars:
     ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
     - role: ooni-measurements
-      tags: measurements
+      tags: apitest
       oomsm_domain: api.test.ooni.io
       oomsm_tag: '20190313-6eedf2ef'
 
@@ -43,6 +50,9 @@
   vars:
     ansible_python_interpreter: '/root/venv/bin/python2.7'
   roles:
+    # Note: this roles depends on putting the host inside the have_nginx
+    # inventory group to have a recent version of nginx (the stock debian one
+    # is too old!)
     - role: ooni-measurements
       tags: measurements
       oomsm_domain: api.ooni.io

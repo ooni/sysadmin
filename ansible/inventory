@@ -153,6 +153,7 @@ amstorth.ooni.nu
 
 [have_nginx]
 amsapi.ooni.nu
+miaapi.ooni.nu
 prometheus.infra.ooni.io
 
 [have_tor] # Tor test-helpers
