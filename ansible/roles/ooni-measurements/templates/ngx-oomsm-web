@@ -55,13 +55,16 @@ server {
     }
 }
 
+
+{% if oomsm_legacy_domains is defined %}
+
 server {
     listen 80;
     listen 443 ssl spdy;
 
     keepalive_timeout 120 120; # http://kb.mozillazine.org/Network.http.keep-alive.timeout
-    ssl_certificate     /etc/letsencrypt/live/measurements.ooni.io/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/measurements.ooni.io/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/{{ oomsm_legacy_domains[0] }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ oomsm_legacy_domains[0] }}/privkey.pem;
     # FIXME: add ssl_dhparam         /etc/nginx/ssl/dhparam.pem;
 
     ssl_prefer_server_ciphers on;
@@ -73,14 +76,14 @@ server {
 
     ssl_stapling on;
     ssl_stapling_verify on;
-    ssl_trusted_certificate /etc/letsencrypt/live/measurements.ooni.io/chain.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ oomsm_legacy_domains[0] }}/chain.pem;
 
     # FIXME: nginx/1.4.6 knows nothing about ssl_session_tickets
 
-    server_name measurements.ooni.torproject.org measurements.ooni.io;
+    server_name {{ oomsm_legacy_domains | join(' ') }};
 
-    access_log  /var/log/nginx/measurements.ooni.io.access.log mtail;
-    error_log   /var/log/nginx/measurements.ooni.io.error.log warn;
+    access_log  /var/log/nginx/{{ oomsm_legacy_domains[0] }}.access.log mtail;
+    error_log   /var/log/nginx/{{ oomsm_legacy_domains[0] }}.error.log warn;
 
     location / {
         return $scheme://api.ooni.io$request_uri;
@@ -90,3 +93,5 @@ server {
         return 301 https://api.ooni.io/;
     }
 }
+
+{% endif %}

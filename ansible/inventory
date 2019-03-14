@@ -22,6 +22,7 @@ c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
 analytics.ooni.io
 miatorth.ooni.nu
+miaapi.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -111,6 +112,7 @@ hkgmetadb.infra.ooni.io
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
 amsapi.ooni.nu
+miaapi.ooni.nu
 
 [psk_orchestration]
 # FIXME: all in one bin as testing should have access to production! :)
@@ -148,9 +150,11 @@ ssdams.infra.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
+miaapi.ooni.nu
 
 [have_nginx]
 amsapi.ooni.nu
+miaapi.ooni.nu
 prometheus.infra.ooni.io
 
 [have_tor] # Tor test-helpers
