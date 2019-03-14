@@ -150,6 +150,7 @@ ssdams.infra.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
+miaapi.ooni.nu
 
 [have_nginx]
 amsapi.ooni.nu
