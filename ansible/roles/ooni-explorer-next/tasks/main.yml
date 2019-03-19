@@ -20,7 +20,6 @@
     purge_networks: true
     env:
       NODE_ENV: production
-      MEASUREMENTS_URL: http://api.test.ooni.io
     user: "{{ passwd.explorer.id }}:{{ passwd.explorer.id }}"
     restart_policy: unless-stopped
 
