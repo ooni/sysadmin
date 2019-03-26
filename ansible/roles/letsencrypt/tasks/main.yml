@@ -2,8 +2,8 @@
 - name: Add Debian stable backports repository
   apt_repository:
     state: present
-    repo: deb http://httpredir.debian.org/debian {{ ansible_lsb.codename }}-backports main
-  when: ansible_lsb.id == "Debian" and ansible_lsb.codename == "jessie"
+    repo: "deb http://archive.debian.org/debian {{ ansible_lsb.codename }}-backports main"
+  when: ansible_lsb.id == "Debian" and ansible_lsb.codename == "jessie-disabled"
 
 - name: Install Letsencrypt certbot
   apt:
