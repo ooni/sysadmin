@@ -110,8 +110,12 @@ passwd:
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXhSQ1VI6TxiFJeA7N1HDh5JSXfWFDGFEzB/97zDFnZ6OHdDLnUjQjfAN+pvzbXEvPZc6o9S9+gXWdB9CzMHhAJ6Gk7fKN4kjE7gKKLpEJoWIY5xXw8WDyYVfdI8bu10Op3bRCG+f2Lp6sw5ax8kiRWKs8xZppsRj/dICCLt7nU4X6MIrSu3eVSyGcs5HcKl038gd01I0YsfcG35wwOoCmbYgGu/u3gDOXCEuXCnK1PRu5ob9zMyGLN+QTiVW2oqCXhhTvZAOPpqirDEg13nwldcYi2cSePt+YZi1ecjX+3XdiXeLpQGRvQdDiXCKlnIIVR9pYGlllCC24AMhOpSXx"
 
+# Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
+# See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
 adm_logins: [ weasel, art, darkk, sbs ]
 shell_logins: [ ]
+svc_ssh_logins: [ ]
+sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
 
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
