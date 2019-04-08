@@ -46,6 +46,9 @@ RSAAuthentication yes
 PubkeyAuthentication yes
 #AuthorizedKeysFile	%h/.ssh/authorized_keys # TODO: *.tpo has nice idea of global `AuthorizedKeysFile /etc/ssh/userkeys/%u`
 
+# FIXME: `root` is for `PermitRootLogin without-password`, but it should be eventually killed
+AllowUsers root {{ sshd_allow_users | sort | join(' ') }}
+
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
 {% if not sshd_v1_deprecated %}
