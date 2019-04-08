@@ -116,6 +116,7 @@ adm_logins: [ art, darkk, sbs ]
 shell_logins: [ ]
 svc_ssh_logins: [ ]
 sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
+root_ssh_authrorized_keys: [ ] # unstructured legacy keys
 
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv

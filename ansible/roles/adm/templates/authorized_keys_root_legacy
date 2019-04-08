@@ -1,0 +1,5 @@
+# ansible-managed in ooni-sysadmin.git
+# That's legacy `root` keys, ordinary `root` keys for adm's are in /root/.ssh/authorized_keys2 file.
+{% for k in root_ssh_authrorized_keys %}
+{{ k }}
+{% endfor %}
