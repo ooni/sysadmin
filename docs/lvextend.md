@@ -16,6 +16,11 @@ pvcreate /dev/$disk
 pvs; vgs
 vgextend $groupid /dev/$disk
 vgs; lvs; df -h
+```
+
+You should obtain the logical volume path from the output of `lvs`. That path is made up of `LG/LV` (ex. `hkgmetadb/srv` or `amsmetadb/plpsql`)
+
+```
 lvextend --resizefs -l 100%VG hkgmetadb/srv
 lvs; df -h
 ```
