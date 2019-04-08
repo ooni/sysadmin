@@ -8,13 +8,13 @@ The below documentation is to be used when you want to extend a `/dev/mapper` vo
 
 4. Start up the VPS again
 
-5. Login to the machine and go through the following checklist to expand the `/dev/mapper` partition. Replace `$disk` with the disk label you see in the configuration section of the VPS on the eclipsis portal
+5. Login to the machine and go through the following checklist to expand the `/dev/mapper` partition. Replace `$disk` with the disk label you see in the configuration section of the VPS on the eclipsis portal and `$groupid` with the volume group you see listed in the VG column of `pvs` (ex. `hkgmetadb`)
 
 ```
 pvs; dd if=/dev/$disk bs=4096 count=16 | hexdump -C
 pvcreate /dev/$disk
 pvs; vgs
-vgextend hkgmetadb /dev/$disk
+vgextend $groupid /dev/$disk
 vgs; lvs; df -h
 lvextend --resizefs -l 100%VG hkgmetadb/srv
 lvs; df -h
