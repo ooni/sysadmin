@@ -36,9 +36,11 @@
 - name: sudoers.d/adm
   template: src=sudoers dest=/etc/sudoers.d/adm owner=root group=root mode=0440 validate='visudo -cf %s'
 
-# FIXME: eventually /root/.ssh/authorized_keys will be enforced as well
 - name: root .ssh/authorized_keys2
   template: src=authorized_keys_root dest=/root/.ssh/authorized_keys2 owner=root group=root mode=0400
+
+- name: legacy root .ssh/authorized_keys
+  template: src=authorized_keys_root_legacy dest=/root/.ssh/authorized_keys backup=yes owner=root group=root mode=0400
 
 - name: require gid=0 for su # to prevent any process doing `su` while knowing The Password
   lineinfile:

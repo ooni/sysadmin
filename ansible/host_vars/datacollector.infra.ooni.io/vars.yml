@@ -12,4 +12,7 @@ s3root_secret_access_key: "{{ vault_s3root_secret_access_key }}"
 
 s3_ooni_datacollector_key_id: "AKIAJ27S62Y27WZWPFKA" # arn:aws:iam::082866812839:user/ooni-datacollector, AWS: OONI Team
 s3_ooni_datacollector_access_key: '{{ vault_s3_ooni_datacollector_access_key }}'
+
+root_ssh_authrorized_keys:
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8FEFf9GMY+ATUKtftzK9Gc1g+6dKsMtibEcx4vATaont7G+HAByVFMQnrShDcV+E6Ha2aRfLwKyyy5LGscur50LKuBsLv2TjEdbgKT0szsctW/GUJay28WkTuZAhzLNtk4FORFR//fupQs3IGygguhPxs3NOVP+ATs6xDAlIlp0bwEBtoRxr3Dq0VQmEnrMtLu2w14ApUv+qBTCra7AhcpJU+Xbp/gcn4EToeDl44shdEP39aLT8SJYbS9Vq0m7WRDkjUNKRn3YdnNwrFHc3/bxmVxz6rFjN3hk4CgNMOzLspinaqIqs9JiwT2X35w0pnA0qfcmIQXhtvEn3fZicF ooni@art-house"
 ...

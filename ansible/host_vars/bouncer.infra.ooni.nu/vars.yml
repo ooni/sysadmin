@@ -1,0 +1,4 @@
+---
+root_ssh_authrorized_keys:
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPUX5p1HzxxFgY5i+WqnjFx7BoN2gARSXk6IJLybYGTFnrlVQJKrq5htvY1/lvaKsTKOIHn+BtXa/eru/a5USdr7vUtH9VOc5RxJ0Nuu1N+Ya0SPndVT9JaKcs0zg9xiDo9cfk5TKkMeX6IggEp+vT9DGF4jrFsKkCrghjt4lXsHzc6K0/7Owo6owJAncu7Fyw+VFfVN6NeVfGLaZlGLrmeqBycUgdRliuMKreCzfd5e+BeA5dM8vePzrSJyFzPPy7dfKFpDjK+P5ZVuvTqtdTMslkanBrYpTZ3D7zTAi/1slcdO6EZAXcKMcqo39xQB5AptLDIudNPmxaUDIUBSj5 root@ooni-test"
+...
