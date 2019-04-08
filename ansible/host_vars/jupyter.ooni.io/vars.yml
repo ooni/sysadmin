@@ -1,2 +1,4 @@
-adm_logins: [ weasel, art, darkk, sbs, sarath ]
+---
+adm_logins: [ art, darkk, sbs, sarath ]
 jupyter_password_hash: "{{ vault_jupyter_password_hash }}"
+...

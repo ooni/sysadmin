@@ -1,5 +1,5 @@
 ---
-adm_logins: [ weasel, art, darkk, sbs, superq ]
+adm_logins: [ art, darkk, sbs, superq ]
 
 # That's the password that other nodes do NOT store in config files,
 # other nodes store SSHA() of it that is in group_vars/all
