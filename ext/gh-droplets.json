@@ -1156,7 +1156,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 810, 
+            "disk": 1210, 
             "features": [], 
             "id": "1811", 
             "kernel": {
@@ -1232,7 +1232,7 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 950, 
+            "disk": 1150, 
             "features": [], 
             "id": "1868", 
             "kernel": {
@@ -1723,10 +1723,48 @@
             "snapshot_ids": [], 
             "status": "running", 
             "vcpus": "1"
+        }, 
+        {
+            "backup_ids": [], 
+            "disk": 40, 
+            "features": [], 
+            "id": "2830", 
+            "kernel": {
+                "id": "13", 
+                "name": "Linux Latest", 
+                "version": "latest"
+            }, 
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:LsG+Gwm6SpnYM04fJU/s19P4SOq4omWEEzS8f9e+3+Q", 
+                "ssh_ecdsa": "256 SHA256:HhtCJVH7Fj1WaOGpM4Lmcp4CLHXeth7TOJ155CbX8jc", 
+                "ssh_rsa": "2048 SHA256:qtgtkw5W+SMkmRskDU1ScxauwAOYJAT0apjcvpYtuJ0"
+            }, 
+            "locked": false, 
+            "memory": "2048", 
+            "name": "api.test.ooni.io", 
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254", 
+                        "ip_address": "37.218.241.8", 
+                        "netmask": "255.255.255.0", 
+                        "network": "37.218.241.0/24", 
+                        "type": "public"
+                    }
+                ]
+            }, 
+            "region": {
+                "available": "1", 
+                "name": "US East (Miami)", 
+                "slug": "US East (Miami)"
+            }, 
+            "snapshot_ids": [], 
+            "status": "running", 
+            "vcpus": "1"
         }
     ], 
     "links": [], 
     "meta": {
-        "total": 45
+        "total": 46
     }
 }

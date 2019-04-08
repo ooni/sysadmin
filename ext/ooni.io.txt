@@ -20,6 +20,7 @@ a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
 analytics		A	37.218.241.42
 api		A	37.218.242.231
+api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
@@ -42,6 +43,7 @@ design		CNAME	ooni-design.netlify.com.
 events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.173
+explorer-beta		A	103.104.244.44
 get		A	37.218.242.157
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 hkgmetadb.infra		A	37.218.240.56
@@ -75,4 +77,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 f10455174da3d33bc52705bb959ea6ff835635739bd6bd1faa8e810449b385e0
+; generated from ooni.io.xml with SHA256 e5612548fc137ae445a1720dc95ad51d25abc4819301b44022bcb469d20890a5
