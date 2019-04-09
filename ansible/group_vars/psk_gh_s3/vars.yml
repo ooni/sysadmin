@@ -1,0 +1,24 @@
+---
+# URL is https://store.greenhost.net/
+# Conf is:
+# {
+#     "user_id": "ooni",
+#     "email": "admin@openobservatory.org",
+#     "suspended": 0,
+#     "max_buckets": 1000,
+#     "subusers": [],
+#     "keys": [
+#         {
+#             "user": "ooni",
+#             "access_key": [redacted],
+#             "secret_key": [redacted]
+#         }
+#     ],
+#     "swift_keys": [],
+# }
+
+# FIXME: it's not 100% clear if `gh_s3_access_key` should be "public" like
+# `s3root_access_key_id` and other AWS S3 key ids or it should be kept private.
+gh_s3_access_key: '{{ vault_gh_s3_access_key }}'
+gh_s3_secret_key: '{{ vault_gh_s3_secret_key }}'
+...
