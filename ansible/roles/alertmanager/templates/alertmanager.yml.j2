@@ -57,7 +57,7 @@ receivers:
   - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
     send_resolved: true
     smarthost: {{ am_mx_darkk }}:25
-{% for u in ['arturo', 'simone', 'vasilis'] %}
+{% for u in ['arturo', 'simone'] %}
   - to: '{{ u }}@openobservatory.org'
     send_resolved: true
     smarthost: {{ am_mx_openobservatory }}:25
@@ -73,7 +73,7 @@ receivers:
   - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
     send_resolved: true
     smarthost: {{ am_mx_darkk }}:25
-{% for u in ['arturo', 'simone', 'vasilis'] %}
+{% for u in ['arturo', 'simone'] %}
   - to: '{{ u }}@openobservatory.org'
     send_resolved: true
     smarthost: {{ am_mx_openobservatory }}:25
