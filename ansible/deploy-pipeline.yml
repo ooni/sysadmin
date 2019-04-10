@@ -23,7 +23,7 @@
       login_password: '{{ shovel_postgres_password }}'
       db: metadb # otherwise connection fail
       name: amsrepl
-      password: '{{ amsrepl_hkgmetadb_password }}'
+      password: 'INSECURE_USE_SSL_CERT'
       encrypted: true
       role_attr_flags: 'REPLICATION,LOGIN'
       state: present

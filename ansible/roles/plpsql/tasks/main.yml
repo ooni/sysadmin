@@ -9,6 +9,16 @@
   - pg_hba.conf
   - postgresql.conf
 
+- name: copy ssl certificate files for amsmetadb
+  copy:
+    src: "{{item}}"
+    dest: "/srv/pl-psql/{{item}}"
+  notify: restart pl-psql
+  with_items:
+  - "postgres_amsrepl_user.key.vault"
+  - "postgres_amsrepl_user.cert"
+  when: inventory_hostname == 'amsmetadb.ooni.nu'
+
 - name: place recovery.conf to PGDATA
   template: src=recovery.conf dest=/srv/pl-psql/recovery.conf owner=plpsql group=plpsql mode=0444
   notify: restart pl-psql

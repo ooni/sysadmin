@@ -1,3 +1,0 @@
----
-amsrepl_hkgmetadb_password: "{{ vault_amsrepl_hkgmetadb_password }}"
-...

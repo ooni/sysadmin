@@ -96,10 +96,6 @@ brie.darkk.net.ru # this VM is usually not listed as OONI VM, it's independent i
 ########################################################################
 # PSK (pre-shared key) tags
 
-[psk_amsrepl]
-hkgmetadb.infra.ooni.io
-amsmetadb.ooni.nu
-
 [psk_hkgmetadb]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
