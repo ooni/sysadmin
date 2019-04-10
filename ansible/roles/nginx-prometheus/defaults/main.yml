@@ -1,4 +1,5 @@
 ---
+ngxprom_scrapers: [ prometheus.infra.ooni.io ]
 ngxprom_base: /srv/ngxprom
 ngxprom_ssl_dir: '{{ ngxprom_base }}/ssl'
 # ngxprom_ssl_base follows `ooca_ssl_base` scheme

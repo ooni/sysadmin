@@ -57,7 +57,7 @@
       tags: on-rename
     # FIXME: role `nginx-prometheus` conflicts with `nginx-stable`
     - role: nginx-prometheus
-      tags: on-rename
+      tags: [ on-rename, nginx-prometheus ]
     - role: node_exporter
       tags: node_exporter
   tasks: # that's likely one-time cleanup
