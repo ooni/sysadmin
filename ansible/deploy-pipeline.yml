@@ -5,6 +5,16 @@
   roles:
     - docker_py
 
+- hosts: hkgmetadb.infra.ooni.io
+  gather_facts: false # already gathered
+  roles:
+    - role: ooca-cert
+      ooca_ssl_dir: /srv/pl-psql_ssl/pusher
+      ooca_ssl_subj: '/O=OONI/OU=Prometheus Pusher/CN=plpsql@{{ inventory_hostname }}'
+      ooca_group: plpsql
+      ooca_ca: pusher_ca
+      tags: [ on-rename, plpsql ]
+
 - hosts: [hkgmetadb.infra.ooni.io, amsmetadb.ooni.nu]
   gather_facts: false # already gathered
   vars:

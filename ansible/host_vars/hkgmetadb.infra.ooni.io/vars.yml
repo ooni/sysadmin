@@ -1,3 +1,5 @@
 ---
 shell_logins: [ agrabeli ]
+metadb_wal_s3_key_id: "AKIAZ3EGQP54XF6VIG7I" # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
+metadb_wal_s3_access_key: "{{ vault_metadb_wal_s3_access_key }}"
 ...
