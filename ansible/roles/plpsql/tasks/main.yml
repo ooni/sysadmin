@@ -22,7 +22,7 @@
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
-    image: openobservatory/sysadmin-postgres-metadb:20190412-753cc93e # 9.6.12
+    image: openobservatory/sysadmin-postgres-metadb:20190412-010f6f70 # 9.6.12
     name: pl-psql
     hostname: pl-psql
     network_mode: 'host'
