@@ -1,6 +1,35 @@
 ---
+- name: ensure plpsql user exists
+  user:
+    name: plpsql
+    uid: 2100
+    comment: Pipeline Postgresql
+
 - name: pipeline postgres PGDATA directory
   file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
+
+# if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
+- name: docker run pipeline postgres
+  docker_container:
+    image: postgres:9.6.6
+    name: pl-psql
+    hostname: pl-psql
+    network_mode: 'host'
+    purge_networks: true # drop `bridge` network
+    volumes:
+      - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
+      - /etc/group:/etc/group:ro # to make `initdb` happy
+      - /srv/pl-psql:/srv/pl-psql:rw
+    tmpfs:
+      - /run/postgresql:size=1m,mode=0700,uid={{ passwd.plpsql.id }}
+    env:
+      PGDATA: /srv/pl-psql
+      POSTGRES_DB: metadb
+      POSTGRES_USER: shovel
+    user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
+    stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
+    stop_timeout: 60 # default is 10
+    restart_policy: unless-stopped
 
 - name: place config in PGDATA
   template: src={{item}} dest=/srv/pl-psql/{{item}} owner=plpsql group=plpsql mode=0444
@@ -23,36 +52,13 @@
   import_role:
     name: ooca-cert
   vars:
-    ooca_ssl_dir: /etc/pl-psql/ssl
+    ooca_ssl_dir: /etc/psql-ssl
     ooca_ssl_subj: '/O=OONI/OU=PostgreSQL Server/CN={{ inventory_hostname }}'
     ooca_ca: postgres_ca
-    ooca_group: postgres
+    ooca_group: plpsql
+    ansible_python_interpreter: "/usr/bin/python"
 
 - name: copy user authentication CA
-  copy: src=pg_user_ca.cert dest=/srv/pl-psql/ssl/pg_user_ca.cert owner=plpsql group=plpsql mode=0444
+  copy: src=pg_user_ca.cert dest=/srv/psql-ssl/pg_user_ca.cert owner=plpsql group=plpsql mode=0444
   notify: restart pl-psql
-
-# if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
-- name: docker run pipeline postgres
-  docker_container:
-    image: postgres:9.6.6
-    name: pl-psql
-    hostname: pl-psql
-    network_mode: 'host'
-    purge_networks: true # drop `bridge` network
-    volumes:
-      - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
-      - /etc/group:/etc/group:ro # to make `initdb` happy
-      - /srv/pl-psql:/srv/pl-psql:rw
-    tmpfs:
-      - /run/postgresql:size=1m,mode=0700,uid={{ passwd.plpsql.id }}
-    env:
-      PGDATA: /srv/pl-psql
-      POSTGRES_DB: metadb
-      POSTGRES_USER: shovel
-      POSTGRES_PASSWORD: "{{ shovel_postgres_password }}"
-    user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
-    stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
-    stop_timeout: 60 # default is 10
-    restart_policy: unless-stopped
 ...
