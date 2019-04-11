@@ -22,7 +22,7 @@
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
-    image: postgres:9.6.6
+    image: openobservatory/sysadmin-postgres-metadb:20190412-010f6f70 # 9.6.12
     name: pl-psql
     hostname: pl-psql
     network_mode: 'host'
@@ -30,6 +30,7 @@
     volumes:
       - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
       - /etc/group:/etc/group:ro # to make `initdb` happy
+      - /srv/pl-psql_ssl:/srv/pl-psql_ssl:ro
       - /srv/pl-psql:/srv/pl-psql:rw
     tmpfs:
       - /run/postgresql:size=1m,mode=0700,uid={{ passwd.plpsql.id }}
@@ -38,6 +39,11 @@
       POSTGRES_DB: metadb
       POSTGRES_USER: shovel
       POSTGRES_PASSWORD: "{{ shovel_postgres_password }}"
+      AWS_DEFAULT_REGION: us-east-1 # US East (N. Virginia)
+      AWS_ACCESS_KEY_ID: "{{ metadb_wal_s3_key_id }}"
+      AWS_SECRET_ACCESS_KEY: "{{ metadb_wal_s3_access_key }}"
+      PUSHGATEWAY_CERT: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.cert"
+      PUSHGATEWAY_KEY: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.key"
     user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
     stop_timeout: 60 # default is 10
