@@ -22,6 +22,10 @@ pusher_ca.cert: pusher_ca.key.vault
 postgres_ca.cert: postgres_ca.key.vault
 	../vault view $^ | openssl req -x509 -new -key /dev/stdin -sha256 -days 3650 -subj '/O=OONI/OU=CA/CN=PostgreSQL Server CA' -out $@
 
+# certificate to sign keys for users of postgres so that they can be authenticated
+pg_user_ca.cert: pg_user_ca.key.vault
+	../vault view $^ | openssl req -x509 -new -key /dev/stdin -sha256 -days 3650 -subj '/O=OONI/OU=CA/CN=PostgreSQL Server CA' -out $@
+
 # This rule is here to record CN for the certificate.
 hellais_nas.cert: hellais_nas.key pusher_ca.cert pusher_ca.key.vault
 	openssl req -new -key hellais_nas.key -sha256 -days 3650 -subj '/O=OONI/OU=Prometheus Pusher/CN=hellais NAS' | \
@@ -35,13 +39,5 @@ darkk_weechat.cert: darkk_weechat.key pusher_ca.cert pusher_ca.key.vault
 %_ca.key.vault:
 	openssl genrsa 2048 | ../vault encrypt --output $@
 
-
 %.key:
 	touch $@ && chmod 600 $@ && openssl genrsa 2048 >$@
-
-%_user.key.vault:
-	openssl genrsa 2048 | ../vault encrypt --output $@
-
-postgres_amsrepl_user.cert: postgres_amsrepl_user.key.vault postgres_ca.cert
-	openssl req -new -key <(../vault view postgres_amsrepl_user.key.vault) -sha256 -days 3650 -subj '/O=OONI/OU=AMS Replica User/CN=amsrepl' | \
-	openssl x509 -req -sha256 -days 3650 -CA postgres_ca.cert -CAkey <(../vault view postgres_ca.key.vault) -set_serial 0x`head -c 16 /dev/urandom | xxd -plain` -out $@

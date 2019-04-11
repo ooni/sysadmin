@@ -5,6 +5,15 @@
   roles:
     - docker_py
 
+
+- hosts: amsmetadb.ooni.nu
+  roles:
+  - role: ooca-cert
+    ooca_ssl_dir: '/srv/pl-psql/ssl/'
+    ooca_ssl_subj: '/O=OONI/OU=PostgreSQL User/CN=amsrepl'
+    ooca_ca: pg_user_ca
+    ooca_basename: "pg_user_amsrepl"
+
 - hosts: [hkgmetadb.infra.ooni.io, amsmetadb.ooni.nu]
   gather_facts: false # already gathered
   vars:

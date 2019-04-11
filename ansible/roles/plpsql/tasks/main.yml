@@ -9,16 +9,6 @@
   - pg_hba.conf
   - postgresql.conf
 
-- name: copy ssl certificate files for amsmetadb
-  copy:
-    src: "{{item}}"
-    dest: "/srv/pl-psql/{{item}}"
-  notify: restart pl-psql
-  with_items:
-  - "postgres_amsrepl_user.key.vault"
-  - "postgres_amsrepl_user.cert"
-  when: inventory_hostname == 'amsmetadb.ooni.nu'
-
 - name: place recovery.conf to PGDATA
   template: src=recovery.conf dest=/srv/pl-psql/recovery.conf owner=plpsql group=plpsql mode=0444
   notify: restart pl-psql
@@ -28,6 +18,19 @@
   file: name=/srv/pl-psql/recovery.conf state=absent
   notify: restart pl-psql
   when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
+
+- name: PostgreSQL Server certificate
+  import_role:
+    name: ooca-cert
+  vars:
+    ooca_ssl_dir: /etc/pl-psql/ssl
+    ooca_ssl_subj: '/O=OONI/OU=PostgreSQL Server/CN={{ inventory_hostname }}'
+    ooca_ca: postgres_ca
+    ooca_group: postgres
+
+- name: copy user authentication CA
+  copy: src=pg_user_ca.cert dest=/srv/pl-psql/ssl/pg_user_ca.cert owner=plpsql group=plpsql mode=0444
+  notify: restart pl-psql
 
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
