@@ -40,7 +40,7 @@ size=$(stat --format="%s" "$arch")
 
 upload_begin=$(date +%s.%N)
 for try in 5 25 0; do
-    if aws s3 cp "$arch" "$s3url"; then
+    if aws s3 cp --only-show-errors "$arch" "$s3url"; then
         break
     else
         sleep "$try"
@@ -57,7 +57,7 @@ upload_time=$(awk -v a="$upload_begin" -v b="$upload_end" 'END {print b - a}' /d
 # https://github.com/aws/aws-cli/issues/3689 https://github.com/aws/aws-cli/issues/3977 etc.
 # It's PostgreSQL's responsibility to restart this script in case of failure.
 for try in 5 25 0; do
-    len=$(curl --fail -sS --head "$rourl" | awk -v IGNORECASE=1 '/^content-length:/ {print $2}')
+    len=$(curl --fail -sS --head "$rourl" | awk '(tolower($1) == "content-length:") {print $2}')
     if [ "$len" = "$size" ] && [ "$size" -gt 0 ]; then
         success=1
         break
