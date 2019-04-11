@@ -1,6 +1,6 @@
 # Build: run ooni-sysadmin.git/scripts/docker-build from this directory
 
-FROM postgres:9.6
+FROM postgres:9.6.12
 
 RUN set -ex \
     && apt-get update \
