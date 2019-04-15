@@ -5,12 +5,12 @@ infrastructure that are part of OONI.
 
 # Getting started
 
-It is recommended you use a [python virtualenv](https://virtualenv.pypa.io/en/latest/) to install ansible.
+It is recommended you use a [python virtualenv](https://virtualenv.pypa.io/en/latest/) to install ansible and dnspython.
 
-Once you activate the virtualenv you can install the correct version of ansible with:
+Once you activate the virtualenv you can install the correct version of ansible and dnspython with:
 
 ```
-pip install ansible==2.4.2.0
+pip install ansible==2.4.2.0 dnspython==1.15.0
 ```
 
 
