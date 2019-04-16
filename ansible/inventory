@@ -7,7 +7,6 @@ ath
 ber
 tpo
 bigv
-fra
 
 [gh:children]
 mia
@@ -88,9 +87,6 @@ deb.ooni.nu # NOT-GH, moritz?
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
-[fra] # Linode @ Frankfurt
-brie.darkk.net.ru # this VM is usually not listed as OONI VM, it's independent infra with prometheus installation cross-monitoring
-
 ########################################################################
 # PSK (pre-shared key) tags
 
@@ -169,7 +165,6 @@ c.collector.ooni.io
 irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
 deb.ooni.nu                       # no root for darkk
 staticiforme.torproject.org       # tor LDAP
-brie.darkk.net.ru                 # for `darkk` only
 
 [no_nodeexp:children]
 no_passwd # no passwd => no nodeexp user ;-)
