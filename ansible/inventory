@@ -57,7 +57,6 @@ a.http.th.ooni.io
 b.web-connectivity.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
-ooni-measurements-db.infra.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
@@ -74,7 +73,6 @@ proteus.ooni.io
 run.ooni.io
 amsmetadb.ooni.nu
 amsapi.ooni.nu
-amsdataproxy.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
