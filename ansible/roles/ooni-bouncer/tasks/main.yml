@@ -37,7 +37,7 @@
 
 - name: ooni-bouncer webservice
   docker_container:
-    image: openobservatory/bouncer:{{ bouncer_tag }}
+    image: openobservatory/backend:{{ bouncer_tag }}
     name: ooni-bouncer
     hostname: ooni-bouncer
     ports:
