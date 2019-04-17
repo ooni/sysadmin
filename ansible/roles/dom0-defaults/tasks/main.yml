@@ -7,6 +7,8 @@
   with_items:
     - 'deb http://httpredir.debian.org/debian jessie-backports main'
     - 'deb http://ftp.nl.debian.org/debian jessie-updates main non-free contrib'
+    - 'deb http://ftp.us.debian.org/debian jessie-updates main non-free contrib'
+    - 'deb http://ftp.debian.org/debian jessie-backports main'
 
 - name: install some common packages
   apt:
