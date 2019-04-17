@@ -1,0 +1,32 @@
+---
+- name: create group
+  group: name=coredns state=present
+
+- name: create user
+  user:
+    name: coredns
+    group: coredns
+    comment: CoreDNS daemon
+    shell: /usr/sbin/nologin
+    createhome: false
+    home: /nonexistent
+    state: present
+
+- name: fetch CoreDNS tarball
+  get_url:
+    url: https://github.com/coredns/coredns/releases/download/v{{ coredns_ver }}/coredns_{{ coredns_ver }}_linux_amd64.tgz
+    checksum: "sha256:{{ coredns_sha256 }}"
+    dest: "/opt/coredns_{{ coredns_ver }}_linux_amd64.tgz"
+
+- name: mkdir /opt/coredns... # because tarball has the binary at the root :-(
+  file: path=/opt/coredns-{{ coredns_ver }} state=directory owner=root group=root mode=0755
+
+- name: untar CoreDNS tarball
+  unarchive:
+    src: "/opt/coredns_{{ coredns_ver }}_linux_amd64.tgz"
+    dest: "/opt/coredns-{{ coredns_ver }}"
+    creates: "/opt/coredns-{{ coredns_ver }}/coredns"
+    owner: root
+    group: root
+    remote_src: true # file is ALREADY on the remote system.
+...

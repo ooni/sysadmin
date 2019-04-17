@@ -17,6 +17,10 @@
       ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
       ooca_ca: scraper_ca
       ooca_group: prometh
+    - role: tor-bin
+      tags: tor-bin
+    - role: etc-onion
+      tags: etc-onion
     - role: prometheus
       tags: prometheus
     - role: blackbox_exporter

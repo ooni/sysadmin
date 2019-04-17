@@ -1,0 +1,13 @@
+# ansible-managed in ooni-sysadmin.git
+
+AutomapHostsOnResolve 1
+AutomapHostsSuffixes . # do not use DNS at DNSPort, map everything
+VirtualAddrNetworkIPv6 [{{ onion_ipv6_ula }}]/48 # Some IPv6 ULA
+DNSPort 127.0.90.53:9053
+
+# disable ports from /usr/share/tor/tor-service-defaults-torrc
+SocksPort 0 # disable, noone speaks socks here
+ControlSocket 0
+
+TransPort [::1]:9094 # 90xx - Tor, 94 - IPIP :)
+LongLivedPorts 9 # this box does NOT establish long-running connections at all

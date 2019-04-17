@@ -1,0 +1,10 @@
+#!/bin/sh
+# ansible-managed in ooni-sysadmin.git
+
+set -o xtrace
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+ip link add dummy0 type dummy
+ip link set dummy0 up
+ip -6 route replace unreachable fd00::/8 # all IPv6 ULAs
+ip -6 route replace unicast {{ onion_ipv6_ula }}/48 dev dummy0 # .onion ULA

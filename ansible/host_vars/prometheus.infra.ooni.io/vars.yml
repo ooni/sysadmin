@@ -4,6 +4,8 @@ ngxprom_scrapers:
   - prometheus.infra.ooni.io
   - brie.darkk.net.ru
 
+onion_ipv6_ula: 'fd26:a7e3:2a3::'
+
 # That's the password that other nodes do NOT store in config files,
 # other nodes store SSHA() of it that is in group_vars/all
 prometheus_scraper_password: '{{ vault_prometheus_scraper_password }}'
