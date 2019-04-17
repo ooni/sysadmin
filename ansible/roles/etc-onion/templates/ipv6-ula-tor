@@ -6,5 +6,10 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 ip link add dummy0 type dummy
 ip link set dummy0 up
+ip -6 addr replace {{ onion_ipv6_ula }}/128 dev dummy0 # `tor` is unhappy with link-local fe80::/64 addrs
 ip -6 route replace unreachable fd00::/8 # all IPv6 ULAs
 ip -6 route replace unicast {{ onion_ipv6_ula }}/48 dev dummy0 # .onion ULA
+
+# It should be part of `roles/fw` but IPv6 is a second-class citizen, so it's safe to do that here.
+ip6tables -t nat -F OUTPUT
+ip6tables -t nat -A OUTPUT -d {{ onion_ipv6_ula }}/48 -p tcp -j REDIRECT --to-ports 9094
