@@ -43,7 +43,7 @@
     - role: ooni-measurements
       tags: apitest
       oomsm_domain: api.test.ooni.io
-      oomsm_tag: '20190417-f6c5f068'
+      oomsm_tag: '20190417-77d44c95'
 
 - hosts: amsapi.ooni.nu
   gather_facts: false # already gathered
