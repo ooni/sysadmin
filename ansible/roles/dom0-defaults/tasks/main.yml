@@ -1,4 +1,13 @@
 ---
+# That's hotfix for https://github.com/ooni/sysadmin/issues/287
+- name: remove broken jessie repos
+  apt_repository:
+    repo: '{{ item }}'
+    state: absent
+  with_items:
+    - 'deb http://httpredir.debian.org/debian jessie-backports main'
+    - 'deb http://ftp.nl.debian.org/debian jessie-updates main non-free contrib'
+
 - name: install some common packages
   apt:
     name: "{{ item }}"

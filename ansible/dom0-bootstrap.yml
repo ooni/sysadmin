@@ -22,7 +22,7 @@
     # every known UID should be reserved to avoid occasional clash with `useradd`
     - role: passwd
     - role: dom0-defaults
-      tags: on-rename
+      tags: [ on-rename, dom0-defaults ]
     - role: ntp
       tags: ntp
 
