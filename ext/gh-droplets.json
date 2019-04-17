@@ -244,44 +244,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 200, 
-            "features": [], 
-            "id": "1156", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_dsa_key.pub (DSA)", 
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)", 
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/KwuvAmm987HEkKPZmOZ3fOJVSZ2EsjadCOMmqaaNIS02/etc/ssh/ssh_host_rsa_key.pub (RSA)"
-            }, 
-            "locked": false, 
-            "memory": "4096", 
-            "name": "ooni-measurements-db", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.232", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 15, 
             "features": [], 
             "id": "1158", 
@@ -334,7 +296,7 @@
                 "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_rsa_key.pub (RSA)"
             }, 
             "locked": false, 
-            "memory": "4096", 
+            "memory": "1024", 
             "name": "ssdams.infra.ooni.io", 
             "networks": {
                 "v4": [
@@ -372,7 +334,7 @@
                 "ssh_rsa": "2048 17:85:5a:52:7b:a4:89:c5:62:11:09:91:e3:10:26:4e"
             }, 
             "locked": false, 
-            "memory": "1024", 
+            "memory": "2048", 
             "name": "run.ooni.io", 
             "networks": {
                 "v4": [
@@ -1270,44 +1232,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 50, 
-            "features": [], 
-            "id": "1869", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 fc:7b:a1:ff:ce:50:f1:8e:83:fe:73:eb:e9:c6:4d:e5", 
-                "ssh_ecdsa": "256 81:51:8d:86:78:86:e0:fd:1f:c7:35:95:d1:3c:ca:0f", 
-                "ssh_rsa": "2048 d0:de:7c:cd:5d:3f:9f:1f:ff:59:1f:d2:44:40:f5:d6"
-            }, 
-            "locked": false, 
-            "memory": "1024", 
-            "name": "amsdataproxy.ooni.nu", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.178", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 40, 
             "features": [], 
             "id": "1871", 
@@ -1765,6 +1689,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 46
+        "total": 44
     }
 }
