@@ -31,7 +31,7 @@ assert sys.version_info > (3, 5)
 for _ in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY'):
     assert os.environ.get(_), _
 
-assert os.path.isdir('base/pgsql_tmp') and os.access('base/pgsql_tmp', os.W_OK)
+assert os.path.isdir('base/pgsql_tmp') and os.access('base/pgsql_tmp', os.W_OK) # CWD is PGDATA.
 TMPDIR = 'base/pgsql_tmp'
 TMPPFX = 's3tarz'
 
@@ -44,6 +44,10 @@ S3BASE = 'metadb/{}-{}-{}/base/'.format(UNAME.sysname, UNAME.machine, PGVER)
 S3DIR = S3BASE + LATEST + '/'
 S3_ROOT = 's3://ooni-data/'
 HTTP_ROOT = 'https://ooni-data.s3.amazonaws.com/'
+
+# PG splits tables into 1GiB segments, so each bucket is a-segment-and-a-bit.
+# See https://www.postgresql.org/docs/10/storage-file-layout.html
+PG_APPROX_BUCKET_SIZE = 1610612736 # 1.5GiB (before compression)
 
 def pg_files():
     def walk_onerror(arg):
@@ -84,7 +88,7 @@ def file_buckets(fpath_size):
         _, size = t
         cur.append(t)
         cumsize += size
-        if cumsize > 1610612736: # 1.5GiB
+        if cumsize > PG_APPROX_BUCKET_SIZE:
             ret.append(cur)
             cur, cumsize = [], 0
     if cur:
@@ -162,8 +166,8 @@ def main():
     os.setpgid(0, 0) # become a process group leader
     logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(process)d:%(thread)x] %(message)s')
     with pg_backup_lock():
-        for fname in glob.glob('{}/{}.*'.format(TMPDIR, TMPPFX)):
-            os.unlink(fname)
+        for fpath in glob.glob('{}/{}.*'.format(TMPDIR, TMPPFX)):
+            os.unlink(fpath)
         to_arch = file_buckets(pg_files())
         logging.info('%d buckets to archive to %s', len(to_arch), LATEST)
         # `xz -2` is CPU-bounded, queue is used for back-pressure in case of fast CPU.
@@ -181,7 +185,7 @@ def main():
                     logging.info('future failed, canceling and terminating')
                     # _try_ to cancel _some_ pending tasks
                     for fut in not_done:
-                        fut.cancel() 
+                        fut.cancel()
                     # kill whole process-group (tar/xz/aws) right now:
                     termfn = signal.signal(signal.SIGTERM, signal.SIG_IGN)
                     os.kill(-os.getpgid(0), signal.SIGTERM)
