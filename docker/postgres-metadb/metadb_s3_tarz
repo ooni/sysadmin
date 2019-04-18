@@ -62,7 +62,7 @@ def pg_files():
         # server logs
         'pg_log',
     }
-    noroot = {'postmaster.pid', 'postmaster.opts'}
+    noroot = {'postmaster.pid', 'postmaster.opts', 'core'}
     ret = []
     for root, dirs, files in os.walk('.', onerror=walk_onerror):
         for container in (dirs, files):
