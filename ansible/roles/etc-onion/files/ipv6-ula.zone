@@ -1,0 +1,7 @@
+d.f.ip6.arpa. 1 IN SOA localhost. nobody.localhost. (
+                    1128457986 ; serial
+                    1 ; refresh
+                    1 ; retry
+                    1 ; expire
+                    1 ; minimum
+                    )

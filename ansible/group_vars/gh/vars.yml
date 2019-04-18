@@ -3,4 +3,7 @@
 # --collector.diskstats.ignored-devices="^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$"
 # for some reason GH uses `xvda1`, `xvdb1` and so on without `xvda` itself
 node_exporter_disk_ignored: '--collector.diskstats.ignored-devices=^(ram|loop|fd|(h|s|v)d[a-z]|nvme\\d+n\\d+p)\\d+$'
+
+# It's default value from GH VM images.
+upstream_nameservers: [ '208.67.222.222', '208.67.220.222' ]
 ...

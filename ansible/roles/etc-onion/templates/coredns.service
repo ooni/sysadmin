@@ -1,0 +1,18 @@
+[Unit]
+Description=CoreDNS cache and router
+
+[Service]
+User=coredns
+Group=coredns
+
+# TODO: AmbientCapabilities needs systemd-229 we currently have systemd-215
+# AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+ExecStart=/opt/coredns-{{ coredns_ver }}/coredns -conf /srv/coredns/Corefile
+
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

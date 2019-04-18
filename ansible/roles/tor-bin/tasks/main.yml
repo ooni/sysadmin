@@ -1,0 +1,29 @@
+---
+# I'm aware of https://github.com/nusenu/ansible-relayor but it solves way
+# more complex problem and needs immediate ansible update and have already
+# dropped support for debian/jessie, that is still used as of 2018-07-21 :-(
+- name: fetch and install deb.torproject.org signing key
+  apt_key:
+    url: https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc
+    id: 'A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89'
+
+- name: installs apt-transport-https
+  apt:
+    name: apt-transport-https
+    state: present
+    update_cache: true
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+
+- name: adds deb.torproject.org repository and update apt cache
+  apt_repository:
+    repo: 'deb https://deb.torproject.org/torproject.org {{ ansible_lsb.codename }} main'
+    state: present
+    update_cache: yes
+
+- name: install tor
+  apt:
+    name: '{{ item }}'
+    state: latest
+    install_recommends: no # otherwise it installs exim and pile of other useless stuff
+  with_items: [ deb.torproject.org-keyring, tor, tor-geoipdb ]
+...
