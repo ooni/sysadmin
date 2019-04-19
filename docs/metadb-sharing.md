@@ -24,6 +24,11 @@ Recommended:
 * vCPU: 4 cores
 * Disk space: 1 TB
 
+To get a better understanding of the current disk size requirements you can run:
+```
+curl -sS https://ooni-data.s3.amazonaws.com/metadb/Linux-x86_64-9.6/base/$(curl -sS https://ooni-data.s3.amazonaws.com/metadb/Linux-x86_64-9.6/base/latest)/pgdata.index.gz | zcat | awk '{s += $2} END {print s / 1073741824, "GiB"}'
+```
+
 ## Setup
 
 This guide has been tested on AWS using the instance type `t3.xlarge` with
@@ -38,7 +43,7 @@ similar setup with minor adjustments.
 
 3. Login to the machine
 
-4. Format and mount the 1000GB volume. On EC2 with EBS this is done via (as root):
+4. Format and mount the volume. On EC2 with EBS this is done via (as root):
 ```
 lsblk # This will tell you the volume label
 mkfs -t ext4 /dev/nvme1n1 # to format it
@@ -96,6 +101,9 @@ sudo -u postgres psql -U postgres metadb -c 'SELECT MAX(bucket_date) FROM autocl
 ```
 You will get an error saying `FATAL:  the database system is starting up` until the WAL logs have been fully restored.
 If you want you can monitor progress by doing `tail -f /var/log/postgresql/postgresql-9.6-main.log`.
+Don't be scared if you see log lines saying `curl: (22) The requested URL
+returned error: 404 Not Found` that is expected behavior and it means your
+replica is in sync.
 
 When you finally see as a result a `bucket_date` which is the day of yesterday the process is complete.
 
