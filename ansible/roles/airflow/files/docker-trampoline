@@ -77,6 +77,21 @@ case "$script" in
         --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
     ;;
 
+    # WAL is flushed after `meta_pg` to ensure that hot replica is not affected
+    # by 64+ subtransactions in the whole-bucket `meta_pg` transaction.
+    # E.g. the transaction had 283 `subxacts` on 2019-04-21.  See also:
+    # - https://github.com/ooni/sysadmin/issues/272#issuecomment-485418243
+    # - https://www.postgresql.org/docs/9.6/hot-standby.html#HOT-STANDBY-CAVEATS
+    meta_wal_flush)
+    set -o xtrace
+    # It may be postgres:9.6 as well, openobservatory/... is used only for consistency.
+    exec docker run $docksafe --env-file=/etc/af-worker/hkgmetadb.env
+        openobservatory/sysadmin-postgres-metadb:20190412-010f6f70 \
+        psql --host=hkgmetadb.infra.ooni.io --username=shovel --dbname=metadb \
+        -c 'SELECT pg_switch_xlog()'
+    exit 1 # if exec fails
+    ;;
+
     tar_reports_raw)
     # some `reports-raw` buckets were already removed from datacollector and have to be restored from `.tar.lz4` for compression
     docker run $docksafe --network none -v=$private/reports-raw:$private/reports-raw debian:jessie /bin/bash -c "mkdir -p $private/reports-raw/${bucket} && chown $uidno $private/reports-raw/${bucket}"
