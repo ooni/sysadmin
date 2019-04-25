@@ -35,8 +35,6 @@ route:
   # All the above attributes are inherited by all child routes and can
   # overwritten on each.
   routes:
-  - receiver: darkk
-    match: {severity: keepalive_spb}
   - receiver: team-email
     repeat_interval: 24h
     match: {severity: info}
@@ -48,15 +46,11 @@ route:
 inhibit_rules:
 
 {# # One may expect `min` instead of `sort|first`, but that's jinja 2.10+ and 2.8 is used now. #}
-{% set am_mx_darkk = (lookup('dig', 'darkk.net.ru/MX', 'flat=0') | sort(attribute='preference') | first).exchange.rstrip('.').lower() %}
 {% set am_mx_openobservatory = (lookup('dig', 'openobservatory.org/MX', 'flat=0') | sort(attribute='preference') | first).exchange.rstrip('.').lower() %}
 
 receivers:
 - name: 'team-all'
   email_configs:
-  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
-    send_resolved: true
-    smarthost: {{ am_mx_darkk }}:25
 {% for u in ['arturo', 'simone'] %}
   - to: '{{ u }}@openobservatory.org'
     send_resolved: true
@@ -70,18 +64,9 @@ receivers:
 
 - name: 'team-email' # no slack
   email_configs:
-  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
-    send_resolved: true
-    smarthost: {{ am_mx_darkk }}:25
 {% for u in ['arturo', 'simone'] %}
   - to: '{{ u }}@openobservatory.org'
     send_resolved: true
     smarthost: {{ am_mx_openobservatory }}:25
 {% endfor %}
-
-- name: darkk
-  email_configs:
-  - to: 'leon+oonialert@darkk.net.ru' # AKA leonid@openobservatory.org
-    send_resolved: false
-    smarthost: {{ am_mx_darkk }}:25
 ...

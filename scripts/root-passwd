@@ -6,7 +6,7 @@
 
 set -o errexit
 
-adm_mails="arturo leonid simone" # email accounts of people listed in adm_logins
+adm_mails="arturo simone" # email accounts of people listed in adm_logins
 
 gitroot=$(git rev-parse --show-toplevel)
 

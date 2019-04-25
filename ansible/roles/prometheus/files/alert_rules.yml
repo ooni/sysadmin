@@ -2,12 +2,6 @@
 groups:
 - name: Basic prometheus
   rules:
-  - alert: SPbNoonCannon
-    expr: (hour() == 8) and (minute() >= 55)
-    labels: {severity: keepalive_spb}
-    annotations:
-      summary: 'Noon cannon in St.Petersburg fires soon'
-
   # node_timex_sync_status is not enabled right now as old NTP daemons do not update `timex`
   - alert: NTPOutOfSync
     expr: (node_scrape_collector_success{collector="ntp"} != 1) or (node_ntp_sanity != 1) # or (node_timex_sync_status != 1)
