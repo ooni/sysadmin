@@ -139,8 +139,8 @@ datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
 ssdams.infra.ooni.io
-# db-1.proteus.test.ooni.io
-# db-1.proteus.ooni.io
+db-1.proteus.test.ooni.io
+db-1.proteus.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
