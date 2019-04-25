@@ -36,7 +36,7 @@ blackbox_jobs:
     module: "ooni_collector_ok"
     targets:
       #- "https://a.collector.ooni.io/invalidpath"
-      - "https://b.collector.ooni.io/invalidpath"
+      - "https://b.collector.ooni.io/invalidpath" # hardcoded in MK as a fallback in case of bouncer failure
       - "https://c.collector.ooni.io/invalidpath"
       # Testing collectors
       - "https://b.collector.test.ooni.io/invalidpath"
@@ -45,16 +45,18 @@ blackbox_jobs:
     targets:
       - "https://bouncer.ooni.io/bouncer/net-tests"
 
+  # IP addresses are used for test-helpers in monitoring configuration for some
+  # historical reason hopefully remembered by @hellais.
   - name: "ooni tcp echo"
     module: "ooni_tcp_echo_ok"
     targets:
-      - "37.218.247.110:80"
-      - "213.138.109.232:80"
+      - "{{ lookup('dig', 'c.echo.th.ooni.io/A') }}:80"
+      - "{{ lookup('dig', 'b.echo.th.ooni.io/A') }}:80"
 
   - name: "ooni http return json headers"
     module: "ooni_http_return_json_headers_ok"
     targets:
-      - "http://37.218.247.95:80"
+      - "http://{{ lookup('dig', 'a.http.th.ooni.io/A') }}:80"
 
   - name: "ooni explorer countByCountry"
     module: "http_2xx"

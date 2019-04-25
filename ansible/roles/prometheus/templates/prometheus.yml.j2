@@ -71,6 +71,54 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endfor %}
 
+  # DNS AAAA *.onion -> IPv6 ULA resolution is done by prometheus and not by
+  # blackbox_exporter due to differences in DNS resolver libraries.  See also
+  # - https://github.com/prometheus/blackbox_exporter/issues/264#issuecomment-442936583
+  # - https://github.com/golang/go/blob/go1.11.2/src/net/dnsclient_unix.go#L424-L436
+  - job_name: 'onion bouncer'
+    metrics_path: /probe
+    params: {module: [ooni_bouncer_ok]}
+    dns_sd_configs:
+    - type: AAAA
+      port: 80
+      refresh_interval: 60s # tor DNS TTL
+      names:
+      - nkvphnp3p6agi5qq.onion # hardcoded in app
+    relabel_configs:
+    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/bouncer/net-tests"}
+    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
+    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/bouncer/net-tests"}
+
+  - job_name: 'onion collector'
+    metrics_path: /probe
+    params: {module: [ooni_collector_ok]}
+    dns_sd_configs:
+    - type: AAAA
+      port: 80
+      refresh_interval: 60s # tor DNS TTL
+      names:
+      - ganriuwqt5vgbgnj.onion # onion of `b.collector.ooni.io`
+      - 42q7ug46dspcsvkw.onion # onion of `c.collector.ooni.io`
+    relabel_configs:
+    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/invalidpath"}
+    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
+    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/invalidpath"}
+
+  - job_name: 'onion web-connectivity.th'
+    metrics_path: /probe
+    params: {module: [ooni_web_connectivity_ok]}
+    dns_sd_configs:
+    - type: AAAA
+      port: 80
+      refresh_interval: 60s # tor DNS TTL
+      names:
+      - 2lzg3f4r3eapfi6j.onion # onion of `b.web-connectivity.th.ooni.io`
+      - y3zq5fwelrzkkv3s.onion # onion of `c.web-connectivity.th.ooni.io`
+    relabel_configs:
+    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/status"}
+    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
+    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/status"}
+
   - job_name: 'node'
     scrape_interval: 5s
     scheme: https
