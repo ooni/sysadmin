@@ -1,6 +1,7 @@
 ---
 # That's hotfix for https://github.com/ooni/sysadmin/issues/287
 - name: remove broken jessie repos
+  tags: [remove-jessie]
   apt_repository:
     repo: '{{ item }}'
     state: absent
