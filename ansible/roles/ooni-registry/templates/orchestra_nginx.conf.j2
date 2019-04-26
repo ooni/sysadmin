@@ -1,3 +1,6 @@
+{% import 'common.j2' as c %}
+{{ c.server_letsencrypt( letsencrypt_domains ) }}
+
 server {
     server_name _;
 
