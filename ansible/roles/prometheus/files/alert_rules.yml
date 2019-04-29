@@ -58,7 +58,7 @@ groups:
     annotations:
       summary: '{{ $labels.instance }} has LA15 {{ printf "%.1f" $value }}'
 
-  # chameleon.infra.ooni.io and b.echo.th.ooni.io do not have MemAvailable signal that is an _estimate_ of RAM available for userspace allocations provided by kernel.
+  # b.echo.th.ooni.io do not have MemAvailable signal that is an _estimate_ of RAM available for userspace allocations provided by kernel.
   # Old nodes: (node_memory_MemAvailable or (-node_time)) < 0
   - alert: MemoryLow
     expr: ((node_memory_MemAvailable) / node_memory_MemTotal or ((node_memory_MemFree + node_memory_Buffers + node_memory_Cached) / node_memory_MemTotal)) * 100 < 20

@@ -4,7 +4,6 @@
 [dom0:children] # `all` should be equal to `dom0`, so it's here to catch errors
 gh
 ath
-ber
 tpo
 bigv
 
@@ -75,9 +74,6 @@ amsapi.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
-
-[ber] # Humboldt-Universitaet zu Berlin
-chameleon.infra.ooni.io # NOT-GH
 
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
