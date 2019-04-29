@@ -71,11 +71,16 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endfor %}
 
+{% set onion_scrape_interval = '1m' %}
+{% set onion_scrape_timeout = '45s' %}
+
   # DNS AAAA *.onion -> IPv6 ULA resolution is done by prometheus and not by
   # blackbox_exporter due to differences in DNS resolver libraries.  See also
   # - https://github.com/prometheus/blackbox_exporter/issues/264#issuecomment-442936583
   # - https://github.com/golang/go/blob/go1.11.2/src/net/dnsclient_unix.go#L424-L436
   - job_name: 'onion bouncer'
+    scrape_interval: {{ onion_scrape_interval }}
+    scrape_timeout: {{ onion_scrape_timeout }}
     metrics_path: /probe
     params: {module: [ooni_bouncer_ok]}
     dns_sd_configs:
@@ -90,6 +95,8 @@ scrape_configs:
     - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/bouncer/net-tests"}
 
   - job_name: 'onion collector'
+    scrape_interval: {{ onion_scrape_interval }}
+    scrape_timeout: {{ onion_scrape_timeout }}
     metrics_path: /probe
     params: {module: [ooni_collector_ok]}
     dns_sd_configs:
@@ -105,6 +112,8 @@ scrape_configs:
     - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/invalidpath"}
 
   - job_name: 'onion web-connectivity.th'
+    scrape_interval: {{ onion_scrape_interval }}
+    scrape_timeout: {{ onion_scrape_timeout }}
     metrics_path: /probe
     params: {module: [ooni_web_connectivity_ok]}
     dns_sd_configs:
