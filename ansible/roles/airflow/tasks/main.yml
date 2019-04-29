@@ -103,10 +103,6 @@
   copy: src=docker-trampoline dest=/srv/af-worker-bin/ owner=root group=root mode=0755
   notify: restart af-worker # because the _file_ is bind-monted, not a directory
 
-- name: copy crutch
-  tags: airflow-dags
-  copy: src=crutch.py dest=/opt/crutch.py mode=0755
-
 - name: mkdir airflow-dags
   file: dest=/srv/airflow-dags state=directory owner=root group=root mode=0755
 # FIXME: `rsync --delete` followed by `template dest=/srv/airflow-dags/have_collector.json` always provides "changed" state
