@@ -32,10 +32,8 @@ bouncer.test		A	37.218.240.140
 c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
 c.web-connectivity.th		A	37.218.241.164
-chameleon.infra	1800	A	141.20.103.17
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
-db-1.infra		A	141.20.103.17
 db-1.proteus		A	37.218.242.79
 db-1.proteus.test		A	37.218.240.153
 demo.probe		A	37.218.242.41
@@ -76,4 +74,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 e8524e5989b24ba60c72a813c207b16ad8a07a4560ee2ccf353bff3cd52eb73a
+; generated from ooni.io.xml with SHA256 ce22380b284928fb5cb346b0b9e2e3d4e73ff073d346860dfdbb402e24c86204
