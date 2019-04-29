@@ -120,11 +120,14 @@ reader, these options set amount of disk space allocated to writer!).
 Also [replication slot](https://www.postgresql.org/docs/current/static/functions-admin.html#FUNCTIONS-REPLICATION)
 may reserve WAL on creation, but beware, it postpones WAL reservation till replica connection by default.
 
-[`pg_start_backup()`](https://www.postgresql.org/docs/current/static/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP)
-+ `rsync -az --exclude pg_replslot --exclude postmaster.pid --exclude postmaster.opts` is a way to go.
+[`pg_start_backup()`](https://www.postgresql.org/docs/current/static/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP) +
+`rsync -az --exclude pg_replslot --exclude postmaster.pid --exclude postmaster.opts` is a way to go.
 And, obviously, don't exclude `pg_wal` (aka `pg_xlog`) if neither WAL archiving nor replication slot is not set up.
 
 And don't forget to revoke `authorized_keys` if SSH was used for `rsync`!
+
+You may also want to bootstrap the replica [from MetaDB snapshot in S3](docs/metadb-sharing.md)
+and switch it to streaming replication afterwards.
 
 # Updating firewall rules
 

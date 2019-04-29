@@ -8,5 +8,5 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/* \
     && :
 
-COPY metadb_s3_archive \
+COPY metadb_s3_archive metadb_s3_tarz \
     /usr/local/bin/
