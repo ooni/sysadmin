@@ -199,14 +199,6 @@ case "$script" in
     # So whole /private subtree is mounted in the following code.
     volargs="${volargs} --volume=$private:/p:rw"
 
-    set -o xtrace
-    for fqdn in "$@"; do
-    docker run $docksafe --user "$uidno" $docknet ${volargs} \
-        --volume=/opt:/opt:ro \
-        openobservatory/pipeline-shovel:20190214-220417f8 \
-        python2.7 /opt/crutch.py --bucket "/p/spool/${fqdn}" --stash /p/stash || exit 1
-    done
-
     # sort's `--buffer-size` is intentionally lower here then in another place: # if it fails because of RAM, checksum should differ.
     set -- /bin/bash -c 'set -ex; set -o pipefail; set -o noclobber; cd /p/spool; find "$@" -type f -execdir mv --no-clobber --target-directory "/p/reports-raw/$0" {} +; find "/p/reports-raw/$0/" -type f -printf "%f %s\n" | LC_ALL=C sort --buffer-size=64M | sha256sum >"/p/reports-raw-shals/$0"' "${bucket}" "$@"
     ;;
