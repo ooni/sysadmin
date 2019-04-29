@@ -1,3 +1,4 @@
+---
 # 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 # 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
 #    https://github.com/ansible/ansible/pull/22646
@@ -20,6 +21,7 @@
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
     user: "{{ passwd.afpsql.id }}:{{ passwd.afpsql.id }}"
+    stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
+    stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
-
-
+...
