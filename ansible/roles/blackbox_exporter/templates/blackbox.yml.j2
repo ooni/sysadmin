@@ -58,7 +58,6 @@ modules:
   # https://collector.ooni.io/invalidpath
   ooni_collector_ok:
     prober: http
-    timeout: 5s
     http:
       valid_status_codes: [404]
       method: GET
@@ -67,7 +66,6 @@ modules:
   # https://bouncer.ooni.io/bouncer/net-tests
   ooni_bouncer_ok:
     prober: http
-    timeout: 5s
     http:
       method: POST
       headers:
@@ -80,7 +78,6 @@ modules:
   # https://web-connectivity.th.ooni.io/status
   ooni_web_connectivity_ok:
     prober: http
-    timeout: 5s
     http:
       valid_status_codes: [200]
       method: GET
