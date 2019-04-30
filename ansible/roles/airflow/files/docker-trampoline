@@ -1,14 +1,21 @@
 #!/bin/bash
 #
-# Ability to execute arbituary docker commands equals to root-shell, so this
-# script does some whitelisting.  The script should be launched with:
+# Ability to execute arbituary docker commands on the host equals to root-shell
+# on the host (datacollector.infra.ooni.io), so this script does some
+# whitelisting.
 #
-#   sudo --non-interactive /foo/bar/trampoline.sh \
-#         do-something-awesome.py \
-#         "{{ ds }}" \
-#         "{{ execution_date.isoformat() }}" \
-#         "{{ (execution_date + dag.schedule_interval).isoformat() }}" \
-#         other CLI arguments to script
+# Look at `git grep docker-trampoline ansible/roles/airflow/files/airflow-dags/`
+# for the code invoking the script.
+#
+# The script is launched by airflow-dags inside of af-worker container.
+# The containers running Airflow and actual pipeline steps are separated
+# to ease dependency management and to make steps more self-contained.
+# The af-worker container launched from openobservatory/airflow* image has no
+# suid binaries besides sudo and has /var/run/docker.sock mounted from
+# datacollector.infra.ooni.io "dom0".  So the script acts as...
+# 1) a configuration file having various paths and paths to credentials
+# 2) a "trampoline" to avoid giving unlimited root shell to the Airflow code.
+#
 
 # FIXME: 1000 = `id -u benchmark` at the datacollector dom0
 uidno=1000
