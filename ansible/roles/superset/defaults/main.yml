@@ -4,7 +4,7 @@ superset_venv_path: "{{ superset_path }}/venv"
 superset_port: "8088"
 superset_listen_address: "127.0.0.1:{{ superset_port }}"
 superset_secret_key: "{{ vault_superset_secret_key }}"
-superset_version: "0.18.5"
+superset_version: "0.28.1"
 
 superset_admin_username: "admin"
 superset_admin_password: "{{ vault_superset_admin_password }}"
