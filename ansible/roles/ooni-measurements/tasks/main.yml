@@ -22,6 +22,7 @@
     purge_networks: true
     env:
       APP_ENV: production
+      prometheus_multiproc_dir: '/dev/shm'
       PROMETHEUS_PORT: '{{ oomsm_prometheus_port }}'
       DATABASE_URL: '{{ oomsm_db_url }}' # FIXME: ?sslmode=require
       DATABASE_STATEMENT_TIMEOUT: '{{ (oomsm_timeout_s - 1) * 1000 }}'
