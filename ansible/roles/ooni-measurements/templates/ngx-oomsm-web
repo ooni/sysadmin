@@ -4,7 +4,7 @@ proxy_cache_path /var/cache/nginx-api keys_zone=api:1M;
 
 server {
     listen 80;
-    listen 443 ssl spdy;
+    listen 443 ssl;
 
     keepalive_timeout 120 120; # http://kb.mozillazine.org/Network.http.keep-alive.timeout
     ssl_certificate     /etc/letsencrypt/live/{{ oomsm_domain }}/fullchain.pem;
@@ -51,7 +51,7 @@ server {
 {% endfor %}
 
 
-{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/blockpage_detected", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
+{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
@@ -108,7 +108,7 @@ server {
 
     server_name {{ oomsm_legacy_domains | join(' ') }};
 
-    access_log  /var/log/nginx/{{ oomsm_legacy_domains[0] }}.access.log mtail;
+    access_log  /var/log/nginx/{{ oomsm_legacy_domains[0] }}.access.log;
     error_log   /var/log/nginx/{{ oomsm_legacy_domains[0] }}.error.log warn;
 
     location / {
