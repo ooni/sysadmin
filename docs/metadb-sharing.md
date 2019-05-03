@@ -57,7 +57,7 @@ mkdir /mnt/metadb
 
 6. Download the metadb sync script and run it:
 ```
-wget https://raw.githubusercontent.com/ooni/sysadmin/a7bce33e3d3a729388d9e74970030a91310b75fe/scripts/metadb_s3_tarx # XXX update once branch is merged
+wget https://raw.githubusercontent.com/ooni/sysadmin/master/scripts/metadb_s3_tarx
 chmod +x metadb_s3_tarx
 apt install make bc # Install some requirements
 time ./metadb_s3_tarx DEST=/mnt/metadb fetch # This will take 1-2h to complete, so you should run it in a screen session or similar
