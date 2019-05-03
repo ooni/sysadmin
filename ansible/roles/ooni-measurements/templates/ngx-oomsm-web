@@ -65,6 +65,15 @@ server {
     }
 {% endfor %}
 
+    location /metrics {
+        #satisfy all;
+        #allow {{ lookup('dig', 'prometheus.infra.ooni.io/A') }}/32;
+        #deny all;
+
+        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_prometheus_port }};
+        proxy_http_version 1.1;
+    }
+
     location /.well-known/acme-challenge {
         default_type "text/plain";
         root /var/www/letsencrypt;
