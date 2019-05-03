@@ -1,8 +1,10 @@
+---
 modules:
   http_2xx:
     prober: http
     timeout: 5s
     http:
+      preferred_ip_protocol: ip4
   http_post_2xx:
     prober: http
     timeout: 5s
@@ -23,8 +25,12 @@ modules:
     prober: tcp
     timeout: 5s
     tcp:
+      preferred_ip_protocol: ip4
       query_response:
       - expect: "^SSH-2.0-"
+        send: "SSH-2.0-blackbox_exporter OONI-prometheus-0.0\x0d" # WTF: \x0a is auto-added https://github.com/prometheus/blackbox_exporter/blob/master/tcp.go#L127
+      # FIXME: `blackbox_exporter` waits for newline, so we can't wait for handshake :-(
+      # - expect: "diffie-hellman-group14-sha1.*ssh-dss.*hmac-sha1.*hmac-sha1.*none.*none"
   irc_banner:
     prober: tcp
     timeout: 5s
@@ -38,29 +44,40 @@ modules:
   icmp:
     prober: icmp
     timeout: 5s
+    icmp:
+      preferred_ip_protocol: ip4
+
+  tls_snakeoil:
+    prober: tcp
+    tcp:
+      tls: true
+      tls_config:
+        insecure_skip_verify: true
 
   # When using this prober, be sure to target:
   # https://collector.ooni.io/invalidpath
   ooni_collector_ok:
     prober: http
-    timeout: 5s
     http:
       valid_status_codes: [404]
       method: GET
+
   # When using this prober, be sure to target:
-  # https://bouncer.ooni.io/bouncer
+  # https://bouncer.ooni.io/bouncer/net-tests
   ooni_bouncer_ok:
     prober: http
-    timeout: 5s
     http:
-      valid_status_codes: [405]
-      method: GET
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: '{"net-tests":[{"input-hashes":null,"name":"web_connectivity","test-helpers":["web-connectivity"],"version":"0.0.1"}]}'
+      fail_if_not_matches_regexp:
+      - '"web-connectivity":' # some bouncer-like response
 
   # When using this prober, be sure to target:
   # https://web-connectivity.th.ooni.io/status
   ooni_web_connectivity_ok:
     prober: http
-    timeout: 5s
     http:
       valid_status_codes: [200]
       method: GET
@@ -82,3 +99,22 @@ modules:
       method: GET
       fail_if_not_matches_regexp:
         - ".+?\"headers_dict\".+?"
+
+  ooni_orchestrate:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "Hello, this is ooni-orchestrate"
+
+  ooni_registry:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "Hello, this is ooni-registry"
+
+  ooni_proteus:
+    prober: http
+    http:
+      fail_if_not_matches_regexp:
+      - "OONI Proteus" # the admin JS-based frontend
+...

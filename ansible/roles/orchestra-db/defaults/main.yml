@@ -1,0 +1,4 @@
+orchestra_db_user: "proteus"
+orchestra_db_name: "proteus"
+orchestra_db_password: "{{ orchestra_database_password }}"
+orchestra_db_schema_path: "/srv/proteus/schema/"

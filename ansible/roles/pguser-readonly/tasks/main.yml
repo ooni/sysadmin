@@ -1,0 +1,41 @@
+---
+- name: apt install python-psycopg2, to manage postgresql
+  apt:
+    name: python-psycopg2 # IMHO it's OK to have it in dom0 instead of /root/venv, it's rather stable
+    state: present
+    update_cache: true
+    cache_valid_time: 28800
+
+- postgresql_user:
+    # 1. shared DBs share network with dom0 to be firewalled
+    # 2. avoid admin commans via network in, probably, plaintext
+    # => that's why localhost is enforced :)
+    login_host: localhost
+    login_user: '{{ login_user }}'
+    login_password: '{{ login_password }}'
+    db: '{{ db }}'
+    name: '{{ name }}'
+    password: '{{ password }}'
+    encrypted: true
+    priv: 'CONNECT/TEMPORARY'
+    state: present
+  tags: priv
+
+- name: GRANT SELECT ON ALL TABLES IN SCHEMA
+  postgresql_privs:
+    login_host: localhost
+    login_user: '{{ login_user }}'
+    login_password: '{{ login_password }}'
+    db: '{{ db }}'
+    roles: '{{ name }}'
+    type: table
+    objs: ALL_IN_SCHEMA # may need a re-run when new tables are created
+    privs: SELECT
+    state: present
+  tags: priv
+
+# TODO: ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON SEQUENCES TO {{ name }};
+# ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO {{ name }};
+
+# TODO, add additional safety net ```alter user r1 set default_transaction_read_only = 0;```
+# see https://www.postgresql.org/message-id/20151125132332.GU3685%40tamriel.snowman.net

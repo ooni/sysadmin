@@ -1,4 +1,0 @@
----
-- include: install-openvpn.yml
-- include: install-psiphon.yml
-- include: install-lantern.yml

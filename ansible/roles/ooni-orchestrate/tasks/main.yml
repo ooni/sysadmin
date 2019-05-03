@@ -1,0 +1,54 @@
+- name: set permissions, owner and group
+  file:
+    path: "{{ orchestra_install_path }}"
+    state: directory
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: mkdir for config, data and binary
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ orchestra_data_path }}"
+    - "{{ orchestra_config_path }}"
+    - "{{ orchestra_path }}"
+
+- name: untar orchestra tarball
+  unarchive:
+    src: "{{ orchestra_tarball_url }}"
+    dest: "{{ orchestra_path }}"
+    mode: 0755
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    copy: no
+
+- name: Configure Proteus
+  notify:
+  - reload orchestra
+  template:
+    src: ooni-orchestrate.toml.j2
+    dest: "{{ orchestra_config_path }}/ooni-orchestrate.toml"
+
+- import_tasks: cleanup-legacy.yml
+
+- name: Install orchestra systemd service file
+  notify:
+  - restart orchestra
+  template:
+    src: ooni-orchestrate.service
+    dest: /etc/systemd/system/ooni-orchestrate.service
+
+- name: Enable and start orchestra service
+  systemd:
+    name: ooni-orchestrate.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- import_tasks: setup-nginx.yml

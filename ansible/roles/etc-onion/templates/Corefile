@@ -1,0 +1,44 @@
+# ansible-managed in ooni-sysadmin.git
+
+. {
+    prometheus localhost:9153
+    bind 127.0.0.1 ::1
+    chaos
+    # check for forwarding loop as there may be bug in resolv.conf patching
+    loop
+    forward . {% for ns in upstream_nameservers %} {{ ns }}:53{% endfor %} {
+        policy sequential
+    }
+    cache
+}
+
+onion. {
+    prometheus localhost:9153
+    bind 127.0.0.1 ::1
+    # Drop `A` queries and use only `AAAA` mapping, as IPv6 ULA is huge,
+    # and IPv4 at 127/8 may be already used for something.
+    template IN A {
+        rcode NOERROR
+        authority "onion. 60 IN SOA localhost. nobody.localhost. (1128457986 60 60 60 60)"
+    }
+    # `MX` is dropped way to make `host` output nicer, it has no real benefit.
+    template IN MX {
+        rcode NOERROR
+        authority "onion. 60 IN SOA localhost. nobody.localhost. (1128457986 60 60 60 60)"
+    }
+    forward . 127.0.90.53:9053 {
+        # tor daemon does not speak TCP
+        prefer_udp
+        # tor daemon fails `. IN NS` health-check with NOTIMP
+        max_fails 0
+        # XXX: fallback with `policy sequential` does not preveant onion name
+        # leak as GLibc tries next nameserver on NOTIMP error and CoreDNS
+        # forwards NOTIMP as-is, so such fallback is not configured.
+    }
+}
+
+d.f.ip6.arpa. {
+    prometheus localhost:9153
+    bind 127.0.0.1 ::1
+    file /srv/coredns/ipv6-ula.zone
+}

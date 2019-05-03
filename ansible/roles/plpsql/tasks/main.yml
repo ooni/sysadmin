@@ -1,0 +1,51 @@
+---
+- name: pipeline postgres PGDATA directory
+  file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
+
+- name: place config in PGDATA
+  template: src={{item}} dest=/srv/pl-psql/{{item}} owner=plpsql group=plpsql mode=0444
+  notify: restart pl-psql
+  with_items:
+  - pg_hba.conf
+  - postgresql.conf
+
+- name: place recovery.conf to PGDATA
+  template: src=recovery.conf dest=/srv/pl-psql/recovery.conf owner=plpsql group=plpsql mode=0444
+  notify: restart pl-psql
+  when: inventory_hostname != 'hkgmetadb.infra.ooni.io'
+
+- name: drop recovery.conf from PGDATA
+  file: name=/srv/pl-psql/recovery.conf state=absent
+  notify: restart pl-psql
+  when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
+
+# if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
+- name: docker run pipeline postgres
+  docker_container:
+    image: openobservatory/sysadmin-postgres-metadb:20190412-010f6f70 # 9.6.12
+    name: pl-psql
+    hostname: pl-psql
+    network_mode: 'host'
+    purge_networks: true # drop `bridge` network
+    volumes:
+      - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
+      - /etc/group:/etc/group:ro # to make `initdb` happy
+      - /srv/pl-psql_ssl:/srv/pl-psql_ssl:ro
+      - /srv/pl-psql:/srv/pl-psql:rw
+    tmpfs:
+      - /run/postgresql:size=1m,mode=0700,uid={{ passwd.plpsql.id }}
+    env:
+      PGDATA: /srv/pl-psql
+      POSTGRES_DB: metadb
+      POSTGRES_USER: shovel
+      POSTGRES_PASSWORD: "{{ shovel_postgres_password }}"
+      AWS_DEFAULT_REGION: us-east-1 # US East (N. Virginia)
+      AWS_ACCESS_KEY_ID: "{{ metadb_wal_s3_key_id }}"
+      AWS_SECRET_ACCESS_KEY: "{{ metadb_wal_s3_access_key }}"
+      PUSHGATEWAY_CERT: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.cert"
+      PUSHGATEWAY_KEY: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.key"
+    user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
+    stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
+    stop_timeout: 60 # default is 10
+    restart_policy: unless-stopped
+...

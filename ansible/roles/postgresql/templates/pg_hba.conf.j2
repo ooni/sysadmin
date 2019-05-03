@@ -6,4 +6,5 @@ local   all             postgres                                peer
 # "local" is for Unix domain socket connections only
 local   all             all                                     peer
 # IPv4
+host {{ psql_db_name }} {{ psql_db_user }} 127.0.0.1/24 md5
 hostssl {{ psql_db_name }} {{ psql_db_user }} 0.0.0.0/0 md5

@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+#
+# Example:
+# cd /data/ooni/public/autoclaved && scrub-autoclaved 2017-07-07/index.json.gz
+#
+# Alternative to:
+
+import base64
+import binascii
+import functools
+import gzip
+import hashlib
+import json
+import sys
+
+def scrub_autoclaved(index_fname):
+    index = []
+    with gzip.GzipFile(index_fname, 'r') as fd:
+        filename = None
+        for line in fd:
+            if b'"file"' in line or b'/file"' in line:
+                line = json.loads(line.decode('utf-8'))
+                if line['type'] == 'file':
+                    filename = line['filename']
+                elif line['type'] == '/file':
+                    assert filename is not None
+                    index.append((filename, base64.b64decode(line['file_sha1'])))
+                    filename = None
+    for filename, file_sha1 in index:
+        sha = hashlib.sha1()
+        with open(filename, 'rb') as fd:
+            for blob in iter(functools.partial(fd.read, 1048576), b''):
+                sha.update(blob)
+        if sha.digest() != file_sha1:
+            print(filename, binascii.hexlify(file_sha1).encode('ascii'), sha.hexdigest())
+
+def main():
+    for index in sys.argv[1:]:
+        scrub_autoclaved(index)
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,11 @@
+---
+- name: test tor config
+  command: /usr/bin/tor --verify-config
+  listen:
+    - restart tor
+
+- name: restart tor
+  service:
+    name: tor
+    state: restarted
+...

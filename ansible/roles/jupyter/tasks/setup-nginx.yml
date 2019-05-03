@@ -1,0 +1,30 @@
+---
+- name: Install nginx
+  environment:
+    RUNLEVEL: 1 # Done to avoid nginx auto starting
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nginx
+
+- name: Remove default nginx virtual host
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  register: nginx
+
+- name: Configure jupyter virtual host
+  template:
+    src: nginx-site-jupyter.j2
+    dest: /etc/nginx/sites-available/jupyter
+
+- name: Link nginx sites
+  file:
+    path: /etc/nginx/sites-enabled/jupyter
+    src: /etc/nginx/sites-available/jupyter
+    state: link
+    force: yes
+  notify:
+  - restart nginx
+

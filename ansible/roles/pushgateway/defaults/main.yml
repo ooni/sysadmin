@@ -1,0 +1,13 @@
+go_arch: amd64
+
+pushgateway_base: /srv/pushgateway
+pushgateway_version: 0.4.0
+pushgateway_download_url: https://github.com/prometheus/pushgateway/releases/download
+
+pushgateway_listen_address: "127.0.0.1:9091"
+
+pushgateway_basename: "pushgateway-{{ pushgateway_version }}.linux-{{ go_arch }}"
+pushgateway_tarball_url: "{{ pushgateway_download_url }}/v{{ pushgateway_version }}/pushgateway-{{ pushgateway_version }}.linux-{{ go_arch }}.tar.gz"
+pushgateway_sha256sums_url: "{{ pushgateway_download_url }}/v{{ pushgateway_version }}/sha256sums.txt"
+pushgateway_sha256sums: "{{ playbook_dir }}/cache/pushgateway-{{ pushgateway_version}}.SHA256SUMS"
+pushgateway_path: "{{ pushgateway_base }}/pushgateway-{{ pushgateway_version }}.linux-{{ go_arch }}"

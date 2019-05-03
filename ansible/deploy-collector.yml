@@ -1,0 +1,36 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: have_collector
+  roles:
+    - role: docker_py
+
+- hosts: "c.collector.ooni.io"
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["c.collector.ooni.io"]
+    - role: ooni-collector
+      collector_domain: c.collector.ooni.io
+
+- hosts: "hkgcollectora.ooni.nu"
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["a.collector.ooni.io"]
+    - role: ooni-collector
+      collector_domain: a.collector.ooni.io
+
+- hosts: "miacollector.ooni.nu"
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["b.collector.ooni.io"]
+    - role: ooni-collector
+      collector_domain: b.collector.ooni.io

@@ -1,30 +1,80 @@
 ---
+# I have no idea how it is implemented, but it reduces playbook runtime by factor of three!
+ansible_ssh_pipelining: true
+
+# default: login as user & get sudo
+ansible_become: true
+
+apt_cache_valid_time: 28800 # 8h
+
+# link vault to plaintext
+weasel_login: "{{ vault_weasel_login }}"
+weasel_comment: "{{ vault_weasel_comment }}"
+weasel_keys: "{{ vault_weasel_keys }}"
+root_password_digest: '{{ vault_root_password_digest }}'
+root_password_mtime: '{{ vault_root_password_mtime }}'
+ansible_slack_token: '{{ vault_ansible_slack_token }}'
+
+# One can generate SSHA with ../scripts/ngx-mkpasswd
+prometheus_scraper_ssha: '{{ vault_prometheus_scraper_ssha }}' # xref: prometheus_scraper_password
+
 passwd:
   # services
+  # - uid [2000, 10000), grouped together by "service"
+  # - base for next service is `echo $(( 2000 + 50*($RANDOM % 160) ))`
+  # - login name must be <= 8 chars to be nice to `top` util
   afredis:  {login: afredis,  id: 2000, comment: Airflow Redis}
   afpsql:   {login: afpsql,   id: 2001, comment: Airflow Postgresql}
   afsched:  {login: afsched,  id: 2002, comment: Airflow Scheduler}
   afwebsrv: {login: afwebsrv, id: 2003, comment: Airflow Webserver}
   afworker: {login: afworker, id: 2004, comment: Airflow Worker}
   afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
+
   plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
-  nodeexp:  {login: nodeexp,  group: nodeexp, id: 2200, comment: Node Exporter}
-  prometh:  {login: prometh,  group: prometh, id: 2201, comment: Prometheus}
-  alertman: {login: alertman, group: alertman, id: 2202, comment: Alert Manager}
 
-  superset: {login: superset, group: superset, id: 2400, comment: Superset User}
-  # people
+  nodeexp:  {login: nodeexp,  id: 2200, comment: Prometheus Node Exporter}
+  prometh:  {login: prometh,  id: 2201, comment: Prometheus Poller}
+  alertman: {login: alertman, id: 2202, comment: Prometheus Alert Manager}
+  prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
+  grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
+  ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
+  pushgw:   {login: pushgw,   id: 2206, comment: Prometheus Pushgateway}
+
+  piwik:    {login: piwik,    id: 2300, comment: Piwik user}
+
+  grav:     {login: grav,     id: 2400, comment: Grav user}
+  superset: {login: superset, group: superset, id: 2401, comment: Superset User}
+
+  prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
+  prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}
+  prtnotif: {login: prtnotif, id: 4802, comment: Orchestration Notifications}
+  prtfront: {login: prtfront, id: 4803, comment: Orchestration Front}
+
+  explorer: {login: explorer, id: 4950, comment: OONI Explorer}
+
+  oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
+
+  anaconda: {login: anaconda, id: 6000, comment: Anaconda python user}
+  jupyter: {login: jupyter, id: 6001, comment: Jupyter python user}
+
+  ooni_run: {login: oonirun, id: 7000, comment: OONI Run user}
+
+  bouncer: {login: bouncer, id: 8000, comment: OONI Bouncer user}
+  collector: {login: collector, id: 8001, comment: OONI Collector user}
+  sync_user: {login: sync-user, id: 8002, comment: OONI Collector Sync user}
+
+  # people have id >= 10000
   agrabeli:
     login: agrabeli
     id: 10000
     comment: Maria Xynou
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD0JSwM+t3Uz9lS3Mjoz9oo4vOToWyzboZhYQbP8JY5HvFtAvWanWHnUBO91t6hkgKIMiUqhdCJn26fqkhSGe/bRBaFUocOmuyfcmZoRdi0qzAskmycJsj/w6vWR4x6MYkmJvSeI/MGxjEFt4s2MfOG1tP8CBLUYft9qUleeJa7Jln8c+xbnqB7YngaI190icQHE9NuIB2CXvzbmo3tLtHNMagEwI7VoBDj6mxzTxBd9JhuhF4w5uGxxm0Gp1hzk+15obNnaBS+Anr7jXz8FPwwxCH+XhBZxB1PPpcIayKrf9iLyGtwmhkdDoWCqYAr1mue3LxFso+TZF4bwE4Cjt1 agrabelh@agrabelh"]
   weasel:
-    login: "{{ vault_weasel_login }}"
+    login: "{{ weasel_login }}"
     id: 10001
-    comment: "{{ vault_weasel_comment }}"
-    keys: "{{ vault_weasel_keys }}"
+    comment: "{{ weasel_comment }}"
+    keys: "{{ weasel_keys }}"
   art:
     login: art
     id: 10002
@@ -45,16 +95,36 @@ passwd:
     id: 10005
     comment: Simone Basso
     keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChiA7/HyB2fcXulsT33NF7N+681A4u3JRjl/d85JCjYycnw+gYl2Q/aovZ31Y64VC3AYwXwHp6lx2GwfTe0R+4Wk0qriFYnDhnjG6uiFEdatJWb1/yyGkJ31XOMoOBEPRrqhjmpHDmLvyhD1J0UIfk+5jsV3SIOXUMTKO9NDbUT0fu4d85/IFGteip6tVu3eKHNVLHQJhxkvOwN9B4WLNbALW4TlFqYfUX0Stz4ijguVNKdeIjNq74DbyTYRWm/DEMFpwIrBDuupg8I2InXbYFRU8H7avIvBc7UWhFVm5yvLkTnq5DltERt6dDAEdT6PdGyrP9Zf0vgGgfvc6c8gFTKdm7xoGCUgYYMak/m6AOaiB/18HRGVF97XEwN1VUB0pOkGNOLwgS/DbrDvonrnDC4Du6nuGJ56Wz2mH1kxG0AWY++NamtCrm7gUrmbmeHhjIVwfea1AKaQUEwgxeV5woiW4NGX3Im/GWr1pwqvbIZ2ple9AGzA2+JBfHDetKJZOVhF0hdUzGXa1y+vLykRiZ+dCy5WFw2prBmREv9BvUutGIn9qwR9NbFHsft/P4n5BS8AzNox9nSog6YPm0Qbsg5LIDxfD0Z6uw9l9KsinrJ4fn/08rJrSIAvh2pORuXPWIXU3321Pt2o0nwmWncL/spVh2Fjrkt3Iuh5668c2wjw== simone@shelob"
-      - "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOODb6hoif8TDyU2KZ73mfc0zjy4dy/1a6wZwpd3hmdLGmMHPEMtl8KjeLCo8uGVPK4dDE4NGBcWeYCPJofuQWk= sbasso@dunkerque.local"
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsifxweF7RnZaI55tLEuW2V9SOA6ZJXizXWp69hs1Vy1zeCkyMHMjtUHVjtiV6m1OStb78iNnXh5KjqaNZy7Ign2HILvtFysWktasgM/Vn04FXN9mkh29fKVqVu5XZpzNoBupjCrc9asJUf/6gCAFQHoQyCNO58/R12iUZBtF9cSaZoX4BfwnCNH66uXQ1EK+D0d2uTqtBrPHdm5rexII7uGvG3+dm/YvPmlj87qW6gJstcRVzAPtjBtf8sQGZBnhV1mGAAHQ168DwiZ1LJwtEAEW2HOhtVDemZNKV/KnDGZOWzF/Ybl+4lIdDHcdk/gpjARJtf92XRTD7FmobduwKVmvXR7hHY8nklWHF+PhQtAqg31y1QhW/g4U/JAd8BhziNE9KF6GZ/CIcDFKLZzpyeB4dg2hnJ6e1RoZvC9ObgVOp0jRMgv0c3GpCwoh2eml01zoxDicPMGzbEnuTduVhW5ebMh23NoYhaMnzDcZaRfT//1OB1vi52dXHj4BCE+4s07DzbR7JLvYwYCtMghAqSkotTDoyjYWF8ymwC6Zg54OSYkyNsjOAgQg1u06+dxNubSB9ZI6woUqY0Fhay/ZkS0sO+skEekE1dZes9NWW/1QVWGOgO8g3aO59+Y6e1YbyJhBG2N05tLn1upuqdEHjdkDX9hYm267oBaAdMMl0+Q== sbasso@dunkerque.local"
   superq:
     login: superq
     id: 10006
     comment: Ben Kochie
     keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfYfZFTGkdHoRoUfnhzp8RLuOgOEgyTH4dncpP+eN2yBbTw5kY84t8sSa60vtjfiPFQGBYaBZdZV9hTdOZgR+wyQXeSWy2evM9e/6h9ZCwhV8vXiRsisV7cJyuqfTdeTaqwgggR24ETS6nTs8UEPRjfzXDTPGv8e4B4vcvoGjEtgkWfOD1V10RuULxZc+kccxYWopTsnpEdrO1o/3IDlno8+7cTNFYDV+HEdjr7BMWXJJvuqW+59WQzkwggQtLLL72gQD2VrDb9+1g0xWSRBd1Jp/Yv956uLJGaVGjJ2yOdyy5nNAqoTRYPoRniMnGOOHPk6fR1LsqXK5S4hxyInTEQvszKUwz0aRDITxtHxdBlruYaAotGB2VEMax3h4t2HJRYsEt+zxgh+ZEDJTsk0GgywO01obn9dgrCF2gwa4DUR2trcc4uaW0ZbqzQ9PiOZ6+ENYJiR6DkXWSrVXB75Vo9tw0DAC/ArxHJ6kl9W52h0Z7hFDQrniRAmYCWF7/jOhFYuqvzmeLOZJajJ9TE4Z5an0maeYchsISODeVaQWQ8ZPSR/9WjXFtVRMu57H+MVsvgNodaq/G2y7Y+S0djjKAUVtqPiM/AUDXCk88eHl0XfSgUEoveuMZiWfgcGW28LoF36OMihTwx6xJ5bLxVUp+FkLIM+3ET/foabLupCIAoQ=="
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfYfZFTGkdHoRoUfnhzp8RLuOgOEgyTH4dncpP+eN2yBbTw5kY84t8sSa60vtjfiPFQGBYaBZdZV9hTdOZgR+wyQXeSWy2evM9e/6h9ZCwhV8vXiRsisV7cJyuqfTdeTaqwgggR24ETS6nTs8UEPRjfzXDTPGv8e4B4vcvoGjEtgkWfOD1V10RuULxZc+kccxYWopTsnpEdrO1o/3IDlno8+7cTNFYDV+HEdjr7BMWXJJvuqW+59WQzkwggQtLLL72gQD2VrDb9+1g0xWSRBd1Jp/Yv956uLJGaVGjJ2yOdyy5nNAqoTRYPoRniMnGOOHPk6fR1LsqXK5S4hxyInTEQvszKUwz0aRDITxtHxdBlruYaAotGB2VEMax3h4t2HJRYsEt+zxgh+ZEDJTsk0GgywO01obn9dgrCF2gwa4DUR2trcc4uaW0ZbqzQ9PiOZ6+ENYJiR6DkXWSrVXB75Vo9tw0DAC/ArxHJ6kl9W52h0Z7hFDQrniRAmYCWF7/jOhFYuqvzmeLOZJajJ9TE4Z5an0maeYchsISODeVaQWQ8ZPSR/9WjXFtVRMu57H+MVsvgNodaq/G2y7Y+S0djjKAUVtqPiM/AUDXCk88eHl0XfSgUEoveuMZiWfgcGW28LoF36OMihTwx6xJ5bLxVUp+FkLIM+3ET/foabLupCIAoQ== superq"
+  sarath:
+    login: sarath
+    id: 10007
+    comment: Sarath M S
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXhSQ1VI6TxiFJeA7N1HDh5JSXfWFDGFEzB/97zDFnZ6OHdDLnUjQjfAN+pvzbXEvPZc6o9S9+gXWdB9CzMHhAJ6Gk7fKN4kjE7gKKLpEJoWIY5xXw8WDyYVfdI8bu10Op3bRCG+f2Lp6sw5ax8kiRWKs8xZppsRj/dICCLt7nU4X6MIrSu3eVSyGcs5HcKl038gd01I0YsfcG35wwOoCmbYgGu/u3gDOXCEuXCnK1PRu5ob9zMyGLN+QTiVW2oqCXhhTvZAOPpqirDEg13nwldcYi2cSePt+YZi1ecjX+3XdiXeLpQGRvQdDiXCKlnIIVR9pYGlllCC24AMhOpSXx"
+
+# Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
+# See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
+adm_logins: [ art, darkk, sbs ]
+shell_logins: [ ]
+svc_ssh_logins: [ ]
+sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
+root_ssh_authrorized_keys: [ ] # unstructured legacy keys
 
 # to avoid useless `pip` modules in global environment if ansible modules require it
 ansible_venv: /root/venv
 docker_apt_ver: ""
-airflow_tag: "1.8.0-oo3"
+
+# that's common for roles nginx-prometheus, fw and various exporters
+node_exporter_ipv4: "127.139.92.143" # this addr is not 127.0.0.1 to avoid confusion as external/9100 is SSL and lo/9100 is not
+ngxprom_exporter_ports: { 9100: '{{ node_exporter_ipv4 }}' }
+
+ntp_pool: debian
+have_ssd: false
+...

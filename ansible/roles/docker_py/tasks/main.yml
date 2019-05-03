@@ -1,9 +1,13 @@
 ---
-
+- name: Run "apt-get update"
+  apt:
+    update_cache: yes
 - name: installs apt-https-transport
-  apt: >
-    name={{ item }}
-    state=present
+  apt:
+    name: '{{ item }}'
+    state: present
+    update_cache: true
+    cache_valid_time: 28800
   with_items:
     - apt-transport-https
     - python-virtualenv
@@ -36,15 +40,5 @@
   pip:
     name: "docker-py"
     version: "1.10.6"
+    virtualenv_site_packages: yes
     virtualenv: "{{ ansible_venv }}"
-
-- name: Copy into the virtualenv the system python-apt
-  shell: "cp -R /usr/lib/python2.7/dist-packages/apt* {{ ansible_venv }}/lib/python2.7/site-packages/"
-
-- name: Install other python dependencies
-  pip:
-    name: "{{ item }}"
-    virtualenv: "{{ ansible_venv }}"
-  with_items:
-    - "simplejson"
-    - "passlib"

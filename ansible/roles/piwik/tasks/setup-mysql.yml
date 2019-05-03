@@ -1,0 +1,27 @@
+---
+- name: "Install dependencies"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'mysql-server'
+    - 'python-mysqldb' # Install MySQLdb Python package, mandatory to manage MySQL with ansible
+
+- name: "Start MySQL service"
+  action: service name=mysql state=started enabled=yes
+
+- name: "Check if empty MySQL admin password"
+  action: shell mysql -h {{ mysql_host }} -u {{ mysql_admin_user }} -e quit
+  ignore_errors: True
+  register: mysql_emptypass
+
+- name: "Change MySQL root password"
+  action: shell mysqladmin -h {{ mysql_host }} -u {{ mysql_admin_user }} password {{ piwik_mysql_admin_pass }}
+  when: mysql_emptypass|success
+
+# Manage Piwik database
+- name: "Manage Piwik db"
+  action: mysql_db encoding=utf8 name={{ mysql_piwik_db }} state=present login_user={{ mysql_admin_user }} login_password={{ piwik_mysql_admin_pass }} login_host={{ mysql_host }}
+
+# Manage Piwik database user
+- name: "Manage Piwik db-user"
+  action: mysql_user name={{ mysql_piwik_user}} password={{ piwik_mysql_piwik_pass }} priv={{ mysql_piwik_db}}.*:ALL state=present login_user={{ mysql_admin_user }} login_password={{ piwik_mysql_admin_pass }} login_host={{ mysql_host }}
+

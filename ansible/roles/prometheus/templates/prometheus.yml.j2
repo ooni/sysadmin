@@ -1,30 +1,50 @@
-# my global config
+---
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
-  # Attach these labels to any time series or alerts when communicating with
-  # external systems (federation, remote storage, Alertmanager).
-  external_labels:
-      monitor: 'ooni-monitor'
-
-# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+# the path is absolute as ansible `validates` temporary file in some temporary directory
 rule_files:
-  - "rules/node.rules"
-  - "rules/alert.rules"
+  - "{{ prometheus_config_path }}/alert_rules.yml"
+  - "{{ prometheus_config_path }}/alert_ooni.yml"
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: [ '127.0.0.1:9093' ]
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-
+    scheme: https
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
-      - targets: ['{{ prometheus_listen_address }}']
+    - targets:
+      - brie.darkk.net.ru:9090
+      - prometheus.infra.ooni.io:8090
+
+  - job_name: pushgateway
+    scheme: http
+    static_configs:
+    - targets:
+      - localhost:9091
+
+  - job_name: 'alertmanager'
+    scheme: https
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
+    static_configs:
+    - targets:
+      - brie.darkk.net.ru:9093
+      - prometheus.infra.ooni.io:9093
 
 {% for bbjob in blackbox_jobs %}
   - job_name: {{ bbjob.name }}
@@ -51,16 +71,94 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endfor %}
 
+{% set onion_scrape_interval = '1m' %}
+{% set onion_scrape_timeout = '45s' %}
+
+  # DNS AAAA *.onion -> IPv6 ULA resolution is done by prometheus and not by
+  # blackbox_exporter due to differences in DNS resolver libraries.  See also
+  # - https://github.com/prometheus/blackbox_exporter/issues/264#issuecomment-442936583
+  # - https://github.com/golang/go/blob/go1.11.2/src/net/dnsclient_unix.go#L424-L436
+  - job_name: 'onion bouncer'
+    scrape_interval: {{ onion_scrape_interval }}
+    scrape_timeout: {{ onion_scrape_timeout }}
+    metrics_path: /probe
+    params: {module: [ooni_bouncer_ok]}
+    dns_sd_configs:
+    - type: AAAA
+      port: 80
+      refresh_interval: 60s # tor DNS TTL
+      names:
+      - nkvphnp3p6agi5qq.onion # hardcoded in app
+    relabel_configs:
+    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/bouncer/net-tests"}
+    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
+    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/bouncer/net-tests"}
+
+  - job_name: 'onion collector'
+    scrape_interval: {{ onion_scrape_interval }}
+    scrape_timeout: {{ onion_scrape_timeout }}
+    metrics_path: /probe
+    params: {module: [ooni_collector_ok]}
+    dns_sd_configs:
+    - type: AAAA
+      port: 80
+      refresh_interval: 60s # tor DNS TTL
+      names:
+      - ganriuwqt5vgbgnj.onion # onion of `b.collector.ooni.io`
+      - 42q7ug46dspcsvkw.onion # onion of `c.collector.ooni.io`
+    relabel_configs:
+    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/invalidpath"}
+    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
+    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/invalidpath"}
+
+  - job_name: 'onion web-connectivity.th'
+    scrape_interval: {{ onion_scrape_interval }}
+    scrape_timeout: {{ onion_scrape_timeout }}
+    metrics_path: /probe
+    params: {module: [ooni_web_connectivity_ok]}
+    dns_sd_configs:
+    - type: AAAA
+      port: 80
+      refresh_interval: 60s # tor DNS TTL
+      names:
+      - 2lzg3f4r3eapfi6j.onion # onion of `b.web-connectivity.th.ooni.io`
+      - y3zq5fwelrzkkv3s.onion # onion of `c.web-connectivity.th.ooni.io`
+    relabel_configs:
+    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/status"}
+    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
+    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/status"}
+
   - job_name: 'node'
     scrape_interval: 5s
     scheme: https
-    basic_auth:
-      username: "{{ prometheus_basic_auth_user }}"
-      password: "{{ prometheus_basic_auth_password }}"
     tls_config:
-      ca_file: "{{ prometheus_monitoring_cert }}"
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
-{% for host in groups.monitored %}
+        - brie.darkk.net.ru:9100
+{% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}
+
+  - job_name: 'gorush'
+    scrape_interval: 5s
+    scheme: https
+    basic_auth:
+      username: prometheus_scraper
+      password: "{{ prometheus_scraper_password }}"
+    static_configs:
+      - targets: [ 'notify.proteus.ooni.io:443' ]
+
+  - job_name: 'ooni-web'
+    scrape_interval: 5m
+    scheme: https
+    metrics_path: /_web.mtime.txt
+    static_configs:
+    - targets: # all mirrors listed in https://github.com/TheTorProject/ooni-web#ooni-web
+      - ooni.io:443
+      - ooni.torproject.org:443
+      - openobservatory.github.io:443
+      - ooni.netlify.com:443
+...

@@ -1,0 +1,24 @@
+---
+- name: "Install dependencies"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - 'unzip'
+    - 'vim'
+
+- name: Create folder
+  file:
+    path: "{{ app_path }}{{ item }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    state: directory
+  with_items: "{{ deploy_create_folders }}"
+
+- name: Configure
+  template:
+    src: config.ini.php.j2
+    dest: "{{ app_path }}/shared/config/config.ini.php"
+
+- import_tasks: setup-mysql.yml
+- import_tasks: setup-php.yml
+- import_tasks: setup-nginx.yml
+- import_tasks: setup-piwik.yml

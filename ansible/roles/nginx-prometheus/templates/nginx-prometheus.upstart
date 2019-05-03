@@ -1,0 +1,16 @@
+description "Separate nginx instance for Prometheus Exporters"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+expect fork
+respawn
+
+pre-start script
+        [ -x /usr/sbin/nginx ] || { stop; exit 0; }
+        /usr/sbin/nginx -q -t -c {{ ngxprom_base }}/nginx.conf -g 'daemon on; master_process on;' || { stop; exit 0; }
+end script
+
+exec /usr/sbin/nginx -c {{ ngxprom_base }}/nginx.conf -g 'daemon on; master_process on;'
+
+pre-stop exec /usr/sbin/nginx -c {{ ngxprom_base }}/nginx.conf -s quit

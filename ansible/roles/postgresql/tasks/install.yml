@@ -4,6 +4,8 @@
     keyserver=keys.gnupg.net
     id=B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 
+# FIXME: `main` is always the latest release, we probably want to select specfic branch
+# and stick with it: *) to get security updates, *) to prevent accidental upgrade
 - name: install PostgreSQL PGDG APT repository
   apt_repository: >
     repo="deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"

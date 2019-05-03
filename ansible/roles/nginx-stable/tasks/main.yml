@@ -1,0 +1,56 @@
+---
+- name: fetch and install nginx.org signing key
+  apt_key:
+    url: https://nginx.org/keys/nginx_signing.key
+    id: '573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62'
+
+- name: add nginx.org apt repository
+  apt_repository:
+    repo: deb https://nginx.org/packages/debian/ {{ansible_distribution_release}} nginx
+    state: present
+    update_cache: true
+
+- name: drop nginx from dist repo
+  apt:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - nginx-common
+    - nginx-doc
+    - nginx-extras
+    - nginx-full
+    - nginx-light
+
+- name: install stable nginx from nginx.org
+  apt:
+    name: nginx{{ nginx_apt_ver }}
+    update_cache: true
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+
+# Guide https://wiki.mozilla.org/Security/Server_Side_TLS#Pre-defined_DHE_groups
+# suggests ffdhe2048 instead of `openssl dhparam` to avoid https://weakdh.org/
+- name: copy nginx configuration snippets
+  copy: src={{item}}  dest=/etc/nginx/{{ item }} mode=0444 owner=root group=root
+  with_items:
+    - ffdhe2048_dhparam.pem # ffdhe2048 Diffie-Hellman parameters
+    - ssl_intermediate.conf
+    - ssl_modern.conf
+
+- name: letsencrypt role transitional crutch # FIXME
+  lineinfile:
+    path: /etc/nginx/sites-enabled/letsencrypt
+    state: absent
+    regexp: '^server_tokens '
+
+- name: remove `default` vhost
+  file: path={{item}} state=absent
+  notify: reload nginx
+  with_items:
+    - /etc/nginx/conf.d/default.conf
+    - /etc/nginx/sites-available/default
+    - /etc/nginx/sites-enabled/default
+
+- name: set nginx.conf
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf mode=0444
+  notify: reload nginx
+...

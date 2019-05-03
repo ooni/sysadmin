@@ -24,26 +24,37 @@
     mode=0640
   notify: restart postgresql
 
-- name: listen on all interfaces
-  replace: >
-    regexp="^#listen_addresses = 'localhost'"
-    replace="listen_addresses = '*'"
-    backup=yes
-    dest={{ pg_path.results[1].stdout }}
-    owner=postgres
-    group=postgres
-    mode=0640
+- name: template postgresql_ooni.conf
+  template:
+    src: postgresql_ooni.conf
+    dest: "{{ (pg_path.results[1].stdout | dirname) + '/postgresql_ooni.conf' }}"
+    owner: postgres
+    group: postgres
+    mode: 0640
+  notify: restart postgresql
+
+- name: add postgresql_ooni.conf
+  lineinfile:
+    path: "{{ pg_path.results[1].stdout }}"
+    insertafter: EOF
+    line: "include 'postgresql_ooni.conf'"
+    state: present
+    backup: yes
+    owner: postgres
+    group: postgres
+    mode: 0640
   notify: restart postgresql
 
 - name: create a new database in PostgreSQL
-  postgresql_db: >
-    name={{ psql_db_name }}
-    state=present
+  postgresql_db:
+    name: "{{ psql_db_name }}"
+    state: present
 
 - name: add user and grant permissions to DB
-  postgresql_user: >
-    name={{ psql_db_user }}
-    password={{ psql_db_passwd }}
-    role_attr_flags=CREATEDB,NOSUPERUSER
-    encrypted=true
-    no_password_changes=yes
+  postgresql_user:
+    db: "{{ psql_db_name }}"
+    name: "{{ psql_db_user }}"
+    password: "{{ psql_db_passwd }}"
+    role_attr_flags: "CREATEDB,NOSUPERUSER"
+    encrypted: true
+    no_password_changes: yes

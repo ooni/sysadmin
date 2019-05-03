@@ -1,8 +1,6 @@
-{{ define "slack.ooni.text" }}
-{{ range .Alerts }}
-{{ .Annotations.description }}
-{{ end }}
-{{ end }}
+{{ define "slack.ooni.text" }}{{ range $i, $el := .Alerts }}{{ if gt $i 0 }}
+{{ end }}{{ $el.Annotations.description }}{{ end }}{{ end }}
 
 {{ define "slack.ooni.title" }}
-{{ range .Alerts }}{{ if eq .Status "resolved" }}[RESOLVED] {{ else }}[FIRING] {{ end }}{{ .Annotations.summary }}{{ end }}{{ end }}
+{{ range $i, $el := .Alerts }}{{ if gt $i 0 }}
+{{ end }}{{ if eq $el.Status "resolved" }}[RESOLVED] {{ else }}[FIRING] {{ end }}{{ $el.Annotations.summary }}{{ end }}{{ end }}

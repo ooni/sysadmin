@@ -1,0 +1,8 @@
+{{ lookup('file', inventory_dir + '/../ext/known_hosts') }}
+{# NB: only hosts valid for CURRENT play are added #}
+{% for h in ansible_play_hosts %}
+{{ h }},{{ lookup('dig', h + '/A') }} {{ lookup('file', tmp + '/' + h + '_rsa_key.pub') }}
+{% if hostvars[h].ed25519_pub.stat.exists %}
+{{ h }},{{ lookup('dig', h + '/A') }} {{ lookup('file', tmp + '/' + h + '_ed25519_key.pub') }}
+{% endif %}
+{% endfor %}

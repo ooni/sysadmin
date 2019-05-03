@@ -1,0 +1,37 @@
+---
+- name: Download files
+  get_url: url={{ grav_download_url }} dest={{ grav_tmp_path }}/grav-{{ grav_version }}.zip
+
+- name: Ensure users directory is absent
+  file:
+    state: absent
+    path: "{{ grav_install_path }}/grav-admin/user"
+
+- name: Extract archive
+  unarchive:
+    remote_src: true
+    src: "{{ grav_tmp_path }}/grav-{{ grav_version }}.zip"
+    dest: "{{ grav_install_path }}"
+
+- name: Delete users directory
+  file:
+    state: absent
+    path: "{{ grav_install_path }}/grav-admin/user"
+
+- name: Create users directory symlink
+  file:
+    dest: "{{ grav_install_path }}/grav-admin/user"
+    src: "{{ grav_user_path }}"
+    force: "yes"
+    state: link
+
+- name: Fixup permissions
+  file:
+    path: "{{ grav_install_path }}"
+    state: directory
+    owner: "{{ grav_user }}"
+    group: "{{ grav_group }}"
+    recurse: "yes"
+    mode: 0755
+  notify:
+    - restart nginx

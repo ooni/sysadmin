@@ -1,3 +1,3 @@
 *.retry
-play_*.log
-play_*.timing
+# ooni-sysadmin.git/ansible/oometa should be symlink to ooni-pipeline.git/af/oometa
+/oometa

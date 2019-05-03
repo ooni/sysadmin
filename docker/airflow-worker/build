@@ -1,2 +1,2 @@
 #!/bin/sh -x
-exec docker build -t openobservatory/airflow-worker:1.8.0-oo3 -t openobservatory/airflow-worker:latest .
+exec docker build -t openobservatory/airflow-worker:1.8.0-oo4 -t openobservatory/airflow-worker:latest .

@@ -1,0 +1,10 @@
+---
+ngxprom_scrapers: [ prometheus.infra.ooni.io ]
+ngxprom_base: /srv/ngxprom
+ngxprom_ssl_dir: '{{ ngxprom_base }}/ssl'
+# ngxprom_ssl_base follows `ooca_ssl_base` scheme
+ngxprom_ssl_base: '{{ ngxprom_ssl_dir }}/{{ inventory_hostname }}'
+
+# default is to forward only `node_exporter`
+ngxprom_exporter_ports: '{{ CHANGE_ME }}'
+...

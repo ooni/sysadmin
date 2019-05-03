@@ -1,0 +1,14 @@
+[Unit]
+Description=Prometheus Pushgateway
+
+[Service]
+User={{ passwd.pushgw.login }}
+Group={{ passwd.pushgw.login }}
+ExecStart={{ pushgateway_path }}/pushgateway \
+    --persistence.file={{ pushgateway_base }}/data/dump \
+    --web.listen-address={{ pushgateway_listen_address }}
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

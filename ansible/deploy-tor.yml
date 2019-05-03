@@ -1,0 +1,39 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: have_tor
+  gather_facts: true # to fetch `jessie` codename
+  roles:
+    - role: tor-bin
+  tasks:
+    - name: stop tor@default
+      service:
+        name: tor@default
+        state: stopped
+
+    # It's done here for `tor` UID to exist, the archive is created with command like following one:
+    # $ sudo tar -cJ -C /var/lib/tor keys fingerprint state stats | gpg -e -r CD1BE2D81D08A09C >var_lib_tor_XXX.tar.xz.gpg
+    - name: "Run: gpg --batch < var_lib_tor_XXX.tar.xz.gpg | ssh {{ inventory_hostname }} sudo tar -xJ -C /var/lib/tor"
+      wait_for: path=/var/lib/tor/fingerprint
+      when: lookup('env', 'MANUAL_TOR' ) | length > 0
+
+    - name: generate new keys if needed
+      command: tor --list-fingerprint --DisableNetwork 1 --Nickname OONITestHelper --OrPort auto --PublishServerDescriptor 0 --ExitRelay 0 --defaults-torrc /usr/share/tor/tor-service-defaults-torrc --Log "err stdout"
+      args: { creates: /var/lib/tor/fingerprint }
+
+    - name: fetch fingerprint
+      command: cut -d ' '  -f 2 /var/lib/tor/fingerprint
+      changed_when: false
+      register: tor_fingerprint
+      tags: conf
+
+    - name: unwrap fingerprint
+      set_fact:
+        tor_fingerprint: '{{ tor_fingerprint.stdout }}'
+      tags: conf
+
+    - name: set torrc
+      template: src=OONITestHelper.torrc dest=/etc/tor/torrc
+      notify: restart tor
+      tags: conf
+...

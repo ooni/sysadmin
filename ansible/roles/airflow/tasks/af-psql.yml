@@ -1,0 +1,27 @@
+---
+# 1. if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
+# 2. /run has to be writable by postgres and `docker_container` does not support tmpfs
+#    https://github.com/ansible/ansible/pull/22646
+- name: airflow postgres tmp directory
+  file: dest=/srv/tmp/af-psql state=directory owner=afpsql group=afpsql mode=0750
+- name: airflow postgres /data directory
+  file: dest=/srv/af-psql state=directory owner=afpsql group=afpsql mode=0700
+- name: docker run airflow postgres
+  docker_container:
+    image: postgres:9.6
+    name: af-psql
+    hostname: af-psql
+    networks: [{name: af}]
+    purge_networks: true # drop `bridge` network
+    volumes:
+      - /srv/tmp/af-psql:/run/postgresql:rw
+      - /srv/af-psql:/srv/af-psql:rw
+    env:
+      PGDATA: /srv/af-psql
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
+    user: "{{ passwd.afpsql.id }}:{{ passwd.afpsql.id }}"
+    stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
+    stop_timeout: 60 # default is 10
+    restart_policy: unless-stopped
+...

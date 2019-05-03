@@ -1,2 +1,0 @@
----
-PSIPHON_PYCLIENT_PATH: "{{ ansible_env.HOME }}/psiphon-circumvention-system/pyclient"

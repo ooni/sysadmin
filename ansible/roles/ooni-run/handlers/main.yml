@@ -1,0 +1,2 @@
+- name: restart ooni-run
+  systemd: name=ooni-run.service state=restarted

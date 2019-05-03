@@ -1,0 +1,13 @@
+---
+- name: Create database schema files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ orchestra_db_schema_path }}"
+    mode: 0644
+  with_items: "{{ orchestra_db_files }}"
+
+- name: Run database schema commands
+  shell: "psql -U {{ orchestra_db_user}} -h 127.0.0.1 -d {{ orchestra_db_name }} -f {{ orchestra_db_schema_path}}/{{ item }}"
+  environment:
+    PGPASSWORD: "{{ orchestra_db_password }}"
+  with_items: "{{ orchestra_db_files }}"

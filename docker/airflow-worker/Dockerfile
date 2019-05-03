@@ -1,4 +1,4 @@
-FROM openobservatory/airflow:1.8.0-oo3
+FROM openobservatory/airflow:1.8.0-oo4
 
 # docker_apt_ver should match {{ docker_apt_ver }} for dom0
 ARG docker_apt_ver=1.12.6-0~debian-jessie

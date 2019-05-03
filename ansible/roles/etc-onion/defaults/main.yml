@@ -1,0 +1,6 @@
+---
+coredns_ver: 1.5.0
+coredns_sha256: '9dd1170c6ae8c3ef7d0358436a90bd5afddbad5035a228b577589656ec105546'
+upstream_nameservers: '{{ CHANGE_ME }}'
+onion_ipv6_ula: '{{ CHANGE_ME }}'
+...

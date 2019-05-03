@@ -1,96 +1,186 @@
-[gh:children] # group to gather new-style ACL
-wdc # technically it's i95.net, Radio Free Asia network, but GH has some boxes there
-hkg
-ams
+########################################################################
+# dom0 tags (showing diversity of our infra, huh)
+
+[dom0:children] # `all` should be equal to `dom0`, so it's here to catch errors
+gh
 ath
-ber
 tpo
 bigv
 
-[monitored]
-#datacollector.infra.ooni.io
-test.ooni.io
+[gh:children]
+mia
+hkg
+ams
 
-[wdc]
-a.echo.th.ooni.io
+########################################################################
+# location tags
+
+[mia]
 c.web-connectivity.th.ooni.io
-munin.ooni.io
-b.collector.ooni.io
-
-# The machines below maybe can be discontinued
-ooni-proxy-dc.infra.ooni.io
-ooni-backend-testing.infra.ooni.io
-oonibackend-stress-test.infra.ooni.io
-
-tipitpitap.infra.ooni.io # Art-NO-ACCESS - no idea what this is
-ooni-fdroid-build.infra.ooni.io # Art-NO-ACCESS
-apk-build-test.infra.ooni.io # Art-NO-ACCESS - no idea what this is
+miacollector.ooni.nu
+analytics.ooni.io
+miatorth.ooni.nu
+miaapi.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
-# irc-bouncer.service.ooni.io # OK, keep commented for a while, broken UIDs there
-vpn-gate-runner.infra.ooni.io
-stage.ooni.io # NOT-GH, ooni-zoo
-test.ooni.io # NOT-GH, ooni-zoo
-hkgsuperset.ooni.io
-wiki.ooni.io
 
+# XXX rename these to orchestra
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
+notify.proteus.test.ooni.io
+
+hkgmetadb.infra.ooni.io
+irc-bouncer.service.ooni.io
+ooni-zoo.infra.ooni.io
 test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
+jupyter.ooni.io
+hkgbouncer.ooni.nu
+hkgcollectora.ooni.nu
+hkgwebconnectivitya.ooni.nu
+ooni-explorer-next.test.ooni.io
+labs.ooni.io
+hkgjump.ooni.nu
+hkgsuperset.ooni.io
+hkgtorth.ooni.nu
 
 [ams]
 explorer.ooni.io
-measurements.ooni.io
+amstorth.ooni.nu
 get.ooni.io
 a.http.th.ooni.io
 b.web-connectivity.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
-ooni-measurements-db.infra.ooni.io
-ooni-pipeline-db.infra.ooni.io
-ssdamsterdam.infra.ooni.io
+ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
-ubuilder.infra.ooni.io
-debuilder.infra.ooni.io
-staging.measurements.ooni.io
-demo.probe.ooni.io # NOT-GH (it actually is GH, but not in the shared account) - Note this machine was out of disk space, because older docker containers were not getting deleted. XXX this needs some fixing.
+demo.probe.ooni.io
+msg.ooni.io
 
-# The machines below can maybe be discontinued
-ooni-probe-demo.infra.ooni.io
-lepidopter-update-test.infra.ooni.io # Used for testing lepidopter update
-ooniprobe-app.infra.ooni.io # This was a machine used for demoing the new WUI. Maybe discontinue
+# XXX rename these to orchestra
+notify.proteus.ooni.io
+events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
+run.ooni.io
+amsmetadb.ooni.nu
+amsapi.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
-puppet-master-1.infra.ooni.io # NOT-GH, Art-NO-ACCESS, java1.interoperability.gr - Is this still even alive?
-
-[ber] # Humboldt-Universitaet zu Berlin
-chameleon.infra.ooni.io # NOT-GH
 
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
-
 # The machines below can maybe be discontinued
-deb.ooni.nu # NOT-GH
+deb.ooni.nu # NOT-GH, moritz?
 
 [bigv] # Bytemark @ London
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
-[dead]
-api-1.infra.ooni.io # NOT-GH, [aws], as of 2017-04-18 ooni-explorer-api-aws
-hammerhead.infra.ooni.io # NOT-GH, [ber] as of 2017-04-18
-ns.dnsth.ooni.nu # NOT-GH, [ovh] France
-pipeline.infra.ooni.nu # NOT-GH
+########################################################################
+# PSK (pre-shared key) tags
 
-[todelete]
-polaris.infra.ooni.io # DELETE
-vps770.greenhost.nl # DELETE discontinued, old-collector
-#211.149.218.16 old-probe
-87.107.121.133 # DELETE discontinued, old-probe
-mail.ooni.io # DELETE
-mail.test.ooni.io # DELETE
-separate.b.collector.test.ooni.io # DELETE
-separate.bouncer.test.ooni.io # DELETE
-separate.a.web-connectivity.th.test.ooni.io # DELETE
-seedling.infra.ooni.io # DELETE
-reports.ooni.nu # vps770.greenhost.nl NOT-GH - DELETE
+[psk_amsrepl]
+hkgmetadb.infra.ooni.io
+amsmetadb.ooni.nu
+
+[psk_hkgmetadb]
+datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
+amsmetadb.ooni.nu
+
+[psk_oomsm_beta]
+hkgmetadb.infra.ooni.io
+# FIXME: drop `oomsm-beta` user
+
+[psk_metadb_amsapi]
+hkgmetadb.infra.ooni.io
+amsapi.ooni.nu
+miaapi.ooni.nu
+
+[psk_orchestration]
+# FIXME: all in one bin as testing should have access to production! :)
+# XXX rename these to orchestra
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
+notify.proteus.ooni.io
+events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
+registry.proteus.ooni.io
+db-1.proteus.ooni.io
+proteus.ooni.io
+
+[psk_orchestra_db_prod]
+# FIXME: untie `psk_orchestration` into something more manageable
+db-1.proteus.ooni.io
+datacollector.infra.ooni.io
+
+[psk_superset_hkgmetadb]
+hkgsuperset.ooni.io
+hkgmetadb.infra.ooni.io
+
+########################################################################
+# role tags
+
+[have_fw]
+datacollector.infra.ooni.io
+hkgmetadb.infra.ooni.io
+amsmetadb.ooni.nu
+ssdams.infra.ooni.io
+# db-1.proteus.test.ooni.io
+# db-1.proteus.ooni.io
+hkgtorth.ooni.nu
+miatorth.ooni.nu
+amstorth.ooni.nu
+miaapi.ooni.nu
+
+[have_nginx]
+amsapi.ooni.nu
+miaapi.ooni.nu
+prometheus.infra.ooni.io
+
+[have_tor] # Tor test-helpers
+amstorth.ooni.nu
+hkgtorth.ooni.nu
+miatorth.ooni.nu
+
+[have_collector]
+hkgcollectora.ooni.nu
+miacollector.ooni.nu
+c.collector.ooni.io
+
+[no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
+irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
+deb.ooni.nu                       # no root for darkk
+staticiforme.torproject.org       # tor LDAP
+
+[no_nodeexp:children]
+no_passwd # no passwd => no nodeexp user ;-)
+
+[testing]
+# XXX rename these to orchestra
+notify.proteus.test.ooni.io
+events.proteus.test.ooni.io
+registry.proteus.test.ooni.io
+db-1.proteus.test.ooni.io
+proteus.test.ooni.io
+
+[slackin]
+slack.openobservatory.org
+
+########################################################################
+# TO DELETE.
+# Stopped VMs that should be deleted from GH and DNS after some grace period:
+#
+# since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/ooni/sysadmin/issues/NNNN
+# since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
+# since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
+# since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16

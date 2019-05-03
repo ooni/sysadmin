@@ -1,0 +1,13 @@
+[Unit]
+Description=Proteus Notify service
+
+[Service]
+User={{ orchestra_user }}
+Group={{ orchestra_group }}
+ExecStart={{ orchestra_path }}/orchestra-notify --config {{ orchestra_config_path }}/orchestra-notify.toml start
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

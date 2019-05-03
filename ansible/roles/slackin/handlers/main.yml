@@ -1,0 +1,3 @@
+---
+- name: restart slack-irc-bridge
+  docker_container: name=slack-irc-bridge restart=true

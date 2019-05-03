@@ -1,0 +1,66 @@
+- name: set permissions, owner and group
+  file:
+    path: "{{ orchestra_install_path }}"
+    state: directory
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: clone orchestra-frontend repo
+  git:
+    repo: "{{ orchestra_git_url }}"
+    dest: "{{ orchestra_install_path }}/orchestra" # XXX hope this works
+    version: "{{ orchestra_version }}"
+
+- name: install yarn globally
+  npm:
+    name: yarn
+    global: yes
+
+- name: run yarn install
+  command: yarn install
+  args:
+    chdir: "{{ orchestra_install_path }}/orchestra/frontend"
+
+- name: run npm run build
+  command: npm run build
+  args:
+    chdir: "{{ orchestra_install_path }}/orchestra/frontend"
+  environment:
+    REGISTRY_URL: "{{ orchestra_registry_url }}"
+    ORCHESTRATE_URL: "{{ orchestra_orchestrate_url }}"
+
+- name: set permissions, owner and group
+  file:
+    path: "{{ orchestra_install_path }}/orchestra" # XXX hope this works
+    state: directory
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: Configure Orchestra frontend
+  notify:
+  - restart orchestra
+  template:
+    src: orchestra-frontend.env.j2
+    dest: "{{ orchestra_install_path }}/orchestra-frontend.env"
+
+- import_tasks: cleanup-legacy.yml
+
+- name: Install orchestra systemd service file
+  notify:
+  - restart orchestra
+  template:
+    src: orchestra-frontend.service
+    dest: /etc/systemd/system/orchestra-frontend.service
+
+- name: Enable and start orchestra service
+  systemd:
+    name: orchestra-frontend.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- import_tasks: setup-nginx.yml

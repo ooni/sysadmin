@@ -1,0 +1,30 @@
+- hosts: events.proteus.test.ooni.io
+  vars:
+    orchestra_orchestrate_https_port: 443
+    orchestra_database_url: "{{ orchestra_database_url_testing }}"
+    orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret_testing }}"
+    orchestra_notify_url: "https://notify.proteus.test.ooni.io"
+    orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password_testing }}"
+    orchestra_notify_topic_ios: "org.openobservatory.NetProbe"
+  roles:
+    - role: letsencrypt
+      tags: letsencrypt
+      letsencrypt_domains: ["{{ inventory_hostname }}"] # BTW, that's strong anti-pattern
+    - role: ooni-orchestrate
+      letsencrypt_domains: ["{{ inventory_hostname }}"]
+
+- hosts: events.proteus.ooni.io
+  vars:
+    orchestra_orchestrate_https_port: 443
+    # orchestra_database_url: "{{ orchestra_database_url }}"
+    # orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+    orchestra_notify_url: "https://notify.proteus.ooni.io"
+    # orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password }}"
+    orchestra_notify_topic_ios: "org.openobservatory.ooniprobe"
+  roles:
+    - role: letsencrypt
+      tags: letsencrypt
+      # orchestrate.* is "canonical" name, events.proteus.* is "legacy" from MK that was never released as OONI Probe (and may be eventually dropped)
+      letsencrypt_domains: ["orchestrate.ooni.io", "events.proteus.ooni.io"]
+    - role: ooni-orchestrate
+      letsencrypt_domains: ["orchestrate.ooni.io", "events.proteus.ooni.io"]

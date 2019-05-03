@@ -1,0 +1,21 @@
+#!/bin/sh
+# ansible-managed in ooni-sysadmin.git
+
+set -o xtrace
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+ip link add dummy0 type dummy
+ip link set dummy0 up
+
+# link-local fe80::/64 addrs do not work with REDIRECT to TransPort setup,
+# os it is a `global` address for a box that has no other IPv6 addresses.
+ip -6 addr replace {{ onion_ipv6_ula }}/128 dev dummy0
+
+ip -6 route replace unreachable fd00::/8 # all IPv6 ULAs
+
+# All the packets are actually dropped, but TCP is REDIRECTed to TransPort.
+ip -6 route replace unicast {{ onion_ipv6_ula }}/48 dev dummy0 # .onion ULA
+
+# It should be part of `roles/fw` but IPv6 is a second-class citizen, so it's safe to do that here.
+ip6tables -t nat -F OUTPUT
+ip6tables -t nat -A OUTPUT -d {{ onion_ipv6_ula }}/48 -p tcp -j REDIRECT --to-ports 9094

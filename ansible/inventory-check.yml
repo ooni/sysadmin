@@ -1,0 +1,135 @@
+# This playbook checks sanity of ooni-sysadmin.git/ansible/inventory file
+---
+- import_playbook: ansible-version.yml
+
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: ensure that all inventory hosts are rooted to dom0
+      assert:
+        that:
+        - groups.all | difference(groups.dom0) | length == 0
+        msg: "Hosts in inventory not rooted to dom0: {{ groups.all | difference(groups.dom0) | sort | join(' ') }}"
+      run_once: true
+
+- hosts: all
+  vars:
+    ansible_become: false # root is not required here, also it's not `become: false` as variable declraed for `all` has precedence over directive :-/
+  gather_facts: true # to get SSH keys and workaround https://github.com/ansible/ansible/issues/27816
+  tasks:
+    - name: enumerate known IPs of hosts
+      set_fact:
+        gh_ips: "{{ lookup('pipe', 'jq --raw-output .droplets[].networks.v4[].ip_address < ' ~ inventory_dir ~ '/../ext/gh-droplets.json').split('\n') }}"
+        inventory_ips: "{{ ansible_play_hosts | map('extract', hostvars, 'ansible_all_ipv4_addresses') | sum(start=[]) }}"
+      run_once: true
+    - name: check that every GH host is in inventory
+      assert:
+        that:
+          - gh_ips | difference(inventory_ips) | length == 0
+        msg: "GH IPs missing from `inventory`! Run ../scripts/vm-by-ips {{ gh_ips | difference(inventory_ips) | sort | join(' ') }}"
+      run_once: true
+
+    - name: mktemp
+      set_fact:
+        tmp: "{{ lookup('pipe', 'mktemp -dt oouniq.XXXXXXXX') }}"
+      run_once: true
+
+    - name: get kernel.random.boot_id to detect duplicate nodes
+      command: cat /proc/sys/kernel/random/boot_id
+      changed_when: false
+      register: boot_id
+    - name: unwrap kernel.random.boot_id
+      set_fact:
+        boot_id: '{{ boot_id.stdout }}'
+
+    - name: store duplicate boot_id values
+      copy:
+        content: '{{ boot_id }}'
+        dest: '{{tmp}}/boot_id.{{inventory_hostname}}'
+      delegate_to: localhost
+      when: ansible_play_hosts | length != ansible_play_hosts | map('extract', hostvars, 'boot_id') | unique | length
+
+    - name: store duplicate rsa_pub values
+      copy:
+        content: '{{ ansible_ssh_host_key_rsa_public }}'
+        dest: '{{tmp}}/rsa_pub.{{inventory_hostname}}'
+      delegate_to: localhost
+      when: ansible_play_hosts | length != ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_rsa_public') | unique | length
+
+    - name: check mdstat as it disabled in node_exporter_collectors
+      stat: path=/proc/mdstat
+      register: mdstat
+
+    - name: check / device
+      stat: path=/.
+      register: rootfs
+    - name: check /run device to ensure it's not rootfs
+      stat: path=/run/.
+      register: runfs
+
+    - name: check host assertions
+      assert:
+        that:
+          # e14b9187aaa8c5f5ef4241a3e70842b0 ~ 'Personalities : \nunused devices: <none>\n'
+          # d17896fb810bea5073ffc38a2391af64 ~ 'Personalities : [linear] [raid0] [raid1] [raid10] [raid6] [raid5] [raid4] [multipath]\nunused devices: <none>\n'
+          - not mdstat.stat.exists or mdstat.stat.md5 in ['e14b9187aaa8c5f5ef4241a3e70842b0', 'd17896fb810bea5073ffc38a2391af64']
+          - rootfs.stat.dev != runfs.stat.dev # /run is a separate FS (likely, tmpfs :-))
+          - ansible_ssh_host_key_dsa_public is not defined
+          - ansible_ssh_host_key_ecdsa_public is not defined
+          - ansible_ssh_host_key_rsa_public | length >= 372 # >= RSA-2048
+          - ansible_ssh_host_key_rsa_public != 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCwEsXoJcsOryYgjdtF6ZwJ6iecjvG/TVyOTcfdYJCPzZXA3Pj6CPmq0R1HrfnQLq3orgQG+uxAFdkJw3jFTJVYI47MWigfFum10Mu8/URGANd50Ahn0NxRBAqgjSBog5r9xEDPc1OLur91VHCV95sKK+Qfh18h9MGdyB2ypN4puON1JXLkxdUmlOt80vs5tX6mLTik9JzV6QQrJN0I2GZfVWg46y0jPQehl3OS+3z8Z4RBKXUaxQPoHx/G+VukUL76hQUMlqEzH2pF9nrkkM1uHDOftBBeiWZo3X/89ljsrDrP9wurQ+/bzEUiEbg3ZW1ZIe/T3FFrAUi2r3giyEEf'
+          - (ansible_ssh_host_key_ed25519_public | default('NULL')) != 'AAAAC3NzaC1lZDI1NTE5AAAAIBCDE5UIs0f3+k0gNSM0kKgNRl+4TfNOoK478wClEsE1'
+
+    - name: check inventory-wide assertions
+      assert:
+        that:
+          - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'boot_id') | unique | length # no duplicate nodes in inventory
+          - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_ed25519_public') | unique | length # no duplicate keys
+          - ansible_play_hosts | length == ansible_play_hosts | map('extract', hostvars, 'ansible_ssh_host_key_rsa_public') | unique | length # no duplicate keys
+        msg: "Check {{tmp}}"
+      run_once: true
+
+- hosts: gh
+  vars:
+    ansible_become: false # root is not required here, also it's not `become: false` as variable declraed for `all` has precedence over directive :-/
+  gather_facts: false
+  tasks:
+    - name: ping some other host in same DC
+      shell: ping -q -i 0.2 -c 5 -n {{ groups[dc_group] | difference(inventory_hostname) | random }} | sed --quiet '/^rtt/ s/.* = // ; s,/[^ ]* ms$,, p'
+      changed_when: false
+      register: dc_rtt
+    - name: show intra-DC RTT
+      debug: var=dc_rtt.stdout
+    - name: check intra-DC RTT
+      assert:
+        that: 0 <= (dc_rtt.stdout | float) < 2.0
+        msg: "Bad intra-DC RTT ({{dc_rtt.stdout}}) ms"
+
+- hosts: prometheus.infra.ooni.io
+  vars:
+    ansible_become: false # root is not required here
+  gather_facts: false
+  tasks:
+  - name: fetch prometheus config
+    uri: url=http://localhost:8090/config return_content=true
+    register: promconf
+- hosts: all:!no_nodeexp
+  gather_facts: false
+  tasks:
+  - name: check if host node_exporter is monitored
+    assert: { that: "' {}:9100'.format(inventory_hostname) in hostvars['prometheus.infra.ooni.io'].promconf.content" }
+
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: build inventory checksum
+      set_fact:
+        inventory_hash: "{{ groups.all | sort | join('|') | hash('sha256') }}"
+      run_once: true
+
+    - name: stamp the inventory that was checked
+      assert:
+        that: "'{{ inventory_hash }}' == '045428b75f40bd43f09ec355e51588517135cee8a4c483ac777b7b1c2c515d03'"
+        msg: "If everything is OK, then checked inventory_hash should be: `{{ inventory_hash }}`. Edit the `stamp the inventory...` task in ansible/inventory-check.yml"
+      run_once: true
+...

@@ -1,0 +1,27 @@
+go_arch: amd64
+
+orchestra_user:   prtevent
+orchestra_group:  prtevent
+
+# XXX maybe change these paths
+orchestra_install_path: /srv/orchestra
+orchestra_data_path: /srv/orchestra/data
+orchestra_config_path: /srv/orchestra/config
+
+orchestra_environment: "production"
+orchestra_log_level: "info"
+orchestra_api_port: 3000
+orchestra_api_address: "127.0.0.1"
+orchestra_orchestrate_https_port: 8082
+orchestra_database_url: "postgres://proteus:{{ orchestra_database_password }}@{{ orchestra_db_hostname }}:5432/proteus?sslmode=require"
+orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+orchestra_notify_url: "https://notify.orchestra.test.ooni.io"
+orchestra_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
+
+orchestra_version: "0.2.4"
+orchestra_download_url: https://github.com/ooni/orchestra/releases/download
+
+orchestra_tarball_url: "{{ orchestra_download_url }}/v{{ orchestra_version }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}.tar.gz"
+orchestra_path: "{{ orchestra_install_path }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}"
+orchestra_notify_basic_auth_user: "orchestra"
+orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password }}"

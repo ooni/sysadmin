@@ -1,0 +1,54 @@
+- name: cache SHA256SUMS locally
+  local_action: get_url url={{ pushgateway_sha256sums_url }} dest={{ pushgateway_sha256sums }}
+- set_fact:
+    tarball_checksum: "sha256:{{ lookup('pipe', 'awk -v FNAME=' ~ pushgateway_basename ~ '.tar.gz -f ' ~ playbook_dir ~ '/../scripts/get-sum.awk ' ~ pushgateway_sha256sums) }}"
+
+- name: Creating pushgateway dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  with_items:
+    - "{{ pushgateway_base }}"
+    - "{{ pushgateway_base }}/dist"
+
+- name: Creating pushgateway data dir
+  file: path={{ pushgateway_base }}/data state=directory mode=0770 owner=root group=pushgw
+
+- name: fetch pushgateway tarball
+  get_url:
+    url: "{{ pushgateway_tarball_url }}"
+    dest: "{{ pushgateway_base }}/dist/{{ pushgateway_basename }}.tar.gz"
+    checksum: "{{ tarball_checksum }}"
+
+- name: untar pushgateway tarball
+  unarchive:
+    src: "{{ pushgateway_base }}/dist/{{ pushgateway_basename }}.tar.gz"
+    dest: "{{ pushgateway_base }}"
+    owner: root
+    group: root
+    remote_src: true
+
+- name: Install pushgateway systemd service file
+  notify:
+  - restart pushgateway
+  template:
+    src: pushgateway.service
+    dest: /etc/systemd/system/pushgateway.service
+
+- name: Copy Pusher CA cert
+  copy: src=pusher_ca.cert dest={{ pushgateway_base }}/pusher_ca.cert owner=root group=root mode=0644
+
+- name: Install pushgateway nginx frontend
+  notify: reload nginx
+  template: src=pushgateway_nginx.conf dest=/etc/nginx/sites-enabled/pushgateway.conf
+  tags: [prometheus-conf, on-renumber]
+
+- name: Enable and start pushgateway service
+  systemd:
+    name: pushgateway.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

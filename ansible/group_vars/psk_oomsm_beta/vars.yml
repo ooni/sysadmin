@@ -1,0 +1,2 @@
+---
+oomsm_beta_postgres_password: "{{ vault_oomsm_beta_postgres_password }}"

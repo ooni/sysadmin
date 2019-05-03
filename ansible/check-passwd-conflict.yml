@@ -1,0 +1,20 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: no_passwd
+  gather_facts: false
+  tasks:
+    - name: get login list
+      command: 'cut -d: -f1 /etc/passwd'
+      register: known_login
+
+    - name: unwrap login list
+      set_fact:
+        known_login: '{{ known_login.stdout_lines }}'
+
+    - name: print duplicate logins
+      debug:
+        var: 'known_login | intersect(passwd.keys())'
+      when: known_login | intersect(passwd.keys()) | length > 0
+
+    - assert: {that: known_login | intersect(passwd.keys()) | length == 0}

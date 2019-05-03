@@ -1,0 +1,29 @@
+server {
+  server_name _;
+
+  listen 80;
+  listen {{ ooni_run_https_port }} ssl default_server;
+  listen [::]:{{ ooni_run_https_port }} ssl default_server;
+
+  ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/privkey.pem;
+  ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+  large_client_header_buffers 16 64k;
+
+  location / {
+    proxy_pass http://{{ ooni_run_address }}:{{ ooni_run_port }};
+    proxy_http_version 1.1;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 900;
+  }
+
+  location /.well-known/acme-challenge {
+    default_type "text/plain";
+    root /var/www/letsencrypt;
+    try_files $uri $uri/ =404;
+  }
+
+}

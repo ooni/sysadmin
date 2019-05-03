@@ -1,0 +1,58 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: amsapi.ooni.nu
+  roles:
+    - role: docker_py
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["api.ooni.io"]
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["measurements.ooni.io", "measurements.ooni.torproject.org"]
+      tags: legacy
+
+- hosts: hkgmetadb.infra.ooni.io
+  gather_facts: false # no useful facts there :)
+  roles:
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      db: metadb
+      name: oomsm-beta
+      password: '{{ oomsm_beta_postgres_password }}'
+
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      db: metadb
+      name: amsapi
+      password: '{{ metadb_amsapi_password }}'
+
+- hosts: miaapi.ooni.nu
+  roles:
+    - role: docker_py
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["api.test.ooni.io"]
+
+- hosts: miaapi.ooni.nu
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    - role: ooni-measurements
+      tags: apitest
+      oomsm_domain: api.test.ooni.io
+
+- hosts: amsapi.ooni.nu
+  gather_facts: false # already gathered
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    # Note: this roles depends on putting the host inside the have_nginx
+    # inventory group to have a recent version of nginx (the stock debian one
+    # is too old!)
+    - role: ooni-measurements
+      tags: measurements
+      oomsm_domain: api.ooni.io
+      oomsm_legacy_domains: ["measurements.ooni.io", "measurements.ooni.torproject.org"]

@@ -1,0 +1,23 @@
+- name: set permissions, owner and group
+  file:
+    path: "{{ orchestra_install_path }}"
+    state: directory
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    mode: "go-w"
+    recurse: yes
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ orchestra_user }}"
+    group: "{{ orchestra_group }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ orchestra_data_path }}"
+    - "{{ orchestra_config_path }}"
+
+- import_tasks: cleanup-legacy.yml
+- import_tasks: setup-gorush.yml
+- import_tasks: setup-nginx.yml

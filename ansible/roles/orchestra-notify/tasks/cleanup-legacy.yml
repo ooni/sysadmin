@@ -1,0 +1,20 @@
+- name: Check if proteus-notify.service exists
+  stat: path=/etc/systemd/system/proteus-notify.service
+  register: proteus_notify
+
+- name: Stop proteus-notifyservice
+  systemd:
+    name: proteus-notify.service
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+  when: proteus_notify.stat.exists == True
+
+- name: Cleanup proteus legacy files
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "/etc/systemd/system/proteus-notify.service"
+    - "/etc/nginx/sites-enabled/proteus"
+    - "/etc/nginx/proteus.htpasswd"

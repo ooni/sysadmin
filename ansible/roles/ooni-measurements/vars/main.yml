@@ -1,6 +1,5 @@
 ---
-ooni_measurements_path: "{{ ansible_env.HOME }}/ooni-measurements"
-ooni_measurements_repo: https://github.com/TheTorProject/ooni-measurements.git
-ooni_measurements_secrets: secrets.env.j2
-ooni_measurements_secrets_path: /opt/secrets.env
-ooni_measurements_repo_version: b5921059b635df0984d2c242348c1562d880a698
+oomsm_timeout_s: 60
+oomsm_tag: '20190502-e1836a31'
+oomsm_backend_ipv4: '172.25.232.254'
+oomsm_backend_port: 16868

@@ -1,6 +1,17 @@
 ---
-- include: install.yml
-- include: config.yml
+- import_tasks: install.yml
+
+- name: PostgreSQL Server certificate
+  import_role:
+    name: ooca-cert
+  vars:
+    ooca_ssl_dir: /etc/postgresql/ssl
+    ooca_ssl_subj: '/O=OONI/OU=PostgreSQL Server/CN={{ inventory_hostname }}'
+    ooca_ca: postgres_ca
+    ooca_group: postgres
+
+- import_tasks: config.yml
   become: yes
   become_user: postgres
-  become_method: su
+  become_method: sudo
+...

@@ -1,0 +1,16 @@
+[Unit]
+Description=GoRush Notify service
+After=network.target
+
+[Service]
+User={{ orchestra_user }}
+Group={{ orchestra_group }}
+ExecStart={{ gorush_path}} --config {{ orchestra_config_path }}/gorush.yml
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=gorush
+
+[Install]
+WantedBy=multi-user.target

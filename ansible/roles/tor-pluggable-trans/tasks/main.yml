@@ -1,5 +1,0 @@
----
-- include: install-fteproxy.yml
-- include: install-meek.yml
-- include: install-obfs4proxy.yml
-- include: install-obfsproxy.yml

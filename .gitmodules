@@ -1,3 +1,0 @@
-[submodule "ansible/roles/ansible-ooniprobe"]
-	path = ansible/roles/ansible-ooniprobe
-	url = https://github.com/hellais/ansible-ooniprobe.git

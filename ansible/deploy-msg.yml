@@ -1,0 +1,11 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: msg.ooni.io
+  gather_facts: true
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "msg.ooni.io"
+  roles:
+    - letsencrypt
+    - grav

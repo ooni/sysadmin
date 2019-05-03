@@ -1,0 +1,65 @@
+---
+- name: copy xtables-merge
+  copy: src=xtables-merge dest=/usr/local/sbin/ owner=root group=root mode=0755
+- name: mkdir /run/fw
+  file: dest=/run/fw state=directory owner=root group=root mode=0700
+- name: mkdir /var/log/fw
+  file: dest=/var/log/fw state=directory owner=root group=root mode=0700
+
+- name: copy iptables.filter.part
+  template: src=iptables.filter.part/{{inventory_hostname}} dest=/etc/network/iptables.filter.part owner=root group=root mode=0400
+
+- name: copy ip6tables.filter.part
+  copy: src=ip6tables.filter.part dest=/etc/network/ owner=root group=root mode=0400
+
+- name: copy pre-up script
+  copy: src=xtables-restore dest=/etc/network/if-pre-up.d/ owner=root group=root mode=0555
+
+# NB: if you don't specify table name, you have to "bootstrap" it with
+# something like `iptables -t filter -L -n`
+- name: dump current xtables.rules
+  shell: /sbin/{{item}}-save -t filter >/run/fw/{{item}}.filter.-
+  changed_when: false
+  with_items: [ iptables, ip6tables ]
+
+- name: merge xtables.rules with xtables.part
+  shell: xtables-merge /etc/network/{{item}}.filter.part </run/fw/{{item}}.filter.- >/run/fw/{{item}}.filter.+
+  changed_when: false
+  with_items: [ iptables, ip6tables ]
+
+- name: diff dump with merged
+  command: diff -u --ignore-matching-lines '^#.*' {{item}}.filter.- {{item}}.filter.+
+  args: { chdir: /run/fw/ }
+  with_items: [ iptables, ip6tables ]
+  register: fwdiff
+  changed_when: fwdiff.rc == 1 and (fwdiff.stdout | length > 0)
+  failed_when: fwdiff.rc >= 2
+
+- debug:
+    msg: '{{fwdiff.results | map(attribute="stdout_lines") | list}}'
+
+- name: grab timestamp
+  set_fact: now={{ lookup("pipe", "date +%s") }}
+  when: fwdiff.changed
+
+- name: backup old rules
+  command: cp -a /run/fw/{{item.item}}.filter.- /var/log/fw/{{item.item}}.filter.{{now}}.-
+  when: item.changed
+  with_items: '{{ fwdiff.results }}'
+  loop_control:
+    label: "{{ item.item}}"
+
+- name: backup new rules
+  command: cp -a /run/fw/{{item.item}}.filter.+ /var/log/fw/{{item.item}}.filter.{{now}}.+
+  when: item.changed
+  with_items: '{{ fwdiff.results }}'
+  loop_control:
+    label: "{{ item.item}}"
+
+- name: apply new rules
+  shell: /sbin/{{item.item}}-restore </var/log/fw/{{item.item}}.filter.{{now}}.+
+  when: item.changed
+  with_items: '{{ fwdiff.results }}'
+  loop_control:
+    label: "{{ item.item}}"
+...

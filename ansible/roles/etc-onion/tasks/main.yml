@@ -1,0 +1,48 @@
+---
+- import_tasks: coredns-bin.yml
+
+# TODO: AmbientCapabilities needs systemd-229 we currently have systemd-215
+- name: Set cap_net_raw for coredns
+  capabilities:
+    path: '/opt/coredns-{{ coredns_ver }}/coredns'
+    capability: cap_net_bind_service+ep
+    state: present
+
+- name: Install CoreDNS systemd service file
+  notify:
+    - restart coredns
+    - systemctl daemon-reload
+  template: src=coredns.service dest=/etc/systemd/system/coredns.service
+
+- name: mkdir /srv/coredns
+  file: dest=/srv/coredns state=directory owner=root group=root mode=0755
+
+- name: Install ipv6-ula.zone
+  copy: src=ipv6-ula.zone dest=/srv/coredns/ipv6-ula.zone mode=0644
+  notify: restart coredns
+
+- name: Configure CoreDNS
+  template: src=Corefile dest=/srv/coredns/Corefile mode=0644
+  notify: restart coredns
+
+- name: Configure Tor
+  notify: restart tor
+  template: src=torrc dest=/etc/tor/torrc mode=0644
+
+- name: Install Tor IPv6 ULA routing
+  template: src=ipv6-ula-tor dest=/etc/network/if-up.d/ipv6-ula-tor owner=root group=root mode=0755
+  register: ula_tor
+
+- name: Apply Tor IPv6 ULA routing
+  command: /etc/network/if-up.d/ipv6-ula-tor
+  when: ula_tor | changed
+
+- name: Enable coredns.service
+  systemd:
+    name: coredns.service
+    enabled: true
+    state: started
+
+- name: Configure resolv.conf
+  copy: src=resolv.conf dest=/etc/resolv.conf owner=root group=root mode=0644
+...

@@ -1,0 +1,213 @@
+#!/usr/bin/env python3
+#
+# This script runs at metadb PostgreSQL instance as a separate
+# memory-constrained container launched by Airflow scheduler.
+#
+# It creates a base backup in S3 bucket https://ooni-data.s3.amazonaws.com/metadb/
+#
+# It expects AWS_* credentials as environment variables, `awscli` uses
+# AWS_DEFAULT_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY.
+# PG* variables are interpreted by `psql` binary used to call `pg_start_backup()`.
+#
+# It may be replaced by barman (that does not upload to S3 right now) or other solution.
+#
+
+from contextlib import contextmanager
+import concurrent.futures
+import glob
+import gzip
+import logging
+import os
+import queue
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+import urllib.request
+
+assert sys.version_info > (3, 5)
+
+for _ in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY'):
+    assert os.environ.get(_), _
+
+assert os.path.isdir('base/pgsql_tmp') and os.access('base/pgsql_tmp', os.W_OK) # CWD is PGDATA.
+TMPDIR = 'base/pgsql_tmp'
+TMPPFX = 's3tarz'
+
+with open('PG_VERSION') as _:
+    PGVER = _.read().strip()
+UNAME = os.uname()
+NOW = int(time.time())
+LATEST = '{:04d}{:02d}{:02d}_{:d}'.format(*(time.gmtime(NOW)[:3]), NOW)
+S3BASE = 'metadb/{}-{}-{}/base/'.format(UNAME.sysname, UNAME.machine, PGVER)
+S3DIR = S3BASE + LATEST + '/'
+S3_ROOT = 's3://ooni-data/'
+HTTP_ROOT = 'https://ooni-data.s3.amazonaws.com/'
+
+# PG splits tables into 1GiB segments, so each bucket is a-segment-and-a-bit.
+# See https://www.postgresql.org/docs/10/storage-file-layout.html
+PG_APPROX_BUCKET_SIZE = 1610612736 # 1.5GiB (before compression)
+
+def pg_files():
+    def walk_onerror(arg):
+        raise arg # to die in case of EPERM or something like that
+    norecurse = {
+        # https://www.postgresql.org/docs/10/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-DATA
+        'pg_dynshmem', 'pg_notify', 'pg_serial', 'pg_snapshots', 'pg_stat_tmp', 'pg_subtrans',
+        # master-only files
+        'pg_replslot',
+        # WAL for PG 10+ and PG<=9.6
+        'pg_wal', 'pg_xlog',
+        # server logs
+        'pg_log',
+    }
+    noroot = {'postmaster.pid', 'postmaster.opts', 'core'}
+    ret = []
+    for root, dirs, files in os.walk('.', onerror=walk_onerror):
+        for container in (dirs, files):
+            for fobj in container[:]:
+                if fobj.startswith('pgsql_tmp'):
+                    container.remove(fobj)
+        for fobj in sorted(dirs):
+            ret.append((os.path.join(root, fobj), 0)) # dirs are always created, but may be empty
+        if root == '.':
+            for fobj in set(dirs) & norecurse:
+                dirs.remove(fobj) # in-place update of the list disables recursion
+            for fobj in set(files) & noroot:
+                files.remove(fobj)
+        for fobj in sorted(files):
+            fpath = os.path.join(root, fobj)
+            ret.append((fpath, os.path.getsize(fpath)))
+    return ret
+
+def file_buckets(fpath_size):
+    ret = []
+    cur, cumsize = [], 0
+    for t in fpath_size:
+        _, size = t
+        cur.append(t)
+        cumsize += size
+        if cumsize > PG_APPROX_BUCKET_SIZE:
+            ret.append(cur)
+            cur, cumsize = [], 0
+    if cur:
+        ret.append(cur)
+    assert sum(_[1] for _ in fpath_size) == sum(sum(i[1] for i in o) for o in ret)
+    return ret
+
+def compress(ndx, bucket, upq, uploaders):
+    fobj = 'pgdata.{:d}.tar.xz'.format(ndx)
+    orig_size = sum(_[1] for _ in bucket)
+    logging.info('%s tar start', fobj)
+    # compressor is `nice`, uploader is not as the tasks are CPU-bounded.
+    fd, fpath = tempfile.mkstemp(dir=TMPDIR, prefix='{:s}.{:d}.'.format(TMPPFX, ndx))
+    os.close(fd)
+    to_compress = b'\n'.join(_[0].encode('ascii') for _ in bucket)
+    done = subprocess.run(['nice', '-n', '19', 'tar', '-I', 'xz -2',
+        '--create', '--file', fpath, '--no-recursion', '--files-from', '/dev/stdin',
+        '--warning=no-file-changed', '--warning=no-file-removed'], input=to_compress)
+    logging.info('%s tar done: exit %d raw %d tar.xz %d', fobj, done.returncode, orig_size, os.path.getsize(fpath))
+    # 0 ~ OK, 1 ~ Some files differ. See http://man7.org/linux/man-pages/man1/tar.1.html
+    if done.returncode not in (0, 1):
+        done.check_returncode()
+    upq.put((fpath, fobj, orig_size)) # backpressure on full queue
+    return 'compress', uploaders.submit(upload, upq)
+
+def aws_s3_mv_retry(src, dstdir, fobj):
+    assert dstdir[-1] == '/'
+    dst = dstdir + fobj
+    logging.info('%s upload start', fobj)
+    file_size = os.path.getsize(src)
+    for delay in (5, 25, 0):
+        done = subprocess.run(['aws', 's3', 'cp', '--only-show-errors', src, S3_ROOT + dst])
+        logging.info('%s upload done: exit %d', fobj, done.returncode)
+        if done.returncode == 0:
+            break
+        time.sleep(delay)
+    os.unlink(src)
+    done.check_returncode()
+    # `aws s3 cp` has history of exit(0) despite failure, that's why `HEAD` double-check is here.
+    logging.info('%s HEAD start', fobj)
+    for delay in (5, 25, 0):
+        resp, exc = None, None
+        try:
+            req = urllib.request.Request(HTTP_ROOT + dst, method='HEAD')
+            resp = urllib.request.urlopen(req)
+            code, clen = resp.code, int(resp.headers['content-length'])
+        except Exception as exc_:
+            code, clen, exc = None, None, exc_
+        logging.info('%s HEAD done: code %d content-length %d', fobj, code, clen)
+        if code == 200 and clen == file_size:
+            break
+        time.sleep(delay)
+    else:
+        raise RuntimeError('Strange `awscli` failure', fobj, done, code, clen, resp, dict(resp.headers) if resp else {}, exc)
+
+def upload(upq):
+    fpath, fobj, orig_size = upq.get()
+    upq.task_done() # stolen from queue
+    file_size = os.path.getsize(fpath)
+    aws_s3_mv_retry(fpath, S3DIR, fobj)
+    return 'upload', fobj, orig_size, file_size
+
+@contextmanager
+def pg_backup_lock():
+    logging.info('pg_start_backup(\'pgdata\')')
+    subprocess.run(['psql', '-c', 'select pg_start_backup(\'pgdata\')'], check=True)
+    try:
+        yield
+    finally:
+        logging.info('pg_stop_backup()')
+        subprocess.run(['psql', '-c', 'select pg_stop_backup()'], check=True)
+
+def main():
+    ncpu = os.cpu_count() or 1
+    os.setpgid(0, 0) # become a process group leader
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(process)d:%(thread)x] %(message)s')
+    with pg_backup_lock():
+        for fpath in glob.glob('{}/{}.*'.format(TMPDIR, TMPPFX)):
+            os.unlink(fpath)
+        to_arch = file_buckets(pg_files())
+        logging.info('%d buckets to archive to %s', len(to_arch), LATEST)
+        # `xz -2` is CPU-bounded, queue is used for back-pressure in case of fast CPU.
+        upq = queue.Queue(maxsize=1)
+        fd, ndxfpath = tempfile.mkstemp(dir=TMPDIR, prefix='{:s}.ndx.'.format(TMPPFX))
+        os.close(fd)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=ncpu) as compressors, \
+             concurrent.futures.ThreadPoolExecutor(max_workers=2) as uploaders, \
+             open(ndxfpath, 'wb') as ndxrawfd, \
+             gzip.GzipFile(filename='pgdata.index.gz', mode='wb', fileobj=ndxrawfd) as ndxfd:
+            not_done = {compressors.submit(compress, ndx, _, upq, uploaders) for ndx, _ in enumerate(to_arch)}
+            while not_done:
+                done, not_done = concurrent.futures.wait(not_done, return_when=concurrent.futures.FIRST_COMPLETED)
+                if any(fut.exception() is not None for fut in done):
+                    logging.info('future failed, canceling and terminating')
+                    # _try_ to cancel _some_ pending tasks
+                    for fut in not_done:
+                        fut.cancel()
+                    # kill whole process-group (tar/xz/aws) right now:
+                    termfn = signal.signal(signal.SIGTERM, signal.SIG_IGN)
+                    os.kill(-os.getpgid(0), signal.SIGTERM)
+                    signal.signal(signal.SIGTERM, termfn)
+                    # There is a race in this kind of shutdown, new task from the queue MAY be started,
+                    # it's here just to reduce amount of CPU / human time wasted.
+                for fut in done:
+                    result = fut.result() # raises if future failed
+                    if result[0] == 'compress':
+                        _, fut = result
+                        not_done.add(fut)
+                    elif result[0] == 'upload':
+                        _, fobj, orig_size, file_size = result
+                        ndxfd.write('{}\t{:d}\t{:d}\n'.format(fobj, orig_size, file_size).encode('ascii'))
+                    else:
+                        raise RuntimeError('Unexpected result', result)
+            upq.join()
+        # </pg_backup_lock>
+    aws_s3_mv_retry(ndxfpath, S3DIR, 'pgdata.index.gz')
+    with open(ndxfpath, 'w') as fd:
+        fd.write(LATEST)
+    aws_s3_mv_retry(ndxfpath, S3BASE, 'latest')
+
+if __name__ == '__main__':
+    main()

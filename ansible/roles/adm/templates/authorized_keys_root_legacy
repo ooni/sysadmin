@@ -1,0 +1,10 @@
+# ansible-managed in ooni-sysadmin.git
+{% if root_ssh_authrorized_keys %}
+# That's legacy `root` keys, ordinary `root` keys for adm's are in /root/.ssh/authorized_keys2 file.
+{% for k in root_ssh_authrorized_keys %}
+{{ k }}
+{% endfor %}
+{% else %}
+# That's a placeholder reminding that `authorized_keys` should not be used on this box.
+# Commit the key to https://github.com/ooni/sysadmin if it really should be here!
+{% endif %}

@@ -1,0 +1,24 @@
+---
+orchestra_db_hostname: "db-1.proteus.test.ooni.io"
+
+orchestra_database_username: "proteus"
+orchestra_database_name: "proteus"
+
+orchestra_admin_password: '{{ vault_orchestra_admin_password }}'
+orchestra_database_password: '{{ vault_orchestra_database_password }}' # FIXME: duplicated in group_vars/psk_orchestra_db_prod/vars.yml
+orchestra_auth_jwt_secret: '{{ vault_orchestra_auth_jwt_secret }}'
+fcm_server_key: '{{ vault_fcm_server_key }}'
+orchestra_apn_key_password: '{{ vault_orchestra_apn_key_password }}'
+orchestra_notify_basic_auth_password: '{{ vault_orchestra_notify_basic_auth_password }}'
+orchestra_apn_key_content: '{{ vault_orchestra_apn_key_content }}'
+orchestra_admin_password_testing: '{{ vault_orchestra_admin_password_testing }}'
+orchestra_database_password_testing: '{{ vault_orchestra_database_password_testing }}'
+orchestra_auth_jwt_secret_testing: '{{ vault_orchestra_auth_jwt_secret_testing }}'
+fcm_server_key_testing: '{{ vault_fcm_server_key_testing }}'
+orchestra_apn_key_password_testing: '{{ vault_orchestra_apn_key_password_testing }}'
+orchestra_notify_basic_auth_password_testing: '{{ vault_orchestra_notify_basic_auth_password_testing }}'
+orchestra_apn_key_content_testing: '{{ vault_orchestra_apn_key_content_testing }}'
+
+orchestra_database_url_testing: 'postgres://{{ orchestra_database_username }}:{{ orchestra_database_password_testing }}@db-1.proteus.test.ooni.io:5432/{{ orchestra_database_name }}?sslmode=require'
+orchestra_database_url: 'postgres://{{ orchestra_database_username }}:{{ orchestra_database_password }}@db-1.proteus.ooni.io:5432/{{ orchestra_database_name }}?sslmode=require'
+...

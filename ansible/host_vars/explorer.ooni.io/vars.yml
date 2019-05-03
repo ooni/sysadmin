@@ -1,0 +1,4 @@
+---
+ooni_pipeline_host: ssdams.infra.ooni.io
+ooni_pipeline_passwd: '{{ vault_ooni_pipeline_passwd }}'
+...
