@@ -151,6 +151,12 @@ scrape_configs:
     static_configs:
       - targets: [ 'notify.proteus.ooni.io:443' ]
 
+  - job_name: 'ooni-api'
+    scrape_interval: 5s
+    scheme: https
+    static_configs:
+      - targets: [ 'api.ooni.io:443' ]
+
   - job_name: 'ooni-web'
     scrape_interval: 5m
     scheme: https
