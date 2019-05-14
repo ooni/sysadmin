@@ -110,7 +110,7 @@ passwd:
 
 # Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
 # See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
-adm_logins: [ art, darkk, sbs ]
+adm_logins: [ art, darkk, sbs, sarath ]
 shell_logins: [ ]
 svc_ssh_logins: [ ]
 sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
