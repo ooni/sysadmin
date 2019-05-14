@@ -49,15 +49,33 @@ IdentitiesOnly yes
 ServerAliveInterval 120
 UserKnownHostsFile ~/.ssh/known_hosts ~/PATH/TO//ooni/sysadmin/ext/known_hosts
 
-# Uncomment this on macOS to use the Keychain service for storing passwords
-#host *
-#    UseKeychain yes
 ```
 
 Replace `~/PATH/TO//ooni/sysadmin/ext/known_hosts` to where you have cloned the
 `ooni/sysadmin` repo. This will ensure you use the host key fingeprints from
 this repo instead of just relying on TOFU.
 
+You probably also want to add:
+
+```
+host *.ooni.io
+  user USERNAME
+  identityfile ~/.ssh/id_rsa
+
+host *.ooni.nu
+  user USERNAME
+  identityfile ~/.ssh/id_rsa
+```
+
+You should replace `USERNAME` with your username from `adm_login`.
+
+On macOS you may want to also add:
+```
+host *
+    UseKeychain yes
+```
+
+To use the Keychain to store passwords.
 
 # M-Lab deployment
 
