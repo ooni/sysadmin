@@ -1,5 +1,5 @@
 ---
-adm_logins: [ art, darkk, sbs, superq ]
+adm_logins: [ art, darkk, sarath, sbs, superq ]
 ngxprom_scrapers:
   - prometheus.infra.ooni.io
   - brie.darkk.net.ru
