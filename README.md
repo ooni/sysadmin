@@ -39,6 +39,26 @@ and link location of the variable using same name without prefix in correspondin
 `ansible/play` wrapper for `ansible-playbook` will execute a playbook with
 proper vault secret and inventory.
 
+# SSH Config
+
+You should configure your `~/.ssh/config` with the following:
+
+```
+Ciphers aes128-ctr,aes256-ctr,aes128-cbc,aes256-cbc
+IdentitiesOnly yes
+ServerAliveInterval 120
+UserKnownHostsFile ~/.ssh/known_hosts ~/PATH/TO//ooni/sysadmin/ext/known_hosts
+
+# Uncomment this on macOS to use the Keychain service for storing passwords
+#host *
+#    UseKeychain yes
+```
+
+Replace `~/PATH/TO//ooni/sysadmin/ext/known_hosts` to where you have cloned the
+`ooni/sysadmin` repo. This will ensure you use the host key fingeprints from
+this repo instead of just relying on TOFU.
+
+
 # M-Lab deployment
 
 M-Lab [deployment process](https://github.com/m-lab/ooni-support/#m-lab-deployment-process).
