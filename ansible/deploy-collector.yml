@@ -13,6 +13,7 @@
       letsencrypt_nginx: true
       letsencrypt_domains: ["c.collector.ooni.io"]
     - role: ooni-collector
+      tags: collector
       collector_domain: c.collector.ooni.io
 
 - hosts: "hkgcollectora.ooni.nu"
@@ -23,6 +24,7 @@
       letsencrypt_nginx: true
       letsencrypt_domains: ["a.collector.ooni.io"]
     - role: ooni-collector
+      tags: collector
       collector_domain: a.collector.ooni.io
 
 - hosts: "miacollector.ooni.nu"
@@ -33,4 +35,5 @@
       letsencrypt_nginx: true
       letsencrypt_domains: ["b.collector.ooni.io"]
     - role: ooni-collector
+      tags: collector
       collector_domain: b.collector.ooni.io
