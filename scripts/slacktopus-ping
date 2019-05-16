@@ -1,0 +1,62 @@
+#!/bin/bash -e
+#
+# That's a script to verify that Slack-IRC gateway is onlne and responds
+# to CTCP PING messages. It's not enough to ensure that it relays actual
+# messages, but it works as a reasonable health-check.
+#
+# The script assumes that it's run from user's crontab and the user runs
+# WeeChat bouncer at the host.
+#
+
+instance=$(hostname)
+pid=$(pgrep -U "$USER" weechat | head -1)
+fifo="weechat_fifo_${pid}"
+log=logs/irc.server.oftc.weechatlog
+
+cd $HOME/.weechat
+test -n "$pid"
+test -p "$fifo"
+test -f "$log"
+size=$(stat --format=%s $log)
+
+# take last available nickname first
+nicknames=$({ tail $log | awk '/CTCP reply from (slacktopus|slacktopus1|slacktopus2): PING/' | grep -oE '(slacktopus|slacktopus1|slacktopus2)'; echo slacktopus ; echo slacktopus1 ; echo slacktopus2 ; } | sort | uniq -c | sort -nr | awk '{print $2}')
+
+for nick in $nicknames; do
+  # to avoid N pings blocked on FIFO
+  # `-c` matters as it's open() that blocks, not write()
+  flock --nonblock fifo.lock -c "echo 'irc.server.oftc */ctcp ${nick} ping' >${fifo}"
+
+  for i in `seq 16`; do
+    sleep 1
+    flock --nonblock fifo.lock -c "echo 'irc.server.oftc */logger flush' >${fifo}"
+    read day time rtt < <(tail "--bytes=+${size}" "$log" | awk '/CTCP reply from '"${nick}"': PING / {print $1, $2, $(NF)}' | tail -1) || true
+    if [ -n "$rtt" ]; then
+      break
+    elif tail "--bytes=+${size}" "$log" | grep -q -F -e "${nick}: No such nick/channel"; then
+      break
+    fi
+  done
+
+  if [ -n "$rtt" ]; then
+    break
+  fi
+done
+
+if [ -n "$rtt" ]; then
+  rtt=${rtt/s/}
+  ts=$(date -d "$day $time" +%s)
+
+  curl -X PUT --data-binary @- \
+  --cert slacktopus-ping.cert \
+  --key slacktopus-ping.key \
+  "https://prometheus.infra.ooni.io:9091/metrics/job/weechat/instance/${instance}" \
+  <<EOF
+# HELP slacktopus_ctcp_pong_time Last CTCP pong from slacktopus.
+# TYPE slacktopus_ctcp_pong_time gauge
+slacktopus_ctcp_pong_time ${ts}
+# HELP slacktopus_ctcp_rtt_seconds CTCP Ping RTT to slacktopus.
+# TYPE slacktopus_ctcp_rtt_seconds gauge
+slacktopus_ctcp_rtt_seconds ${rtt}
+EOF
+fi
