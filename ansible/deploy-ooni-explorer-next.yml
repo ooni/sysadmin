@@ -5,13 +5,13 @@
   roles:
     - role: docker_py
     - role: letsencrypt
-      letsencrypt_domains: ['ooni-explorer-next.test.ooni.io']
+      letsencrypt_domains: ['explorer-beta.ooni.io']
 
 - hosts: ooni-explorer-next.test.ooni.io
   gather_facts: false # already gathered
   vars:
     ansible_python_interpreter: '/root/venv/bin/python2.7' # to control docker
-    explorer_domain: ooni-explorer-next.test.ooni.io
+    explorer_domain: explorer-beta.ooni.io
   roles:
     - role: ooni-explorer-next
       tags: explorer
