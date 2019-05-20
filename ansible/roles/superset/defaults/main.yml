@@ -9,8 +9,6 @@ superset_version: "0.28.1"
 superset_admin_username: "admin"
 superset_admin_password: "{{ vault_superset_admin_password }}"
 
-superset_web_path: "/"
-
 superset_user: "{{ passwd.superset.login }}"
 superset_group: "{{ passwd.superset.group }}"
 superset_uid: "{{ passwd.superset.id }}"
