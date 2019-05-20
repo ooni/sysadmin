@@ -71,6 +71,7 @@ proteus.ooni.io
 run.ooni.io
 amsmetadb.ooni.nu
 amsapi.ooni.nu
+amsapi02.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -102,6 +103,7 @@ hkgmetadb.infra.ooni.io
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
 amsapi.ooni.nu
+amsapi02.ooni.nu
 miaapi.ooni.nu
 
 [psk_orchestration]
@@ -144,6 +146,7 @@ miaapi.ooni.nu
 
 [have_nginx]
 amsapi.ooni.nu
+amsapi02.ooni.nu
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 
