@@ -53,6 +53,27 @@
     # inventory group to have a recent version of nginx (the stock debian one
     # is too old!)
     - role: ooni-measurements
-      tags: api
+      tags: "api"
       oomsm_domain: api.ooni.io
       oomsm_legacy_domains: ["measurements.ooni.io", "measurements.ooni.torproject.org"]
+
+- hosts: amsapi02.ooni.nu
+  roles:
+    - role: docker_py
+      tags: api02
+    - role: letsencrypt
+      letsencrypt_nginx: true
+      letsencrypt_domains: ["api.ooni.io"]
+      tags: api02
+
+- hosts: amsapi02.ooni.nu
+  gather_facts: false # already gathered
+  vars:
+    ansible_python_interpreter: '/root/venv/bin/python2.7'
+  roles:
+    # Note: this roles depends on putting the host inside the have_nginx
+    # inventory group to have a recent version of nginx (the stock debian one
+    # is too old!)
+    - role: ooni-measurements
+      oomsm_domain: api.ooni.io
+      tags: "api02"
