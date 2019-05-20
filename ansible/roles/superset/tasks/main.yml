@@ -21,8 +21,9 @@
     - "build-essential"
     - "libssl-dev"
     - "libffi-dev"
-    - "python-dev"
-    - "python-pip"
+    - "python3-dev"
+    - "python3-pip"
+    - "python3-venv"
     - "libsasl2-dev"
     - "libldap2-dev"
     - "libpq-dev"
@@ -46,30 +47,33 @@
 - name: create superset virtualenv
   pip:
     name: "{{ item }}"
+    virtualenv_command: "/usr/bin/python3 -m venv"
     virtualenv: "{{ superset_venv_path }}"
   with_items:
+    - "sqlalchemy==1.2.18" # fixes: https://github.com/apache/incubator-superset/issues/6977
+    - "pandas==0.23.4" # Workaround for: https://github.com/apache/incubator-superset/issues/6770
     - "superset=={{ superset_version }}"
     - "psycopg2"
   become: true
   become_user: "{{ superset_user }}"
 
 - name: create admin user
-  command: "{{ superset_venv_path}}/fabmanager create-admin --app superset --app superset --username {{ superset_admin_username}} --password {{ superset_admin_password }} --firstname admin --lastname admin --email admin@openobservatory.org"
-	environment:
+  command: "{{ superset_venv_path}}/bin/fabmanager create-admin --app superset --username {{ superset_admin_username}} --password {{ superset_admin_password }} --firstname admin --lastname admin --email admin@openobservatory.org"
+  environment:
     PYTHONPATH: "{{ superset_config_path }}" # We pass the PYTHONPATH so that superset can get our custom config
   become: true
   become_user: "{{ superset_user }}"
 
 - name: upgrade db
-  command: "{{ superset_venv_path}}/superset db upgrade"
-	environment:
+  command: "{{ superset_venv_path}}/bin/superset db upgrade"
+  environment:
     PYTHONPATH: "{{ superset_config_path }}"
   become: true
   become_user: "{{ superset_user }}"
 
 - name: init db
-  command: "{{ superset_venv_path}}/superset init"
-	environment:
+  command: "{{ superset_venv_path}}/bin/superset init"
+  environment:
     PYTHONPATH: "{{ superset_config_path }}"
   become: true
   become_user: "{{ superset_user }}"

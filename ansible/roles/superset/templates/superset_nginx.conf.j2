@@ -1,13 +1,16 @@
 # ansible-managed in ooni-sysadmin.git/ansible/roles/superset/templates/superset_nginx.conf.j2
+
+{% import 'common.j2' as c %}
 server {
     server_name _;
 
+    listen 80;
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/privkey.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
+    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
 
   location / {
     proxy_pass http://{{ superset_listen_address }};
@@ -18,4 +21,6 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_read_timeout 900;
   }
+
+  {{ c.location_letsencrypt() }}
 }
