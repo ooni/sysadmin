@@ -84,7 +84,7 @@ deb.ooni.nu # NOT-GH, moritz?
 b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
 [otf-aws]
-dw-superset.ooni.io
+dw.wsm.ooni.io
 
 ########################################################################
 # PSK (pre-shared key) tags

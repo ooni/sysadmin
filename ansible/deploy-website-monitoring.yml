@@ -1,0 +1,25 @@
+---
+- hosts: dw.wsm.ooni.io
+  roles:
+    - role: adm
+      adm_passwd:
+        - "{{ passwd.art }}"
+        - "{{ passwd.sbs }}"
+        - "{{ passwd.sarath }}"
+
+- hosts: dw.wsm.ooni.io
+  gather_facts: false # already gathered
+  roles:
+    - role: letsencrypt
+      letsencrypt_nginx: yes
+      letsencrypt_domains: ["dw.wsm.ooni.io"]
+      tags: letsencrypt
+    - role: superset
+      letsencrypt_domains: ["dw.wsm.ooni.io"]
+      superset_web_path: "/superset"
+      tags: superset
+    - role: jupyter
+      jupyter_web_path: "/jupyter"
+      jupyter_password_hash: "{{ vault_jupyter_password_hash }}"
+      letsencrypt_domains: ["dw.wsm.ooni.io"]
+      tags: jupyter

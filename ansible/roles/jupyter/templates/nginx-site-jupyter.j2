@@ -4,11 +4,11 @@ server {
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/privkey.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
+    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains[0] }}/fullchain.pem;
 
-  location / {
+  location {{ jupyter_web_path }} {
     proxy_pass http://127.0.0.1:{{ jupyter_port }};
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
