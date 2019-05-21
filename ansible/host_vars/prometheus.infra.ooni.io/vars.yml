@@ -63,10 +63,15 @@ blackbox_jobs:
     targets:
       - "https://explorer.ooni.torproject.org/api/reports/countByCountry"
 
-  - name: "ooni measurements API files"
+  - name: "ooni API files"
     module: "http_2xx"
     targets:
-      - "https://measurements.ooni.torproject.org/api/v1/files"
+      - "https://api.ooni.io/api/v1/files"
+
+  - name: "ooni API measurements"
+    module: "http_2xx"
+    targets:
+      - "https://api.ooni.io/api/v1/measurements"
 
   - name: "slack inviter"
     module: "http_2xx"
