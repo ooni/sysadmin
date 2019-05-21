@@ -7,7 +7,7 @@ This can be useful to third parties that would like to do more advanced
 analysis and presentations that are not currently supported by existing OONI
 tools.
 
-Last updated: 19th April
+Last updated: 19th April 2019
 
 ## Requirements
 
