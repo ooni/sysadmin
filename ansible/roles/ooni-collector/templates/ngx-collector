@@ -31,6 +31,7 @@ server {
     access_log  /var/log/nginx/{{ collector_domain }}.access.log strip_ip;
     error_log   /var/log/nginx/{{ collector_domain }}.error.log warn;
 
+    client_max_body_size 20M;
     proxy_read_timeout 30s;
 
     location / {
