@@ -21,8 +21,9 @@
   roles:
     # every known UID should be reserved to avoid occasional clash with `useradd`
     - role: passwd
+      tags: adm
     - role: dom0-defaults
-      tags: [ on-rename, dom0-defaults ]
+      tags: [ on-rename, dom0-defaults, adm ]
     - role: ntp
       tags: ntp
 
