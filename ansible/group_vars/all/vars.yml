@@ -84,6 +84,12 @@ passwd:
     id: 10003
     comment: Leonid Evdokimov
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWe9jGACZhSKhCq/jGOe8xKpY8bPSC8MagEiWMCzcHA5520Js4EGzwuYx5h/7sHK4GKWekGzO57xOsgeKACDKo8JppIPt+uJtnwJpVr7EHdnX1hhBMfo0NfV42R+//fZIHMNtGIW31iPg3cQVp9c+GQPsdmuDPbKGLoQvS9dGnF+N6lM+dicEmeBrqbA/t5V1j/rrfpmpTNOWef2WsREFdZBQbgD3rZU1lG0CnxNw6ATnFQgqcC1QsyfWD8e1pmDLByoVuYJ6WXBLKgI86hrMNidxGjzmpAn2q+5cbu5HZXOkmny3TBiP0VxPJJ43PuLIFkdCNh50KRPtTug3o38Oj leon+2016@darkk.net.ru"]
+  federico:
+    login: federico
+    id: 10008
+    comment: Federico Ceratto
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
   nuke:
     login: nuke
     id: 10004
@@ -110,7 +116,7 @@ passwd:
 
 # Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
 # See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
-adm_logins: [ art, darkk, sarath, sbs ]
+adm_logins: [ art, federico, sarath, sbs ]
 shell_logins: [ ]
 svc_ssh_logins: [ ]
 sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
