@@ -25,13 +25,6 @@
     state: present
   with_items: "{{ adm_logins | union(shell_logins) }}"
 
-- name: revoke users
-  user:
-    name: "{{ passwd[item].login }}"
-    state: absent
-    remove: yes
-  with_items: "{{ revoked_logins }}"
-
 - name: create .ssh
   file: path=/home/{{item}}/.ssh state=directory owner={{item}} group={{item}} mode=0700
   with_items: "{{ adm_logins | union(shell_logins) }}"
