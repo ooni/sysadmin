@@ -89,7 +89,7 @@ passwd:
     id: 10008
     comment: Federico Ceratto
     keys:
-      - ""
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
   nuke:
     login: nuke
     id: 10004
