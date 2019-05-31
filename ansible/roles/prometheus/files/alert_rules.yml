@@ -129,7 +129,7 @@ groups:
 
   - alert: BlackboxDown
     expr: probe_success == 0
-    for: 5m
+    for: 10m
     annotations:
       summary: "{{ $labels.instance }} endpoint down"
 
