@@ -20,11 +20,12 @@ groups:
     annotations:
       summary: '{{ $labels.instance }} is not OK, check `systemctl list-units | grep failed`'
 
-  - alert: IOWaitHigh
-    expr: sum without (cpu) (irate(node_cpu{mode="iowait"}[1m])) > 0.9
-    for: 5m # matters to avoid spikes
-    annotations:
-      summary: '{{ $labels.instance }} %iowait {{ printf "%.2f" $value }} of CPU core'
+  # Disabled due to it being noisy
+  #- alert: IOWaitHigh
+  #  expr: sum without (cpu) (irate(node_cpu{mode="iowait"}[1m])) > 0.9
+  #  for: 5m # matters to avoid spikes
+  #  annotations:
+  #    summary: '{{ $labels.instance }} %iowait {{ printf "%.2f" $value }} of CPU core'
 
   # the difference between node_disk_{io,read,write}_time_ms is not clear, `io` is NOT `read + write`, it may be greater, it may be less...
   # All the nodes have `node_disk_io_time_ms`, but it can be verified with expr: (sum without(device) (node_disk_io_time_ms{job="node"}) or up{job="node"}) == 1
