@@ -53,8 +53,4 @@ groups:
       description: >
         Last `{{ $labels.task }}` failure {{ (printf "round(time() - airflow_7d_task_failed_last_time_seconds{dag='%s',task='%s'}, 3600)" $labels.dag $labels.task) | query | first | value | humanizeDuration | reReplaceAll " 0m 0s$" "" }} ago.
 
-  - alert: SlacktopusGone
-    expr: time() - slacktopus_ctcp_pong_time > 660 # it's randomized */5 crontab
-    annotations:
-      summary: Slacktopus is gone for {{ $value | humanizeDuration }} (maybe that's just darkk's WeeChat)
 ...
