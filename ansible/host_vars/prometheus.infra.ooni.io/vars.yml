@@ -61,7 +61,7 @@ blackbox_jobs:
   - name: "ooni explorer countByCountry"
     module: "http_2xx"
     targets:
-      - "https://explorer.ooni.torproject.org/api/reports/countByCountry"
+      - "https://explorer.ooni.io/api/reports/countByCountry"
 
   - name: "ooni API files"
     module: "http_2xx"
