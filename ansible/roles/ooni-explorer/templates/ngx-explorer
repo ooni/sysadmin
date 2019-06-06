@@ -26,6 +26,10 @@ server {
     access_log  /var/log/nginx/{{ explorer_domain }}.access.log; # FIXME: log_format
     error_log   /var/log/nginx/{{ explorer_domain }}.error.log;
 
+    if ( $host != explorer.ooni.io ) {
+        return 301 https://explorer.ooni.io$request_uri;
+    }
+
     location / {
         proxy_pass http://{{ explorer_backend_ipv4 }}:{{ explorer_backend_port }};
         include proxy_params;
