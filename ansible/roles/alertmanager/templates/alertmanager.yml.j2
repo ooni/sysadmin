@@ -51,7 +51,7 @@ inhibit_rules:
 receivers:
 - name: 'team-all'
   email_configs:
-{% for u in ['arturo', 'simone'] %}
+{% for u in ['arturo', 'federico', 'simone'] %}
   - to: '{{ u }}@openobservatory.org'
     send_resolved: true
     smarthost: {{ am_mx_openobservatory }}:25
@@ -64,7 +64,7 @@ receivers:
 
 - name: 'team-email' # no slack
   email_configs:
-{% for u in ['arturo', 'simone'] %}
+{% for u in ['arturo', 'federico', 'simone'] %}
   - to: '{{ u }}@openobservatory.org'
     send_resolved: true
     smarthost: {{ am_mx_openobservatory }}:25
