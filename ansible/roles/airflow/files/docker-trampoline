@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Ability to execute arbituary docker commands on the host equals to root-shell
+# Ability to execute arbitrary docker commands on the host equals to root-shell
 # on the host (datacollector.infra.ooni.io), so this script does some
 # whitelisting.
 #
@@ -29,12 +29,12 @@ shift 4
 (
 shopt -s extglob
 if [ -z "$bucket" -o -n "${bucket/+([-0-9])/}" ]; then
-    echo "$0: bad arg <$bucket> -> <${bucket/+([-0-9])/}>" 1>&2
+    echo "$0: bad bucket arg <$bucket> -> <${bucket/+([-0-9])/}>" 1>&2
     exit 1
 fi
 for var in "$isofrom" "$isotill"; do
     if [ -z "$var" -o -n "${var/+([-0-9T:.])/}" ]; then
-        echo "$0: bad arg <$var> -> <${var/+([-0-9T:.])/}>" 1>&2
+        echo "$0: bad isofrom/isotill arg <$var> -> <${var/+([-0-9T:.])/}>" 1>&2
         exit 1
     fi
 done
@@ -225,6 +225,15 @@ case "$script" in
         --working-dir /tmp \
         --postgres 'host=db-1.proteus.ooni.io user=proteus dbname=proteus sslmode=verify-full sslrootcert=/ooca-cert/postgres_ca.cert'
     exit 1 # if exec fails
+    ;;
+
+    analysis)
+    volargs=""
+    volargs="${volargs} --volume=$public/analysis:/srv/analysis:rw"
+    volargs="${volargs} --tmpfs /tmp:rw,noexec,nosuid,size=128m"
+    rundocker="/usr/bin/docker run --interactive --rm --read-only --log-driver=journald"
+    $rundocker $volargs --name analysis openobservatory/pipeline-analysis:latest /srv/analysis.py
+    exit 0 # stop here
     ;;
 
     *)
