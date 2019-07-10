@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export ANSIBLE_NOCOWS=1
 if [ -z ${OONI_SYSADMIN_HOME+x} ]; then
     OONI_SYSADMIN_HOME=$HOME/.ooni-sysadmin
 fi
