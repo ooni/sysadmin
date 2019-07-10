@@ -62,6 +62,7 @@ passwd:
   bouncer: {login: bouncer, id: 8000, comment: OONI Bouncer user}
   collector: {login: collector, id: 8001, comment: OONI Collector user}
   sync_user: {login: sync-user, id: 8002, comment: OONI Collector Sync user}
+  sshfeeder: {login: sshfeeder, id: 8003, comment: OONI Collector SSH feeder user}
 
   # people have id >= 10000
   agrabeli:
