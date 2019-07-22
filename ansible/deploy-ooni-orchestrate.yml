@@ -6,12 +6,14 @@
     orchestra_notify_url: "https://notify.proteus.test.ooni.io"
     orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password_testing }}"
     orchestra_notify_topic_ios: "org.openobservatory.NetProbe"
+    orchestra_version: "0.3.0"
   roles:
     - role: letsencrypt
-      tags: letsencrypt
-      letsencrypt_domains: ["{{ inventory_hostname }}"] # BTW, that's strong anti-pattern
+      tags: [letsencrypt, test]
+      letsencrypt_domains: ["events.proteus.test.ooni.io", "orchestrate.test.ooni.io"]
     - role: ooni-orchestrate
-      letsencrypt_domains: ["{{ inventory_hostname }}"]
+      tags: test
+      letsencrypt_domains: ["events.proteus.test.ooni.io", "orchestrate.test.ooni.io"]
 
 - hosts: events.proteus.ooni.io
   vars:
