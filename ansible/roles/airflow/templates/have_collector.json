@@ -1,1 +1,1 @@
-{{ groups.have_collector | to_nice_json }}
+{{ groups.active_collector | to_nice_json }}
