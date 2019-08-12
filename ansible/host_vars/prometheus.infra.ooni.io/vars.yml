@@ -51,7 +51,6 @@ blackbox_jobs:
     module: "ooni_tcp_echo_ok"
     targets:
       - "{{ lookup('dig', 'c.echo.th.ooni.io/A') }}:80"
-      - "{{ lookup('dig', 'b.echo.th.ooni.io/A') }}:80"
 
   - name: "ooni http return json headers"
     module: "ooni_http_return_json_headers_ok"

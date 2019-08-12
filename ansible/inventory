@@ -78,11 +78,6 @@ bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.i
 
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
-# The machines below can maybe be discontinued
-deb.ooni.nu # NOT-GH, moritz?
-
-[bigv] # Bytemark @ London
-b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
 ########################################################################
 # PSK (pre-shared key) tags
@@ -167,7 +162,6 @@ c.collector.ooni.io
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
 irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
-deb.ooni.nu                       # no root for darkk
 staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]
