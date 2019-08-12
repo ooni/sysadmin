@@ -24,7 +24,6 @@ api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
-b.echo.th		A	213.138.109.232
 b.web-connectivity.th		A	37.218.242.234
 bouncer		A	103.104.244.87
 bouncer.stage		A	37.218.240.139
@@ -77,4 +76,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 de3c5791866ef724a0c1d28dcc6cbfb5318882fed97f423c2f9317a096222031
+; generated from ooni.io.xml with SHA256 0be1d73820baed9da92bff9cf7449a658aa69e4486eae2931c45bab118cdab67
