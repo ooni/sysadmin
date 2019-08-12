@@ -19,7 +19,7 @@ a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
 analytics		A	37.218.241.42
-api		A	37.218.242.231
+api	60	A	37.218.245.41
 api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
@@ -38,6 +38,8 @@ db-1.proteus		A	37.218.242.79
 db-1.proteus.test		A	37.218.240.153
 demo.probe		A	37.218.242.41
 design		CNAME	ooni-design.netlify.com.
+dw-superset		A	54.221.146.227
+dw.wsm		A	54.221.146.227
 events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.173
@@ -58,6 +60,7 @@ notify.proteus.test		A	37.218.240.149
 ooni-explorer-next.test		A	103.104.244.44
 ooni-zoo.infra		A	37.218.240.138
 orchestrate	300	A	37.218.242.63
+orchestrate.test		A	37.218.240.151
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
@@ -74,4 +77,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 ce22380b284928fb5cb346b0b9e2e3d4e73ff073d346860dfdbb402e24c86204
+; generated from ooni.io.xml with SHA256 de3c5791866ef724a0c1d28dcc6cbfb5318882fed97f423c2f9317a096222031
