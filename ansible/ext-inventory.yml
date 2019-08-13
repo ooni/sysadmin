@@ -1,5 +1,7 @@
 # This playbook updates data at ooni-sysadmin.git/ext/
 ---
+- import_playbook: ansible-version.yml
+
 - hosts: localhost
   connection: local
   gather_facts: false
