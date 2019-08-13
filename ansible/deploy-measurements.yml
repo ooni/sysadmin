@@ -7,10 +7,6 @@
     - role: letsencrypt
       letsencrypt_nginx: true
       letsencrypt_domains: ["api.ooni.io"]
-    - role: letsencrypt
-      letsencrypt_nginx: true
-      letsencrypt_domains: ["measurements.ooni.io", "measurements.ooni.torproject.org"]
-      tags: legacy
 
 - hosts: api.ooni.io
   gather_facts: false # already gathered
