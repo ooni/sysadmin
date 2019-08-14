@@ -20,6 +20,7 @@ miacollector.ooni.nu
 analytics.ooni.io
 miatorth.ooni.nu
 miaapi.ooni.nu
+pipeline.test.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
