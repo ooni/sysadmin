@@ -5,7 +5,6 @@
 gh
 ath
 tpo
-bigv
 
 [gh:children]
 mia
@@ -70,8 +69,7 @@ proteus.ooni.io
 
 run.ooni.io
 amsmetadb.ooni.nu
-amsapi.ooni.nu
-amsapi02.ooni.nu
+api.ooni.io
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -97,9 +95,8 @@ hkgmetadb.infra.ooni.io
 
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
-amsapi.ooni.nu
-amsapi02.ooni.nu
 miaapi.ooni.nu
+api.ooni.io
 
 [psk_orchestration]
 # FIXME: all in one bin as testing should have access to production! :)
@@ -138,11 +135,10 @@ hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
 miaapi.ooni.nu
-amsapi02.ooni.nu
+api.ooni.io
 
 [have_nginx]
-amsapi.ooni.nu
-amsapi02.ooni.nu
+api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 

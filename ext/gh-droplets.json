@@ -206,44 +206,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 40, 
-            "features": [], 
-            "id": "1155", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 9f:81:a8:e3:89:ba:66:08:f3:c0:41:bb:a9:ea:9a:6b", 
-                "ssh_ecdsa": "256 83:cf:ad:e4:c4:ed:99:fb:dc:c6:15:3d:ef:48:ca:b4", 
-                "ssh_rsa": "2048 47:22:b1:20:60:c4:78:63:a4:0c:09:02:3d:c4:d7:27"
-            }, 
-            "locked": false, 
-            "memory": "4096", 
-            "name": "amsapi.ooni.nu", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.231", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "2"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 15, 
             "features": [], 
             "id": "1158", 
@@ -1703,7 +1665,7 @@
             }, 
             "locked": false, 
             "memory": "8192", 
-            "name": "amsapi02.ooni.nu", 
+            "name": "api.ooni.io", 
             "networks": {
                 "v4": [
                     {
@@ -1803,6 +1765,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 47
+        "total": 46
     }
 }
