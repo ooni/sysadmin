@@ -23,6 +23,7 @@
     orchestra_notify_url: "https://notify.proteus.ooni.io"
     # orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password }}"
     orchestra_notify_topic_ios: "org.openobservatory.ooniprobe"
+    orchestra_version: "0.3.0"
   roles:
     - role: letsencrypt
       tags: letsencrypt
