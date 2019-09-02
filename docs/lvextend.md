@@ -8,7 +8,7 @@ The below documentation is to be used when you want to extend a `/dev/mapper` vo
 
 4. Start up the VPS again
 
-5. Login to the machine and go through the following checklist to expand the `/dev/mapper` partition. Replace `$disk` with the disk label you see in the configuration section of the VPS on the eclipsis portal and `$groupid` with the volume group you see listed in the VG column of `pvs` (ex. `hkgmetadb`)
+5. Login to the machine and go through the following checklist to expand the `/dev/mapper` partition. Replace `$disk` with the disk label you see in the configuration section of the VPS on the eclipsis portal (ex. `/dev/xvdg1`) and `$groupid` with the volume group you see listed in the VG column of `pvs` (ex. `hkgmetadb`)
 
 ```
 pvs; dd if=/dev/$disk bs=4096 count=16 | hexdump -C
@@ -18,7 +18,7 @@ vgextend $groupid /dev/$disk
 vgs; lvs; df -h
 ```
 
-You should obtain the logical volume path from the output of `lvs`. That path is made up of `LG/LV` (ex. `hkgmetadb/srv` or `amsmetadb/plpsql`)
+You should obtain the logical volume path from the output of `lvs`. That path is made up of `VG/LV` (ex. `hkgmetadb/srv` or `amsmetadb/plpsql`)
 
 ```
 lvextend --resizefs -l 100%VG hkgmetadb/srv
