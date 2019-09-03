@@ -6,7 +6,7 @@
 
 # all flag files are created in separate directory
 # To run new tasks you have to mind dependencies, e.g. you may have to mark some TIs as successful.
-PRJ = spill
+PRJ = backfill
 # sed-deps, af-deps, or metadb-deps -- something like that
 TYPEOF_DEPS = sed-deps
 
