@@ -1,0 +1,93 @@
+---
+- name: create superset group
+  group:
+    name: "{{ superset_group }}"
+    state: present
+
+- name: create superset user
+  user:
+    name: "{{ superset_user }}"
+    group: "{{ superset_group }}"
+    uid: "{{ superset_uid }}"
+    createhome: yes # Superset needs a home
+    shell: /bin/bash # XXX maybe we can harden this
+    comment: "{{ superset_user_comment }}"
+    state: present
+
+- name: install apt requirements
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - "build-essential"
+    - "libssl-dev"
+    - "libffi-dev"
+    - "python3-dev"
+    - "python3-pip"
+    - "python3-venv"
+    - "libsasl2-dev"
+    - "libldap2-dev"
+    - "libpq-dev"
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rwx,g=rx,o="
+    owner: "{{ superset_user }}"
+    group: "{{ superset_group }}"
+  with_items:
+    - "{{ superset_path }}"
+    - "{{ superset_config_path }}"
+
+- name: configure superset
+  template:
+    src: superset_config.py.j2
+    dest: "{{ superset_config_path }}/superset_config.py"
+
+- name: create superset virtualenv
+  pip:
+    name: "{{ item }}"
+    virtualenv_command: "/usr/bin/python3 -m venv"
+    virtualenv: "{{ superset_venv_path }}"
+  with_items:
+    - "sqlalchemy==1.2.18" # fixes: https://github.com/apache/incubator-superset/issues/6977
+    - "pandas==0.23.4" # Workaround for: https://github.com/apache/incubator-superset/issues/6770
+    - "superset=={{ superset_version }}"
+    - "psycopg2"
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: create admin user
+  command: "{{ superset_venv_path}}/bin/fabmanager create-admin --app superset --username {{ superset_admin_username}} --password {{ superset_admin_password }} --firstname admin --lastname admin --email admin@openobservatory.org"
+  environment:
+    PYTHONPATH: "{{ superset_config_path }}" # We pass the PYTHONPATH so that superset can get our custom config
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: upgrade db
+  command: "{{ superset_venv_path}}/bin/superset db upgrade"
+  environment:
+    PYTHONPATH: "{{ superset_config_path }}"
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: init db
+  command: "{{ superset_venv_path}}/bin/superset init"
+  environment:
+    PYTHONPATH: "{{ superset_config_path }}"
+  become: true
+  become_user: "{{ superset_user }}"
+
+- name: Install superset.service
+  template:
+    src: superset.service.j2
+    dest: "/etc/systemd/system/superset.service"
+
+- name: Start superset.service
+  systemd:
+    name: superset.service
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- include: setup-nginx.yml

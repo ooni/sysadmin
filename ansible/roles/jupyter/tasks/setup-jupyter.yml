@@ -1,4 +1,10 @@
 ---
+- name: ensure juypter user exists
+  user:
+    name: "{{ jupyter_user }}"
+    shell: /bin/sh
+    state: present
+
 - name: set permissions, owner and group
   file:
     path: "{{ jupyter_path }}"

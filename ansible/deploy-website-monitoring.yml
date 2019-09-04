@@ -1,0 +1,42 @@
+---
+- hosts: dw.wsm.ooni.io
+  roles:
+    - role: adm
+      adm_passwd:
+        - "{{ passwd.art }}"
+        - "{{ passwd.sbs }}"
+        - "{{ passwd.sarath }}"
+
+# Manually:
+# apt install postgresql postgresql-contrib
+# sudo -u postgres psql
+# create extension postgres_fdw;
+#
+# CREATE SERVER metadb FOREIGN DATA WRAPPER
+#   postgres_fdw OPTIONS
+#   (dbname 'metadb', host 'ec2-3-92-83-13.compute-1.amazonaws.com', port '5432');
+#
+# CREATE USER MAPPING FOR postgres
+#         SERVER metadb
+#        OPTIONS (user 'postgres');
+#
+# Create the FOREIGN tables using: https://gist.github.com/hellais/6effbf5c728469e67482a60ae90aeb5c
+# Move the data directory of postgres into /srv/postgresql_data_dir:
+# https://www.dbrnd.com/2018/04/postgresql-move-main-data-directory-in-linux-ubuntu-16-4/
+
+- hosts: dw.wsm.ooni.io
+  gather_facts: false # already gathered
+  roles:
+    - role: letsencrypt
+      letsencrypt_nginx: yes
+      letsencrypt_domains: ["dw.wsm.ooni.io"]
+      tags: letsencrypt
+    - role: superset
+      letsencrypt_domains: ["dw.wsm.ooni.io"]
+      superset_web_path: "/superset"
+      tags: superset
+    - role: jupyter
+      jupyter_web_path: "/jupyter"
+      jupyter_password_hash: "{{ vault_jupyter_password_hash }}"
+      letsencrypt_domains: ["dw.wsm.ooni.io"]
+      tags: jupyter

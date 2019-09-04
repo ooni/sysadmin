@@ -44,6 +44,7 @@ passwd:
   piwik:    {login: piwik,    id: 2300, comment: Piwik user}
 
   grav:     {login: grav,     id: 2400, comment: Grav user}
+  superset: {login: superset, group: superset, id: 2401, comment: Superset User}
 
   prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
   prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}

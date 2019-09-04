@@ -1,5 +1,5 @@
 ---
-- import_playbook: ansible-version.yml
+- include: ansible-version.yml
 
 - hosts: hkgmetadb.infra.ooni.io
   gather_facts: false # no useful facts there :)
@@ -10,4 +10,27 @@
       db: metadb
       name: oosuperset
       password: '{{ hkgsuperset_postgres_password }}'
-...
+
+- hosts: hkgsuperset.ooni.io
+  become: false
+  remote_user: root
+  gather_facts: true
+  pre_tasks:
+    - name: bootstap python
+      raw: if [ ! -x /usr/bin/python ]; then apt-get update && apt-get -y install python-simplejson python-apt; fi
+      register: output
+      changed_when: output.stdout != ""
+  roles:
+    - role: adm
+      adm_passwd:
+        - "{{ passwd.art }}"
+        - "{{ passwd.darkk }}"
+
+- hosts: hkgsuperset.ooni.io
+  gather_facts: false # already gathered
+  vars:
+    letsencrypt_nginx: yes
+    letsencrypt_domains: "hkgsuperset.ooni.io"
+  roles:
+    - letsencrypt
+    - superset

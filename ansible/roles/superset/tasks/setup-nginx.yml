@@ -1,0 +1,31 @@
+---
+- name: Install nginx
+  environment:
+    RUNLEVEL: 1 # To avoid nginx being launched right after it's installed
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "nginx"
+    - "python-passlib"
+
+- name: Remove default nginx virtual host
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  register: nginx
+
+- name: Add nginx virtual host config
+  template:
+    src: superset_nginx.conf.j2
+    dest: /etc/nginx/sites-enabled/superset
+    owner: root
+    group: root
+    mode: 0644
+  register: nginx
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  when: nginx.changed

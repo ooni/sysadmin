@@ -77,6 +77,9 @@ bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.i
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
 
+[otf-aws]
+dw.wsm.ooni.io
+
 ########################################################################
 # PSK (pre-shared key) tags
 

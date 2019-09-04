@@ -1,0 +1,12 @@
+[Service]
+Environment="PYTHONPATH={{ superset_config_path }}"
+Environment="PATH={{ superset_venv_path }}/bin:/usr/local/bin:/usr/bin:/bin"
+Type=simple
+User={{ superset_user }}
+Group={{ superset_user }}
+ExecStart={{ superset_venv_path }}/bin/superset runserver -p {{ superset_port }}
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=default.target

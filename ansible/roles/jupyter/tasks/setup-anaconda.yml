@@ -59,9 +59,3 @@
   command: '{{anaconda_link_dir}}/bin/pip install {{ item }}'
   with_items: "{{ pip_pkgs }}"
 
-- name: remove conda-curl since it conflicts with the system curl
-  become: yes
-  become_user: root
-  command: '{{anaconda_conda_bin}} remove -y curl'
-  args:
-    removes: '{{anaconda_link_dir}}/lib/libcurl.a'
