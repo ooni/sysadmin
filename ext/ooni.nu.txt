@@ -18,6 +18,7 @@ miacollector		A	37.218.241.178
 miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
+pipeline.test	60	A	37.218.241.63
 shark	1800	A	199.119.112.120
 www	1800	URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 c626c9610bd6afc14660e9ae23ce40e92a4de850e16136d78e89136e663a49ae
+; generated from ooni.nu.xml with SHA256 d46a1aaa9df99d238ede87ccf1dc448032e7d7771ffe58690e74a608731a1a32
