@@ -137,6 +137,7 @@ miatorth.ooni.nu
 amstorth.ooni.nu
 miaapi.ooni.nu
 api.ooni.io
+pipeline.test.ooni.nu
 
 [have_nginx]
 api.ooni.io
