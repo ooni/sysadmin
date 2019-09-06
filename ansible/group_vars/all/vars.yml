@@ -84,12 +84,6 @@ passwd:
     id: 10003
     comment: Leonid Evdokimov
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWe9jGACZhSKhCq/jGOe8xKpY8bPSC8MagEiWMCzcHA5520Js4EGzwuYx5h/7sHK4GKWekGzO57xOsgeKACDKo8JppIPt+uJtnwJpVr7EHdnX1hhBMfo0NfV42R+//fZIHMNtGIW31iPg3cQVp9c+GQPsdmuDPbKGLoQvS9dGnF+N6lM+dicEmeBrqbA/t5V1j/rrfpmpTNOWef2WsREFdZBQbgD3rZU1lG0CnxNw6ATnFQgqcC1QsyfWD8e1pmDLByoVuYJ6WXBLKgI86hrMNidxGjzmpAn2q+5cbu5HZXOkmny3TBiP0VxPJJ43PuLIFkdCNh50KRPtTug3o38Oj leon+2016@darkk.net.ru"]
-  federico:
-    login: federico
-    id: 10008
-    comment: Federico Ceratto
-    keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
   nuke:
     login: nuke
     id: 10004
@@ -113,6 +107,12 @@ passwd:
     comment: Sarath M S
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXhSQ1VI6TxiFJeA7N1HDh5JSXfWFDGFEzB/97zDFnZ6OHdDLnUjQjfAN+pvzbXEvPZc6o9S9+gXWdB9CzMHhAJ6Gk7fKN4kjE7gKKLpEJoWIY5xXw8WDyYVfdI8bu10Op3bRCG+f2Lp6sw5ax8kiRWKs8xZppsRj/dICCLt7nU4X6MIrSu3eVSyGcs5HcKl038gd01I0YsfcG35wwOoCmbYgGu/u3gDOXCEuXCnK1PRu5ob9zMyGLN+QTiVW2oqCXhhTvZAOPpqirDEg13nwldcYi2cSePt+YZi1ecjX+3XdiXeLpQGRvQdDiXCKlnIIVR9pYGlllCC24AMhOpSXx"
+  federico:
+    login: federico
+    id: 10008
+    comment: Federico Ceratto
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
 
 # Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
 # See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
