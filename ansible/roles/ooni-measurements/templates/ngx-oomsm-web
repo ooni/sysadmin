@@ -38,6 +38,34 @@ server {
 
     {{ c.location_letsencrypt() }}
 
+
+    location = /measurements {
+        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
+
+        proxy_cache_min_uses 3; # this should avoid polluting the cache with random measurements search queries
+        proxy_cache api;
+        proxy_cache_valid 200 1h;
+        proxy_cache_lock on;
+        proxy_cache_lock_timeout 58s;
+        proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
+        proxy_cache_use_stale error timeout invalid_header updating;
+        proxy_cache_background_update on;
+    }
+
+{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
+    location = {{ handle }} {
+        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
+
+        proxy_cache api;
+        proxy_cache_valid 200 1h;
+        proxy_cache_lock on;
+        proxy_cache_lock_timeout 58s;
+        proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
+        proxy_cache_use_stale error timeout invalid_header updating;
+        proxy_cache_background_update on;
+    }
+{% endfor %}
+
 # These caches are for the legacy OONI Explorer. We should drop them once the
 # API endpoints are dropped.
 {% for handle in ["/api/_/blockpages", "/api/_/blockpage_detected", "/api/_/blockpage_count"] %}
@@ -49,21 +77,6 @@ server {
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
         proxy_cache_lock_age 58s;
-        proxy_cache_use_stale error timeout invalid_header updating;
-        proxy_cache_background_update on;
-    }
-{% endfor %}
-
-
-{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
-    location = {{ handle }} {
-        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
-
-        proxy_cache api;
-        proxy_cache_valid 200 1h;
-        proxy_cache_lock on;
-        proxy_cache_lock_timeout 58s;
-        proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
     }
