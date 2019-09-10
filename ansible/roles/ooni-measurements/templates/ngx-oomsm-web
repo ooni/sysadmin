@@ -52,7 +52,7 @@ server {
         proxy_cache_background_update on;
     }
 
-{% for handle in ["/", "/stats", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
+{% for handle in ["/", "/stats", "/api/_/global_overview", "/api/_/global_overview_by_month", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
