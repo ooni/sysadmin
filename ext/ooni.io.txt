@@ -41,8 +41,8 @@ dw-superset		A	54.221.146.227
 dw.wsm		A	54.221.146.227
 events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
-explorer	60	A	37.218.242.173
-explorer-beta	60	A	103.104.244.44
+explorer	60	A	37.218.242.231
+explorer-beta	60	A	37.218.242.231
 get		A	37.218.242.157
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 hkgmetadb.infra		A	37.218.240.56
@@ -76,4 +76,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 2952500a48b787a25c65c823fbeeb1834801ccb54d84521f1e2676200b944e79
+; generated from ooni.io.xml with SHA256 061ca038c20a1170849519af9de19bafc89bdcaadbda599819ed5c7827c6cddd
