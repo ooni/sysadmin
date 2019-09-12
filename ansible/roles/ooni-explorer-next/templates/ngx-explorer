@@ -24,7 +24,7 @@ server {
 
     server_name explorer.ooni.io explorer-beta.ooni.io explorer.ooni.torproject.org;
 
-    return https://explorer.ooni.org$request_uri permanent;
+    return 301 https://explorer.ooni.org$request_uri;
 }
 
 server {
