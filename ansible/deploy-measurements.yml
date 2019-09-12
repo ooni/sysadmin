@@ -19,6 +19,7 @@
     - role: ooni-measurements
       tags: ["api"]
       oomsm_domain: api.ooni.io
+      oomsm_tag: "20190911-bc21fd73"
 
 - hosts: hkgmetadb.infra.ooni.io
   gather_facts: false # no useful facts there :)

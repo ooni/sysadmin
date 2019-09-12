@@ -60,6 +60,7 @@ slack.openobservatory.org
 prometheus.infra.ooni.io
 demo.probe.ooni.io
 msg.ooni.io
+amsexplorer.ooni.nu
 
 # XXX rename these to orchestra
 notify.proteus.ooni.io
