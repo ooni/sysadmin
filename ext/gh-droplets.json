@@ -1688,82 +1688,6 @@
         }, 
         {
             "backup_ids": [], 
-            "disk": 10, 
-            "features": [], 
-            "id": "3018", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:5BO3WvaDPoaySAJDSCJyI08ubJ4hqb6LGeKXtKHpSls", 
-                "ssh_ecdsa": "256 SHA256:RRQ7IKsathQqtg25z6cwZI/59sx+jRVHo8RsLA6pEdg", 
-                "ssh_rsa": "2048 SHA256:pR6/d7FvThSbKy6M7lLyjwZm75TPOCi9nyi3QBHfAG4"
-            }, 
-            "locked": false, 
-            "memory": "1024", 
-            "name": "sbs-sandbox", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254", 
-                        "ip_address": "37.218.242.189", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.242.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "stopped", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
-            "disk": 10, 
-            "features": [], 
-            "id": "3020", 
-            "kernel": {
-                "id": "13", 
-                "name": "Linux Latest", 
-                "version": "latest"
-            }, 
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:n8bgxd0fYdxQufDDLJkf6p1cn8bGJcma8CbAOn94Q0M", 
-                "ssh_ecdsa": "256 SHA256:Kp0NY451Rv6WgeZiAjfRYnF6caqNbWoFSCeNuEfbzLU", 
-                "ssh_rsa": "2048 SHA256:k0/eqm3no/bfIvF8jCj9qxjv2lSVTCvr2V1pUPIHxFM"
-            }, 
-            "locked": false, 
-            "memory": "1024", 
-            "name": "federico-test-1", 
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.245.254", 
-                        "ip_address": "37.218.245.59", 
-                        "netmask": "255.255.255.0", 
-                        "network": "37.218.245.0/24", 
-                        "type": "public"
-                    }
-                ]
-            }, 
-            "region": {
-                "available": "1", 
-                "name": "Amsterdam", 
-                "slug": "Amsterdam"
-            }, 
-            "snapshot_ids": [], 
-            "status": "running", 
-            "vcpus": "1"
-        }, 
-        {
-            "backup_ids": [], 
             "disk": 50, 
             "features": [], 
             "id": "3090", 
@@ -1879,6 +1803,6 @@
     ], 
     "links": [], 
     "meta": {
-        "total": 49
+        "total": 47
     }
 }
