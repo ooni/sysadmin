@@ -7,10 +7,13 @@
 
 - name: Install Letsencrypt certbot
   apt:
-    name: certbot
+    name: "{{ item }}"
     state: latest
     update_cache: yes
     cache_valid_time: '{{ apt_cache_valid_time }}'
+  with_items:
+  - "certbot"
+  - "python-certbot-nginx"
 
 - name: Creates letsencrypt webroot
   file: state=directory path=/var/www/letsencrypt mode=0755 owner=root group=root
@@ -29,14 +32,13 @@
 - name: Remove state letsencrypt vhost
   file: path=/etc/nginx/sites-enabled/letsencrypt state=absent
 
-# NB: --standalone is not supported
 - name: Generate Letsencrypt certificate with certbot package
   command: >
     certbot certonly
-    --webroot -w /var/www/letsencrypt --preferred-challenges http
+    --nginx
+    --preferred-challenges http
     --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }}
     --domains {{ letsencrypt_domains | join(',') }}
-    --post-hook '/usr/sbin/service nginx reload'
   args: { creates: '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' }
 ...
