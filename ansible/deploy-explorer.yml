@@ -5,7 +5,7 @@
   roles:
     - role: docker_py
     - role: letsencrypt
-      letsencrypt_domains: ['amsexplorer.ooni.nu']
+      letsencrypt_domains: ['amsexplorer.ooni.nu', 'explorer.ooni.io', 'explorer.ooni.org']
 
 - hosts: amsexplorer.ooni.nu
   gather_facts: false # already gathered
