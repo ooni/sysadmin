@@ -41,7 +41,6 @@ jupyter.ooni.io
 hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
 hkgwebconnectivitya.ooni.nu
-ooni-explorer-next.test.ooni.io
 labs.ooni.io
 hkgjump.ooni.nu
 hkgsuperset.ooni.io
@@ -49,7 +48,6 @@ hkgtorth.ooni.nu
 fastpath.ooni.nu
 
 [ams]
-explorer.ooni.io
 amstorth.ooni.nu
 get.ooni.io
 a.http.th.ooni.io
@@ -61,6 +59,7 @@ slack.openobservatory.org
 prometheus.infra.ooni.io
 demo.probe.ooni.io
 msg.ooni.io
+amsexplorer.ooni.nu
 
 # XXX rename these to orchestra
 notify.proteus.ooni.io
