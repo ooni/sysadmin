@@ -2,7 +2,7 @@
 
 {% import 'common.j2' as c %}
 
-proxy_cache_path /var/cache/nginx-api keys_zone=api:1M;
+proxy_cache_path /var/cache/nginx-api keys_zone=api:1M inactive=1h;
 
 server {
     listen 80;
