@@ -37,8 +37,8 @@
     certbot certonly
     --nginx
     --preferred-challenges http
+    --expand
     --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }}
     --domains {{ letsencrypt_domains | join(',') }}
-  args: { creates: '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' }
 ...
