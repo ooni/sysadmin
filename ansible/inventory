@@ -138,6 +138,7 @@ amstorth.ooni.nu
 miaapi.ooni.nu
 api.ooni.io
 pipeline.test.ooni.nu
+amsexplorer.ooni.nu
 
 [have_nginx]
 api.ooni.io

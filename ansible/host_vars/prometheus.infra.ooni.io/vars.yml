@@ -57,10 +57,10 @@ blackbox_jobs:
     targets:
       - "http://{{ lookup('dig', 'a.http.th.ooni.io/A') }}:80"
 
-  - name: "ooni explorer countByCountry"
+  - name: "ooni explorer homepage"
     module: "http_2xx"
     targets:
-      - "https://explorer.ooni.io/api/reports/countByCountry"
+      - "https://explorer.ooni.org/"
 
   - name: "ooni API files"
     module: "http_2xx"
