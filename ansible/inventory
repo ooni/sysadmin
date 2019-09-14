@@ -139,6 +139,7 @@ miaapi.ooni.nu
 api.ooni.io
 pipeline.test.ooni.nu
 amsexplorer.ooni.nu
+fastpath.ooni.nu
 
 [have_nginx]
 api.ooni.io
