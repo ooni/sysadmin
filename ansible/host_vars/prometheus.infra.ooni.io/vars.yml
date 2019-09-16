@@ -75,7 +75,7 @@ blackbox_jobs:
   - name: "slack inviter"
     module: "http_2xx"
     targets:
-      - "https://slack.openobservatory.org"
+      - "https://slack.ooni.org"
 
   - name: "ooni website"
     module: "http_2xx"
