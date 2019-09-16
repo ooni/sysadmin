@@ -12,7 +12,7 @@
 # with_items: '{{ ["user", "fooser", "luser", "us3r"] | map("extract", passwd) | list }}'
 
 - name: create group
-  group: name={{ item.login }} gid={{ item.id }} state=present
+  group: name={{ item.login }} state=present
   with_items: '{{ passwd.values() }}'
   loop_control:
     label: '{{ item.login }}'
@@ -21,7 +21,6 @@
   user:
     name: '{{ item.login }}'
     group: '{{ item.login }}'
-    uid: '{{ item.id }}'
     comment: '{{ item.comment }}'
     shell: '{{ (item.id >= 10000) | ternary("/bin/bash", "/usr/sbin/nologin") }}'
     createhome: '{{ item.id >= 10000 }}'
