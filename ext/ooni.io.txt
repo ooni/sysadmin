@@ -56,7 +56,7 @@ measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
-ooni-explorer-next.test	60	A	103.104.244.44
+ooni-explorer-next.test	60	A	37.218.242.231
 ooni-zoo.infra		A	37.218.240.138
 orchestrate	300	A	37.218.242.63
 orchestrate.test		A	37.218.240.151
@@ -76,4 +76,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 061ca038c20a1170849519af9de19bafc89bdcaadbda599819ed5c7827c6cddd
+; generated from ooni.io.xml with SHA256 73584ad89f96f60cb7723ad37a59cbd65b31ab4f1a05223b4bebcedab0590844
