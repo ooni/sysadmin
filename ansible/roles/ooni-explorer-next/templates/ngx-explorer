@@ -22,7 +22,7 @@ server {
     ssl_stapling_verify on;
     ssl_trusted_certificate /etc/letsencrypt/live/{{ explorer_domain }}/chain.pem;
 
-    server_name explorer.ooni.io explorer-beta.ooni.io explorer.ooni.torproject.org;
+    server_name explorer.ooni.io explorer-beta.ooni.io explorer.ooni.torproject.org ooni-explorer-next.test.ooni.io;
 
     return 301 https://explorer.ooni.org$request_uri;
 }

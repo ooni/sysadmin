@@ -36,7 +36,6 @@ notify.proteus.test.ooni.io
 hkgmetadb.infra.ooni.io
 irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
-test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 jupyter.ooni.io
 hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
