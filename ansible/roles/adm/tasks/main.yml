@@ -12,14 +12,13 @@
     cache_valid_time: 28800
 
 - name: create group
-  group: name={{ item }} gid={{ passwd[item].id }} state=present
+  group: name={{ item }} state=present
   with_items: "{{ adm_logins | union(shell_logins) }}"
 
 - name: create user
   user:
     name: "{{ item }}"
     group: "{{ item }}"
-    uid: "{{ passwd[item].id }}"
     comment: "{{ passwd[item].comment }}"
     shell: /bin/bash
     state: present
