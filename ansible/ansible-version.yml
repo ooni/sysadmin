@@ -10,8 +10,8 @@
         msg: "ansible_version: {{ ansible_version }}"
         that:
           - ansible_version.major == 2
-          - ansible_version.minor == 4
-          - ansible_version.revision == 2
+          - ansible_version.minor == 8
+          - ansible_version.revision == 3
           - playbook_dir == inventory_dir
       run_once: true
 
