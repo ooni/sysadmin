@@ -49,7 +49,7 @@
       flat: yes
 
   - name: Generate signed SSL certificate
-    local_action: command  openssl x509 -sha256 -days 3650 -req -in {{ ooca_basename }}.csr -CA {{ inventory_dir }}/files/{{ ooca_ca }}.cert -CAkey {{ ooca_ca }}.key -set_serial {{ (2 ** 128) | random }} -out {{ ooca_basename }}.cert
+    local_action: command openssl x509 -sha256 -days 3650 -req -in {{ ooca_basename }}.csr -CA {{ inventory_dir }}/files/{{ ooca_ca }}.cert -CAkey {{ ooca_ca }}.key -set_serial {{ (2 ** 128) | random }} -out {{ ooca_basename }}.cert
     args:
       creates: "{{ ooca_basename }}.cert"
       chdir: "{{ tmp }}"
