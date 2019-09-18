@@ -1,9 +1,21 @@
 ---
 - name: "Install dependencies"
-  apt: name={{ item }} update_cache=yes state=latest
-  with_items:
-    - 'unzip'
-    - 'vim'
+  apt:
+    name:
+      - 'unzip'
+      - 'vim'
+    update_cache: yes
+    state: latest
+
+- name: create piwik group
+  group: name={{ piwik_group }} state=present
+
+- name: create piwik user
+  user:
+    name: '{{ piwik_user }}'
+    group: '{{ piwik_group }}'
+    comment: 'Piwik user'
+    state: present
 
 - name: Create folder
   file:

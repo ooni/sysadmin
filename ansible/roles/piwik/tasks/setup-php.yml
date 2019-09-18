@@ -1,22 +1,15 @@
 ---
 - name: "Install PHP dependencies"
-  apt: name={{ item }} update_cache=yes state=latest
-  with_items:
-    - 'php5'
-    - 'php5-mysql'
-    - 'php5-gd'
-    - 'php5-geoip'
-    - 'php5-ldap'
-    - 'php5-fpm'
-    - 'php5-cli'
-- name: Configure php-fpm php.ini
-  template:
-    src: php-fpm.ini.j2
-    dest: /etc/php5/fpm/php.ini
-- name: Configure php-fpm www.conf
-  template:
-    src: php-fpm-www.conf.j2
-    dest: /etc/php5/fpm/pool.d/www.conf
-
-- name: Restart PHP FPM
-  shell: service php5-fpm restart
+  apt:
+    name:
+      - 'php7'
+      - 'php7-cli'
+      - 'php7-fpm'
+      - 'php7-common'
+      - 'php7-curl'
+      - 'php7-gd'
+      - 'php7-xml'
+      - 'php7-mbstring'
+      - 'php7-mysql'
+    update_cache: yes
+    state: latest

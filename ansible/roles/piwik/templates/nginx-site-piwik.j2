@@ -1,12 +1,12 @@
+{% import 'common.j2' as c %}
+
 server {
     server_name {{ server_name}};
 
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/privkey.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
+    {{ c.ssl_letsencrypt(letsencrypt_domains[0], 'ssl_modern.conf') }}
 
   if ($request_method !~ ^(GET|HEAD|POST)$ ) {
     return 444;

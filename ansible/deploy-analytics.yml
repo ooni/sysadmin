@@ -1,11 +1,11 @@
 ---
 - import_playbook: ansible-version.yml
 
-- hosts: analytics.ooni.io
+- hosts: amsanalytics.ooni.nu
   gather_facts: true
-  vars:
-    letsencrypt_nginx: yes
-    letsencrypt_domains: "analytics.ooni.io"
   roles:
-    #- letsencrypt
-    - piwik
+    - role: letsencrypt
+      letsencrypt_domains: ["amsanalytics.ooni.nu"]
+    - role: piwik
+      tags: "piwik"
+      letsencrypt_domains: ["amsanalytics.ooni.nu"]

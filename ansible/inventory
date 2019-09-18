@@ -59,6 +59,7 @@ prometheus.infra.ooni.io
 demo.probe.ooni.io
 msg.ooni.io
 amsexplorer.ooni.nu
+amsanalytics.ooni.nu
 
 # XXX rename these to orchestra
 notify.proteus.ooni.io
@@ -139,11 +140,13 @@ api.ooni.io
 pipeline.test.ooni.nu
 amsexplorer.ooni.nu
 fastpath.ooni.nu
+amsanalytics.ooni.nu
 
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
+amsanalytics.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
