@@ -1,19 +1,12 @@
 ---
-- name: Add Debian stable backports repository
-  apt_repository:
-    state: present
-    repo: "deb http://archive.debian.org/debian {{ ansible_lsb.codename }}-backports main"
-  when: ansible_lsb.id == "Debian" and ansible_lsb.codename == "jessie-disabled"
-
 - name: Install Letsencrypt certbot
   apt:
-    name: certbot
+    name:
+    - certbot
+    - python-certbot-nginx
     state: latest
     update_cache: yes
     cache_valid_time: '{{ apt_cache_valid_time }}'
-
-- name: Creates letsencrypt webroot
-  file: state=directory path=/var/www/letsencrypt mode=0755 owner=root group=root
 
 - name: Find stale letsencrypt_renew_certs cron jobs
   find:
@@ -26,8 +19,17 @@
     path: '{{ item.path }}'
     state: absent
   with_items: '{{ find_results.files }}'
+
 - name: Remove state letsencrypt vhost
   file: path=/etc/nginx/sites-enabled/letsencrypt state=absent
+
+- name: Add letsencrypt vhost
+  template:
+    src: templates/letsencrypt-http
+    dest: /etc/nginx/sites-enabled/letsencrypt-http
+
+- name: Reload nginx to activate letsencrypt site
+  service: name=nginx state=restarted
 
 # NB: --standalone is not supported
 - name: Generate Letsencrypt certificate with certbot package
