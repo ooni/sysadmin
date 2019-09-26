@@ -19,7 +19,6 @@ c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
 miatorth.ooni.nu
 miaapi.ooni.nu
-pipeline.test.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -136,7 +135,6 @@ miatorth.ooni.nu
 amstorth.ooni.nu
 miaapi.ooni.nu
 api.ooni.io
-pipeline.test.ooni.nu
 amsexplorer.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
