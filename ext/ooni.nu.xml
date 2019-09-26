@@ -23,8 +23,8 @@
       <host HostId="163342645" Name="miatorth" Type="A" Address="37.218.241.28" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="165772689" Name="miaapi" Type="A" Address="37.218.241.8" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="179953021" Name="pipeline.test" Type="A" Address="37.218.241.63" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="12484213" Name="@" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="12484214" Name="www" Type="URL" Address="https://ooni.torproject.org" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="12484213" Name="@" Type="URL301" Address="https://ooni.org" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="12484214" Name="www" Type="URL301" Address="https://ooni.org" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13643210" Name="dnstunnel" Type="NS" Address="ooni.nu." MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="13864868" Name="censorshipwiki" Type="URL301" Address="https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki" MXPref="0" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
