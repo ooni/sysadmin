@@ -1538,44 +1538,6 @@
             "backup_ids": [],
             "disk": 50,
             "features": [],
-            "id": "3090",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:2kIM7UMxh3bwbIabC7bJi822S1JkiDQaXgBq8/xFaBU",
-                "ssh_ecdsa": "256 SHA256:T0NnlJz3Y1doDyXPQjg1RpclnrKp0ps558SiGDjwJrQ",
-                "ssh_rsa": "2048 SHA256:nfGvt5ueMxlPR34pOKVhfhInZLpxSFT1977EpnumjpQ"
-            },
-            "locked": false,
-            "memory": "8192",
-            "name": "pipeline.test.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.241.254",
-                        "ip_address": "37.218.241.63",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.241.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "US East (Miami)",
-                "slug": "US East (Miami)"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "4"
-        },
-        {
-            "backup_ids": [],
-            "disk": 50,
-            "features": [],
             "id": "3143",
             "kernel": {
                 "id": "13",
@@ -1689,6 +1651,6 @@
     ],
     "links": [],
     "meta": {
-        "total": 44
+        "total": 43
     }
 }
