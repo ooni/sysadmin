@@ -7,13 +7,9 @@
   gather_facts: false
   vars:
     namecheap_zones:
-      - [measurement-kit, com] # expires on 2019-09-25
       - [ooni, io]
       - [ooni, nu]
-      - [ooni, pro]
-      - [ooniprobe, com]
-      - [ooniprobe, net]
-      - [ooniprobe, org]
+      - [ooni, org]
       - [openobservatory, com]
       - [openobservatory, net]
       - [openobservatory, org]

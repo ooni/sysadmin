@@ -1,0 +1,47 @@
+---
+- name: mkdir for data dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  with_items:
+    - "{{ app_path }}"
+    - "{{ db_data_dir }}"
+    - "{{ matomo_data_dir }}"
+
+- name: analytics.ooni.io nginx config
+  template: src=matomo-nginx dest=/etc/nginx/sites-enabled/matomo
+  notify: reload nginx
+  tags: legacy
+
+- name: mariadb service
+  docker_container:
+    image: mariadb:{{ mariadb_version }}
+    name: mariadb
+    hostname: mariadb
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ db_admin_pass }}"
+      MYSQL_DATABASE: "{{ db_name }}"
+      MYSQL_USER: "{{ db_matomo_user }}"
+      MYSQL_PASSWORD: "{{ db_matomo_pass }}"
+    volumes:
+      - "{{ db_data_dir }}:/var/lib/mysql"
+    restart_policy: unless-stopped
+
+- name: matomo webservice
+  docker_container:
+    image: matomo:{{ matomo_version }}
+    name: matomo
+    hostname: matomo
+    links:
+      - "mariadb:maridb"
+    env:
+      MATOMO_DATABASE_HOST: "maridb"
+      MATOMO_DATABASE_USERNAME: "{{ db_matomo_user }}"
+      MATOMO_DATABASE_PASSWORD: "{{ db_matomo_pass }}"
+      MATOMO_DATABASE_DBNAME: "{{ db_name }}"
+    volumes:
+      - "{{ matomo_data_dir }}:/var/www/html"
+    ports:
+      - "0.0.0.0:{{ matomo_backend_port }}:80"
+    restart_policy: unless-stopped

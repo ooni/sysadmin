@@ -38,8 +38,8 @@
       GF_SECURITY_SECRET_KEY: "{{ grafana_secret_key }}"
       # TBD: GF_USERS_{allow_sign_up,allow_org_create}, GF_AUTH_*
       # and others from http://docs.grafana.org/installation/configuration/
-      GF_SERVER_HTTP_PORT: "{{ grafana_backend_port }}"
+      GF_SERVER_HTTP_PORT: "\"{{ grafana_backend_port }}\""
       GF_SERVER_ROOT_URL: "https://mon.ooni.nu/grafana/"
-      GF_AUTH_BASIC_ENABLED: false
+      GF_AUTH_BASIC_ENABLED: "false"
     restart_policy: unless-stopped
 ...

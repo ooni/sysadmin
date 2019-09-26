@@ -1,0 +1,6 @@
+---
+matomo_admin_pass: '{{ vault_matomo_admin_pass }}'
+db_admin_pass: '{{ vault_db_admin_pass }}'
+db_matomo_pass: '{{ vault_db_matomo_pass }}'
+db_matomo_salt: '{{ vault_db_matomo_salt }}'
+...

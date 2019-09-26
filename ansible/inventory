@@ -17,7 +17,6 @@ ams
 [mia]
 c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
-analytics.ooni.io
 miatorth.ooni.nu
 miaapi.ooni.nu
 pipeline.test.ooni.nu
@@ -59,6 +58,7 @@ prometheus.infra.ooni.io
 demo.probe.ooni.io
 msg.ooni.io
 amsexplorer.ooni.nu
+amsmatomo.ooni.nu
 
 # XXX rename these to orchestra
 notify.proteus.ooni.io
@@ -139,11 +139,13 @@ api.ooni.io
 pipeline.test.ooni.nu
 amsexplorer.ooni.nu
 fastpath.ooni.nu
+amsmatomo.ooni.nu
 
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
+amsmatomo.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu

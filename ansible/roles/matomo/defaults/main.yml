@@ -1,0 +1,23 @@
+app_path: /srv/matomo
+db_data_dir: "{{ app_path }}/mysql"
+matomo_data_dir: "{{ app_path }}/html"
+
+matomo_version: '3.11.0'
+matomo_backend_ipv4: '172.25.232.254'
+matomo_backend_port: 9000
+matomo_domain: "matomo.ooni.org"
+
+# These variables are not used, but the config has been done via the wizard
+# matomo_admin_user: admin
+# matomo_admin_email: "admin@openobservatory.org"
+
+mariadb_version: '10.4.8'
+
+db_admin_user: root
+db_name: matomo
+
+matomo_admin_pass: '{{ CHANGE_ME }}'
+db_admin_pass: '{{ CHANGE_ME }}'
+db_matomo_user: matomo
+db_matomo_pass: '{{ CHANGE_ME }}'
+db_matomo_salt: '{{ CHANGE_ME }}'

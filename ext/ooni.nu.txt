@@ -1,9 +1,8 @@
 $ORIGIN ooni.nu
 $TTL 1799
-@	1800	URL	https://ooni.torproject.org
-amsapi		A	37.218.242.231
-amsapi02		A	37.218.245.41
+@	1800	URL301	https://ooni.org
 amsexplorer		A	37.218.242.231
+amsmatomo	60	A	37.218.242.173
 amsmetadb		A	37.218.242.175
 amstorth		A	37.218.242.217
 bouncer.infra	1800	A	62.217.125.6
@@ -22,5 +21,5 @@ mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 pipeline.test	60	A	37.218.241.63
 shark	1800	A	199.119.112.120
-www	1800	URL	https://ooni.torproject.org
-; generated from ooni.nu.xml with SHA256 192e5e287856a6c892d9a07010c27330c96f70ff4beff96ec3c544bc49a938e5
+www	1800	URL301	https://ooni.org
+; generated from ooni.nu.xml with SHA256 d4b60b56179b9769cf5982febdb4f2bbc654c64a71986e0c6dcf9b7b9e1db104

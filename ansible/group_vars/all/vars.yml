@@ -33,12 +33,12 @@ passwd:
   plpsql:   {login: plpsql, comment: Pipeline Postgresql}
   plshovel: {login: plshovel, comment: Pipeline Shovel}
 
-  nodeexp:  {login: nodeexp, comment: Prometheus Node Exporter}
+  nodeexp:  {login: nodeexp, comment: Prometheus Node Exporter} # DONE
   prometh:  {login: prometh, comment: Prometheus Poller}
   alertman: {login: alertman, comment: Prometheus Alert Manager}
   prombbox: {login: prombbox, comment: Prometheus Blackbox Exporter}
   grafana:  {login: grafana, comment: Grafana for Prometheus}
-  ngxprom:  {login: ngxprom, comment: nginx for Prometheus exporters}
+  ngxprom:  {login: ngxprom, comment: nginx for Prometheus exporters} # DONE
   pushgw:   {login: pushgw, comment: Prometheus Pushgateway}
 
   piwik:    {login: piwik, comment: Piwik user}
