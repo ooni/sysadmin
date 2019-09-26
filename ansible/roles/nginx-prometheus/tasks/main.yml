@@ -6,6 +6,17 @@
   environment:
     RUNLEVEL: 1 # To avoid nginx being launched right after it's installed
 
+
+- name: create group
+  group: name=ngxprom state=present
+
+- name: create user
+  user:
+    name: "ngxprom"
+    group: "ngxprom"
+    comment: "nginx for Prometheus exporters"
+    state: present
+
 - name: Create nginx/Prometheus directories
   file: path={{ item }} state=directory owner=root group=root mode=0755
   with_items:
