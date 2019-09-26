@@ -5,9 +5,9 @@ matomo_data_dir: "{{ app_path }}/html"
 matomo_version: '3.11.0'
 matomo_backend_ipv4: '172.25.232.254'
 matomo_backend_port: 9000
-matomo_domain: "analytics.ooni.org"
+matomo_domain: "matomo.ooni.org"
 
-matomo_admin_user: piwik_admin
+matomo_admin_user: admin
 matomo_admin_email: "admin@openobservatory.org"
 
 mariadb_version: '10.4.8'
