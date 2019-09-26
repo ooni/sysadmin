@@ -23,6 +23,15 @@
 - name: Remove state letsencrypt vhost
   file: path=/etc/nginx/sites-enabled/letsencrypt state=absent
 
+- name: Ensure required directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "/etc/nginx/sites-enabled"
+    - "/var/www/letsencrypt"
+
 - name: Add letsencrypt vhost
   template:
     src: templates/letsencrypt-http
