@@ -1,0 +1,38 @@
+piwik_version: '3.11.0'
+piwik_download_path: https://builds.piwik.org/piwik-3.11.0.zip
+
+deploy_create_folders:
+- ''
+- /tmp
+- /releases
+- /shared
+- /shared/config
+
+app_user: "{{ matomo_user }}"
+server_name: analytics.ooni.io
+piwik_trusted_host: "analytics.ooni.io:8081"
+piwik_webpage_name: "ooni.io"
+piwik_webpage_url: "analytics.ooni.io"
+
+app_path: /srv/matomo
+db_data_dir: "{{ app_path }}/mysql"
+matomo_data_dir: "{{ app_path }}/html"
+
+matomo_version: '3.11.0-fpm'
+matomo_backend_ipv4: '172.25.232.254'
+matomo_backend_port: 16868
+matomo_domain: "analytics.ooni.org"
+
+matomo_admin_user: piwik_admin
+matomo_admin_email: "admin@openobservatory.org"
+
+mariadb_version: '10.4.8'
+
+db_admin_user: root
+db_name: matomo
+
+matomo_admin_pass: '{{ CHANGE_ME }}'
+db_admin_pass: '{{ CHANGE_ME }}'
+db_matomo_user: matomo
+db_matomo_pass: '{{ CHANGE_ME }}'
+db_matomo_salt: '{{ CHANGE_ME }}'

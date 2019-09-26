@@ -6,6 +6,6 @@
   roles:
     - role: letsencrypt
       letsencrypt_domains: ["amsanalytics.ooni.nu"]
-    - role: piwik
-      tags: "piwik"
+    - role: matomo
+      tags: "matomo"
       letsencrypt_domains: ["amsanalytics.ooni.nu"]
