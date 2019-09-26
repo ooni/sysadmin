@@ -48,6 +48,8 @@
     --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }}
     --domains {{ letsencrypt_domains | join(',') }}
+    {% if expand is defined %}--expand{% endif %}
     --post-hook '/usr/sbin/service nginx reload'
-  args: { creates: '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' }
+  args:
+    creates: "{{ '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' if expand is not defined else omit}}"
 ...
