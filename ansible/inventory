@@ -17,7 +17,6 @@ ams
 [mia]
 c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
-analytics.ooni.io
 miatorth.ooni.nu
 miaapi.ooni.nu
 pipeline.test.ooni.nu
