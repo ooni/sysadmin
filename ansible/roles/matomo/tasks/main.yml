@@ -1,14 +1,4 @@
 ---
-- name: create matomo group
-  group: name=matomo state=present
-
-- name: create matomo user
-  user:
-    name: 'matomo'
-    group: 'matomo'
-    comment: 'Matomo user'
-    state: present
-
 - name: mkdir for data dirs
   file:
     path: "{{ item }}"
@@ -36,7 +26,6 @@
       MYSQL_PASSWORD: "{{ db_matomo_pass }}"
     volumes:
       - "{{ db_data_dir }}:/var/lib/mysql"
-    user: "matomo:matomo"
     restart_policy: unless-stopped
 
 - name: matomo webservice
@@ -55,5 +44,4 @@
       - "{{ matomo_data_dir }}:/var/www/html"
     ports:
       - "0.0.0.0:{{ matomo_backend_port }}:80"
-    user: "matomo:matomo"
     restart_policy: unless-stopped
