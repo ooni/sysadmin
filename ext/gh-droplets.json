@@ -1080,44 +1080,6 @@
         },
         {
             "backup_ids": [],
-            "disk": 40,
-            "features": [],
-            "id": "1871",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 f9:12:7f:22:e1:13:e7:b2:e4:48:88:a8:02:36:6e:b4",
-                "ssh_ecdsa": "256 65:a1:14:70:61:a4:8f:17:13:f5:3c:fd:32:97:80:5c",
-                "ssh_rsa": "2048 f3:fd:35:5f:2b:69:63:a6:20:20:ab:9e:5f:34:36:5d"
-            },
-            "locked": false,
-            "memory": "2048",
-            "name": "hkgsuperset.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254",
-                        "ip_address": "37.218.240.92",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.240.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
             "disk": 50,
             "features": [],
             "id": "1877",
@@ -1229,44 +1191,6 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "disk": 5,
-            "features": [],
-            "id": "2231",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 a4:06:73:4c:bf:a0:db:ec:58:92:d7:9b:3a:07:06:6d",
-                "ssh_ecdsa": "256 5b:69:c8:40:34:5e:f8:50:56:9b:f8:62:a7:1c:d8:ed",
-                "ssh_rsa": "2048 6e:5a:b6:d7:eb:a8:79:b3:35:90:d4:0e:0d:33:eb:a4"
-            },
-            "locked": false,
-            "memory": "512",
-            "name": "jump-ir",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254",
-                        "ip_address": "103.104.244.19",
-                        "netmask": "255.255.255.0",
-                        "network": "103.104.244.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "1"
         },
         {
             "backup_ids": [],
@@ -1651,6 +1575,6 @@
     ],
     "links": [],
     "meta": {
-        "total": 43
+        "total": 41
     }
 }

@@ -11,7 +11,6 @@ dnstunnel	1800	NS	ooni.nu.
 fastpath		A	103.104.244.20
 hkgbouncer		A	103.104.244.87
 hkgcollectora		A	103.104.244.110
-hkgjump		A	103.104.244.19
 hkgtorth		A	103.104.244.76
 hkgwebconnectivitya		A	103.104.244.111
 miaapi		A	37.218.241.8
@@ -19,7 +18,5 @@ miacollector		A	37.218.241.178
 miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
-pipeline.test	60	A	37.218.241.63
-shark	1800	A	199.119.112.120
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 d4b60b56179b9769cf5982febdb4f2bbc654c64a71986e0c6dcf9b7b9e1db104
+; generated from ooni.nu.xml with SHA256 47ce80dea9cb734eb969012836e552b2a33fbd365f18ddc15b75eea636a66f2c
