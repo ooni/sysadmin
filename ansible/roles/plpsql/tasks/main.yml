@@ -33,7 +33,7 @@
       - /srv/pl-psql_ssl:/srv/pl-psql_ssl:ro
       - /srv/pl-psql:/srv/pl-psql:rw
     tmpfs:
-      - /run/postgresql:size=1m,mode=0700,uid={{ passwd.plpsql.id }}
+      - /run/postgresql:size=1m,mode=0700,uid=plpsql
     env:
       PGDATA: /srv/pl-psql
       POSTGRES_DB: metadb

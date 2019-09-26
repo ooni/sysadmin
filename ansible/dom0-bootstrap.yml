@@ -19,9 +19,6 @@
 - hosts: all:!no_passwd
   gather_facts: true # to gather ansible_distribution_release
   roles:
-    # every known UID should be reserved to avoid occasional clash with `useradd`
-    - role: passwd
-      tags: adm
     - role: dom0-defaults
       tags: [ on-rename, dom0-defaults, adm ]
     - role: ntp
@@ -61,7 +58,4 @@
       tags: [ on-rename, nginx-prometheus ]
     - role: node_exporter
       tags: node_exporter
-  tasks: # that's likely one-time cleanup
-    - apt: name=munin-node state=absent purge=yes
-      tags: munin-node
 ...
