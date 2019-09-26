@@ -7,8 +7,9 @@ matomo_backend_ipv4: '172.25.232.254'
 matomo_backend_port: 9000
 matomo_domain: "matomo.ooni.org"
 
-matomo_admin_user: admin
-matomo_admin_email: "admin@openobservatory.org"
+# These variables are not used, but the config has been done via the wizard
+# matomo_admin_user: admin
+# matomo_admin_email: "admin@openobservatory.org"
 
 mariadb_version: '10.4.8'
 
