@@ -1,4 +1,14 @@
 ---
+- name: create group
+  group: name=plpsql state=present
+
+- name: create user
+  user:
+    name: "plpsql"
+    group: "plpsql"
+    comment: "plpsql for Postgres"
+    state: present
+
 - name: pipeline postgres PGDATA directory
   file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
 
@@ -44,8 +54,8 @@
       AWS_SECRET_ACCESS_KEY: "{{ metadb_wal_s3_access_key }}"
       PUSHGATEWAY_CERT: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.cert"
       PUSHGATEWAY_KEY: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.key"
-    user: "{{ passwd.plpsql.id }}:{{ passwd.plpsql.id }}"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
+    user: "plpsql:plpsql"
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
 ...
