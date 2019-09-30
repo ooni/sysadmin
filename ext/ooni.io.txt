@@ -18,13 +18,12 @@ a.web-connectivity.th		A	62.217.125.6
 a.web-connectivity.th.stage		A	37.218.240.139
 a.web-connectivity.th.test		A	37.218.240.140
 alpha.measurements		A	37.218.242.231
-analytics		A	37.218.241.42
-api		A	37.218.242.231
+analytics	60	A	37.218.242.173
+api	60	A	37.218.245.41
 api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
-b.echo.th		A	213.138.109.232
 b.web-connectivity.th		A	37.218.242.234
 bouncer		A	103.104.244.87
 bouncer.stage		A	37.218.240.139
@@ -38,10 +37,12 @@ db-1.proteus		A	37.218.242.79
 db-1.proteus.test		A	37.218.240.153
 demo.probe		A	37.218.242.41
 design		CNAME	ooni-design.netlify.com.
+dw-superset		A	54.221.146.227
+dw.wsm		A	54.221.146.227
 events.proteus		A	37.218.242.63
 events.proteus.test		A	37.218.240.151
-explorer	60	A	37.218.242.173
-explorer-beta		A	103.104.244.44
+explorer	60	A	37.218.242.231
+explorer-beta	60	A	37.218.242.231
 get		A	37.218.242.157
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 hkgmetadb.infra		A	37.218.240.56
@@ -55,9 +56,10 @@ measurements-beta		A	37.218.240.100
 msg		A	37.218.242.179
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
-ooni-explorer-next.test		A	103.104.244.44
+ooni-explorer-next.test	60	A	37.218.242.231
 ooni-zoo.infra		A	37.218.240.138
 orchestrate	300	A	37.218.242.63
+orchestrate.test		A	37.218.240.151
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
@@ -74,4 +76,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 ce22380b284928fb5cb346b0b9e2e3d4e73ff073d346860dfdbb402e24c86204
+; generated from ooni.io.xml with SHA256 0af86a3bc3c1f4714845638b56b4d84627b8f8e3914641b093d0a05fa4464a07

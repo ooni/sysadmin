@@ -244,4 +244,4 @@ esac
 
 # FIXME: hardcoded uid of the `benchmark` user at `datacollector`
 set -o xtrace
-exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20190704-342da892 "$@"
+exec docker run $docksafe --user "$uidno" $docknet ${volargs} openobservatory/pipeline-shovel:20190902-4867a206 "$@"

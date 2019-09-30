@@ -1,0 +1,37 @@
+---
+# Instructions taken from: https://docs.docker.com/install/linux/docker-ce/debian/
+- name: installs required deps
+  apt:
+    name:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    state: present
+    update_cache: true
+    cache_valid_time: 28800
+
+- name: adds Docker repository key
+  apt_key: >
+    id=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    url="https://download.docker.com/linux/debian/gpg"
+
+- name: adds Docker repository and update apt cache
+  apt_repository: >
+    repo="deb https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    update_cache=yes
+
+- name: installs the latest version of docker engine - Community and containerd
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - python-docker # Required to control docker from ansible
+
+- name: enables and starts docker service
+  service: >
+    name=docker
+    enabled=yes
+    state=started

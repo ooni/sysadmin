@@ -1,12 +1,11 @@
 ---
 - name: drop common ntpd packages
   apt:
-    name: "{{ item }}"
+    name:
+    - ntp
+    - openntpd
     state: absent
     purge: yes
-  with_items:
-  - ntp
-  - openntpd
 
 - name: install chosen ntpd package
   apt:

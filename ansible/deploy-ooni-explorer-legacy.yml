@@ -15,6 +15,6 @@
     ansible_python_interpreter: '/root/venv/bin/python2.7' # to control docker
     explorer_domain: explorer.ooni.io
   roles:
-    - role: ooni-explorer
+    - role: ooni-explorer-legacy
       tags: explorer
 ...

@@ -18,16 +18,19 @@
     name: grfn
     driver_options:
       com.docker.network.bridge.name: brgrfn
-    ipam_options:
-      subnet: 172.26.55.0/24
-      gateway: 172.26.55.1
+    ipam_config:
+      - subnet: 172.26.55.0/24
+        gateway: 172.26.55.1
 
 - name: grafana service
   docker_container:
     image: "grafana/grafana:{{ grafana_docker_tag }}"
     name: grafana
     hostname: grafana
-    networks: [{name: grfn, ipv4_address: '{{ grafana_backend_ipv4 }}'}]
+    networks:
+      - name: grfn
+        ipv4_address: '{{ grafana_backend_ipv4 }}'
+    purge_networks: true
     volumes:
       - /etc/passwd:/etc/passwd:ro # for better `grafana` UID
       - /etc/group:/etc/group:ro
@@ -38,8 +41,8 @@
       GF_SECURITY_SECRET_KEY: "{{ grafana_secret_key }}"
       # TBD: GF_USERS_{allow_sign_up,allow_org_create}, GF_AUTH_*
       # and others from http://docs.grafana.org/installation/configuration/
-      GF_SERVER_HTTP_PORT: "{{ grafana_backend_port }}"
+      GF_SERVER_HTTP_PORT: "{{ grafana_backend_port | string }}"
       GF_SERVER_ROOT_URL: "https://mon.ooni.nu/grafana/"
-      GF_AUTH_BASIC_ENABLED: false
+      GF_AUTH_BASIC_ENABLED: "false"
     restart_policy: unless-stopped
 ...

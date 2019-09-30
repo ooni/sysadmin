@@ -23,102 +23,84 @@ passwd:
   # - uid [2000, 10000), grouped together by "service"
   # - base for next service is `echo $(( 2000 + 50*($RANDOM % 160) ))`
   # - login name must be <= 8 chars to be nice to `top` util
-  afredis:  {login: afredis,  id: 2000, comment: Airflow Redis}
-  afpsql:   {login: afpsql,   id: 2001, comment: Airflow Postgresql}
-  afsched:  {login: afsched,  id: 2002, comment: Airflow Scheduler}
-  afwebsrv: {login: afwebsrv, id: 2003, comment: Airflow Webserver}
-  afworker: {login: afworker, id: 2004, comment: Airflow Worker}
-  afflower: {login: afflower, id: 2005, comment: Airflow Celery Flower}
+  afredis:  {login: afredis, comment: Airflow Redis}
+  afpsql:   {login: afpsql, comment: Airflow Postgresql}
+  afsched:  {login: afsched, comment: Airflow Scheduler}
+  afwebsrv: {login: afwebsrv, comment: Airflow Webserver}
+  afworker: {login: afworker, comment: Airflow Worker}
+  afflower: {login: afflower, comment: Airflow Celery Flower}
 
-  plpsql:   {login: plpsql,   id: 2100, comment: Pipeline Postgresql}
-  plshovel: {login: plshovel, id: 2101, comment: Pipeline Shovel}
+  plpsql:   {login: plpsql, comment: Pipeline Postgresql}
+  plshovel: {login: plshovel, comment: Pipeline Shovel}
 
-  nodeexp:  {login: nodeexp,  id: 2200, comment: Prometheus Node Exporter}
-  prometh:  {login: prometh,  id: 2201, comment: Prometheus Poller}
-  alertman: {login: alertman, id: 2202, comment: Prometheus Alert Manager}
-  prombbox: {login: prombbox, id: 2203, comment: Prometheus Blackbox Exporter}
-  grafana:  {login: grafana,  id: 2204, comment: Grafana for Prometheus}
-  ngxprom:  {login: ngxprom,  id: 2205, comment: nginx for Prometheus exporters}
-  pushgw:   {login: pushgw,   id: 2206, comment: Prometheus Pushgateway}
+  nodeexp:  {login: nodeexp, comment: Prometheus Node Exporter} # DONE
+  prometh:  {login: prometh, comment: Prometheus Poller}
+  alertman: {login: alertman, comment: Prometheus Alert Manager}
+  prombbox: {login: prombbox, comment: Prometheus Blackbox Exporter}
+  grafana:  {login: grafana, comment: Grafana for Prometheus}
+  ngxprom:  {login: ngxprom, comment: nginx for Prometheus exporters} # DONE
+  pushgw:   {login: pushgw, comment: Prometheus Pushgateway}
 
-  piwik:    {login: piwik,    id: 2300, comment: Piwik user}
+  piwik:    {login: piwik, comment: Piwik user}
 
-  grav:     {login: grav,     id: 2400, comment: Grav user}
+  grav:     {login: grav, comment: Grav user}
 
-  prtreg:   {login: prtreg,   id: 4800, comment: Orchestration Registry}
-  prtevent: {login: prtevent, id: 4801, comment: Orchestration Events}
-  prtnotif: {login: prtnotif, id: 4802, comment: Orchestration Notifications}
-  prtfront: {login: prtfront, id: 4803, comment: Orchestration Front}
+  prtreg:   {login: prtreg, comment: Orchestration Registry}
+  prtevent: {login: prtevent, comment: Orchestration Events}
+  prtnotif: {login: prtnotif, comment: Orchestration Notifications}
+  prtfront: {login: prtfront, comment: Orchestration Front}
 
-  explorer: {login: explorer, id: 4950, comment: OONI Explorer}
+  explorer: {login: explorer, comment: OONI Explorer}
 
-  oomsmweb: {login: oomsmweb, id: 5050, comment: OONI Measurements WebAPI}
+  oomsmweb: {login: oomsmweb, comment: OONI Measurements WebAPI}
 
-  anaconda: {login: anaconda, id: 6000, comment: Anaconda python user}
-  jupyter: {login: jupyter, id: 6001, comment: Jupyter python user}
+  anaconda: {login: anaconda, comment: Anaconda python user}
+  jupyter: {login: jupyter, comment: Jupyter python user}
 
-  ooni_run: {login: oonirun, id: 7000, comment: OONI Run user}
+  ooni_run: {login: oonirun, comment: OONI Run user}
 
-  bouncer: {login: bouncer, id: 8000, comment: OONI Bouncer user}
-  collector: {login: collector, id: 8001, comment: OONI Collector user}
-  sync_user: {login: sync-user, id: 8002, comment: OONI Collector Sync user}
-  sshfeeder: {login: sshfeeder, id: 8003, comment: OONI Collector SSH feeder user}
+  bouncer: {login: bouncer, comment: OONI Bouncer user}
+  collector: {login: collector, comment: OONI Collector user}
+  sync_user: {login: sync-user, comment: OONI Collector Sync user}
+  sshfeeder: {login: sshfeeder, comment: OONI Collector SSH feeder user}
 
-  # people have id >= 10000
   agrabeli:
     login: agrabeli
-    id: 10000
     comment: Maria Xynou
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD0JSwM+t3Uz9lS3Mjoz9oo4vOToWyzboZhYQbP8JY5HvFtAvWanWHnUBO91t6hkgKIMiUqhdCJn26fqkhSGe/bRBaFUocOmuyfcmZoRdi0qzAskmycJsj/w6vWR4x6MYkmJvSeI/MGxjEFt4s2MfOG1tP8CBLUYft9qUleeJa7Jln8c+xbnqB7YngaI190icQHE9NuIB2CXvzbmo3tLtHNMagEwI7VoBDj6mxzTxBd9JhuhF4w5uGxxm0Gp1hzk+15obNnaBS+Anr7jXz8FPwwxCH+XhBZxB1PPpcIayKrf9iLyGtwmhkdDoWCqYAr1mue3LxFso+TZF4bwE4Cjt1 agrabelh@agrabelh"]
-  weasel:
-    login: "{{ weasel_login }}"
-    id: 10001
-    comment: "{{ weasel_comment }}"
-    keys: "{{ weasel_keys }}"
   art:
     login: art
-    id: 10002
     comment: Arturo Filasto
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9her6lZIfP/ulXleu00u3ukdcVEDslkfXzi65JFRXRkKYsdMw7zLvrkvFryqDGsRQwpZo0rlk5o26QNSUR/g2Kf3wEHxxmMcN4+g+f0/fJDKLHSFdL5Z5ACyp5YvjA88vG753qVn7lBINuvCb4wk1sUOWM1WVG5WiszLiJCddYUrgCZWzD3FHyApJ/GGH2A5vTTN8mcQapQaJ9/sgxDw5WT+yMtZ8TW4462x+TaWWGE0WnAd/l6HOFaS14mql0K+MbtRp9EKN2O6+sA0OsjknYpt21ovtEWfBiojjh+4Iz6bTk+M5+fWHwQaxqEcaok22l35GudlmaoTB0OesB/1z art@eclipsis"]
-  darkk:
-    login: darkk
-    id: 10003
-    comment: Leonid Evdokimov
-    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWe9jGACZhSKhCq/jGOe8xKpY8bPSC8MagEiWMCzcHA5520Js4EGzwuYx5h/7sHK4GKWekGzO57xOsgeKACDKo8JppIPt+uJtnwJpVr7EHdnX1hhBMfo0NfV42R+//fZIHMNtGIW31iPg3cQVp9c+GQPsdmuDPbKGLoQvS9dGnF+N6lM+dicEmeBrqbA/t5V1j/rrfpmpTNOWef2WsREFdZBQbgD3rZU1lG0CnxNw6ATnFQgqcC1QsyfWD8e1pmDLByoVuYJ6WXBLKgI86hrMNidxGjzmpAn2q+5cbu5HZXOkmny3TBiP0VxPJJ43PuLIFkdCNh50KRPtTug3o38Oj leon+2016@darkk.net.ru"]
-  federico:
-    login: federico
-    id: 10008
-    comment: Federico Ceratto
-    keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
   nuke:
     login: nuke
-    id: 10004
     comment: Lorenzo Primiterra
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+QtDwA/s8vw7aETWGjItUBmgCXgm9jTEjCh/5OofGJ/Bk4kjZ+a6NisUNJRvrySfr89oeJz7VOuHgHTCM1g2CKANAiidcBkepHjdBlHDElV1WBlUxdgl0RsbM4ue8zUxtrmzEQaxLxL769ZHR+gI8PoZau1cSyKG5jVge91Bt1+wvV3dMGvxibM144+uHCrxHpBsbRd9irIgk+vNJmecKn3bSh3aKo9txBjIqBprBrZ1Dqj0x9IKVhD59URcO1Vrr3HXPghZnsWFjOSSQ0DeVpkE3cEz78CpdvqL0drv4Mo1ZgE33YLwWjJSceDGIrtnsPZhs5YzOI4iStRIdPD4X nuke"]
   sbs:
     login: sbs
-    id: 10005
     comment: Simone Basso
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsifxweF7RnZaI55tLEuW2V9SOA6ZJXizXWp69hs1Vy1zeCkyMHMjtUHVjtiV6m1OStb78iNnXh5KjqaNZy7Ign2HILvtFysWktasgM/Vn04FXN9mkh29fKVqVu5XZpzNoBupjCrc9asJUf/6gCAFQHoQyCNO58/R12iUZBtF9cSaZoX4BfwnCNH66uXQ1EK+D0d2uTqtBrPHdm5rexII7uGvG3+dm/YvPmlj87qW6gJstcRVzAPtjBtf8sQGZBnhV1mGAAHQ168DwiZ1LJwtEAEW2HOhtVDemZNKV/KnDGZOWzF/Ybl+4lIdDHcdk/gpjARJtf92XRTD7FmobduwKVmvXR7hHY8nklWHF+PhQtAqg31y1QhW/g4U/JAd8BhziNE9KF6GZ/CIcDFKLZzpyeB4dg2hnJ6e1RoZvC9ObgVOp0jRMgv0c3GpCwoh2eml01zoxDicPMGzbEnuTduVhW5ebMh23NoYhaMnzDcZaRfT//1OB1vi52dXHj4BCE+4s07DzbR7JLvYwYCtMghAqSkotTDoyjYWF8ymwC6Zg54OSYkyNsjOAgQg1u06+dxNubSB9ZI6woUqY0Fhay/ZkS0sO+skEekE1dZes9NWW/1QVWGOgO8g3aO59+Y6e1YbyJhBG2N05tLn1upuqdEHjdkDX9hYm267oBaAdMMl0+Q== sbasso@dunkerque.local"
   superq:
     login: superq
-    id: 10006
     comment: Ben Kochie
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDfYfZFTGkdHoRoUfnhzp8RLuOgOEgyTH4dncpP+eN2yBbTw5kY84t8sSa60vtjfiPFQGBYaBZdZV9hTdOZgR+wyQXeSWy2evM9e/6h9ZCwhV8vXiRsisV7cJyuqfTdeTaqwgggR24ETS6nTs8UEPRjfzXDTPGv8e4B4vcvoGjEtgkWfOD1V10RuULxZc+kccxYWopTsnpEdrO1o/3IDlno8+7cTNFYDV+HEdjr7BMWXJJvuqW+59WQzkwggQtLLL72gQD2VrDb9+1g0xWSRBd1Jp/Yv956uLJGaVGjJ2yOdyy5nNAqoTRYPoRniMnGOOHPk6fR1LsqXK5S4hxyInTEQvszKUwz0aRDITxtHxdBlruYaAotGB2VEMax3h4t2HJRYsEt+zxgh+ZEDJTsk0GgywO01obn9dgrCF2gwa4DUR2trcc4uaW0ZbqzQ9PiOZ6+ENYJiR6DkXWSrVXB75Vo9tw0DAC/ArxHJ6kl9W52h0Z7hFDQrniRAmYCWF7/jOhFYuqvzmeLOZJajJ9TE4Z5an0maeYchsISODeVaQWQ8ZPSR/9WjXFtVRMu57H+MVsvgNodaq/G2y7Y+S0djjKAUVtqPiM/AUDXCk88eHl0XfSgUEoveuMZiWfgcGW28LoF36OMihTwx6xJ5bLxVUp+FkLIM+3ET/foabLupCIAoQ== superq"
   sarath:
     login: sarath
-    id: 10007
     comment: Sarath M S
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXhSQ1VI6TxiFJeA7N1HDh5JSXfWFDGFEzB/97zDFnZ6OHdDLnUjQjfAN+pvzbXEvPZc6o9S9+gXWdB9CzMHhAJ6Gk7fKN4kjE7gKKLpEJoWIY5xXw8WDyYVfdI8bu10Op3bRCG+f2Lp6sw5ax8kiRWKs8xZppsRj/dICCLt7nU4X6MIrSu3eVSyGcs5HcKl038gd01I0YsfcG35wwOoCmbYgGu/u3gDOXCEuXCnK1PRu5ob9zMyGLN+QTiVW2oqCXhhTvZAOPpqirDEg13nwldcYi2cSePt+YZi1ecjX+3XdiXeLpQGRvQdDiXCKlnIIVR9pYGlllCC24AMhOpSXx"
+  federico:
+    login: federico
+    comment: Federico Ceratto
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
 
 # Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
 # See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
 adm_logins: [ art, federico, sarath, sbs ]
-shell_logins: [ ]
+shell_logins: [ agrabeli ]
 svc_ssh_logins: [ ]
 sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
 root_ssh_authrorized_keys: [ ] # unstructured legacy keys

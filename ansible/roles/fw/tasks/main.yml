@@ -6,7 +6,7 @@
 - name: mkdir /var/log/fw
   file: dest=/var/log/fw state=directory owner=root group=root mode=0700
 
-- name: copy iptables.filter.part
+- name: copy host specific iptables.filter.part
   template: src=iptables.filter.part/{{inventory_hostname}} dest=/etc/network/iptables.filter.part owner=root group=root mode=0400
 
 - name: copy ip6tables.filter.part

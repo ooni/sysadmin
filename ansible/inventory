@@ -5,7 +5,6 @@
 gh
 ath
 tpo
-bigv
 
 [gh:children]
 mia
@@ -18,7 +17,6 @@ ams
 [mia]
 c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
-analytics.ooni.io
 miatorth.ooni.nu
 miaapi.ooni.nu
 
@@ -36,19 +34,15 @@ notify.proteus.test.ooni.io
 hkgmetadb.infra.ooni.io
 irc-bouncer.service.ooni.io
 ooni-zoo.infra.ooni.io
-test-lists.openobservatory.org # This was used for testing out test-lists web interface. Not critical
 jupyter.ooni.io
 hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
 hkgwebconnectivitya.ooni.nu
-ooni-explorer-next.test.ooni.io
 labs.ooni.io
-hkgjump.ooni.nu
-hkgsuperset.ooni.io
 hkgtorth.ooni.nu
+fastpath.ooni.nu
 
 [ams]
-explorer.ooni.io
 amstorth.ooni.nu
 get.ooni.io
 a.http.th.ooni.io
@@ -60,6 +54,8 @@ slack.openobservatory.org
 prometheus.infra.ooni.io
 demo.probe.ooni.io
 msg.ooni.io
+amsexplorer.ooni.nu
+amsmatomo.ooni.nu
 
 # XXX rename these to orchestra
 notify.proteus.ooni.io
@@ -70,19 +66,13 @@ proteus.ooni.io
 
 run.ooni.io
 amsmetadb.ooni.nu
-amsapi.ooni.nu
-amsapi02.ooni.nu
+api.ooni.io
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
 
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
-# The machines below can maybe be discontinued
-deb.ooni.nu # NOT-GH, moritz?
-
-[bigv] # Bytemark @ London
-b.echo.th.ooni.io # NOT-GH, down, mirror1.reports.ooni.nu ooni-1.default.orgtech.uk0.bigv.io, OK (u: $login)
 
 ########################################################################
 # PSK (pre-shared key) tags
@@ -102,9 +92,8 @@ hkgmetadb.infra.ooni.io
 
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
-amsapi.ooni.nu
-amsapi02.ooni.nu
 miaapi.ooni.nu
+api.ooni.io
 
 [psk_orchestration]
 # FIXME: all in one bin as testing should have access to production! :)
@@ -126,7 +115,6 @@ db-1.proteus.ooni.io
 datacollector.infra.ooni.io
 
 [psk_superset_hkgmetadb]
-hkgsuperset.ooni.io
 hkgmetadb.infra.ooni.io
 
 ########################################################################
@@ -143,13 +131,16 @@ hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
 miaapi.ooni.nu
-amsapi02.ooni.nu
+api.ooni.io
+amsexplorer.ooni.nu
+fastpath.ooni.nu
+amsmatomo.ooni.nu
 
 [have_nginx]
-amsapi.ooni.nu
-amsapi02.ooni.nu
+api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
+amsmatomo.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
@@ -161,9 +152,12 @@ hkgcollectora.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
 
+[active_collector]
+miacollector.ooni.nu
+c.collector.ooni.io
+
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
 irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
-deb.ooni.nu                       # no root for darkk
 staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]

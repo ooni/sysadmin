@@ -6,6 +6,16 @@
 - name: check port configuration
   assert: { that: 9100 in ngxprom_exporter_ports }
 
+- name: create nodexp group
+  group: name=nodeexp state=present
+
+- name: create nodexp user
+  user:
+    name: nodeexp
+    group: nodeexp
+    comment: 'Prometheus Node Exporter'
+    state: present
+
 - name: Creating node_exporter dirs
   file:
     path: "{{ item }}"

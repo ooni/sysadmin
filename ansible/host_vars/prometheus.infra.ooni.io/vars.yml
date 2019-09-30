@@ -51,17 +51,16 @@ blackbox_jobs:
     module: "ooni_tcp_echo_ok"
     targets:
       - "{{ lookup('dig', 'c.echo.th.ooni.io/A') }}:80"
-      - "{{ lookup('dig', 'b.echo.th.ooni.io/A') }}:80"
 
   - name: "ooni http return json headers"
     module: "ooni_http_return_json_headers_ok"
     targets:
       - "http://{{ lookup('dig', 'a.http.th.ooni.io/A') }}:80"
 
-  - name: "ooni explorer countByCountry"
+  - name: "ooni explorer homepage"
     module: "http_2xx"
     targets:
-      - "https://explorer.ooni.io/api/reports/countByCountry"
+      - "https://explorer.ooni.org/"
 
   - name: "ooni API files"
     module: "http_2xx"
@@ -76,7 +75,7 @@ blackbox_jobs:
   - name: "slack inviter"
     module: "http_2xx"
     targets:
-      - "https://slack.openobservatory.org"
+      - "https://slack.ooni.org"
 
   - name: "ooni website"
     module: "http_2xx"

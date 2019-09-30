@@ -13,24 +13,22 @@
 
 - name: install some common packages
   apt:
-    name: "{{ item }}"
+    name:
+      - ca-certificates
+      - tmux
+      - screen
+      - vim
+      - lsof
+      - strace
+      - tcpdump
+      - curl
+      - mtr
+      - rsync
+      - openssl
     state: latest
     update_cache: yes
     cache_valid_time: 28800
     install_recommends: false
-  with_items:
-    - ca-certificates
-    - tmux
-    - screen # art@ prefers :) old-school
-    - vim
-    - lsof
-    - strace
-    - tcpdump
-    - curl
-    - mtr
-    - rsync
-    - openssl # at least for ooca-cert
-
 - import_tasks: sshd.yml
   tags: sshd
 - import_tasks: ping.yml

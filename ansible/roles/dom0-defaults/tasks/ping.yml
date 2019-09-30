@@ -9,5 +9,5 @@
   copy:
     content: '{{ ping.stdout }}'
     dest: /etc/flag_iputils-ping_reconfigured
-  when: ping | changed
+  when: ping is changed
 ...

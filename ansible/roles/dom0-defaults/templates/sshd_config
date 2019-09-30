@@ -1,5 +1,4 @@
 # ansible-managed in ooni-sysadmin.git
-{% set sshd_v1_deprecated = 'Deprecated option ServerKeyBits' in sshd_v1.stderr %}{# Deprecated in OpenSSH_7.4p1 #}
 
 # Package generated configuration file
 # See the sshd_config(5) manpage for details
@@ -22,14 +21,7 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 {% else %}
 # HostKey /etc/ssh/ssh_host_ed25519_key # not suported :-( OpenSSH 6.5+ is required
 {% endif %}
-#Privilege Separation is turned on for security
-UsePrivilegeSeparation yes
 
-{% if not sshd_v1_deprecated %}
-# Lifetime and size of ephemeral version 1 server key
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
-{% endif %}
 
 # Logging
 SyslogFacility AUTH
@@ -40,9 +32,6 @@ LoginGraceTime 120
 PermitRootLogin without-password
 StrictModes yes
 
-{% if not sshd_v1_deprecated %}
-RSAAuthentication yes
-{% endif %}
 PubkeyAuthentication yes
 #AuthorizedKeysFile	%h/.ssh/authorized_keys # TODO: *.tpo has nice idea of global `AuthorizedKeysFile /etc/ssh/userkeys/%u`
 
@@ -51,10 +40,7 @@ AllowUsers root {{ sshd_allow_users | sort | join(' ') }}
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
-{% if not sshd_v1_deprecated %}
-# For this to work you will also need host keys in /etc/ssh_known_hosts
-RhostsRSAAuthentication no
-{% endif %}
+
 # similar for protocol version 2
 HostbasedAuthentication no
 # Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication

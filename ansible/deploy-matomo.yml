@@ -1,0 +1,11 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: amsmatomo.ooni.nu
+  gather_facts: true
+  roles:
+    - role: letsencrypt
+      letsencrypt_domains: ["matomo.ooni.org", "analytics.ooni.io", "amsmatomo.ooni.nu"]
+    - role: docker
+    - role: matomo
+      tags: "matomo"

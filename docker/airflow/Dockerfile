@@ -19,4 +19,5 @@ COPY entrypoint.sh /entrypoint.sh
 USER airflow
 
 # One can't enforce ulimit or get OOM on PID=1
+# `dumb-init` may be replaced with `docker run --init` in modern docker versions.
 ENTRYPOINT ["/usr/bin/dumb-init", "-v", "/entrypoint.sh"]

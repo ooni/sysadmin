@@ -6,7 +6,6 @@ groups:
   - alert: NTPOutOfSync
     expr: (node_scrape_collector_success{collector="ntp"} != 1) or (node_ntp_sanity != 1) # or (node_timex_sync_status != 1)
     for: 1h
-    labels: {severity: info}
 
   # including http scraping failure
   - alert: InstanceDown
@@ -61,10 +60,11 @@ groups:
 
   # b.echo.th.ooni.io do not have MemAvailable signal that is an _estimate_ of RAM available for userspace allocations provided by kernel.
   # Old nodes: (node_memory_MemAvailable or (-node_time)) < 0
-  - alert: MemoryLow
-    expr: ((node_memory_MemAvailable) / node_memory_MemTotal or ((node_memory_MemFree + node_memory_Buffers + node_memory_Cached) / node_memory_MemTotal)) * 100 < 25
-    annotations:
-      summary: '{{ $labels.instance }} has {{ printf "%.0f" $value }}% RAM available'
+  # Disabled due to it being very noisy
+  #- alert: MemoryLow
+  #  expr: ((node_memory_MemAvailable) / node_memory_MemTotal or ((node_memory_MemFree + node_memory_Buffers + node_memory_Cached) / node_memory_MemTotal)) * 100 < 25
+  #  annotations:
+  #    summary: '{{ $labels.instance }} has {{ printf "%.0f" $value }}% RAM available'
 
   # Old nodes: (node_vmstat_oom_kill or (-node_time)) < 0
   - alert: OOM
@@ -136,7 +136,6 @@ groups:
 
   - alert: SSLCertExpires
     expr: (probe_ssl_earliest_cert_expiry{job!="tor testhelper"} - time()) / 86400 < 25
-    labels: {severity: info}
     annotations:
       summary: '`certbot` failed at {{ $labels.instance }}'
       description: 'SSL cert for  expires in {{ printf "%.0f" $value }} days.'
