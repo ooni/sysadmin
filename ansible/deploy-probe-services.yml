@@ -1,0 +1,16 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: mia-ps.ooni.io
+  roles:
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "mia-ps.ooni.io"
+
+- hosts: mia-ps.ooni.io
+  roles:
+    - role: ooni-bouncer
+      tags: ooni-bouncer
+      with_nginx: no
+      bouncer_domain: bouncer.ooni.io

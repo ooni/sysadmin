@@ -1,0 +1,22 @@
+---
+- name: probe-services nginx config
+  template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
+  notify: reload nginx
+
+- name: matomo webservice
+  docker_container:
+    image: matomo:{{ matomo_version }}
+    name: matomo
+    hostname: matomo
+    links:
+      - "mariadb:maridb"
+    env:
+      MATOMO_DATABASE_HOST: "maridb"
+      MATOMO_DATABASE_USERNAME: "{{ db_matomo_user }}"
+      MATOMO_DATABASE_PASSWORD: "{{ db_matomo_pass }}"
+      MATOMO_DATABASE_DBNAME: "{{ db_name }}"
+    volumes:
+      - "{{ matomo_data_dir }}:/var/www/html"
+    ports:
+      - "0.0.0.0:{{ matomo_backend_port }}:80"
+    restart_policy: unless-stopped
