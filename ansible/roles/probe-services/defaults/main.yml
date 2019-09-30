@@ -1,3 +1,5 @@
+probe_services_domain: 'ps.ooni.io'
+
 bouncer_ipv4: 127.0.0.1
 bouncer_port: 9000
 
@@ -6,6 +8,7 @@ collector_port: 9010
 
 web_connectivity_ipv4: 127.0.0.1
 web_connectivity_port: 9020
+web_connectivity_domain: 'web-connectivity-th.ooni.io'
 
 registry_ipv4: 127.0.0.1
 registry_port: 9030
