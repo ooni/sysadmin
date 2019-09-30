@@ -30,7 +30,7 @@ passwd:
   afworker: {login: afworker, comment: Airflow Worker}
   afflower: {login: afflower, comment: Airflow Celery Flower}
 
-  plpsql:   {login: plpsql, comment: Pipeline Postgresql}
+  plpsql:   {login: plpsql, comment: Pipeline Postgresql} # DONE
   plshovel: {login: plshovel, comment: Pipeline Shovel}
 
   nodeexp:  {login: nodeexp, comment: Prometheus Node Exporter} # DONE
