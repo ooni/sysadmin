@@ -117,3 +117,18 @@
     hour: "0"
     user: "{{ passwd.collector.login }}"
     job: "{{ collector_data_dir }}/bin/daily-tasks.sh"
+
+- name: Setup the sshfeeder account
+  user:
+    name: sshfeeder
+    createhome: yes
+    append: yes
+    shell: /bin/bash
+    home: "/home/sshfeeder"
+    system: no
+
+- name: Set authorized key for sshfeeder
+  authorized_key:
+    user: sshfeeder
+    state: present
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3MZP0tYUzaZOZa8JhRIx3PiTXwXfwQdTPa/RwDmwcA"

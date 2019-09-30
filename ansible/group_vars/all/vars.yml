@@ -62,6 +62,7 @@ passwd:
   bouncer: {login: bouncer, comment: OONI Bouncer user}
   collector: {login: collector, comment: OONI Collector user}
   sync_user: {login: sync-user, comment: OONI Collector Sync user}
+  sshfeeder: {login: sshfeeder, comment: OONI Collector SSH feeder user}
 
   agrabeli:
     login: agrabeli
