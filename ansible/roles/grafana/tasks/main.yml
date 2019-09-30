@@ -1,9 +1,21 @@
 ---
+- name: create group
+  group: name=grafana state=present
+
+- name: create user
+  user:
+    name: "grafana"
+    group: "grafana"
+    comment: "grafana user"
+    state: present
+
 - name: mkdir for config and data
   file:
     path: "{{ item }}"
     state: directory
-    mode: 0750
+    mode: 0755
+    owner: grafana
+    group: grafana
   with_items:
     - "{{ grafana_config_path }}"
     - "{{ grafana_lib_path }}"
@@ -30,10 +42,10 @@
     networks:
       - name: grfn
         ipv4_address: '{{ grafana_backend_ipv4 }}'
+    networks_cli_compatible: no
     purge_networks: true
+    user: root
     volumes:
-      - /etc/passwd:/etc/passwd:ro # for better `grafana` UID
-      - /etc/group:/etc/group:ro
       - "{{ grafana_config_path }}:/etc/grafana"
       - "{{ grafana_lib_path }}:/var/lib/grafana"
     env:
