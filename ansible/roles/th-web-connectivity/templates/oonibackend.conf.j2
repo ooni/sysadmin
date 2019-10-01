@@ -28,7 +28,6 @@ helpers:
     port: null
   web_connectivity:
     endpoints:
-      - {type: onion, hsdir: "{{ web_connectivity_data_dir }}/tor/web_connectivity"}
       - {type: tcp, port: {{ web_connectivity_port }} }
 
 main:

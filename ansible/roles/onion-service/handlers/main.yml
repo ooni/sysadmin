@@ -1,6 +1,6 @@
 ---
 - name: test tor config
-  command: /usr/bin/tor --verify-config
+  command: sudo -u {{ tor_user }} /usr/bin/tor --verify-config
   listen:
     - restart tor
 

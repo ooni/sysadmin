@@ -7,12 +7,23 @@
     - role: letsencrypt
       letsencrypt_domains:
         - "mia-wcth.ooni.io"
+
     - role: onion-service
       tags: tor
       onion_services:
-        - service_dir: '/srv/tor/web_connectivity'
-          local_ipv4: '127.0.0.1'
-          local_port: 80
+        - service_dir: '/var/lib/tor/onion_web_connectivity_v2'
+          hs_version: 2
+          ports:
+            - service_port: 80
+              local_ipv4: '127.0.0.1'
+              local_port: 80
+        - service_dir: '/var/lib/tor/onion_web_connectivity_v3'
+          hs_version: 3
+          ports:
+            - service_port: 80
+              local_ipv4: '127.0.0.1'
+              local_port: 80
+
     - role: th-web-connectivity
       tags: wcth
       web_connectivity_domain: mia-wcth.ooni.io

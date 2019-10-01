@@ -3,8 +3,8 @@ Log notice file {{ tor_log_file }}
 
 {% for s in onion_services %}
 HiddenServiceDir {{ s.service_dir }}
-
-{% for p in ports %}
+HiddenServiceVersion {{ s.hs_version | default(2) }}
+{% for p in s.ports %}
 HiddenServicePort {{ p.service_port }} {{ p.local_ipv4 }}:{{ p.local_port }}
 {% endfor %}
 
