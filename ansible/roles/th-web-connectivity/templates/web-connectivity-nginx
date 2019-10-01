@@ -9,7 +9,7 @@ server {
     {{ c.ssl_letsencrypt(web_connectivity_domain) }}
 
     server_name _;
-    access_log  /var/log/nginx/{{ web_connectivity_domain }}.access.log;
+    access_log  /var/log/nginx/{{ web_connectivity_domain }}.access.log oolog; # oolog comes from nginx-stable part of dom0 bootstrap
     error_log   /var/log/nginx/{{ web_connectivity_domain }}.error.log warn;
 
     location / {
