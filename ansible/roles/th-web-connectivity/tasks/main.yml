@@ -43,7 +43,7 @@
 
 - name: web-connectivity webservice
   docker_container:
-    image: {{ web_connectivity_image }}:{{ web_connectivity_tag }}
+    image: "{{ web_connectivity_image }}:{{ web_connectivity_tag }}"
     name: web-connectivity
     hostname: web-connectivity
     ports:
