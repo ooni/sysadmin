@@ -19,6 +19,7 @@ c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
 miatorth.ooni.nu
 miaapi.ooni.nu
+mia-wcth.ooni.io
 
 [hkg]
 datacollector.infra.ooni.io
@@ -135,12 +136,14 @@ api.ooni.io
 amsexplorer.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
+mia-wcth.ooni.io
 
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
+mia-wcth.ooni.io
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
