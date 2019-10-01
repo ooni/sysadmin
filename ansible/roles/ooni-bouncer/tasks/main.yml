@@ -57,5 +57,4 @@
     volumes:
     - "/data/bouncer:/data/bouncer"
     command: python bin/oonib --config /data/bouncer/oonibackend.conf
-    user: "bouncer:bouncer"
     restart_policy: unless-stopped
