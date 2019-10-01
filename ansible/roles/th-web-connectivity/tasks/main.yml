@@ -11,7 +11,7 @@
     comment: "testhelper for Probes"
     state: present
 
-- name: collector nginx config
+- name: web-connectivity nginx config
   template: src=web-connectivity-nginx dest=/etc/nginx/sites-enabled/web-connectivity
   notify: reload nginx
   when: with_nginx

@@ -13,7 +13,7 @@ server {
     error_log   /var/log/nginx/{{ web_connectivity_domain }}.error.log warn;
 
     location / {
-        proxy_pass http://127.0.0.1:{{ collector_port }};
+        proxy_pass http://{{ web_connectivity_ipv4 }}:{{ web_connectivity_port }};
     }
 
     {{ c.location_letsencrypt() }}
