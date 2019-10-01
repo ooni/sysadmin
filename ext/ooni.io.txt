@@ -45,6 +45,7 @@ explorer	60	A	37.218.242.231
 explorer-beta	60	A	37.218.242.231
 get		A	37.218.242.157
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
+hkg-wcth	300	A	103.104.244.19
 hkgmetadb.infra		A	37.218.240.56
 hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
@@ -53,6 +54,8 @@ jupyter		A	37.218.240.205
 labs		A	103.104.244.162
 measurements		A	37.218.242.231
 measurements-beta		A	37.218.240.100
+mia-ps	300	A	37.218.241.63
+mia-wcth	300	A	37.218.241.78
 msg		A	37.218.242.179
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
@@ -76,4 +79,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 0af86a3bc3c1f4714845638b56b4d84627b8f8e3914641b093d0a05fa4464a07
+; generated from ooni.io.xml with SHA256 20e0b899ef884d3e6469ab3c23cf1003ff5493aabd6e38b5a2a74e33d4a001be

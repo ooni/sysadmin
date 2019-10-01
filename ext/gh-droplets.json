@@ -1571,10 +1571,124 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "2"
+        },
+        {
+            "backup_ids": [],
+            "disk": 200,
+            "features": [],
+            "id": "3197",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:mZJ5eRoC8KHLeWf1vjrOR6Z146yLr//ltwxxnc4GeOM",
+                "ssh_ecdsa": "256 SHA256:/lm97Chi9g1BiqoL4Y0hyqTcjDeP5zg4vZlCX5aIZQg",
+                "ssh_rsa": "2048 SHA256:gWdy9owqVBq1shxZjL5m//f4NC5S9pZAZC90HQN8FIw"
+            },
+            "locked": false,
+            "memory": "8192",
+            "name": "mia-ps.ooni.io",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.63",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "4"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3199",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:gDTG/cP4UapmiA08nTTRF9z4iFZ66GEUREEY4PIgfig",
+                "ssh_ecdsa": "256 SHA256:JUEUvwRarVZweZ9uBUsPE+xdTCmLsIELCuS7ZokXdGg",
+                "ssh_rsa": "2048 SHA256:auILydGj/hUYDW5szbOA1VUWO4s2Y0Nwqxj2jLwR6hA"
+            },
+            "locked": false,
+            "memory": "2048",
+            "name": "mia-wcth.ooni.io",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.78",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 10,
+            "features": [],
+            "id": "3200",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 26:9c:5a:9b:b4:0e:25:04:64:6c:05:ac:7c:2c:40:89",
+                "ssh_ecdsa": "256 d7:f6:8e:ca:e6:5b:1d:22:4f:f8:c9:b6:22:ae:18:af",
+                "ssh_rsa": "2048 c7:71:69:92:c5:6e:76:01:56:a3:08:29:83:e2:68:3b"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "hkg-wcth.ooni.io",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "103.104.244.254",
+                        "ip_address": "103.104.244.19",
+                        "netmask": "255.255.255.0",
+                        "network": "103.104.244.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "Hong Kong",
+                "slug": "Hong Kong"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
         }
     ],
     "links": [],
     "meta": {
-        "total": 41
+        "total": 44
     }
 }
