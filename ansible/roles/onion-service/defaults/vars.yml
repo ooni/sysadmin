@@ -1,0 +1,11 @@
+tor_dir: '/srv/tor'
+tor_data_dir: '/srv/tor/data_directory'
+tor_log_file: '{{ tor_dir }}/tor.log'
+tor_user: 'debian-tor'
+
+onion_services:
+  - service_dir: '{{ tor_dir }}/onion_service'
+    ports:
+      - service_port: 80
+        local_ipv4: '127.0.0.1'
+        local_port: 80

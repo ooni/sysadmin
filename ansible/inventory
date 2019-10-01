@@ -43,6 +43,8 @@ labs.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
 
+hkg-wcth.ooni.io
+
 [ams]
 amstorth.ooni.nu
 get.ooni.io
@@ -137,6 +139,7 @@ amsexplorer.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
+hkg-wcth.ooni.io
 
 [have_nginx]
 api.ooni.io
@@ -144,6 +147,7 @@ miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
+hkg-wcth.ooni.io
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
