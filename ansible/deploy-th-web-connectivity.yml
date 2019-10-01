@@ -8,6 +8,7 @@
       letsencrypt_domains:
         - "mia-wcth.ooni.io"
     - role: onion-service
+      tags: tor
       onion_services:
         - service_dir: '/srv/tor/web_connectivity'
           local_ipv4: '127.0.0.1'
