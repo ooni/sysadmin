@@ -1,6 +1,7 @@
 ---
 - name: test tor config
-  command: sudo -u {{ tor_user }} /usr/bin/tor --verify-config
+  command: /usr/bin/tor --verify-config
+  become: "{{ tor_user }}"
   listen:
     - restart tor
 
