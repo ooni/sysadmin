@@ -51,5 +51,4 @@
     volumes:
     - "{{ web_connectivity_data_dir }}:{{ web_connectivity_data_dir }}"
     command: "python bin/oonib --config {{ web_connectivity_data_dir }}/oonibackend.conf"
-    user: "{{ web_connectivity_user }}:{{ web_connectivity_user }}"
     restart_policy: unless-stopped
