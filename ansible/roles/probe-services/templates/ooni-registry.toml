@@ -1,0 +1,17 @@
+[core]
+environment = "{{ orchestra_environment }}"
+log-level = "{{ orchestra_log_level }}"
+
+[auth]
+jwt-secret = "{{ orchestra_auth_jwt_secret }}"
+admin-password = "{{ orchestra_admin_password }}"
+
+[api]
+port = "{{ registry_port }}"
+address = "{{ orchestra_api_address }}"
+
+[database]
+url = "{{ orchestra_database_url }}"
+active-probes-table = "active_probes"
+probe-updates-table = "probe_updates"
+accounts-table = "accounts"

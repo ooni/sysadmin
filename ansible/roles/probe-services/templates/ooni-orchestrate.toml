@@ -1,0 +1,18 @@
+[core]
+environment = "{{ orchestra_environment }}"
+log-level = "{{ orchestra_log_level }}"
+gorush-url = "{{ orchestra_notify_url }}"
+notify-topic-ios = "{{ orchestra_notify_topic_ios }}"
+notify-click-action-android = "{{ orchestra_notify_click_action_android }}"
+
+[auth]
+jwt-secret = "{{ orchestra_auth_jwt_secret }}"
+gorush-basic-auth-user = "{{ orchestra_notify_basic_auth_user }}"
+gorush-basic-auth-password = "{{ orchestra_notify_basic_auth_password }}"
+
+[api]
+port = "{{ orchestrate_port }}"
+address = "{{ orchestra_api_address }}"
+
+[database]
+url = "{{ orchestra_database_url }}"

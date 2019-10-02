@@ -2,3 +2,46 @@
 - name: probe-services nginx config
   template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
   notify: reload nginx
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ orchestrate_data_dir }}"
+    - "{{ registry_data_dir }}"
+
+- name: Configure orchestrate
+  template:
+    src: ooni-orchestrate.toml
+    dest: "{{ orchestrate_data_dir }}/ooni-orchestrate.toml"
+
+- name: orchestrate webservice
+  docker_container:
+    image: "{{ orchestrate_docker_image }}"
+    name: orchestrate
+    hostname: orchestrate
+    ports:
+    - "{{ orchestrate_port }}:{{ orchestrate_port }}"
+    volumes:
+    - "{{ orchestrate_data_dir }}:{{ orchestrate_data_dir }}"
+    command: "ooni-orchestrate --config {{ orchestrate_data_dir }}/ooni-orchestrate.toml start"
+    restart_policy: unless-stopped
+
+- name: Configure registry
+  template:
+    src: ooni-registry.toml
+    dest: "{{ registry_data_dir }}/ooni-registry.toml"
+
+- name: registry webservice
+  docker_container:
+    image: "{{ registry_docker_image }}"
+    name: registry
+    hostname: registry
+    ports:
+    - "{{ registry_port }}:{{ registry_port }}"
+    volumes:
+    - "{{ registry_data_dir }}:{{ registry_data_dir }}"
+    command: "ooni-registry --config {{ registry_data_dir }}/ooni-registry.toml start"
+    restart_policy: unless-stopped

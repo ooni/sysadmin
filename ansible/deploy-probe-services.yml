@@ -28,25 +28,6 @@
         - service
         - collector
 
-    - role: ooni-registry
-      collector_domain: 'mia-ps.ooni.io'
-      orchestra_install_path: '/srv/registry'
-      orchestra_version: "0.3.0"
-      orchestra_api_port: 9030
-      with_nginx: no
-      tags:
-        - service
-        - registry
-
-    - role: ooni-orchestrate
-      orchestra_install_path: '/srv/orchestrate'
-      orchestra_version: "0.3.0"
-      orchestra_api_port: 9031
-      with_nginx: no
-      tags:
-        - service
-        - orchestrate
-
     - role: probe-services
       probe_services_domain: "mia-ps.ooni.io"
       bouncer_port: 9000
