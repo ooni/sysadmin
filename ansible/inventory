@@ -15,10 +15,10 @@ ams
 # location tags
 
 [mia]
-c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
 miatorth.ooni.nu
 miaapi.ooni.nu
+
 mia-wcth.ooni.io
 
 [hkg]
@@ -38,7 +38,6 @@ ooni-zoo.infra.ooni.io
 jupyter.ooni.io
 hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
-hkgwebconnectivitya.ooni.nu
 labs.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
@@ -49,7 +48,6 @@ hkg-wcth.ooni.io
 amstorth.ooni.nu
 get.ooni.io
 a.http.th.ooni.io
-b.web-connectivity.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
 ssdams.infra.ooni.io
