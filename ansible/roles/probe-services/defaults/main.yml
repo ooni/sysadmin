@@ -2,6 +2,7 @@ probe_services_domain: 'ps.ooni.io'
 
 bouncer_ipv4: 127.0.0.1
 bouncer_port: 9000
+bouncer_image: ''
 
 collector_ipv4: 127.0.0.1
 collector_port: 9010

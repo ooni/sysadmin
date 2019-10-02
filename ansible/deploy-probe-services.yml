@@ -11,6 +11,19 @@
 - hosts: mia-ps.ooni.io
   roles:
     - role: ooni-bouncer
-      tags: ooni-bouncer
+      bouncer_domain: 'mia-ps.ooni.io'
+      bouncer_data_dir: '/srv/bouncer/'
+      bouncer_port: 9000
       with_nginx: no
-      bouncer_domain: bouncer.ooni.io
+      tags: service
+    - role: ooni-collector
+      collector_domain: 'mia-ps.ooni.io'
+      collector_data_dir: '/srv/collector/'
+      collector_port: 9010
+      with_nginx: no
+      tags: service
+    - role: probe-services
+      probe_services_domain: "mia-ps.ooni.io"
+      collector_port: 9010
+      bouncer_port: 9000
+      tags: frontend

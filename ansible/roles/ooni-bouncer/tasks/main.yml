@@ -9,7 +9,6 @@
     comment: "OONI Bouncer user"
     state: present
 
-
 - name: bouncer.ooni.io nginx config
   template: src=ngx-bouncer dest=/etc/nginx/sites-enabled/ooni-bouncer
   notify: reload nginx

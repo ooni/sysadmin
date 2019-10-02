@@ -1,14 +1,33 @@
 ---
+- name: create group
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ collector_user }}"
+    - "{{ sync_user }}"
+
+- name: create user
+  user:
+    name: "{{ item }}"
+    group: "{{ item }}"
+    comment: "testhelper for Probes"
+    state: present
+  with_items:
+    - "{{ collector_user }}"
+    - "{{ sync_user }}"
+
 - name: collector nginx config
   template: src=ngx-collector dest=/etc/nginx/sites-enabled/ooni-collector
   notify: reload nginx
+  when: with_nginx
 
 - name: mkdir for config and data
   file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ passwd.collector.id }}"
-    group: "{{ passwd.collector.id }}"
+    owner: "{{ collector_user }}"
+    group: "{{ collector_user }}"
     mode: "u=rwx,g=rx,o="
   with_items:
     - "{{ collector_data_dir }}"
@@ -23,15 +42,15 @@
 
 - name: Configure the collector oonibackend.conf
   template:
-    owner: "{{ passwd.collector.id }}"
-    group: "{{ passwd.collector.id }}"
+    owner: "{{ collector_user }}"
+    group: "{{ collector_user }}"
     src: oonibackend.conf.j2
     dest: "{{ collector_data_dir }}/oonibackend.conf"
 
 - name: Write bin files
   template:
-    owner: "{{ passwd.collector.id }}"
-    group: "{{ passwd.collector.id }}"
+    owner: "{{ collector_user }}"
+    group: "{{ collector_user }}"
     mode: "u+rwx"
     src: "{{ item }}.j2"
     dest: "{{ collector_data_dir }}/bin/{{ item }}"
@@ -49,7 +68,7 @@
     volumes:
     - "{{ collector_data_dir }}:{{ collector_data_dir }}"
     command: "python bin/oonib --config {{ collector_data_dir }}/oonibackend.conf"
-    user: "{{ passwd.collector.id }}:{{ passwd.collector.id }}"
+    user: "{{ collector_user }}:{{ collector_user }}"
     restart_policy: unless-stopped
 
 - name: Setup the sync-user account
@@ -62,8 +81,8 @@
   file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ passwd.sync_user.id }}"
-    group: "{{ passwd.sync_user.id }}"
+    owner: "{{ sync_user }}"
+    group: "{{ sync_user }}"
     mode: "u=rwx,g=rx,o="
   with_items:
     - "/home/sync-user/bin"
@@ -71,16 +90,16 @@
 
 - name: Write sync-user bin/rrysnc
   template:
-    owner: "{{ passwd.sync_user.id }}"
-    group: "{{ passwd.sync_user.id }}"
+    owner: "{{ sync_user }}"
+    group: "{{ sync_user }}"
     mode: "u+rwx"
     src: "rrsync"
     dest: "/home/sync-user/bin/rrsync"
 
 - name: Write sync-user .ssh/authorized_keys
   template:
-    owner: sync-user
-    group: sync-user
+    owner: {{ sync_user }}
+    group: {{ sync_user }}
     src: "sync-user_authorized_keys.j2"
     dest: "/home/sync-user/.ssh/authorized_keys"
   tags: collector_ssh
@@ -89,8 +108,8 @@
   file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ passwd.collector.id }}"
-    group: "{{ passwd.collector.id }}"
+    owner: "{{ collector_user }}"
+    group: "{{ collector_user }}"
     mode: "u=rwx,g=rx,o=rx"
   with_items:
     - "{{ collector_data_dir }}"
@@ -99,7 +118,7 @@
   file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ passwd.collector.id }}"
+    owner: "{{ collector_user }}"
     group: "sync-user"
     mode: "u=rwx,g=rwx,o=rx"
   with_items:
@@ -115,7 +134,7 @@
     name: "run the daily tasks"
     minute: "30"
     hour: "0"
-    user: "{{ passwd.collector.login }}"
+    user: "{{ collector_user }}"
     job: "{{ collector_data_dir }}/bin/daily-tasks.sh"
 
 - name: Setup the sshfeeder account
