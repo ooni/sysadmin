@@ -30,8 +30,8 @@ blackbox_jobs:
     module: "ooni_web_connectivity_ok"
     targets:
       #- "https://a.web-connectivity.th.ooni.io/status"
-      - "https://b.web-connectivity.th.ooni.io/status"
-      - "https://c.web-connectivity.th.ooni.io/status"
+      - "https://mia-wcth.ooni.io/status"
+      - "https://hkg-wcth.ooni.io/status"
   - name: "ooni collector"
     module: "ooni_collector_ok"
     targets:
