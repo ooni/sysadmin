@@ -14,23 +14,20 @@ a.collector.stage		A	37.218.240.139
 a.collector.test		A	37.218.240.140
 a.echo.th	60	A	37.218.247.110
 a.http.th		A	37.218.247.95
-a.web-connectivity.th		A	62.217.125.6
-a.web-connectivity.th.stage		A	37.218.240.139
-a.web-connectivity.th.test		A	37.218.240.140
-alpha.measurements		A	37.218.242.231
+a.web-connectivity.th	60	A	103.104.244.19
 analytics	60	A	37.218.242.173
 api	60	A	37.218.245.41
 api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
 b.collector.stage		A	37.218.240.139
 b.collector.test		A	37.218.240.140
-b.web-connectivity.th		A	37.218.242.234
+b.web-connectivity.th	60	A	103.104.244.19
 bouncer		A	103.104.244.87
 bouncer.stage		A	37.218.240.139
 bouncer.test		A	37.218.240.140
 c.collector		A	37.218.242.210
 c.echo.th		A	37.218.247.110
-c.web-connectivity.th		A	37.218.241.164
+c.web-connectivity.th	60	A	103.104.244.19
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
 db-1.proteus		A	37.218.242.79
@@ -79,4 +76,4 @@ test		A	37.218.240.140
 test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 20e0b899ef884d3e6469ab3c23cf1003ff5493aabd6e38b5a2a74e33d4a001be
+; generated from ooni.io.xml with SHA256 08919d0a2208881942829d822e031adfe151b411a7b481aef12d45c3622d1126
