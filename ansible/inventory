@@ -111,6 +111,9 @@ registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 
+[psk_orchestra_prod]
+mia-ps.ooni.io
+
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
 db-1.proteus.ooni.io

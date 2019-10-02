@@ -9,7 +9,7 @@ server {
 }
 
 server {
-    server_name {{ probe_service_domain }};
+    server_name _;
     access_log  /var/log/nginx/{{ probe_services_domain }}.access.log;
     error_log   /var/log/nginx/{{ probe_services_domain }}.error.log warn;
 

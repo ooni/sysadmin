@@ -68,7 +68,10 @@
     volumes:
     - "{{ collector_data_dir }}:{{ collector_data_dir }}"
     command: "python bin/oonib --config {{ collector_data_dir }}/oonibackend.conf"
-    user: "{{ collector_user }}:{{ collector_user }}"
+    # XXX This is commented out because it doesn't work as expected.
+    # we may be able to workaround it by using the uid of the collector_user
+    # instead.
+    # user: "{{ collector_user }}:{{ collector_user }}"
     restart_policy: unless-stopped
 
 - name: Setup the sync-user account

@@ -54,6 +54,6 @@
     ports:
     - "{{ bouncer_port }}:{{ bouncer_port }}"
     volumes:
-    - "/data/bouncer:/data/bouncer"
-    command: python bin/oonib --config /data/bouncer/oonibackend.conf
+    - "{{ bouncer_data_dir }}:{{ bouncer_data_dir }}"
+    command: "python bin/oonib --config {{ bouncer_data_dir }}/oonibackend.conf"
     restart_policy: unless-stopped

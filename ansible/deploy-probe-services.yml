@@ -12,18 +12,45 @@
   roles:
     - role: ooni-bouncer
       bouncer_domain: 'mia-ps.ooni.io'
-      bouncer_data_dir: '/srv/bouncer/'
+      bouncer_data_dir: '/srv/bouncer'
       bouncer_port: 9000
       with_nginx: no
-      tags: service
+      tags:
+        - service
+        - bouncer
+
     - role: ooni-collector
       collector_domain: 'mia-ps.ooni.io'
-      collector_data_dir: '/srv/collector/'
+      collector_data_dir: '/srv/collector'
       collector_port: 9010
       with_nginx: no
-      tags: service
+      tags:
+        - service
+        - collector
+
+    - role: ooni-registry
+      collector_domain: 'mia-ps.ooni.io'
+      orchestra_install_path: '/srv/registry'
+      orchestra_version: "0.3.0"
+      orchestra_api_port: 9030
+      with_nginx: no
+      tags:
+        - service
+        - registry
+
+    - role: ooni-orchestrate
+      orchestra_install_path: '/srv/orchestrate'
+      orchestra_version: "0.3.0"
+      orchestra_api_port: 9031
+      with_nginx: no
+      tags:
+        - service
+        - orchestrate
+
     - role: probe-services
       probe_services_domain: "mia-ps.ooni.io"
-      collector_port: 9010
       bouncer_port: 9000
-      tags: frontend
+      collector_port: 9010
+      registry_port: 9030
+      orchestrate_port: 9031
+      tags: ps

@@ -1,12 +1,11 @@
 go_arch: amd64
 
-orchestra_user:   prtreg
-orchestra_group:  prtreg
+orchestra_user: ooni-registry
 
 # XXX maybe change these paths
 orchestra_install_path: /srv/orchestra
-orchestra_data_path: /srv/orchestra/data
-orchestra_config_path: /srv/orchestra/config
+orchestra_data_path: "{{ orchestra_install_path }}/data"
+orchestra_config_path: "{{ orchestra_install_path }}/config"
 
 orchestra_environment: "production"
 orchestra_log_level: "info"
@@ -22,3 +21,4 @@ orchestra_download_url: https://github.com/ooni/orchestra/releases/download
 
 orchestra_tarball_url: "{{ orchestra_download_url }}/v{{ orchestra_version }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}.tar.gz"
 orchestra_path: "{{ orchestra_install_path }}/orchestra_{{ orchestra_version }}_linux_{{ go_arch }}"
+with_nginx: yes
