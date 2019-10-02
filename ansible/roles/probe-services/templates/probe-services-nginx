@@ -6,9 +6,7 @@ server {
     listen 80;
     listen 443 ssl;
     {{ c.ssl_letsencrypt(probe_services_domain) }}
-}
 
-server {
     server_name _;
     access_log  /var/log/nginx/{{ probe_services_domain }}.access.log;
     error_log   /var/log/nginx/{{ probe_services_domain }}.error.log warn;
@@ -101,28 +99,4 @@ server {
     }
 
     {{ c.location_letsencrypt() }}
-}
-
-# The web_connectivity rule is duplicated because we don't have a way to tell
-# legacy clients to use a nested path to perform requests to and the path
-# clashes with other paths.
-server {
-    server_name {{ web_connectivity_domain }};
-    access_log  /var/log/nginx/{{ web_connectivity_domain }}.access.log;
-    error_log   /var/log/nginx/{{ web_connectivity_domain }}.error.log warn;
-
-    # Web Connectivity Test Helper
-    # Should match:
-    # - /
-    # - /status
-    location / {
-        proxy_http_version 1.1;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_read_timeout 900;
-
-        proxy_pass http://{{ web_connectivity_ipv4 }}:{{ web_connectivity_port }};
-    }
 }
