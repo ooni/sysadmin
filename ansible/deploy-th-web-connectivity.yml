@@ -18,13 +18,13 @@
           ports:
             - service_port: 80
               local_ipv4: '127.0.0.1'
-              local_port: 80
+              local_port: 9020
         - service_dir: '/var/lib/tor/onion_web_connectivity_v3'
           hs_version: 3
           ports:
             - service_port: 80
               local_ipv4: '127.0.0.1'
-              local_port: 80
+              local_port: 9020
 
     - role: th-web-connectivity
       tags: wcth
@@ -50,7 +50,7 @@
           ports:
             - service_port: 80
               local_ipv4: '127.0.0.1'
-              local_port: 80
+              local_port: 9020
         - service_dir: '/var/lib/tor/c_web_connectivity'
           hs_version: 2
           hostname: "{{ wcth_onion_service_c_hostname }}"
@@ -58,7 +58,7 @@
           ports:
             - service_port: 80
               local_ipv4: '127.0.0.1'
-              local_port: 80
+              local_port: 9020
 
     - role: th-web-connectivity
       tags: wcth
