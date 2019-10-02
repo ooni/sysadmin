@@ -19,6 +19,7 @@ miacollector.ooni.nu
 miatorth.ooni.nu
 miaapi.ooni.nu
 
+mia-ps.ooni.io
 mia-wcth.ooni.io
 
 [hkg]
@@ -144,8 +145,12 @@ api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
+
+mia-ps.ooni.io
+
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
+
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
