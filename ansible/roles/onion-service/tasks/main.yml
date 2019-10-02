@@ -32,7 +32,7 @@
     state: directory
     owner: "{{ tor_user }}"
     group: "{{ tor_user }}"
-    mode: "u=rwx,g=rx,o="
+    mode: "u=rwx,g=,o="
   with_items:
     - "{{ tor_dir }}"
     - "{{ tor_data_dir }}"
@@ -43,7 +43,7 @@
     state: directory
     owner: "{{ tor_user }}"
     group: "{{ tor_user }}"
-    mode: "u=rwx,g=rx,o="
+    mode: "u=rwx,g=,o="
   with_items: "{{ onion_services }}"
 
 - name: write hostname file
@@ -53,7 +53,7 @@
     owner: "{{ tor_user }}"
     group: "{{ tor_user }}"
     mode: "u=rw,g=,o="
-  when: item.hostname and item.private_key
+  when: "'hostname' in item and 'private_key' in item"
   with_items: "{{ onion_services }}"
 
 - name: write private_key file
@@ -63,8 +63,9 @@
     owner: "{{ tor_user }}"
     group: "{{ tor_user }}"
     mode: "u=rw,g=,o="
-  when: item.hostname and item.private_key
+  when: "'hostname' in item and 'private_key' in item"
   with_items: "{{ onion_services }}"
+  notify: reload tor
 
 - name: torrc
   template: src=torrc dest=/etc/tor/torrc

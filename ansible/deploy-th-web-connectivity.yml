@@ -13,8 +13,8 @@
       onion_services:
         - service_dir: '/var/lib/tor/onion_web_connectivity_v2'
           hs_version: 2
-          hostname: wcth_onion_service_v2_hostname
-          private_key: wcth_onion_service_v2_private_key
+          hostname: "{{ wcth_onion_service_v2_hostname }}"
+          private_key: "{{ wcth_onion_service_v2_private_key }}"
           ports:
             - service_port: 80
               local_ipv4: '127.0.0.1'
