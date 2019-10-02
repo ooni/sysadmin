@@ -37,6 +37,35 @@
     - "{{ tor_dir }}"
     - "{{ tor_data_dir }}"
 
+- name: mkdir for onion services
+  file:
+    path: "{{ item.service_dir }}"
+    state: directory
+    owner: "{{ tor_user }}"
+    group: "{{ tor_user }}"
+    mode: "u=rwx,g=rx,o="
+  with_items: "{{ onion_services }}"
+
+- name: write hostname file
+  copy:
+    content: "{{ item.hostname }}"
+    dest: "{{ item.service_dir }}/hostname"
+    owner: "{{ tor_user }}"
+    group: "{{ tor_user }}"
+    mode: "u=rw,g=,o="
+  when: item.hostname and item.private_key
+  with_items: "{{ onion_services }}"
+
+- name: write private_key file
+  copy:
+    content: "{{ item.private_key }}"
+    dest: "{{ item.service_dir }}/private_key"
+    owner: "{{ tor_user }}"
+    group: "{{ tor_user }}"
+    mode: "u=rw,g=,o="
+  when: item.hostname and item.private_key
+  with_items: "{{ onion_services }}"
+
 - name: torrc
   template: src=torrc dest=/etc/tor/torrc
   notify: restart tor
