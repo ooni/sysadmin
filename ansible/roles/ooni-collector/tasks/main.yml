@@ -98,8 +98,8 @@
 
 - name: Write sync-user .ssh/authorized_keys
   template:
-    owner: {{ sync_user }}
-    group: {{ sync_user }}
+    owner: "{{ sync_user }}"
+    group: "{{ sync_user }}"
     src: "sync-user_authorized_keys.j2"
     dest: "/home/sync-user/.ssh/authorized_keys"
   tags: collector_ssh
