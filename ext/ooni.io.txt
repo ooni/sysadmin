@@ -9,9 +9,7 @@ $TTL 1799
 @		TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
 @		TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	103.104.244.110
-a.collector.stage		A	37.218.240.139
-a.collector.test		A	37.218.240.140
+a.collector	60	A	103.104.244.110
 a.echo.th	60	A	37.218.247.110
 a.http.th		A	37.218.247.95
 a.web-connectivity.th	60	A	103.104.244.19
@@ -19,13 +17,9 @@ analytics	60	A	37.218.242.173
 api	60	A	37.218.245.41
 api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
-b.collector.stage		A	37.218.240.139
-b.collector.test		A	37.218.240.140
 b.web-connectivity.th	60	A	103.104.244.19
 bouncer		A	103.104.244.87
-bouncer.stage		A	37.218.240.139
-bouncer.test		A	37.218.240.140
-c.collector		A	37.218.242.210
+c.collector	60	A	37.218.242.210
 c.echo.th		A	37.218.247.110
 c.web-connectivity.th	60	A	103.104.244.19
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
@@ -69,11 +63,7 @@ run		A	37.218.242.30
 slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
-stage		A	37.218.240.139
-staging.measurements		A	37.218.242.231
 superset		A	37.218.240.92
-test		A	37.218.240.140
-test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 08919d0a2208881942829d822e031adfe151b411a7b481aef12d45c3622d1126
+; generated from ooni.io.xml with SHA256 03640587656f2f2536d86860d0927c6b36cea3bb39c43c8886be30193cec1be7
