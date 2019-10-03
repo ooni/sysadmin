@@ -142,6 +142,7 @@ fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
+mia-ps.ooni.io
 
 [have_nginx]
 api.ooni.io
