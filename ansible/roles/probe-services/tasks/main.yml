@@ -1,4 +1,27 @@
 ---
+- name: add eth1 interface
+  lineinfile:
+    dest: "/etc/network/interfaces"
+    line: "iface eth1 inet static"
+  when: "anycast_ip is defined"
+
+- name: add anycast_ip
+  interfaces_file:
+    iface: eth1
+    option: address
+    value: "{{ anycast_ip }}"
+    state: present
+  when: "anycast_ip is defined"
+
+- name: add anycast_ip netmask
+  interfaces_file:
+    iface: eth1
+    option: netmask
+    value: "24"
+    state: present
+  when: "anycast_ip is defined"
+  notify: ifupdown eth1
+
 - name: probe-services nginx config
   template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
   notify: reload nginx

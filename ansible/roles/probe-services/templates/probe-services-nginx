@@ -98,5 +98,9 @@ server {
         proxy_pass http://{{ web_connectivity_ipv4 }}:{{ web_connectivity_port }};
     }
 
+    location /whoami {
+        return 200 "{{ probe_services_domain }}";
+    }
+
     {{ c.location_letsencrypt() }}
 }

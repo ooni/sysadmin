@@ -2,3 +2,5 @@
   service: name=nginx state=restarted
 - name: reload nginx
   service: name=nginx state=reloaded
+- name: ifupdown eth1
+  shell: "ifdown eth1 && ifup eth1"
