@@ -24,6 +24,8 @@ mia-wcth.ooni.io
 
 mia-ps.ooni.nu
 
+acme-redirect-helper.ooni.io
+
 [hkg]
 datacollector.infra.ooni.io
 
@@ -159,6 +161,8 @@ mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
 
+acme-redirect-helper.ooni.io
+
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
@@ -173,7 +177,7 @@ mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
 
-
+acme-redirect-helper.ooni.io
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu

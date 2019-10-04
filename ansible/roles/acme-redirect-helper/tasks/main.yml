@@ -1,0 +1,4 @@
+---
+- name: probe-services nginx config
+  template: src=acme-redirect-helper-nginx dest=/etc/nginx/sites-enabled/acme-redirect-helper
+  notify: reload nginx

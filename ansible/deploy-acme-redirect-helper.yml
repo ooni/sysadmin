@@ -1,0 +1,6 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: acme-redirect-helper.ooni.io
+  roles:
+    - role: acme-redirect-helper
