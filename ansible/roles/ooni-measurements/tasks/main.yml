@@ -15,7 +15,7 @@
 
 - name: ooni-api webservice
   docker_container:
-    image: openobservatory/api:{{ oomsm_tag }}
+    image: 'openobservatory/api:{{ oomsm_tag }}'
     name: oomsm-web
     hostname: oomsm-web
     networks: [{name: msm, ipv4_address: '{{ oomsm_backend_ipv4 }}'}]
