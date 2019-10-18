@@ -33,13 +33,18 @@
     - "/etc/nginx/sites-enabled"
     - "/var/www/letsencrypt"
 
+- name: check for /.well-known/acme-challenge
+  shell: "grep '/.well-known/acme-challenge' /etc/nginx/sites-enabled/*"
+  changed_when: false
+  ignore_errors: yes
+  register: acme_challenge_present
+
 - name: Add letsencrypt vhost
   template:
     src: templates/letsencrypt-http
     dest: /etc/nginx/sites-enabled/letsencrypt-http
-
-- name: Reload nginx to activate letsencrypt site
-  service: name=nginx state=restarted
+  notify: reload nginx
+  when: "acme_challenge_present.rc != 0"
 
 # NB: --standalone is not supported
 - name: Generate Letsencrypt certificate with certbot package

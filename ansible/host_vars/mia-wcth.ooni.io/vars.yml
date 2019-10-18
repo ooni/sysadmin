@@ -1,0 +1,2 @@
+wcth_onion_service_v2_hostname: 'o7mcp5y4ibyjkcgs.onion'
+wcth_onion_service_v2_private_key: '{{ vault_wcth_onion_service_v2_private_key }}'

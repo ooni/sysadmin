@@ -1,0 +1,22 @@
+# ansible-managed in ooni-sysadmin.git
+
+{% import 'common.j2' as c %}
+
+server {
+    listen 80;
+    listen 443 ssl;
+    {{ c.ssl_letsencrypt(domain) }}
+
+    server_name _;
+    access_log  /var/log/nginx/access.log;
+    error_log   /var/log/nginx/error.log warn;
+
+    root {{ web_root_dir }};
+
+    location / {
+        autoindex on;
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ =404;
+    }
+}

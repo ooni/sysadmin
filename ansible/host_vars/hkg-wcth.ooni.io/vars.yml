@@ -1,0 +1,6 @@
+wcth_onion_service_b_hostname: '2lzg3f4r3eapfi6j.onion'
+wcth_onion_service_b_private_key: '{{ vault_wcth_onion_service_b_private_key }}'
+
+wcth_onion_service_c_hostname: 'y3zq5fwelrzkkv3s.onion'
+wcth_onion_service_c_private_key: '{{ vault_wcth_onion_service_c_private_key }}'
+

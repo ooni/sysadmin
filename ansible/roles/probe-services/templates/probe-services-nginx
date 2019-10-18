@@ -1,0 +1,106 @@
+# ansible-managed in ooni-sysadmin.git
+
+{% import 'common.j2' as c %}
+
+server {
+    listen 80;
+    listen 443 ssl;
+    {{ c.ssl_letsencrypt(probe_services_domain) }}
+
+    server_name _;
+    access_log  /var/log/nginx/{{ probe_services_domain }}.access.log;
+    error_log   /var/log/nginx/{{ probe_services_domain }}.error.log warn;
+
+    # The below paths have been obtained by looking at the access.log for the
+    # hosts and running:
+    # cat access.log | cut -d ' ' -f8 | sort | uniq
+
+    # Bouncer
+    # Should match:
+    # - /bouncer
+    # - /bouncer/net-tests
+    location /bouncer {
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 900;
+
+        proxy_pass http://{{ bouncer_ipv4 }}:{{ bouncer_port }};
+    }
+
+    # Collector
+    # Should match:
+    # - /report
+    # - /report/XXXX
+    # - /report/XXXX/close
+    # - /invalidpath
+    location ~^/(report|invalidpath) {
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 900;
+
+        proxy_pass http://{{ collector_ipv4 }}:{{ collector_port }};
+    }
+
+    # Registry
+    # Should match:
+    # - /api/v1/login
+    # - /api/v1/register
+    # - /api/v1/update
+    location ~^/api/v1/(login|register|update) {
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 900;
+
+        proxy_pass http://{{ registry_ipv4 }}:{{ registry_port }};
+    }
+
+    # Orchestrate
+    # Should match:
+    # - /api/v1/test-list
+    location /api/v1/test-list {
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 900;
+
+        proxy_pass http://{{ orchestrate_ipv4 }}:{{ orchestrate_port }};
+    }
+
+    # Web Connectivity Test Helper
+    # Should match:
+    # - /
+    # - /status
+    #
+    # The fact that it responds to / means that we may have to differentiate
+    # via the Host record.
+    # TODO We should check if clients will respect a suffix added to by the
+    # bouncer in the returned field, otherwise new clients should use another
+    # form
+    location ~^/web-connectivity/(status) {
+        proxy_http_version 1.1;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 900;
+
+        proxy_pass http://{{ web_connectivity_ipv4 }}:{{ web_connectivity_port }};
+    }
+
+    location /whoami {
+        return 200 "{{ probe_services_domain }}";
+    }
+
+    {{ c.location_letsencrypt() }}
+}

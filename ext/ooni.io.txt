@@ -9,28 +9,20 @@ $TTL 1799
 @		TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
 @		TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses		TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	103.104.244.110
-a.collector.stage		A	37.218.240.139
-a.collector.test		A	37.218.240.140
+a.collector	60	A	103.104.244.110
 a.echo.th	60	A	37.218.247.110
 a.http.th		A	37.218.247.95
-a.web-connectivity.th		A	62.217.125.6
-a.web-connectivity.th.stage		A	37.218.240.139
-a.web-connectivity.th.test		A	37.218.240.140
-alpha.measurements		A	37.218.242.231
+a.web-connectivity.th	60	A	103.104.244.19
+acme-redirect-helper	60	A	37.218.241.32
 analytics	60	A	37.218.242.173
 api	60	A	37.218.245.41
 api.test		A	37.218.241.8
 b.collector	60	A	37.218.241.178
-b.collector.stage		A	37.218.240.139
-b.collector.test		A	37.218.240.140
-b.web-connectivity.th		A	37.218.242.234
+b.web-connectivity.th	60	A	103.104.244.19
 bouncer		A	103.104.244.87
-bouncer.stage		A	37.218.240.139
-bouncer.test		A	37.218.240.140
-c.collector		A	37.218.242.210
+c.collector	60	A	37.218.242.210
 c.echo.th		A	37.218.247.110
-c.web-connectivity.th		A	37.218.241.164
+c.web-connectivity.th	60	A	103.104.244.19
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
 db-1.proteus		A	37.218.242.79
@@ -39,12 +31,13 @@ demo.probe		A	37.218.242.41
 design		CNAME	ooni-design.netlify.com.
 dw-superset		A	54.221.146.227
 dw.wsm		A	54.221.146.227
-events.proteus		A	37.218.242.63
+events.proteus	60	A	37.218.242.63
 events.proteus.test		A	37.218.240.151
 explorer	60	A	37.218.242.231
 explorer-beta	60	A	37.218.242.231
-get		A	37.218.242.157
+get	60	A	37.218.241.63
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
+hkg-wcth	300	A	103.104.244.19
 hkgmetadb.infra		A	37.218.240.56
 hkgsuperset		A	37.218.240.92
 hkgsuperset		A	37.218.240.92
@@ -53,27 +46,24 @@ jupyter		A	37.218.240.205
 labs		A	103.104.244.162
 measurements		A	37.218.242.231
 measurements-beta		A	37.218.240.100
+mia-wcth	300	A	37.218.241.78
 msg		A	37.218.242.179
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
 ooni-explorer-next.test	60	A	37.218.242.231
 ooni-zoo.infra		A	37.218.240.138
-orchestrate	300	A	37.218.242.63
+orchestrate	60	A	37.218.242.63
 orchestrate.test		A	37.218.240.151
 prometheus.infra		A	37.218.245.43
 proteus		A	37.218.242.62
 proteus.test		A	37.218.240.152
-registry.proteus		A	37.218.242.65
+registry.proteus	60	A	37.218.242.65
 registry.proteus.test		A	37.218.240.148
 run		A	37.218.242.30
 slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra		A	37.218.242.236
 ssdamsterdam.infra		A	37.218.242.236
-stage		A	37.218.240.139
-staging.measurements		A	37.218.242.231
 superset		A	37.218.240.92
-test		A	37.218.240.140
-test-monitoring		A	199.119.112.171
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 0af86a3bc3c1f4714845638b56b4d84627b8f8e3914641b093d0a05fa4464a07
+; generated from ooni.io.xml with SHA256 8beae7ef86a7ee8fa7c7a9981ace72e279f87b9ea004144c45301e887a597c8e

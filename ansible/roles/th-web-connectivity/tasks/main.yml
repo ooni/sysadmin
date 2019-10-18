@@ -1,0 +1,54 @@
+---
+- name: create group
+  group:
+    name: "{{ web_connectivity_user }}"
+    state: present
+
+- name: create user
+  user:
+    name: "{{ web_connectivity_user }}"
+    group: "{{ web_connectivity_user }}"
+    comment: "testhelper for Probes"
+    state: present
+
+- name: web-connectivity nginx config
+  template: src=web-connectivity-nginx dest=/etc/nginx/sites-enabled/web-connectivity
+  notify: reload nginx
+  when: with_nginx
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ web_connectivity_user }}"
+    group: "{{ web_connectivity_user }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ web_connectivity_data_dir }}"
+    - "{{ web_connectivity_data_dir }}/bin"
+    - "{{ web_connectivity_data_dir }}/tor"
+    - "{{ web_connectivity_data_dir }}/logs"
+    - "{{ web_connectivity_data_dir }}/archive"
+    - "{{ web_connectivity_data_dir }}/raw_reports"
+    # This is legacy garbage
+    - "{{ web_connectivity_data_dir }}/decks"
+    - "{{ web_connectivity_data_dir }}/inputs"
+
+- name: Configure oonibackend.conf
+  template:
+    owner: "{{ web_connectivity_user }}"
+    group: "{{ web_connectivity_user }}"
+    src: oonibackend.conf.j2
+    dest: "{{ web_connectivity_data_dir }}/oonibackend.conf"
+
+- name: web-connectivity webservice
+  docker_container:
+    image: "{{ web_connectivity_image }}:{{ web_connectivity_tag }}"
+    name: web-connectivity
+    hostname: web-connectivity
+    ports:
+    - "{{ web_connectivity_port }}:{{ web_connectivity_port }}"
+    volumes:
+    - "{{ web_connectivity_data_dir }}:{{ web_connectivity_data_dir }}"
+    command: "python bin/oonib --config {{ web_connectivity_data_dir }}/oonibackend.conf"
+    restart_policy: unless-stopped

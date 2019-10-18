@@ -1,0 +1,10 @@
+---
+web_connectivity_user: 'testhelper'
+web_connectivity_port: 9020
+web_connectivity_ipv4: "127.0.0.1"
+
+web_connectivity_image: 'openobservatory/backend'
+web_connectivity_tag: '20190221-0980b82a'
+web_connectivity_data_dir: '/srv/web_connectivity'
+with_nginx: yes
+...

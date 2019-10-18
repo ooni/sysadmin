@@ -1,0 +1,65 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: "mia-wcth.ooni.io"
+  roles:
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "mia-wcth.ooni.io"
+
+    - role: onion-service
+      tags: tor
+      onion_services:
+        - service_dir: '/var/lib/tor/onion_web_connectivity_v2'
+          hs_version: 2
+          hostname: "{{ wcth_onion_service_v2_hostname }}"
+          private_key: "{{ wcth_onion_service_v2_private_key }}"
+          ports:
+            - service_port: 80
+              local_ipv4: '127.0.0.1'
+              local_port: 9020
+        - service_dir: '/var/lib/tor/onion_web_connectivity_v3'
+          hs_version: 3
+          ports:
+            - service_port: 80
+              local_ipv4: '127.0.0.1'
+              local_port: 9020
+
+    - role: th-web-connectivity
+      tags: wcth
+      web_connectivity_domain: mia-wcth.ooni.io
+
+- hosts: "hkg-wcth.ooni.io"
+  roles:
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "hkg-wcth.ooni.io"
+        - "a.web-connectivity.th.ooni.io"
+        - "b.web-connectivity.th.ooni.io"
+        - "c.web-connectivity.th.ooni.io"
+
+    - role: onion-service
+      tags: tor
+      onion_services:
+        - service_dir: '/var/lib/tor/b_web_connectivity'
+          hs_version: 2
+          hostname: "{{ wcth_onion_service_b_hostname }}"
+          private_key: "{{ wcth_onion_service_b_private_key }}"
+          ports:
+            - service_port: 80
+              local_ipv4: '127.0.0.1'
+              local_port: 9020
+        - service_dir: '/var/lib/tor/c_web_connectivity'
+          hs_version: 2
+          hostname: "{{ wcth_onion_service_c_hostname }}"
+          private_key: "{{ wcth_onion_service_c_private_key }}"
+          ports:
+            - service_port: 80
+              local_ipv4: '127.0.0.1'
+              local_port: 9020
+
+    - role: th-web-connectivity
+      tags: wcth
+      web_connectivity_domain: hkg-wcth.ooni.io

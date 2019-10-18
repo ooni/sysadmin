@@ -1,0 +1,15 @@
+# ansible-managed in ooni-sysadmin.git
+
+{% import 'common.j2' as c %}
+
+server {
+    listen 80;
+
+    server_name _;
+    access_log  /var/log/nginx/access.log;
+    error_log   /var/log/nginx/error.log warn;
+
+    location /acme-redirect {
+        return 302 "http://$arg_domain/.well-known/acme-challenge/$arg_uri";
+    }
+}

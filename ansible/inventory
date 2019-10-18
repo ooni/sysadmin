@@ -15,10 +15,13 @@ ams
 # location tags
 
 [mia]
-c.web-connectivity.th.ooni.io
 miacollector.ooni.nu
 miatorth.ooni.nu
 miaapi.ooni.nu
+mia-wcth.ooni.io
+mia-ps.ooni.nu
+acme-redirect-helper.ooni.io
+mia-get.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -33,20 +36,20 @@ notify.proteus.test.ooni.io
 
 hkgmetadb.infra.ooni.io
 irc-bouncer.service.ooni.io
-ooni-zoo.infra.ooni.io
 jupyter.ooni.io
 hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
-hkgwebconnectivitya.ooni.nu
 labs.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
+
+hkg-wcth.ooni.io
+hkg-ps.ooni.nu
 
 [ams]
 amstorth.ooni.nu
 get.ooni.io
 a.http.th.ooni.io
-b.web-connectivity.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
 ssdams.infra.ooni.io
@@ -68,11 +71,18 @@ run.ooni.io
 amsmetadb.ooni.nu
 api.ooni.io
 
+ams-ps.ooni.nu
+
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
 
 [tpo] # http://www.euserv.de
 staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.tpo). This requires tpo LDAP account and various other fluff.
+
+[probe_services]
+mia-ps.ooni.nu
+hkg-ps.ooni.nu
+ams-ps.ooni.nu
 
 ########################################################################
 # PSK (pre-shared key) tags
@@ -109,6 +119,11 @@ registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 
+[psk_orchestra_prod]
+mia-ps.ooni.nu
+hkg-ps.ooni.nu
+ams-ps.ooni.nu
+
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
 db-1.proteus.ooni.io
@@ -135,12 +150,28 @@ api.ooni.io
 amsexplorer.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
+mia-wcth.ooni.io
+hkg-wcth.ooni.io
+mia-ps.ooni.nu
+hkg-ps.ooni.nu
+ams-ps.ooni.nu
+acme-redirect-helper.ooni.io
+mia-get.ooni.nu
 
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
+
+
+mia-wcth.ooni.io
+hkg-wcth.ooni.io
+mia-ps.ooni.nu
+hkg-ps.ooni.nu
+ams-ps.ooni.nu
+acme-redirect-helper.ooni.io
+mia-get.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
@@ -151,6 +182,11 @@ miatorth.ooni.nu
 hkgcollectora.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
+
+mia-ps.ooni.nu
+hkg-ps.ooni.nu
+ams-ps.ooni.nu
+
 
 [active_collector]
 miacollector.ooni.nu

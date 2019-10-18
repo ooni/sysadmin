@@ -1,9 +1,22 @@
+---
+- name: create group
+  group:
+    name: "{{ orchestra_user }}"
+    state: present
+
+- name: create user
+  user:
+    name: "{{ orchestra_user }}"
+    group: "{{ orchestra_user }}"
+    comment: "orchestra user"
+    state: present
+
 - name: set permissions, owner and group
   file:
     path: "{{ orchestra_install_path }}"
     state: directory
     owner: "{{ orchestra_user }}"
-    group: "{{ orchestra_group }}"
+    group: "{{ orchestra_user  }}"
     mode: "go-w"
     recurse: yes
 
@@ -12,7 +25,7 @@
     path: "{{ item }}"
     state: directory
     owner: "{{ orchestra_user }}"
-    group: "{{ orchestra_group }}"
+    group: "{{ orchestra_user }}"
     mode: "u=rwx,g=rx,o="
   with_items:
     - "{{ orchestra_data_path }}"
@@ -25,7 +38,7 @@
     dest: "{{ orchestra_path }}"
     mode: 0755
     owner: "{{ orchestra_user }}"
-    group: "{{ orchestra_group }}"
+    group: "{{ orchestra_user }}"
     copy: no
 
 - name: Configure Proteus
@@ -52,3 +65,4 @@
     daemon_reload: yes
 
 - import_tasks: setup-nginx.yml
+  when: with_nginx

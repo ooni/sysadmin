@@ -1,0 +1,20 @@
+# ansible-managed in ooni-sysadmin.git
+
+{% import 'common.j2' as c %}
+
+server {
+    listen 80;
+    listen 443 ssl;
+
+    {{ c.ssl_letsencrypt(web_connectivity_domain) }}
+
+    server_name _;
+    access_log  /var/log/nginx/{{ web_connectivity_domain }}.access.log oolog; # oolog comes from nginx-stable part of dom0 bootstrap
+    error_log   /var/log/nginx/{{ web_connectivity_domain }}.error.log warn;
+
+    location / {
+        proxy_pass http://{{ web_connectivity_ipv4 }}:{{ web_connectivity_port }};
+    }
+
+    {{ c.location_letsencrypt() }}
+}

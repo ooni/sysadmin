@@ -1,0 +1,76 @@
+---
+- name: add eth1 interface
+  lineinfile:
+    dest: "/etc/network/interfaces"
+    line: "iface eth1 inet static"
+  when: "anycast_ip is defined"
+
+- name: add anycast_ip
+  interfaces_file:
+    iface: eth1
+    option: address
+    value: "{{ anycast_ip }}"
+    state: present
+  when: "anycast_ip is defined"
+
+- name: add anycast_ip netmask
+  interfaces_file:
+    iface: eth1
+    option: netmask
+    value: "24"
+    state: present
+  when: "anycast_ip is defined"
+  notify: ifupdown eth1
+
+- name: probe-services nginx config
+  template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
+  notify: reload nginx
+
+- name: delete letsencrypt nginx config
+  file:
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: reload nginx
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "{{ orchestrate_data_dir }}"
+    - "{{ registry_data_dir }}"
+
+- name: Configure orchestrate
+  template:
+    src: ooni-orchestrate.toml
+    dest: "{{ orchestrate_data_dir }}/ooni-orchestrate.toml"
+
+- name: orchestrate webservice
+  docker_container:
+    image: "{{ orchestrate_docker_image }}"
+    name: orchestrate
+    hostname: orchestrate
+    ports:
+    - "{{ orchestrate_port }}:{{ orchestrate_port }}"
+    volumes:
+    - "{{ orchestrate_data_dir }}:{{ orchestrate_data_dir }}"
+    command: "ooni-orchestrate --config {{ orchestrate_data_dir }}/ooni-orchestrate.toml start"
+    restart_policy: unless-stopped
+
+- name: Configure registry
+  template:
+    src: ooni-registry.toml
+    dest: "{{ registry_data_dir }}/ooni-registry.toml"
+
+- name: registry webservice
+  docker_container:
+    image: "{{ registry_docker_image }}"
+    name: registry
+    hostname: registry
+    ports:
+    - "{{ registry_port }}:{{ registry_port }}"
+    volumes:
+    - "{{ registry_data_dir }}:{{ registry_data_dir }}"
+    command: "ooni-registry --config {{ registry_data_dir }}/ooni-registry.toml start"
+    restart_policy: unless-stopped

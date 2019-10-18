@@ -1,9 +1,12 @@
+{% for domain in letsencrypt_domains %}
+
 server {
-    listen 80 default_server;
-    server_name {{ letsencrypt_domains[0] }};
+    listen 80;
+    server_name {{ domain }};
 
     location /.well-known/acme-challenge {
         root /var/www/letsencrypt;
         try_files $uri $uri/ =404;
     }
 }
+{% endfor %}

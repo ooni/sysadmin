@@ -1,0 +1,38 @@
+probe_services_domain: 'ps.ooni.io'
+
+bouncer_ipv4: 127.0.0.1
+bouncer_port: 9000
+bouncer_image: ''
+
+collector_ipv4: 127.0.0.1
+collector_port: 9010
+
+web_connectivity_ipv4: 127.0.0.1
+web_connectivity_port: 9020
+web_connectivity_domain: 'web-connectivity-th.ooni.io'
+
+registry_ipv4: 127.0.0.1
+registry_port: 9030
+
+orchestrate_ipv4: 127.0.0.1
+orchestrate_port: 9031
+
+orchestrate_data_dir: '/srv/orchestrate'
+registry_data_dir: '/srv/registry'
+registry_docker_image: 'openobservatory/orchestra:20191002-e89f2fac'
+orchestrate_docker_image: 'openobservatory/orchestra:20191002-e89f2fac'
+
+orchestra_notify_url: "https://gorush.ooni.io"
+orchestra_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
+orchestra_environment: "production"
+orchestra_log_level: "info"
+
+orchestra_api_address: "0.0.0.0"
+orchestra_notify_basic_auth_user: "orchestra"
+
+orchestra_admin_password : "{{ CHANGE_ME  }}"
+orchestra_database_url: "{{ CHANGE_ME }}"
+orchestra_auth_jwt_secret : "{{ CHANGE_ME  }}"
+orchestra_notify_basic_auth_password: "{{ CHANGE_ME }}"
+#anycast_ip: no
+#anycast_ip_gateway: no

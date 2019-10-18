@@ -1,5 +1,6 @@
 ---
 bouncer_port: 8888
-
 bouncer_tag: '20190415-65197d29'
 bouncer_data_dir: "/data/bouncer"
+bouncer_domain: '{{ CHANGE_ME }}'
+with_nginx: yes

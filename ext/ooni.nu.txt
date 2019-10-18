@@ -1,6 +1,7 @@
 $ORIGIN ooni.nu
 $TTL 1799
 @	1800	URL301	https://ooni.org
+ams-ps	60	A	37.218.245.90
 amsexplorer		A	37.218.242.231
 amsmatomo	60	A	37.218.242.173
 amsmetadb		A	37.218.242.175
@@ -9,14 +10,16 @@ bouncer.infra	1800	A	62.217.125.6
 censorshipwiki	1800	URL301	https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki
 dnstunnel	1800	NS	ooni.nu.
 fastpath		A	103.104.244.20
+hkg-ps	60	A	103.104.244.28
 hkgbouncer		A	103.104.244.87
 hkgcollectora		A	103.104.244.110
 hkgtorth		A	103.104.244.76
-hkgwebconnectivitya		A	103.104.244.111
+mia-get	1200	A	37.218.241.63
+mia-ps	60	A	37.218.241.80
 miaapi		A	37.218.241.8
 miacollector		A	37.218.241.178
 miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 47ce80dea9cb734eb969012836e552b2a33fbd365f18ddc15b75eea636a66f2c
+; generated from ooni.nu.xml with SHA256 4b8dfc1d3099a7c6be7f226a436de1eebf982397a744bd50202e0015351a79b9
