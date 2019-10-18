@@ -27,7 +27,6 @@ collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
 db-1.proteus		A	37.218.242.79
 db-1.proteus.test		A	37.218.240.153
-demo.probe		A	37.218.242.41
 design		CNAME	ooni-design.netlify.com.
 dw-superset		A	54.221.146.227
 dw.wsm		A	54.221.146.227
@@ -66,4 +65,4 @@ ssdamsterdam.infra		A	37.218.242.236
 superset		A	37.218.240.92
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 8beae7ef86a7ee8fa7c7a9981ace72e279f87b9ea004144c45301e887a597c8e
+; generated from ooni.io.xml with SHA256 8d563f296745d5ebd524e83e6b74129c17fb5b1643d76618643953957d90ee5a
