@@ -36,6 +36,7 @@
 - name: check for /.well-known/acme-challenge
   shell: "grep '/.well-known/acme-challenge' /etc/nginx/sites-enabled/*"
   changed_when: false
+  ignore_errors: yes
   register: acme_challenge_present
 
 - name: Add letsencrypt vhost
