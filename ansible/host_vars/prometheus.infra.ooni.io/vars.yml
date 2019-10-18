@@ -39,12 +39,12 @@ blackbox_jobs:
       - "https://b.collector.ooni.io/invalidpath" # hardcoded in MK as a fallback in case of bouncer failure
       - "https://c.collector.ooni.io/invalidpath"
       # Probe services
-      - "https://mia-ps.ooni.io/invalidpath"
+      - "https://mia-ps.ooni.nu/invalidpath"
   - name: "ooni bouncer"
     module: "ooni_bouncer_ok"
     targets:
       - "https://bouncer.ooni.io/bouncer/net-tests"
-      - "https://mia-ps.ooni.io/bouncer/net-tests"
+      - "https://mia-ps.ooni.nu/bouncer/net-tests"
 
   # IP addresses are used for test-helpers in monitoring configuration for some
   # historical reason hopefully remembered by @hellais.
