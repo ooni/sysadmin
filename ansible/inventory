@@ -55,7 +55,6 @@ c.collector.ooni.io
 ssdams.infra.ooni.io
 slack.openobservatory.org
 prometheus.infra.ooni.io
-demo.probe.ooni.io
 msg.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
