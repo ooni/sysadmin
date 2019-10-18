@@ -1408,44 +1408,6 @@
         },
         {
             "backup_ids": [],
-            "disk": 200,
-            "features": [],
-            "id": "3197",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:mZJ5eRoC8KHLeWf1vjrOR6Z146yLr//ltwxxnc4GeOM",
-                "ssh_ecdsa": "256 SHA256:/lm97Chi9g1BiqoL4Y0hyqTcjDeP5zg4vZlCX5aIZQg",
-                "ssh_rsa": "2048 SHA256:gWdy9owqVBq1shxZjL5m//f4NC5S9pZAZC90HQN8FIw"
-            },
-            "locked": false,
-            "memory": "8192",
-            "name": "mia-ps.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.241.254",
-                        "ip_address": "37.218.241.63",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.241.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "US East (Miami)",
-                "slug": "US East (Miami)"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "4"
-        },
-        {
-            "backup_ids": [],
             "disk": 20,
             "features": [],
             "id": "3199",
@@ -1654,10 +1616,86 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "2"
+        },
+        {
+            "backup_ids": [],
+            "disk": 10,
+            "features": [],
+            "id": "3212",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:iLoljIuqvizTvTDaX6WbAOHm7iS2QeFaPhbdyovn9io",
+                "ssh_ecdsa": "256 SHA256:Wbcrs2Hcw0EONVtM7VpqcManWoyXVo4+5cnivqpLgb8",
+                "ssh_rsa": "2048 SHA256:GLKg8b7v0XyRCnQWZA2OQoUh4lhGzLRvwdiVgtNsMEw"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "acme-redirect-helper.ooni.io",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.32",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3247",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:ioe2yyF1IJISnETHNe/5qRdP73DyIJ6SjWXtA4+T63g",
+                "ssh_ecdsa": "256 SHA256:Z/XfkJZt4ueW3yUXlRnyJzBn29cdEavRjHWQ54fpSSU",
+                "ssh_rsa": "2048 SHA256:pMjM1j4mXutf7bFL9t/sJvvPSFH9h+fYkJpdh2zrFtA"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "mia-get.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.63",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
         }
     ],
     "links": [],
     "meta": {
-        "total": 43
+        "total": 44
     }
 }
