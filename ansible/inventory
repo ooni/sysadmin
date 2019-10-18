@@ -19,7 +19,6 @@ miacollector.ooni.nu
 miatorth.ooni.nu
 miaapi.ooni.nu
 
-mia-ps.ooni.io
 mia-wcth.ooni.io
 
 mia-ps.ooni.nu
@@ -123,7 +122,6 @@ db-1.proteus.ooni.io
 proteus.ooni.io
 
 [psk_orchestra_prod]
-mia-ps.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -156,7 +154,6 @@ fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
-mia-ps.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -169,7 +166,6 @@ miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 
-mia-ps.ooni.io
 
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
@@ -189,7 +185,6 @@ hkgcollectora.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
 
-mia-ps.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
