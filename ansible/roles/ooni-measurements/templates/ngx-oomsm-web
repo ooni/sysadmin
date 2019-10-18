@@ -4,6 +4,10 @@
 
 proxy_cache_path /var/cache/nginx-api keys_zone=api:1M inactive=1h;
 
+# moderate throttling applied globally
+limit_req_zone $binary_remote_addr zone=limit_qps:60m rate=120r/m;
+limit_req_log_level info;
+
 server {
     listen 80;
     listen 443 ssl;
@@ -31,6 +35,8 @@ server {
     error_log   /var/log/nginx/{{ oomsm_domain }}.error.log warn;
 
     proxy_read_timeout {{ oomsm_timeout_s }}s;
+
+    limit_req zone=limit_qps burst=10 nodelay;
 
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
