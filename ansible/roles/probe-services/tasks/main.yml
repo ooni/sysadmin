@@ -1,6 +1,6 @@
 ---
 - name: setup anycast
-  import_tasks: setup-anycast.yaml
+  include_tasks: setup-anycast.yml
   when:
   - "anycast_ip is defined"
   - "anycast_gateway is defined"

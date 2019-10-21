@@ -33,8 +33,8 @@
       collector_port: 9010
       registry_port: 9030
       orchestrate_port: 9031
-      backhole_ip: "37.218.241.80"
-      backhole_gateway: "37.218.241.254"
+      blackhole_ip: "37.218.241.80"
+      blackhole_gateway: "37.218.241.254"
       anycast_ip: "37.218.244.15"
       anycast_gateway: "37.218.244.254"
       tags: ps
@@ -71,8 +71,8 @@
       collector_port: 9010
       registry_port: 9030
       orchestrate_port: 9031
-      backhole_ip: "103.104.244.28"
-      backhole_gateway: "103.104.244.254"
+      blackhole_ip: "103.104.244.28"
+      blackhole_gateway: "103.104.244.254"
       anycast_ip: "37.218.244.15"
       anycast_gateway: "37.218.244.254"
       tags: ps
@@ -109,8 +109,8 @@
       collector_port: 9010
       registry_port: 9030
       orchestrate_port: 9031
-      backhole_ip: "37.218.245.90"
-      backhole_gateway: "37.218.245.254"
+      blackhole_ip: "37.218.245.90"
+      blackhole_gateway: "37.218.245.254"
       anycast_ip: "37.218.244.15"
       anycast_gateway: "37.218.244.254"
       tags: ps
