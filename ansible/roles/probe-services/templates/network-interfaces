@@ -1,0 +1,15 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+	address {{ blackhole_ip }}
+	netmask 24
+	gateway {{ blackhole_gateway }}
+
+auto eth1
+iface eth1 inet static
+    address {{ anycast_ip }}
+    netmask 24
+    up ip rule add from {{ anycast_ip }} table anycast
+    up ip route add default via {{ anycast_gateway }} dev eth1 table anycast
