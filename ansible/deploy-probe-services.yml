@@ -2,6 +2,7 @@
 - import_playbook: ansible-version.yml
 
 - hosts: mia-ps-test.ooni.nu
+  tags: test
   roles:
     - role: docker
       tags: base
@@ -29,7 +30,7 @@
         - collector
 
     - role: probe-services
-      probe_services_domain: "ps-test.ooni.io"
+      probe_services_domain: "mia-ps-test.ooni.nu"
       bouncer_port: 9000
       collector_port: 9010
       registry_port: 9030
