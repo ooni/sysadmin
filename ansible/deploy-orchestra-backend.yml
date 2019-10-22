@@ -16,4 +16,6 @@
     - role: gorush
       ssl_domain: "mia-orchestra-test.ooni.nu"
       tags: gorush
-    #- role: orchestra-frontend
+    - role: orchestra-frontend
+      ssl_domain: "mia-orchestra-test.ooni.nu"
+      tags: frontend

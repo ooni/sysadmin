@@ -1,66 +1,53 @@
-- name: set permissions, owner and group
-  file:
-    path: "{{ orchestra_install_path }}"
-    state: directory
-    owner: "{{ orchestra_user }}"
-    group: "{{ orchestra_group }}"
-    mode: "go-w"
-    recurse: yes
+- name: create group
+  group: name=orchfrontend state=present
 
-- name: clone orchestra-frontend repo
-  git:
-    repo: "{{ orchestra_git_url }}"
-    dest: "{{ orchestra_install_path }}/orchestra" # XXX hope this works
-    version: "{{ orchestra_version }}"
+- name: create user
+  user:
+    name: "orchfrontend"
+    group: "orchfrontend"
+    comment: "orchfrontend for Orchestra"
+    state: present
 
-- name: install yarn globally
-  npm:
-    name: yarn
-    global: yes
-
-- name: run yarn install
-  command: yarn install
-  args:
-    chdir: "{{ orchestra_install_path }}/orchestra/frontend"
-
-- name: run npm run build
-  command: npm run build
-  args:
-    chdir: "{{ orchestra_install_path }}/orchestra/frontend"
-  environment:
-    REGISTRY_URL: "{{ orchestra_registry_url }}"
-    ORCHESTRATE_URL: "{{ orchestra_orchestrate_url }}"
+- name: get the user ids
+  shell: >
+    egrep "^orchfrontend:" /etc/passwd | awk -F: '{ print $3":"$4 }'
+  changed_when: false
+  register: user_group_id
 
 - name: set permissions, owner and group
   file:
-    path: "{{ orchestra_install_path }}/orchestra" # XXX hope this works
+    path: "/srv/orchestra-frontend"
     state: directory
-    owner: "{{ orchestra_user }}"
-    group: "{{ orchestra_group }}"
+    owner: "orchfrontend"
+    group: "orchfrontend"
     mode: "go-w"
     recurse: yes
 
-- name: Configure Orchestra frontend
-  notify:
-  - restart orchestra
+- name: docker run orchestra-frontend
+  docker_container:
+    image: openobservatory/orchestra-frontend:20191022-b6831187
+    name: orchestra-frontend
+    hostname: orchestra-frontend
+    network_mode: 'host'
+    purge_networks: true
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+    env:
+      NODE_ENV: "{{ orchestra_environment }}"
+      PORT: "{{ orchestra_frontend_port }}"
+      REGISTRY_URL: "{{ orchestra_registry_url }}"
+      ORCHESTRATE_URL: "{{ orchestra_orchestrate_url }}"
+    user: "{{ user_group_id.stdout }}"
+    command: 'gorush -c /config.yml'
+    stop_timeout: 60 # default is 10
+    restart_policy: unless-stopped
+
+- name: Add nginx virtual host config
   template:
-    src: orchestra-frontend.env.j2
-    dest: "{{ orchestra_install_path }}/orchestra-frontend.env"
-
-- import_tasks: cleanup-legacy.yml
-
-- name: Install orchestra systemd service file
-  notify:
-  - restart orchestra
-  template:
-    src: orchestra-frontend.service
-    dest: /etc/systemd/system/orchestra-frontend.service
-
-- name: Enable and start orchestra service
-  systemd:
-    name: orchestra-frontend.service
-    state: started
-    enabled: yes
-    daemon_reload: yes
-
-- import_tasks: setup-nginx.yml
+    src: orchestra-nginx
+    dest: /etc/nginx/sites-enabled/orchestra
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx

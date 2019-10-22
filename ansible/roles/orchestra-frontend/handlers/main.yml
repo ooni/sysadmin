@@ -1,2 +1,0 @@
-- name: restart orchestra
-  systemd: name=orchestra-frontend.service state=restarted
