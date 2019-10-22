@@ -9,6 +9,12 @@
     comment: "psql for Postgres"
     state: present
 
+- name: get the user ids
+  shell: >
+    egrep "^psql:" /etc/passwd | awk -F: '{ print $3":"$4 }'
+  changed_when: false
+  register: user_group_id
+
 - name: PostgreSQL Server certificate
   import_role:
     name: ooca-cert
@@ -22,7 +28,7 @@
   file: dest=/srv/psql state=directory owner=psql group=psql mode=0700
 
 - name: place config in PGDATA
-  template: src={{item}} dest=/srv/psql/{{item}} owner=psql group=psql mode=0444
+  template: src={{item}} dest=/srv/psql/{{item}}
   notify: restart psql
   with_items:
   - pg_hba.conf
@@ -41,15 +47,13 @@
       - /etc/group:/etc/group:ro # to make `initdb` happy
       - /srv/psql_ssl:/srv/psql_ssl:ro
       - /srv/psql:/srv/psql:rw
-    tmpfs:
-      - /run/postgresql:size=1m,mode=0700,uid=psql
     env:
       PGDATA: /srv/psql
       POSTGRES_DB: "{{ psql_db_name }}"
       POSTGRES_USER: "{{ psql_db_user }}"
       POSTGRES_PASSWORD: "{{ psql_db_password }}"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
-    user: "psql:psql"
+    user: "{{ user_group_id.stdout }}"
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
 ...

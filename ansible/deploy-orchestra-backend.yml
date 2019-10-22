@@ -7,11 +7,13 @@
     - role: letsencrypt
       letsencrypt_domains:
         - "mia-orchestra-test.ooni.nu"
-    - role: postgresql
+    - role: orchestra-psql
       psql_db_name: "{{ orchestra_database_name }}"
       psql_db_user:  "{{ orchestra_database_username }}"
       psql_db_password: "{{ orchestra_database_password }}"
       db_hostname: "{{ orchestra_db_hostname }}"
       tags: postgresql
-    #- role: orchestra-notify
+    - role: gorush
+      ssl_domain: "mia-orchestra-test.ooni.nu"
+      tags: gorush
     #- role: orchestra-frontend
