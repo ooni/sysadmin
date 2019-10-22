@@ -6,8 +6,7 @@ core:
   queue_num: 0 # default queue number is 8192
   max_notification: 100
   sync: false # set true if you need get error message from fail push notification in API response.
-  feedback_hook_url: "" # set a hook url if you need get error message asynchronously from fail push notification in API response.
-  mode: "release"
+  feedback_hook_url: "" # set a hook url if you need get error message asynchronously from fail push notification in API response.  mode: "release"
   ssl: false
   cert_path: ""
   key_path: ""
@@ -52,9 +51,9 @@ ios:
 
 log:
   format: "string" # string or json
-  access_log: "stdout" # stdout: output to console, or define log path like "log/access_log"
-  access_level: "debug"
-  error_log: "stderr" # stderr: output to console, or define log path like "log/error_log"
+  access_log: "/srv/gorush/gorush-access.log" # stdout: output to console, or define log path like "log/access_log"
+  access_level: "info"
+  error_log: "/srv/gorush/gorush-error.log" # stderr: output to console, or define log path like "log/error_log"
   error_level: "error"
   hide_token: true
 
