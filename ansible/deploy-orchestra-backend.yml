@@ -1,0 +1,17 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: mia-orchestra-test.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "mia-orchestra-test.ooni.nu"
+    - role: postgresql
+      psql_db_name: "{{ orchestra_database_name }}"
+      psql_db_user:  "{{ orchestra_database_username }}"
+      psql_db_password: "{{ orchestra_database_password }}"
+      db_hostname: "{{ orchestra_db_hostname }}"
+      tags: postgresql
+    #- role: orchestra-notify
+    #- role: orchestra-frontend

@@ -23,6 +23,7 @@ mia-ps.ooni.nu
 acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -125,6 +126,7 @@ ams-ps.ooni.nu
 
 [psk_orchestra_test]
 mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
 
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
@@ -160,14 +162,13 @@ ams-ps.ooni.nu
 acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
 
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
-
-
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
 mia-ps.ooni.nu
@@ -176,6 +177,7 @@ ams-ps.ooni.nu
 acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu

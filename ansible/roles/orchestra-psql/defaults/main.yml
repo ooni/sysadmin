@@ -1,0 +1,6 @@
+---
+psql_db_name: "{{ CHANGE_ME }}"
+psql_db_user:  "{{ CHANGE_ME }}"
+psql_db_password: "{{ CHANGE_ME }}"
+db_hostname: "{{ CHANGE_ME }}"
+...

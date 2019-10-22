@@ -1,0 +1,4 @@
+---
+- name: restart psql
+  command: docker restart psql
+...
