@@ -29,12 +29,7 @@ mia-orchestra-test.ooni.nu
 datacollector.infra.ooni.io
 
 # XXX rename these to orchestra
-notify.proteus.test.ooni.io
-events.proteus.test.ooni.io
-registry.proteus.test.ooni.io
-db-1.proteus.test.ooni.io
 proteus.test.ooni.io
-notify.proteus.test.ooni.io
 
 hkgmetadb.infra.ooni.io
 irc-bouncer.service.ooni.io
@@ -108,10 +103,6 @@ api.ooni.io
 [psk_orchestration]
 # FIXME: all in one bin as testing should have access to production! :)
 # XXX rename these to orchestra
-notify.proteus.test.ooni.io
-events.proteus.test.ooni.io
-registry.proteus.test.ooni.io
-db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 notify.proteus.ooni.io
 events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
@@ -207,10 +198,6 @@ no_passwd # no passwd => no nodeexp user ;-)
 
 [testing]
 # XXX rename these to orchestra
-notify.proteus.test.ooni.io
-events.proteus.test.ooni.io
-registry.proteus.test.ooni.io
-db-1.proteus.test.ooni.io
 proteus.test.ooni.io
 
 [slackin]
