@@ -18,21 +18,21 @@
       <host HostId="107842384" Name="c.collector" Type="A" Address="37.218.242.210" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111086165" Name="c.echo.th" Type="A" Address="37.218.247.110" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111938124" Name="datacollector.infra" Type="A" Address="37.218.240.67" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114156424" Name="db-1.proteus.test" Type="A" Address="37.218.240.153" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114156424" Name="db-1.proteus.test" Type="A" Address="37.218.240.153" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117190059" Name="analytics" Type="A" Address="37.218.242.173" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="117328496" Name="db-1.proteus" Type="A" Address="37.218.242.79" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="117328496" Name="db-1.proteus" Type="A" Address="37.218.242.79" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="121512015" Name="api" Type="A" Address="37.218.245.41" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="165772003" Name="api.test" Type="A" Address="37.218.241.8" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="70721963" Name="explorer" Type="A" Address="37.218.242.231" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="84883574" Name="measurements" Type="A" Address="37.218.242.231" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="88526130" Name="irc-bouncer.service" Type="A" Address="37.218.240.126" MXPref="10" TTL="1800" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="90103867" Name="get" Type="A" Address="37.218.241.63" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114156097" Name="notify.proteus.test" Type="A" Address="37.218.240.149" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114156160" Name="events.proteus.test" Type="A" Address="37.218.240.151" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114156097" Name="notify.proteus.test" Type="A" Address="37.218.240.149" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114156160" Name="events.proteus.test" Type="A" Address="37.218.241.86" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="116186691" Name="hkgmetadb.infra" Type="A" Address="37.218.240.56" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117190044" Name="hkgsuperset" Type="A" Address="37.218.240.92" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117325956" Name="events.proteus" Type="A" Address="37.218.242.63" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="117325986" Name="notify.proteus" Type="A" Address="37.218.242.67" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="117325986" Name="notify.proteus" Type="A" Address="37.218.242.67" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117325990" Name="hkgsuperset" Type="A" Address="37.218.240.92" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117347169" Name="measurements-beta" Type="A" Address="37.218.240.100" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117523751" Name="msg" Type="A" Address="37.218.242.179" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -52,9 +52,9 @@
       <host HostId="112976289" Name="prometheus.infra" Type="A" Address="37.218.245.43" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114020346" Name="_amazonses" Type="TXT" Address="azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114106152" Name="ssdamsterdam.infra" Type="A" Address="37.218.242.236" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114156109" Name="registry.proteus.test" Type="A" Address="37.218.240.148" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114156373" Name="proteus.test" Type="A" Address="37.218.240.152" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="117325964" Name="proteus" Type="A" Address="37.218.242.62" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114156109" Name="registry.proteus.test" Type="A" Address="37.218.241.86" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114156373" Name="proteus.test" Type="A" Address="37.218.240.152" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="117325964" Name="proteus" Type="A" Address="37.218.242.62" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117325969" Name="registry.proteus" Type="A" Address="37.218.242.65" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117374534" Name="superset" Type="A" Address="37.218.240.92" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="118528311" Name="test-qemu.infra" Type="A" Address="199.119.112.12" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
@@ -70,6 +70,7 @@
       <host HostId="131506266" Name="slides" Type="CNAME" Address="ooni-slides.netlify.com." MXPref="10" TTL="1200" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="137316375" Name="design" Type="CNAME" Address="ooni-design.netlify.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="140187497" Name="collector-sandbox" Type="CNAME" Address="ec2-52-15-125-134.us-east-2.compute.amazonaws.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="185335457" Name="ps-test" Type="A" Address="37.218.241.86" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>

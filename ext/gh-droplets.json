@@ -1616,10 +1616,86 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3250",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:DeNajzeBqvwiYsGfoGrnHs5WzjekxN/4RTxF0Rivs1w",
+                "ssh_ecdsa": "256 SHA256:KqOgYCqUrGzwbnc2u5W6Mc9cKDa0/3IxFEzg8NXA/eA",
+                "ssh_rsa": "2048 SHA256:rrgNUid2+QoLrf5AgPwz/QAUEqDJeTsFbJt2TI5ctW4"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "mia-ps-test.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.86",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3251",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:ZCmge2TrZXU8gyj9K2unzXnrg0FghjA3UJMlaFIJd54",
+                "ssh_ecdsa": "256 SHA256:j0JYIGw8M/IkoPNWH9kf+srj/3uGvVwbb5oiSqM/+74",
+                "ssh_rsa": "2048 SHA256:wiXLPeqjM/8L16zxrsP2k254ueWDs5MhRgTC48kuTvw"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "mia-orchestra-test.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.87",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
         }
     ],
     "links": [],
     "meta": {
-        "total": 42
+        "total": 44
     }
 }
