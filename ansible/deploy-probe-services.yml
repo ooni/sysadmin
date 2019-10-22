@@ -11,6 +11,9 @@
       letsencrypt_domains:
         - "mia-ps-test.ooni.nu"
         - "ps-test.ooni.io"
+        # XXX legacy addresses. Deprecate as soon as traffic drops to zero
+        - "events.proteus.test.ooni.io"
+        - "registry.proteus.test.ooni.io"
     - role: ooni-bouncer
       bouncer_domain: 'ps-test.ooni.io'
       bouncer_data_dir: '/srv/bouncer'
