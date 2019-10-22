@@ -46,6 +46,7 @@
       - /srv/gorush:/srv/gorush:rw
       - /srv/gorush/config.yml:/config.yml:ro
     user: "{{ user_group_id.stdout }}"
+    command: 'gorush -c /config.yml'
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
 

@@ -25,7 +25,7 @@
     ooca_group: psql
 
 - name: postgres PGDATA directory
-  file: dest=/srv/psql state=directory owner=psql group=psql mode=0700
+  file: dest=/srv/psql/pgdata state=directory owner=psql group=psql mode=0700
 
 - name: place config in PGDATA
   template: src={{item}} dest=/srv/psql/{{item}}
@@ -46,12 +46,13 @@
       - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
       - /etc/group:/etc/group:ro # to make `initdb` happy
       - /srv/psql_ssl:/srv/psql_ssl:ro
-      - /srv/psql:/srv/psql:rw
+      - /srv/psql/:/srv/psql/:rw
     env:
-      PGDATA: /srv/psql
+      PGDATA: /srv/psql/pgdata
       POSTGRES_DB: "{{ psql_db_name }}"
       POSTGRES_USER: "{{ psql_db_user }}"
       POSTGRES_PASSWORD: "{{ psql_db_password }}"
+    command: "postgres -c 'config_file=/srv/psql/postgresql.conf' -c 'hba_file=/srv/psql/pg_hba.conf'"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
     user: "{{ user_group_id.stdout }}"
     stop_timeout: 60 # default is 10
