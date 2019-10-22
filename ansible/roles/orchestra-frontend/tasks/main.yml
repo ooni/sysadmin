@@ -25,7 +25,7 @@
 
 - name: docker run orchestra-frontend
   docker_container:
-    image: openobservatory/orchestra-frontend:20191022-b6831187
+    image: openobservatory/orchestra-frontend:20191022-03bdf4c4
     name: orchestra-frontend
     hostname: orchestra-frontend
     network_mode: 'host'
@@ -38,7 +38,11 @@
       PORT: "{{ orchestra_frontend_port | string }}"
       REGISTRY_URL: "{{ orchestra_registry_url }}"
       ORCHESTRATE_URL: "{{ orchestra_orchestrate_url }}"
-    user: "{{ user_group_id.stdout }}"
+    # XXX
+    # Cannot run as the user due to permissions issues with the docker build.
+    # The problem lies in the fact that we need to rebuild it to inject the environment variables.
+    # A better solution should be devised. See: https://github.com/ooni/orchestra/issues/70
+    # user: "{{ user_group_id.stdout }}"
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
 
