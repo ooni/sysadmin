@@ -35,7 +35,7 @@
       - /etc/group:/etc/group:ro
     env:
       NODE_ENV: "{{ orchestra_environment }}"
-      PORT: "{{ orchestra_frontend_port }}"
+      PORT: "{{ orchestra_frontend_port | string }}"
       REGISTRY_URL: "{{ orchestra_registry_url }}"
       ORCHESTRATE_URL: "{{ orchestra_orchestrate_url }}"
     user: "{{ user_group_id.stdout }}"
