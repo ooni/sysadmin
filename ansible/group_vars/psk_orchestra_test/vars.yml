@@ -1,5 +1,5 @@
 ---
-orchestra_db_hostname: "db-1.proteus.test.ooni.io"
+orchestra_db_hostname: "mia-orchestra-test.ooni.nu"
 
 orchestra_database_username: "orchestra"
 orchestra_database_name: "orchestra"

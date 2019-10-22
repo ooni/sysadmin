@@ -37,7 +37,6 @@
       orchestrate_port: 9031
       tags: ps
 
-
 - hosts: mia-ps.ooni.nu
   roles:
     - role: docker
