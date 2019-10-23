@@ -192,44 +192,6 @@
         },
         {
             "backup_ids": [],
-            "disk": 10,
-            "features": [],
-            "id": "1181",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_dsa_key.pub (DSA)",
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)",
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/tZFTcANe0OwSnCsmR41nd02QyvrstvrFTHrwqHr15KNZ/etc/ssh/ssh_host_rsa_key.pub (RSA)"
-            },
-            "locked": false,
-            "memory": "512",
-            "name": "demo.probe.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.41",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
             "disk": 200,
             "features": [],
             "id": "1252",
@@ -405,44 +367,6 @@
                         "ip_address": "37.218.247.110",
                         "netmask": "255.255.255.128",
                         "network": "37.218.247.0/25",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "disk": 100,
-            "features": [],
-            "id": "1514",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 07:a1:29:db:a8:0a:15:c5:b5:a8:83:76:87:f2:3a:b2",
-                "ssh_ecdsa": "256 03:ea:31:90:a2:e0:ec:6a:ae:c8:23:ab:67:9e:cb:c7",
-                "ssh_rsa": "2048 d4:72:70:92:90:9d:cd:34:f9:04:b6:d8:59:61:b1:a1"
-            },
-            "locked": false,
-            "memory": "1024",
-            "name": "get.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.157",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
                         "type": "public"
                     }
                 ]
@@ -1678,6 +1602,82 @@
                     {
                         "gateway": "37.218.241.254",
                         "ip_address": "37.218.241.63",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3250",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:DeNajzeBqvwiYsGfoGrnHs5WzjekxN/4RTxF0Rivs1w",
+                "ssh_ecdsa": "256 SHA256:KqOgYCqUrGzwbnc2u5W6Mc9cKDa0/3IxFEzg8NXA/eA",
+                "ssh_rsa": "2048 SHA256:rrgNUid2+QoLrf5AgPwz/QAUEqDJeTsFbJt2TI5ctW4"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "mia-ps-test.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.86",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3251",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:ZCmge2TrZXU8gyj9K2unzXnrg0FghjA3UJMlaFIJd54",
+                "ssh_ecdsa": "256 SHA256:j0JYIGw8M/IkoPNWH9kf+srj/3uGvVwbb5oiSqM/+74",
+                "ssh_rsa": "2048 SHA256:wiXLPeqjM/8L16zxrsP2k254ueWDs5MhRgTC48kuTvw"
+            },
+            "locked": false,
+            "memory": "1024",
+            "name": "mia-orchestra-test.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.87",
                         "netmask": "255.255.255.0",
                         "network": "37.218.241.0/24",
                         "type": "public"

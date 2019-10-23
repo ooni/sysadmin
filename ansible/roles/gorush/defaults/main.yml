@@ -1,0 +1,17 @@
+gorush_api_port: 9081
+gorush_api_address: "127.0.0.1"
+orchestra_notify_https_port: 8081
+
+orchestra_environment: "production"
+orchestra_log_level: "info"
+orchestra_database_url: "postgres://{{ orchestra_database_username }}:{{ orchestra_database_password }}@{{ orchestra_db_hostname }}:5432/{{ orchestra_database_name }}?sslmode=require"
+orchestra_auth_jwt_secret : "{{ orchestra_auth_jwt_secret }}"
+
+orchestra_fcm_server_key: "{{ fcm_server_key }}"
+orchestra_apn_key_path: "/srv/gorush/apn-key.pem"
+orchestra_apn_key_password: "{{ orchestra_apn_key_password }}"
+orchestra_apn_production: "{{ orchestra_environment == 'production' }}"
+orchestra_apn_key_content: "{{ orchestra_apn_key_content }}"
+
+orchestra_notify_basic_auth_user: "orchestra"
+orchestra_notify_basic_auth_password: "{{ orchestra_notify_basic_auth_password }}"

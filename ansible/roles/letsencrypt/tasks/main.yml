@@ -46,6 +46,8 @@
   notify: reload nginx
   when: "acme_challenge_present.rc != 0"
 
+- meta: flush_handlers
+
 # NB: --standalone is not supported
 - name: Generate Letsencrypt certificate with certbot package
   command: >

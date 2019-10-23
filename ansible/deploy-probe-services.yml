@@ -1,14 +1,21 @@
 ---
 - import_playbook: ansible-version.yml
 
-- hosts: mia-ps.ooni.io
+- hosts: mia-ps-test.ooni.nu
+  tags: test
   roles:
     - role: docker
+      tags: base
     - role: letsencrypt
+      tags: base
       letsencrypt_domains:
-        - "mia-ps.ooni.io"
+        - "mia-ps-test.ooni.nu"
+        - "ps-test.ooni.io"
+        # XXX legacy addresses. Deprecate as soon as traffic drops to zero
+        - "events.proteus.test.ooni.io"
+        - "registry.proteus.test.ooni.io"
     - role: ooni-bouncer
-      bouncer_domain: 'mia-ps.ooni.io'
+      bouncer_domain: 'ps-test.ooni.io'
       bouncer_data_dir: '/srv/bouncer'
       bouncer_port: 9000
       with_nginx: no
@@ -17,7 +24,7 @@
         - bouncer
 
     - role: ooni-collector
-      collector_domain: 'mia-ps.ooni.io'
+      collector_domain: 'ps-test.ooni.io'
       collector_data_dir: '/srv/collector'
       collector_port: 9010
       with_nginx: no
@@ -26,7 +33,7 @@
         - collector
 
     - role: probe-services
-      probe_services_domain: "mia-ps.ooni.io"
+      probe_services_domain: "mia-ps-test.ooni.nu"
       bouncer_port: 9000
       collector_port: 9010
       registry_port: 9030
@@ -65,9 +72,11 @@
       collector_port: 9010
       registry_port: 9030
       orchestrate_port: 9031
+      blackhole_ip: "37.218.241.80"
+      blackhole_gateway: "37.218.241.254"
       anycast_ip: "37.218.244.15"
+      anycast_gateway: "37.218.244.254"
       tags: ps
-
 
 - hosts: hkg-ps.ooni.nu
   roles:
@@ -101,7 +110,10 @@
       collector_port: 9010
       registry_port: 9030
       orchestrate_port: 9031
+      blackhole_ip: "103.104.244.28"
+      blackhole_gateway: "103.104.244.254"
       anycast_ip: "37.218.244.15"
+      anycast_gateway: "37.218.244.254"
       tags: ps
 
 - hosts: ams-ps.ooni.nu
@@ -136,5 +148,8 @@
       collector_port: 9010
       registry_port: 9030
       orchestrate_port: 9031
+      blackhole_ip: "37.218.245.90"
+      blackhole_gateway: "37.218.245.254"
       anycast_ip: "37.218.244.15"
+      anycast_gateway: "37.218.244.254"
       tags: ps

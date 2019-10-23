@@ -1,15 +1,12 @@
-#orchestra_notify_url: "https://notify.proteus.test.ooni.io"
-orchestra_registry_url: "https://registry.proteus.test.ooni.io"
-orchestra_orchestrate_url: "https://events.proteus.test.ooni.io"
+orchestra_notify_url: "https://orchestra-test.ooni.io"
+orchestra_registry_url: "https://ps-test.ooni.io"
+orchestra_orchestrate_url: "https://ps-test.ooni.io"
 
-orchestra_user:   prtfront
-orchestra_group:  prtfront
+orchestra_user: orchfrontend
+orchestra_group: orchfrontend
 
 orchestra_frontend_port: 3000
 orchestra_frontend_address: "127.0.0.1"
 orchestra_frontend_https_port: 443
 
 orchestra_environment: production
-orchestra_install_path: /srv/proteus
-orchestra_version: "v0.2.1"
-orchestra_git_url: https://github.com/ooni/orchestra

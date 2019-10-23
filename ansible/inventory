@@ -22,18 +22,12 @@ mia-wcth.ooni.io
 mia-ps.ooni.nu
 acme-redirect-helper.ooni.io
 mia-get.ooni.nu
+mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
+mia-slack.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
-
-# XXX rename these to orchestra
-notify.proteus.test.ooni.io
-events.proteus.test.ooni.io
-registry.proteus.test.ooni.io
-db-1.proteus.test.ooni.io
-proteus.test.ooni.io
-notify.proteus.test.ooni.io
-
 hkgmetadb.infra.ooni.io
 irc-bouncer.service.ooni.io
 jupyter.ooni.io
@@ -48,14 +42,11 @@ hkg-ps.ooni.nu
 
 [ams]
 amstorth.ooni.nu
-get.ooni.io
 a.http.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
 ssdams.infra.ooni.io
-slack.openobservatory.org
 prometheus.infra.ooni.io
-demo.probe.ooni.io
 msg.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
@@ -108,11 +99,6 @@ api.ooni.io
 [psk_orchestration]
 # FIXME: all in one bin as testing should have access to production! :)
 # XXX rename these to orchestra
-notify.proteus.test.ooni.io
-events.proteus.test.ooni.io
-registry.proteus.test.ooni.io
-db-1.proteus.test.ooni.io
-proteus.test.ooni.io
 notify.proteus.ooni.io
 events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
 registry.proteus.ooni.io
@@ -123,6 +109,10 @@ proteus.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+
+[psk_orchestra_test]
+mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
 
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
@@ -140,8 +130,6 @@ datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
 ssdams.infra.ooni.io
-# db-1.proteus.test.ooni.io
-# db-1.proteus.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
@@ -157,14 +145,15 @@ hkg-ps.ooni.nu
 ams-ps.ooni.nu
 acme-redirect-helper.ooni.io
 mia-get.ooni.nu
+mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
+mia-slack.ooni.nu
 
 [have_nginx]
 api.ooni.io
 miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
-
-
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
 mia-ps.ooni.nu
@@ -172,6 +161,9 @@ hkg-ps.ooni.nu
 ams-ps.ooni.nu
 acme-redirect-helper.ooni.io
 mia-get.ooni.nu
+mia-ps-test.ooni.nu
+mia-orchestra-test.ooni.nu
+mia-slack.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
@@ -198,17 +190,6 @@ staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]
 no_passwd # no passwd => no nodeexp user ;-)
-
-[testing]
-# XXX rename these to orchestra
-notify.proteus.test.ooni.io
-events.proteus.test.ooni.io
-registry.proteus.test.ooni.io
-db-1.proteus.test.ooni.io
-proteus.test.ooni.io
-
-[slackin]
-slack.openobservatory.org
 
 ########################################################################
 # TO DELETE.

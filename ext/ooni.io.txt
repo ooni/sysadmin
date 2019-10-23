@@ -25,14 +25,13 @@ c.echo.th		A	37.218.247.110
 c.web-connectivity.th	60	A	103.104.244.19
 collector-sandbox		CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra		A	37.218.240.67
-db-1.proteus		A	37.218.242.79
-db-1.proteus.test		A	37.218.240.153
-demo.probe		A	37.218.242.41
+db-1.proteus	60	A	37.218.242.79
+db-1.proteus.test	60	A	37.218.240.153
 design		CNAME	ooni-design.netlify.com.
 dw-superset		A	54.221.146.227
 dw.wsm		A	54.221.146.227
 events.proteus	60	A	37.218.242.63
-events.proteus.test		A	37.218.240.151
+events.proteus.test	60	A	37.218.241.86
 explorer	60	A	37.218.242.231
 explorer-beta	60	A	37.218.242.231
 get	60	A	37.218.241.63
@@ -48,17 +47,18 @@ measurements		A	37.218.242.231
 measurements-beta		A	37.218.240.100
 mia-wcth	300	A	37.218.241.78
 msg		A	37.218.242.179
-notify.proteus		A	37.218.242.67
-notify.proteus.test		A	37.218.240.149
+notify.proteus	60	A	37.218.242.67
+notify.proteus.test	60	A	37.218.240.149
 ooni-explorer-next.test	60	A	37.218.242.231
 ooni-zoo.infra		A	37.218.240.138
 orchestrate	60	A	37.218.242.63
 orchestrate.test		A	37.218.240.151
 prometheus.infra		A	37.218.245.43
-proteus		A	37.218.242.62
-proteus.test		A	37.218.240.152
+proteus	60	A	37.218.242.62
+proteus.test	60	A	37.218.240.152
+ps-test		A	37.218.241.86
 registry.proteus	60	A	37.218.242.65
-registry.proteus.test		A	37.218.240.148
+registry.proteus.test	60	A	37.218.241.86
 run		A	37.218.242.30
 slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra		A	37.218.242.236
@@ -66,4 +66,4 @@ ssdamsterdam.infra		A	37.218.242.236
 superset		A	37.218.240.92
 test-qemu.infra		A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 8beae7ef86a7ee8fa7c7a9981ace72e279f87b9ea004144c45301e887a597c8e
+; generated from ooni.io.xml with SHA256 83822f1dc18f53f5eebf7697d9c85ca804d658ab5d9b81b4e6fca8f36afab53e

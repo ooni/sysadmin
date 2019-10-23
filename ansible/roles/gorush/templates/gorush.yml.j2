@@ -1,0 +1,74 @@
+core:
+  enabled: true # enabale httpd server
+  address: "" # ip address to bind (default: any)
+  port: {{ gorush_api_port }} # ignore this port number if auto_tls is enabled (listen 443).
+  worker_num: 0 # default worker number is runtime.NumCPU()
+  queue_num: 0 # default queue number is 8192
+  max_notification: 100
+  sync: false # set true if you need get error message from fail push notification in API response.
+  feedback_hook_url: "" # set a hook url if you need get error message asynchronously from fail push notification in API response.  mode: "release"
+  ssl: false
+  cert_path: ""
+  key_path: ""
+  cert_base64: ""
+  key_base64: ""
+  http_proxy: "" # only working for FCM server
+  pid:
+    enabled: false
+    path: "/srv/gorush/gorush.pid"
+    override: true
+  auto_tls:
+    enabled: false # Automatically install TLS certificates from Let's Encrypt.
+    folder: ".cache" # folder for storing TLS certificates
+    host: "" # which domains the Let's Encrypt will attempt
+
+grpc:
+  enabled: false # enabale gRPC server
+  port: 9000
+
+api:
+  push_uri: "/api/push"
+  stat_go_uri: "/api/stat/go"
+  stat_app_uri: "/api/stat/app"
+  config_uri: "/api/config"
+  sys_stat_uri: "/sys/stats"
+  metric_uri: "/metrics"
+  health_uri: "/healthz"
+
+android:
+  enabled: true
+  apikey: "{{ orchestra_fcm_server_key }}"
+  max_retry: 5 # resend fail notification, default value zero is disabled
+
+ios:
+  enabled: true
+  key_path: "{{ orchestra_apn_key_path }}"
+  password: "{{ orchestra_apn_key_password }}" # certificate password, default as empty string.
+  production: {{ orchestra_apn_production }}
+  max_retry: 5 # resend fail notification, default value zero is disabled
+  key_id: "" # KeyID from developer account (Certificates, Identifiers & Profiles -> Keys)
+  team_id: "" # TeamID from developer account (View Account -> Membership)
+
+log:
+  format: "string" # string or json
+  access_log: "/srv/gorush/gorush-access.log" # stdout: output to console, or define log path like "log/access_log"
+  access_level: "info"
+  error_log: "/srv/gorush/gorush-error.log" # stderr: output to console, or define log path like "log/error_log"
+  error_level: "error"
+  hide_token: true
+
+stat:
+  engine: "memory" # support memory, redis, boltdb, buntdb or leveldb
+  redis:
+    addr: "localhost:6379"
+    password: ""
+    db: 0
+  boltdb:
+    path: "/srv/gorush/bolt.db"
+    bucket: "gorush"
+  buntdb:
+    path: "/srv/gorush/bunt.db"
+  leveldb:
+    path: "/srv/gorush/level.db"
+
+

@@ -4,9 +4,9 @@ server {
     listen {{ orchestra_frontend_https_port }} ssl default_server;
     listen [::]:{{ orchestra_frontend_https_port }} ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/privkey.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/{{ letsencrypt_domains.split(',')[0] }}/fullchain.pem;
+    ssl_certificate /etc/letsencrypt/live/{{ ssl_domain }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ ssl_domain }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ ssl_domain }}/fullchain.pem;
 
   location / {
     proxy_pass http://{{ orchestra_frontend_address }}:{{ orchestra_frontend_port }};
