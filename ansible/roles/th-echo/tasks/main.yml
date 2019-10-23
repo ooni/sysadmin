@@ -1,0 +1,44 @@
+---
+- name: create group
+  group:
+    name: "{{ testhelper_user }}"
+    state: present
+
+- name: create user
+  user:
+    name: "{{ testhelper_user }}"
+    group: "{{ testhelper_user}}"
+    comment: "testhelper for Probes"
+    state: present
+
+- name: mkdir for config and data
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ testhelper_user }}"
+    group: "{{ testhelper_user }}"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "/srv/echoth"
+    - "/srv/echoth/bin"
+    - "/srv/echoth/tor"
+    - "/srv/echoth/logs"
+
+- name: Configure oonibackend.conf
+  template:
+    owner: "{{ testhelper_user }}"
+    group: "{{ testhelper_user }}"
+    src: oonibackend.conf.j2
+    dest: "/srv/echoth/oonibackend.conf"
+
+- name: testhelper webservice
+  docker_container:
+    image: "{{ testhelper_image }}:{{ testhelper_tag }}"
+    name: web-connectivity
+    hostname: web-connectivity
+    ports:
+      - "0.0.0.0:80:80"
+    volumes:
+    - "/srv/echoth/:/srv/echoth"
+    command: "python bin/oonib --config /srv/echoth/oonibackend.conf"
+    restart_policy: unless-stopped

@@ -30,6 +30,7 @@
   file: name={{item}} state=absent
   with_items:
     - /etc/nginx/sites-enabled/node_exporter
+    - /etc/nginx/sites-enabled/default
     - /etc/nginx/prometheus.htpasswd
     - /srv/node_exporter/private
     - /etc/init/nginx-prometheus.upstart

@@ -25,6 +25,7 @@ mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
+mia-echoth.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -148,6 +149,7 @@ mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
+mia-echoth.ooni.nu
 
 [have_nginx]
 api.ooni.io
