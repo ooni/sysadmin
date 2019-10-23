@@ -46,7 +46,6 @@ a.http.th.ooni.io
 c.echo.th.ooni.io
 c.collector.ooni.io
 ssdams.infra.ooni.io
-slack.openobservatory.org
 prometheus.infra.ooni.io
 msg.ooni.io
 amsexplorer.ooni.nu
@@ -191,9 +190,6 @@ staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]
 no_passwd # no passwd => no nodeexp user ;-)
-
-[slackin]
-slack.openobservatory.org
 
 ########################################################################
 # TO DELETE.
