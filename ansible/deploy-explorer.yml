@@ -1,18 +1,18 @@
 ---
 - import_playbook: ansible-version.yml
 
-- hosts: amsexplorer.ooni.nu
+- hosts: ams-explorer.ooni.nu
   roles:
-    - role: docker_py
+    - role: docker
     - role: letsencrypt
-      letsencrypt_domains: ['amsexplorer.ooni.nu', 'explorer.ooni.io', 'explorer.ooni.org', 'explorer-beta.ooni.io', 'ooni-explorer-next.test.ooni.io']
-
-- hosts: amsexplorer.ooni.nu
-  gather_facts: false # already gathered
-  vars:
-    ansible_python_interpreter: '/root/venv/bin/python2.7' # to control docker
-    explorer_domain: 'amsexplorer.ooni.nu'
-  roles:
+      letsencrypt_domains:
+        - 'ams-explorer.ooni.nu'
+#        - 'explorer.ooni.io'
+#        - 'explorer.ooni.org'
+#        - 'explorer-beta.ooni.io'
+#        - 'ooni-explorer-next.test.ooni.io'
+      # expand: true
     - role: ooni-explorer-next
+      explorer_domain: 'amsexplorer.ooni.nu'
       tags: explorer
 ...

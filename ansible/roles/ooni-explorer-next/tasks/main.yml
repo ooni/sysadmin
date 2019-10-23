@@ -1,6 +1,26 @@
 ---
-- template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
+- name: create group
+  group:
+    name: explorer
+    state: present
+
+- name: create user
+  user:
+    name: "explorer"
+    group: "explorer"
+    comment: "User to run docker container"
+    state: present
+
+- name: get the user ids
+  shell: >
+    egrep "^explorer:" /etc/passwd | awk -F: '{ print $3":"$4 }'
+  changed_when: false
+  register: user_group_id
+
+- name: ams-explorer nginx config
+  template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
   notify: reload nginx
+  when: with_nginx
 
 - name: docker network for explorer
   docker_network:
@@ -20,14 +40,12 @@
     purge_networks: true
     env:
       NODE_ENV: production
-    user: "{{ passwd.explorer.id }}:{{ passwd.explorer.id }}"
+    user: "{{ user_group_id.stdout }}"
     restart_policy: unless-stopped
 
-- name: Directory to serve data from
+- name: delete letsencrypt nginx config
   file:
-    path: "{{ explorer_country_data_path }}"
-    state: directory
-    owner: "{{ passwd.explorer.id }}"
-    group: "{{ passwd.explorer.id }}"
-    mode: "u=rxw,g=rx,o="
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: reload nginx
 ...
