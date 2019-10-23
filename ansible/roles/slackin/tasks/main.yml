@@ -1,5 +1,4 @@
 ---
-
 - name: Create {{ slack_irc_dir }} dir
   tags: slack-irc
   file:
@@ -13,39 +12,29 @@
     dest: "{{ slack_irc_dir }}/config.json"
   notify: restart slack-irc-bridge
 
-- name: Deploy slackin, letsecnrypt containers
-  tags: slackin
-  docker_service:
-    project_name: slackin
-    definition:
-      version: '2'
-      services:
-        https-portal:
-          image: steveltn/https-portal:1.2.4
-          restart: always
-          environment:
-            DOMAINS: "{{ slackin_domains }}"
-            PRODUCTION: "TRUE"
-          ports:
-            - "80:80"
-            - "443:443"
-          links:
-            - slackin
-        slackin:
-          image: chk1/slackin
-          restart: always
-          ports:
-            - "3000:3000"
-          environment:
-            SLACKIN_VERSION: latest
-            SLACK_ORG: "{{ slackin_org }}"
-            SLACK_TOKEN: "{{ slackin_token }}"
+- name: Deploy slackin container
+  docker_container:
+    image: chk1/slackin
+    restart_policy: unless-stopped
+    environment:
+      SLACKIN_VERSION: latest
+      SLACK_ORG: "{{ slackin_org }}"
+      SLACK_TOKEN: "{{ slackin_token }}"
 
 - name: Deploy slack-irc-bridge container
   tags: slack-irc
   docker_container:
     name: slack-irc-bridge
     image: chihchun/slack-ircbridge
-    restart_policy: always
+    restart_policy: unless-stopped
     volumes:
       - "{{ slack_irc_dir }}:/slack-irc"
+
+- name: Add nginx virtual host config
+  template:
+    src: slackin-nginx
+    dest: /etc/nginx/sites-enabled/slackin
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx

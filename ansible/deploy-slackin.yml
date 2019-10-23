@@ -1,6 +1,9 @@
 ---
 - hosts: slackin
   roles:
-    - docker_py
-    - docker-compose
-    - slackin
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "mia-slack.ooni.nu"
+    - role: slackin
+      ssl_domain: "mia-slack.ooni.nu"

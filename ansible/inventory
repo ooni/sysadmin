@@ -24,6 +24,7 @@ acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
+mia-slack.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -147,6 +148,7 @@ acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
+mia-slack.ooni.nu
 
 [have_nginx]
 api.ooni.io
@@ -162,6 +164,7 @@ acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
+mia-slack.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
