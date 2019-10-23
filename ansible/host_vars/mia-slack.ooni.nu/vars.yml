@@ -1,13 +1,11 @@
 ---
-ipv4: 37.218.247.42
+ipv4: 37.218.241.90
 
 # for https://slack.openobservatory.org/
-slackin_domains: 'slack.openobservatory.org => slack.ooni.org, slack.ooni.org -> http://slackin_slackin_1:3000'
 slackin_org: '{{ vault_slackin_org }}'
 slackin_token: '{{ vault_slackin_token }}'
 
 # for slack-irc gateway
-slack_irc_dir: "/etc/slack-irc"
 slack_irc_token: '{{ vault_slack_irc_token }}'
 slacktopus_password: '{{ vault_slacktopus_password }}'
 

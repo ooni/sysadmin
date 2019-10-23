@@ -1,22 +1,24 @@
 ---
-- name: Create {{ slack_irc_dir }} dir
+- name: Create dir
   tags: slack-irc
   file:
-    path: "{{ slack_irc_dir }}"
+    path: "/srv/slack-irc"
     state: directory
 
 - name: Create slack-irc-bridge config
   tags: slack-irc
   copy:
     content: "{{ slack_irc_config }}"
-    dest: "{{ slack_irc_dir }}/config.json"
+    dest: "/srv/slack-irc/config.json"
   notify: restart slack-irc-bridge
 
 - name: Deploy slackin container
   docker_container:
+    name: slackin
     image: chk1/slackin
     restart_policy: unless-stopped
-    environment:
+    published_ports: "3000:3000"
+    env:
       SLACKIN_VERSION: latest
       SLACK_ORG: "{{ slackin_org }}"
       SLACK_TOKEN: "{{ slackin_token }}"
@@ -28,7 +30,7 @@
     image: chihchun/slack-ircbridge
     restart_policy: unless-stopped
     volumes:
-      - "{{ slack_irc_dir }}:/slack-irc"
+      - "/srv/slack-irc:/slack-irc"
 
 - name: Add nginx virtual host config
   template:
@@ -38,3 +40,9 @@
     group: root
     mode: 0644
   notify: restart nginx
+
+- name: delete letsencrypt nginx config
+  file:
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: reload nginx
