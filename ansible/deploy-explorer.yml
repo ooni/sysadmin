@@ -12,7 +12,7 @@
 #        - 'explorer-beta.ooni.io'
 #        - 'ooni-explorer-next.test.ooni.io'
       # expand: true
-    - role: ooni-explorer-next
+    - role: explorer
       explorer_domain: 'amsexplorer.ooni.nu'
       tags: explorer
 ...
