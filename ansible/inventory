@@ -49,6 +49,7 @@ prometheus.infra.ooni.io
 msg.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
+ams-orchestra.ooni.nu
 
 # XXX rename these to orchestra
 notify.proteus.ooni.io
@@ -108,6 +109,7 @@ proteus.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-orchestra.ooni.nu
 
 [psk_orchestra_test]
 mia-ps-test.ooni.nu
@@ -149,6 +151,7 @@ mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
+ams-orchestra.ooni.nu
 
 [have_nginx]
 api.ooni.io
@@ -165,6 +168,7 @@ mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
+ams-orchestra.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
