@@ -6,12 +6,20 @@ User=root
 Group=root
 
 ExecStartPre=/usr/bin/install --owner root --group root --mode 0755 --directory {{ node_exporter_textfiles_path }}
-
-ExecStart=/usr/local/sbin/tcpmetrics \
-  --textfile {{ node_exporter_textfiles_path }}/tcpmetrics.prom
-
+ExecStart=/srv/tcpmetrics.py
 KillMode=process
 Restart=always
+
+# Hardening
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID
+SystemCallFilter=~@clock @debug @cpu-emulation @keyring @module @mount @obsolete @raw-io @reboot @swap
+NoNewPrivileges=yes
+PrivateDevices=yes
+PrivateTmp=yes
+ProtectHome=yes
+ProtectSystem=full
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
 
 [Install]
 WantedBy=multi-user.target
