@@ -76,6 +76,19 @@
     state: started
     enabled: yes
 
+- name: Install tcpmetrics
+  copy: src=tcpmetrics dest=/usr/local/sbin/tcpmetrics mode=0555
+  when: "'have_tcpmetrics' in group_names"
+
+- name: Install tcpmetrics systemd service file
+  notify:
+  - restart tcpmetrics
+  - systemctl daemon-reload
+  template:
+    src: tcpmetrics.service
+    dest: /etc/systemd/system/tcpmetrics.service
+  when: "'have_tcpmetrics' in group_names"
+
 - name: Install seeksample
   copy: src=seeksample.py dest=/usr/local/sbin/seeksample mode=0555
   notify: restart seeksample

@@ -179,6 +179,9 @@ mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
 
+[have_tcpmetrics]
+miacollector.ooni.nu
+c.collector.ooni.io
 
 [active_collector]
 miacollector.ooni.nu
