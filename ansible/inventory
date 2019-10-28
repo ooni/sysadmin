@@ -48,20 +48,18 @@ ssdams.infra.ooni.io
 prometheus.infra.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
-ams-orchestra.ooni.nu
-
 # XXX rename these to orchestra
 notify.proteus.ooni.io
 events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
 registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
-
 run.ooni.io
 amsmetadb.ooni.nu
 api.ooni.io
-
 ams-ps.ooni.nu
+ams-db-orchestra.ooni.nu
+ams-orchestra.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -109,6 +107,7 @@ mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-orchestra.ooni.nu
+ams-db-orchestra.ooni.nu
 
 [psk_orchestra_test]
 mia-ps-test.ooni.nu
@@ -151,6 +150,7 @@ mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 ams-orchestra.ooni.nu
+ams-db-orchestra.ooni.nu
 
 [have_nginx]
 api.ooni.io
@@ -186,6 +186,7 @@ ams-ps.ooni.nu
 [have_tcpmetrics]
 miacollector.ooni.nu
 c.collector.ooni.io
+hkgbouncer.ooni.nu
 
 [active_collector]
 miacollector.ooni.nu

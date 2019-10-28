@@ -7,4 +7,8 @@
   service:
     name: seeksample
     state: restarted
+- name: restart tcpmetrics
+  service:
+    name: tcpmetrics
+    state: restarted
 ...

@@ -1,4 +1,3 @@
-orchestra_notify_url: "https://orchestra-test.ooni.io"
 orchestra_registry_url: "https://ps-test.ooni.io"
 orchestra_orchestrate_url: "https://ps-test.ooni.io"
 
