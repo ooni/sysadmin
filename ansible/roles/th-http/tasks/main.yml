@@ -38,6 +38,7 @@
     hostname: web-connectivity
     ports:
       - "0.0.0.0:80:80"
+      - "0.0.0.0:57004:57004"
     volumes:
     - "/srv/httpth/:/srv/httpth"
     command: "python bin/oonib --config /srv/httpth/oonibackend.conf"
