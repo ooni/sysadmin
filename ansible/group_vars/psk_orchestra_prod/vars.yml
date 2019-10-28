@@ -6,7 +6,7 @@ orchestra_database_password: '{{ vault_orchestra_database_password }}' # FIXME: 
 orchestra_database_url: 'postgres://{{ orchestra_database_username }}:{{ orchestra_database_password }}@{{ orchestra_db_hostname }}:5432/{{ orchestra_database_name }}?sslmode=require'
 
 orchestra_notify_topic_ios: "org.openobservatory.ooniprobe"
-orchestra_notify_url: "https://notify.proteus.ooni.io"
+orchestra_notify_url: "https://gorush.ooni.io"
 orchestra_environment: "production"
 
 orchestra_admin_password: '{{ vault_orchestra_admin_password }}'
