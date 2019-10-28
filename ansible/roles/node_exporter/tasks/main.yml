@@ -89,9 +89,6 @@
     dest: /etc/systemd/system/tcpmetrics.service
   when: "'have_tcpmetrics' in group_names"
 
-- name: restart tcpmetrics
-  service: name=tcpmetrics state=restarted
-
 - name: Install seeksample
   copy: src=seeksample.py dest=/usr/local/sbin/seeksample mode=0555
   notify: restart seeksample
