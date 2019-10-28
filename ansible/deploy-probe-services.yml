@@ -26,11 +26,6 @@
     - role: probe-services
       tags: ps
 
-    - role: onion-service
-      tags: tor
-      onion_services:
-      - "{{ bouncer_service_v2 }}"
-
 - hosts: ams-ps.ooni.nu
   roles:
     - role: docker
@@ -52,6 +47,10 @@
         - collector
     - role: probe-services
       tags: ps
+    - role: onion-service
+      tags: tor
+      onion_services:
+      - "{{ bouncer_service_v2 }}"
 
 - hosts: mia-ps.ooni.nu
   roles:
