@@ -34,6 +34,7 @@
       tags: base
       letsencrypt_domains:
         - "mia-ps.ooni.nu"
+        - "ps.ooni.io"
     - role: ooni-bouncer
       tags:
         - service

@@ -8,7 +8,7 @@ server {
     {{ c.ssl_letsencrypt(probe_services_domain) }}
 
     server_name _;
-    access_log  /var/log/nginx/{{ probe_services_domain }}.access.log;
+    access_log  /var/log/nginx/{{ probe_services_domain }}.access.log oolog;
     error_log   /var/log/nginx/{{ probe_services_domain }}.error.log warn;
 
     # The below paths have been obtained by looking at the access.log for the
