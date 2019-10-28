@@ -19,3 +19,15 @@ anycast_gateway: "37.218.244.254"
 
 # XXX drop this from the base roles of ooni-bouncer & ooni-collector
 with_nginx: no
+
+bouncer_onion_hostname: "nkvphnp3p6agi5qq.onion"
+bouncer_onion_private_key: "{{ vault_bouncer_onion_private_key }}"
+bouncer_service_v2:
+  hostname: "{{ bouncer_onion_hostname }}"
+  private_key: "{{ bouncer_onion_private_key }}"
+  service_dir: '/var/lib/tor/onion_bouncer_v2'
+  hs_version: 2
+  ports:
+  - service_port: 80
+    local_ipv4: '127.0.0.1'
+    local_port: "{{ bouncer_port }}"
