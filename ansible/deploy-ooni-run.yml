@@ -7,6 +7,6 @@
     - role: letsencrypt
       letsencrypt_domains:
         - "mia-run.ooni.nu"
-        #- "run.ooni.io"
+        - "run.ooni.io"
     - role: ooni-run
       ssl_domain: "mia-run.ooni.nu"
