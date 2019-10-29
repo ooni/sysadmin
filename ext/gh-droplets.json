@@ -529,7 +529,7 @@
                 "slug": "Hong Kong"
             },
             "snapshot_ids": [],
-            "status": "running",
+            "status": "stopped",
             "vcpus": "1"
         },
         {
@@ -719,7 +719,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "stopping",
+            "status": "stopped",
             "vcpus": "4"
         },
         {
