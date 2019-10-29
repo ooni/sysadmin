@@ -149,7 +149,7 @@ scrape_configs:
       username: prometheus_scraper
       password: "{{ prometheus_scraper_password }}"
     static_configs:
-      - targets: [ 'notify.proteus.ooni.io:443' ]
+      - targets: [ 'gorush.ooni.io:8081' ]
 
   - job_name: 'ooni-api'
     scrape_interval: 5s
