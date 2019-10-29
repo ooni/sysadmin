@@ -1502,10 +1502,48 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 40,
+            "features": [],
+            "id": "3273",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:9ChygDl3joJqYeTQ2QtAoCKnqTt/mTeB8dO8/9JCi54",
+                "ssh_ecdsa": "256 SHA256:S0l6FrXUg9b91iowyZBrPCom2mDH3ptyVcZM5hy57ZA",
+                "ssh_rsa": "2048 SHA256:MM9l7GDmrGpdi6UiLzZfNHLInyieQcWXFgmnbK5RTds"
+            },
+            "locked": false,
+            "memory": "2048",
+            "name": "ams-db-orchestra.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254",
+                        "ip_address": "37.218.242.179",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.242.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "Amsterdam",
+                "slug": "Amsterdam"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
         }
     ],
     "links": [],
     "meta": {
-        "total": 39
+        "total": 40
     }
 }
