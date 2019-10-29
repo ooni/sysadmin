@@ -1,94 +1,56 @@
-- name: "Install dependencies"
-  apt: name={{ item }} update_cache=yes state=latest
-  with_items:
-    - 'git'
+- name: create group
+  group: name=oonirun state=present
 
-# npm needs to have a home directly set otherwise it will fail to start...
-- name: "Set ooni-run user home"
+- name: create user
   user:
-    name: "{{ ooni_run_user }}"
-    home: "{{ ooni_run_install_path }}"
+    name: "oonirun"
+    group: "oonirun"
+    comment: "OONI Run webservice"
+    state: present
 
-- name: set permissions, owner and group
+- name: get the user ids
+  shell: >
+    egrep "^oonirun:" /etc/passwd | awk -F: '{ print $3":"$4 }'
+  changed_when: false
+  register: user_group_id
+
+- name: mkdir for oonirun home
   file:
-    path: "{{ ooni_run_install_path }}"
+    path: "{{ item }}"
     state: directory
-    owner: "{{ ooni_run_user }}"
-    group: "{{ ooni_run_group }}"
-    mode: "go-w"
-    recurse: yes
+    owner: "oonirun"
+    group: "oonirun"
+    mode: "u=rwx,g=rx,o="
+  with_items:
+    - "/srv/oonirun"
+    - "/srv/oonirun/home"
 
-- name: clone ooni-run repo
-  git:
-    repo: "{{ ooni_run_git_url }}"
-    dest: "{{ ooni_run_install_path }}/ooni-run"
-    version: "v{{ ooni_run_version }}"
+- name: docker run ooni-run
+  docker_container:
+    image: openobservatory/run:20191029-45266451
+    name: ooni-run
+    hostname: ooni-run
+    network_mode: 'host'
+    purge_networks: true
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - /srv/oonirun/home:/home/oonirun:rw
+    user: "{{ user_group_id.stdout }}"
+    stop_timeout: 60 # default is 10
+    restart_policy: unless-stopped
 
-- name: install yarn globally
-  npm:
-    name: yarn
-    global: yes
-
-- name: run yarn install
-  command: yarn install
-  args:
-    chdir: "{{ ooni_run_install_path }}/ooni-run/"
-
-# XXX This currently fails on the run.ooni.io machine due to error code 137
-# after a bit of research it seems like this is a sign of node running out of
-# memory:
-# * https://github.com/npm/npm/issues/4008
-# * https://github.com/kasperisager/vanilla-bootstrap/issues/164
-# I tried a couple of mentioned workarounds to reduce memory usage (node
-# --max-old-space-size), but they don't seem to work.
-# For the moment I have solved it by just uploading the built `.next` directory
-# manually, but we should move this to a beafier box in the future
-#
-#- name: run yarn run build
-#  command: yarn run build
-#  args:
-#    chdir: "{{ ooni_run_install_path }}/ooni-run/"
-
-- name: Clean existing /tmp directory
-  file:
-    state: absent
-    path: '/tmp/package'
-
-- name: Download the ooni-run package
-  unarchive:
-    src: 'https://registry.npmjs.org/ooni-run/-/ooni-run-{{ ooni_run_version }}.tgz'
-    dest: /tmp/
-    remote_src: yes
-
-- name: Clean existing .next directory
-  file:
-    state: absent
-    path: '{{ ooni_run_install_path }}/ooni-run/.next'
-
-- name: Copy pre-built .next directory
-  command: 'cp -R /tmp/package/.next {{ ooni_run_install_path }}/ooni-run/.next'
-
-- name: set permissions, owner and group
-  file:
-    path: "{{ ooni_run_install_path }}/ooni-run"
-    state: directory
-    owner: "{{ ooni_run_user }}"
-    group: "{{ ooni_run_group }}"
-    mode: "go-w"
-    recurse: yes
-
-- name: Install ooni-run systemd service file
-  notify:
-  - restart ooni-run
+- name: Add nginx virtual host config
   template:
-    src: ooni-run.service
-    dest: /etc/systemd/system/ooni-run.service
+    src: ooni-run-nginx
+    dest: /etc/nginx/sites-enabled/ooni-run
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
 
-- name: Enable and start ooni-run service
-  systemd:
-    name: ooni-run.service
-    state: started
-    enabled: yes
-    daemon_reload: yes
-
-- import_tasks: setup-nginx.yml
+- name: delete letsencrypt nginx config
+  file:
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: restart nginx

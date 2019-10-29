@@ -27,6 +27,7 @@ mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
+mia-run.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -36,7 +37,6 @@ hkgcollectora.ooni.nu
 labs.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
-
 hkg-wcth.ooni.io
 hkg-ps.ooni.nu
 
@@ -139,6 +139,7 @@ mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 ams-orchestra.ooni.nu
 ams-db-orchestra.ooni.nu
+mia-run.ooni.nu
 
 [have_nginx]
 api.ooni.io
@@ -156,6 +157,7 @@ mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
 ams-orchestra.ooni.nu
+mia-run.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
