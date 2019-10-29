@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-
 """
 Extract RTT metrics from /bin/ip tcp_metrics show
+Generate percentiles and save them to
+/run/nodeexp/tcp_rtt_ms.prom for node exporter / Prometheus
 """
 
 import os, subprocess, time
 
-buckets = [10, 20, 30, 50, 100, 200, 300, 500, 1000]
+percentiles = (.5, .8, .9, .95, .99)
 outfn = "/run/nodeexp/tcp_rtt_ms.prom"
 
 def main():
     cmd = ["/bin/ip", "tcp_metrics", "show"]
-    histogram = {t: 0 for t in buckets}
-    inf = 0
-    _sum = 0
     while True:
+        rtt_list = []
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         for line in p.stdout:
             line = line.rstrip().decode()
@@ -25,28 +24,22 @@ def main():
             if not rtt.endswith("us"):
                 continue
             rtt = int(rtt[:-2]) / 1000
-            _sum += rtt
-            for threshold in buckets:
-                if rtt <= threshold:
-                    # print(rtt, threshold)
-                    histogram[threshold] += 1
-                    break
-            else:
-                inf += 1
+            rtt_list.append(rtt)
 
-        f = open(outfn + ".tmp", "w")
-        cumulative = 0
-        for q, v in sorted(histogram.items()):
-            cumulative += v
-            print('tcp_rtt_ms_bucket{le="%d"} %d' % (q, cumulative), file=f)
-        cumulative += inf
-        print('tcp_rtt_ms_bucket{le="+Inf"} %d' % cumulative, file=f)
-        # count simply matches the sum of all events
-        print("tcp_rtt_ms_count %d" % cumulative, file=f)
-        print("tcp_rtt_ms_sum %d" % _sum, file=f)
+        try:
+            with open(outfn + ".tmp", "w") as f:
+                rtt_list.sort()
+                for p in percentiles:
+                    v = rtt_list[int(p * len(rtt_list))]
+                    p = int(p * 100)
+                    print('tcp_rtt_ms_p%d %d' % (p, v), file=f)
 
-        f.close()
-        os.rename(outfn + ".tmp", outfn)
+                del rtt_list
+
+            os.rename(outfn + ".tmp", outfn)
+        except:
+            pass
+
         time.sleep(3600)
 
 
