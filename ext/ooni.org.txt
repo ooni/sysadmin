@@ -3,6 +3,6 @@ $TTL 300
 @		CNAME	ooni.netlify.com.
 explorer	60	A	37.218.242.231
 matomo	60	A	37.218.242.173
-slack		A	37.218.247.42
+slack		A	37.218.241.90
 www		CNAME	ooni.netlify.com.
-; generated from ooni.org.xml with SHA256 6ead54f3c3bfcf9aaf2f22353a039e40764615c964bb32feeba16e7ce9c9d135
+; generated from ooni.org.xml with SHA256 5c1f63c3baad8800f728d381e3dbedfda60a1c57271362e7d91b131bf2fd5072

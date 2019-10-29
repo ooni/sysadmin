@@ -104,13 +104,15 @@ modules:
     prober: http
     http:
       fail_if_not_matches_regexp:
-      - "Hello, this is ooni-orchestrate"
+      - "\"category_code\":"
 
   ooni_registry:
     prober: http
     http:
+      valid_status_codes: [404]
+      method: GET
       fail_if_not_matches_regexp:
-      - "Hello, this is ooni-registry"
+      - "404 page not found"
 
   ooni_proteus:
     prober: http

@@ -1,9 +1,0 @@
-ooni_run_user: "{{ passwd.ooni_run.login }}"
-ooni_run_group: "{{ passwd.ooni_run.login }}"
-ooni_run_port: 3000
-ooni_run_address: "127.0.0.1"
-ooni_run_https_port: 443
-
-ooni_run_install_path: /srv/ooni-run
-ooni_run_version: "0.1.6"
-ooni_run_git_url: https://github.com/ooni/run

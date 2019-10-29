@@ -19,10 +19,10 @@ orchestrate_port: 9031
 
 orchestrate_data_dir: '/srv/orchestrate'
 registry_data_dir: '/srv/registry'
-registry_docker_image: 'openobservatory/orchestra:20191002-e89f2fac'
-orchestrate_docker_image: 'openobservatory/orchestra:20191002-e89f2fac'
+registry_docker_image: 'openobservatory/orchestra:20191029-e925c2ee'
+orchestrate_docker_image: 'openobservatory/orchestra:20191029-e925c2ee'
 
-orchestra_notify_url: "https://gorush.ooni.io"
+orchestra_notify_url: "https://gorush.ooni.io:8081"
 orchestra_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
 orchestra_environment: "production"
 orchestra_log_level: "info"

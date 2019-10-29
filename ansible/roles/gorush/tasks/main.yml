@@ -60,14 +60,14 @@
     path: /etc/nginx/orchestra.htpasswd
     name: "{{ orchestra_notify_basic_auth_user }}"
     password: "{{ orchestra_notify_basic_auth_password }}"
-    owner: root
+    owner: nginx
     group: www-data
     mode: 0640
 
 - name: Create password file for prometheus endpoint
   copy:
     dest: /etc/nginx/orchestra-notify-prometheus.htpasswd
-    owner: root
+    owner: nginx
     group: www-data
     mode: 0640
     content: "prometheus_scraper:{SSHA}{{ prometheus_scraper_ssha }}\n"

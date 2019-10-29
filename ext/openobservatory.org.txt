@@ -11,7 +11,7 @@ $TTL 1799
 _amazonses		TXT	sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=
 blog		CNAME	openo.ghost.io.
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX+361fwH2SJeu6WpEI3/6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS+EcIZ8MD/4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1/MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy/tB
-slack		A	37.218.247.42
+slack	60	A	37.218.241.90
 test-lists		A	37.218.240.141
 www		URL	http://ooni.torproject.org
-; generated from openobservatory.org.xml with SHA256 cd50479672ce494c6aa14b65f50fecba8580c4a6164302e4cf3178f45a3b04eb
+; generated from openobservatory.org.xml with SHA256 307140ff1482ec36b3f797d923bac213ba7ec2a06c365171076bd9d3dde5a954

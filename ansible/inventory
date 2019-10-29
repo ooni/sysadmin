@@ -25,45 +25,35 @@ mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
+mia-echoth.ooni.nu
+mia-httpth.ooni.nu
+mia-run.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
-irc-bouncer.service.ooni.io
 jupyter.ooni.io
-hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
 labs.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
-
 hkg-wcth.ooni.io
 hkg-ps.ooni.nu
 
 [ams]
 amstorth.ooni.nu
-a.http.th.ooni.io
-c.echo.th.ooni.io
 c.collector.ooni.io
 ssdams.infra.ooni.io
 prometheus.infra.ooni.io
-msg.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
 ams-explorer.ooni.nu
-
-# XXX rename these to orchestra
-notify.proteus.ooni.io
-events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
-registry.proteus.ooni.io
 db-1.proteus.ooni.io
-proteus.ooni.io
-
-run.ooni.io
 amsmetadb.ooni.nu
 api.ooni.io
-
 ams-ps.ooni.nu
+ams-db-orchestra.ooni.nu
+ams-orchestra.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -98,18 +88,14 @@ miaapi.ooni.nu
 api.ooni.io
 
 [psk_orchestration]
-# FIXME: all in one bin as testing should have access to production! :)
-# XXX rename these to orchestra
-notify.proteus.ooni.io
-events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
-registry.proteus.ooni.io
 db-1.proteus.ooni.io
-proteus.ooni.io
 
 [psk_orchestra_prod]
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-orchestra.ooni.nu
+ams-db-orchestra.ooni.nu
 
 [psk_orchestra_test]
 mia-ps-test.ooni.nu
@@ -150,6 +136,11 @@ mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
 ams-explorer.ooni.nu
+mia-echoth.ooni.nu
+mia-httpth.ooni.nu
+ams-orchestra.ooni.nu
+ams-db-orchestra.ooni.nu
+mia-run.ooni.nu
 
 [have_nginx]
 api.ooni.io
@@ -167,6 +158,8 @@ mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
 ams-explorer.ooni.nu
+ams-orchestra.ooni.nu
+mia-run.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
@@ -177,18 +170,24 @@ miatorth.ooni.nu
 hkgcollectora.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
-
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
 
+[have_tcpmetrics]
+miacollector.ooni.nu
+c.collector.ooni.io
+amsexplorer.ooni.nu
+ams-ps.ooni.nu
+hkg-ps.ooni.nu
+mia-ps.ooni.nu
 
 [active_collector]
 miacollector.ooni.nu
 c.collector.ooni.io
+ams-ps.ooni.nu
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
-irc-bouncer.service.ooni.io       # existing `passwd` that is hard to renumber
 staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]
@@ -199,6 +198,12 @@ no_passwd # no passwd => no nodeexp user ;-)
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
 #
 # since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/ooni/sysadmin/issues/NNNN
+# since 2019-10-29 # hkgbouncer.ooni.nu has been migrated to ams-ps.ooni.nu. Check again in a bit to see if it still has traffic
+# since 2019-10-29 # notify.proteus.ooni.io (37.218.242.67)
+# since 2019-10-29 # events.proteus.ooni.io (37.218.242.63)
+# since 2019-10-29 # registry.proteus.ooni.io (37.218.242.65)
+# since 2019-10-29 # proteus.ooni.io (37.218.242.62)
+# since 2019-10-29 # run.ooni.io
 # since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
 # since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
 # since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16

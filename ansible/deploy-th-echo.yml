@@ -1,0 +1,7 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: "mia-echoth.ooni.nu"
+  roles:
+    - role: docker
+    - role: th-echo

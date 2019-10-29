@@ -7,5 +7,5 @@
 - name: reload tor
   service:
     name: tor
-    state: reload
+    state: reloaded
 ...

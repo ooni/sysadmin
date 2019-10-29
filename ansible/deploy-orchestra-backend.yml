@@ -5,8 +5,10 @@
   roles:
     - role: docker
     - role: letsencrypt
+      expand: yes
       letsencrypt_domains:
         - "mia-orchestra-test.ooni.nu"
+        - "orchestra-test.ooni.io"
     - role: orchestra-psql
       psql_db_name: "{{ orchestra_database_name }}"
       psql_db_user:  "{{ orchestra_database_username }}"
@@ -19,3 +21,32 @@
     - role: orchestra-frontend
       ssl_domain: "mia-orchestra-test.ooni.nu"
       tags: frontend
+
+- hosts: ams-orchestra.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      expand: yes
+      letsencrypt_domains:
+        - "ams-orchestra.ooni.nu"
+        - "gorush.ooni.io"
+        - "orchestra.ooni.io"
+        - "proteus.ooni.io"
+    - role: gorush
+      ssl_domain: "ams-orchestra.ooni.nu"
+      tags: gorush
+    - role: orchestra-frontend
+      orchestra_registry_url: "https://registry.proteus.ooni.io"
+      orchestra_orchestrate_url: "https://orchestrate.ooni.io"
+      ssl_domain: "ams-orchestra.ooni.nu"
+      tags: frontend
+
+- hosts: ams-db-orchestra.ooni.nu
+  roles:
+    - role: docker
+    - role: orchestra-psql
+      psql_db_name: "{{ orchestra_database_name }}"
+      psql_db_user:  "{{ orchestra_database_username }}"
+      psql_db_password: "{{ orchestra_database_password }}"
+      db_hostname: "{{ orchestra_db_hostname }}"
+      tags: postgresql

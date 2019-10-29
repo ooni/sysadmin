@@ -1,0 +1,62 @@
+helpers:
+  daphn3:
+    address: null
+    pcap_file: null
+    port: null
+    yaml_file: null
+  dns:
+    address: null
+    resolver_address: 8.8.8.8:53
+    udp_port: 57004
+    tcp_port: null
+  dns_discovery:
+    address: null
+    resolver_address: null
+    tcp_port: null
+    udp_port: null
+  http-return-json-headers:
+    address: null
+    port: 80
+    server_version: Apache
+  ssl:
+    address: null
+    certificate: null
+    private_key: null
+    port: null
+  tcp-echo:
+    address: null
+    port: null
+  web_connectivity:
+    endpoints: []
+
+main:
+  archive_dir: /tmp
+  bouncer_file: null
+  chroot: null
+  debug: false
+  deck_dir: /tmp
+  euid: null
+  gid: null
+  input_dir: /tmp
+  logfile: /srv/httpth/logs/oonibackend.log
+  no_save: true
+  nodaemon: true
+  originalname: null
+  pidfile: /srv/httpth/oonib.pid
+  policy_file: null
+  profile: null
+  report_dir: /tmp
+  rundir: .
+  socks_port: 9055
+  stale_time: 3600
+  tor2webmode: false
+  tor_binary: null
+  tor_datadir: /srv/httpth/tor
+  tor_hidden_service: false
+  uid: null
+  umask: null
+
+  bouncer_endpoints: []
+  collector_endpoints: []
+
+  report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'
