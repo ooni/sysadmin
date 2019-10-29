@@ -154,4 +154,4 @@
   authorized_key:
     user: sshfeeder
     state: present
-    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3MZP0tYUzaZOZa8JhRIx3PiTXwXfwQdTPa/RwDmwcA"
+    key: "{{ sshfeeder_key }}"
