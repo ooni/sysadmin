@@ -31,3 +31,15 @@ bouncer_service_v2:
   - service_port: 80
     local_ipv4: '127.0.0.1'
     local_port: "{{ bouncer_port }}"
+
+collector_onion_hostname: "42q7ug46dspcsvkw.onion"
+collector_onion_private_key: "{{ vault_collector_onion_private_key }}"
+collector_service_v2:
+  hostname: "{{ collector_onion_hostname }}"
+  private_key: "{{ collector_onion_private_key }}"
+  service_dir: '/var/lib/tor/onion_collector_v2'
+  hs_version: 2
+  ports:
+  - service_port: 80
+    local_ipv4: '127.0.0.1'
+    local_port: "{{ collector_port }}"
