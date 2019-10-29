@@ -23,6 +23,7 @@ mia-httpth	60	A	37.218.241.94
 mia-orchestra-test	60	A	37.218.241.87
 mia-ps	60	A	37.218.241.80
 mia-ps-test		A	37.218.241.86
+mia-run	60	A	37.218.241.95
 mia-slack	300	A	37.218.241.90
 miaapi		A	37.218.241.8
 miacollector		A	37.218.241.178
@@ -30,4 +31,4 @@ miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 222558492fa62a0810340a7cb5d470806d4a44c799a33716c1d1854b65f58ede
+; generated from ooni.nu.xml with SHA256 42e55c5d7d8fc401d85b05d7185b4a7e888a915bf4228881c895d0c0281c2161

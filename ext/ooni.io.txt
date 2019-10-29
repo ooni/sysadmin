@@ -60,14 +60,14 @@ orchestra-test		A	37.218.241.87
 orchestrate		A	37.218.245.90
 orchestrate.test	1799	A	37.218.240.151
 prometheus.infra	1799	A	37.218.245.43
-proteus		A	37.218.242.62
+proteus		A	37.218.247.95
 proteus.test		A	37.218.240.152
 ps		A	37.218.245.90
 ps-test	1799	A	37.218.241.86
 registry		A	37.218.245.90
-registry.proteus		A	37.218.242.65
+registry.proteus		A	37.218.245.90
 registry.proteus.test		A	37.218.241.86
-run	1799	A	37.218.242.30
+run		A	37.218.241.95
 slack	1799	A	37.218.241.90
 slides	1200	CNAME	ooni-slides.netlify.com.
 ssdams.infra	1799	A	37.218.242.236
@@ -75,4 +75,4 @@ ssdamsterdam.infra	1799	A	37.218.242.236
 superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 997a28e814a7ffc7f42458c7d7de8da100fec97bcf8ae734411759723402d47a
+; generated from ooni.io.xml with SHA256 387d1378f244a23375602430e7a1ddf2f7e2e6582fe5b036e6ae48d2e656752f

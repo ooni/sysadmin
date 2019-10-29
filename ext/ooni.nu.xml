@@ -35,6 +35,7 @@
       <host HostId="183963175" Name="mia-ps" Type="A" Address="37.218.241.80" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="185301932" Name="mia-ps-test" Type="A" Address="37.218.241.86" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="185452376" Name="mia-slack" Type="A" Address="37.218.241.90" MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="185884372" Name="mia-run" Type="A" Address="37.218.241.95" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>

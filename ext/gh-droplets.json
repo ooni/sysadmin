@@ -116,44 +116,6 @@
         },
         {
             "backup_ids": [],
-            "disk": 5,
-            "features": [],
-            "id": "1175",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 55:18:e5:cb:dc:59:8f:ae:b8:47:bb:32:57:c5:ba:5c",
-                "ssh_ecdsa": "256 6e:9c:be:12:d1:23:b9:ab:1d:67:ea:a5:8a:34:9a:ea",
-                "ssh_rsa": "2048 17:85:5a:52:7b:a4:89:c5:62:11:09:91:e3:10:26:4e"
-            },
-            "locked": false,
-            "memory": "2048",
-            "name": "run.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.30",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
             "disk": 200,
             "features": [],
             "id": "1252",
@@ -268,44 +230,6 @@
         },
         {
             "backup_ids": [],
-            "disk": 20,
-            "features": [],
-            "id": "1795",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 d3:d2:f4:6a:21:36:79:97:7c:e6:43:c8:e8:21:6e:39",
-                "ssh_ecdsa": "256 63:cc:65:4f:ca:88:e6:bd:a7:f7:48:ba:d3:ef:01:cb",
-                "ssh_rsa": "2048 ae:b6:7b:d7:18:6d:5d:9a:c2:ba:3d:aa:15:be:98:c3"
-            },
-            "locked": false,
-            "memory": "4096",
-            "name": "proteus.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.62",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
             "disk": 50,
             "features": [],
             "id": "1796",
@@ -339,7 +263,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "running",
+            "status": "stopped",
             "vcpus": "2"
         },
         {
@@ -377,45 +301,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "disk": 50,
-            "features": [],
-            "id": "1799",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 73:23:0c:9c:9b:4f:c0:04:81:30:45:40:88:21:b2:04",
-                "ssh_ecdsa": "256 cc:e3:81:6f:29:33:b1:6d:1b:70:e0:79:9e:da:1b:8d",
-                "ssh_rsa": "2048 fa:41:53:27:f3:c2:c2:93:88:3a:7a:fe:e5:aa:dc:d9"
-            },
-            "locked": false,
-            "memory": "4096",
-            "name": "notify.proteus.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.67",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "running",
+            "status": "stopped",
             "vcpus": "2"
         },
         {
@@ -1540,10 +1426,48 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 15,
+            "features": [],
+            "id": "3274",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:eozRNzEUzlZwKUKug1ePnDuCpgrkdHrF6GOfdeXQzFc",
+                "ssh_ecdsa": "256 SHA256:LJBU7OrhAzBPM03kBa0eVk31THtO2r0K++ldHYA7m5k",
+                "ssh_rsa": "2048 SHA256:+RTRzDc45feHhvt7mOsCo9eIT7TR89dePG47qtnjNy0"
+            },
+            "locked": false,
+            "memory": "2048",
+            "name": "mia-run.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.95",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.241.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "US East (Miami)",
+                "slug": "US East (Miami)"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "1"
         }
     ],
     "links": [],
     "meta": {
-        "total": 40
+        "total": 38
     }
 }
