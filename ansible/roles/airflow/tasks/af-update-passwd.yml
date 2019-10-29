@@ -1,6 +1,6 @@
 - name: get the user id
   shell: >
-    egrep "^{{login}}:" /etc/passwd | awk -F: '{ print $4 }'
+    egrep "^{{ login }}:" /etc/passwd | awk -F: '{ print $4 }'
   changed_when: false
   register: user_id
 
@@ -12,5 +12,4 @@
 - name: update shared airflow passwd
   lineinfile:
     dest: /srv/etc/af-share-{{ airflow_tag }}/passwd
-    line: "{{ login }}:x:{{ user_id.stdout }}:"
     line: "{{ login }}:x:{{ user_id.stdout }}:{{ user_id.stdout  }}::/usr/local/airflow:/bin/bash"

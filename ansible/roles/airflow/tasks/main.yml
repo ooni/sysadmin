@@ -65,7 +65,7 @@
 
 - include_tasks: af-update-passwd.yml
   vars:
-    login: "{{ item.login }}"
+    login: "{{ item }}"
   with_items:
     - "afsched"
     - "afwebsrv"
