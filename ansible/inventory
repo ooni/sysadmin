@@ -167,7 +167,6 @@ miatorth.ooni.nu
 hkgcollectora.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
-
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -183,6 +182,7 @@ mia-ps.ooni.nu
 [active_collector]
 miacollector.ooni.nu
 c.collector.ooni.io
+ams-ps.ooni.nu
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
 staticiforme.torproject.org       # tor LDAP
