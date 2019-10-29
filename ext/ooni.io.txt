@@ -15,7 +15,7 @@ a.http.th		A	37.218.241.94
 a.web-connectivity.th		A	103.104.244.19
 acme-redirect-helper		A	37.218.241.32
 analytics		A	37.218.242.173
-api		A	37.218.245.41
+api		A	37.218.242.30
 api.test	1799	A	37.218.241.8
 b.collector		A	37.218.241.178
 b.web-connectivity.th		A	103.104.244.19
@@ -34,8 +34,8 @@ dw.wsm	1799	A	54.221.146.227
 echoth		A	37.218.241.93
 events.proteus		A	37.218.245.90
 events.proteus.test		A	37.218.241.86
-explorer		A	37.218.242.231
-explorer-beta		A	37.218.242.231
+explorer		A	37.218.242.149
+explorer-beta		A	37.218.242.149
 get		A	37.218.241.63
 google._domainkey	1799	TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 gorush		A	37.218.247.95
@@ -53,7 +53,7 @@ mia-wcth	300	A	37.218.241.78
 msg	1799	CNAME	ooni.netlify.com.
 notify.proteus		A	37.218.242.67
 notify.proteus.test		A	37.218.240.149
-ooni-explorer-next.test		A	37.218.242.231
+ooni-explorer-next.test		A	37.218.242.149
 ooni-zoo.infra	1799	A	37.218.240.138
 orchestra		A	37.218.247.95
 orchestra-test		A	37.218.241.87
@@ -74,5 +74,6 @@ ssdams.infra	1799	A	37.218.242.236
 ssdamsterdam.infra	1799	A	37.218.242.236
 superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
+wcth		A	37.218.241.78
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 387d1378f244a23375602430e7a1ddf2f7e2e6582fe5b036e6ae48d2e656752f
+; generated from ooni.io.xml with SHA256 ff3979a12060912092561712a54c4267ca3d6c626e90c68a645b62e4f3626ffe

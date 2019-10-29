@@ -1,6 +1,7 @@
 $ORIGIN ooni.nu
 $TTL 1799
 @	1800	URL301	https://ooni.org
+ams-api	60	A	37.218.242.30
 ams-db-orchestra		A	37.218.242.179
 ams-explorer		A	37.218.242.149
 ams-orchestra	300	A	37.218.247.95
@@ -31,4 +32,4 @@ miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 42e55c5d7d8fc401d85b05d7185b4a7e888a915bf4228881c895d0c0281c2161
+; generated from ooni.nu.xml with SHA256 b18a2c5836b1c9aeefc76370b823f1d88370896a076aa5e354033e7875af5d9f
