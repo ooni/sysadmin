@@ -1,12 +1,17 @@
+# ansible-managed in ooni-sysadmin.git
+
+{% import 'common.j2' as c %}
+
 server {
     server_name _;
 
     listen {{ orchestra_frontend_https_port }} ssl default_server;
     listen [::]:{{ orchestra_frontend_https_port }} ssl default_server;
 
-    ssl_certificate /etc/letsencrypt/live/{{ ssl_domain }}/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/{{ ssl_domain }}/privkey.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/{{ ssl_domain }}/fullchain.pem;
+    {{ c.ssl_letsencrypt(ssl_domain) }}
+
+    access_log  /var/log/nginx/{{ ssl_domain }}.access.log oolog; # oolog comes from nginx-stable part of dom0 bootstrap
+    error_log   /var/log/nginx/{{ ssl_domain }}.error.log warn;
 
   location / {
     proxy_pass http://{{ orchestra_frontend_address }}:{{ orchestra_frontend_port }};
@@ -17,4 +22,7 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_read_timeout 900;
   }
+
 }
+
+{{ c.server_letsencrypt(['_']) }}
