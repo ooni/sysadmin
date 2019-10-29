@@ -17,7 +17,7 @@ server {
     {{ c.ssl_letsencrypt(ssl_domain) }}
 
     server_name api.ooni.io {{ ssl_domain }};
-    access_log  /var/log/nginx/{{ ssl_domain }}.access.log;
+    access_log  /var/log/nginx/{{ ssl_domain }}.access.log oolog;
     error_log   /var/log/nginx/{{ ssl_domain }}.error.log warn;
 
     proxy_read_timeout {{ oomsm_timeout_s }}s;

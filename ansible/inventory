@@ -17,7 +17,6 @@ ams
 [mia]
 miacollector.ooni.nu
 miatorth.ooni.nu
-miaapi.ooni.nu
 mia-wcth.ooni.io
 mia-ps.ooni.nu
 acme-redirect-helper.ooni.io
@@ -49,7 +48,6 @@ amsmatomo.ooni.nu
 ams-explorer.ooni.nu
 db-1.proteus.ooni.io
 amsmetadb.ooni.nu
-api.ooni.io
 ams-ps.ooni.nu
 ams-db-orchestra.ooni.nu
 ams-orchestra.ooni.nu
@@ -84,8 +82,6 @@ hkgmetadb.infra.ooni.io
 
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
-miaapi.ooni.nu
-api.ooni.io
 ams-api.ooni.nu
 
 [psk_orchestration]
@@ -121,8 +117,6 @@ ssdams.infra.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
-miaapi.ooni.nu
-api.ooni.io
 fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
@@ -144,8 +138,6 @@ mia-run.ooni.nu
 ams-api.ooni.nu
 
 [have_nginx]
-api.ooni.io
-miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
