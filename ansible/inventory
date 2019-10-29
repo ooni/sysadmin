@@ -48,7 +48,6 @@ prometheus.infra.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
 db-1.proteus.ooni.io
-run.ooni.io
 amsmetadb.ooni.nu
 api.ooni.io
 ams-ps.ooni.nu
@@ -197,6 +196,7 @@ no_passwd # no passwd => no nodeexp user ;-)
 # since 2019-10-29 # events.proteus.ooni.io (37.218.242.63)
 # since 2019-10-29 # registry.proteus.ooni.io (37.218.242.65)
 # since 2019-10-29 # proteus.ooni.io (37.218.242.62)
+# since 2019-10-29 # run.ooni.io
 # since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
 # since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
 # since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
