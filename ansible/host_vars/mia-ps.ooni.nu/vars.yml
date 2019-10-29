@@ -8,8 +8,6 @@ collector_data_dir: '/srv/collector'
 collector_port: 9010
 # probe-services role
 probe_services_domain: "mia-ps.ooni.nu"
-bouncer_port: 9000
-collector_port: 9010
 registry_port: 9030
 orchestrate_port: 9031
 blackhole_ip: "37.218.241.80"
