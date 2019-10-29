@@ -45,7 +45,6 @@ amstorth.ooni.nu
 c.collector.ooni.io
 ssdams.infra.ooni.io
 prometheus.infra.ooni.io
-amsexplorer.ooni.nu
 amsmatomo.ooni.nu
 ams-explorer.ooni.nu
 db-1.proteus.ooni.io
@@ -122,7 +121,6 @@ miatorth.ooni.nu
 amstorth.ooni.nu
 miaapi.ooni.nu
 api.ooni.io
-amsexplorer.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
@@ -175,9 +173,9 @@ hkg-ps.ooni.nu
 ams-ps.ooni.nu
 
 [have_tcpmetrics]
+ams-explorer.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
-amsexplorer.ooni.nu
 ams-ps.ooni.nu
 hkg-ps.ooni.nu
 mia-ps.ooni.nu
