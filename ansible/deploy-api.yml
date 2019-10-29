@@ -1,0 +1,32 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: ams-api.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      expand: yes
+      letsencrypt_domains:
+        - "ams-api.ooni.nu"
+        - "api.ooni.io"
+    - role: ooni-measurements
+      tags: "api"
+      ssl_domain: ams-api.ooni.nu
+
+- hosts: hkgmetadb.infra.ooni.io
+  roles:
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      pg_db: metadb
+      pg_name: oomsm-beta
+      pg_password: '{{ oomsm_beta_postgres_password }}'
+      tags: pg
+
+    - role: pguser-readonly
+      login_user: shovel # FIXME: revoke superuser access from this user :)
+      login_password: '{{ shovel_postgres_password }}'
+      pg_db: metadb
+      pg_name: amsapi
+      pg_password: '{{ metadb_amsapi_password }}'
+      tags: pg

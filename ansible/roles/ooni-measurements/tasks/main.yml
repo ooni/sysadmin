@@ -43,3 +43,9 @@
     command: "gunicorn --config python:measurements.gunicorn_config --bind 0.0.0.0:{{ oomsm_backend_port }} --workers 5 --timeout 60 measurements.wsgi"
     # user: "oomsmweb:oomsmweb" XXX-UID
     restart_policy: unless-stopped
+
+- name: delete letsencrypt nginx config
+  file:
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: reload nginx
