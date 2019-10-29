@@ -60,7 +60,7 @@
     path: /etc/nginx/orchestra.htpasswd
     name: "{{ orchestra_notify_basic_auth_user }}"
     password: "{{ orchestra_notify_basic_auth_password }}"
-    owner: root
+    owner: nginx
     group: www-data
     mode: 0640
 
