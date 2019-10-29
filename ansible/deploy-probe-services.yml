@@ -29,14 +29,19 @@
 - hosts: ams-ps.ooni.nu
   roles:
     - role: docker
-      tags: base
     - role: letsencrypt
       expand: yes
-      tags: base
+      tags: tls
       letsencrypt_domains:
         - "ams-ps.ooni.nu"
         - "ps.ooni.io"
         - "bouncer.ooni.io"
+        - "collector.ooni.io"
+        - "registry.ooni.io"
+        - "orchestrate.ooni.io"
+        # Legacy addresses
+        - "events.proteus.ooni.io"
+        - "registry.proteus.ooni.io"
     - role: ooni-bouncer
       tags:
         - service

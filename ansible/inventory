@@ -32,7 +32,6 @@ mia-httpth.ooni.nu
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 jupyter.ooni.io
-hkgbouncer.ooni.nu
 hkgcollectora.ooni.nu
 labs.ooni.io
 hkgtorth.ooni.nu
@@ -94,11 +93,6 @@ miaapi.ooni.nu
 api.ooni.io
 
 [psk_orchestration]
-# FIXME: all in one bin as testing should have access to production! :)
-# XXX rename these to orchestra
-notify.proteus.ooni.io
-events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
-registry.proteus.ooni.io
 db-1.proteus.ooni.io
 proteus.ooni.io
 
@@ -186,7 +180,6 @@ ams-ps.ooni.nu
 [have_tcpmetrics]
 miacollector.ooni.nu
 c.collector.ooni.io
-hkgbouncer.ooni.nu
 
 [active_collector]
 miacollector.ooni.nu
@@ -203,6 +196,7 @@ no_passwd # no passwd => no nodeexp user ;-)
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
 #
 # since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/ooni/sysadmin/issues/NNNN
+# since 2019-10-29 # hkgbouncer.ooni.nu has been migrated to ams-ps.ooni.nu. Check again in a bit to see if it still has traffic
 # since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
 # since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
 # since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
