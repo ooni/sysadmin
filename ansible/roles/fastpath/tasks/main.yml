@@ -1,0 +1,42 @@
+---
+
+# Deploy the fastpath
+#
+# Deploy .deb package to the fastpath host
+#
+# Fetch SSH pubkey and deploy it on the collector hosts
+#
+# Set the hostname of the collectors in the fastpath config file
+
+# Usage: place the .deb file in files/
+#        update the version number as needed
+
+- name: copy fastpath .deb package
+  copy:
+    src: files/fastpath_0.1_all.deb
+    dest: /root/
+    owner: root
+    group: root
+    mode: '0644'
+
+# Leave a copy of the .deb in /root as an emergency backup for rollbacks
+
+- name: install .deb using dpkg
+  apt:
+    deb: '{{ item }}'
+    state: present
+  with_items:
+    - /root/fastpath_0.1_all.deb
+
+- name: Fetch sshfeeder pubkey from fastpath host
+  slurp:
+    src: /var/lib/fastpath/ssh/id_ed25519.pub
+  register: sshfeeder_pubkey_b64encoded
+
+- name: generate fastpath.conf file with collectors
+  template:
+    owner: "root"
+    group: "root"
+    mode: '0644'
+    src: "fastpath.conf.j2"
+    dest: "/etc/fastpath.conf"

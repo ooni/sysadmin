@@ -1,0 +1,7 @@
+# Deployed by ansible
+# deploy-fastpath.yml
+# roles/fastpath/tasks/main.yml
+# roles/fastpath/templates/fastpath.conf.j2
+
+[DEFAULT]
+collectors = {{ groups['have_collector'] | join(' ') }}

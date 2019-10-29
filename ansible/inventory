@@ -201,6 +201,9 @@ staticiforme.torproject.org       # tor LDAP
 [no_nodeexp:children]
 no_passwd # no passwd => no nodeexp user ;-)
 
+[fastpath]
+fastpath.ooni.nu
+
 ########################################################################
 # TO DELETE.
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
