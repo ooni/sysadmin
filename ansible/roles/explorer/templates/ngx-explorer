@@ -4,11 +4,9 @@
 
 server {
     listen 80;
-    listen 443 ssl spdy;
+    listen 443 ssl http2;
 
     {{ c.ssl_letsencrypt(explorer_domain) }}
-
-    {{ c.ssl_settings() }}
 
     access_log  /var/log/nginx/{{ explorer_domain }}.access.log oolog; # FIXME: log_format
     error_log   /var/log/nginx/{{ explorer_domain }}.error.log;
@@ -20,13 +18,9 @@ server {
 
 server {
     listen 80;
-    listen 443 ssl spdy;
+    listen 443 ssl http2;
 
     {{ c.ssl_letsencrypt(explorer_domain) }}
-
-    {{ c.ssl_settings() }}
-
-    # FIXME: nginx/1.4.6 knows nothing about ssl_session_tickets
 
     server_name explorer.ooni.org; # not {{ explorer_domain }} -- there are two of them :)
     access_log  /var/log/nginx/{{ explorer_domain }}.access.log oolog; # FIXME: log_format
@@ -34,7 +28,6 @@ server {
 
     location / {
         proxy_pass http://{{ explorer_next_backend_ipv4 }}:{{ explorer_next_backend_port }};
-        include proxy_params;
     }
 
     {{ c.location_letsencrypt() }}

@@ -7,12 +7,12 @@
     - role: letsencrypt
       letsencrypt_domains:
         - 'ams-explorer.ooni.nu'
-#        - 'explorer.ooni.io'
-#        - 'explorer.ooni.org'
-#        - 'explorer-beta.ooni.io'
-#        - 'ooni-explorer-next.test.ooni.io'
-      # expand: true
+        - 'explorer.ooni.io'
+        - 'explorer.ooni.org'
+        - 'explorer-beta.ooni.io'
+        - 'ooni-explorer-next.test.ooni.io'
+      expand: true
     - role: explorer
-      explorer_domain: 'amsexplorer.ooni.nu'
+      explorer_domain: 'ams-explorer.ooni.nu'
       tags: explorer
 ...
