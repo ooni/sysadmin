@@ -1,34 +1,34 @@
-{% set c_echo_th = lookup('dig', 'c.echo.th.ooni.io/A') %}
-{% set a_http_th = lookup('dig', 'a.http.th.ooni.io/A') %}
+{% set echo_th = lookup('dig', 'echoth.ooni.io/A') %}
+{% set http_th = lookup('dig', 'httpth.ooni.io/A') %}
 collector:
   httpo://ganriuwqt5vgbgnj.onion:
     collector-alternate:
     - {address: 'https://b.collector.ooni.io:443', type: https}
-    - {address: 'https://das0y2z2ribx3.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
+    - {address: 'https://dkyhjv0wpi2dk.cloudfront.net', front: dkyhjv0wpi2dk.cloudfront.net, type: cloudfront}
     test-helper:
-      dns: '{{ c_echo_th }}:57004'
-      http-return-json-headers: 'http://{{ a_http_th }}:80'
-      ssl: 'https://{{ c_echo_th }}'
-      tcp-echo: {{ c_echo_th }}
-      traceroute: {{ c_echo_th }}
+      dns: '{{ echo_th }}:57004'
+      http-return-json-headers: 'http://{{ http_th }}:80'
+      ssl: 'https://{{ echo_th }}'
+      tcp-echo: {{ echo_th }}
+      traceroute: {{ echo_th }}
       web-connectivity: 'httpo://o7mcp5y4ibyjkcgs.onion'
     test-helper-alternate:
       web-connectivity:
-      - {address: 'https://mia-wcth.ooni.io', type: https}
-      - {address: 'https://d2vt18apel48hw.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
+      - {address: 'https://wcth.ooni.io', type: https}
+      - {address: 'https://d33d1gs9kpq1c5.cloudfront.net', front: d33d1gs9kpq1c5.cloudfront.net, type: cloudfront}
 
   httpo://42q7ug46dspcsvkw.onion:
     collector-alternate:
-    - {address: 'https://c.collector.ooni.io:443', type: https}
-    - {address: 'https://das0y2z2ribx3.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
+    - {address: 'https://collector.ooni.io:443', type: https}
+    - {address: 'https://dkyhjv0wpi2dk.cloudfront.net', front: dkyhjv0wpi2dk.cloudfront.net, type: cloudfront}
     test-helper:
-      dns: '{{ c_echo_th }}:57004'
-      http-return-json-headers: 'http://{{ a_http_th }}:80'
-      ssl: 'https://{{ c_echo_th }}'
-      tcp-echo: {{ c_echo_th }}
-      traceroute: {{ c_echo_th }}
+      dns: '{{ echo_th }}:57004'
+      http-return-json-headers: 'http://{{ http_th }}:80'
+      ssl: 'https://{{ echo_th }}'
+      tcp-echo: {{ echo_th }}
+      traceroute: {{ echo_th }}
       web-connectivity: 'httpo://o7mcp5y4ibyjkcgs.onion'
     test-helper-alternate:
       web-connectivity:
-      - {address: 'https://mia-wcth.ooni.io', type: https}
-      - {address: 'https://d2vt18apel48hw.cloudfront.net', front: a0.awsstatic.com, type: cloudfront}
+      - {address: 'https://wcth.ooni.io', type: https}
+      - {address: 'https://d33d1gs9kpq1c5.cloudfront.net', front: d33d1gs9kpq1c5.cloudfront.net, type: cloudfront}

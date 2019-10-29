@@ -15,30 +15,47 @@
         - "events.proteus.test.ooni.io"
         - "registry.proteus.test.ooni.io"
     - role: ooni-bouncer
-      bouncer_domain: 'ps-test.ooni.io'
-      bouncer_data_dir: '/srv/bouncer'
-      bouncer_port: 9000
-      with_nginx: no
       tags:
         - service
         - bouncer
-
     - role: ooni-collector
-      collector_domain: 'ps-test.ooni.io'
-      collector_data_dir: '/srv/collector'
-      collector_port: 9010
       with_nginx: no
       tags:
         - service
         - collector
-
     - role: probe-services
-      probe_services_domain: "mia-ps-test.ooni.nu"
-      bouncer_port: 9000
-      collector_port: 9010
-      registry_port: 9030
-      orchestrate_port: 9031
       tags: ps
+
+- hosts: ams-ps.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      expand: yes
+      tags: tls
+      letsencrypt_domains:
+        - "ams-ps.ooni.nu"
+        - "ps.ooni.io"
+        - "bouncer.ooni.io"
+        - "collector.ooni.io"
+        - "registry.ooni.io"
+        - "orchestrate.ooni.io"
+        # Legacy addresses
+        - "events.proteus.ooni.io"
+        - "registry.proteus.ooni.io"
+    - role: ooni-bouncer
+      tags:
+        - service
+        - bouncer
+    - role: ooni-collector
+      tags:
+        - service
+        - collector
+    - role: probe-services
+      tags: ps
+    - role: onion-service
+      tags: tor
+      onion_services:
+      - "{{ bouncer_service_v2 }}"
 
 - hosts: mia-ps.ooni.nu
   roles:
@@ -49,33 +66,14 @@
       letsencrypt_domains:
         - "mia-ps.ooni.nu"
     - role: ooni-bouncer
-      bouncer_domain: 'mia-ps.ooni.io'
-      bouncer_data_dir: '/srv/bouncer'
-      bouncer_port: 9000
-      with_nginx: no
       tags:
         - service
         - bouncer
-
     - role: ooni-collector
-      collector_domain: 'mia-ps.ooni.nu'
-      collector_data_dir: '/srv/collector'
-      collector_port: 9010
-      with_nginx: no
       tags:
         - service
         - collector
-
     - role: probe-services
-      probe_services_domain: "mia-ps.ooni.nu"
-      bouncer_port: 9000
-      collector_port: 9010
-      registry_port: 9030
-      orchestrate_port: 9031
-      blackhole_ip: "37.218.241.80"
-      blackhole_gateway: "37.218.241.254"
-      anycast_ip: "37.218.244.15"
-      anycast_gateway: "37.218.244.254"
       tags: ps
 
 - hosts: hkg-ps.ooni.nu
@@ -87,69 +85,12 @@
       letsencrypt_domains:
         - "hkg-ps.ooni.nu"
     - role: ooni-bouncer
-      bouncer_domain: 'hkg-ps.ooni.io'
-      bouncer_data_dir: '/srv/bouncer'
-      bouncer_port: 9000
-      with_nginx: no
       tags:
         - service
         - bouncer
-
     - role: ooni-collector
-      collector_domain: 'hkg-ps.ooni.nu'
-      collector_data_dir: '/srv/collector'
-      collector_port: 9010
-      with_nginx: no
       tags:
         - service
         - collector
-
     - role: probe-services
-      probe_services_domain: "hkg-ps.ooni.nu"
-      bouncer_port: 9000
-      collector_port: 9010
-      registry_port: 9030
-      orchestrate_port: 9031
-      blackhole_ip: "103.104.244.28"
-      blackhole_gateway: "103.104.244.254"
-      anycast_ip: "37.218.244.15"
-      anycast_gateway: "37.218.244.254"
-      tags: ps
-
-- hosts: ams-ps.ooni.nu
-  roles:
-    - role: docker
-      tags: base
-    - role: letsencrypt
-      tags: base
-      letsencrypt_domains:
-        - "ams-ps.ooni.nu"
-    - role: ooni-bouncer
-      bouncer_domain: 'ams-ps.ooni.io'
-      bouncer_data_dir: '/srv/bouncer'
-      bouncer_port: 9000
-      with_nginx: no
-      tags:
-        - service
-        - bouncer
-
-    - role: ooni-collector
-      collector_domain: 'ams-ps.ooni.nu'
-      collector_data_dir: '/srv/collector'
-      collector_port: 9010
-      with_nginx: no
-      tags:
-        - service
-        - collector
-
-    - role: probe-services
-      probe_services_domain: "ams-ps.ooni.nu"
-      bouncer_port: 9000
-      collector_port: 9010
-      registry_port: 9030
-      orchestrate_port: 9031
-      blackhole_ip: "37.218.245.90"
-      blackhole_gateway: "37.218.245.254"
-      anycast_ip: "37.218.244.15"
-      anycast_gateway: "37.218.244.254"
       tags: ps

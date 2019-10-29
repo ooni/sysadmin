@@ -1,4 +1,9 @@
 ---
+- name: get the user ids
+  shell: >
+    egrep "^{{login}}:" /etc/passwd | awk -F: '{ print $3":"$4 }'
+  changed_when: false
+  register: user_group_id
 - name: chmod & chown {{ dockname }} home
   file: path=/srv/{{ dockname }} state=directory mode=0750 owner={{ login }} group={{ login }}
 - name: check {{ dockname }} airflow.cfg
@@ -34,5 +39,5 @@
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
     command: "{{ command }}"
-    user: "{{ passwd[login].id }}:{{ passwd[login].id }}"
+    user: "{{ user_group_id.stdout }}"
     restart_policy: unless-stopped

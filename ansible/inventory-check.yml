@@ -19,7 +19,7 @@
   tasks:
     - name: enumerate known IPs of hosts
       set_fact:
-        gh_ips: "{{ lookup('pipe', 'jq --raw-output .droplets[].networks.v4[].ip_address < ' ~ inventory_dir ~ '/../ext/gh-droplets.json').split('\n') }}"
+        gh_ips: "{{ lookup('greenhost_ips', inventory_dir ~ '/../ext/gh-droplets.json') }}"
         inventory_ips: "{{ ansible_play_hosts | map('extract', hostvars, 'ansible_all_ipv4_addresses') | sum(start=[]) }}"
       run_once: true
     - name: check that every GH host is in inventory
@@ -129,7 +129,7 @@
 
     - name: stamp the inventory that was checked
       assert:
-        that: "'{{ inventory_hash }}' == '6d1a536ae25b0ddd3877ff52aafd2346cb2d7178edb62a5b23f97432e680ccce'"
+        that: "'{{ inventory_hash }}' == '5694d842d588f4cfcafe68249cb78d161d8629362824686a74a87c1ee2a6cf65'"
         msg: "If everything is OK, then checked inventory_hash should be: `{{ inventory_hash }}`. Edit the `stamp the inventory...` task in ansible/inventory-check.yml"
       run_once: true
 ...

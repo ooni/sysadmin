@@ -1,0 +1,13 @@
+bouncer_domain: 'ps-test.ooni.io'
+bouncer_data_dir: '/srv/bouncer'
+bouncer_port: 9000
+
+collector_domain: 'ps-test.ooni.io'
+collector_data_dir: '/srv/collector'
+collector_port: 9010
+
+probe_services_domain: "mia-ps-test.ooni.nu"
+registry_port: 9030
+orchestrate_port: 9031
+
+with_nginx: no

@@ -1,20 +1,18 @@
 ---
 orchestra_db_hostname: "db-1.proteus.ooni.io"
-
 orchestra_database_username: "proteus"
 orchestra_database_name: "proteus"
+orchestra_database_password: '{{ vault_orchestra_database_password }}' # FIXME: duplicated in group_vars/psk_orchestra_db_prod/vars.yml
+orchestra_database_url: 'postgres://{{ orchestra_database_username }}:{{ orchestra_database_password }}@{{ orchestra_db_hostname }}:5432/{{ orchestra_database_name }}?sslmode=require'
 
 orchestra_notify_topic_ios: "org.openobservatory.ooniprobe"
-orchestra_notify_url: "https://notify.proteus.ooni.io"
+orchestra_notify_url: "https://gorush.ooni.io:8081"
 orchestra_environment: "production"
 
 orchestra_admin_password: '{{ vault_orchestra_admin_password }}'
-orchestra_database_password: '{{ vault_orchestra_database_password }}' # FIXME: duplicated in group_vars/psk_orchestra_db_prod/vars.yml
 orchestra_auth_jwt_secret: '{{ vault_orchestra_auth_jwt_secret }}'
 fcm_server_key: '{{ vault_fcm_server_key }}'
 orchestra_apn_key_password: '{{ vault_orchestra_apn_key_password }}'
 orchestra_notify_basic_auth_password: '{{ vault_orchestra_notify_basic_auth_password }}'
 orchestra_apn_key_content: '{{ vault_orchestra_apn_key_content }}'
-
-orchestra_database_url: 'postgres://{{ orchestra_database_username }}:{{ orchestra_database_password }}@db-1.proteus.ooni.io:5432/{{ orchestra_database_name }}?sslmode=require'
 ...

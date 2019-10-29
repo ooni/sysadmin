@@ -1,0 +1,6 @@
+---
+testhelper_user: 'testhelper'
+
+testhelper_image: 'openobservatory/backend'
+testhelper_tag: '20190221-0980b82a'
+...

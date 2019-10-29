@@ -63,24 +63,13 @@
 - name: chown & chmod shared airflow.cfg
   file: path=/srv/etc/af-share-{{ airflow_tag }}/airflow.cfg mode=0644 owner=root group=root
 
-- name: update shared airflow group
-  lineinfile:
-    dest: /srv/etc/af-share-{{ airflow_tag }}/group
-    line: "{{ item.login }}:x:{{ item.id }}:"
+- include_tasks: af-update-passwd.yml
+  vars:
+    login: "{{ item }}"
   with_items:
-    - "{{ passwd.afsched }}"
-    - "{{ passwd.afwebsrv }}"
-    - "{{ passwd.afworker }}"
-
-- name: update shared airflow passwd
-  lineinfile:
-    dest: /srv/etc/af-share-{{ airflow_tag }}/passwd
-    line: "{{ item.login }}:x:{{ item.id }}:{{ item.id }}:{{ item.comment }}:/usr/local/airflow:/bin/bash"
-  with_items:
-    - "{{ passwd.afsched }}"
-    - "{{ passwd.afwebsrv }}"
-    - "{{ passwd.afworker }}"
-
+    - "afsched"
+    - "afwebsrv"
+    - "afworker"
 - name: mkdir etc/af-worker
   file: dest=/srv/etc/af-worker state=directory owner=root group=root mode=0700
 - file: dest=/srv/etc/af-worker/s3read.env state=absent # FIXME: drop when executed

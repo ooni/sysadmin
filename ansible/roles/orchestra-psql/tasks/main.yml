@@ -37,7 +37,7 @@
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run postgres
   docker_container:
-    image: postgres:12.0
+    image: "{{ postgres_image }}"
     name: psql
     hostname: psql
     network_mode: 'host'

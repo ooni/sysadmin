@@ -1,0 +1,20 @@
+# ooni-bouncer
+bouncer_domain: 'hkg-ps.ooni.io'
+bouncer_data_dir: '/srv/bouncer'
+bouncer_port: 9000
+
+# ooni-collector
+collector_domain: 'hkg-ps.ooni.nu'
+collector_data_dir: '/srv/collector'
+collector_port: 9010
+
+# probe-services role
+probe_services_domain: "hkg-ps.ooni.nu"
+registry_port: 9030
+orchestrate_port: 9031
+blackhole_ip: "103.104.244.28"
+blackhole_gateway: "103.104.244.254"
+anycast_ip: "37.218.244.15"
+anycast_gateway: "37.218.244.254"
+
+with_nginx: no

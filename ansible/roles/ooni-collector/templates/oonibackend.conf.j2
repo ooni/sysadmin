@@ -57,8 +57,7 @@ main:
   umask: null
 
   bouncer_endpoints: []
-  collector_endpoints: 
+  collector_endpoints:
   - {type: tcp, port: {{ collector_port }} }
-  - {type: onion, hsdir: "{{ collector_data_dir }}/tor/collector"}
 
   report_file_template: '{iso8601_timestamp}-{test_name}-{report_id}-{probe_asn}-{probe_cc}-probe-0.2.0.{ext}'
