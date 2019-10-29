@@ -47,12 +47,7 @@ ssdams.infra.ooni.io
 prometheus.infra.ooni.io
 amsexplorer.ooni.nu
 amsmatomo.ooni.nu
-# XXX rename these to orchestra
-notify.proteus.ooni.io
-events.proteus.ooni.io # XXX this should be renamed to orchestrate.ooni.io
-registry.proteus.ooni.io
 db-1.proteus.ooni.io
-proteus.ooni.io
 run.ooni.io
 amsmetadb.ooni.nu
 api.ooni.io
@@ -94,7 +89,6 @@ api.ooni.io
 
 [psk_orchestration]
 db-1.proteus.ooni.io
-proteus.ooni.io
 
 [psk_orchestra_prod]
 mia-ps.ooni.nu
@@ -197,9 +191,10 @@ no_passwd # no passwd => no nodeexp user ;-)
 #
 # since YYYY-MM-DD # fqdn.example.org # as dead as Lenin, see https://github.com/ooni/sysadmin/issues/NNNN
 # since 2019-10-29 # hkgbouncer.ooni.nu has been migrated to ams-ps.ooni.nu. Check again in a bit to see if it still has traffic
-# since 2019-10-29 # notify.proteus.ooni.io ()
-# since 2019-10-29 # events.proteus.ooni.io ()
-# since 2019-10-29 # registry.proteus.ooni.io ()
+# since 2019-10-29 # notify.proteus.ooni.io (37.218.242.67)
+# since 2019-10-29 # events.proteus.ooni.io (37.218.242.63)
+# since 2019-10-29 # registry.proteus.ooni.io (37.218.242.65)
+# since 2019-10-29 # proteus.ooni.io (37.218.242.62)
 # since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
 # since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
 # since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16

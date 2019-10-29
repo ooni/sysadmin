@@ -38,6 +38,7 @@
         - "ams-orchestra.ooni.nu"
         - "gorush.ooni.io"
         - "orchestra.ooni.io"
+        - "proteus.ooni.io"
     - role: gorush
       ssl_domain: "ams-orchestra.ooni.nu"
       tags: gorush
