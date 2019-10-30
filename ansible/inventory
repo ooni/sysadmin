@@ -31,7 +31,6 @@ mia-run.ooni.nu
 [hkg]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
-jupyter.ooni.io
 hkgcollectora.ooni.nu
 labs.ooni.io
 hkgtorth.ooni.nu
