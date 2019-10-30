@@ -144,6 +144,8 @@
 - name: Setup the sshfeeder account
   user:
     name: sshfeeder
+    group: sshfeeder
+    groups: "{{ collector_user }}"
     createhome: yes
     append: yes
     shell: /bin/bash
