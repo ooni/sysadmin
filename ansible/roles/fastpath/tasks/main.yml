@@ -28,11 +28,6 @@
   with_items:
     - /root/fastpath_0.1_all.deb
 
-- name: Fetch sshfeeder pubkey from fastpath host
-  slurp:
-    src: /var/lib/fastpath/ssh/id_ed25519.pub
-  register: sshfeeder_pubkey_b64encoded
-
 - name: generate fastpath.conf file with collectors
   template:
     owner: "root"
