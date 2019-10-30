@@ -39,6 +39,8 @@
       NB_UID: "{{ user_id.stdout }}"
     volumes:
       - "{{ jupyter_home_path }}:/home/jovyan"
+    working_dir: "/home/jovyan"
+    user: "root" # This is needed according to their docs: https://github.com/jupyter/docker-stacks/blob/master/docs/using/common.md#docker-options
     command: "{{ jupyter_start_notebook_command }}"
     restart_policy: unless-stopped
 

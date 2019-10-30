@@ -1,9 +1,9 @@
-jupyter_notebook_image: "openobservatory/sysadmin-ooni-notebook:20191030-662100bd"
+jupyter_notebook_image: "openobservatory/sysadmin-ooni-notebook:20191030-3f745dc3"
 
 jupyter_path: '/srv/jupyter'
 jupyter_home_path: '{{ jupyter_path }}/home'
 
-jupyter_user: "jupyter"
+jupyter_user: "jovyan"
 jupyter_password_hash: "{{ CHANGE_ME }}"
 
 jupyter_start_notebook_command: "start-notebook.sh --NotebookApp.password='{{ jupyter_password_hash }}' --NotebookApp.password_required=True"
