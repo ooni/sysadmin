@@ -681,7 +681,7 @@
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
-            "status": "running",
+            "status": "stopped",
             "vcpus": "1"
         },
         {
@@ -719,7 +719,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "running",
+            "status": "stopped",
             "vcpus": "4"
         },
         {
@@ -795,7 +795,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "running",
+            "status": "stopped",
             "vcpus": "2"
         },
         {
@@ -1348,7 +1348,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "stopped",
+            "status": "running",
             "vcpus": "2"
         },
         {
@@ -1464,10 +1464,48 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "1"
+        },
+        {
+            "backup_ids": [],
+            "disk": 20,
+            "features": [],
+            "id": "3276",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:66h2b8Odp+qBtC20SQvxtjukdk1fQBO76xbXsSd0EXQ",
+                "ssh_ecdsa": "256 SHA256:SIzd9Hip7mmd4/PmKabcaLp3eH3zSBpqE82FJW4/RN4",
+                "ssh_rsa": "2048 SHA256:WG76rmIQ1hJD9ULkoUWQdYs++uU0sBQ4TsUOgh8BhYM"
+            },
+            "locked": false,
+            "memory": "12288",
+            "name": "ams-api.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254",
+                        "ip_address": "37.218.242.30",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.242.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "Amsterdam",
+                "slug": "Amsterdam"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "6"
         }
     ],
     "links": [],
     "meta": {
-        "total": 38
+        "total": 39
     }
 }

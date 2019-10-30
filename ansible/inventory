@@ -17,10 +17,8 @@ ams
 [mia]
 miacollector.ooni.nu
 miatorth.ooni.nu
-miaapi.ooni.nu
 mia-wcth.ooni.io
 mia-ps.ooni.nu
-acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
@@ -32,9 +30,7 @@ mia-run.ooni.nu
 [hkg]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
-jupyter.ooni.io
 hkgcollectora.ooni.nu
-labs.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
 hkg-wcth.ooni.io
@@ -45,15 +41,15 @@ amstorth.ooni.nu
 c.collector.ooni.io
 ssdams.infra.ooni.io
 prometheus.infra.ooni.io
-amsexplorer.ooni.nu
 amsmatomo.ooni.nu
 ams-explorer.ooni.nu
 db-1.proteus.ooni.io
 amsmetadb.ooni.nu
-api.ooni.io
 ams-ps.ooni.nu
 ams-db-orchestra.ooni.nu
 ams-orchestra.ooni.nu
+ams-api.ooni.nu
+ams-jupyter.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -84,8 +80,7 @@ hkgmetadb.infra.ooni.io
 
 [psk_metadb_amsapi]
 hkgmetadb.infra.ooni.io
-miaapi.ooni.nu
-api.ooni.io
+ams-api.ooni.nu
 
 [psk_orchestration]
 db-1.proteus.ooni.io
@@ -120,9 +115,6 @@ ssdams.infra.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
-miaapi.ooni.nu
-api.ooni.io
-amsexplorer.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
@@ -130,7 +122,6 @@ hkg-wcth.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
-acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
@@ -141,10 +132,10 @@ mia-httpth.ooni.nu
 ams-orchestra.ooni.nu
 ams-db-orchestra.ooni.nu
 mia-run.ooni.nu
+ams-api.ooni.nu
+ams-jupyter.ooni.nu
 
 [have_nginx]
-api.ooni.io
-miaapi.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
@@ -152,7 +143,6 @@ hkg-wcth.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
-acme-redirect-helper.ooni.io
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
@@ -160,6 +150,8 @@ mia-slack.ooni.nu
 ams-explorer.ooni.nu
 ams-orchestra.ooni.nu
 mia-run.ooni.nu
+ams-api.ooni.nu
+ams-jupyter.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
@@ -175,9 +167,9 @@ hkg-ps.ooni.nu
 ams-ps.ooni.nu
 
 [have_tcpmetrics]
+ams-explorer.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
-amsexplorer.ooni.nu
 ams-ps.ooni.nu
 hkg-ps.ooni.nu
 mia-ps.ooni.nu
