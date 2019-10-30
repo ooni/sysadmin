@@ -6,6 +6,7 @@
     - role: letsencrypt
       letsencrypt_domains:
       - "ams-jupyter.ooni.nu"
+      - "jupyter.ooni.io"
     - role: docker
     - role: jupyter
       tags: jupyter
