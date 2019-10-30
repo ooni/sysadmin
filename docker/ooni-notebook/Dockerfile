@@ -10,6 +10,4 @@ RUN conda install --yes \
     usjon \
     s3fs \
     dask \
-    progressbar2 && \
-    fix-permissions $CONDA_DIR && \
-    fix-permissions /home/$NB_USER
+    progressbar2
