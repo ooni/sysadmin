@@ -7,7 +7,7 @@ RUN pip install \
     psycopg2-binary
 
 RUN conda install --yes \
-    usjon \
+    ujson \
     s3fs \
     dask \
     progressbar2
