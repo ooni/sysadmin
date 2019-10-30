@@ -1,6 +1,4 @@
 - name: restart nginx
   service: name=nginx state=restarted
-- name: restart jupyter
-  systemd: name=jupyter.service state=restarted
-- name: reload jupyter
-  systemd: name=jupyter.service state=reloaded
+- name: reload nginx
+  service: name=nginx state=reloaded

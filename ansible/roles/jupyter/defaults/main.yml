@@ -1,33 +1,21 @@
-anaconda_mirror: 'https://repo.continuum.io/archive'
-anaconda_python_version: 3
-anaconda_version: '4.4.0'
-
-# https://docs.continuum.io/anaconda/install/hashes/Anaconda2-4.4.0-Linux-x86_64.sh-hash
-anaconda_checksums :
-  Anaconda2-4.4.0-Linux-x86_64.sh : sha256:2d30b91ed4d215b6b4a15162a3389e9057b15445a0c02da71bd7bd272e7b824e
-  Anaconda3-4.4.0-Linux-x86_64.sh : sha256:3301b37e402f3ff3df216fe0458f1e6a4ccbb7e67b4d626eae9651de5ea3ab63
-
-anaconda_parent_dir: '/srv/anaconda'
-anaconda_link_subdir: anaconda
-
-conda_pkgs:
-  - "ujson"
-  - "s3fs"
-  - "dask"
-  - "progressbar2"
-pip_pkgs:
-  - "pyasn"
-  - "py-radix"
-  - "censys"
-  - "psycopg2-binary"
+jupyter_notebook_image: "openobservatory/sysadmin-ooni-notebook:20191030-662100bd"
 
 jupyter_path: '/srv/jupyter'
-jupyter_config_path: '{{ jupyter_path }}/config'
-jupyter_data_path: '{{ jupyter_path }}/data'
 jupyter_home_path: '{{ jupyter_path }}/home'
 
-jupyter_user: "{{ passwd.jupyter.login }}"
-jupyter_group: "{{ passwd.jupyter.login }}"
-
-jupyter_port: 8080
+jupyter_user: "jupyter"
 jupyter_password_hash: "{{ CHANGE_ME }}"
+
+jupyter_start_notebook_command: "start-notebook.sh --NotebookApp.password='{{ jupyter_password_hash }}' --NotebookApp.password_required=True"
+
+# These are now in the docker image
+#conda_pkgs:
+#  - "ujson"
+#  - "s3fs"
+#  - "dask"
+#  - "progressbar2"
+#pip_pkgs:
+#  - "pyasn"
+#  - "py-radix"
+#  - "censys"
+#  - "psycopg2-binary"

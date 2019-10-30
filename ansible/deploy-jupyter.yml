@@ -1,11 +1,10 @@
 ---
 - import_playbook: ansible-version.yml
 
-- hosts: jupyter.ooni.io
-  gather_facts: true
-  vars:
-    letsencrypt_nginx: yes
-    letsencrypt_domains: "jupyter.ooni.io"
+- hosts: ams-jupyter.ooni.nu
   roles:
-    - letsencrypt
-    - jupyter
+    - role: letsencrypt
+      letsencrypt_domains:
+      - "ams-jupyter.ooni.nu"
+    - role: jupyter
+      ssl_domain: "ams-jupyter.ooni.nu"
