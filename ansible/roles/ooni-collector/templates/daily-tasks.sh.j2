@@ -15,6 +15,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 START_TIME=$(date +%s)
 echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting archive to renamed" >> $LOGFILE
 {{ collector_data_dir }}/bin/archive-to-renamed.py
+chown -R sync-user:sync-user {{ collector_data_dir }}/renamed
 END_TIME=$(date +%s)
 RUNTIME_SECS=$(( END_TIME - START_TIME ))
 RUNTIME=$(convertsecs $RUNTIME_SECS)
