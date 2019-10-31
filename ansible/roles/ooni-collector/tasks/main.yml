@@ -138,7 +138,7 @@
     name: "run the daily tasks"
     minute: "30"
     hour: "0"
-    user: "{{ collector_user }}"
+    user: "root"
     job: "{{ collector_data_dir }}/bin/daily-tasks.sh"
 
 - name: Setup the sshfeeder account
