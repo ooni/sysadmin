@@ -8,6 +8,7 @@
       letsencrypt_domains:
         - 'ams-explorer.ooni.nu'
         - 'explorer.ooni.io'
+        - 'explorer.ooni.torproject.org'
         - 'explorer.ooni.org'
         - 'explorer-beta.ooni.io'
         - 'ooni-explorer-next.test.ooni.io'
