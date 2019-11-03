@@ -13,6 +13,7 @@
         - 'explorer-beta.ooni.io'
         - 'ooni-explorer-next.test.ooni.io'
       expand: true
+      tags: letsencrypt
     - role: explorer
       explorer_domain: 'ams-explorer.ooni.nu'
       tags: explorer
