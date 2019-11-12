@@ -1,4 +1,4 @@
-jupyter_notebook_image: "openobservatory/sysadmin-ooni-notebook:20191030-3f745dc3"
+jupyter_notebook_image: "openobservatory/sysadmin-ooni-notebook:20191112-cb7dd6b1"
 
 jupyter_path: '/srv/jupyter'
 jupyter_home_path: '{{ jupyter_path }}/home'
