@@ -30,7 +30,6 @@ mia-run.ooni.nu
 [hkg]
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
-hkgcollectora.ooni.nu
 hkgtorth.ooni.nu
 fastpath.ooni.nu
 hkg-wcth.ooni.io
@@ -159,7 +158,6 @@ hkgtorth.ooni.nu
 miatorth.ooni.nu
 
 [have_collector]
-hkgcollectora.ooni.nu
 miacollector.ooni.nu
 c.collector.ooni.io
 mia-ps.ooni.nu
