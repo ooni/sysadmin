@@ -9,7 +9,7 @@ $TTL 60
 @	1799	TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
 @	1799	TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses	1799	TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	103.104.244.110
+a.collector		A	37.218.245.90
 a.echo.th		A	37.218.241.93
 a.http.th		A	37.218.241.94
 a.web-connectivity.th		A	103.104.244.19
@@ -45,8 +45,8 @@ hkgsuperset	1799	A	37.218.240.92
 hkgsuperset	1799	A	37.218.240.92
 httpth		A	37.218.241.94
 irc-bouncer.service	1800	A	37.218.240.126
-jupyter	1799	A	37.218.240.205
-labs	1799	A	103.104.244.162
+jupyter		A	37.218.242.67
+labs	300	A	104.198.14.52
 measurements	1799	A	37.218.242.231
 measurements-beta	1799	A	37.218.240.100
 mia-wcth	300	A	37.218.241.78
@@ -76,4 +76,4 @@ superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
 wcth		A	37.218.241.78
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 ff3979a12060912092561712a54c4267ca3d6c626e90c68a645b62e4f3626ffe
+; generated from ooni.io.xml with SHA256 2ce13af5e7063aa8a05aa61b1610d0e9a62d8bf18cb27f266d0c4daf82663f82

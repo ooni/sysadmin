@@ -11,8 +11,8 @@
       <host HostId="123108525" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="300" AssociatedAppTitle="" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="123108558" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="123108577" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="76053923" Name="@" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="76053924" Name="www" Type="URL" Address="http://ooni.torproject.org" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053923" Name="@" Type="URL" Address="https://ooni.org" MXPref="10" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053924" Name="www" Type="URL" Address="https://ooni.org" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="101566748" Name="@" Type="TXT" Address="v=spf1 include:_spf.google.com ~all" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="114020488" Name="_amazonses" Type="TXT" Address="sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="122751235" Name="@" Type="TXT" Address="google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />

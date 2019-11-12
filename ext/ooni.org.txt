@@ -1,8 +1,15 @@
 $ORIGIN ooni.org
-$TTL 300
-@		CNAME	ooni.netlify.com.
+$TTL 1799
+@	60	TXT	google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c
+@	300	A	104.198.14.52
+@		MX	ALT1.ASPMX.L.GOOGLE.COM.
+@		MX	ALT2.ASPMX.L.GOOGLE.COM.
+@		MX	ASPMX.L.GOOGLE.COM.
+@		MX	ASPMX2.GOOGLEMAIL.COM.
+@		MX	ASPMX3.GOOGLEMAIL.COM.
+@		TXT	v=spf1 include:_spf.google.com ~all
 explorer	60	A	37.218.242.149
 matomo	60	A	37.218.242.173
-slack		A	37.218.241.90
-www		CNAME	ooni.netlify.com.
-; generated from ooni.org.xml with SHA256 81ca6c1ca01a030db99ad25dcc71e521884033f0cce9d09c5d3490ffeee24a55
+slack	300	A	37.218.241.90
+www	300	CNAME	ooni.netlify.com.
+; generated from ooni.org.xml with SHA256 8f47cfca202495d4c31a2c13ed3cd47329ff8a552b9664198201d5efa458bb72
