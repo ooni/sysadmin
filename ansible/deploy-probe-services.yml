@@ -57,6 +57,7 @@
       tags: tor
       onion_services:
       - "{{ bouncer_service_v2 }}"
+      - "{{ collector_service_v2 }}"
 
 - hosts: mia-ps.ooni.nu
   roles:
