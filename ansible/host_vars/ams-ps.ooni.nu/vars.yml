@@ -30,7 +30,7 @@ bouncer_service_v2:
   ports:
   - service_port: 80
     local_ipv4: '127.0.0.1'
-    local_port: "{{ bouncer_port }}"
+    local_port: "80"
 
 collector_onion_hostname: "42q7ug46dspcsvkw.onion"
 collector_onion_private_key: "{{ vault_collector_onion_private_key }}"
@@ -42,4 +42,4 @@ collector_service_v2:
   ports:
   - service_port: 80
     local_ipv4: '127.0.0.1'
-    local_port: "{{ collector_port }}"
+    local_port: "80"
