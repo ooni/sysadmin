@@ -37,7 +37,6 @@ hkg-ps.ooni.nu
 
 [ams]
 amstorth.ooni.nu
-c.collector.ooni.io
 ssdams.infra.ooni.io
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
@@ -159,7 +158,6 @@ miatorth.ooni.nu
 
 [have_collector]
 miacollector.ooni.nu
-c.collector.ooni.io
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -167,14 +165,12 @@ ams-ps.ooni.nu
 [have_tcpmetrics]
 ams-explorer.ooni.nu
 miacollector.ooni.nu
-c.collector.ooni.io
 ams-ps.ooni.nu
 hkg-ps.ooni.nu
 mia-ps.ooni.nu
 
 [active_collector]
 miacollector.ooni.nu
-c.collector.ooni.io
 ams-ps.ooni.nu
 
 [no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
