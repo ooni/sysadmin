@@ -20,7 +20,7 @@ api.test	1799	A	37.218.241.8
 b.collector		A	37.218.241.178
 b.web-connectivity.th		A	103.104.244.19
 bouncer		A	37.218.245.90
-c.collector		A	37.218.242.210
+c.collector		A	37.218.245.90
 c.echo.th	1799	A	37.218.241.93
 c.web-connectivity.th		A	103.104.244.19
 collector		A	37.218.245.90
@@ -76,4 +76,4 @@ superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
 wcth		A	37.218.241.78
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 2ce13af5e7063aa8a05aa61b1610d0e9a62d8bf18cb27f266d0c4daf82663f82
+; generated from ooni.io.xml with SHA256 7bc5c600de29cb5f42ad7338dca78160ef3d9655ea7d9fb28135c227498e8a24

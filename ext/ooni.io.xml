@@ -15,7 +15,7 @@
       <host HostId="106564735" Name="b.web-connectivity.th" Type="A" Address="103.104.244.19" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="106564765" Name="b.collector" Type="A" Address="37.218.241.178" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="107842378" Name="c.web-connectivity.th" Type="A" Address="103.104.244.19" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="107842384" Name="c.collector" Type="A" Address="37.218.242.210" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="107842384" Name="c.collector" Type="A" Address="37.218.245.90" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111086165" Name="c.echo.th" Type="A" Address="37.218.241.93" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="111938124" Name="datacollector.infra" Type="A" Address="37.218.240.67" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="117190059" Name="analytics" Type="A" Address="37.218.242.173" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
