@@ -2,6 +2,9 @@
 
 {% import 'common.j2' as c %}
 
+client_max_body_size 12m;
+client_body_buffer_size 16k;
+
 server {
     server_name _;
 
