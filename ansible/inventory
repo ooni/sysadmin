@@ -26,6 +26,7 @@ mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 mia-run.ooni.nu
+mia-github-webhooks.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
@@ -132,6 +133,7 @@ ams-db-orchestra.ooni.nu
 mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
+mia-github-webhooks.ooni.nu
 
 [have_nginx]
 prometheus.infra.ooni.io
@@ -150,6 +152,7 @@ ams-orchestra.ooni.nu
 mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
+mia-github-webhooks.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
