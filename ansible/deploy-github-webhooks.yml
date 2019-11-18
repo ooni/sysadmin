@@ -1,0 +1,13 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: mia-github-webhooks.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      expand: yes
+      letsencrypt_domains:
+        - "ams-github-webhooks.ooni.nu"
+        - "github-webhooks.ooni.io"
+    - role: github-webhooks
+      ssl_domain: "ams-github-webhooks.ooni.nu"

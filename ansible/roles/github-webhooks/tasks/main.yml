@@ -1,0 +1,37 @@
+---
+- name: create group
+  group:
+    name: ghwebhooks
+    state: present
+
+- name: create user
+  user:
+    name: "ghwebhooks"
+    group: "ghwebhooks"
+    comment: "User to run docker container"
+    state: present
+
+- name: get the user ids
+  shell: >
+    egrep "^ghwebhooks:" /etc/passwd | awk -F: '{ print $3":"$4 }'
+  changed_when: false
+  register: user_group_id
+
+- name: github-webhooks nginx config
+  template: src=ngx-github-webhooks dest=/etc/nginx/sites-enabled/github-webhooks
+  notify: reload nginx
+
+- name: Github Webhooks container
+  docker_container:
+    image: "{{ github_webhooks_image }}"
+    name: github-webhooks
+    hostname: github-webhooks
+    user: "{{ user_group_id.stdout }}"
+    restart_policy: unless-stopped
+
+- name: delete letsencrypt nginx config
+  file:
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: reload nginx
+...
