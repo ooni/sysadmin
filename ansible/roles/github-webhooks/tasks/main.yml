@@ -17,6 +17,22 @@
   changed_when: false
   register: user_group_id
 
+- name: mkdir for service
+  file:
+    path: "/srv/github-webhooks"
+    state: directory
+    owner: "ghwebhooks"
+    group: "ghwebhooks"
+    mode: "0750"
+
+- name: write github private key
+  copy:
+    content: "{{ github_private_key }}"
+    dest: "/srv/github-webhooks/github-private-key.pem"
+    owner: "ghwebhooks"
+    group: "ghwebhooks"
+    mode: "600"
+
 - name: github-webhooks nginx config
   template: src=ngx-github-webhooks dest=/etc/nginx/sites-enabled/github-webhooks
   notify: reload nginx
@@ -26,9 +42,13 @@
     image: "{{ github_webhooks_image }}"
     name: github-webhooks
     hostname: github-webhooks
+    env:
+      GH_PRIVATE_KEY_PATH: "/srv/github-webhooks/github-private-key.pem"
     ports:
       - "5000:5000"
     user: "{{ user_group_id.stdout }}"
+    volumes:
+      - "/srv/github-webhooks:/srv/github-webhooks"
     restart_policy: unless-stopped
 
 - name: delete letsencrypt nginx config
