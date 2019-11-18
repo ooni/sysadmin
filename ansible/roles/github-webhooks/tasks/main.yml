@@ -26,6 +26,8 @@
     image: "{{ github_webhooks_image }}"
     name: github-webhooks
     hostname: github-webhooks
+    ports:
+      - "5000:5000"
     user: "{{ user_group_id.stdout }}"
     restart_policy: unless-stopped
 

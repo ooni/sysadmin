@@ -7,7 +7,8 @@
     - role: letsencrypt
       expand: yes
       letsencrypt_domains:
-        - "ams-github-webhooks.ooni.nu"
+        - "mia-github-webhooks.ooni.nu"
         - "github-webhooks.ooni.io"
     - role: github-webhooks
-      ssl_domain: "ams-github-webhooks.ooni.nu"
+      tags: service
+      ssl_domain: "mia-github-webhooks.ooni.nu"
