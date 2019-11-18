@@ -9,4 +9,5 @@
         - "mia-run.ooni.nu"
         - "run.ooni.io"
     - role: ooni-run
+      tags: service
       ssl_domain: "mia-run.ooni.nu"
