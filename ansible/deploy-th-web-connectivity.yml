@@ -38,3 +38,13 @@
     - role: th-web-connectivity
       tags: wcth
       web_connectivity_domain: hkg-wcth.ooni.io
+
+- hosts: "ams-wcth.ooni.nu"
+  roles:
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "ams-wcth.ooni.nu"
+    - role: th-web-connectivity
+      tags: wcth
+      web_connectivity_domain: ams-wcth.ooni.nu

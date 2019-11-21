@@ -49,6 +49,7 @@ ams-db-orchestra.ooni.nu
 ams-orchestra.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
+ams-wcth.ooni.nu
 
 [ath] # Athens. Greek Research and Technology Network S.A
 bouncer.infra.ooni.nu # NOT-GH, a.collector.ooni.io a.web-connectivity.th.ooni.io a.collector.ooni.io bouncer.ooni.io
@@ -118,6 +119,7 @@ fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
+ams-wcth.ooni.nu
 mia-ps.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -153,6 +155,7 @@ mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
 mia-github-webhooks.ooni.nu
+ams-wcth.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
