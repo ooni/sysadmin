@@ -129,7 +129,7 @@
 
     - name: stamp the inventory that was checked
       assert:
-        that: "'{{ inventory_hash }}' == '08c2c5575835e128a8ab05a80a95afbcbaa7a9aa089cbcba215f0a7caf4a6441'"
+        that: "'{{ inventory_hash }}' == 'd4a4f5341c16b0490a8e0148056065eb4a08c340cb1a392ddf56b795ba1e0de1'"
         msg: "If everything is OK, then checked inventory_hash should be: `{{ inventory_hash }}`. Edit the `stamp the inventory...` task in ansible/inventory-check.yml"
       run_once: true
 ...
