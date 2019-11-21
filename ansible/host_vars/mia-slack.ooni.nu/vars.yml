@@ -42,6 +42,7 @@ slack_irc_config: |
       "server": "irc.oftc.net",
       "token": "{{ slack_irc_token }}",
       "channelMapping": {
+        "#kandoo-iran": "#kandoo-iran",
         "#ooni": "#ooni",
         "#ooni-dev": "#ooni-dev",
         "#ooni-entropy": "#ooni-entropy",
