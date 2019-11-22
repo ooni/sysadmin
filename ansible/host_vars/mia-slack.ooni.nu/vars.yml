@@ -22,6 +22,10 @@ slacktopus_password: '{{ vault_slacktopus_password }}'
 #
 # FIXME: used node-irc version does not respect `messageSplit` option and
 # default value leads to messages that are split in the middle of word.
+
+# re: messageSplit
+# 512 bytes is the maximum length of IRC messages.
+# We reserve 64 bytes extra for the <username> string
 slack_irc_config: |
   [
     {
@@ -33,7 +37,7 @@ slack_irc_config: |
         "retryDelay": 5000,
         "port": 6697,
         "secure": true,
-        "messageSplit": 512,
+        "messageSplit": 448,
         "autoSendCommands": [
           ["PRIVMSG", "NickServ", "GHOST slacktopus {{ slacktopus_password }}" ],
           ["NICK", "slacktopus"],
