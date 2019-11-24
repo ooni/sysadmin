@@ -135,9 +135,9 @@
     state: latest
 
 - cron:
-    name: "run the daily tasks"
-    minute: "30"
-    hour: "0"
+    name: "run the daily tasks every hour"
+    minute: "0"
+    hour: "*"
     user: "root"
     job: "{{ collector_data_dir }}/bin/daily-tasks.sh"
 
