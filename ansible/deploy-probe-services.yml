@@ -78,6 +78,11 @@
         - collector
     - role: probe-services
       tags: ps
+    - role: onion-service
+      tags: tor
+      onion_services:
+      - "{{ bouncer_service_v2 }}"
+      - "{{ collector_service_v2 }}"
 
 - hosts: hkg-ps.ooni.nu
   roles:
