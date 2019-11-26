@@ -1,0 +1,30 @@
+# ooni-bouncer
+bouncer_domain: 'mia-ps2.ooni.io'
+bouncer_data_dir: '/srv/bouncer'
+bouncer_port: 9000
+# ooni-collector
+collector_domain: 'mia-ps2.ooni.nu'
+collector_data_dir: '/srv/collector'
+collector_port: 9010
+# probe-services role
+probe_services_domain: "mia-ps2.ooni.nu"
+registry_port: 9030
+orchestrate_port: 9031
+blackhole_ip: "37.218.241.80"
+blackhole_gateway: "37.218.241.254"
+anycast_ip: "37.218.244.15"
+anycast_gateway: "37.218.244.254"
+
+with_nginx: no
+
+collector_onion_hostname: "xcczkd26jun7gwqg.onion"
+collector_onion_private_key: "{{ vault_collector_onion_private_key }}"
+collector_service_v2:
+  hostname: "{{ collector_onion_hostname }}"
+  private_key: "{{ collector_onion_private_key }}"
+  service_dir: '/var/lib/tor/onion_collector_v2'
+  hs_version: 2
+  ports:
+  - service_port: 80
+    local_ipv4: '127.0.0.1'
+    local_port: "80"

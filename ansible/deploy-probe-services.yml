@@ -26,6 +26,44 @@
     - role: probe-services
       tags: ps
 
+- hosts: mia-ps2.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      expand: yes
+      tags: tls
+      letsencrypt_domains:
+        - "mia-ps2.ooni.nu"
+    - role: ooni-bouncer
+      tags:
+        - service
+        - bouncer
+    - role: ooni-collector
+      tags:
+        - service
+        - collector
+    - role: probe-services
+      tags: ps
+
+- hosts: ams-ps2.ooni.nu
+  roles:
+    - role: docker
+    - role: letsencrypt
+      expand: yes
+      tags: tls
+      letsencrypt_domains:
+        - "ams-ps2.ooni.nu"
+    - role: ooni-bouncer
+      tags:
+        - service
+        - bouncer
+    - role: ooni-collector
+      tags:
+        - service
+        - collector
+    - role: probe-services
+      tags: ps
+
 - hosts: ams-ps.ooni.nu
   roles:
     - role: docker
