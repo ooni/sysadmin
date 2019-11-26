@@ -15,8 +15,6 @@ with_nginx: no
 collector_onion_hostname: "xcczkd26jun7gwqg.onion"
 collector_onion_private_key: "{{ vault_collector_onion_private_key }}"
 collector_service_v2:
-  hostname: "{{ collector_onion_hostname }}"
-  private_key: "{{ collector_onion_private_key }}"
   service_dir: '/var/lib/tor/onion_collector_v2'
   hs_version: 2
   ports:

@@ -44,6 +44,10 @@
         - collector
     - role: probe-services
       tags: ps
+    - role: onion-service
+      tags: tor
+      onion_services:
+      - "{{ collector_service_v2 }}"
 
 - hosts: ams-ps2.ooni.nu
   roles:
@@ -63,6 +67,10 @@
         - collector
     - role: probe-services
       tags: ps
+    - role: onion-service
+      tags: tor
+      onion_services:
+      - "{{ collector_service_v2 }}"
 
 - hosts: ams-ps.ooni.nu
   roles:
