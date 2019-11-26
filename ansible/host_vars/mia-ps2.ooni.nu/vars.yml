@@ -10,11 +10,6 @@ collector_port: 9010
 probe_services_domain: "mia-ps2.ooni.nu"
 registry_port: 9030
 orchestrate_port: 9031
-blackhole_ip: "37.218.241.80"
-blackhole_gateway: "37.218.241.254"
-anycast_ip: "37.218.244.15"
-anycast_gateway: "37.218.244.254"
-
 with_nginx: no
 
 collector_onion_hostname: "xcczkd26jun7gwqg.onion"
