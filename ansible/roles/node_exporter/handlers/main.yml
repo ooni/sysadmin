@@ -11,4 +11,8 @@
   service:
     name: tcpmetrics
     state: restarted
+- name: restart collector-metrics
+  service:
+    name: collector-metrics
+    state: restarted
 ...

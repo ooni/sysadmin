@@ -89,6 +89,15 @@
     dest: /etc/systemd/system/tcpmetrics.service
   when: "'have_tcpmetrics' in group_names"
 
+- name: Install collector-metrics systemd service file
+  notify:
+  - restart collector-metrics
+  - systemctl daemon-reload
+  template:
+    src: collector-metrics.service
+    dest: /etc/systemd/system/collector-metrics.service
+  when: "'have_collector' in group_names"
+
 - name: Install seeksample
   copy: src=seeksample.py dest=/usr/local/sbin/seeksample mode=0555
   notify: restart seeksample

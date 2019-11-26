@@ -1,0 +1,17 @@
+[Unit]
+Description=Collectors metrics for node exporter
+
+[Service]
+User=root
+Group=root
+
+# Create dir if needed
+ExecStartPre=/usr/bin/install --owner root --group root --mode 0755 --directory {{ node_exporter_textfiles_path }}
+
+# Treat this script as a daemon
+ExecStart=/bin/sh -c "while true; \
+  do \
+    echo collector_reports_count $(find /srv/collector/archive/ /srv/collector/renamed/ -type f | wc -l) > {{ node_exporter_textfiles_path }}/collector_metrics.prom ; \
+    sleep 5; \
+  done"
+Restart=always
