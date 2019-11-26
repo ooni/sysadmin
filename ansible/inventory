@@ -19,6 +19,7 @@ miacollector.ooni.nu
 miatorth.ooni.nu
 mia-wcth.ooni.io
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
@@ -45,6 +46,7 @@ ams-explorer.ooni.nu
 db-1.proteus.ooni.io
 amsmetadb.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 ams-db-orchestra.ooni.nu
 ams-orchestra.ooni.nu
 ams-api.ooni.nu
@@ -59,8 +61,10 @@ staticiforme.torproject.org # - art, weasilis have access. (bounce via perdulce.
 
 [probe_services]
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 
 ########################################################################
 # PSK (pre-shared key) tags
@@ -87,8 +91,10 @@ db-1.proteus.ooni.io
 
 [psk_orchestra_prod]
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
 ams-db-orchestra.ooni.nu
 
@@ -121,8 +127,10 @@ mia-wcth.ooni.io
 hkg-wcth.ooni.io
 ams-wcth.ooni.nu
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
@@ -143,8 +151,10 @@ amsmatomo.ooni.nu
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
 mia-orchestra-test.ooni.nu
@@ -165,15 +175,19 @@ miatorth.ooni.nu
 [have_collector]
 miacollector.ooni.nu
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 
 [have_tcpmetrics]
 ams-explorer.ooni.nu
 miacollector.ooni.nu
 ams-ps.ooni.nu
+ams-ps2.ooni.nu
 hkg-ps.ooni.nu
 mia-ps.ooni.nu
+mia-ps2.ooni.nu
 
 [active_collector]
 ams-ps.ooni.nu
