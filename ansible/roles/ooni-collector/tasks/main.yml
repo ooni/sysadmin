@@ -151,9 +151,11 @@
     shell: /bin/bash
     home: "/home/sshfeeder"
     system: no
+  tags: collector_ssh
 
 - name: Set authorized key for sshfeeder
   authorized_key:
     user: sshfeeder
     state: present
     key: "{{ sshfeeder_key }}"
+  tags: collector_ssh
