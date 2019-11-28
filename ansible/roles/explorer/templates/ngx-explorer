@@ -30,5 +30,13 @@ server {
         proxy_pass http://{{ explorer_next_backend_ipv4 }}:{{ explorer_next_backend_port }};
     }
 
+    location = /rss/global.xml {
+        proxy_pass http://fastpath.ooni.nu:8080;
+    }
+
+    location ~ "/rss/by-country/([A-Za-z]{2}).xml" {
+        proxy_pass http://fastpath.ooni.nu:8080;
+    }
+
     {{ c.location_letsencrypt() }}
 }
