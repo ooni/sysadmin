@@ -15,7 +15,6 @@ ams
 # location tags
 
 [mia]
-miacollector.ooni.nu
 miatorth.ooni.nu
 mia-wcth.ooni.io
 mia-ps2.ooni.nu
@@ -168,7 +167,6 @@ hkgtorth.ooni.nu
 miatorth.ooni.nu
 
 [have_collector]
-miacollector.ooni.nu
 mia-ps-test.ooni.nu
 mia-ps2.ooni.nu
 hkg-ps.ooni.nu
@@ -177,7 +175,6 @@ ams-ps2.ooni.nu
 
 [have_tcpmetrics]
 ams-explorer.ooni.nu
-miacollector.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 hkg-ps.ooni.nu
