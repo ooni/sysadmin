@@ -106,29 +106,6 @@
       - "{{ bouncer_service_v2 }}"
       - "{{ collector_service_v2 }}"
 
-- hosts: mia-ps.ooni.nu
-  roles:
-    - role: docker
-      tags: base
-    - role: letsencrypt
-      tags: base
-      letsencrypt_domains:
-        - "mia-ps.ooni.nu"
-    - role: ooni-bouncer
-      tags:
-        - service
-        - bouncer
-    - role: ooni-collector
-      tags:
-        - service
-        - collector
-    - role: probe-services
-      tags: ps
-    - role: onion-service
-      tags: tor
-      onion_services:
-      - "{{ collector_service_v2 }}"
-
 - hosts: hkg-ps.ooni.nu
   roles:
     - role: docker
