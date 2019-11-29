@@ -84,6 +84,7 @@
         - "bouncer.ooni.io"
         - "collector.ooni.io"
         - "a.collector.ooni.io"
+        - "b.collector.ooni.io"
         - "c.collector.ooni.io"
         - "registry.ooni.io"
         - "orchestrate.ooni.io"
