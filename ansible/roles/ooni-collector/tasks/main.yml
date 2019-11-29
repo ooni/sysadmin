@@ -137,7 +137,7 @@
 - cron:
     name: "run the daily tasks every hour"
     minute: "0"
-    hour: "*"
+    hour: "0"
     user: "root"
     job: "{{ collector_data_dir }}/bin/daily-tasks.sh"
 
