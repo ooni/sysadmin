@@ -57,6 +57,10 @@
       tags: tls
       letsencrypt_domains:
         - "ams-ps2.ooni.nu"
+        - "collector.ooni.io"
+        - "a.collector.ooni.io"
+        - "b.collector.ooni.io"
+        - "c.collector.ooni.io"
     - role: ooni-bouncer
       tags:
         - service
@@ -82,10 +86,6 @@
         - "ams-ps.ooni.nu"
         - "ps.ooni.io"
         - "bouncer.ooni.io"
-        - "collector.ooni.io"
-        - "a.collector.ooni.io"
-        - "b.collector.ooni.io"
-        - "c.collector.ooni.io"
         - "registry.ooni.io"
         - "orchestrate.ooni.io"
         # Legacy addresses
