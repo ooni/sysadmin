@@ -1201,44 +1201,6 @@
         },
         {
             "backup_ids": [],
-            "disk": 100,
-            "features": [],
-            "id": "3313",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:kP4aMiqVV5GACaGQJGbnygiH6O+7u0v+Q3t6RlS1nB4",
-                "ssh_ecdsa": "256 SHA256:Eq/AG67cg1v4t/TOTGSGBtfS057HaHp5vKaJXsIK4ww",
-                "ssh_rsa": "2048 SHA256:PO+yunevGeLSJZlxmrTAqPgpZw9Qj+qbwggIBjdYSMU"
-            },
-            "locked": false,
-            "memory": "4096",
-            "name": "mia-funbox01.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.241.254",
-                        "ip_address": "37.218.241.100",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.241.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "US East (Miami)",
-                "slug": "US East (Miami)"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
             "disk": 20,
             "features": [],
             "id": "3318",
@@ -1310,46 +1272,8 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "disk": 20,
-            "features": [],
-            "id": "3323",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 07:ef:dc:6d:3c:04:20:ab:4f:03:39:96:01:ae:f7:56",
-                "ssh_ecdsa": "256 ce:23:e2:a7:b2:d5:a9:12:a5:c3:77:74:23:2f:0b:75",
-                "ssh_rsa": "2048 e9:de:48:2f:93:1a:c2:47:3f:9d:8c:f0:d4:eb:15:61"
-            },
-            "locked": false,
-            "memory": "2048",
-            "name": "hkg-openconnect.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254",
-                        "ip_address": "103.104.244.45",
-                        "netmask": "255.255.255.0",
-                        "network": "103.104.244.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
             "status": "stopped",
-            "vcpus": "1"
+            "vcpus": "2"
         },
         {
             "backup_ids": [],
@@ -1430,6 +1354,6 @@
     ],
     "links": [],
     "meta": {
-        "total": 37
+        "total": 35
     }
 }
