@@ -7,6 +7,8 @@ ams-explorer		A	37.218.242.149
 ams-jupyter	60	A	37.218.242.67
 ams-orchestra	300	A	37.218.247.95
 ams-ps	60	A	37.218.245.90
+ams-ps2	300	A	37.218.245.109
+ams-wcth	300	A	37.218.245.114
 amsexplorer		A	37.218.242.231
 amsmatomo	60	A	37.218.242.173
 amsmetadb		A	37.218.242.175
@@ -21,10 +23,12 @@ hkgcollectora		A	103.104.244.110
 hkgtorth		A	103.104.244.76
 mia-echoth		A	37.218.241.93
 mia-get	1200	A	37.218.241.63
+mia-github-webhooks	300	A	37.218.241.98
 mia-httpth	60	A	37.218.241.94
 mia-orchestra-test	60	A	37.218.241.87
 mia-ps	60	A	37.218.241.80
 mia-ps-test		A	37.218.241.86
+mia-ps2	300	A	37.218.241.102
 mia-run	60	A	37.218.241.95
 mia-slack	300	A	37.218.241.90
 miaapi		A	37.218.241.8
@@ -33,4 +37,4 @@ miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 02f62d6a7cb6eb392386858934865a3538229374259b460cc851f216f403e07d
+; generated from ooni.nu.xml with SHA256 15e6d2c262d1e0197ff67417437c24e5c408f1ffdba6b602db506083aa12932f

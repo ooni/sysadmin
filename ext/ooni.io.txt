@@ -9,7 +9,7 @@ $TTL 60
 @	1799	TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
 @	1799	TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses	1799	TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	37.218.245.90
+a.collector		A	37.218.245.109
 a.echo.th		A	37.218.241.93
 a.http.th		A	37.218.241.94
 a.web-connectivity.th		A	103.104.244.19
@@ -17,13 +17,13 @@ acme-redirect-helper		A	37.218.241.32
 analytics		A	37.218.242.173
 api		A	37.218.242.30
 api.test	1799	A	37.218.241.8
-b.collector		A	37.218.241.178
+b.collector		A	37.218.245.109
 b.web-connectivity.th		A	103.104.244.19
 bouncer		A	37.218.245.90
-c.collector		A	37.218.245.90
+c.collector		A	37.218.245.109
 c.echo.th	1799	A	37.218.241.93
 c.web-connectivity.th		A	103.104.244.19
-collector		A	37.218.245.90
+collector		A	37.218.245.109
 collector-sandbox	1799	CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 datacollector.infra	1799	A	37.218.240.67
 db-1.proteus		A	37.218.242.79
@@ -37,6 +37,7 @@ events.proteus.test		A	37.218.241.86
 explorer		A	37.218.242.149
 explorer-beta		A	37.218.242.149
 get		A	37.218.241.63
+github-webhooks		A	37.218.241.98
 google._domainkey	1799	TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
 gorush		A	37.218.247.95
 hkg-wcth	300	A	103.104.244.19
@@ -76,4 +77,4 @@ superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
 wcth		A	37.218.241.78
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 7bc5c600de29cb5f42ad7338dca78160ef3d9655ea7d9fb28135c227498e8a24
+; generated from ooni.io.xml with SHA256 ce44c194b55007ff087fbbce76894255b2e38a497ee27c847db5a1b49d27b81a
