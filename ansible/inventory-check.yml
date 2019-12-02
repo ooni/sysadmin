@@ -118,18 +118,4 @@
   tasks:
   - name: check if host node_exporter is monitored
     assert: { that: "' {}:9100'.format(inventory_hostname) in hostvars['prometheus.infra.ooni.io'].promconf.content" }
-
-- hosts: all
-  gather_facts: false
-  tasks:
-    - name: build inventory checksum
-      set_fact:
-        inventory_hash: "{{ groups.all | sort | join('|') | hash('sha256') }}"
-      run_once: true
-
-    - name: stamp the inventory that was checked
-      assert:
-        that: "'{{ inventory_hash }}' == '0e77ff0e0522dce67c9ce7a673e04dbcbf2ce7c0e564399bb22bca32e34e89e7'"
-        msg: "If everything is OK, then checked inventory_hash should be: `{{ inventory_hash }}`. Edit the `stamp the inventory...` task in ansible/inventory-check.yml"
-      run_once: true
 ...
