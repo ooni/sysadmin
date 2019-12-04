@@ -1,6 +1,6 @@
 ---
 oomsm_timeout_s: 60
-oomsm_tag: '20191126-ff484c10'
+oomsm_tag: '20191204-7129c4e0'
 oomsm_backend_ipv4: '172.25.232.254'
 oomsm_backend_port: 16868
 oomsm_prometheus_port: 16888
