@@ -128,8 +128,16 @@ groups:
       summary: Lots of `scrape_samples_scraped` lost
       description: Now ~ {{ "sum(scrape_samples_scraped)" | query | first | value | humanize }}, 24h ago ~ {{ "sum(scrape_samples_scraped offset 24h)" | query | first | value | humanize }}.
 
+  # to make the onion service alerts less noisy, we will alert only when the
+  # onion jobs are down for 60 minutes instead of 10.
   - alert: BlackboxDown
-    expr: probe_success == 0
+    expr: probe_success{job=~"onion .+"} == 0
+    for: 60m
+    annotations:
+      summary: "{{ $labels.instance }} endpoint down"
+
+  - alert: BlackboxDown
+    expr: probe_success{job!~"onion .+"} == 0
     for: 10m
     annotations:
       summary: "{{ $labels.instance }} endpoint down"
