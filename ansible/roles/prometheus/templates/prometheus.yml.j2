@@ -104,8 +104,8 @@ scrape_configs:
       port: 80
       refresh_interval: 60s # tor DNS TTL
       names:
-      - ganriuwqt5vgbgnj.onion # onion of `b.collector.ooni.io`
-      - 42q7ug46dspcsvkw.onion # onion of `c.collector.ooni.io`
+      - jehhrikjjqrlpufu.onion # onion of ams-ps2
+      - hcn5nqahdkds6cjv.onion # onion of mia-ps2
     relabel_configs:
     - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/invalidpath"}
     - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
