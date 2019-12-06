@@ -1,6 +1,16 @@
 ---
 - import_playbook: ansible-version.yml
 
+- hosts: "ams-wcth2.ooni.nu"
+  roles:
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "ams-wcth2.ooni.nu"
+    - role: th-web-connectivity
+      tags: wcth
+      with_pip: yes
+      web_connectivity_domain: ams-wcth2.ooni.nu
+
 - hosts: "mia-wcth.ooni.io"
   roles:
     - role: docker

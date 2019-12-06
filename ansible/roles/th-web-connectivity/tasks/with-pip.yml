@@ -1,6 +1,11 @@
 ---
-- name: Install pip package docker-compose
-  pip: name=oonibackend version=1.3.6
+- name: Install apt package python-pip
+  apt: >
+    update_cache=yes
+    name=python-pip
+
+- name: Install pip package oonibackend
+  pip: name=oonibackend version=1.3.7
 
 - name: Install test helper systemd service file
   notify:
