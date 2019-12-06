@@ -52,3 +52,8 @@
     - "{{ web_connectivity_data_dir }}:{{ web_connectivity_data_dir }}"
     command: "python bin/oonib --config {{ web_connectivity_data_dir }}/oonibackend.conf"
     restart_policy: unless-stopped
+  when: not with_pip
+
+- name: setup using pip
+  include_tasks: with-pip.yml
+  when: with_pip

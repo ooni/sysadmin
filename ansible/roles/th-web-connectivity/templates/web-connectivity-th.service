@@ -1,0 +1,15 @@
+[Unit]
+Description=Web Connectivity Test Helper
+After=syslog.target
+
+[Service]
+Type=simple
+User={{ web_connectivity_user }}
+Group={{ web_connectivity_user }}
+WorkingDirectory={{ web_connectivity_data_dir }}
+ExecStart=oonib --config {{ web_connectivity_data_dir }}/oonibackend.conf
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
