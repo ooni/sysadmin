@@ -48,6 +48,7 @@ ams-orchestra.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth.ooni.nu
+ams-wcth2.ooni.nu
 
 [probe_services]
 mia-ps2.ooni.nu
@@ -114,6 +115,7 @@ amsmatomo.ooni.nu
 mia-wcth.ooni.io
 hkg-wcth.ooni.io
 ams-wcth.ooni.nu
+ams-wcth2.ooni.nu
 mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -152,6 +154,7 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 mia-github-webhooks.ooni.nu
 ams-wcth.ooni.nu
+ams-wcth2.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
