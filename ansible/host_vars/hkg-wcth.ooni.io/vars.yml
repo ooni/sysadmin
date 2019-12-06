@@ -1,24 +1,11 @@
 wcth_onion_service_b_hostname: '2lzg3f4r3eapfi6j.onion'
 wcth_onion_service_b_private_key: '{{ vault_wcth_onion_service_b_private_key }}'
 
-wcth_onion_service_c_hostname: 'y3zq5fwelrzkkv3s.onion'
-wcth_onion_service_c_private_key: '{{ vault_wcth_onion_service_c_private_key }}'
-
 wcth_onion_service_b:
   service_dir: '/var/lib/tor/b_web_connectivity'
   hs_version: 2
   hostname: "{{ wcth_onion_service_b_hostname }}"
   private_key: "{{ wcth_onion_service_b_private_key }}"
-  ports:
-  - service_port: 80
-    local_ipv4: '127.0.0.1'
-    local_port: 9020
-
-wcth_onion_service_c:
-  service_dir: '/var/lib/tor/c_web_connectivity'
-  hs_version: 2
-  hostname: "{{ wcth_onion_service_c_hostname }}"
-  private_key: "{{ wcth_onion_service_c_private_key }}"
   ports:
   - service_port: 80
     local_ipv4: '127.0.0.1'

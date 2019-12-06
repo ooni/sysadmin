@@ -10,6 +10,10 @@
       tags: wcth
       with_pip: yes
       web_connectivity_domain: ams-wcth2.ooni.nu
+    - role: onion-service
+      tags: tor
+      onion_services:
+        - "{{ wcth_onion_service }}"
 
 - hosts: "mia-wcth.ooni.io"
   roles:
@@ -43,7 +47,6 @@
       tags: tor
       onion_services:
         - "{{ wcth_onion_service_b }}"
-        - "{{ wcth_onion_service_c }}"
 
     - role: th-web-connectivity
       tags: wcth
