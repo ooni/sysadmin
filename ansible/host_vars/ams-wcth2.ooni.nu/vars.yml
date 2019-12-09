@@ -1,0 +1,12 @@
+wcth_onion_service_hostname: 'y3zq5fwelrzkkv3s.onion'
+wcth_onion_service_private_key: '{{ vault_wcth_onion_service_private_key }}'
+
+wcth_onion_service:
+  service_dir: '/var/lib/tor/web_connectivity'
+  hs_version: 2
+  hostname: "{{ wcth_onion_service_hostname }}"
+  private_key: "{{ wcth_onion_service_private_key }}"
+  ports:
+  - service_port: 80
+    local_ipv4: '127.0.0.1'
+    local_port: 9020

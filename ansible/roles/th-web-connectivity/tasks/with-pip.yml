@@ -1,0 +1,16 @@
+---
+- name: Install apt package python-pip
+  apt: >
+    update_cache=yes
+    name=python-pip
+
+- name: Install pip package oonibackend
+  pip: name=oonibackend version=1.3.7
+
+- name: Install test helper systemd service file
+  notify:
+  - systemctl daemon-reload
+  - restart web-connectivity-th
+  template:
+    src: web-connectivity-th.service
+    dest: /etc/systemd/system/web-connectivity-th.service
