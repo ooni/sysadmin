@@ -127,6 +127,9 @@
   with_items:
     - "{{ collector_data_dir }}/renamed"
     - "{{ collector_data_dir }}/errored"
+    - "{{ collector_data_dir }}/errored/empty"
+    - "{{ collector_data_dir }}/errored/invalid"
+    - "{{ collector_data_dir }}/errored/failed"
 
 - name: "Install pyyaml for the daily-task"
   apt:
