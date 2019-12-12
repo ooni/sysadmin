@@ -120,16 +120,16 @@ case "$script" in
 
     reports_tgz_s3_sync)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env"
+    volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
     volargs="${volargs} --volume=$private/reports-tgz:$private/reports-tgz:ro"
-    set -- aws s3 sync --size-only "$private/reports-tgz/" s3://ooni-data-private/archives-raw/yaml/ --exclude '*' --include "${bucket}.tar.gz" --include "${bucket}.index.json.gz"
+    set -- aws s3 sync --size-only "$private/reports-tgz/" s3://ooni-data/archives-raw/yaml/ --exclude '*' --include "${bucket}.tar.gz" --include "${bucket}.index.json.gz"
     ;;
 
     reports_tgz_s3_ls)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env" # maybe downgrade to `list-only` user?
+    volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
     volargs="${volargs} --volume=$private/reports-tgz-s3-ls:$private/reports-tgz-s3-ls:rw"
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data-private/archives-raw/yaml/$bucket" --s3-ls "$private/reports-tgz-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data/archives-raw/yaml/$bucket" --s3-ls "$private/reports-tgz-s3-ls/${bucket}.json.gz"
     ;;
 
     reports_tgz_cleanup)
@@ -140,16 +140,16 @@ case "$script" in
 
     canned_s3_sync)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env"
+    volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
     volargs="${volargs} --volume=$private/canned/${bucket}:$private/canned/${bucket}:ro"
-    set -- aws s3 sync --size-only "$private/canned/${bucket}/" "s3://ooni-data-private/canned/${bucket}/"
+    set -- aws s3 sync --size-only "$private/canned/${bucket}/" "s3://ooni-data/canned/${bucket}/"
     ;;
 
     canned_s3_ls)
     docknet="" # no `--network none'
-    volargs="${volargs} --env-file=/etc/af-worker/s3_ooni_datacollector.env" # maybe downgrade to `list-only` user?
+    volargs="${volargs} --env-file=/etc/af-worker/s3root.env"
     volargs="${volargs} --volume=$private/canned-s3-ls:$private/canned-s3-ls:rw"
-    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data-private/canned/$bucket" --s3-ls "$private/canned-s3-ls/${bucket}.json.gz"
+    set -- /usr/local/bin/aws_s3_ls.py --url "s3://ooni-data/canned/$bucket" --s3-ls "$private/canned-s3-ls/${bucket}.json.gz"
     ;;
 
     canned_cleanup)
