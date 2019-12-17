@@ -17,4 +17,5 @@ fcm_server_key: '{{ vault_fcm_server_key }}'
 orchestra_apn_key_password: '{{ vault_orchestra_apn_key_password }}'
 orchestra_notify_basic_auth_password: '{{ vault_orchestra_notify_basic_auth_password }}'
 orchestra_apn_key_content: '{{ vault_orchestra_apn_key_content }}'
+orchestra_psiphon_config_file_content: '{{ vault_orchestra_psiphon_config_file_content }}'
 ...
