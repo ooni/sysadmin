@@ -30,7 +30,10 @@ orchestra_log_level: "info"
 orchestra_api_address: "0.0.0.0"
 orchestra_notify_basic_auth_user: "orchestra"
 
-orchestra_admin_password : "{{ CHANGE_ME  }}"
+orchestra_admin_password: "{{ CHANGE_ME  }}"
 orchestra_database_url: "{{ CHANGE_ME }}"
 orchestra_auth_jwt_secret : "{{ CHANGE_ME  }}"
 orchestra_notify_basic_auth_password: "{{ CHANGE_ME }}"
+
+orchestra_psiphon_config_file_content: "{{ CHANGE_ME }}"
+orchestra_psiphon_config_file: "{{ orchestrate_data_dir }}/psiphon_config.json"

@@ -31,6 +31,11 @@
     src: ooni-orchestrate.toml
     dest: "{{ orchestrate_data_dir }}/ooni-orchestrate.toml"
 
+- name: Write Psiphon config file
+  copy:
+    content: "{{ orchestra_psiphon_config_file_content }}"
+    dest: "{{ orchestra_psiphon_config_file }}"
+
 - name: orchestrate webservice
   docker_container:
     image: "{{ orchestrate_docker_image }}"
