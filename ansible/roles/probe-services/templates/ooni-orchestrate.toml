@@ -16,3 +16,6 @@ address = "{{ orchestra_api_address }}"
 
 [database]
 url = "{{ orchestra_database_url }}"
+
+[psiphon]
+config-file = "{{ orchestra_psiphon_config_file }}"

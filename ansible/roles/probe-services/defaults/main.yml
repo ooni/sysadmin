@@ -19,8 +19,8 @@ orchestrate_port: 9031
 
 orchestrate_data_dir: '/srv/orchestrate'
 registry_data_dir: '/srv/registry'
-registry_docker_image: 'openobservatory/orchestra:20191029-e925c2ee'
-orchestrate_docker_image: 'openobservatory/orchestra:20191029-e925c2ee'
+registry_docker_image: 'openobservatory/orchestra:20191217-c155ac30'
+orchestrate_docker_image: 'openobservatory/orchestra:20191217-c155ac30'
 
 orchestra_notify_url: "https://gorush.ooni.io:8081"
 orchestra_notify_click_action_android: "org.openobservatory.ooniprobe.OPEN_BROWSER"
@@ -30,7 +30,10 @@ orchestra_log_level: "info"
 orchestra_api_address: "0.0.0.0"
 orchestra_notify_basic_auth_user: "orchestra"
 
-orchestra_admin_password : "{{ CHANGE_ME  }}"
+orchestra_admin_password: "{{ CHANGE_ME  }}"
 orchestra_database_url: "{{ CHANGE_ME }}"
 orchestra_auth_jwt_secret : "{{ CHANGE_ME  }}"
 orchestra_notify_basic_auth_password: "{{ CHANGE_ME }}"
+
+orchestra_psiphon_config_file_content: "{{ CHANGE_ME }}"
+orchestra_psiphon_config_file: "{{ orchestrate_data_dir }}/psiphon_config.json"
