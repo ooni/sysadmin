@@ -52,7 +52,8 @@
 - name: Generate Letsencrypt certificate with certbot package
   command: >
     certbot certonly
-    --webroot -w /var/www/letsencrypt --preferred-challenges http
+    --webroot --webroot-path /var/www/letsencrypt
+    --preferred-challenges http
     --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }}
     --domains {{ letsencrypt_domains | join(',') }}

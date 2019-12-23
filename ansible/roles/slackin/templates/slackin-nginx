@@ -5,7 +5,6 @@
 server {
     server_name _;
 
-    listen 80;
     listen 443 ssl;
     {{ c.ssl_letsencrypt(ssl_domain) }}
 
