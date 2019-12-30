@@ -61,4 +61,9 @@
     --post-hook '/usr/sbin/service nginx reload'
   args:
     creates: "{{ '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' if expand is not defined else omit}}"
+- name: Ensure there is a webroot_map for the first letsencrypt domain # this is a hotfix
+  lineinfile:
+    path: "/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf"
+    line: "{{ letsencrypt_domains | first }} = /var/www/letsencrypt"
+    state: present
 ...
