@@ -66,5 +66,5 @@
     path: "/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf"
     line: "{{ letsencrypt_domains | first }} = /var/www/letsencrypt"
     state: present
-  notify: reload certbot
+  notify: restart certbot
 ...
