@@ -2,3 +2,5 @@
   service: name=nginx state=restarted
 - name: reload nginx
   service: name=nginx state=reloaded
+- name: reload certbot
+  service: name=certbot state=reloaded
