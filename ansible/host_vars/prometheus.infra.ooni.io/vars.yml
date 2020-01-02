@@ -2,7 +2,6 @@
 adm_logins: [ art, federico, sarath, sbs, superq ]
 ngxprom_scrapers:
   - prometheus.infra.ooni.io
-  - brie.darkk.net.ru
 
 onion_ipv6_ula: 'fd26:a7e3:2a3::'
 

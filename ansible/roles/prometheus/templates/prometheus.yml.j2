@@ -26,7 +26,6 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
     - targets:
-      - brie.darkk.net.ru:9090
       - prometheus.infra.ooni.io:8090
 
   - job_name: pushgateway
@@ -43,7 +42,6 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
     - targets:
-      - brie.darkk.net.ru:9093
       - prometheus.infra.ooni.io:9093
 
 {% for bbjob in blackbox_jobs %}
@@ -137,7 +135,6 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
-        - brie.darkk.net.ru:9100
 {% for host in (groups.all | difference(groups.no_nodeexp)) %}
         - {{ host }}:9100
 {% endfor %}
