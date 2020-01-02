@@ -9,11 +9,11 @@ ams-orchestra	300	A	37.218.247.95
 ams-ps	60	A	37.218.245.90
 ams-ps2	300	A	37.218.245.109
 ams-wcth	300	A	37.218.245.114
+ams-wcth2	300	A	37.218.247.47
 amsexplorer		A	37.218.242.231
 amsmatomo	60	A	37.218.242.173
 amsmetadb		A	37.218.242.175
 amstorth		A	37.218.242.217
-bouncer.infra	1800	A	62.217.125.6
 censorshipwiki	1800	URL301	https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki
 dnstunnel	1800	NS	ooni.nu.
 fastpath		A	103.104.244.20
@@ -37,4 +37,4 @@ miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 15e6d2c262d1e0197ff67417437c24e5c408f1ffdba6b602db506083aa12932f
+; generated from ooni.nu.xml with SHA256 ec75348a0c370d38789f3ca91e8cc4c560770a4a5a867dbb9a57b82455d716bb

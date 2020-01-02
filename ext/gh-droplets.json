@@ -1272,7 +1272,7 @@
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
-            "status": "stopped",
+            "status": "running",
             "vcpus": "2"
         },
         {
@@ -1350,10 +1350,48 @@
             "snapshot_ids": [],
             "status": "running",
             "vcpus": "2"
+        },
+        {
+            "backup_ids": [],
+            "disk": 50,
+            "features": [],
+            "id": "3345",
+            "kernel": {
+                "id": "13",
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:ScS4vVT+9RL3CqoguWr+lPUKBHG9059cI1UNFCeainA",
+                "ssh_ecdsa": "256 SHA256:tZ46JMocSsqMM09YjJ8l6BXzppTskrR1YM9OV4vcmxo",
+                "ssh_rsa": "2048 SHA256:iZax3oDZS5GdoakaiR7KS1Nrnzr8bIppsRe/3fGEkuI"
+            },
+            "locked": false,
+            "memory": "4096",
+            "name": "ams-wcth2.ooni.nu",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.247.126",
+                        "ip_address": "37.218.247.47",
+                        "netmask": "255.255.255.128",
+                        "network": "37.218.247.0/25",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": "1",
+                "name": "Amsterdam",
+                "slug": "Amsterdam"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": "2"
         }
     ],
     "links": [],
     "meta": {
-        "total": 35
+        "total": 36
     }
 }
