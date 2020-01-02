@@ -27,11 +27,6 @@ hellais_nas.cert: hellais_nas.key pusher_ca.cert pusher_ca.key.vault
 	openssl req -new -key hellais_nas.key -sha256 -days 3650 -subj '/O=OONI/OU=Prometheus Pusher/CN=hellais NAS' | \
 	openssl x509 -req -sha256 -days 3650 -CA pusher_ca.cert -CAkey <(../vault view pusher_ca.key.vault) -set_serial 0x`head -c 16 /dev/urandom | xxd -plain` -out $@
 
-# Record CN, that cert is used in `slacktopus-ping` script managed in another repo.
-darkk_weechat.cert: darkk_weechat.key pusher_ca.cert pusher_ca.key.vault
-	openssl req -new -key darkk_weechat.key -sha256 -days 3650 -subj '/O=OONI/OU=Prometheus Pusher/CN=darkk WeeChat' | \
-	openssl x509 -req -sha256 -days 3650 -CA pusher_ca.cert -CAkey <(../vault view pusher_ca.key.vault) -set_serial 0x`head -c 16 /dev/urandom | xxd -plain` -out $@
-
 %_ca.key.vault:
 	openssl genrsa 2048 | ../vault encrypt --output $@
 
