@@ -22,7 +22,6 @@ server {
 
     proxy_read_timeout {{ oomsm_timeout_s }}s;
 
-    limit_req zone=limit_qps burst=10 nodelay;
 
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
@@ -30,8 +29,10 @@ server {
 
     {{ c.location_letsencrypt() }}
 
+    # Limit all requests to 10 per second
+    limit_req zone=limit_qps burst=10 nodelay;
 
-    location = /measurements {
+    location = /api/v1/measurements {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
         proxy_cache_min_uses 3; # this should avoid polluting the cache with random measurements search queries
@@ -39,9 +40,19 @@ server {
         proxy_cache_valid 200 1h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
-        proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
+        proxy_cache_lock_age 58s;
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+
+        # These queries are very heavy and can include offset limits
+        limit_req zone=limit_qps burst=2 nodelay;
+    }
+
+    location /api/v1/ {
+        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
+
+        # These are all the public API endpoints, so we rate them limit them too
+        limit_req zone=limit_qps burst=5 nodelay;
     }
 
 {% for handle in ["/", "/stats", "/api/_/global_overview", "/api/_/global_overview_by_month", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
