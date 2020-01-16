@@ -17,7 +17,7 @@
 
 - name: Write basic monitor script
   template:
-    name: "{{ web_connectivity_user }}"
+    owner: "{{ web_connectivity_user }}"
     group: "{{ web_connectivity_user }}"
     mode: "u+rwx"
     src: "if-nok-restart.sh"
