@@ -14,3 +14,18 @@
   template:
     src: web-connectivity-th.service
     dest: /etc/systemd/system/web-connectivity-th.service
+
+- name: Write basic monitor script
+  template:
+    name: "{{ web_connectivity_user }}"
+    group: "{{ web_connectivity_user }}"
+    mode: "u+rwx"
+    src: "if-nok-restart.sh"
+    dest: "{{ web_connectivity_data_dir }}/if-nok-restart.sh"
+
+- cron:
+    name: "check every minute if the service is OK"
+    minute: "*"
+    hour: "*"
+    user: "root"
+    job: "{{ web_connectivity_data_dir }}/if-nok-restart.sh"
