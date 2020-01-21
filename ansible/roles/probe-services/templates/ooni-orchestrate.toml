@@ -19,3 +19,6 @@ url = "{{ orchestra_database_url }}"
 
 [psiphon]
 config-file = "{{ orchestra_psiphon_config_file }}"
+
+[tor]
+targets-file = "{{ orchestra_tor_targets_file }}"

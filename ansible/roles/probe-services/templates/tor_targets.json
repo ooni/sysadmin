@@ -1,0 +1,21 @@
+{
+  "f372c264e9a470335d9ac79fe780847bda052aa3b6a9ee5ff497cb6501634f9f": {
+    "address": "38.229.1.78:80",
+    "fingerprint": "C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4",
+    "params": {
+      "cert": [
+        "Hmyfd2ev46gGY7NoVxA9ngrPF2zCZtzskRTzoWXbxNkzeVnGFPWmrTtILRyqCTjHR+s9dg"
+      ],
+      "iat-mode": ["1"]
+    },
+    "protocol": "obfs4"
+  },
+  "66.111.2.131:9030": {
+    "address":  "66.111.2.131:9030",
+    "protocol": "dir_port"
+  },
+  "66.111.2.131:9001": {
+    "address":  "66.111.2.131:9001",
+    "protocol": "or_port"
+  }
+}

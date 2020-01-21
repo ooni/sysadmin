@@ -36,6 +36,11 @@
     content: "{{ orchestra_psiphon_config_file_content }}"
     dest: "{{ orchestra_psiphon_config_file }}"
 
+- name: Write tor targets file
+  template:
+    src: tor_targets.json
+    dest: "{{ orchestra_tor_targets_file }}"
+
 - name: orchestrate webservice
   docker_container:
     image: "{{ orchestrate_docker_image }}"

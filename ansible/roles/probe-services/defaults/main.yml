@@ -37,3 +37,4 @@ orchestra_notify_basic_auth_password: "{{ CHANGE_ME }}"
 
 orchestra_psiphon_config_file_content: "{{ CHANGE_ME }}"
 orchestra_psiphon_config_file: "{{ orchestrate_data_dir }}/psiphon_config.json"
+orchestra_tor_targets_file: "{{ orchestrate_data_dir }}/tor_targets.json"
