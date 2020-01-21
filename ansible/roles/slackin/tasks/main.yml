@@ -8,7 +8,7 @@
 - name: Create slack-irc-bridge config
   tags: slack-irc
   copy:
-    content: "{{ slack_irc_config }}"
+    content: "{{ slack_irc_config | to_nice_json }}"
     dest: "/srv/slack-irc/config.json"
   notify: restart slack-irc-bridge
 
