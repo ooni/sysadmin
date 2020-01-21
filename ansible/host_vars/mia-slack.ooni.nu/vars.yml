@@ -38,6 +38,7 @@ slack_irc_config: |
         "port": 6697,
         "secure": true,
         "messageSplit": 448,
+        "password": "{{ slacktopus_password }}",
         "autoSendCommands": [
           ["PRIVMSG", "NickServ", "GHOST slacktopus {{ slacktopus_password }}" ],
           ["NICK", "slacktopus"],
