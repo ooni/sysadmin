@@ -12,4 +12,5 @@
         - "slack.ooni.io"
         - "slack.openobservatory.org"
     - role: slackin
+      tags: slackin
       ssl_domain: "mia-slack.ooni.nu"

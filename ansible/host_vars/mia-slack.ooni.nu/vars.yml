@@ -38,12 +38,15 @@ slack_irc_config: |
         "port": 6697,
         "secure": true,
         "messageSplit": 448,
-        "autoSendCommands": [
-          ["PRIVMSG", "NickServ", "GHOST slacktopus {{ slacktopus_password }}" ],
-          ["NICK", "slacktopus"],
-          ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"]
-        ],
+        "userName": "slacktopus",
+        "nick": "slacktopus",
       },
+      "autoSendCommands": [
+        ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"],
+        ["PRIVMSG", "NickServ", "GHOST slacktopus {{ slacktopus_password }}" ],
+        ["NICK", "slacktopus"],
+        ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"],
+      ],
       "server": "irc.oftc.net",
       "token": "{{ slack_irc_token }}",
       "channelMapping": {
