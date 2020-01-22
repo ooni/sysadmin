@@ -40,15 +40,13 @@ slack_irc_config: |
         "messageSplit": 448,
         "userName": "slacktopus",
         "nick": "slacktopus",
-        "password": "{{ slacktopus_password }}",
-        "debug": true,
-        "autoSendCommands": [
-          ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"],
-          ["PRIVMSG", "NickServ", "GHOST slacktopus {{ slacktopus_password }}" ],
-          ["NICK", "slacktopus"],
-          ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"],
-        ],
       },
+      "autoSendCommands": [
+        ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"],
+        ["PRIVMSG", "NickServ", "GHOST slacktopus {{ slacktopus_password }}" ],
+        ["NICK", "slacktopus"],
+        ["PRIVMSG", "NickServ", "IDENTIFY {{ slacktopus_password }}"],
+      ],
       "server": "irc.oftc.net",
       "token": "{{ slack_irc_token }}",
       "channelMapping": {
