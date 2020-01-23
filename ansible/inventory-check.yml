@@ -113,7 +113,7 @@
   - name: fetch prometheus config
     uri: url=http://localhost:8090/config return_content=true
     register: promconf
-- hosts: all:!no_nodeexp
+- hosts: all
   gather_facts: false
   tasks:
   - name: check if host node_exporter is monitored

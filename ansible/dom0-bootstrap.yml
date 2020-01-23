@@ -45,7 +45,7 @@
     - role: nginx-stable
       tags: nginx-stable
 
-- hosts: all:!no_nodeexp
+- hosts: all
   remote_user: root
   gather_facts: true # to gather `ansible_service_mgr`
   roles:
