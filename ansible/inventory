@@ -179,9 +179,6 @@ mia-ps2.ooni.nu
 ams-ps2.ooni.nu
 mia-ps2.ooni.nu
 
-[no_nodeexp:children]
-no_passwd # no passwd => no nodeexp user ;-)
-
 ########################################################################
 # TO DELETE.
 # Stopped VMs that should be deleted from GH and DNS after some grace period:
