@@ -1,6 +1,25 @@
 ---
 - import_playbook: ansible-version.yml
 
+- hosts: "ams-wcth3.ooni.nu"
+  roles:
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "ams-wcth3.ooni.nu"
+        - "wcth.ooni.io"
+        - "a.web-connectivity.th.ooni.io"
+        - "b.web-connectivity.th.ooni.io"
+        - "c.web-connectivity.th.ooni.io"
+    - role: th-web-connectivity
+      tags: wcth
+      with_pip: yes
+      web_connectivity_domain: ams-wcth3.ooni.nu
+    - role: onion-service
+      tags: tor
+      onion_services:
+        - "{{ wcth_onion_service }}"
+
+
 - hosts: "ams-wcth2.ooni.nu"
   roles:
     - role: letsencrypt
@@ -22,13 +41,6 @@
       expand: yes
       letsencrypt_domains:
         - "mia-wcth.ooni.io"
-        - "wcth.ooni.io"
-
-    - role: onion-service
-      tags: tor
-      onion_services:
-        - "{{ wcth_onion_service }}"
-
     - role: th-web-connectivity
       tags: wcth
       web_connectivity_domain: mia-wcth.ooni.io
@@ -39,15 +51,10 @@
     - role: letsencrypt
       letsencrypt_domains:
         - "hkg-wcth.ooni.io"
-        - "a.web-connectivity.th.ooni.io"
-        - "b.web-connectivity.th.ooni.io"
-        - "c.web-connectivity.th.ooni.io"
-
     - role: onion-service
       tags: tor
       onion_services:
         - "{{ wcth_onion_service_b }}"
-
     - role: th-web-connectivity
       tags: wcth
       web_connectivity_domain: hkg-wcth.ooni.io

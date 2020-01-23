@@ -48,6 +48,7 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth.ooni.nu
 ams-wcth2.ooni.nu
+ams-wcth3.ooni.nu
 
 [probe_services]
 mia-ps2.ooni.nu
@@ -115,6 +116,7 @@ mia-wcth.ooni.io
 hkg-wcth.ooni.io
 ams-wcth.ooni.nu
 ams-wcth2.ooni.nu
+ams-wcth3.ooni.nu
 mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
@@ -152,6 +154,7 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth.ooni.nu
 ams-wcth2.ooni.nu
+ams-wcth3.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
@@ -175,9 +178,6 @@ mia-ps2.ooni.nu
 [active_collector]
 ams-ps2.ooni.nu
 mia-ps2.ooni.nu
-
-[no_passwd] # hosts in inventory that should NOT have `passwd` applied because of various reasons
-staticiforme.torproject.org       # tor LDAP
 
 [no_nodeexp:children]
 no_passwd # no passwd => no nodeexp user ;-)
