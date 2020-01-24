@@ -1,4 +1,1484 @@
 {
+  "185.13.39.197:443": {
+    "address": "185.13.39.197:443",
+    "fingerprint": "001524DD403D729F08F7E5D77813EF12756CFA8D",
+    "protocol": "or_port"
+  },
+  "185.13.39.197:80": {
+    "address": "185.13.39.197:80",
+    "fingerprint": "001524DD403D729F08F7E5D77813EF12756CFA8D",
+    "protocol": "dir_port"
+  },
+  "185.100.85.61:443": {
+    "address": "185.100.85.61:443",
+    "fingerprint": "025B66CEBC070FCB0519D206CF0CF4965C20C96E",
+    "protocol": "or_port"
+  },
+  "185.100.85.61:80": {
+    "address": "185.100.85.61:80",
+    "fingerprint": "025B66CEBC070FCB0519D206CF0CF4965C20C96E",
+    "protocol": "dir_port"
+  },
+  "185.225.17.3:443": {
+    "address": "185.225.17.3:443",
+    "fingerprint": "0338F9F55111FE8E3570E7DE117EF3AF999CC1D7",
+    "protocol": "or_port"
+  },
+  "185.225.17.3:80": {
+    "address": "185.225.17.3:80",
+    "fingerprint": "0338F9F55111FE8E3570E7DE117EF3AF999CC1D7",
+    "protocol": "dir_port"
+  },
+  "163.172.149.155:443": {
+    "address": "163.172.149.155:443",
+    "fingerprint": "0B85617241252517E8ECF2CFC7F4C1A32DCD153F",
+    "protocol": "or_port"
+  },
+  "163.172.149.155:80": {
+    "address": "163.172.149.155:80",
+    "fingerprint": "0B85617241252517E8ECF2CFC7F4C1A32DCD153F",
+    "protocol": "dir_port"
+  },
+  "5.200.21.144:443": {
+    "address": "5.200.21.144:443",
+    "fingerprint": "0C039F35C2E40DCB71CD8A07E97C7FD7787D42D6",
+    "protocol": "or_port"
+  },
+  "5.200.21.144:80": {
+    "address": "5.200.21.144:80",
+    "fingerprint": "0C039F35C2E40DCB71CD8A07E97C7FD7787D42D6",
+    "protocol": "dir_port"
+  },
+  "37.252.185.182:8080": {
+    "address": "37.252.185.182:8080",
+    "fingerprint": "113143469021882C3A4B82F084F8125B08EE471E",
+    "protocol": "or_port"
+  },
+  "37.252.185.182:9030": {
+    "address": "37.252.185.182:9030",
+    "fingerprint": "113143469021882C3A4B82F084F8125B08EE471E",
+    "protocol": "dir_port"
+  },
+  "37.120.174.249:443": {
+    "address": "37.120.174.249:443",
+    "fingerprint": "11DF0017A43AF1F08825CD5D973297F81AB00FF3",
+    "protocol": "or_port"
+  },
+  "37.120.174.249:80": {
+    "address": "37.120.174.249:80",
+    "fingerprint": "11DF0017A43AF1F08825CD5D973297F81AB00FF3",
+    "protocol": "dir_port"
+  },
+  "95.85.8.226:443": {
+    "address": "95.85.8.226:443",
+    "fingerprint": "1211AC1BBB8A1AF7CBA86BCE8689AA3146B86423",
+    "protocol": "or_port"
+  },
+  "95.85.8.226:80": {
+    "address": "95.85.8.226:80",
+    "fingerprint": "1211AC1BBB8A1AF7CBA86BCE8689AA3146B86423",
+    "protocol": "dir_port"
+  },
+  "193.11.114.43:9001": {
+    "address": "193.11.114.43:9001",
+    "fingerprint": "12AD30E5D25AA67F519780E2111E611A455FDC89",
+    "protocol": "or_port"
+  },
+  "193.11.114.43:9030": {
+    "address": "193.11.114.43:9030",
+    "fingerprint": "12AD30E5D25AA67F519780E2111E611A455FDC89",
+    "protocol": "dir_port"
+  },
+  "37.157.195.87:443": {
+    "address": "37.157.195.87:443",
+    "fingerprint": "12FD624EE73CEF37137C90D38B2406A66F68FAA2",
+    "protocol": "or_port"
+  },
+  "37.157.195.87:8030": {
+    "address": "37.157.195.87:8030",
+    "fingerprint": "12FD624EE73CEF37137C90D38B2406A66F68FAA2",
+    "protocol": "dir_port"
+  },
+  "217.182.51.248:443": {
+    "address": "217.182.51.248:443",
+    "fingerprint": "183005F78229D94EE51CE7795A42280070A48D0D",
+    "protocol": "or_port"
+  },
+  "217.182.51.248:80": {
+    "address": "217.182.51.248:80",
+    "fingerprint": "183005F78229D94EE51CE7795A42280070A48D0D",
+    "protocol": "dir_port"
+  },
+  "171.25.193.25:443": {
+    "address": "171.25.193.25:443",
+    "fingerprint": "185663B7C12777F052B2C2D23D7A239D8DA88A0F",
+    "protocol": "or_port"
+  },
+  "171.25.193.25:80": {
+    "address": "171.25.193.25:80",
+    "fingerprint": "185663B7C12777F052B2C2D23D7A239D8DA88A0F",
+    "protocol": "dir_port"
+  },
+  "149.56.141.138:9001": {
+    "address": "149.56.141.138:9001",
+    "fingerprint": "1938EBACBB1A7BFA888D9623C90061130E63BB3F",
+    "protocol": "or_port"
+  },
+  "149.56.141.138:9030": {
+    "address": "149.56.141.138:9030",
+    "fingerprint": "1938EBACBB1A7BFA888D9623C90061130E63BB3F",
+    "protocol": "dir_port"
+  },
+  "81.7.14.253:443": {
+    "address": "81.7.14.253:443",
+    "fingerprint": "1AE039EE0B11DB79E4B4B29CBA9F752864A0259E",
+    "protocol": "or_port"
+  },
+  "81.7.14.253:9001": {
+    "address": "81.7.14.253:9001",
+    "fingerprint": "1AE039EE0B11DB79E4B4B29CBA9F752864A0259E",
+    "protocol": "dir_port"
+  },
+  "50.7.74.171:9001": {
+    "address": "50.7.74.171:9001",
+    "fingerprint": "1CD17CB202063C51C7DAD3BACEF87ECE81C2350F",
+    "protocol": "or_port"
+  },
+  "50.7.74.171:9030": {
+    "address": "50.7.74.171:9030",
+    "fingerprint": "1CD17CB202063C51C7DAD3BACEF87ECE81C2350F",
+    "protocol": "dir_port"
+  },
+  "199.184.246.250:443": {
+    "address": "199.184.246.250:443",
+    "fingerprint": "1F6ABD086F40B890A33C93CC4606EE68B31C9556",
+    "protocol": "or_port"
+  },
+  "199.184.246.250:80": {
+    "address": "199.184.246.250:80",
+    "fingerprint": "1F6ABD086F40B890A33C93CC4606EE68B31C9556",
+    "protocol": "dir_port"
+  },
+  "212.47.229.2:9001": {
+    "address": "212.47.229.2:9001",
+    "fingerprint": "20462CBA5DA4C2D963567D17D0B7249718114A68",
+    "protocol": "or_port"
+  },
+  "212.47.229.2:9030": {
+    "address": "212.47.229.2:9030",
+    "fingerprint": "20462CBA5DA4C2D963567D17D0B7249718114A68",
+    "protocol": "dir_port"
+  },
+  "77.247.181.164:443": {
+    "address": "77.247.181.164:443",
+    "fingerprint": "204DFD2A2C6A0DC1FA0EACB495218E0B661704FD",
+    "protocol": "or_port"
+  },
+  "77.247.181.164:80": {
+    "address": "77.247.181.164:80",
+    "fingerprint": "204DFD2A2C6A0DC1FA0EACB495218E0B661704FD",
+    "protocol": "dir_port"
+  },
+  "163.172.176.167:443": {
+    "address": "163.172.176.167:443",
+    "fingerprint": "230A8B2A8BA861210D9B4BA97745AEC217A94207",
+    "protocol": "or_port"
+  },
+  "163.172.176.167:80": {
+    "address": "163.172.176.167:80",
+    "fingerprint": "230A8B2A8BA861210D9B4BA97745AEC217A94207",
+    "protocol": "dir_port"
+  },
+  "97.74.237.196:9001": {
+    "address": "97.74.237.196:9001",
+    "fingerprint": "2F0F32AB1E5B943CA7D062C03F18960C86E70D94",
+    "protocol": "or_port"
+  },
+  "97.74.237.196:9030": {
+    "address": "97.74.237.196:9030",
+    "fingerprint": "2F0F32AB1E5B943CA7D062C03F18960C86E70D94",
+    "protocol": "dir_port"
+  },
+  "212.83.154.33:8443": {
+    "address": "212.83.154.33:8443",
+    "fingerprint": "322C6E3A973BC10FC36DE3037AD27BC89F14723B",
+    "protocol": "or_port"
+  },
+  "212.83.154.33:8080": {
+    "address": "212.83.154.33:8080",
+    "fingerprint": "322C6E3A973BC10FC36DE3037AD27BC89F14723B",
+    "protocol": "dir_port"
+  },
+  "109.105.109.162:60784": {
+    "address": "109.105.109.162:60784",
+    "fingerprint": "32EE911D968BE3E016ECA572BB1ED0A9EE43FC2F",
+    "protocol": "or_port"
+  },
+  "109.105.109.162:52860": {
+    "address": "109.105.109.162:52860",
+    "fingerprint": "32EE911D968BE3E016ECA572BB1ED0A9EE43FC2F",
+    "protocol": "dir_port"
+  },
+  "185.100.84.212:443": {
+    "address": "185.100.84.212:443",
+    "fingerprint": "330CD3DB6AD266DC70CDB512B036957D03D9BC59",
+    "protocol": "or_port"
+  },
+  "185.100.84.212:80": {
+    "address": "185.100.84.212:80",
+    "fingerprint": "330CD3DB6AD266DC70CDB512B036957D03D9BC59",
+    "protocol": "dir_port"
+  },
+  "37.157.255.35:9090": {
+    "address": "37.157.255.35:9090",
+    "fingerprint": "361D33C96D0F161275EE67E2C91EE10B276E778B",
+    "protocol": "or_port"
+  },
+  "37.157.255.35:9030": {
+    "address": "37.157.255.35:9030",
+    "fingerprint": "361D33C96D0F161275EE67E2C91EE10B276E778B",
+    "protocol": "dir_port"
+  },
+  "64.79.152.132:443": {
+    "address": "64.79.152.132:443",
+    "fingerprint": "375DCBB2DBD94E5263BC0C015F0C9E756669617E",
+    "protocol": "or_port"
+  },
+  "64.79.152.132:80": {
+    "address": "64.79.152.132:80",
+    "fingerprint": "375DCBB2DBD94E5263BC0C015F0C9E756669617E",
+    "protocol": "dir_port"
+  },
+  "213.183.60.21:443": {
+    "address": "213.183.60.21:443",
+    "fingerprint": "39F91959416763AFD34DBEEC05474411B964B2DC",
+    "protocol": "or_port"
+  },
+  "213.183.60.21:9030": {
+    "address": "213.183.60.21:9030",
+    "fingerprint": "39F91959416763AFD34DBEEC05474411B964B2DC",
+    "protocol": "dir_port"
+  },
+  "50.7.74.174:9001": {
+    "address": "50.7.74.174:9001",
+    "fingerprint": "3AFDAAD91A15B4C6A7686A53AA8627CA871FF491",
+    "protocol": "or_port"
+  },
+  "50.7.74.174:9030": {
+    "address": "50.7.74.174:9030",
+    "fingerprint": "3AFDAAD91A15B4C6A7686A53AA8627CA871FF491",
+    "protocol": "dir_port"
+  },
+  "199.249.230.83:443": {
+    "address": "199.249.230.83:443",
+    "fingerprint": "3CA0D15567024D2E0B557DC0CF3E962B37999A79",
+    "protocol": "or_port"
+  },
+  "199.249.230.83:80": {
+    "address": "199.249.230.83:80",
+    "fingerprint": "3CA0D15567024D2E0B557DC0CF3E962B37999A79",
+    "protocol": "dir_port"
+  },
+  "51.38.65.160:9001": {
+    "address": "51.38.65.160:9001",
+    "fingerprint": "3CB4193EF4E239FCEDC4DC43468E0B0D6B67ACC3",
+    "protocol": "or_port"
+  },
+  "51.38.65.160:9030": {
+    "address": "51.38.65.160:9030",
+    "fingerprint": "3CB4193EF4E239FCEDC4DC43468E0B0D6B67ACC3",
+    "protocol": "dir_port"
+  },
+  "217.79.179.177:9001": {
+    "address": "217.79.179.177:9001",
+    "fingerprint": "3E53D3979DB07EFD736661C934A1DED14127B684",
+    "protocol": "or_port"
+  },
+  "217.79.179.177:9030": {
+    "address": "217.79.179.177:9030",
+    "fingerprint": "3E53D3979DB07EFD736661C934A1DED14127B684",
+    "protocol": "dir_port"
+  },
+  "66.111.2.16:9001": {
+    "address": "66.111.2.16:9001",
+    "fingerprint": "3F092986E9B87D3FDA09B71FA3A602378285C77A",
+    "protocol": "or_port"
+  },
+  "66.111.2.16:9030": {
+    "address": "66.111.2.16:9030",
+    "fingerprint": "3F092986E9B87D3FDA09B71FA3A602378285C77A",
+    "protocol": "dir_port"
+  },
+  "185.100.85.101:9001": {
+    "address": "185.100.85.101:9001",
+    "fingerprint": "4061C553CA88021B8302F0814365070AAE617270",
+    "protocol": "or_port"
+  },
+  "185.100.85.101:9030": {
+    "address": "185.100.85.101:9030",
+    "fingerprint": "4061C553CA88021B8302F0814365070AAE617270",
+    "protocol": "dir_port"
+  },
+  "163.172.157.213:443": {
+    "address": "163.172.157.213:443",
+    "fingerprint": "4623A9EC53BFD83155929E56D6F7B55B5E718C24",
+    "protocol": "or_port"
+  },
+  "163.172.157.213:8080": {
+    "address": "163.172.157.213:8080",
+    "fingerprint": "4623A9EC53BFD83155929E56D6F7B55B5E718C24",
+    "protocol": "dir_port"
+  },
+  "195.123.245.141:443": {
+    "address": "195.123.245.141:443",
+    "fingerprint": "465D17C6FC297E3857B5C6F152006A1E212944EA",
+    "protocol": "or_port"
+  },
+  "195.123.245.141:9030": {
+    "address": "195.123.245.141:9030",
+    "fingerprint": "465D17C6FC297E3857B5C6F152006A1E212944EA",
+    "protocol": "dir_port"
+  },
+  "31.31.78.49:443": {
+    "address": "31.31.78.49:443",
+    "fingerprint": "46791D156C9B6C255C2665D4D8393EC7DBAA7798",
+    "protocol": "or_port"
+  },
+  "31.31.78.49:80": {
+    "address": "31.31.78.49:80",
+    "fingerprint": "46791D156C9B6C255C2665D4D8393EC7DBAA7798",
+    "protocol": "dir_port"
+  },
+  "193.70.43.76:9001": {
+    "address": "193.70.43.76:9001",
+    "fingerprint": "484A10BA2B8D48A5F0216674C8DD50EF27BC32F3",
+    "protocol": "or_port"
+  },
+  "193.70.43.76:9030": {
+    "address": "193.70.43.76:9030",
+    "fingerprint": "484A10BA2B8D48A5F0216674C8DD50EF27BC32F3",
+    "protocol": "dir_port"
+  },
+  "37.187.102.186:9001": {
+    "address": "37.187.102.186:9001",
+    "fingerprint": "489D94333DF66D57FFE34D9D59CC2D97E2CB0053",
+    "protocol": "or_port"
+  },
+  "37.187.102.186:9030": {
+    "address": "37.187.102.186:9030",
+    "fingerprint": "489D94333DF66D57FFE34D9D59CC2D97E2CB0053",
+    "protocol": "dir_port"
+  },
+  "81.7.13.84:443": {
+    "address": "81.7.13.84:443",
+    "fingerprint": "4EB55679FA91363B97372554F8DC7C63F4E5B101",
+    "protocol": "or_port"
+  },
+  "81.7.13.84:80": {
+    "address": "81.7.13.84:80",
+    "fingerprint": "4EB55679FA91363B97372554F8DC7C63F4E5B101",
+    "protocol": "dir_port"
+  },
+  "108.53.208.157:443": {
+    "address": "108.53.208.157:443",
+    "fingerprint": "4F0DB7E687FC7C0AE55C8F243DA8B0EB27FBF1F2",
+    "protocol": "or_port"
+  },
+  "108.53.208.157:80": {
+    "address": "108.53.208.157:80",
+    "fingerprint": "4F0DB7E687FC7C0AE55C8F243DA8B0EB27FBF1F2",
+    "protocol": "dir_port"
+  },
+  "5.9.158.75:9001": {
+    "address": "5.9.158.75:9001",
+    "fingerprint": "509EAB4C5D10C9A9A24B4EA0CE402C047A2D64E6",
+    "protocol": "or_port"
+  },
+  "5.9.158.75:9030": {
+    "address": "5.9.158.75:9030",
+    "fingerprint": "509EAB4C5D10C9A9A24B4EA0CE402C047A2D64E6",
+    "protocol": "dir_port"
+  },
+  "81.7.16.182:443": {
+    "address": "81.7.16.182:443",
+    "fingerprint": "51E1CF613FD6F9F11FE24743C91D6F9981807D82",
+    "protocol": "or_port"
+  },
+  "81.7.16.182:80": {
+    "address": "81.7.16.182:80",
+    "fingerprint": "51E1CF613FD6F9F11FE24743C91D6F9981807D82",
+    "protocol": "dir_port"
+  },
+  "192.160.102.166:9001": {
+    "address": "192.160.102.166:9001",
+    "fingerprint": "547DA56F6B88B6C596B3E3086803CDA4F0EF8F21",
+    "protocol": "or_port"
+  },
+  "192.160.102.166:80": {
+    "address": "192.160.102.166:80",
+    "fingerprint": "547DA56F6B88B6C596B3E3086803CDA4F0EF8F21",
+    "protocol": "dir_port"
+  },
+  "192.160.102.170:9001": {
+    "address": "192.160.102.170:9001",
+    "fingerprint": "557ACEC850F54EEE65839F83CACE2B0825BE811E",
+    "protocol": "or_port"
+  },
+  "192.160.102.170:80": {
+    "address": "192.160.102.170:80",
+    "fingerprint": "557ACEC850F54EEE65839F83CACE2B0825BE811E",
+    "protocol": "dir_port"
+  },
+  "50.7.74.170:443": {
+    "address": "50.7.74.170:443",
+    "fingerprint": "5BF17163CBE73D8CD9FDBE030C944EA05707DA93",
+    "protocol": "or_port"
+  },
+  "50.7.74.170:80": {
+    "address": "50.7.74.170:80",
+    "fingerprint": "5BF17163CBE73D8CD9FDBE030C944EA05707DA93",
+    "protocol": "dir_port"
+  },
+  "172.98.193.43:443": {
+    "address": "172.98.193.43:443",
+    "fingerprint": "5E56738E7F97AA81DEEF59AF28494293DFBFCCDF",
+    "protocol": "or_port"
+  },
+  "172.98.193.43:80": {
+    "address": "172.98.193.43:80",
+    "fingerprint": "5E56738E7F97AA81DEEF59AF28494293DFBFCCDF",
+    "protocol": "dir_port"
+  },
+  "95.128.43.164:443": {
+    "address": "95.128.43.164:443",
+    "fingerprint": "616081EC829593AF4232550DE6FFAA1D75B37A90",
+    "protocol": "or_port"
+  },
+  "95.128.43.164:80": {
+    "address": "95.128.43.164:80",
+    "fingerprint": "616081EC829593AF4232550DE6FFAA1D75B37A90",
+    "protocol": "dir_port"
+  },
+  "163.172.139.104:443": {
+    "address": "163.172.139.104:443",
+    "fingerprint": "68F175CCABE727AA2D2309BCD8789499CEE36ED7",
+    "protocol": "or_port"
+  },
+  "163.172.139.104:8080": {
+    "address": "163.172.139.104:8080",
+    "fingerprint": "68F175CCABE727AA2D2309BCD8789499CEE36ED7",
+    "protocol": "dir_port"
+  },
+  "94.130.186.5:443": {
+    "address": "94.130.186.5:443",
+    "fingerprint": "6A7551EEE18F78A9813096E82BF84F740D32B911",
+    "protocol": "or_port"
+  },
+  "94.130.186.5:80": {
+    "address": "94.130.186.5:80",
+    "fingerprint": "6A7551EEE18F78A9813096E82BF84F740D32B911",
+    "protocol": "dir_port"
+  },
+  "80.127.137.19:443": {
+    "address": "80.127.137.19:443",
+    "fingerprint": "6EF897645B79B6CB35E853B32506375014DE3621",
+    "protocol": "or_port"
+  },
+  "80.127.137.19:80": {
+    "address": "80.127.137.19:80",
+    "fingerprint": "6EF897645B79B6CB35E853B32506375014DE3621",
+    "protocol": "dir_port"
+  },
+  "37.139.8.104:9001": {
+    "address": "37.139.8.104:9001",
+    "fingerprint": "7088D485934E8A403B81531F8C90BDC75FA43C98",
+    "protocol": "or_port"
+  },
+  "37.139.8.104:9030": {
+    "address": "37.139.8.104:9030",
+    "fingerprint": "7088D485934E8A403B81531F8C90BDC75FA43C98",
+    "protocol": "dir_port"
+  },
+  "188.138.88.42:443": {
+    "address": "188.138.88.42:443",
+    "fingerprint": "70C55A114C0EF3DC5784A4FAEE64388434A3398F",
+    "protocol": "or_port"
+  },
+  "188.138.88.42:80": {
+    "address": "188.138.88.42:80",
+    "fingerprint": "70C55A114C0EF3DC5784A4FAEE64388434A3398F",
+    "protocol": "dir_port"
+  },
+  "85.235.250.88:443": {
+    "address": "85.235.250.88:443",
+    "fingerprint": "72B2B12A3F60408BDBC98C6DF53988D3A0B3F0EE",
+    "protocol": "or_port"
+  },
+  "85.235.250.88:80": {
+    "address": "85.235.250.88:80",
+    "fingerprint": "72B2B12A3F60408BDBC98C6DF53988D3A0B3F0EE",
+    "protocol": "dir_port"
+  },
+  "178.17.170.23:9001": {
+    "address": "178.17.170.23:9001",
+    "fingerprint": "742C45F2D9004AADE0077E528A4418A6A81BC2BA",
+    "protocol": "or_port"
+  },
+  "178.17.170.23:9030": {
+    "address": "178.17.170.23:9030",
+    "fingerprint": "742C45F2D9004AADE0077E528A4418A6A81BC2BA",
+    "protocol": "dir_port"
+  },
+  "50.7.74.173:9001": {
+    "address": "50.7.74.173:9001",
+    "fingerprint": "745369332749021C6FAF100D327BC3BF1DF4707B",
+    "protocol": "or_port"
+  },
+  "50.7.74.173:9030": {
+    "address": "50.7.74.173:9030",
+    "fingerprint": "745369332749021C6FAF100D327BC3BF1DF4707B",
+    "protocol": "dir_port"
+  },
+  "77.247.181.166:443": {
+    "address": "77.247.181.166:443",
+    "fingerprint": "77131D7E2EC1CA9B8D737502256DA9103599CE51",
+    "protocol": "or_port"
+  },
+  "77.247.181.166:80": {
+    "address": "77.247.181.166:80",
+    "fingerprint": "77131D7E2EC1CA9B8D737502256DA9103599CE51",
+    "protocol": "dir_port"
+  },
+  "5.196.23.64:9001": {
+    "address": "5.196.23.64:9001",
+    "fingerprint": "775B0FAFDE71AADC23FFC8782B7BEB1D5A92733E",
+    "protocol": "or_port"
+  },
+  "5.196.23.64:9030": {
+    "address": "5.196.23.64:9030",
+    "fingerprint": "775B0FAFDE71AADC23FFC8782B7BEB1D5A92733E",
+    "protocol": "dir_port"
+  },
+  "185.244.193.141:9001": {
+    "address": "185.244.193.141:9001",
+    "fingerprint": "79509683AB4C8DDAF90A120C69A4179C6CD5A387",
+    "protocol": "or_port"
+  },
+  "185.244.193.141:9030": {
+    "address": "185.244.193.141:9030",
+    "fingerprint": "79509683AB4C8DDAF90A120C69A4179C6CD5A387",
+    "protocol": "dir_port"
+  },
+  "51.254.136.195:443": {
+    "address": "51.254.136.195:443",
+    "fingerprint": "7BB70F8585DFC27E75D692970C0EEB0F22983A63",
+    "protocol": "or_port"
+  },
+  "51.254.136.195:80": {
+    "address": "51.254.136.195:80",
+    "fingerprint": "7BB70F8585DFC27E75D692970C0EEB0F22983A63",
+    "protocol": "dir_port"
+  },
+  "77.247.181.162:443": {
+    "address": "77.247.181.162:443",
+    "fingerprint": "7BFB908A3AA5B491DA4CA72CCBEE0E1F2A939B55",
+    "protocol": "or_port"
+  },
+  "77.247.181.162:80": {
+    "address": "77.247.181.162:80",
+    "fingerprint": "7BFB908A3AA5B491DA4CA72CCBEE0E1F2A939B55",
+    "protocol": "dir_port"
+  },
+  "185.220.101.48:20048": {
+    "address": "185.220.101.48:20048",
+    "fingerprint": "7E281CD2C315C4F7A84BC7C8721C3BC974DDBFA3",
+    "protocol": "or_port"
+  },
+  "185.220.101.48:10048": {
+    "address": "185.220.101.48:10048",
+    "fingerprint": "7E281CD2C315C4F7A84BC7C8721C3BC974DDBFA3",
+    "protocol": "dir_port"
+  },
+  "193.11.114.45:9002": {
+    "address": "193.11.114.45:9002",
+    "fingerprint": "80AAF8D5956A43C197104CEF2550CD42D165C6FB",
+    "protocol": "or_port"
+  },
+  "193.11.114.45:9031": {
+    "address": "193.11.114.45:9031",
+    "fingerprint": "80AAF8D5956A43C197104CEF2550CD42D165C6FB",
+    "protocol": "dir_port"
+  },
+  "51.254.96.208:9001": {
+    "address": "51.254.96.208:9001",
+    "fingerprint": "8101421BEFCCF4C271D5483C5AABCAAD245BBB9D",
+    "protocol": "or_port"
+  },
+  "51.254.96.208:9030": {
+    "address": "51.254.96.208:9030",
+    "fingerprint": "8101421BEFCCF4C271D5483C5AABCAAD245BBB9D",
+    "protocol": "dir_port"
+  },
+  "192.42.116.16:443": {
+    "address": "192.42.116.16:443",
+    "fingerprint": "81B75D534F91BFB7C57AB67DA10BCEF622582AE8",
+    "protocol": "or_port"
+  },
+  "192.42.116.16:80": {
+    "address": "192.42.116.16:80",
+    "fingerprint": "81B75D534F91BFB7C57AB67DA10BCEF622582AE8",
+    "protocol": "dir_port"
+  },
+  "192.160.102.164:9001": {
+    "address": "192.160.102.164:9001",
+    "fingerprint": "823AA81E277F366505545522CEDC2F529CE4DC3F",
+    "protocol": "or_port"
+  },
+  "192.160.102.164:80": {
+    "address": "192.160.102.164:80",
+    "fingerprint": "823AA81E277F366505545522CEDC2F529CE4DC3F",
+    "protocol": "dir_port"
+  },
+  "192.87.28.82:9001": {
+    "address": "192.87.28.82:9001",
+    "fingerprint": "844AE9CAD04325E955E2BE1521563B79FE7094B7",
+    "protocol": "or_port"
+  },
+  "192.87.28.82:9030": {
+    "address": "192.87.28.82:9030",
+    "fingerprint": "844AE9CAD04325E955E2BE1521563B79FE7094B7",
+    "protocol": "dir_port"
+  },
+  "62.210.254.132:443": {
+    "address": "62.210.254.132:443",
+    "fingerprint": "8456DFA94161CDD99E480C2A2992C366C6564410",
+    "protocol": "or_port"
+  },
+  "62.210.254.132:80": {
+    "address": "62.210.254.132:80",
+    "fingerprint": "8456DFA94161CDD99E480C2A2992C366C6564410",
+    "protocol": "dir_port"
+  },
+  "85.230.178.139:443": {
+    "address": "85.230.178.139:443",
+    "fingerprint": "855BC2DABE24C861CD887DB9B2E950424B49FC34",
+    "protocol": "or_port"
+  },
+  "85.230.178.139:9030": {
+    "address": "85.230.178.139:9030",
+    "fingerprint": "855BC2DABE24C861CD887DB9B2E950424B49FC34",
+    "protocol": "dir_port"
+  },
+  "178.254.7.88:8443": {
+    "address": "178.254.7.88:8443",
+    "fingerprint": "85A885433E50B1874F11CEC9BE98451E24660976",
+    "protocol": "or_port"
+  },
+  "178.254.7.88:8080": {
+    "address": "178.254.7.88:8080",
+    "fingerprint": "85A885433E50B1874F11CEC9BE98451E24660976",
+    "protocol": "dir_port"
+  },
+  "185.96.88.29:443": {
+    "address": "185.96.88.29:443",
+    "fingerprint": "86C281AD135058238D7A337D546C902BE8505DDE",
+    "protocol": "or_port"
+  },
+  "185.96.88.29:80": {
+    "address": "185.96.88.29:80",
+    "fingerprint": "86C281AD135058238D7A337D546C902BE8505DDE",
+    "protocol": "dir_port"
+  },
+  "163.172.194.53:9001": {
+    "address": "163.172.194.53:9001",
+    "fingerprint": "8C00FA7369A7A308F6A137600F0FA07990D9D451",
+    "protocol": "or_port"
+  },
+  "163.172.194.53:9030": {
+    "address": "163.172.194.53:9030",
+    "fingerprint": "8C00FA7369A7A308F6A137600F0FA07990D9D451",
+    "protocol": "dir_port"
+  },
+  "5.189.169.190:8080": {
+    "address": "5.189.169.190:8080",
+    "fingerprint": "8D79F73DCD91FC4F5017422FAC70074D6DB8DD81",
+    "protocol": "or_port"
+  },
+  "5.189.169.190:8030": {
+    "address": "5.189.169.190:8030",
+    "fingerprint": "8D79F73DCD91FC4F5017422FAC70074D6DB8DD81",
+    "protocol": "dir_port"
+  },
+  "81.7.11.96:9001": {
+    "address": "81.7.11.96:9001",
+    "fingerprint": "8FA37B93397015B2BC5A525C908485260BE9F422",
+    "protocol": "or_port"
+  },
+  "81.7.11.96:9030": {
+    "address": "81.7.11.96:9030",
+    "fingerprint": "8FA37B93397015B2BC5A525C908485260BE9F422",
+    "protocol": "dir_port"
+  },
+  "54.37.139.118:9001": {
+    "address": "54.37.139.118:9001",
+    "fingerprint": "90A5D1355C4B5840E950EB61E673863A6AE3ACA1",
+    "protocol": "or_port"
+  },
+  "54.37.139.118:9030": {
+    "address": "54.37.139.118:9030",
+    "fingerprint": "90A5D1355C4B5840E950EB61E673863A6AE3ACA1",
+    "protocol": "dir_port"
+  },
+  "37.187.20.59:443": {
+    "address": "37.187.20.59:443",
+    "fingerprint": "91D23D8A539B83D2FB56AA67ECD4D75CC093AC55",
+    "protocol": "or_port"
+  },
+  "37.187.20.59:80": {
+    "address": "37.187.20.59:80",
+    "fingerprint": "91D23D8A539B83D2FB56AA67ECD4D75CC093AC55",
+    "protocol": "dir_port"
+  },
+  "173.255.245.116:9001": {
+    "address": "173.255.245.116:9001",
+    "fingerprint": "91E4015E1F82DAF0121D62267E54A1F661AB6DC7",
+    "protocol": "or_port"
+  },
+  "173.255.245.116:9030": {
+    "address": "173.255.245.116:9030",
+    "fingerprint": "91E4015E1F82DAF0121D62267E54A1F661AB6DC7",
+    "protocol": "dir_port"
+  },
+  "96.253.78.108:443": {
+    "address": "96.253.78.108:443",
+    "fingerprint": "924B24AFA7F075D059E8EEB284CC400B33D3D036",
+    "protocol": "or_port"
+  },
+  "96.253.78.108:80": {
+    "address": "96.253.78.108:80",
+    "fingerprint": "924B24AFA7F075D059E8EEB284CC400B33D3D036",
+    "protocol": "dir_port"
+  },
+  "92.38.163.21:443": {
+    "address": "92.38.163.21:443",
+    "fingerprint": "9288B75B5FF8861EFF32A6BE8825CC38A4F9F8C2",
+    "protocol": "or_port"
+  },
+  "92.38.163.21:9030": {
+    "address": "92.38.163.21:9030",
+    "fingerprint": "9288B75B5FF8861EFF32A6BE8825CC38A4F9F8C2",
+    "protocol": "dir_port"
+  },
+  "163.172.53.84:443": {
+    "address": "163.172.53.84:443",
+    "fingerprint": "935F589545B8A271A722E330445BB99F67DBB058",
+    "protocol": "or_port"
+  },
+  "163.172.53.84:80": {
+    "address": "163.172.53.84:80",
+    "fingerprint": "935F589545B8A271A722E330445BB99F67DBB058",
+    "protocol": "dir_port"
+  },
+  "204.8.156.142:443": {
+    "address": "204.8.156.142:443",
+    "fingerprint": "94C4B7B8C50C86A92B6A20107539EE2678CF9A28",
+    "protocol": "or_port"
+  },
+  "204.8.156.142:80": {
+    "address": "204.8.156.142:80",
+    "fingerprint": "94C4B7B8C50C86A92B6A20107539EE2678CF9A28",
+    "protocol": "dir_port"
+  },
+  "37.153.1.10:9001": {
+    "address": "37.153.1.10:9001",
+    "fingerprint": "9772EFB535397C942C3AB8804FB35CFFAD012438",
+    "protocol": "or_port"
+  },
+  "37.153.1.10:9030": {
+    "address": "37.153.1.10:9030",
+    "fingerprint": "9772EFB535397C942C3AB8804FB35CFFAD012438",
+    "protocol": "dir_port"
+  },
+  "173.212.254.192:31337": {
+    "address": "173.212.254.192:31337",
+    "fingerprint": "99E246DB480B313A3012BC3363093CC26CD209C7",
+    "protocol": "or_port"
+  },
+  "173.212.254.192:31336": {
+    "address": "173.212.254.192:31336",
+    "fingerprint": "99E246DB480B313A3012BC3363093CC26CD209C7",
+    "protocol": "dir_port"
+  },
+  "185.100.86.128:9001": {
+    "address": "185.100.86.128:9001",
+    "fingerprint": "9B31F1F1C1554F9FFB3455911F82E818EF7C7883",
+    "protocol": "or_port"
+  },
+  "185.100.86.128:9030": {
+    "address": "185.100.86.128:9030",
+    "fingerprint": "9B31F1F1C1554F9FFB3455911F82E818EF7C7883",
+    "protocol": "dir_port"
+  },
+  "185.220.101.49:20049": {
+    "address": "185.220.101.49:20049",
+    "fingerprint": "9B816A5B3EB20B8E4E9B9D1FBA299BD3F40F0320",
+    "protocol": "or_port"
+  },
+  "185.220.101.49:10049": {
+    "address": "185.220.101.49:10049",
+    "fingerprint": "9B816A5B3EB20B8E4E9B9D1FBA299BD3F40F0320",
+    "protocol": "dir_port"
+  },
+  "86.105.212.130:443": {
+    "address": "86.105.212.130:443",
+    "fingerprint": "9C900A7F6F5DD034CFFD192DAEC9CCAA813DB022",
+    "protocol": "or_port"
+  },
+  "86.105.212.130:9030": {
+    "address": "86.105.212.130:9030",
+    "fingerprint": "9C900A7F6F5DD034CFFD192DAEC9CCAA813DB022",
+    "protocol": "dir_port"
+  },
+  "31.185.104.19:443": {
+    "address": "31.185.104.19:443",
+    "fingerprint": "9EAD5B2D3DBD96DBC80DCE423B0C345E920A758D",
+    "protocol": "or_port"
+  },
+  "31.185.104.19:80": {
+    "address": "31.185.104.19:80",
+    "fingerprint": "9EAD5B2D3DBD96DBC80DCE423B0C345E920A758D",
+    "protocol": "dir_port"
+  },
+  "46.28.110.244:443": {
+    "address": "46.28.110.244:443",
+    "fingerprint": "9F7D6E6420183C2B76D3CE99624EBC98A21A967E",
+    "protocol": "or_port"
+  },
+  "46.28.110.244:80": {
+    "address": "46.28.110.244:80",
+    "fingerprint": "9F7D6E6420183C2B76D3CE99624EBC98A21A967E",
+    "protocol": "dir_port"
+  },
+  "46.165.230.5:443": {
+    "address": "46.165.230.5:443",
+    "fingerprint": "A0F06C2FADF88D3A39AA3072B406F09D7095AC9E",
+    "protocol": "or_port"
+  },
+  "46.165.230.5:80": {
+    "address": "46.165.230.5:80",
+    "fingerprint": "A0F06C2FADF88D3A39AA3072B406F09D7095AC9E",
+    "protocol": "dir_port"
+  },
+  "81.7.3.67:443": {
+    "address": "81.7.3.67:443",
+    "fingerprint": "A2E6BB5C391CD46B38C55B4329C35304540771F1",
+    "protocol": "or_port"
+  },
+  "81.7.3.67:993": {
+    "address": "81.7.3.67:993",
+    "fingerprint": "A2E6BB5C391CD46B38C55B4329C35304540771F1",
+    "protocol": "dir_port"
+  },
+  "128.31.0.13:443": {
+    "address": "128.31.0.13:443",
+    "fingerprint": "A53C46F5B157DD83366D45A8E99A244934A14C46",
+    "protocol": "or_port"
+  },
+  "128.31.0.13:80": {
+    "address": "128.31.0.13:80",
+    "fingerprint": "A53C46F5B157DD83366D45A8E99A244934A14C46",
+    "protocol": "dir_port"
+  },
+  "185.246.152.22:443": {
+    "address": "185.246.152.22:443",
+    "fingerprint": "A86EC24F5B8B964F67AC7C27CE92842025983274",
+    "protocol": "or_port"
+  },
+  "185.246.152.22:9030": {
+    "address": "185.246.152.22:9030",
+    "fingerprint": "A86EC24F5B8B964F67AC7C27CE92842025983274",
+    "protocol": "dir_port"
+  },
+  "163.172.149.122:443": {
+    "address": "163.172.149.122:443",
+    "fingerprint": "A9406A006D6E7B5DA30F2C6D4E42A338B5E340B2",
+    "protocol": "or_port"
+  },
+  "163.172.149.122:80": {
+    "address": "163.172.149.122:80",
+    "fingerprint": "A9406A006D6E7B5DA30F2C6D4E42A338B5E340B2",
+    "protocol": "dir_port"
+  },
+  "176.10.107.180:9001": {
+    "address": "176.10.107.180:9001",
+    "fingerprint": "AC2BEDD0BAC72838EA7E6F113F856C4E8018ACDB",
+    "protocol": "or_port"
+  },
+  "176.10.107.180:9030": {
+    "address": "176.10.107.180:9030",
+    "fingerprint": "AC2BEDD0BAC72838EA7E6F113F856C4E8018ACDB",
+    "protocol": "dir_port"
+  },
+  "185.129.62.62:9001": {
+    "address": "185.129.62.62:9001",
+    "fingerprint": "ACDD9E85A05B127BA010466C13C8C47212E8A38F",
+    "protocol": "or_port"
+  },
+  "185.129.62.62:9030": {
+    "address": "185.129.62.62:9030",
+    "fingerprint": "ACDD9E85A05B127BA010466C13C8C47212E8A38F",
+    "protocol": "dir_port"
+  },
+  "31.185.104.20:443": {
+    "address": "31.185.104.20:443",
+    "fingerprint": "ADB2C26629643DBB9F8FE0096E7D16F9414B4F8D",
+    "protocol": "or_port"
+  },
+  "31.185.104.20:80": {
+    "address": "31.185.104.20:80",
+    "fingerprint": "ADB2C26629643DBB9F8FE0096E7D16F9414B4F8D",
+    "protocol": "dir_port"
+  },
+  "45.79.108.130:9001": {
+    "address": "45.79.108.130:9001",
+    "fingerprint": "AEDAC7081AE14B8D241ECF0FF17A2858AB4383D0",
+    "protocol": "or_port"
+  },
+  "45.79.108.130:9030": {
+    "address": "45.79.108.130:9030",
+    "fingerprint": "AEDAC7081AE14B8D241ECF0FF17A2858AB4383D0",
+    "protocol": "dir_port"
+  },
+  "5.9.147.226:9001": {
+    "address": "5.9.147.226:9001",
+    "fingerprint": "B0553175AADB0501E5A61FC61CEA3970BE130FF2",
+    "protocol": "or_port"
+  },
+  "5.9.147.226:9030": {
+    "address": "5.9.147.226:9030",
+    "fingerprint": "B0553175AADB0501E5A61FC61CEA3970BE130FF2",
+    "protocol": "dir_port"
+  },
+  "178.17.174.14:9001": {
+    "address": "178.17.174.14:9001",
+    "fingerprint": "B06F093A3D4DFAD3E923F4F28A74901BD4F74EB1",
+    "protocol": "or_port"
+  },
+  "178.17.174.14:9030": {
+    "address": "178.17.174.14:9030",
+    "fingerprint": "B06F093A3D4DFAD3E923F4F28A74901BD4F74EB1",
+    "protocol": "dir_port"
+  },
+  "212.129.62.232:443": {
+    "address": "212.129.62.232:443",
+    "fingerprint": "B143D439B72D239A419F8DCE07B8A8EB1B486FA7",
+    "protocol": "or_port"
+  },
+  "212.129.62.232:80": {
+    "address": "212.129.62.232:80",
+    "fingerprint": "B143D439B72D239A419F8DCE07B8A8EB1B486FA7",
+    "protocol": "dir_port"
+  },
+  "199.249.230.64:443": {
+    "address": "199.249.230.64:443",
+    "fingerprint": "B2197C23A4FF5D1C49EE45BA7688BA8BCCD89A0B",
+    "protocol": "or_port"
+  },
+  "199.249.230.64:80": {
+    "address": "199.249.230.64:80",
+    "fingerprint": "B2197C23A4FF5D1C49EE45BA7688BA8BCCD89A0B",
+    "protocol": "dir_port"
+  },
+  "136.243.214.137:443": {
+    "address": "136.243.214.137:443",
+    "fingerprint": "B291D30517D23299AD7CEE3E60DFE60D0E3A4664",
+    "protocol": "or_port"
+  },
+  "136.243.214.137:80": {
+    "address": "136.243.214.137:80",
+    "fingerprint": "B291D30517D23299AD7CEE3E60DFE60D0E3A4664",
+    "protocol": "dir_port"
+  },
+  "212.47.233.86:9001": {
+    "address": "212.47.233.86:9001",
+    "fingerprint": "B4CAFD9CBFB34EC5DAAC146920DC7DFAFE91EA20",
+    "protocol": "or_port"
+  },
+  "212.47.233.86:9030": {
+    "address": "212.47.233.86:9030",
+    "fingerprint": "B4CAFD9CBFB34EC5DAAC146920DC7DFAFE91EA20",
+    "protocol": "dir_port"
+  },
+  "93.115.97.242:9001": {
+    "address": "93.115.97.242:9001",
+    "fingerprint": "B5212DB685A2A0FCFBAE425738E478D12361710D",
+    "protocol": "or_port"
+  },
+  "93.115.97.242:9030": {
+    "address": "93.115.97.242:9030",
+    "fingerprint": "B5212DB685A2A0FCFBAE425738E478D12361710D",
+    "protocol": "dir_port"
+  },
+  "51.38.134.104:443": {
+    "address": "51.38.134.104:443",
+    "fingerprint": "B57A87009FA838471FB2227DDE68165AB2A2FCC4",
+    "protocol": "or_port"
+  },
+  "51.38.134.104:9030": {
+    "address": "51.38.134.104:9030",
+    "fingerprint": "B57A87009FA838471FB2227DDE68165AB2A2FCC4",
+    "protocol": "dir_port"
+  },
+  "193.11.114.46:9003": {
+    "address": "193.11.114.46:9003",
+    "fingerprint": "B83DC1558F0D34353BB992EF93AFEAFDB226A73E",
+    "protocol": "or_port"
+  },
+  "193.11.114.46:9032": {
+    "address": "193.11.114.46:9032",
+    "fingerprint": "B83DC1558F0D34353BB992EF93AFEAFDB226A73E",
+    "protocol": "dir_port"
+  },
+  "85.248.227.164:9002": {
+    "address": "85.248.227.164:9002",
+    "fingerprint": "B84F248233FEA90CAD439F292556A3139F6E1B82",
+    "protocol": "or_port"
+  },
+  "85.248.227.164:444": {
+    "address": "85.248.227.164:444",
+    "fingerprint": "B84F248233FEA90CAD439F292556A3139F6E1B82",
+    "protocol": "dir_port"
+  },
+  "81.7.11.186:443": {
+    "address": "81.7.11.186:443",
+    "fingerprint": "B86137AE9681701901C6720E55C16805B46BD8E3",
+    "protocol": "or_port"
+  },
+  "81.7.11.186:1080": {
+    "address": "81.7.11.186:1080",
+    "fingerprint": "B86137AE9681701901C6720E55C16805B46BD8E3",
+    "protocol": "dir_port"
+  },
+  "51.15.179.153:995": {
+    "address": "51.15.179.153:995",
+    "fingerprint": "BB60F5BA113A0B8B44B7B37DE3567FE561E92F78",
+    "protocol": "or_port"
+  },
+  "51.15.179.153:110": {
+    "address": "51.15.179.153:110",
+    "fingerprint": "BB60F5BA113A0B8B44B7B37DE3567FE561E92F78",
+    "protocol": "dir_port"
+  },
+  "198.96.155.3:5001": {
+    "address": "198.96.155.3:5001",
+    "fingerprint": "BCEDF6C193AA687AE471B8A22EBF6BC57C2D285E",
+    "protocol": "or_port"
+  },
+  "198.96.155.3:8080": {
+    "address": "198.96.155.3:8080",
+    "fingerprint": "BCEDF6C193AA687AE471B8A22EBF6BC57C2D285E",
+    "protocol": "dir_port"
+  },
+  "128.199.55.207:9001": {
+    "address": "128.199.55.207:9001",
+    "fingerprint": "BCEF908195805E03E92CCFE669C48738E556B9C5",
+    "protocol": "or_port"
+  },
+  "128.199.55.207:9030": {
+    "address": "128.199.55.207:9030",
+    "fingerprint": "BCEF908195805E03E92CCFE669C48738E556B9C5",
+    "protocol": "dir_port"
+  },
+  "213.141.138.174:9001": {
+    "address": "213.141.138.174:9001",
+    "fingerprint": "BD552C165E2ED2887D3F1CCE9CFF155DDA2D86E6",
+    "protocol": "or_port"
+  },
+  "213.141.138.174:9030": {
+    "address": "213.141.138.174:9030",
+    "fingerprint": "BD552C165E2ED2887D3F1CCE9CFF155DDA2D86E6",
+    "protocol": "dir_port"
+  },
+  "148.251.190.229:9010": {
+    "address": "148.251.190.229:9010",
+    "fingerprint": "BF0FB582E37F738CD33C3651125F2772705BB8E8",
+    "protocol": "or_port"
+  },
+  "148.251.190.229:9030": {
+    "address": "148.251.190.229:9030",
+    "fingerprint": "BF0FB582E37F738CD33C3651125F2772705BB8E8",
+    "protocol": "dir_port"
+  },
+  "212.47.233.250:9001": {
+    "address": "212.47.233.250:9001",
+    "fingerprint": "BF735F669481EE1CCC348F0731551C933D1E2278",
+    "protocol": "or_port"
+  },
+  "212.47.233.250:9030": {
+    "address": "212.47.233.250:9030",
+    "fingerprint": "BF735F669481EE1CCC348F0731551C933D1E2278",
+    "protocol": "dir_port"
+  },
+  "192.160.102.169:9001": {
+    "address": "192.160.102.169:9001",
+    "fingerprint": "C0192FF43E777250084175F4E59AC1BA2290CE38",
+    "protocol": "or_port"
+  },
+  "192.160.102.169:80": {
+    "address": "192.160.102.169:80",
+    "fingerprint": "C0192FF43E777250084175F4E59AC1BA2290CE38",
+    "protocol": "dir_port"
+  },
+  "132.248.241.5:9101": {
+    "address": "132.248.241.5:9101",
+    "fingerprint": "C0C4F339046EB824999F711D178472FDF53BE7F5",
+    "protocol": "or_port"
+  },
+  "132.248.241.5:9130": {
+    "address": "132.248.241.5:9130",
+    "fingerprint": "C0C4F339046EB824999F711D178472FDF53BE7F5",
+    "protocol": "dir_port"
+  },
+  "31.185.104.21:443": {
+    "address": "31.185.104.21:443",
+    "fingerprint": "C2AAB088555850FC434E68943F551072042B85F1",
+    "protocol": "or_port"
+  },
+  "31.185.104.21:80": {
+    "address": "31.185.104.21:80",
+    "fingerprint": "C2AAB088555850FC434E68943F551072042B85F1",
+    "protocol": "dir_port"
+  },
+  "50.7.74.170:9001": {
+    "address": "50.7.74.170:9001",
+    "fingerprint": "C36A434DB54C66E1A97A5653858CE36024352C4D",
+    "protocol": "or_port"
+  },
+  "50.7.74.170:9030": {
+    "address": "50.7.74.170:9030",
+    "fingerprint": "C36A434DB54C66E1A97A5653858CE36024352C4D",
+    "protocol": "dir_port"
+  },
+  "85.248.227.163:9001": {
+    "address": "85.248.227.163:9001",
+    "fingerprint": "C793AB88565DDD3C9E4C6F15CCB9D8C7EF964CE9",
+    "protocol": "or_port"
+  },
+  "85.248.227.163:443": {
+    "address": "85.248.227.163:443",
+    "fingerprint": "C793AB88565DDD3C9E4C6F15CCB9D8C7EF964CE9",
+    "protocol": "dir_port"
+  },
+  "192.160.102.165:9001": {
+    "address": "192.160.102.165:9001",
+    "fingerprint": "C90CA3B7FE01A146B8268D56977DC4A2C024B9EA",
+    "protocol": "or_port"
+  },
+  "192.160.102.165:80": {
+    "address": "192.160.102.165:80",
+    "fingerprint": "C90CA3B7FE01A146B8268D56977DC4A2C024B9EA",
+    "protocol": "dir_port"
+  },
+  "176.31.103.150:9001": {
+    "address": "176.31.103.150:9001",
+    "fingerprint": "CBD0D1BD110EC52963082D839AC6A89D0AE243E7",
+    "protocol": "or_port"
+  },
+  "176.31.103.150:9030": {
+    "address": "176.31.103.150:9030",
+    "fingerprint": "CBD0D1BD110EC52963082D839AC6A89D0AE243E7",
+    "protocol": "dir_port"
+  },
+  "51.254.147.57:443": {
+    "address": "51.254.147.57:443",
+    "fingerprint": "D15AFF44BE641368B958A32FB6B071AC2136B8B1",
+    "protocol": "or_port"
+  },
+  "51.254.147.57:80": {
+    "address": "51.254.147.57:80",
+    "fingerprint": "D15AFF44BE641368B958A32FB6B071AC2136B8B1",
+    "protocol": "dir_port"
+  },
+  "50.7.74.172:443": {
+    "address": "50.7.74.172:443",
+    "fingerprint": "D1AFBF3117B308B6D1A7AA762B1315FD86A6B8AF",
+    "protocol": "or_port"
+  },
+  "50.7.74.172:80": {
+    "address": "50.7.74.172:80",
+    "fingerprint": "D1AFBF3117B308B6D1A7AA762B1315FD86A6B8AF",
+    "protocol": "dir_port"
+  },
+  "62.141.38.69:443": {
+    "address": "62.141.38.69:443",
+    "fingerprint": "D379A1CB8285748FFF64AE94296CA89878F25B22",
+    "protocol": "or_port"
+  },
+  "62.141.38.69:9030": {
+    "address": "62.141.38.69:9030",
+    "fingerprint": "D379A1CB8285748FFF64AE94296CA89878F25B22",
+    "protocol": "dir_port"
+  },
+  "5.45.111.149:443": {
+    "address": "5.45.111.149:443",
+    "fingerprint": "D405FCCF06ADEDF898DF2F29C9348DCB623031BA",
+    "protocol": "or_port"
+  },
+  "5.45.111.149:80": {
+    "address": "5.45.111.149:80",
+    "fingerprint": "D405FCCF06ADEDF898DF2F29C9348DCB623031BA",
+    "protocol": "dir_port"
+  },
+  "50.7.74.174:443": {
+    "address": "50.7.74.174:443",
+    "fingerprint": "D50101A2ABD09DC245F7E96C0818D003CDD62351",
+    "protocol": "or_port"
+  },
+  "50.7.74.174:80": {
+    "address": "50.7.74.174:80",
+    "fingerprint": "D50101A2ABD09DC245F7E96C0818D003CDD62351",
+    "protocol": "dir_port"
+  },
+  "37.187.115.157:9001": {
+    "address": "37.187.115.157:9001",
+    "fingerprint": "D5039E1EBFD96D9A3F9846BF99EC9F75EDDE902A",
+    "protocol": "or_port"
+  },
+  "37.187.115.157:9030": {
+    "address": "37.187.115.157:9030",
+    "fingerprint": "D5039E1EBFD96D9A3F9846BF99EC9F75EDDE902A",
+    "protocol": "dir_port"
+  },
+  "85.10.201.47:9001": {
+    "address": "85.10.201.47:9001",
+    "fingerprint": "D8B7A3A6542AA54D0946B9DC0257C53B6C376679",
+    "protocol": "or_port"
+  },
+  "85.10.201.47:9030": {
+    "address": "85.10.201.47:9030",
+    "fingerprint": "D8B7A3A6542AA54D0946B9DC0257C53B6C376679",
+    "protocol": "dir_port"
+  },
+  "193.35.52.53:9001": {
+    "address": "193.35.52.53:9001",
+    "fingerprint": "DAA39FC00B196B353C2A271459C305C429AF09E4",
+    "protocol": "or_port"
+  },
+  "193.35.52.53:9030": {
+    "address": "193.35.52.53:9030",
+    "fingerprint": "DAA39FC00B196B353C2A271459C305C429AF09E4",
+    "protocol": "dir_port"
+  },
+  "54.36.237.163:443": {
+    "address": "54.36.237.163:443",
+    "fingerprint": "DB2682153AC0CCAECD2BD1E9EBE99C6815807A1E",
+    "protocol": "or_port"
+  },
+  "54.36.237.163:80": {
+    "address": "54.36.237.163:80",
+    "fingerprint": "DB2682153AC0CCAECD2BD1E9EBE99C6815807A1E",
+    "protocol": "dir_port"
+  },
+  "176.158.236.102:9001": {
+    "address": "176.158.236.102:9001",
+    "fingerprint": "DC163DDEF4B6F0C6BC226F9F6656A5A30C5C5686",
+    "protocol": "or_port"
+  },
+  "176.158.236.102:9030": {
+    "address": "176.158.236.102:9030",
+    "fingerprint": "DC163DDEF4B6F0C6BC226F9F6656A5A30C5C5686",
+    "protocol": "dir_port"
+  },
+  "178.33.183.251:443": {
+    "address": "178.33.183.251:443",
+    "fingerprint": "DD823AFB415380A802DCAEB9461AE637604107FB",
+    "protocol": "or_port"
+  },
+  "178.33.183.251:80": {
+    "address": "178.33.183.251:80",
+    "fingerprint": "DD823AFB415380A802DCAEB9461AE637604107FB",
+    "protocol": "dir_port"
+  },
+  "171.25.193.20:443": {
+    "address": "171.25.193.20:443",
+    "fingerprint": "DD8BD7307017407FCC36F8D04A688F74A0774C02",
+    "protocol": "or_port"
+  },
+  "171.25.193.20:80": {
+    "address": "171.25.193.20:80",
+    "fingerprint": "DD8BD7307017407FCC36F8D04A688F74A0774C02",
+    "protocol": "dir_port"
+  },
+  "92.222.38.67:443": {
+    "address": "92.222.38.67:443",
+    "fingerprint": "DED6892FF89DBD737BA689698A171B2392EB3E82",
+    "protocol": "or_port"
+  },
+  "92.222.38.67:80": {
+    "address": "92.222.38.67:80",
+    "fingerprint": "DED6892FF89DBD737BA689698A171B2392EB3E82",
+    "protocol": "dir_port"
+  },
+  "166.70.207.2:9101": {
+    "address": "166.70.207.2:9101",
+    "fingerprint": "E41B16F7DDF52EBB1DB4268AB2FE340B37AD8904",
+    "protocol": "or_port"
+  },
+  "166.70.207.2:9130": {
+    "address": "166.70.207.2:9130",
+    "fingerprint": "E41B16F7DDF52EBB1DB4268AB2FE340B37AD8904",
+    "protocol": "dir_port"
+  },
+  "185.100.86.182:8080": {
+    "address": "185.100.86.182:8080",
+    "fingerprint": "E51620B90DCB310138ED89EDEDD0A5C361AAE24E",
+    "protocol": "or_port"
+  },
+  "185.100.86.182:9030": {
+    "address": "185.100.86.182:9030",
+    "fingerprint": "E51620B90DCB310138ED89EDEDD0A5C361AAE24E",
+    "protocol": "dir_port"
+  },
+  "212.47.244.38:443": {
+    "address": "212.47.244.38:443",
+    "fingerprint": "E81EF60A73B3809F8964F73766B01BAA0A171E20",
+    "protocol": "or_port"
+  },
+  "212.47.244.38:8080": {
+    "address": "212.47.244.38:8080",
+    "fingerprint": "E81EF60A73B3809F8964F73766B01BAA0A171E20",
+    "protocol": "dir_port"
+  },
+  "185.4.132.148:443": {
+    "address": "185.4.132.148:443",
+    "fingerprint": "E8D114B3C78D8E6E7FEB1004650DD632C2143C9E",
+    "protocol": "or_port"
+  },
+  "185.4.132.148:80": {
+    "address": "185.4.132.148:80",
+    "fingerprint": "E8D114B3C78D8E6E7FEB1004650DD632C2143C9E",
+    "protocol": "dir_port"
+  },
+  "131.188.40.188:80": {
+    "address": "131.188.40.188:80",
+    "fingerprint": "EBE718E1A49EE229071702964F8DB1F318075FF8",
+    "protocol": "or_port"
+  },
+  "131.188.40.188:1443": {
+    "address": "131.188.40.188:1443",
+    "fingerprint": "EBE718E1A49EE229071702964F8DB1F318075FF8",
+    "protocol": "dir_port"
+  },
+  "192.87.28.28:9001": {
+    "address": "192.87.28.28:9001",
+    "fingerprint": "ED2338CAC2711B3E331392E1ED2831219B794024",
+    "protocol": "or_port"
+  },
+  "192.87.28.28:9030": {
+    "address": "192.87.28.28:9030",
+    "fingerprint": "ED2338CAC2711B3E331392E1ED2831219B794024",
+    "protocol": "dir_port"
+  },
+  "37.252.187.111:443": {
+    "address": "37.252.187.111:443",
+    "fingerprint": "EE4AF632058F0734C1426B1AD689F47445CA2056",
+    "protocol": "or_port"
+  },
+  "37.252.187.111:9030": {
+    "address": "37.252.187.111:9030",
+    "fingerprint": "EE4AF632058F0734C1426B1AD689F47445CA2056",
+    "protocol": "dir_port"
+  },
+  "217.182.75.181:9001": {
+    "address": "217.182.75.181:9001",
+    "fingerprint": "EFEACD781604EB80FBC025EDEDEA2D523AEAAA2F",
+    "protocol": "or_port"
+  },
+  "217.182.75.181:9030": {
+    "address": "217.182.75.181:9030",
+    "fingerprint": "EFEACD781604EB80FBC025EDEDEA2D523AEAAA2F",
+    "protocol": "dir_port"
+  },
+  "193.70.112.165:443": {
+    "address": "193.70.112.165:443",
+    "fingerprint": "F10BDE279AE71515DDCCCC61DC19AC8765F8A3CC",
+    "protocol": "or_port"
+  },
+  "193.70.112.165:80": {
+    "address": "193.70.112.165:80",
+    "fingerprint": "F10BDE279AE71515DDCCCC61DC19AC8765F8A3CC",
+    "protocol": "dir_port"
+  },
+  "37.187.102.108:443": {
+    "address": "37.187.102.108:443",
+    "fingerprint": "F4263275CF54A6836EE7BD527B1328836A6F06E1",
+    "protocol": "or_port"
+  },
+  "37.187.102.108:80": {
+    "address": "37.187.102.108:80",
+    "fingerprint": "F4263275CF54A6836EE7BD527B1328836A6F06E1",
+    "protocol": "dir_port"
+  },
+  "5.199.142.236:9001": {
+    "address": "5.199.142.236:9001",
+    "fingerprint": "F4C0EDAA0BF0F7EC138746F8FEF1CE26C7860265",
+    "protocol": "or_port"
+  },
+  "5.199.142.236:9030": {
+    "address": "5.199.142.236:9030",
+    "fingerprint": "F4C0EDAA0BF0F7EC138746F8FEF1CE26C7860265",
+    "protocol": "dir_port"
+  },
+  "192.160.102.168:9001": {
+    "address": "192.160.102.168:9001",
+    "fingerprint": "F6A358DD367B3282D6EF5824C9D45E1A19C7E815",
+    "protocol": "or_port"
+  },
+  "192.160.102.168:80": {
+    "address": "192.160.102.168:80",
+    "fingerprint": "F6A358DD367B3282D6EF5824C9D45E1A19C7E815",
+    "protocol": "dir_port"
+  },
+  "78.47.18.110:80": {
+    "address": "78.47.18.110:80",
+    "fingerprint": "F8D27B163B9247B232A2EEE68DD8B698695C28DE",
+    "protocol": "or_port"
+  },
+  "78.47.18.110:443": {
+    "address": "78.47.18.110:443",
+    "fingerprint": "F8D27B163B9247B232A2EEE68DD8B698695C28DE",
+    "protocol": "dir_port"
+  },
+  "185.96.180.29:443": {
+    "address": "185.96.180.29:443",
+    "fingerprint": "F93D8F37E35C390BCAD9F9069E13085B745EC216",
+    "protocol": "or_port"
+  },
+  "185.96.180.29:80": {
+    "address": "185.96.180.29:80",
+    "fingerprint": "F93D8F37E35C390BCAD9F9069E13085B745EC216",
+    "protocol": "dir_port"
+  },
+  "149.56.45.200:9001": {
+    "address": "149.56.45.200:9001",
+    "fingerprint": "FE296180018833AF03A8EACD5894A614623D3F76",
+    "protocol": "or_port"
+  },
+  "149.56.45.200:9030": {
+    "address": "149.56.45.200:9030",
+    "fingerprint": "FE296180018833AF03A8EACD5894A614623D3F76",
+    "protocol": "dir_port"
+  },
+  "193.11.164.243:9001": {
+    "address": "193.11.164.243:9001",
+    "fingerprint": "FFA72BD683BC2FCF988356E6BEC1E490F313FB07",
+    "protocol": "or_port"
+  },
+  "193.11.164.243:9030": {
+    "address": "193.11.164.243:9030",
+    "fingerprint": "FFA72BD683BC2FCF988356E6BEC1E490F313FB07",
+    "protocol": "dir_port"
+  },
   "128.31.0.39:9101": {
     "address": "128.31.0.39:9101",
     "name": "moria1",
