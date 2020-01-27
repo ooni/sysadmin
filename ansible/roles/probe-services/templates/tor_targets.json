@@ -3,7 +3,7 @@
     "address": "128.31.0.39:9101",
     "name": "moria1",
     "fingerprint": "9695DFC35FFEB861329B9F1AB04C46397020CE31",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "128.31.0.39:9131": {
     "address": "128.31.0.39:9131",
@@ -15,7 +15,7 @@
     "address": "86.59.21.38:443",
     "name": "tor26",
     "fingerprint": "847B1F850344D7876491A54892F904934E4EB85D",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "86.59.21.38:80": {
     "address": "86.59.21.38:80",
@@ -27,7 +27,7 @@
     "address": "45.66.33.45:443",
     "name": "dizum",
     "fingerprint": "7EA6EAD6FD83083C538F44038BBFA077587DD755",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "45.66.33.45:80": {
     "address": "45.66.33.45:80",
@@ -39,7 +39,7 @@
     "address": "66.111.2.131:9001",
     "name": "Serge",
     "fingerprint": "BA44A889E64B93FAA2B114E02C2A279A8555C533",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "66.111.2.131:9030": {
     "address": "66.111.2.131:9030",
@@ -51,7 +51,7 @@
     "address": "131.188.40.189:443",
     "name": "gabelmoo",
     "fingerprint": "F2044413DAC2E02E3D6BCF4735A19BCA1DE97281",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "131.188.40.189:80": {
     "address": "131.188.40.189:80",
@@ -63,7 +63,7 @@
     "address": "193.23.244.244:443",
     "name": "dannenberg",
     "fingerprint": "7BE683E65D48141321C5ED92F075C55364AC7123",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "193.23.244.244:80": {
     "address": "193.23.244.244:80",
@@ -75,7 +75,7 @@
     "address": "171.25.193.9:80",
     "name": "maatuska",
     "fingerprint": "BD6A829255CB08E66FBE7D3748363586E46B3810",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "171.25.193.9:443": {
     "address": "171.25.193.9:443",
@@ -87,7 +87,7 @@
     "address": "154.35.175.225:443",
     "name": "Faravahar",
     "fingerprint": "CF6D0AAFB385BE71B8E111FC5CFF4B47923733BC",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "154.35.175.225:80": {
     "address": "154.35.175.225:80",
@@ -99,7 +99,7 @@
     "address": "199.58.81.140:443",
     "name": "longclaw",
     "fingerprint": "74A910646BCEEFBCD2E874FC1DC997430F968145",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "199.58.81.140:80": {
     "address": "199.58.81.140:80",
@@ -111,7 +111,7 @@
     "address": "204.13.164.118:443",
     "name": "bastet",
     "fingerprint": "24E2F139121D4394C54B5BCC368B3B411857C413",
-    "protocol": "or_port"
+    "protocol": "or_port_dirauth"
   },
   "204.13.164.118:80": {
     "address": "204.13.164.118:80",
