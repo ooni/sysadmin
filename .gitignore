@@ -8,3 +8,4 @@ invoke.yaml
 backend-files/
 secrets.env.j2
 /venv
+/ansible/venv
