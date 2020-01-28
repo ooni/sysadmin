@@ -14,7 +14,6 @@ ams
 
 [mia]
 miatorth.ooni.nu
-mia-wcth.ooni.io
 mia-ps2.ooni.nu
 mia-get.ooni.nu
 mia-ps-test.ooni.nu
@@ -111,7 +110,6 @@ miatorth.ooni.nu
 amstorth.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
-mia-wcth.ooni.io
 ams-wcth.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
@@ -135,7 +133,6 @@ ams-jupyter.ooni.nu
 [have_nginx]
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
-mia-wcth.ooni.io
 mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu

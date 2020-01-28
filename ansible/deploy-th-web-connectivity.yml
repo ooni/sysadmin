@@ -34,17 +34,6 @@
       onion_services:
         - "{{ wcth_onion_service }}"
 
-- hosts: "mia-wcth.ooni.io"
-  roles:
-    - role: docker
-    - role: letsencrypt
-      expand: yes
-      letsencrypt_domains:
-        - "mia-wcth.ooni.io"
-    - role: th-web-connectivity
-      tags: wcth
-      web_connectivity_domain: mia-wcth.ooni.io
-
 - hosts: "ams-wcth.ooni.nu"
   roles:
     - role: docker
