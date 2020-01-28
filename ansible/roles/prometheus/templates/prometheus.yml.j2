@@ -119,8 +119,8 @@ scrape_configs:
       port: 80
       refresh_interval: 60s # tor DNS TTL
       names:
-      - 2lzg3f4r3eapfi6j.onion # onion of `b.web-connectivity.th.ooni.io`
-      - y3zq5fwelrzkkv3s.onion # onion of `c.web-connectivity.th.ooni.io`
+      - o7mcp5y4ibyjkcgs.onion # onion of ams-wcth3.ooni.nu
+      - y3zq5fwelrzkkv3s.onion # onion of ams-wcth2.ooni.nu
     relabel_configs:
     - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/status"}
     - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
