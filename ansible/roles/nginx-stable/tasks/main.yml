@@ -16,14 +16,13 @@
 
 - name: drop nginx from dist repo
   apt:
-    name: '{{ item }}'
+    name:
+      - nginx-common
+      - nginx-doc
+      - nginx-extras
+      - nginx-full
+      - nginx-light
     state: absent
-  with_items:
-    - nginx-common
-    - nginx-doc
-    - nginx-extras
-    - nginx-full
-    - nginx-light
 
 - name: install stable nginx from nginx.org
   apt:
