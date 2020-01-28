@@ -1,3 +1,4 @@
 *.retry
 # ooni-sysadmin.git/ansible/oometa should be symlink to ooni-pipeline.git/af/oometa
 /oometa
+/venv
