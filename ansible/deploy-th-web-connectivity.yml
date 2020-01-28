@@ -45,20 +45,6 @@
       tags: wcth
       web_connectivity_domain: mia-wcth.ooni.io
 
-- hosts: "hkg-wcth.ooni.io"
-  roles:
-    - role: docker
-    - role: letsencrypt
-      letsencrypt_domains:
-        - "hkg-wcth.ooni.io"
-    - role: onion-service
-      tags: tor
-      onion_services:
-        - "{{ wcth_onion_service_b }}"
-    - role: th-web-connectivity
-      tags: wcth
-      web_connectivity_domain: hkg-wcth.ooni.io
-
 - hosts: "ams-wcth.ooni.nu"
   roles:
     - role: docker

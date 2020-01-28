@@ -29,7 +29,6 @@ datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 hkgtorth.ooni.nu
 fastpath.ooni.nu
-hkg-wcth.ooni.io
 hkg-ps.ooni.nu
 
 [ams]
@@ -113,7 +112,6 @@ amstorth.ooni.nu
 fastpath.ooni.nu
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
-hkg-wcth.ooni.io
 ams-wcth.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
@@ -138,7 +136,6 @@ ams-jupyter.ooni.nu
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 mia-wcth.ooni.io
-hkg-wcth.ooni.io
 mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
