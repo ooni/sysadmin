@@ -61,6 +61,14 @@
     --post-hook '/usr/sbin/service nginx reload'
   args:
     creates: "{{ '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' if expand is not defined else omit}}"
+
+- name: Run certbot for nginx
+  command: >
+    certbot certonly --nginx
+    -n
+    --cert-name {{ letsencrypt_domains | join(' -d ') }}
+  when: "with_nginx is defined"
+
 - name: Ensure there is a webroot_map for the first letsencrypt domain # this is a hotfix
   lineinfile:
     path: "/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf"
