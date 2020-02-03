@@ -8,6 +8,7 @@
       tags: base
     - role: letsencrypt
       tags: base
+      with_nginx: yes
       letsencrypt_domains:
         - "mia-ps-test.ooni.nu"
         - "ps-test.ooni.io"
