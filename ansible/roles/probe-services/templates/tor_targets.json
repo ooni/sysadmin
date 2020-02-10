@@ -300,5 +300,31 @@
       ]
     },
     "protocol": "obfs4"
+  },
+  "80390900eecf5e7820083775d66c8058d4cc2098840ec42cf1e2046f50552c9b": {
+    "address": "45.145.95.6:27015",
+    "fingerprint": "C5B7CD6946FF10C5B3E89691A7D3F2C122D2117C",
+    "params": {
+      "cert": [
+        "TD7PbUO0/0k6xYHMPW3vJxICfkMZNdkRrb63Zhl5j9dW3iRGiCx0A7mPhe5T2EDzQ35+Zw"
+      ],
+      "iat-mode": [
+        "0"
+      ]
+    },
+    "protocol": "obfs4"
+  },
+  "80390900eecf5e7820083775d66c8058d4cc2098840ec42cf1e2046f50552c9b": {
+    "address": "[2a0c:4d80:42:702::1]:27015",
+    "fingerprint": "C5B7CD6946FF10C5B3E89691A7D3F2C122D2117C",
+    "params": {
+      "cert": [
+        "TD7PbUO0/0k6xYHMPW3vJxICfkMZNdkRrb63Zhl5j9dW3iRGiCx0A7mPhe5T2EDzQ35+Zw"
+      ],
+      "iat-mode": [
+        "0"
+      ]
+    },
+    "protocol": "obfs4"
   }
 }
