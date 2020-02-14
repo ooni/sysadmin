@@ -119,7 +119,7 @@
     "fingerprint": "24E2F139121D4394C54B5BCC368B3B411857C413",
     "protocol": "dir_port"
   },
-  "e908d2aee266d911ca877b08b76d6dbc3ec9ad0c173c63eee59f3041d5ad54d4": {
+  "3fa772a44e07856b4c70e958b2f6dc8a29450a823509d5dbbf8b884e7fb5bb9d": {
     "address": "192.95.36.142:443",
     "fingerprint": "CDF2E852BF539B82BD10E27E9115A31734E378C2",
     "params": {
@@ -132,7 +132,7 @@
     },
     "protocol": "obfs4"
   },
-  "748c1d8b0c70d243e626823f9b62905c2eaab8e342b80325e839bf1e1f703968": {
+  "99e9adc8bba0d60982dbc655b5e8735d88ad788905c3713a39eff3224b617eeb": {
     "address": "38.229.1.78:80",
     "fingerprint": "C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4",
     "params": {
@@ -145,7 +145,7 @@
     },
     "protocol": "obfs4"
   },
-  "5454b05179ddc155c50d7d5ea0e199f352a19433e9e29629f9a998e848c042f5": {
+  "9d735c6e70512123ab2c2fe966446b2345b352c512e9fb359f4b1673236e4d4a": {
     "address": "38.229.33.83:80",
     "fingerprint": "0BAC39417268B96B9F514E7F63FA6FBA1A788955",
     "params": {
@@ -158,7 +158,7 @@
     },
     "protocol": "obfs4"
   },
-  "02b5951c0a1ffa86c9f1c2034990472364c3500ffc1bb5a58a9946350e2a03d2": {
+  "9b43c53b62e6f49a16d3c17b6f563b63498b8b4d8061a3e10d240a87473f4fb5": {
     "address": "37.218.240.34:40035",
     "fingerprint": "88CD36D45A35271963EF82E511C8827A24730913",
     "params": {
@@ -171,7 +171,7 @@
     },
     "protocol": "obfs4"
   },
-  "3c3ec420923b5a3484607bc57d3e6fb8ca640c1e5ce0932cc6d2fa64fc2386e4": {
+  "548eebff71da6128321c3bc1c3ec12b5bfff277ef5cde32709a33e207b57f3e2": {
     "address": "37.218.245.14:38224",
     "fingerprint": "D9A82D2F9C2F65A18407B1D2B764F130847F8B5D",
     "params": {
@@ -184,7 +184,7 @@
     },
     "protocol": "obfs4"
   },
-  "6d226d9b5c819ca708eca23780c615361957b4a0a4addeb93c785b1fd4b548a6": {
+  "d2d6e34abeda851f7cd37138ffafcce992b2ccdb0f263eb90ab75d7adbd5eeba": {
     "address": "85.31.186.98:443",
     "fingerprint": "011F2599C0E9B27EE74B353155E244813763C3E5",
     "params": {
@@ -197,7 +197,7 @@
     },
     "protocol": "obfs4"
   },
-  "d609809637788dbec8cfba23c79ba7b13c44353d66ae77fd6b32bce065093204": {
+  "b8de51da541ced804840b1d8fd24d5ff1cfdf07eae673dae38c2bc2cce594ddd": {
     "address": "85.31.186.26:443",
     "fingerprint": "91A6354697E6B02A386312F68D82CF86824D3606",
     "params": {
@@ -210,7 +210,7 @@
     },
     "protocol": "obfs4"
   },
-  "a26e5ecab86eedc44b6f81e2e19482e63eb169e26da919e5a27bebc81807f078": {
+  "2534c0d7a5a4a283bef0f60f0ffa99e61674b577ed5c511d82e1743069136d52": {
     "address": "216.252.162.21:46089",
     "fingerprint": "0DB8799466902192B6C7576D58D4F7F714EC87C1",
     "params": {
@@ -223,7 +223,7 @@
     },
     "protocol": "obfs4"
   },
-  "fb50a5562be719a1f2f68b8859a0dd14393aa0ff41ee21b0bb38ba9e9956aa60": {
+  "bc7bc5fb57052ee5252e807443b9ab67307dbdb5ce79187c4360182a300dd0f8": {
     "address": "144.217.20.138:80",
     "fingerprint": "FB70B257C162BF1038CA669D568D76F5B7F0BABB",
     "params": {
@@ -236,7 +236,7 @@
     },
     "protocol": "obfs4"
   },
-  "0fded903f932e4a29aa494ca63816cf6e18684097227d41cc8820ef9859558aa": {
+  "5aeb9e43b43fc8a809b8d25aae968395a5ceea0e677caaf56e1c0a2ba002f5b5": {
     "address": "193.11.166.194:27015",
     "fingerprint": "2D82C2E354D531A68469ADF7F878FA6060C6BACA",
     "params": {
@@ -249,7 +249,7 @@
     },
     "protocol": "obfs4"
   },
-  "31c395c157c08fd126dd6efb3baf33afd46b9605275bb92aedb1d0730fd152b8": {
+  "2d7292b5163fb7de5b24cd04032c93a2d4c454431de3a00b5a6d4a3309529e49": {
     "address": "193.11.166.194:27020",
     "fingerprint": "86AC7B8D430DAC4117E9F42C9EAED18133863AAF",
     "params": {
@@ -262,7 +262,7 @@
     },
     "protocol": "obfs4"
   },
-  "8a4df6d9e92da4b035ca0d5b56d14cc82719eca42536d06d04e5e05bb95ed1d7": {
+  "b7c0e3f183ad85a6686ec68344765cec57906b215e7b82a98a9ca013cb980efa": {
     "address": "193.11.166.194:27025",
     "fingerprint": "1AE2C08904527FEA90C4C4F8C1083EA59FBC6FAF",
     "params": {
@@ -275,7 +275,7 @@
     },
     "protocol": "obfs4"
   },
-  "ac703097645b476bbc09a8c8a3e6de0cffd4e0d186cd048890ad09f4985c9e3d": {
+  "4a330634c5d678887f0f7c299490af43a6ac9fa944a6cc2140ab264c9ec124a0": {
     "address": "209.148.46.65:443",
     "fingerprint": "74FAD13168806246602538555B5521A0383A1875",
     "params": {
@@ -288,7 +288,7 @@
     },
     "protocol": "obfs4"
   },
-  "8dcaab5e2b8a5fa9a73f3ff0f70aca8fb8b034836284336f29b1b594c56c607f": {
+  "49116bf72d336bb8724fd3a06a5afa7bbd4e7baef35fbcdb9a98d13e702270ad": {
     "address": "146.57.248.225:22",
     "fingerprint": "10A6CD36A537FCE513A322361547444B393989F0",
     "params": {
@@ -301,7 +301,7 @@
     },
     "protocol": "obfs4"
   },
-  "80390900eecf5e7820083775d66c8058d4cc2098840ec42cf1e2046f50552c9b": {
+  "75fe96d641a078fee06529af376d7f8c92757596e48558d5d02baa1e10321d10": {
     "address": "45.145.95.6:27015",
     "fingerprint": "C5B7CD6946FF10C5B3E89691A7D3F2C122D2117C",
     "params": {
@@ -314,7 +314,7 @@
     },
     "protocol": "obfs4"
   },
-  "80390900eecf5e7820083775d66c8058d4cc2098840ec42cf1e2046f50552c9b": {
+  "f855ba38d517d8589c16e1333ac23c6e516532cf036ab6f47b15030b40a3b6a6": {
     "address": "[2a0c:4d80:42:702::1]:27015",
     "fingerprint": "C5B7CD6946FF10C5B3E89691A7D3F2C122D2117C",
     "params": {
