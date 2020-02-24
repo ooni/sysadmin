@@ -10,7 +10,7 @@ prometheus_db_path:              /srv/prometheus/data2x # TODO: remove /srv/prom
 
 prometheus_listen_address: '{{ CHANGE_ME }}'
 
-prometheus_version: 2.0.0
+prometheus_version: 2.16.0
 prometheus_download_url: https://github.com/prometheus/prometheus/releases/download
 
 prometheus_basename: "prometheus-{{ prometheus_version }}.linux-{{ go_arch }}"
