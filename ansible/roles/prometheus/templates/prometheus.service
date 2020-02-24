@@ -12,7 +12,7 @@ ExecStart={{ prometheus_path }}/prometheus \
     --web.route-prefix=/ \
     --web.console.templates={{ prometheus_path }}/consoles \
     --web.console.libraries={{ prometheus_path }}/console_libraries \
-    --storage.tsdb.retention=30d \
+    --storage.tsdb.retention.time=30d \
     --storage.tsdb.path={{ prometheus_db_path }}
 
 ExecReload=/bin/kill -HUP $MAINPID
