@@ -1,4 +1,0 @@
----
-- name: probe-services nginx config
-  template: src=netdata-nginx dest=/etc/nginx/sites-enabled/netdata.conf
-  notify: reload nginx
