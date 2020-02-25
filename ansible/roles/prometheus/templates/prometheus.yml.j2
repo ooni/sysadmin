@@ -139,6 +139,20 @@ scrape_configs:
         - {{ host }}:9100
 {% endfor %}
 
+  - job_name: 'netdata'
+    scrape_interval: 5s
+    scheme: https
+    metrics_path: /api/v1/allmetrics
+    tls_config:
+      ca_file: "{{ prometheus_exporter_cert }}"
+      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
+    static_configs:
+      - targets:
+{% for host in (groups.have_netdata) %}
+        - {{ host }}:9100
+{% endfor %}
+
   - job_name: 'gorush'
     scrape_interval: 5s
     scheme: https
