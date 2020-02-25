@@ -48,6 +48,7 @@
 - hosts: have_netdata
   tasks:
     - name: install netdata
+      tags: netdata
       apt:
         pkg:
           - netdata
