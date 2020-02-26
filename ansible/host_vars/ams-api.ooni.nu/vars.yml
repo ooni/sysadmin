@@ -1,3 +1,4 @@
 ---
 oomsm_db_url: 'postgresql://amsapi:{{ metadb_amsapi_password }}@amsmetadb.ooni.nu/metadb'
+blocklist_ips: '{{ vault_blocklist_ips }}'
 ...

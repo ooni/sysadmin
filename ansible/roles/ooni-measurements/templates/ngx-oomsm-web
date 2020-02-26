@@ -24,6 +24,9 @@ server {
 
     limit_req zone=limit_qps burst=10 nodelay;
 
+    # Load list of IPs to blocklist
+    include /etc/nginx/conf.d/blocklist_ips.conf;
+
     location / {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
     }

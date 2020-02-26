@@ -16,6 +16,10 @@
   notify: reload nginx
   tags: legacy
 
+- name: write blocklist ips
+  template: src=blocklist_ips.conf dest=/etc/nginx/conf.d/blocklist_ips.conf
+  notify: reload nginx
+
 - name: docker network for measurements
   docker_network:
     name: msm
