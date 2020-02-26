@@ -11,14 +11,14 @@
     comment: "OONI API user"
     state: present
 
+- name: write blocklist ips
+  template: src=blocklist_ips.conf dest=/etc/nginx/conf.d/blocklist_ips.conf
+  notify: reload nginx
+
 - name: api.ooni.io nginx config
   template: src=ngx-oomsm-web dest=/etc/nginx/sites-enabled/oomsm-web
   notify: reload nginx
   tags: legacy
-
-- name: write blocklist ips
-  template: src=blocklist_ips.conf dest=/etc/nginx/conf.d/blocklist_ips.conf
-  notify: reload nginx
 
 - name: docker network for measurements
   docker_network:
