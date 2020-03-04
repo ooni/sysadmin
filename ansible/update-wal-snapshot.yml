@@ -1,0 +1,22 @@
+- hosts: hkgmetadb.infra.ooni.io
+  tasks:
+  - name: docker run pipeline postgres
+    docker_container:
+      image: openobservatory/sysadmin-postgres-metadb:20190412-010f6f70 # 9.6.12
+      name: pl-psql-wal-shipper
+      hostname: pl-psql-wal-shipper
+      network_mode: 'host'
+      purge_networks: true
+      volumes:
+        - /etc/passwd:/etc/passwd:ro # to make `initdb` happy
+        - /etc/group:/etc/group:ro # to make `initdb` happy
+        - /srv/pl-psql_ssl:/srv/pl-psql_ssl:ro
+        - /srv/pl-psql:/srv/pl-psql:rw
+      env:
+        AWS_DEFAULT_REGION: us-east-1
+        AWS_ACCESS_KEY_ID: "{{ metadb_wal_s3_key_id }}"
+        AWS_SECRET_ACCESS_KEY: "{{ metadb_wal_s3_access_key }}"
+        PUSHGATEWAY_CERT: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.cert"
+        PUSHGATEWAY_KEY: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.key"
+      user: "2100:2100"
+      command: metadb_s3_archive
