@@ -23,6 +23,7 @@ server {
     proxy_read_timeout {{ oomsm_timeout_s }}s;
 
     limit_req zone=limit_qps burst=10 nodelay;
+    limit_req_status 429;
 
     # Load list of IPs to blocklist
     include /etc/nginx/conf.d/blocklist_ips.conf;
