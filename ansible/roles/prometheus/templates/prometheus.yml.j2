@@ -45,7 +45,7 @@ scrape_configs:
       - prometheus.infra.ooni.io:9093
 
 {% for bbjob in blackbox_jobs %}
-  - job_name: {{ bbjob.name }}
+  - job_name: "{{ bbjob.name }}"
     metrics_path: /probe
     params:
       module: [{{ bbjob.module }}]
