@@ -44,7 +44,7 @@
       DATABASE_STATEMENT_TIMEOUT: '{{ (oomsm_timeout_s - 1) * 1000 }}'
       AUTOCLAVED_BASE_URL: 'http://s3.amazonaws.com/ooni-data/autoclaved/jsonl.tar.lz4/' # HOTFIX 'http://datacollector.infra.ooni.io/ooni-public/autoclaved/' # FIXME: use dataproxy when API moves to AMS
       CENTRIFUGATION_BASE_URL: 'http://datacollector.infra.ooni.io/ooni-public/centrifugation/'
-    command: "gunicorn --config python:measurements.gunicorn_config --bind 0.0.0.0:{{ oomsm_backend_port }} --workers 5 --timeout 60 measurements.wsgi"
+    command: "gunicorn --config python:measurements.gunicorn_config --bind 0.0.0.0:{{ oomsm_backend_port }} --workers 20 --timeout 60 measurements.wsgi"
     # user: "oomsmweb:oomsmweb" XXX-UID
     restart_policy: unless-stopped
 
