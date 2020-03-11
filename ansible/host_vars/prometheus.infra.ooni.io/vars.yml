@@ -24,6 +24,7 @@ ngxprom_exporter_ports:
   8090: '127.0.0.1' # FIXME: unusual port for prometheus
   9093: '127.0.0.1'
 
+# Monitor HTTP[S] services by sending requests and checking the status code
 blackbox_jobs:
   - name: "ooni web_connectivity test helpers"
     module: "ooni_web_connectivity_ok"
@@ -75,6 +76,11 @@ blackbox_jobs:
     module: "http_2xx"
     targets:
       - "https://api.ooni.io/api/v1/measurements"
+
+  - name: "ooni API: GET /api/v1/version"
+    module: "http_2xx"
+    targets:
+      - "https://api.ooni.io/api/v1/version"
 
   - name: "slack inviter"
     module: "http_2xx"
