@@ -86,14 +86,14 @@ blackbox_jobs:
     targets:
       - "https://ooni.torproject.org"
 
+  - name: "ooni API GET /api/v1/version"
+    module: "http_2xx"
+    targets: ["https://api.ooni.io/api/v1/version"]
+
   - name: "ooni get"
     module: "http_2xx"
     targets:
       - "https://get.ooni.torproject.org"
-
-  - name: "ooni API: GET /api/v1/version"
-    module: "http_2xx"
-    targets: ["https://api.ooni.io/api/v1/version"]
 
   - name: "orchestrate"
     module: "ooni_orchestrate"
