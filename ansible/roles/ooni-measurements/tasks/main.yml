@@ -39,9 +39,6 @@
     log_driver: journald
     log_options:
       tag: "api-{{ oomsm_tag }}"
-      # volumes:
-      #  # expose journald socket to the container
-      #  - "/run/systemd/journal/socket:/run/systemd/journal/socket"
     env:
       APP_ENV: "production"
       prometheus_multiproc_dir: '/dev/shm'
