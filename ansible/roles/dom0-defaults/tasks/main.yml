@@ -14,17 +14,21 @@
 - name: install some common packages
   apt:
     name:
+      - bash-completion
       - ca-certificates
-      - tmux
-      - screen
-      - vim
+      - curl
+      - file
+      - iotop
       - lsof
+      - man-db
+      - mtr
+      - openssl
+      - rsync
+      - screen
       - strace
       - tcpdump
-      - curl
-      - mtr
-      - rsync
-      - openssl
+      - tmux
+      - vim
     state: latest
     update_cache: yes
     cache_valid_time: 28800
