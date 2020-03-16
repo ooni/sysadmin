@@ -36,6 +36,14 @@
     hostname: oomsm-web
     networks: [{name: msm, ipv4_address: '{{ oomsm_backend_ipv4 }}'}]
     purge_networks: true
+    # This makes Docker dump raw text logs into journald on the host with
+    # CONTAINER_NAME=oomsm-web PRIORITY=3 _EXE=/usr/bin/dockerd _SYSTEMD_UNIT=docker.service
+    log_driver: journald
+    log_options:
+      tag: "api-{{ oomsm_tag }}"
+    volumes:
+      # This exposes journald socket to the container so that applications can properly log into journald
+      - "/run/systemd/journal/socket:/run/systemd/journal/socket"
     env:
       APP_ENV: "production"
       prometheus_multiproc_dir: '/dev/shm'
