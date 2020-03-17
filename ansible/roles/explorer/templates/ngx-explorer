@@ -35,6 +35,10 @@ server {
         proxy_pass http://fastpath.ooni.nu:8080;
     }
 
+    location = /world {
+        return 301 https://explorer.ooni.org;
+    }
+
     location ~ "/rss/by-country/([A-Za-z]{2}).xml" {
         proxy_pass http://fastpath.ooni.nu:8080;
     }
