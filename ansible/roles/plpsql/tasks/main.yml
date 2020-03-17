@@ -29,24 +29,24 @@
 
 - name: place config in PGDATA for active DB
   template: src=postgresql.active.conf dest=/srv/pl-psql/postgresql.conf owner=plpsql group=plpsql mode=0444
-  notify: restart pl-psql
+  notify: reload pl-psql
   when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
 
 - name: drop recovery.conf from PGDATA on active DB
   file: name=/srv/pl-psql/recovery.conf state=absent
-  notify: restart pl-psql
+  notify: reload pl-psql
   when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
 
 # standby hosts
 
 - name: place config in PGDATA for standby DB
   template: src=postgresql.standby.conf dest=/srv/pl-psql/postgresql.conf owner=plpsql group=plpsql mode=0444
-  notify: restart pl-psql
+  notify: reload pl-psql
   when: inventory_hostname != 'hkgmetadb.infra.ooni.io'
 
 - name: place recovery.conf to PGDATA on standby DB
   template: src=recovery.conf dest=/srv/pl-psql/recovery.conf owner=plpsql group=plpsql mode=0444
-  notify: restart pl-psql
+  notify: reload pl-psql
   when: inventory_hostname != 'hkgmetadb.infra.ooni.io'
 
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
