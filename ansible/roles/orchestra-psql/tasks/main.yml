@@ -32,7 +32,7 @@
   notify: restart psql
   with_items:
   - pg_hba.conf
-  - postgresql.conf
+  - postgresql.orchestra.conf
 
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run postgres
