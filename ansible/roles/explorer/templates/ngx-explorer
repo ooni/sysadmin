@@ -35,7 +35,7 @@ server {
         proxy_pass http://fastpath.ooni.nu:8080;
     }
 
-    location = /world {
+    location ~ "^/world" {
         return 301 https://explorer.ooni.org;
     }
 
