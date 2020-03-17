@@ -20,7 +20,7 @@
 
 - name: place pg_hba.conf in PGDATA
   template: src=pg_hba.conf dest=/srv/pl-psql/pg_hba.conf owner=plpsql group=plpsql mode=0444
-  notify: restart pl-psql
+  notify: reload pl-psql
 
 # Warning: hkgmetadb.infra.ooni.io is hardcoded here to identify the active and standby DBs
 # TODO: use a flag in inventory instead
