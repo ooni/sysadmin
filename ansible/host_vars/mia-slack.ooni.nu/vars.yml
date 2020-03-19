@@ -53,6 +53,7 @@ slack_irc_config: |
         "#kandoo-iran": "#kandoo-iran",
         "#ooni": "#ooni",
         "#ooni-dev": "#ooni-dev",
+        "#ooni-design": "#ooni-design",
         "#ooni-entropy": "#ooni-entropy",
         "#tor-meeting": "#tor-meeting"
       }
