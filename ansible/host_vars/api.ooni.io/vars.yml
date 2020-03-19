@@ -1,3 +1,0 @@
----
-oomsm_db_url: 'postgresql://amsapi:{{ metadb_amsapi_password }}@hkgmetadb.infra.ooni.io/metadb'
-...
