@@ -82,6 +82,18 @@ server {
     }
 {% endfor %}
 
+    # API v1 endpoints
+    # These are the most popular, and heavy endpoints
+{% for handle in ["/api/v1/version", "/api/v1/measurements"] %}
+    location = {{ handle }} {
+        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
+
+        proxy_cache apicache;
+        proxy_cache_valid 200 10m;
+        add_header X-Cache-Status $upstream_cache_status;
+    }
+{% endfor %}
+
     location /metrics {
         #satisfy all;
         #allow {{ lookup('dig', 'prometheus.infra.ooni.io/A') }}/32;
