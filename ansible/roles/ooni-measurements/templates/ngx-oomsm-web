@@ -10,6 +10,17 @@ proxy_cache_path /var/cache/nginx-api levels=1:2 keys_zone=apicache:100M
 limit_req_zone $binary_remote_addr zone=limit_qps:60m rate=120r/m;
 limit_req_log_level info;
 
+# anonymize ipaddr
+map $remote_addr $remote_addr_anon {
+  ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
+  ~(?P<ip>[^:]+:[^:]+):       $ip::;
+  default                     0.0.0.0;
+}
+
+# log anonymized ipaddr and caching status
+log_format apilogfmt '$remote_addr_anon $upstream_cache_status [$time_local] '
+    '"$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"';
+
 server {
     listen 80;
     listen 443 ssl http2;
@@ -19,7 +30,9 @@ server {
     {{ c.ssl_letsencrypt(ssl_domain) }}
 
     server_name api.ooni.io {{ ssl_domain }};
-    access_log  /var/log/nginx/{{ ssl_domain }}.access.log oolog;
+
+    access_log  /var/log/nginx/{{ ssl_domain }}.access.log apilogfmt;
+    #access_log syslog:server=unix:/dev/log combined;
     error_log   /var/log/nginx/{{ ssl_domain }}.error.log warn;
 
     proxy_read_timeout {{ oomsm_timeout_s }}s;
