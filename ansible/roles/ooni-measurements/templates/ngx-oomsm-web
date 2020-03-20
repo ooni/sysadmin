@@ -97,15 +97,20 @@ server {
 
     # API v1 endpoints
     # These are the most popular, and heavy endpoints
-{% for handle in ["/api/v1/version", "/api/v1/measurements"] %}
-    location = {{ handle }} {
-        proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
-
-        proxy_cache apicache;
-        proxy_cache_valid 200 10m;
-        add_header X-Cache-Status $upstream_cache_status;
+    location = /api/v1/measurement/ {
+      # single measurement - cache heavily
+      proxy_pass http://172.25.232.254:16868;
+      proxy_cache apicache;
+      proxy_cache_valid 200 24h;
+      add_header X-Cache-Status $upstream_cache_status;
     }
-{% endfor %}
+    #location = /api/v1/measurements {
+    #  # list_measurements - cache only based on API response headers
+    #  proxy_pass http://172.25.232.254:16868;
+    #  proxy_cache apicache;
+    #  proxy_cache_valid 200 4h;
+    #  add_header X-Cache-Status $upstream_cache_status;
+    #}
 
     location /metrics {
         #satisfy all;
