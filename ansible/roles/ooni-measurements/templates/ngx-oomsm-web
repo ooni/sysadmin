@@ -2,7 +2,9 @@
 
 {% import 'common.j2' as c %}
 
-proxy_cache_path /var/cache/nginx-api keys_zone=api:1M inactive=1h;
+# Use 2-level cache, 20MB of RAM + 5GB on disk,
+proxy_cache_path /var/cache/nginx-api levels=1:2 keys_zone=apicache:100M
+                max_size=5g inactive=24h use_temp_path=off;
 
 # moderate throttling applied globally
 limit_req_zone $binary_remote_addr zone=limit_qps:60m rate=120r/m;
@@ -38,8 +40,7 @@ server {
     location = /measurements {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
-        proxy_cache_min_uses 3; # this should avoid polluting the cache with random measurements search queries
-        proxy_cache api;
+        proxy_cache apicache;
         proxy_cache_valid 200 1h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
@@ -53,7 +54,7 @@ server {
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
-        proxy_cache api;
+        proxy_cache apicache;
         proxy_cache_valid 200 1h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
@@ -70,7 +71,7 @@ server {
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
-        proxy_cache api;
+        proxy_cache apicache;
         proxy_cache_valid 200 6h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;

@@ -64,4 +64,6 @@
   file:
     state: absent
     path: "/etc/nginx/sites-enabled/letsencrypt-http"
-  notify: reload nginx
+  notify:
+  - test API nginx config
+  - reload API nginx
