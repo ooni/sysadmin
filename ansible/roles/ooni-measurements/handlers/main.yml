@@ -1,3 +1,6 @@
 ---
-- name: reload nginx
+- name: test API nginx config
+  command: /usr/sbin/nginx -t
+
+- name: reload API nginx
   service: name=nginx state=reloaded

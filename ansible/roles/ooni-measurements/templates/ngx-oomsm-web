@@ -1,4 +1,4 @@
-# ansible-managed in ooni-sysadmin.git
+# Managed by ansible; see roles/ooni-measurements/templates/ngx-oomsm-web
 
 {% import 'common.j2' as c %}
 
@@ -46,6 +46,7 @@ server {
         proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+        add_header X-Cache-Status $upstream_cache_status;
     }
 
 {% for handle in ["/", "/stats", "/api/_/global_overview", "/api/_/global_overview_by_month", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
@@ -59,6 +60,7 @@ server {
         proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+        add_header X-Cache-Status $upstream_cache_status;
     }
 {% endfor %}
 
@@ -75,6 +77,7 @@ server {
         proxy_cache_lock_age 58s;
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+        add_header X-Cache-Status $upstream_cache_status;
     }
 {% endfor %}
 
