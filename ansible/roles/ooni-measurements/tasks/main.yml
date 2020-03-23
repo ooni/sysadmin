@@ -13,11 +13,15 @@
 
 - name: write blocklist ips
   template: src=blocklist_ips.conf dest=/etc/nginx/conf.d/blocklist_ips.conf
-  notify: reload nginx
+  notify:
+  - test API nginx config
+  - reload API nginx
 
 - name: api.ooni.io nginx config
   template: src=ngx-oomsm-web dest=/etc/nginx/sites-enabled/oomsm-web
-  notify: reload nginx
+  notify:
+  - test API nginx config
+  - reload API nginx
   tags: legacy
 
 - name: docker network for measurements
@@ -60,4 +64,6 @@
   file:
     state: absent
     path: "/etc/nginx/sites-enabled/letsencrypt-http"
-  notify: reload nginx
+  notify:
+  - test API nginx config
+  - reload API nginx

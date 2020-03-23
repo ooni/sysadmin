@@ -1,12 +1,25 @@
-# ansible-managed in ooni-sysadmin.git
+# Managed by ansible; see roles/ooni-measurements/templates/ngx-oomsm-web
 
 {% import 'common.j2' as c %}
 
-proxy_cache_path /var/cache/nginx-api keys_zone=api:1M inactive=1h;
+# Use 2-level cache, 20MB of RAM + 5GB on disk,
+proxy_cache_path /var/cache/nginx-api levels=1:2 keys_zone=apicache:100M
+                max_size=5g inactive=24h use_temp_path=off;
 
 # moderate throttling applied globally
 limit_req_zone $binary_remote_addr zone=limit_qps:60m rate=120r/m;
 limit_req_log_level info;
+
+# anonymize ipaddr
+map $remote_addr $remote_addr_anon {
+  ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
+  ~(?P<ip>[^:]+:[^:]+):       $ip::;
+  default                     0.0.0.0;
+}
+
+# log anonymized ipaddr and caching status
+log_format apilogfmt '$remote_addr_anon $upstream_cache_status [$time_local] '
+    '"$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"';
 
 server {
     listen 80;
@@ -17,7 +30,9 @@ server {
     {{ c.ssl_letsencrypt(ssl_domain) }}
 
     server_name api.ooni.io {{ ssl_domain }};
-    access_log  /var/log/nginx/{{ ssl_domain }}.access.log oolog;
+
+    access_log  /var/log/nginx/{{ ssl_domain }}.access.log apilogfmt;
+    #access_log syslog:server=unix:/dev/log combined;
     error_log   /var/log/nginx/{{ ssl_domain }}.error.log warn;
 
     proxy_read_timeout {{ oomsm_timeout_s }}s;
@@ -38,27 +53,28 @@ server {
     location = /measurements {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
-        proxy_cache_min_uses 3; # this should avoid polluting the cache with random measurements search queries
-        proxy_cache api;
+        proxy_cache apicache;
         proxy_cache_valid 200 1h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
         proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+        add_header X-Cache-Status $upstream_cache_status;
     }
 
 {% for handle in ["/", "/stats", "/api/_/global_overview", "/api/_/global_overview_by_month", "/api/_/measurement_count_by_country", "/api/_/runs_by_month", "/api/_/countries_by_month", "/api/_/asn_by_month"] %}
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
-        proxy_cache api;
+        proxy_cache apicache;
         proxy_cache_valid 200 1h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
         proxy_cache_lock_age 58s; # I don't quite understand the difference with proxy_cache_lock_timeout
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+        add_header X-Cache-Status $upstream_cache_status;
     }
 {% endfor %}
 
@@ -68,15 +84,33 @@ server {
     location = {{ handle }} {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
 
-        proxy_cache api;
+        proxy_cache apicache;
         proxy_cache_valid 200 6h;
         proxy_cache_lock on;
         proxy_cache_lock_timeout 58s;
         proxy_cache_lock_age 58s;
         proxy_cache_use_stale error timeout invalid_header updating;
         proxy_cache_background_update on;
+        add_header X-Cache-Status $upstream_cache_status;
     }
 {% endfor %}
+
+    # API v1 endpoints
+    # These are the most popular, and heavy endpoints
+    location = /api/v1/measurement/ {
+      # single measurement - cache heavily
+      proxy_pass http://172.25.232.254:16868;
+      proxy_cache apicache;
+      proxy_cache_valid 200 24h;
+      add_header X-Cache-Status $upstream_cache_status;
+    }
+    #location = /api/v1/measurements {
+    #  # list_measurements - cache only based on API response headers
+    #  proxy_pass http://172.25.232.254:16868;
+    #  proxy_cache apicache;
+    #  proxy_cache_valid 200 4h;
+    #  add_header X-Cache-Status $upstream_cache_status;
+    #}
 
     location /metrics {
         #satisfy all;
