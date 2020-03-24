@@ -40,6 +40,7 @@ blackbox_jobs:
       - "https://c.collector.ooni.io/invalidpath"
       # Probe services
       - "https://ps.ooni.io/invalidpath"
+      - "https://ps-test.ooni.io/invalidpath"
       - "https://collector.ooni.io/invalidpath"
       - "https://ams-ps2.ooni.nu/invalidpath"
       - "https://mia-ps2.ooni.nu/invalidpath"
