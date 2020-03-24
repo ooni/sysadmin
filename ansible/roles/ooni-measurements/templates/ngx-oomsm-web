@@ -49,6 +49,10 @@ server {
 
     {{ c.location_letsencrypt() }}
 
+    location = /robots.txt {
+       add_header Content-Type text/plain;
+       return 200 "User-agent: *\nAllow: /\nDisallow: /api/v1/\nDisallow: /api/_/\nDisallow: /files/\nDisallow: /stats";
+    }
 
     location = /measurements {
         proxy_pass http://{{ oomsm_backend_ipv4 }}:{{ oomsm_backend_port }};
