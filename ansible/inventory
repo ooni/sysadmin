@@ -148,6 +148,7 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
+mia-countly-test.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
