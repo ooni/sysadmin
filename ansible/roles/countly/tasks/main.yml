@@ -1,0 +1,14 @@
+- name: Add nginx virtual host config
+  template:
+    src: countly-nginx
+    dest: /etc/nginx/sites-enabled/countly-nginx
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: delete letsencrypt nginx config
+  file:
+    state: absent
+    path: "/etc/nginx/sites-enabled/letsencrypt-http"
+  notify: restart nginx

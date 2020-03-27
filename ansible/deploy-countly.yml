@@ -1,0 +1,8 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: mia-countly-test.ooni.nu
+  roles:
+    - role: countly
+      tags: service
+      ssl_domain: "mia-countly-test.ooni.nu"
