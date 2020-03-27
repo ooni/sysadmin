@@ -3,6 +3,8 @@
 
 - hosts: mia-countly-test.ooni.nu
   roles:
+    # The setup of the actual service has been done manually as well as letsencrypt
+    # TODO this roles should be finished
     - role: countly
       tags: service
       ssl_domain: "mia-countly-test.ooni.nu"
