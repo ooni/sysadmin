@@ -176,11 +176,3 @@ file `templates/iptables.filter.part/$HOSTNAME` and then run:
 ```
 ./play dom0-bootstrap.yml -t fw
 ```
-
-# Donate to support OONI infrastructure
-
-Send bitcoins to:
-![bitcoin address](http://i.imgur.com/ILdOJ3V.png)
-```
-16MAyUCxfk7XiUjFQ7yawDhbGs43fyFxd
-```
