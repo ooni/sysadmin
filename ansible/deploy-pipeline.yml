@@ -23,6 +23,12 @@
     - role: plpsql
       tags: plpsql
 
+- hosts: [hkgmetadb.infra.ooni.io, amsmetadb.ooni.nu, mia-ps-test.ooni.nu]
+  roles:
+    - role: plpsql
+      tags: plpsql-ssh-tunnel
+
+
 - hosts: hkgmetadb.infra.ooni.io
   gather_facts: false
   tasks:
