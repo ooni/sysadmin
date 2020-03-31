@@ -74,14 +74,6 @@
   when: "'db_standby' in group_names"
   tags: dbvpn
 
-- name: openvpn update etckeeper
-  command: |
-    etckeeper vcs ignore openvpn/oonipgvpn.key
-    etckeeper vcs add openvpn/oonidbvpn.conf
-    etckeeper commit "ansible openvpn"
-  when: "'db_active' in group_names or 'db_standby' in group_names"
-  tags: dbvpn
-
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
