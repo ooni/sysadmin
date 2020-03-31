@@ -8,12 +8,7 @@
     group: "plpsql"
     comment: "plpsql for Postgres"
     state: present
-
-- name: get the user ids
-  shell: >
-    egrep "^plpsql:" /etc/passwd | awk -F: '{ print $3":"$4 }'
-  changed_when: false
-  register: user_group_id
+  register: plpsql_user
 
 - name: pipeline postgres PGDATA directory
   file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
@@ -86,7 +81,7 @@
       PUSHGATEWAY_CERT: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.cert"
       PUSHGATEWAY_KEY: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.key"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
-    user: "{{ user_group_id.stdout }}"
+    user: "{{ plpsql_user.uid }}:{{ plpsql_user.group }}"
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
 ...
