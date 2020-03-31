@@ -48,12 +48,6 @@ ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 
-[probe_services]
-mia-ps2.ooni.nu
-hkg-ps.ooni.nu
-ams-ps.ooni.nu
-ams-ps2.ooni.nu
-
 ########################################################################
 # PSK (pre-shared key) tags
 
@@ -173,8 +167,20 @@ mia-ps2.ooni.nu
 ams-ps2.ooni.nu
 mia-ps2.ooni.nu
 
+[db_active]
+hkgmetadb.infra.ooni.io
+
+[db_standby]
+amsmetadb.ooni.nu
+
 [have_netdata]
 fastpath.ooni.nu
+
+[probe_services]
+mia-ps2.ooni.nu
+hkg-ps.ooni.nu
+ams-ps.ooni.nu
+ams-ps2.ooni.nu
 
 ########################################################################
 # TO DELETE.

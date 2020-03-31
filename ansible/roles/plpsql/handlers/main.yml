@@ -3,4 +3,8 @@
   command: docker restart pl-psql # XXX: is `stop_timeout` respected?
 - name: reload pl-psql
   command: docker exec -it pl-psql pg_ctl reload -D /srv/pl-psql
+- name: restart openvpn
+  service:
+    name: openvpn
+    state: restarted
 ...

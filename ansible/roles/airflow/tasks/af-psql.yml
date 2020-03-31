@@ -11,11 +11,8 @@
     group: "afpsql"
     comment: "afpsql for Pipeline"
     state: present
-- name: get the user ids
-  shell: >
-    egrep "^afpsql:" /etc/passwd | awk -F: '{ print $3":"$4 }'
-  changed_when: false
-  register: user_group_id
+  register: afpsql_user
+
 - name: airflow postgres tmp directory
   file: dest=/srv/tmp/af-psql state=directory owner=afpsql group=afpsql mode=0750
 - name: airflow postgres /data directory
@@ -34,7 +31,7 @@
       PGDATA: /srv/af-psql
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: "{{ airflow_postgres_password }}"
-    user: "{{ user_group_id.stdout }}"
+    user: "{{ afpsql_user.uid }}:{{ afpsql_user.group }}"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped

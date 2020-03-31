@@ -8,12 +8,7 @@
     group: "plpsql"
     comment: "plpsql for Postgres"
     state: present
-
-- name: get the user ids
-  shell: >
-    egrep "^plpsql:" /etc/passwd | awk -F: '{ print $3":"$4 }'
-  changed_when: false
-  register: user_group_id
+  register: plpsql_user
 
 - name: pipeline postgres PGDATA directory
   file: dest=/srv/pl-psql state=directory owner=plpsql group=plpsql mode=0700
@@ -22,32 +17,69 @@
   template: src=pg_hba.conf dest=/srv/pl-psql/pg_hba.conf owner=plpsql group=plpsql mode=0444
   notify: reload pl-psql
 
-# Warning: hkgmetadb.infra.ooni.io is hardcoded here to identify the active and standby DBs
-# TODO: use a flag in inventory instead
-
-# active host
-
 - name: place config in PGDATA for active DB
   template: src=postgresql.active.conf dest=/srv/pl-psql/postgresql.conf owner=plpsql group=plpsql mode=0444
   notify: reload pl-psql
-  when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
+  when: "'db_active' in group_names"
 
 - name: drop recovery.conf from PGDATA on active DB
   file: name=/srv/pl-psql/recovery.conf state=absent
   notify: reload pl-psql
-  when: inventory_hostname == 'hkgmetadb.infra.ooni.io'
-
-# standby hosts
+  when: "'db_active' in group_names"
 
 - name: place config in PGDATA for standby DB
   template: src=postgresql.standby.conf dest=/srv/pl-psql/postgresql.conf owner=plpsql group=plpsql mode=0444
   notify: reload pl-psql
-  when: inventory_hostname != 'hkgmetadb.infra.ooni.io'
+  when: "'db_standby' in group_names"
 
 - name: place recovery.conf to PGDATA on standby DB
   template: src=recovery.conf dest=/srv/pl-psql/recovery.conf owner=plpsql group=plpsql mode=0444
   notify: reload pl-psql
-  when: inventory_hostname != 'hkgmetadb.infra.ooni.io'
+  when: "'db_standby' in group_names"
+
+# TODO fix this with the apt module once we update to the latest debian
+#  apt:
+#    name: openvpn
+#    install_recommends: no
+
+- name: install openvpn
+  command: apt-get install --no-install-recommends -y openvpn
+  tags: dbvpn
+
+- name: openvpn create conf on standby node
+  template: src=openvpn.standby.conf dest=/etc/openvpn/oonidbvpn.conf
+  notify: systemctl daemon-reload
+  when: "'db_standby' in group_names"
+  tags: dbvpn
+
+- name: openvpn create conf on active node
+  template: src=openvpn.active.conf dest=/etc/openvpn/oonidbvpn.conf
+  notify: systemctl daemon-reload
+  when: "'db_active' in group_names"
+  tags: dbvpn
+
+- name: openvpn create shared secret on active node
+  command: openvpn --genkey --secret /etc/openvpn/oonipgvpn.key
+  args:
+    creates: /etc/openvpn/oonipgvpn.key
+  notify: restart openvpn
+  when: "'db_active' in group_names"
+  tags: dbvpn
+
+- name: openvpn copy shared secret from active node
+  slurp:
+    src: /etc/openvpn/oonipgvpn.key
+  register: pgvpn_secret
+  when: "'db_active' in group_names"
+  tags: dbvpn
+
+- name: openvpn copy shared secret to standby node
+  copy:
+    content: "{{ pgvpn_secret }}"
+    dest: /etc/openvpn/oonipgvpn.key
+  notify: restart openvpn
+  when: "'db_standby' in group_names"
+  tags: dbvpn
 
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
@@ -86,7 +118,7 @@
       PUSHGATEWAY_CERT: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.cert"
       PUSHGATEWAY_KEY: "/srv/pl-psql_ssl/pusher/{{ inventory_hostname }}.key"
     stop_signal: SIGINT # Fast shutdown. Default SIGTERM waits for all the sessions to terminate.
-    user: "{{ user_group_id.stdout }}"
+    user: "{{ plpsql_user.uid }}:{{ plpsql_user.group }}"
     stop_timeout: 60 # default is 10
     restart_policy: unless-stopped
 ...

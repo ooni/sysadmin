@@ -7,12 +7,7 @@
     group: "afredis"
     comment: "afredis for Pipeline"
     state: present
-
-- name: get the user ids
-  shell: >
-    egrep "^afredis:" /etc/passwd | awk -F: '{ print $3":"$4 }'
-  changed_when: false
-  register: user_group_id
+  register: afredis_user
 
 - name: redis .../etc directory
   file: dest=/srv/etc/af-redis state=directory owner=root group=root mode=0755
@@ -31,5 +26,5 @@
       - /srv/etc/af-redis:/usr/local/etc:ro
       - /srv/af-redis:/data:rw
     command: /usr/local/etc/redis.conf
-    user: "{{ user_group_id.stdout }}"
+    user: "{{ afredis_user.uid }}:{{ afredis_user.group }}"
     restart_policy: unless-stopped
