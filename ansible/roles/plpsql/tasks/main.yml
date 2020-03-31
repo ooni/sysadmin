@@ -37,6 +37,24 @@
   notify: reload pl-psql
   when: "'db_standby' in group_names"
 
+- name: install openvpn
+  apt:
+    name: openvpn
+
+- name: configure openvpn on standby node
+  template: src=openvpn.standby.conf dest=/etc/openvpn/oonidbvpn.conf
+  notify: systemctl daemon-reload
+  when: "'db_standby' in group_names"
+
+- name: configure openvpn on active node
+  template: src=openvpn.active.conf dest=/etc/openvpn/oonidbvpn.conf
+  notify: systemctl daemon-reload
+  when: "'db_active' in group_names"
+
+# TODO add support for copying the secret file over
+# - name: copy secret openvpn file
+#   notify: restart openvpn
+
 # if `initdb` fails read `Arbitrary --user Notes` at https://hub.docker.com/_/postgres/
 - name: docker run pipeline postgres
   docker_container:
