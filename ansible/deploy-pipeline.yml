@@ -17,6 +17,8 @@
 
 - hosts: [hkgmetadb.infra.ooni.io, amsmetadb.ooni.nu]
   gather_facts: false # already gathered
+  vars:
+    ansible_python_interpreter: "/root/venv/bin/python2.7"
   roles:
     - role: plpsql
       tags: plpsql

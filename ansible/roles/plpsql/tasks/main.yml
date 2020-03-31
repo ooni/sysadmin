@@ -37,10 +37,13 @@
   notify: reload pl-psql
   when: "'db_standby' in group_names"
 
+# TODO fix this with the apt module once we update to the latest debian
+#  apt:
+#    name: openvpn
+#    install_recommends: no
+
 - name: install openvpn
-  apt:
-    name: openvpn
-    install_recommends: no
+  command: apt-get install --no-install-recommends -y openvpn
   tags: dbvpn
 
 - name: openvpn create conf on standby node
@@ -57,6 +60,9 @@
 
 - name: openvpn create shared secret on active node
   command: openvpn --genkey --secret /etc/openvpn/oonipgvpn.key
+  args:
+    creates: /etc/openvpn/oonipgvpn.key
+  notify: restart openvpn
   when: "'db_active' in group_names"
   tags: dbvpn
 
@@ -71,6 +77,7 @@
   copy:
     content: "{{ pgvpn_secret }}"
     dest: /etc/openvpn/oonipgvpn.key
+  notify: restart openvpn
   when: "'db_standby' in group_names"
   tags: dbvpn
 
