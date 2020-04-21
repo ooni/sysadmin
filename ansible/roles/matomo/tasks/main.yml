@@ -7,7 +7,7 @@
   with_items:
     - "{{ app_path }}"
     - "{{ db_data_dir }}"
-    - "{{ matomo_data_dir }}"
+    - "{{ matomo_config_dir }}"
 
 - name: analytics.ooni.io nginx config
   template: src=matomo-nginx dest=/etc/nginx/sites-enabled/matomo
@@ -27,6 +27,10 @@
     volumes:
       - "{{ db_data_dir }}:/var/lib/mysql"
     restart_policy: unless-stopped
+
+- name: matomo config file
+  template: src=config.ini.php dest="{{ matomo_config_dir }}/config.ini.php"
+  notify: reload matomo
 
 - name: matomo webservice
   docker_container:
