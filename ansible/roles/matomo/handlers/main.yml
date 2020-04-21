@@ -2,3 +2,5 @@
   service: name=nginx state=restarted
 - name: reload nginx
   service: name=nginx state=reloaded
+- name: restart matomo
+  command: docker restart matomo
