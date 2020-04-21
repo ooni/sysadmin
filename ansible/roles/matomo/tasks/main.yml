@@ -41,7 +41,7 @@
       MATOMO_DATABASE_PASSWORD: "{{ db_matomo_pass }}"
       MATOMO_DATABASE_DBNAME: "{{ db_name }}"
     volumes:
-      - "{{ matomo_data_dir }}:/var/www/html"
+      - "{{ matomo_config_dir }}:/var/www/html/config"
     ports:
       - "0.0.0.0:{{ matomo_backend_port }}:80"
     restart_policy: unless-stopped
