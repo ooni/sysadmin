@@ -30,7 +30,7 @@
 
 - name: matomo config file
   template: src=config.ini.php dest="{{ matomo_config_dir }}/config.ini.php"
-  notify: reload matomo
+  notify: restart matomo
 
 - name: matomo webservice
   docker_container:
