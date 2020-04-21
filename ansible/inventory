@@ -47,6 +47,7 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
+ams-pg.ooni.nu
 
 ########################################################################
 # PSK (pre-shared key) tags
@@ -123,6 +124,7 @@ mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
 mia-countly-test.ooni.nu
+ams-pg.ooni.nu
 
 [have_nginx]
 prometheus.infra.ooni.io
