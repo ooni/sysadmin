@@ -8,11 +8,11 @@ server {
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
 
-    {{ c.ssl_letsencrypt(ssl_domain) }}
+    ssl_certificate /etc/letsencrypt/live/{{ ssl_domain }}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{{ ssl_domain }}/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/{{ ssl_domain }}/chain.pem; # for ssl_stapling_verify
 
-    access_log  /var/log/nginx/{{ ssl_domain }}.access.log oolog; # oolog comes from nginx-stable part of dom0 bootstrap
-    error_log   /var/log/nginx/{{ ssl_domain }}.error.log warn;
-
+    access_log  off;
 
     # Taken from: https://github.com/Countly/countly-server/blob/master/bin/config/nginx.server.conf
 	location = /i {
