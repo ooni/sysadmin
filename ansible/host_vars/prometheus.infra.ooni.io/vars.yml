@@ -77,6 +77,11 @@ blackbox_jobs:
     targets:
       - "https://api.ooni.io/api/v1/measurements"
 
+  - name: "countly.ooni.io ping"
+    module: "http_2xx"
+    targets:
+      - "https://countly.ooni.io/o/ping"
+
   - name: "slack inviter"
     module: "http_2xx"
     targets:
