@@ -1,10 +1,7 @@
 ---
 - import_playbook: ansible-version.yml
 
-- hosts: mia-countly-test.ooni.nu
+- hosts: doams1-countly.ooni.nu
   roles:
-    # The setup of the actual service has been done manually as well as letsencrypt
-    # TODO this roles should be finished
     - role: countly
-      tags: service
-      ssl_domain: "mia-countly-test.ooni.nu"
+      ssl_domain: "doams1-countly.ooni.nu"
