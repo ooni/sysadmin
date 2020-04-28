@@ -33,7 +33,6 @@ hkg-ps.ooni.nu
 
 [ams]
 amstorth.ooni.nu
-ssdams.infra.ooni.io
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 ams-explorer.ooni.nu
@@ -99,7 +98,6 @@ hkgmetadb.infra.ooni.io
 datacollector.infra.ooni.io
 hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
-ssdams.infra.ooni.io
 hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
