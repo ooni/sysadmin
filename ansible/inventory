@@ -3,6 +3,11 @@
 
 [dom0:children] # `all` should be equal to `dom0`, so it's here to catch errors
 gh
+do
+
+# Digital ocean vms
+[do:children]
+doams
 
 [gh:children]
 mia
@@ -47,6 +52,9 @@ ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-pg.ooni.nu
+
+[doams]
+doams1-countly.ooni.nu
 
 ########################################################################
 # PSK (pre-shared key) tags
