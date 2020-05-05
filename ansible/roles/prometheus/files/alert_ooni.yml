@@ -3,7 +3,7 @@ groups:
 - name: OONI Alerts
   rules:
   - alert: NASBackupSilent
-    expr: time() - push_time_seconds{exported_instance="hellais-nas"} > 16 * 3600
+    expr: time() - push_time_seconds{exported_instance="hellais-nas"} > 24 * 3600
     annotations:
       summary: 'hellais-nas is silent for {{ $value | humanizeDuration }}'
 
