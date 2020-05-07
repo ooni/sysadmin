@@ -16,4 +16,18 @@
     - role: explorer
       explorer_domain: 'ams-explorer.ooni.nu'
       tags: explorer
+
+- hosts: mia-explorer-test.ooni.nu
+  roles:
+    - role: docker
+      tags: test
+    - role: letsencrypt
+      letsencrypt_domains:
+        - 'mia-explorer-test.ooni.nu'
+        - 'explorer-test.ooni.io'
+      tags: test
+    - role: explorer
+      explorer_next_tag: '20200224-e5fc9d49'
+      explorer_domain: 'mia-explorer-test.ooni.nu'
+      tags: test
 ...
