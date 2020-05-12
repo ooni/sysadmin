@@ -30,5 +30,5 @@
       explorer_next_tag: '20200224-e5fc9d49'
       explorer_hostname: 'explorer-test.ooni.io'
       explorer_domain: 'mia-explorer-test.ooni.nu'
-      tags: test
+      tags: explorer
 ...
