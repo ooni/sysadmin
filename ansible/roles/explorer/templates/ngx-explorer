@@ -13,7 +13,7 @@ server {
 
     server_name explorer.ooni.io explorer-beta.ooni.io explorer.ooni.torproject.org ooni-explorer-next.test.ooni.io;
 
-    return 301 https://explorer.ooni.org$request_uri;
+    return 301 https://{{ explorer_hostname }}$request_uri;
 }
 
 {{ c.server_letsencrypt(['explorer.ooni.org']) }}
@@ -36,7 +36,7 @@ server {
     }
 
     location ~ "^/world" {
-        return 301 https://explorer.ooni.org;
+        return 301 https://{{ explorer_hostname }};
     }
 
     location ~ "/rss/by-country/([A-Za-z]{2}).xml" {
