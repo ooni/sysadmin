@@ -16,7 +16,7 @@ server {
     return 301 https://{{ explorer_hostname }}$request_uri;
 }
 
-{{ c.server_letsencrypt(["{{ explorer_hostname }}"]) }}
+{{ c.server_letsencrypt([explorer_hostname]) }}
 
 server {
     listen 443 ssl http2;
