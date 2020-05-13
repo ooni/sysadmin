@@ -3,13 +3,13 @@ groups:
 - name: OONI Alerts
   rules:
   - alert: NASBackupSilent
-    expr: time() - push_time_seconds{exported_instance="hellais-nas"} > 24 * 3600
+    expr: time() - push_time_seconds{exported_instance="hellais-nas"} > 36 * 3600
     annotations:
       summary: 'hellais-nas is silent for {{ $value | humanizeDuration }}'
 
   - alert: NASRsyncFailure
     expr: rsync_returncode{exported_instance="hellais-nas"} != 0
-    for: 16h # rsync is launched at 08:00 and 22:00, that's 14h and 10h gap
+    for: 36h # rsync is launched at 08:00 and 22:00, that's 14h and 10h gap
     annotations:
       summary: 'hellais-nas `rsync` exitcode: {{ $value }}'
 
