@@ -52,7 +52,7 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
-#ams-pg.ooni.nu
+ams-pg.ooni.nu
 
 [doams]
 doams1-countly.ooni.nu
@@ -131,7 +131,7 @@ mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
 mia-countly-test.ooni.nu
-#ams-pg.ooni.nu
+ams-pg.ooni.nu
 mia-explorer-test.ooni.nu
 
 [have_nginx]
