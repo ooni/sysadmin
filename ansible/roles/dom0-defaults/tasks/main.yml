@@ -20,6 +20,7 @@
       - file
       - iotop
       - lsof
+      - lvm2
       - man-db
       - mtr
       - openssl
