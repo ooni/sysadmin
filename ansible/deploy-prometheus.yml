@@ -7,9 +7,10 @@
     # - docker_py
     - role: mon.ooni.nu
       tags: mon.ooni.nu
-    - role: letsencrypt
-      letsencrypt_domains: ['mon.ooni.nu']
-      tags: mon.ooni.nu
+    # 202006 letsencrypt role is broken with this old host
+    #- role: letsencrypt
+    #  letsencrypt_domains: ['mon.ooni.nu']
+    #  tags: mon.ooni.nu
     # prometheus roles do not need extra `pip` modules and `local_action` should use default python
     - role: alertmanager
       tags: alertmanager
