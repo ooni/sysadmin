@@ -46,7 +46,6 @@ db-1.proteus.ooni.io
 amsmetadb.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
-ams-db-orchestra.ooni.nu
 ams-orchestra.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
@@ -86,7 +85,6 @@ hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
-ams-db-orchestra.ooni.nu
 
 [psk_orchestra_test]
 mia-ps-test.ooni.nu
@@ -126,7 +124,6 @@ ams-explorer.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 ams-orchestra.ooni.nu
-ams-db-orchestra.ooni.nu
 mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
