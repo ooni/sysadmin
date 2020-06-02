@@ -29,9 +29,11 @@
       tags: blackbox_exporter
     - role: pushgateway
       tags: pushgateway
-    - role: letsencrypt
-      letsencrypt_domains: ['prometheus.infra.ooni.io'] # legacy hostname-based pushgateway domain
-      tags: pushgateway
+
+    # 202006 this role is broken on this old host
+    #- role: letsencrypt
+    #  letsencrypt_domains: ['prometheus.infra.ooni.io'] # legacy hostname-based pushgateway domain
+    #  tags: pushgateway
 
 - hosts: prometheus.infra.ooni.io
   gather_facts: false # already gathered
