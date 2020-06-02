@@ -27,7 +27,6 @@ mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 mia-run.ooni.nu
-mia-countly-test.ooni.nu
 mia-explorer-test.ooni.nu
 
 [hkg]
@@ -127,7 +126,6 @@ ams-orchestra.ooni.nu
 mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
-mia-countly-test.ooni.nu
 ams-pg.ooni.nu
 mia-explorer-test.ooni.nu
 
@@ -149,7 +147,6 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
-mia-countly-test.ooni.nu
 mia-explorer-test.ooni.nu
 
 [have_tor] # Tor test-helpers
