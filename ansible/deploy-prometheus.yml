@@ -3,7 +3,8 @@
 
 - hosts: prometheus.infra.ooni.io
   roles:
-    - docker_py
+    # 202006 this is broken due to it being on debian jessie
+    # - docker_py
     - role: mon.ooni.nu
       tags: mon.ooni.nu
     - role: letsencrypt
