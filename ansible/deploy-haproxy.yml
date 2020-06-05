@@ -1,0 +1,5 @@
+---
+- hosts: have_haproxy
+  roles:
+    - role: haproxy
+      tags: haproxy

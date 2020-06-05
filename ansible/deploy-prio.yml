@@ -1,0 +1,17 @@
+---
+- hosts: have_prio
+  tasks:
+    - name: Add bintray pull-request repository
+      apt_repository:
+        repo: deb [trusted=yes] https://dl.bintray.com/ooni/internal-pull-requests unstable main
+        state: present
+        update_cache: yes
+
+    - name: install prio
+      tags: prio
+      apt:
+        pkg:
+          - prio
+        install_recommends: yes
+        state: latest
+        update_cache: yes
