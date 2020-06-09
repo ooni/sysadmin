@@ -161,16 +161,6 @@ hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 
-[have_haproxy]
-mia-ps-test.ooni.nu
-mia-ps2.ooni.nu
-ams-ps2.ooni.nu
-
-[have_prio]
-mia-ps-test.ooni.nu
-mia-ps2.ooni.nu
-ams-ps2.ooni.nu
-
 [have_tcpmetrics]
 ams-explorer.ooni.nu
 ams-ps.ooni.nu
@@ -196,6 +186,19 @@ mia-ps2.ooni.nu
 hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
+
+[have_haproxy]
+mia-ps2.ooni.nu
+#hkg-ps.ooni.nu    # unused
+ams-ps.ooni.nu
+ams-ps2.ooni.nu
+
+[have_prio]
+mia-ps2.ooni.nu
+#hkg-ps.ooni.nu    # unused
+ams-ps.ooni.nu
+ams-ps2.ooni.nu
+
 
 ########################################################################
 # TO DELETE.
