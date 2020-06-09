@@ -55,7 +55,7 @@ frontend frontend_test_list_urls_forwarding
   bind    127.0.0.1:9972
   #http-response set-header Strict-Transport-Security max-age=63072000
   stats refresh 5s
-  stats uri /haproxy?stats
+  stats uri /haproxy_stats
   default_backend test_list_urls
 
 backend test_list_urls

@@ -8,6 +8,7 @@
   - "blackhole_gateway is defined"
 
 - name: probe-services nginx config
+  tags: probe-service-nginx-conf
   template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
   notify: reload nginx
 

@@ -1,0 +1,12 @@
+
+HAproxy used for Orchestra / Prio
+
+The [] box is the PS host
+probe --> [ nginx:443 --test-list--> haproxy:9972 --> orchestra ]
+          [                                ⤷      --> prio      ]
+
+Currently used only for /api/v1/test-list/urls
+Monitor with:
+ssh <probe service> -L 9972:127.0.0.1:9972
+browse http://localhost:9972/haproxy?stats
+

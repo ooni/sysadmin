@@ -1,4 +1,5 @@
 ---
+# See roles/haproxy/README.adoc
 - hosts: have_haproxy
   roles:
     - role: haproxy
