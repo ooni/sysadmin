@@ -1,0 +1,29 @@
+---
+- name: install haproxy
+  tags: haproxy
+  apt:
+    pkg:
+      - haproxy
+      - hatop
+      - prometheus-haproxy-exporter
+    install_recommends: no
+    state: latest
+    update_cache: yes
+
+- name: Install haproxy dhparam file
+  # curl https://ssl-config.mozilla.org/ffdhe2048.txt > dhparam
+  template:
+    src: dhparam
+    dest: /etc/haproxy/dhparam
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install haproxy config file
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload haproxy
