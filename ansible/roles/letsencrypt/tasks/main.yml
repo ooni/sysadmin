@@ -9,21 +9,6 @@
     cache_valid_time: '{{ apt_cache_valid_time }}'
   when: ansible_distribution_release == 'buster'
 
-- name: Find stale letsencrypt_renew_certs cron jobs
-  find:
-    paths: /etc/cron.d
-    patterns: 'letsencrypt_renew_certs-*'
-  register: find_results
-
-- name: Remove stale letsencrypt_renew_certs cron jobs
-  file:
-    path: '{{ item.path }}'
-    state: absent
-  with_items: '{{ find_results.files }}'
-
-- name: Remove state letsencrypt vhost
-  file: path=/etc/nginx/sites-enabled/letsencrypt state=absent
-
 - name: Ensure required directories exist
   file:
     path: "{{ item }}"
@@ -33,23 +18,23 @@
     - "/etc/nginx/sites-enabled"
     - "/var/www/letsencrypt"
 
-- name: check for /.well-known/acme-challenge
-  shell: "grep '/.well-known/acme-challenge' /etc/nginx/sites-enabled/*"
-  changed_when: false
-  ignore_errors: yes
-  register: acme_challenge_present
-
-- name: Add letsencrypt vhost
+- name: Add letsencrypt dedicated sites-enabled file
   template:
     src: templates/letsencrypt-http
     dest: /etc/nginx/sites-enabled/letsencrypt-http
+    mode: 0644
+    owner: root
   notify: reload nginx
-  when: "acme_challenge_present.rc != 0"
 
 - meta: flush_handlers
 
-# NB: --standalone is not supported
-- name: Generate Letsencrypt certificate with certbot package
+# Run certbot to create a new cert if needed
+# It's one certificate for all the domains in letsencrypt_domains
+# named after the first domain
+# If new domains have been added certbot updates the cert (--expand)
+# otherwise it keeps the existing cert (--keep)
+- name: Create Letsencrypt certificates for the first time
+  args:
   command: >
     certbot certonly
     --webroot --webroot-path /var/www/letsencrypt
@@ -57,22 +42,8 @@
     --noninteractive --text --agree-tos
     --email {{ letsencrypt_admin_email }}
     --domains {{ letsencrypt_domains | join(',') }}
-    {% if expand is defined %}--expand{% endif %}
+    --expand
+    --keep
     --post-hook '/usr/sbin/service nginx reload'
-  args:
-    creates: "{{ '/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf' if expand is not defined else omit}}"
 
-- name: Run certbot for nginx
-  command: >
-    certbot certonly --nginx
-    -n
-    --cert-name {{ letsencrypt_domains | join(' -d ') }}
-  when: "with_nginx is defined"
-
-- name: Ensure there is a webroot_map for the first letsencrypt domain # this is a hotfix
-  lineinfile:
-    path: "/etc/letsencrypt/renewal/{{ letsencrypt_domains | first }}.conf"
-    line: "{{ letsencrypt_domains | first }} = /var/www/letsencrypt"
-    state: present
-  notify: restart certbot
 ...

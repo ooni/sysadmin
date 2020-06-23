@@ -1,0 +1,2 @@
+
+Configure certbot and Nginx to generate certificates (locally to each server)
