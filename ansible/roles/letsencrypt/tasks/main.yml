@@ -46,4 +46,9 @@
     --keep
     --post-hook '/usr/sbin/service nginx reload'
 
+- name: Ensure certbot timer runs
+  systemd:
+    name: certbot.timer
+    state: started
+    enabled: yes
 ...
