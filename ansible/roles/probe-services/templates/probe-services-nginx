@@ -3,7 +3,6 @@
 {% import 'common.j2' as c %}
 
 server {
-    listen 80;
     listen 443 ssl;
     {{ c.ssl_letsencrypt(probe_services_domain) }}
 

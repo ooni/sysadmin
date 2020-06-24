@@ -42,9 +42,4 @@
     user: "{{ user_group_id.stdout }}"
     restart_policy: unless-stopped
 
-- name: delete letsencrypt nginx config
-  file:
-    state: absent
-    path: "/etc/nginx/sites-enabled/letsencrypt-http"
-  notify: reload nginx
 ...
