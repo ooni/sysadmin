@@ -1,9 +1,9 @@
 ---
-- name: Install Letsencrypt certbot
+- name: Install certbot and Python library
   apt:
     name:
     - certbot
-    - python-certbot-nginx
+    - python3-prometheus-client
     state: latest
     update_cache: yes
     cache_valid_time: '{{ apt_cache_valid_time }}'
@@ -51,4 +51,33 @@
     name: certbot.timer
     state: started
     enabled: yes
+
+- name: Add certificate monitoring monitor_certs.py
+  template:
+    src: templates/monitor_certs.py
+    dest: /etc/ooni/monitor_certs.py
+    mode: 0755
+    owner: root
+
+- name: Install monitor_certs.service
+  template:
+    src: templates/monitor_certs.service
+    dest: /etc/systemd/system/monitor_certs.service
+    mode: 0755
+    owner: root
+
+- name: Add certificate monitoring monitor_certs.py
+  template:
+    src: templates/monitor_certs.timer
+    dest: /etc/systemd/system/monitor_certs.timer
+    mode: 0755
+    owner: root
+
+- name: enable timer for monitor_certs
+  systemd:
+    daemon_reload: yes
+    name: monitor_certs.timer
+    state: started
+    enabled: yes
+
 ...

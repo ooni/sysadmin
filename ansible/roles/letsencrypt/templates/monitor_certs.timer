@@ -1,0 +1,9 @@
+[Unit]
+Description=Run monitor_certs.py at the beginning of every hour
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+
+[Install]
+WantedBy=timers.target
+
