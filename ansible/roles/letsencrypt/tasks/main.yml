@@ -17,6 +17,7 @@
   with_items:
     - "/etc/nginx/sites-enabled"
     - "/var/www/letsencrypt"
+    - "/etc/ooni"
 
 - name: Add letsencrypt dedicated sites-enabled file
   template:
