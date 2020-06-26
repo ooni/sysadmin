@@ -1,0 +1,19 @@
+---
+- name: installs base packages
+  tags: base-packages
+  apt:
+    cache_valid_time: 86400
+    name:
+      # - prometheus-node-exporter-collectors
+      - bash-completion
+      - byobu
+      - chrony
+      - fail2ban
+      - iotop
+      - manpages
+      - nullmailer
+      - prometheus-node-exporter
+      - rsync
+      - strace
+      - tcpdump
+      - tmux

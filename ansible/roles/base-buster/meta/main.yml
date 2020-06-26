@@ -1,0 +1,8 @@
+---
+dependencies:
+  - role: track_etc_directory
+
+  #- role: ooca-cert
+  #  ooca_ssl_dir: '{{ ngxprom_ssl_dir }}'
+  #  ooca_ssl_subj: '/O=OONI/OU=Prometheus Exporter/CN={{ inventory_hostname }}'
+  #  ooca_ca: exporter_ca

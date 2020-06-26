@@ -1,0 +1,39 @@
+---
+- name: Create vg.metadb Volume Group
+  lvg:
+    vg: vg.metadb
+    pvs:
+      - /dev/xvdb1
+      - /dev/xvdc1
+      - /dev/xvdd1
+      - /dev/xvde1
+      - /dev/xvdf1
+      - /dev/xvdg1
+      - /dev/xvdh1
+
+- name: Create metadb logical volume
+  lvol:
+    vg: vg.metadb
+    lv: metadb
+    size: 100%VG
+
+- name: Create filesystem for metadb
+  filesystem:
+    fstype: ext4
+    dev: /dev/vg.metadb/metadb
+    opts: -L metadb
+
+- name: Mount metadb FS
+  mount:
+    fstype: ext4
+    opts: noatime
+    path: /var/lib/postgres
+    src: LABEL=metadb
+    state: mounted
+
+- name: installs packages
+  apt:
+    cache_valid_time: 86400
+    name:
+      - postgresql-11
+      - prometheus-node-exporter
