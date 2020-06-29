@@ -1,0 +1,25 @@
+Install nftables based firewall
+
+Set up /etc/ooni/nftables/
+
+Rules for specific services are *not* configured by this role
+
+When creating rules to accept TCP traffic from any IPv4/6 address,
+files are named with the port number to detect collisions.
+
+Example:
+
+/etc/ooni/nftables/tcp/8080.nft
+
+```
+add rule inet filter input tcp dport 8080 counter accept comment "MyService"
+```
+
+
+Otherwise:
+
+/etc/ooni/nftables/tcp/5432_postgres_internal.nft
+
+```
+add rule inet filter input ip saddr { 10.0.0.0/8, 192.168.0.0/16 } tcp dport 5432 counter accept comment "Internal PostgreSQL"
+```

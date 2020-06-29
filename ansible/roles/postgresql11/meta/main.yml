@@ -1,3 +1,4 @@
 ---
 dependencies:
   - role: base-buster
+  - role: nftables
