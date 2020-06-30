@@ -21,10 +21,6 @@
     update_cache: yes
     upgrade: dist
 
-- name: Autoremove
-  apt:
-    autoremove: yes
-
 - name: Installs base packages
   tags: base-packages
   apt:
@@ -43,6 +39,18 @@
       - strace
       - tcpdump
       - tmux
+
+- name: Remove smartmontools
+  apt:
+    name: smartmontools
+    state: absent
+
+- name: Reset failed smartd
+  command: systemctl reset-failed
+
+- name: Autoremove
+  apt:
+    autoremove: yes
 
 - name: Clean cache
   apt:
