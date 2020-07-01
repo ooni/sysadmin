@@ -51,7 +51,7 @@ scrape_configs:
       module: [{{ bbjob.module }}]
     static_configs:
       - targets:
-{% for target in bbjob.targets %}
+{% for target in (bbjob.targets|sort) %}
         - {{ target }}
 {% endfor %}
     relabel_configs:
@@ -135,7 +135,7 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
-{% for host in (groups.all) %}
+{% for host in (groups.all|sort) %}
         - {{ host }}:9100
 {% endfor %}
 
@@ -151,9 +151,30 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
-{% for host in (groups.have_netdata) %}
+{% for host in (groups.have_netdata|sort) %}
         - {{ host }}:9100
 {% endfor %}
+        - ams-pg.ooni.nu:9100
+
+  - job_name: 'raw-netdata'
+    scrape_interval: 5s
+    scheme: http
+    metrics_path: "/api/v1/allmetrics?format=prometheus&help=yes"
+    params:
+      format: [prometheus]
+    static_configs:
+      - targets:
+        - ams-pg.ooni.nu:19999
+
+  - job_name: 'raw postgres-exporter'
+    scrape_interval: 5s
+    scheme: https
+    metrics_path: /api/v1/allmetrics
+    params:
+      format: [prometheus]
+    static_configs:
+      - targets:
+        - ams-pg.ooni.nu:9187
 
   - job_name: 'gorush'
     scrape_interval: 5s

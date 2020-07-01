@@ -7,7 +7,7 @@ Rules for specific services are *not* configured by this role
 When creating rules to accept TCP traffic from any IPv4/6 address,
 files are named with the port number to detect collisions.
 
-Example:
+Example (also see roles/nftables/tasks/main.yml):
 
 /etc/ooni/nftables/tcp/8080.nft
 

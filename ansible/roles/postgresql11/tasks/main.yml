@@ -31,11 +31,22 @@
     src: LABEL=metadb
     state: mounted
 
-- name: installs packages
+- name: install PG11 and its prom exporter
   apt:
     cache_valid_time: 86400
     name:
       - postgresql-11
-      - prometheus-node-exporter
+      - prometheus-postgres-exporter
 
+- name: allow prometheus-postgres-exporter.service
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/9187.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 9187 counter accept comment "prometheus-postgres-exporter.service"
+
+- name: reload nftables service
+  systemd:
+    name: nftables.service
+    state: reloaded
 
