@@ -154,7 +154,6 @@ scrape_configs:
 {% for host in (groups.have_netdata|sort) %}
         - {{ host }}:9100
 {% endfor %}
-        - ams-pg.ooni.nu:9100
 
   - job_name: 'raw-netdata'
     scrape_interval: 5s
@@ -166,15 +165,15 @@ scrape_configs:
       - targets:
         - ams-pg.ooni.nu:19999
 
-  - job_name: 'raw postgres-exporter'
-    scrape_interval: 5s
-    scheme: https
-    metrics_path: /api/v1/allmetrics
-    params:
-      format: [prometheus]
-    static_configs:
-      - targets:
-        - ams-pg.ooni.nu:9187
+#  - job_name: 'raw postgres-exporter'
+#    scrape_interval: 5s
+#    scheme: https
+#    metrics_path: /api/v1/allmetrics
+#    params:
+#      format: [prometheus]
+#    static_configs:
+#      - targets:
+#        - ams-pg.ooni.nu:9187
 
   - job_name: 'gorush'
     scrape_interval: 5s

@@ -10,11 +10,6 @@
   roles:
     - role: postgresql11
 
-
-      # etckeeper
-      # netdata 
-      # firewall
-
 #- name: install prometheus-postgres-exporter
 #  apt:
 #    cache_valid_time: 86400
