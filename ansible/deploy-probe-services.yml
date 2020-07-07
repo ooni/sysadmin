@@ -7,7 +7,7 @@
     - role: docker
       tags: base
     - role: letsencrypt
-      tags: base
+      tags: tls
       expand: yes
       with_nginx: yes
       letsencrypt_domains:

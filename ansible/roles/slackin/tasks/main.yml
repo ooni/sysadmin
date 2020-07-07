@@ -40,9 +40,3 @@
     group: root
     mode: 0644
   notify: restart nginx
-
-- name: delete letsencrypt nginx config
-  file:
-    state: absent
-    path: "/etc/nginx/sites-enabled/letsencrypt-http"
-  notify: reload nginx
