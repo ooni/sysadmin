@@ -1,6 +1,10 @@
 ---
 dependencies:
   - role: track_etc_directory
+  - role: adm
+    become: false
+    remote_user: root
+    gather_facts: false
 
   #- role: ooca-cert
   #  ooca_ssl_dir: '{{ ngxprom_ssl_dir }}'
