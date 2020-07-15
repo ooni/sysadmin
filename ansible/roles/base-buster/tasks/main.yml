@@ -98,16 +98,16 @@
       local:
         command: 'chronyc -n tracking'
 
-- name: configure netdata nginx
-  blockinfile:
-    path: /etc/netdata/python.d/chrony.conf
-    create: yes
-    block: |
-      # Managed by ansible, see roles/base-buster/tasks/main.yml
-      update_every: 5
-      nginx_log:
-        name  : 'nginx_log'
-        path  : '/var/log/nginx/access.log'
+#- name: configure netdata nginx
+#  blockinfile:
+#    path: /etc/netdata/python.d/nginx.conf
+#    create: yes
+#    block: |
+#      # Managed by ansible, see roles/base-buster/tasks/main.yml
+#      update_every: 5
+#      nginx_log:
+#        name  : 'nginx_log'
+#        path  : '/var/log/nginx/access.log'
 
 #- name: configure netdata haproxy
 #  blockinfile:
