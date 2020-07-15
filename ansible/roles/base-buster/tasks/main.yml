@@ -34,6 +34,7 @@
       - fail2ban
       - iotop
       - manpages
+      - ncdu
       - netdata-core
       - netdata-plugins-bash
       - netdata-plugins-python
