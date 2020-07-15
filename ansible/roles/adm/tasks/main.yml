@@ -37,9 +37,11 @@
 
 - name: root .ssh/authorized_keys2
   template: src=authorized_keys_root dest=/root/.ssh/authorized_keys2 owner=root group=root mode=0400
+  # TODO remove direct ssh as root
 
 - name: legacy root .ssh/authorized_keys
   template: src=authorized_keys_root_legacy dest=/root/.ssh/authorized_keys backup=yes owner=root group=root mode=0400
+  # TODO remove direct ssh as root
 
 - name: require gid=0 for su # to prevent any process doing `su` while knowing The Password
   lineinfile:
