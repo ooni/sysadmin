@@ -38,6 +38,17 @@
       - postgresql-11
       - prometheus-postgres-exporter
 
+- name: Trust localhost IPv4 access on postgresql
+  lineinfile:
+    dest: /etc/postgresql/11/main/pg_hba.conf
+    regexp: '^host\s+all\s+all+\s+127\.0\.0\.1/32\s+trust'
+    insertafter: '^# IPv4 local connections:'
+    line: "host    all             all             127.0.0.1/32            trust"
+    state: present
+
+- name: Reload pg after conf change
+  service: name=postgresql state=reloaded
+
 - name: allow prometheus-postgres-exporter.service
   blockinfile:
     path: /etc/ooni/nftables/tcp/9187.nft
