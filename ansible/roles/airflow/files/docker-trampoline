@@ -81,7 +81,7 @@ case "$script" in
     volargs="${volargs} --volume=$public/autoclaved/${bucket}:$public/autoclaved/${bucket}:ro"
     set -- /usr/local/bin/centrifugation.py --start "$isofrom" --end "$isotill" \
         --autoclaved-root /data/ooni/public/autoclaved \
-        --postgres "host=hkgmetadb.infra.ooni.io user=shovel dbname=metadb"
+        --postgres "host=ams-pg.ooni.nu user=shovel dbname=metadb"
     ;;
 
     # WAL is flushed after `meta_pg` to ensure that hot replica is not affected
@@ -97,7 +97,7 @@ case "$script" in
     # It may be postgres:9.6 as well, openobservatory/... is used only for consistency.
     exec docker run $docksafe --env-file=/etc/af-worker/hkgmetadb.env \
         openobservatory/sysadmin-postgres-metadb:20190412-010f6f70 \
-        psql --host=hkgmetadb.infra.ooni.io --username=shovel --dbname=metadb \
+        psql --host=ams-pg.ooni.nu --username=shovel --dbname=metadb \
         -c 'CHECKPOINT; SELECT pg_switch_xlog()'
     exit 1 # if exec fails
     ;;
