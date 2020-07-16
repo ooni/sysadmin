@@ -27,7 +27,7 @@
   mount:
     fstype: ext4
     opts: noatime
-    path: /var/lib/postgres
+    path: /var/lib/postgresql
     src: LABEL=metadb
     state: mounted
 
