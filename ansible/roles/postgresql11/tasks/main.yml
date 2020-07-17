@@ -46,6 +46,13 @@
     line: "host    all             all             127.0.0.1/32            trust"
     state: present
 
+- name: Overwrite postgresql.conf
+  template:
+    src: templates/postgresql.conf
+    dest: /etc/postgresql/11/main/postgresql.conf
+    mode: 0644
+    owner: root
+
 - name: Reload pg after conf change
   service: name=postgresql state=reloaded
 
