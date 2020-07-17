@@ -38,13 +38,12 @@
       - postgresql-11
       - prometheus-postgres-exporter
 
-- name: Trust localhost IPv4 access on postgresql
-  lineinfile:
+- name: Overwrite pg_hba.conf
+  template:
+    src: templates/pg_hba.conf
     dest: /etc/postgresql/11/main/pg_hba.conf
-    regexp: '^host\s+all\s+all+\s+127\.0\.0\.1/32\s+trust'
-    insertafter: '^# IPv4 local connections:'
-    line: "host    all             all             127.0.0.1/32            trust"
-    state: present
+    mode: 0644
+    owner: root
 
 - name: Overwrite postgresql.conf
   template:
