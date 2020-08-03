@@ -1,0 +1,19 @@
+---
+- name: install API
+  apt:
+    cache_valid_time: 86400
+    name:
+      - ooni-api
+
+- name: allow incoming TCP connections to API
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/443.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
+
+- name: reload nftables service
+  systemd:
+    name: nftables.service
+    state: reloaded
+
