@@ -8,5 +8,5 @@
     #  letsencrypt_domains:
     #    - "ams-pg.ooni.nu"
     #    - "api.ooni.io"
-    - role: ooni-newapi
+    - role: ooni-backend
       ssl_domain: ams-pg.ooni.nu

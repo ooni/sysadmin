@@ -1,0 +1,85 @@
+---
+
+## API ##
+
+- name: install API
+  tags: api
+  apt:
+    cache_valid_time: 86400
+    name: ooni-api
+
+- name: configure api
+  tags: api
+  blockinfile:
+    path: /etc/ooni/api.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+
+- name: allow incoming TCP connections to API
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/443.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
+
+- name: reload nftables service
+  systemd:
+    name: nftables.service
+    state: reloaded
+
+
+## Fastpath ##
+
+- name: install fastpath
+  tags: fastpath
+  apt:
+    cache_valid_time: 86400
+    name: fastpath
+
+- name: configure fastpath
+  tags: fastpath
+  blockinfile:
+    path: /etc/ooni/fastpath.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      [DEFAULT]
+      collectors = localhost
+      # The password is already made public
+      db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
+
+
+
+## Event detector ##
+
+#- name: install detector
+#  tags: detector
+#  apt:
+#    cache_valid_time: 86400
+#    name: detector
+#
+#- name: configure detector
+#  tags: detector
+#  blockinfile:
+#    path: /etc/ooni/detector.conf
+#    create: yes
+#    block: |
+#      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+
+
+## Analysis daemon ##
+
+#- name: install analysis
+#  tags: analysis
+#  apt:
+#    cache_valid_time: 86400
+#    name: analysis
+#
+#- name: configure analysis
+#  tags: analysis
+#  blockinfile:
+#    path: /etc/ooni/analysis.conf
+#    create: yes
+#    block: |
+#      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
