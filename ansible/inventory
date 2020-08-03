@@ -126,8 +126,10 @@ ams-orchestra.ooni.nu
 mia-run.ooni.nu
 ams-api.ooni.nu
 ams-jupyter.ooni.nu
-ams-pg.ooni.nu
 mia-explorer-test.ooni.nu
+
+[have_nftables]
+ams-pg.ooni.nu
 
 [have_nginx]
 prometheus.infra.ooni.io
