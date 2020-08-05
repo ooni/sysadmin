@@ -14,7 +14,25 @@
     path: /etc/ooni/api.conf
     create: yes
     block: |
-      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      # See roles/ooni-backend/tasks/main.yml
+      # Syntax: treat it as a Python file, but only uppercase variables are used
+      COLLECTORS = []
+
+      # Read-only database access
+      # The password is already made public
+      DATABASE_URI_RO = "postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb"
+
+      DATABASE_STATEMENT_TIMEOUT = 30
+
+      BASE_URL = "https://api.ooni.io/"
+
+      AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
+      CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
+
+      S3_ACCESS_KEY_ID = "CHANGEME"
+      S3_SECRET_ACCESS_KEY = "CHANGEME"
+      S3_SESSION_TOKEN = "CHANGEME"
+      S3_ENDPOINT_URL = "CHANGEME"
 
 - name: allow incoming TCP connections to API
   blockinfile:
@@ -43,7 +61,7 @@
     path: /etc/ooni/fastpath.conf
     create: yes
     block: |
-      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      # See roles/ooni-backend/tasks/main.yml
       [DEFAULT]
       collectors = localhost
       # The password is already made public
