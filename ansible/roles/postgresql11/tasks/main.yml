@@ -1,15 +1,14 @@
 ---
+- name: install LVM
+  apt:
+    cache_valid_time: 86400
+    name: lvm2
+
 - name: Create vg.metadb Volume Group
   lvg:
     vg: vg.metadb
     pvs:
-      - /dev/xvdb1
-      - /dev/xvdc1
-      - /dev/xvdd1
-      - /dev/xvde1
-      - /dev/xvdf1
-      - /dev/xvdg1
-      - /dev/xvdh1
+      - /dev/sda
 
 - name: Create metadb logical volume
   lvol:
