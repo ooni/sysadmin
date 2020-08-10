@@ -34,6 +34,15 @@
       S3_SESSION_TOKEN = "CHANGEME"
       S3_ENDPOINT_URL = "CHANGEME"
 
+      # Registration email delivery
+      MAIL_SERVER = "CHANGEME"
+      MAIL_PORT = 465
+      MAIL_USE_SSL = True
+      MAIL_USERNAME = "CHANGEME"
+      MAIL_PASSWORD = "CHANGEME"
+
+      SECRET_KEY = "CHANGEME"
+
 - name: allow incoming TCP connections to API
   blockinfile:
     path: /etc/ooni/nftables/tcp/443.nft
