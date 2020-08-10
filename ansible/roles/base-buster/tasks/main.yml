@@ -39,9 +39,11 @@
       - netdata-plugins-bash
       - netdata-plugins-python
       - netdata-web
+      - nftables
       - nullmailer
       - prometheus-node-exporter
       - rsync
+      - ssl-cert
       - strace
       - tcpdump
       - tmux
