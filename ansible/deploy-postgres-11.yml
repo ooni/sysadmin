@@ -4,7 +4,7 @@
 
 - import_playbook: ansible-version.yml
 
-- hosts: ams-pg.ooni.nu
+- hosts: ams-pg.ooni.org
   gather_facts: true # to gather `ansible_service_mgr`
   tags: postgresql11
   roles:
