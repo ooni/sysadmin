@@ -1,7 +1,7 @@
 ---
 - import_playbook: ansible-version.yml
 
-- hosts: ams-pg.ooni.nu
+- hosts: ams-pg.ooni.org
   roles:
     #- role: letsencrypt
     #  expand: yes
@@ -9,4 +9,4 @@
     #    - "ams-pg.ooni.nu"
     #    - "api.ooni.io"
     - role: ooni-backend
-      ssl_domain: ams-pg.ooni.nu
+      ssl_domain: ams-pg.ooni.org
