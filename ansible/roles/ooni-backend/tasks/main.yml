@@ -43,7 +43,16 @@
 
       SECRET_KEY = "CHANGEME"
 
+- name: Overwrite API nginx conf
+  tags: api
+  template:
+    src: templates/ooni-api.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+
 - name: allow incoming TCP connections to API
+  tags: api
   blockinfile:
     path: /etc/ooni/nftables/tcp/443.nft
     create: yes
@@ -51,6 +60,7 @@
       add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
 
 - name: reload nftables service
+  tags: api
   systemd:
     name: nftables.service
     state: reloaded
