@@ -10,3 +10,8 @@
     #    - "api.ooni.io"
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
+    - role: letsencrypt
+      tags: letsencrypt
+      expand: yes
+      letsencrypt_domains:
+        - "ams-pg.ooni.org"
