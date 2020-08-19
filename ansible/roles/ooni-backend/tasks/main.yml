@@ -107,16 +107,27 @@
 
 ## Analysis daemon ##
 
-#- name: install analysis
-#  tags: analysis
-#  apt:
-#    cache_valid_time: 86400
-#    name: analysis
-#
-#- name: configure analysis
-#  tags: analysis
-#  blockinfile:
-#    path: /etc/ooni/analysis.conf
-#    create: yes
-#    block: |
-#      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+- name: install analysis
+  tags: analysis
+  apt:
+    cache_valid_time: 86400
+    name: analysis
+
+- name: configure analysis
+  tags: analysis
+  blockinfile:
+    path: /etc/ooni/analysis.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      [active]
+      dbname = metadb
+      dbuser = shovel
+      dbpassword = yEqgNr2eXvgG255iEBxVeP
+      dbhost = localhost
+
+      [standby]
+      dbname = metadb
+      dbuser = shovel
+      dbpassword = yEqgNr2eXvgG255iEBxVeP
+      dbhost = localhost
