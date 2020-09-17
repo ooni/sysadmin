@@ -33,6 +33,7 @@
       S3_SECRET_ACCESS_KEY = "CHANGEME"
       S3_SESSION_TOKEN = "CHANGEME"
       S3_ENDPOINT_URL = "CHANGEME"
+      S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
 
       # Registration email delivery
       MAIL_SERVER = "CHANGEME"
@@ -41,7 +42,10 @@
       MAIL_USERNAME = "CHANGEME"
       MAIL_PASSWORD = "CHANGEME"
 
-      SECRET_KEY = "CHANGEME"
+      #SECRET_KEY = "CHANGEME"
+
+      # Measurement spool directory
+      MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
 
 - name: Overwrite API nginx conf
   tags: api
