@@ -1,0 +1,11 @@
+amspg_ooni_org_onion_hostname: "guegdifjy7bjpequ.onion"
+amspg_ooni_org_onion_key: "{{ vault_amspg_ooni_org_onion_key }}"
+amspg_ooni_org_onion_service:
+  hostname: "{{ amspg_ooni_org_onion_hostname }}"
+  private_key: "{{ amspg_ooni_org_onion_key }}"
+  service_dir: '/var/lib/tor/amspg_ooni_org_onion'
+  hs_version: 2
+  ports:
+  - service_port: 80
+    local_ipv4: '127.0.0.1'
+    local_port: "80"
