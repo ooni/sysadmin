@@ -168,7 +168,7 @@
     block: |
       # See roles/ooni-backend/tasks/main.yml
       HiddenServiceDir /var/lib/tor/ooni_onion_service/
-      HiddenServicePort 80 127.0.0.1:8888
+      HiddenServicePort 80 127.0.0.1:17744
       HiddenServiceVersion 2
 
 - name: configure tor onion service hostname
