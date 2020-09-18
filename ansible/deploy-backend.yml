@@ -15,7 +15,3 @@
       expand: yes
       letsencrypt_domains:
         - "ams-pg.ooni.org"
-    - role: onion-service
-      tags: tor
-      onion_services:
-      - "{{ amspg_ooni_org_onion_service }}"

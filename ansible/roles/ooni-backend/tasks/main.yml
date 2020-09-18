@@ -151,3 +151,54 @@
       dbuser = shovel
       dbpassword = yEqgNr2eXvgG255iEBxVeP
       dbhost = localhost
+
+
+## Tor daemon and onion service ##
+
+- name: install tor daemon
+  tags: tor
+  apt:
+    cache_valid_time: 86400
+    name: tor
+
+- name: configure tor onion service
+  tags: tor
+  blockinfile:
+    path: /etc/tor/torrc
+    block: |
+      # See roles/ooni-backend/tasks/main.yml
+      HiddenServiceDir /var/lib/tor/ooni_onion_service/
+      HiddenServicePort 80 127.0.0.1:80
+      HiddenServiceVersion 2
+
+- name: configure tor onion service hostname
+  tags: tor
+  blockinfile:
+    path: /var/lib/tor/ooni_onion_service/hostname
+    create: yes
+    owner: debian-tor
+    group: debian-tor
+    mode: 0644
+    block: guegdifjy7bjpequ.onion
+
+- name: configure tor onion service private_key
+  tags: tor
+  blockinfile:
+    path: /var/lib/tor/ooni_onion_service/private_key
+    create: yes
+    owner: debian-tor
+    group: debian-tor
+    mode: 0600
+    block: "{{ vault_amspg_ooni_org_onion_key }}"
+
+- name: set tor onion service directory
+  tags: tor
+  shell: |
+    chown debian-tor:debian-tor /var/lib/tor/ooni_onion_service
+    chmod 0700 /var/lib/tor/ooni_onion_service
+
+- name: reload tor service
+  tags: tor
+  systemd:
+    name: tor@default.service
+    state: reloaded
