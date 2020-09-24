@@ -14,4 +14,4 @@ google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK
 slack	60	A	37.218.241.90
 test-lists		A	37.218.240.141
 www		URL	https://ooni.org
-; generated from openobservatory.org.xml with SHA256 5c48f9f6fb3d07956fe01da543d2f88b6f3712617d942e9658ce75a0ac7a52e8
+; generated from openobservatory.org.xml with SHA256 eed4deb861f410a5cd2683e65ba843f1c32667c30f53bb5dbac59c4449b95b74

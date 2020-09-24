@@ -2,31 +2,33 @@ $ORIGIN ooni.nu
 $TTL 1799
 @	1800	URL301	https://ooni.org
 ams-api	60	A	37.218.242.30
-ams-db-orchestra		A	37.218.242.179
 ams-explorer		A	37.218.242.149
 ams-jupyter	60	A	37.218.242.67
 ams-orchestra	300	A	37.218.247.95
+ams-pg		A	37.218.245.83
 ams-ps	60	A	37.218.245.90
 ams-ps2	300	A	37.218.245.109
 ams-wcth	300	A	37.218.245.114
 ams-wcth2	300	A	37.218.247.47
+ams-wcth3	300	A	37.218.245.117
 amsexplorer		A	37.218.242.231
 amsmatomo	60	A	37.218.242.173
 amsmetadb		A	37.218.242.175
 amstorth		A	37.218.242.217
 censorshipwiki	1800	URL301	https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki
 dnstunnel	1800	NS	ooni.nu.
+doams1-countly		A	167.71.64.109
 fastpath		A	103.104.244.20
 hkg-ps	60	A	103.104.244.28
 hkgbouncer		A	103.104.244.87
 hkgcollectora		A	103.104.244.110
 hkgtorth		A	103.104.244.76
 mia-echoth		A	37.218.241.93
+mia-explorer-test		A	37.218.241.175
 mia-get	1200	A	37.218.241.63
 mia-github-webhooks	300	A	37.218.241.98
 mia-httpth	60	A	37.218.241.94
 mia-orchestra-test	60	A	37.218.241.87
-mia-ps	60	A	37.218.241.80
 mia-ps-test		A	37.218.241.86
 mia-ps2	300	A	37.218.241.102
 mia-run	60	A	37.218.241.95
@@ -37,4 +39,4 @@ miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 ec75348a0c370d38789f3ca91e8cc4c560770a4a5a867dbb9a57b82455d716bb
+; generated from ooni.nu.xml with SHA256 e9c77ab38af0f64aa60663d61e354118949a37c3e3e8286a1f9867e97388c59f
