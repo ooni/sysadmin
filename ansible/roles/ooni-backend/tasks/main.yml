@@ -24,7 +24,7 @@
 
       DATABASE_STATEMENT_TIMEOUT = 30
 
-      BASE_URL = "https://api.ooni.io/"
+      BASE_URL = "https://ams-pg.ooni.org/"
 
       AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
       CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
