@@ -183,6 +183,7 @@ amsmetadb.ooni.nu
 
 [have_netdata]
 fastpath.ooni.nu
+ams-pg.ooni.org
 
 [probe_services]
 mia-ps2.ooni.nu
