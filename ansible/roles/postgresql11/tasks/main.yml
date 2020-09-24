@@ -1,0 +1,78 @@
+---
+- name: install LVM
+  apt:
+    cache_valid_time: 86400
+    name: lvm2
+
+- name: Create vg.metadb Volume Group
+  lvg:
+    vg: vg.metadb
+    pvs:
+      - /dev/sda
+
+- name: Create metadb logical volume
+  lvol:
+    vg: vg.metadb
+    lv: metadb
+    size: 100%VG
+
+- name: Create filesystem for metadb
+  filesystem:
+    fstype: ext4
+    dev: /dev/vg.metadb/metadb
+    opts: -L metadb
+
+- name: Mount metadb FS
+  mount:
+    fstype: ext4
+    opts: noatime
+    path: /var/lib/postgresql
+    src: LABEL=metadb
+    state: mounted
+
+- name: install PG11 and its prom exporter
+  apt:
+    cache_valid_time: 86400
+    name:
+      - postgresql-11
+      - prometheus-postgres-exporter
+
+- name: Overwrite pg_hba.conf
+  template:
+    src: templates/pg_hba.conf
+    dest: /etc/postgresql/11/main/pg_hba.conf
+    mode: 0644
+    owner: root
+
+- name: Overwrite postgresql.conf
+  template:
+    src: templates/postgresql.conf
+    dest: /etc/postgresql/11/main/postgresql.conf
+    mode: 0644
+    owner: root
+
+- name: Reload pg after conf change
+  service: name=postgresql state=reloaded
+
+- name: allow prometheus-postgres-exporter.service
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/9187.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 9187 counter accept comment "prometheus-postgres-exporter.service"
+
+- name: allow incoming TCP connections to database
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/5432.nft
+    create: yes
+    block: |
+      add rule inet filter input ip saddr {{ lookup('dig', 'ams-api.ooni.nu/A') }}             tcp dport 5432 counter accept comment "incoming psql"
+      add rule inet filter input ip saddr {{ lookup('dig', 'ams-jupyter.ooni.nu/A') }}         tcp dport 5432 counter accept comment "incoming psql"
+      add rule inet filter input ip saddr {{ lookup('dig', 'datacollector.infra.ooni.io/A') }} tcp dport 5432 counter accept comment "incoming psql"
+      add rule inet filter input ip saddr {{ lookup('dig', 'fastpath.ooni.nu/A') }}            tcp dport 5432 counter accept comment "incoming psql"
+
+- name: reload nftables service
+  systemd:
+    name: nftables.service
+    state: reloaded
+

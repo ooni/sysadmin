@@ -1,0 +1,128 @@
+---
+- name: Remove apt repo
+  file:
+    path: /etc/apt/sources.list.d/ftp_nl_debian_org_debian.list
+    state: absent
+
+- name: Remove apt repo
+  file:
+    path: /etc/apt/sources.list.d/security_debian_org.list
+    state: absent
+
+- name: Set apt repos
+  template:
+    src: templates/sources.list
+    dest: /etc/apt/sources.list
+    mode: 0644
+    owner: root
+
+- name: Update apt cache and upgrade packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Installs base packages
+  tags: base-packages
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      # - prometheus-node-exporter-collectors
+      - bash-completion
+      - byobu
+      - chrony
+      - fail2ban
+      - iotop
+      - manpages
+      - ncdu
+      - netdata-core
+      - netdata-plugins-bash
+      - netdata-plugins-python
+      - netdata-web
+      - nftables
+      - nullmailer
+      - prometheus-node-exporter
+      - rsync
+      - ssl-cert
+      - strace
+      - tcpdump
+      - tmux
+
+- name: Remove smartmontools
+  apt:
+    name: smartmontools
+    state: absent
+
+- name: Reset failed smartd
+  command: systemctl reset-failed
+
+- name: Autoremove
+  apt:
+    autoremove: yes
+
+- name: Clean cache
+  apt:
+    autoclean: yes
+
+- name: allow netdata.service
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/19999.nft
+    create: yes
+    block: |
+      add rule inet filter input ip saddr {{ lookup('dig', 'prometheus.infra.ooni.io/A') }} tcp dport 19999 counter accept comment "netdata.service"
+
+- name: reload nftables service
+  systemd:
+    name: nftables.service
+    state: reloaded
+
+- name: configure netdata.service
+  blockinfile:
+    path: /etc/netdata/netdata.conf
+    block: |
+      # Managed by ansible, see roles/base-buster/tasks/main.yml
+      [global]
+        run as user = netdata
+        web files owner = root
+        web files group = root
+        bind socket to IP = 0.0.0.0
+
+      [plugins]
+        python.d = yes
+
+- name: configure netdata chrony
+  blockinfile:
+    path: /etc/netdata/python.d/chrony.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/base-buster/tasks/main.yml
+      update_every: 5
+      local:
+        command: 'chronyc -n tracking'
+
+#- name: configure netdata nginx
+#  blockinfile:
+#    path: /etc/netdata/python.d/nginx.conf
+#    create: yes
+#    block: |
+#      # Managed by ansible, see roles/base-buster/tasks/main.yml
+#      update_every: 5
+#      nginx_log:
+#        name  : 'nginx_log'
+#        path  : '/var/log/nginx/access.log'
+
+#- name: configure netdata haproxy
+#  blockinfile:
+#    path: /etc/netdata/python.d/haproxy.conf
+#    block: |
+#      # Managed by ansible, see roles/base-buster/tasks/main.yml
+#      update_every: 5
+#      via_url:
+#        url: 'http://127.0.0.1:7000/haproxy_stats;csv;norefresh'
+
+- name: restart netdata service
+  systemd:
+    name: netdata.service
+    state: restarted
+
+

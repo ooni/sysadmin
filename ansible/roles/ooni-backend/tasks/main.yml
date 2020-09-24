@@ -1,0 +1,204 @@
+---
+
+## API ##
+
+- name: install API
+  tags: api
+  apt:
+    cache_valid_time: 86400
+    name: ooni-api
+
+- name: configure api
+  tags: api
+  blockinfile:
+    path: /etc/ooni/api.conf
+    create: yes
+    block: |
+      # See roles/ooni-backend/tasks/main.yml
+      # Syntax: treat it as a Python file, but only uppercase variables are used
+      COLLECTORS = []
+
+      # Read-only database access
+      # The password is already made public
+      DATABASE_URI_RO = "postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb"
+
+      DATABASE_STATEMENT_TIMEOUT = 30
+
+      BASE_URL = "https://api.ooni.io/"
+
+      AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
+      CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
+
+      S3_ACCESS_KEY_ID = "AKIAJURD7T4DTN5JMJ5Q"
+      S3_SECRET_ACCESS_KEY = "CHANGEME"
+      S3_SESSION_TOKEN = "CHANGEME"
+      S3_ENDPOINT_URL = "CHANGEME"
+
+      # Hardcoded in the code
+      #S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
+
+      # Registration email delivery
+      MAIL_SERVER = "CHANGEME"
+      MAIL_PORT = 465
+      MAIL_USE_SSL = True
+      MAIL_USERNAME = "CHANGEME"
+      MAIL_PASSWORD = "CHANGEME"
+
+      #SECRET_KEY = "CHANGEME"
+
+      # Measurement spool directory
+      MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
+
+- name: configure api uploader
+  tags: api
+  blockinfile:
+    path: /etc/ooni/api-uploader.conf
+    create: yes
+    block: |
+      # OONI API measurement uploader - Python ini format
+      [DEFAULT]
+      # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
+      aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
+      aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
+      bucket_name = ooni-data-eu-fra-test
+      msmt_spool_dir = /var/lib/ooniapi/measurements
+
+- name: Overwrite API nginx conf
+  tags: api
+  template:
+    src: templates/ooni-api.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+
+- name: allow incoming TCP connections to API
+  tags: api
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/443.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
+
+- name: reload nftables service
+  tags: api
+  systemd:
+    name: nftables.service
+    state: reloaded
+
+
+## Fastpath ##
+
+- name: install fastpath
+  tags: fastpath
+  apt:
+    cache_valid_time: 86400
+    name: fastpath
+
+- name: configure fastpath
+  tags: fastpath
+  blockinfile:
+    path: /etc/ooni/fastpath.conf
+    create: yes
+    block: |
+      # See roles/ooni-backend/tasks/main.yml
+      [DEFAULT]
+      collectors = localhost
+      # The password is already made public
+      db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
+
+
+
+## Event detector ##
+
+#- name: install detector
+#  tags: detector
+#  apt:
+#    cache_valid_time: 86400
+#    name: detector
+#
+#- name: configure detector
+#  tags: detector
+#  blockinfile:
+#    path: /etc/ooni/detector.conf
+#    create: yes
+#    block: |
+#      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+
+
+## Analysis daemon ##
+
+- name: install analysis
+  tags: analysis
+  apt:
+    cache_valid_time: 86400
+    name: analysis
+
+- name: configure analysis
+  tags: analysis
+  blockinfile:
+    path: /etc/ooni/analysis.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      [active]
+      dbname = metadb
+      dbuser = shovel
+      dbpassword = yEqgNr2eXvgG255iEBxVeP
+      dbhost = localhost
+
+      [standby]
+      dbname = metadb
+      dbuser = shovel
+      dbpassword = yEqgNr2eXvgG255iEBxVeP
+      dbhost = localhost
+
+
+## Tor daemon and onion service ##
+
+- name: install tor daemon
+  tags: tor
+  apt:
+    cache_valid_time: 86400
+    name: tor
+
+- name: configure tor onion service
+  tags: tor
+  blockinfile:
+    path: /etc/tor/torrc
+    block: |
+      # See roles/ooni-backend/tasks/main.yml
+      HiddenServiceDir /var/lib/tor/ooni_onion_service/
+      HiddenServicePort 80 127.0.0.1:17744
+      HiddenServiceVersion 2
+
+- name: configure tor onion service hostname
+  tags: tor
+  blockinfile:
+    path: /var/lib/tor/ooni_onion_service/hostname
+    create: yes
+    owner: debian-tor
+    group: debian-tor
+    mode: 0644
+    block: guegdifjy7bjpequ.onion
+
+- name: configure tor onion service private_key
+  tags: tor
+  blockinfile:
+    path: /var/lib/tor/ooni_onion_service/private_key
+    create: yes
+    owner: debian-tor
+    group: debian-tor
+    mode: 0600
+    block: "{{ vault_amspg_ooni_org_onion_key }}"
+
+- name: set tor onion service directory
+  tags: tor
+  shell: |
+    chown debian-tor:debian-tor /var/lib/tor/ooni_onion_service
+    chmod 0700 /var/lib/tor/ooni_onion_service
+
+- name: reload tor service
+  tags: tor
+  systemd:
+    name: tor@default.service
+    state: reloaded
