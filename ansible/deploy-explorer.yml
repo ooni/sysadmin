@@ -27,7 +27,7 @@
         - 'explorer-test.ooni.io'
       tags: test
     - role: explorer
-      explorer_next_tag: '20201001-e22dc385'
+      explorer_next_tag: '20201007-d698422d'
       explorer_public_hostname: 'explorer-test.ooni.io'
       explorer_domain: 'mia-explorer-test.ooni.nu'
       tags: test
