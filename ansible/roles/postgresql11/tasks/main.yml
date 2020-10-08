@@ -76,3 +76,20 @@
     name: nftables.service
     state: reloaded
 
+- name: configure Netdata Postgres monitoring
+  tags: netdata
+  blockinfile:
+    path: /etc/netdata/python.d/postgres.conf
+    create: yes
+    block: |
+      socket:
+        name     : 'local'
+        user     : 'shovel'
+        database : 'metadb'
+
+- name: restart netdata service
+  tags: netdata
+  systemd:
+    name: netdata.service
+    state: restarted
+
