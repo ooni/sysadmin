@@ -65,6 +65,7 @@
     autoclean: yes
 
 - name: allow netdata.service
+  tags: netdata
   blockinfile:
     path: /etc/ooni/nftables/tcp/19999.nft
     create: yes
@@ -77,6 +78,7 @@
     state: reloaded
 
 - name: configure netdata.service
+  tags: netdata
   blockinfile:
     path: /etc/netdata/netdata.conf
     block: |
@@ -90,7 +92,17 @@
       [plugins]
         python.d = yes
 
+- name: disable netdata emails
+  tags: netdata
+  blockinfile:
+    path: /etc/netdata/conf.d/health_alarm_notify.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/base-buster/tasks/main.yml
+      SEND_EMAIL="NO"
+
 - name: configure netdata chrony
+  tags: netdata
   blockinfile:
     path: /etc/netdata/python.d/chrony.conf
     create: yes
@@ -121,6 +133,7 @@
 #        url: 'http://127.0.0.1:7000/haproxy_stats;csv;norefresh'
 
 - name: restart netdata service
+  tags: netdata
   systemd:
     name: netdata.service
     state: restarted
