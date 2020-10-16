@@ -54,6 +54,7 @@
     enabled: yes
 
 - name: Add certificate monitoring monitor_certs.py
+  tags: monitor_certs
   template:
     src: templates/monitor_certs.py
     dest: /etc/ooni/monitor_certs.py
@@ -61,6 +62,7 @@
     owner: root
 
 - name: Install monitor_certs.service
+  tags: monitor_certs
   template:
     src: templates/monitor_certs.service
     dest: /etc/systemd/system/monitor_certs.service
@@ -68,6 +70,7 @@
     owner: root
 
 - name: Add certificate monitoring monitor_certs.py
+  tags: monitor_certs
   template:
     src: templates/monitor_certs.timer
     dest: /etc/systemd/system/monitor_certs.timer
@@ -75,6 +78,7 @@
     owner: root
 
 - name: enable timer for monitor_certs
+  tags: monitor_certs
   systemd:
     daemon_reload: yes
     name: monitor_certs.timer
