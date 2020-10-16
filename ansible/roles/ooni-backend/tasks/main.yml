@@ -49,7 +49,23 @@
       # Measurement spool directory
       MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
 
-- name: configure api uploader
+- name: configure api uploader using test bucket
+  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  tags: api
+  blockinfile:
+    path: /etc/ooni/api-uploader.conf
+    create: yes
+    block: |
+      # OONI API measurement uploader - Python ini format
+      [DEFAULT]
+      # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
+      aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
+      # aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
+      bucket_name = ooni-data-eu-fra-test
+      msmt_spool_dir = /var/lib/ooniapi/measurements
+
+- name: configure api uploader using PROD bucket
+  when: ansible_hostname == 'ams-pg.ooni.org'
   tags: api
   blockinfile:
     path: /etc/ooni/api-uploader.conf
@@ -60,7 +76,7 @@
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
       aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
-      bucket_name = ooni-data-eu-fra-test
+      bucket_name = ooni-data-eu-fra
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
 - name: Overwrite API nginx conf
@@ -92,7 +108,7 @@
   tags: fastpath
   apt:
     cache_valid_time: 86400
-    name: fastpath
+    name: fastpath=0.32~pr324-326
 
 - name: configure fastpath
   tags: fastpath
@@ -131,7 +147,8 @@
   tags: analysis
   apt:
     cache_valid_time: 86400
-    name: analysis
+    name: analysis=0.15~pr324-326
+    force: True
 
 - name: configure analysis
   tags: analysis
@@ -172,6 +189,7 @@
       HiddenServiceVersion 2
 
 - name: configure tor onion service hostname
+  when: ansible_hostname == 'ams-pg.ooni.org'
   tags: tor
   blockinfile:
     path: /var/lib/tor/ooni_onion_service/hostname
@@ -182,6 +200,7 @@
     block: guegdifjy7bjpequ.onion
 
 - name: configure tor onion service private_key
+  when: ansible_hostname == 'ams-pg.ooni.org'
   tags: tor
   blockinfile:
     path: /var/lib/tor/ooni_onion_service/private_key
@@ -192,6 +211,7 @@
     block: "{{ vault_amspg_ooni_org_onion_key }}"
 
 - name: set tor onion service directory
+  when: ansible_hostname == 'ams-pg.ooni.org'
   tags: tor
   shell: |
     chown debian-tor:debian-tor /var/lib/tor/ooni_onion_service

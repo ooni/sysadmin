@@ -31,4 +31,3 @@
     name: nftables.service
     state: reloaded
     enabled: yes
-

@@ -2,6 +2,7 @@
 - name: Install etckeeper
   apt:
     name:
+    - python-apt
     - etckeeper
     state: latest
     update_cache: yes

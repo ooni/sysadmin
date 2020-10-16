@@ -3,11 +3,6 @@
 
 - hosts: ams-pg.ooni.org
   roles:
-    #- role: letsencrypt
-    #  expand: yes
-    #  letsencrypt_domains:
-    #    - "ams-pg.ooni.nu"
-    #    - "api.ooni.io"
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
     - role: letsencrypt
@@ -15,3 +10,17 @@
       expand: yes
       letsencrypt_domains:
         - "ams-pg.ooni.org"
+        - "api.ooni.io"
+        - "collector.ooni.io"
+        - "ps1.ooni.io"
+        - "ps2.ooni.io"
+
+- hosts: ams-pg-test.ooni.org
+  roles:
+    - role: ooni-backend
+      ssl_domain: ams-pg.ooni.org
+    - role: letsencrypt
+      tags: letsencrypt
+      expand: yes
+      letsencrypt_domains:
+        - "ams-pg-test.ooni.org"

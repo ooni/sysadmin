@@ -16,16 +16,34 @@
     lv: metadb
     size: 100%VG
 
-- name: Create filesystem for metadb
+- name: Create ext4 filesystem for metadb
+  when: ansible_hostname == 'ams-pg.ooni.org'
   filesystem:
     fstype: ext4
     dev: /dev/vg.metadb/metadb
     opts: -L metadb
 
-- name: Mount metadb FS
+- name: Mount ext4 metadb FS
+  when: ansible_hostname == 'ams-pg.ooni.org'
   mount:
     fstype: ext4
     opts: noatime
+    path: /var/lib/postgresql
+    src: LABEL=metadb
+    state: mounted
+
+- name: Create btrfs filesystem for metadb
+  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  filesystem:
+    fstype: btrfs
+    dev: /dev/vg.metadb/metadb
+    opts: -L metadb
+
+- name: Mount btrfs metadb FS
+  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  mount:
+    fstype: btrfs
+    opts: defaults,space_cache,noatime,compress=zstd:1,nodatacow,autodefrag
     path: /var/lib/postgresql
     src: LABEL=metadb
     state: mounted
