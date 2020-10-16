@@ -151,9 +151,7 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
-{% for host in (groups.have_netdata|sort) %}
-        - {{ host }}:9100
-{% endfor %}
+        - fastpath.ooni.nu:9100
 
   - job_name: 'raw-netdata'
     scrape_interval: 5s
@@ -163,7 +161,9 @@ scrape_configs:
       format: [prometheus]
     static_configs:
       - targets:
-        - ams-pg.ooni.nu:19999
+{% for host in (groups.have_netdata|sort) %}
+        - {{ host }}:19999
+{% endfor %}
 
 #  - job_name: 'raw postgres-exporter'
 #    scrape_interval: 5s

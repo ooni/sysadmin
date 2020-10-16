@@ -51,6 +51,7 @@ ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-pg.ooni.org
+ams-pg-test.ooni.org
 
 [doams]
 doams1-countly.ooni.nu
@@ -130,6 +131,7 @@ mia-explorer-test.ooni.nu
 
 [have_nftables]
 ams-pg.ooni.org
+ams-pg-test.ooni.org
 
 [have_nginx]
 prometheus.infra.ooni.io
@@ -184,6 +186,7 @@ amsmetadb.ooni.nu
 [have_netdata]
 fastpath.ooni.nu
 ams-pg.ooni.org
+ams-pg-test.ooni.org
 
 [probe_services]
 mia-ps2.ooni.nu
