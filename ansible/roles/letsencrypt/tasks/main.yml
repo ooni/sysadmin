@@ -16,7 +16,7 @@
     mode: 0755
   with_items:
     - "/etc/nginx/sites-enabled"
-    - "/var/www/letsencrypt"
+    - "/var/www/letsencrypt/.well-known/acme-challenge/"
     - "/etc/ooni"
 
 - name: Add letsencrypt dedicated sites-enabled file
