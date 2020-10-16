@@ -9,14 +9,12 @@
 import subprocess
 from datetime import datetime, timezone
 
-import prometheus_client as prom
+import statsd  # debdeps: python3-statsd
 
-NODEEXP_FN = "/run/nodeexp/monitor_certs.prom"
+metrics = statsd.StatsClient("localhost", 8125, prefix="certificates")
 
 
 def main():
-    prom_reg = prom.CollectorRegistry()
-    gauge = prom.Gauge("certificate_age", "", ["domain"], registry=prom_reg)
     out = subprocess.check_output(["certbot", "certificates"])
     out = out.decode("utf-8")
     for line in out.splitlines():
@@ -28,10 +26,8 @@ def main():
             exp = line[17:42]
             exp = datetime.strptime(exp, "%Y-%m-%d %H:%M:%S%z")
             delta = exp - datetime.now(timezone.utc)
-            s = int(delta.total_seconds())
-            gauge.labels(domain_name).set(s)
-
-    prom.write_to_textfile(NODEEXP_FN, prom_reg)
+            s = delta.total_seconds()
+            metrics.gauge(f"certificate_age.{domain_name}", s)
 
 
 if __name__ == "__main__":
