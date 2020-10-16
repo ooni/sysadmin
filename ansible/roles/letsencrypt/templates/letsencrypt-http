@@ -7,12 +7,14 @@ server {
     listen 80;
     server_name _;
 
+    # Redirect everything to port 443 regardless of domain
+    # The most general location matcher goes first
+    location / {
+        return 301 https://$host$request_uri;
+    }
+
     # Serve ACME challenge from disk
     location /.well-known/acme-challenge {
         root /var/www/letsencrypt;
-        try_files $uri $uri/ =404;
     }
-
-    # Redirect everything else to port 443 regardless of domain
-    return 301 https://$host$request_uri;
 }
