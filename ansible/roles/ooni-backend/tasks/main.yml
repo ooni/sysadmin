@@ -6,7 +6,7 @@
   tags: api
   apt:
     cache_valid_time: 86400
-    name: ooni-api
+    name: ooni-api=0.1~pr192-96
 
 - name: configure api
   tags: api
@@ -108,7 +108,7 @@
   tags: fastpath
   apt:
     cache_valid_time: 86400
-    name: fastpath=0.32~pr324-326
+    name: fastpath=0.32~pr324-331
 
 - name: configure fastpath
   tags: fastpath
@@ -147,7 +147,7 @@
   tags: analysis
   apt:
     cache_valid_time: 86400
-    name: analysis=0.15~pr324-326
+    name: analysis=0.15~pr324-331
     force: True
 
 - name: configure analysis
