@@ -14,6 +14,8 @@
         - "collector.ooni.io"
         - "ps1.ooni.io"
         - "ps2.ooni.io"
+        - "ps3.ooni.io"
+        - "ps4.ooni.io"
 
 - hosts: ams-pg-test.ooni.org
   roles:
