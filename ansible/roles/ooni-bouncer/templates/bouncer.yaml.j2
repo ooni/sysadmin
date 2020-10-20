@@ -1,10 +1,10 @@
 {% set echo_th = lookup('dig', 'echoth.ooni.io/A') %}
 {% set http_th = lookup('dig', 'httpth.ooni.io/A') %}
 collector:
-  httpo://jehhrikjjqrlpufu.onion:
+  httpo://guegdifjy7bjpequ.onion:
     collector-alternate:
-    - {address: 'https://ams-ps2.ooni.nu:443', type: https}
-    - {address: 'https://dkyhjv0wpi2dk.cloudfront.net', front: dkyhjv0wpi2dk.cloudfront.net, type: cloudfront}
+    - {address: 'https://ams-pg.ooni.org:443', type: https}
+    - {address: 'https://dvp6h0xblpcqp.cloudfront.net', front: dvp6h0xblpcqp.cloudfront.net, type: cloudfront}
     test-helper:
       dns: '{{ echo_th }}:57004'
       http-return-json-headers: 'http://{{ http_th }}:80'
@@ -16,10 +16,10 @@ collector:
       web-connectivity:
       - {address: 'https://wcth.ooni.io', type: https}
       - {address: 'https://d33d1gs9kpq1c5.cloudfront.net', front: d33d1gs9kpq1c5.cloudfront.net, type: cloudfront}
-  httpo://hcn5nqahdkds6cjv.onion:
+  httpo://guegdifjy7bjpequ.onion:
     collector-alternate:
-    - {address: 'https://mia-ps2.ooni.nu:443', type: https}
-    - {address: 'https://dkyhjv0wpi2dk.cloudfront.net', front: dkyhjv0wpi2dk.cloudfront.net, type: cloudfront}
+    - {address: 'https://ams-pg.ooni.org:443', type: https}
+    - {address: 'https://dvp6h0xblpcqp.cloudfront.net', front: dvp6h0xblpcqp.cloudfront.net, type: cloudfront}
     test-helper:
       dns: '{{ echo_th }}:57004'
       http-return-json-headers: 'http://{{ http_th }}:80'
