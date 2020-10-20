@@ -42,8 +42,6 @@ blackbox_jobs:
       - "https://ps.ooni.io/invalidpath"
       - "https://ps-test.ooni.io/invalidpath"
       - "https://collector.ooni.io/invalidpath"
-      - "https://ams-ps2.ooni.nu/invalidpath"
-      - "https://mia-ps2.ooni.nu/invalidpath"
   - name: "ooni bouncer"
     module: "ooni_bouncer_ok"
     targets:
@@ -91,10 +89,6 @@ blackbox_jobs:
     module: "http_2xx"
     targets:
       - "https://ooni.torproject.org"
-
-  - name: "ooni API: GET /api/v1/version"
-    module: "http_2xx"
-    targets: ["https://api.ooni.io/api/v1/version"]
 
   - name: "ooni get"
     module: "http_2xx"
