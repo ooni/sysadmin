@@ -2,11 +2,11 @@
 
 ## API ##
 
-- name: install API
-  tags: api
-  apt:
-    cache_valid_time: 86400
-    name: ooni-api=0.1~pr192-96
+#- name: install API
+#  tags: api
+#  apt:
+#    cache_valid_time: 86400
+#    name: ooni-api=0.1~pr192-96
 
 - name: configure api
   tags: api
@@ -65,7 +65,7 @@
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
 - name: configure api uploader using PROD bucket
-  when: ansible_hostname == 'ams-pg.ooni.org'
+  # FIXME when: ansible_hostname == 'ams-pg.ooni.org'
   tags: api
   blockinfile:
     path: /etc/ooni/api-uploader.conf
