@@ -30,7 +30,6 @@ mia-run.ooni.nu
 mia-explorer-test.ooni.nu
 
 [hkg]
-hkg-ps.ooni.nu
 
 [ams]
 amstorth.ooni.nu
@@ -72,7 +71,6 @@ db-1.proteus.ooni.io
 
 [psk_orchestra_prod]
 mia-ps2.ooni.nu
-hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
@@ -98,7 +96,6 @@ amsmatomo.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 mia-ps2.ooni.nu
-hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 mia-get.ooni.nu
@@ -122,7 +119,6 @@ ams-pg-test.ooni.org
 prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 mia-ps2.ooni.nu
-hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 mia-get.ooni.nu
@@ -145,7 +141,6 @@ miatorth.ooni.nu
 [have_collector]
 mia-ps-test.ooni.nu
 mia-ps2.ooni.nu
-hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 
@@ -153,7 +148,6 @@ ams-ps2.ooni.nu
 ams-explorer.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
-hkg-ps.ooni.nu
 mia-ps2.ooni.nu
 
 [active_collector]
@@ -172,7 +166,6 @@ ams-pg-test.ooni.org
 
 [probe_services]
 mia-ps2.ooni.nu
-hkg-ps.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 
