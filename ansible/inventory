@@ -30,7 +30,6 @@ mia-run.ooni.nu
 mia-explorer-test.ooni.nu
 
 [hkg]
-datacollector.infra.ooni.io
 hkg-ps.ooni.nu
 
 [ams]
@@ -60,7 +59,6 @@ doams1-countly.ooni.nu
 amsmetadb.ooni.nu
 
 [psk_hkgmetadb]
-datacollector.infra.ooni.io
 amsmetadb.ooni.nu
 
 [psk_oomsm_beta]
@@ -86,7 +84,6 @@ mia-orchestra-test.ooni.nu
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
 db-1.proteus.ooni.io
-datacollector.infra.ooni.io
 
 [psk_superset_hkgmetadb]
 
@@ -94,7 +91,6 @@ datacollector.infra.ooni.io
 # role tags
 
 [have_fw]
-datacollector.infra.ooni.io
 amsmetadb.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
