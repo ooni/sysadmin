@@ -31,9 +31,6 @@ mia-explorer-test.ooni.nu
 
 [hkg]
 datacollector.infra.ooni.io
-hkgmetadb.infra.ooni.io
-hkgtorth.ooni.nu
-fastpath.ooni.nu
 hkg-ps.ooni.nu
 
 [ams]
@@ -60,20 +57,16 @@ doams1-countly.ooni.nu
 # PSK (pre-shared key) tags
 
 [psk_amsrepl]
-hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
 
 [psk_hkgmetadb]
 datacollector.infra.ooni.io
-hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
 
 [psk_oomsm_beta]
-hkgmetadb.infra.ooni.io
 # FIXME: drop `oomsm-beta` user
 
 [psk_metadb_amsapi]
-hkgmetadb.infra.ooni.io
 ams-api.ooni.nu
 
 [psk_orchestration]
@@ -96,19 +89,15 @@ db-1.proteus.ooni.io
 datacollector.infra.ooni.io
 
 [psk_superset_hkgmetadb]
-hkgmetadb.infra.ooni.io
 
 ########################################################################
 # role tags
 
 [have_fw]
 datacollector.infra.ooni.io
-hkgmetadb.infra.ooni.io
 amsmetadb.ooni.nu
-hkgtorth.ooni.nu
 miatorth.ooni.nu
 amstorth.ooni.nu
-fastpath.ooni.nu
 amsmatomo.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
@@ -155,7 +144,6 @@ mia-explorer-test.ooni.nu
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
-hkgtorth.ooni.nu
 miatorth.ooni.nu
 
 [have_collector]
@@ -178,13 +166,11 @@ ams-ps2.ooni.nu
 mia-ps2.ooni.nu
 
 [db_active]
-hkgmetadb.infra.ooni.io
 
 [db_standby]
 amsmetadb.ooni.nu
 
 [have_netdata]
-fastpath.ooni.nu
 ams-pg.ooni.org
 ams-pg-test.ooni.org
 

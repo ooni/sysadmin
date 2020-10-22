@@ -139,19 +139,18 @@ scrape_configs:
         - {{ host }}:9100
 {% endfor %}
 
-  - job_name: 'netdata'
-    scrape_interval: 5s
-    scheme: https
-    metrics_path: /api/v1/allmetrics
-    params:
-      format: [prometheus]
-    tls_config:
-      ca_file: "{{ prometheus_exporter_cert }}"
-      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
-      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
-    static_configs:
-      - targets:
-        - fastpath.ooni.nu:9100
+#  - job_name: 'netdata'
+#    scrape_interval: 5s
+#    scheme: https
+#    metrics_path: /api/v1/allmetrics
+#    params:
+#      format: [prometheus]
+#    tls_config:
+#      ca_file: "{{ prometheus_exporter_cert }}"
+#      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
+#      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
+#    static_configs:
+#      - targets:
 
   - job_name: 'raw-netdata'
     scrape_interval: 5s
