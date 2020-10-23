@@ -5,10 +5,6 @@
 gh
 do
 
-[have_prometheus_monitoring:children]
-gh
-doams1-countly.ooni.nu
-
 # Digital ocean vms
 [do:children]
 doams
@@ -49,11 +45,11 @@ ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
-ams-pg-test.ooni.org
 
 [doams]
 doams1-countly.ooni.nu
-ams-pg.ooni.org
+#ams-pg.ooni.org
+#ams-pg-test.ooni.org
 
 ########################################################################
 # PSK (pre-shared key) tags

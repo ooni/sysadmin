@@ -135,7 +135,7 @@ scrape_configs:
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
     static_configs:
       - targets:
-{% for host in (groups.have_prometheus_monitoring|sort) %}
+{% for host in (groups.dom0|sort) %}
         - {{ host }}:9100
 {% endfor %}
 
