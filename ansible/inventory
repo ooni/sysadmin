@@ -48,6 +48,7 @@ ams-wcth3.ooni.nu
 
 [doams]
 doams1-countly.ooni.nu
+# FIXME Disabled due to location tags not working as expected
 #ams-pg.ooni.org
 #ams-pg-test.ooni.org
 
