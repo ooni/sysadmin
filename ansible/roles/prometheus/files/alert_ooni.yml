@@ -13,17 +13,6 @@ groups:
     annotations:
       summary: 'hellais-nas `rsync` exitcode: {{ $value }}'
 
-  - alert: MetaDBS3Silent
-    expr: round(time() - metadb_wal_ship_time, 3600) > 30 * 3600
-    annotations:
-      summary: 'MetaDB `archive_command` is silent for {{ $value | humanizeDuration }}'
-
-  - alert: MetaDBS3Failure
-    expr: metadb_wal_ship_success != 1
-    for: 30m
-    annotations:
-      summary: 'MetaDB `archive_command` fails for 30m+.'
-
   # Some nodes may have it broken, but it usually works, here is expr to validate it.
   # expr: (max without (device) (node_seeksample_timestamp{job="node"}) or up{job="node"}) == 1
   - alert: DiskStuck
