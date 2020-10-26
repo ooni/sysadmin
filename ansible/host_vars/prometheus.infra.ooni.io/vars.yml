@@ -113,8 +113,7 @@ blackbox_jobs:
 
   - name: ssh
     module: ssh_banner
-    # staticiforme.torproject.org ssh port is only reachable via jumphost
-    targets: "{{ groups['all'] | difference(['staticiforme.torproject.org']) | map('regex_replace', '$', ':22') | list }}"
+    targets: "{{ groups['dom0'] | map('regex_replace', '$', ':22') | list }}"
 
   - name: icmp
     module: icmp
