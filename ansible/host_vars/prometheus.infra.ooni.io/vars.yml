@@ -117,5 +117,5 @@ blackbox_jobs:
 
   - name: icmp
     module: icmp
-    targets: "{{ groups['all'] | list }}"
+    targets: "{{ groups['dom0'] | list }}"
 ...
