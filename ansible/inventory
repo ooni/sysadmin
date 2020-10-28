@@ -41,7 +41,6 @@ amsmetadb.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
-ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
@@ -65,7 +64,6 @@ amsmetadb.ooni.nu
 # FIXME: drop `oomsm-beta` user
 
 [psk_metadb_amsapi]
-ams-api.ooni.nu
 
 [psk_orchestration]
 db-1.proteus.ooni.io
@@ -106,7 +104,6 @@ mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 ams-orchestra.ooni.nu
 mia-run.ooni.nu
-ams-api.ooni.nu
 ams-jupyter.ooni.nu
 mia-explorer-test.ooni.nu
 
@@ -126,7 +123,6 @@ mia-slack.ooni.nu
 ams-explorer.ooni.nu
 ams-orchestra.ooni.nu
 mia-run.ooni.nu
-ams-api.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
