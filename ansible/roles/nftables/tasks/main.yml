@@ -26,8 +26,17 @@
     mode: 0755
     owner: root
 
-- name: Enable and start nftables service
-  systemd:
-    name: nftables.service
-    state: reloaded
-    enabled: yes
+- name: enable nftables service
+  shell: systemctl enable nftables.service
+
+- name: enable nftables service
+  shell: systemctl start nftables.service
+
+#- name: Enable and start nftables service
+#  systemd:
+#    name: nftables.service
+#    state: reloaded
+#    enabled: yes
+
+- name: reload nftables service
+  shell: systemctl reload nftables.service

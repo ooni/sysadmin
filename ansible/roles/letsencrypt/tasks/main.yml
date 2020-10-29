@@ -27,6 +27,16 @@
     owner: root
   notify: reload nginx
 
+- name: allow incoming TCP connections to Nginx
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/80.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 80 counter accept comment "incoming HTTP"
+
+- name: reload nftables service
+  shell: systemctl reload nftables.service
+
 - meta: flush_handlers
 
 # Run certbot to create a new cert if needed

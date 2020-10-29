@@ -1,16 +1,19 @@
 ---
 - name: install LVM
+  when: ansible_hostname == 'ams-pg-test.ooni.org'
   apt:
     cache_valid_time: 86400
     name: lvm2
 
 - name: Create vg.metadb Volume Group
+  when: ansible_hostname == 'ams-pg-test.ooni.org'
   lvg:
     vg: vg.metadb
     pvs:
       - /dev/sda
 
 - name: Create metadb logical volume
+  when: ansible_hostname == 'ams-pg-test.ooni.org'
   lvol:
     vg: vg.metadb
     lv: metadb
@@ -39,6 +42,9 @@
     dev: /dev/vg.metadb/metadb
     opts: -L metadb
 
+# TODO FIXME install kernel 5.8.0-0.bpo.2-cloud-amd64 on ams-pg-test to use 
+# Reboot
+# Ensure the running kernel is correct
 - name: Mount btrfs metadb FS
   when: ansible_hostname == 'ams-pg-test.ooni.org'
   mount:
@@ -48,12 +54,11 @@
     src: LABEL=metadb
     state: mounted
 
-- name: install PG11 and its prom exporter
+- name: install PG11
   apt:
     cache_valid_time: 86400
     name:
       - postgresql-11
-      - prometheus-postgres-exporter
 
 - name: Overwrite pg_hba.conf
   template:
@@ -69,30 +74,21 @@
     mode: 0644
     owner: root
 
-- name: Reload pg after conf change
-  service: name=postgresql state=reloaded
+- name: Enable and start service
+  shell: systemctl enable --now postgresql.service
 
-- name: allow prometheus-postgres-exporter.service
-  blockinfile:
-    path: /etc/ooni/nftables/tcp/9187.nft
-    create: yes
-    block: |
-      add rule inet filter input tcp dport 9187 counter accept comment "prometheus-postgres-exporter.service"
+- name: Reload pg after conf change
+  shell: systemctl reload postgresql.service
 
 - name: allow incoming TCP connections to database
   blockinfile:
     path: /etc/ooni/nftables/tcp/5432.nft
     create: yes
     block: |
-      add rule inet filter input ip saddr {{ lookup('dig', 'ams-api.ooni.nu/A') }}             tcp dport 5432 counter accept comment "incoming psql"
       add rule inet filter input ip saddr {{ lookup('dig', 'ams-jupyter.ooni.nu/A') }}         tcp dport 5432 counter accept comment "incoming psql"
-      add rule inet filter input ip saddr {{ lookup('dig', 'datacollector.infra.ooni.io/A') }} tcp dport 5432 counter accept comment "incoming psql"
-      add rule inet filter input ip saddr {{ lookup('dig', 'fastpath.ooni.nu/A') }}            tcp dport 5432 counter accept comment "incoming psql"
 
 - name: reload nftables service
-  systemd:
-    name: nftables.service
-    state: reloaded
+  shell: systemctl reload nftables.service
 
 - name: configure Netdata Postgres monitoring
   tags: netdata

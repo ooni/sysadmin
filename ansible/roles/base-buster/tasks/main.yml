@@ -72,10 +72,15 @@
     block: |
       add rule inet filter input ip saddr {{ lookup('dig', 'prometheus.infra.ooni.io/A') }} tcp dport 19999 counter accept comment "netdata.service"
 
+#- name: reload nftables service
+#  systemd:
+#    name: nftables.service
+#    state: reloaded
+#    enabled: yes
+#    daemon_reload: yes
+
 - name: reload nftables service
-  systemd:
-    name: nftables.service
-    state: reloaded
+  shell: systemctl reload nftables.service
 
 - name: configure netdata.service
   tags: netdata
