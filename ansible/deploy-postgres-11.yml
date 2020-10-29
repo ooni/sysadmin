@@ -10,6 +10,12 @@
   roles:
     - role: postgresql11
 
+- hosts: ams-pg-test.ooni.org
+  gather_facts: true # to gather `ansible_service_mgr`
+  tags: postgresql11
+  roles:
+    - role: postgresql11
+
 #- name: install prometheus-postgres-exporter
 #  apt:
 #    cache_valid_time: 86400
