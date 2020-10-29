@@ -19,6 +19,9 @@
     - "/var/www/letsencrypt/.well-known/acme-challenge/"
     - "/etc/ooni"
 
+- name: Empty /etc/nginx/sites-available/default
+  shell: echo > /etc/nginx/sites-available/default
+
 - name: Add letsencrypt dedicated sites-enabled file
   template:
     src: templates/letsencrypt-http
@@ -55,7 +58,6 @@
     --domains {{ letsencrypt_domains | join(',') }}
     --expand
     --keep
-    --post-hook '/usr/sbin/service nginx reload'
 
 - name: Ensure certbot timer runs
   systemd:

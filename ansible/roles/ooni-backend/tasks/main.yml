@@ -8,6 +8,11 @@
 #    cache_valid_time: 86400
 #    name: ooni-api=0.1~pr192-96
 
+- name: create Nginx cache dir
+  file:
+    path: /var/cache/nginx/ooni-api
+    state: directory
+
 - name: configure api
   tags: api
   blockinfile:
@@ -50,7 +55,7 @@
       MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
 
 - name: configure api uploader using test bucket
-  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api
   blockinfile:
     path: /etc/ooni/api-uploader.conf
@@ -60,12 +65,12 @@
       [DEFAULT]
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      # aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
+      # aws_secret_access_key =  vault_s3_ooni_open_data_access_key }}
       bucket_name = ooni-data-eu-fra-test
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
 - name: configure api uploader using PROD bucket
-  # FIXME when: ansible_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api
   blockinfile:
     path: /etc/ooni/api-uploader.conf
@@ -75,7 +80,7 @@
       [DEFAULT]
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
+      # FIXME aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
       bucket_name = ooni-data-eu-fra
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
@@ -95,11 +100,15 @@
     block: |
       add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
 
+#- name: reload nftables service
+#  tags: api
+#  systemd:
+#    name: nftables.service
+#    state: reloaded
+
 - name: reload nftables service
   tags: api
-  systemd:
-    name: nftables.service
-    state: reloaded
+  shell: systemctl reload nftables.service
 
 
 ## Fastpath ##
@@ -189,7 +198,7 @@
       HiddenServiceVersion 2
 
 - name: configure tor onion service hostname
-  when: ansible_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   tags: tor
   blockinfile:
     path: /var/lib/tor/ooni_onion_service/hostname
@@ -200,7 +209,7 @@
     block: guegdifjy7bjpequ.onion
 
 - name: configure tor onion service private_key
-  when: ansible_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   tags: tor
   blockinfile:
     path: /var/lib/tor/ooni_onion_service/private_key
@@ -211,7 +220,7 @@
     block: "{{ vault_amspg_ooni_org_onion_key }}"
 
 - name: set tor onion service directory
-  when: ansible_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   tags: tor
   shell: |
     chown debian-tor:debian-tor /var/lib/tor/ooni_onion_service
