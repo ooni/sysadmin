@@ -23,10 +23,12 @@
 
 - hosts: ams-pg-test.ooni.org
   roles:
-    - role: ooni-backend
-      ssl_domain: ams-pg.ooni.org
+    - role: base-buster
+    - role: nftables
     - role: letsencrypt
       tags: letsencrypt
       expand: yes
       letsencrypt_domains:
         - "ams-pg-test.ooni.org"
+    - role: ooni-backend
+      ssl_domain: ams-pg.ooni.org
