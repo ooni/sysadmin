@@ -1,33 +1,33 @@
 ---
 - name: install LVM
-  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   apt:
     cache_valid_time: 86400
     name: lvm2
 
 - name: Create vg.metadb Volume Group
-  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   lvg:
     vg: vg.metadb
     pvs:
       - /dev/sda
 
 - name: Create metadb logical volume
-  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   lvol:
     vg: vg.metadb
     lv: metadb
     size: 100%VG
 
 - name: Create ext4 filesystem for metadb
-  when: ansible_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   filesystem:
     fstype: ext4
     dev: /dev/vg.metadb/metadb
     opts: -L metadb
 
 - name: Mount ext4 metadb FS
-  when: ansible_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'ams-pg.ooni.org'
   mount:
     fstype: ext4
     opts: noatime
@@ -36,17 +36,24 @@
     state: mounted
 
 - name: Create btrfs filesystem for metadb
-  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
   filesystem:
     fstype: btrfs
-    dev: /dev/vg.metadb/metadb
+    dev: /dev/sda
     opts: -L metadb
 
-# TODO FIXME install kernel 5.8.0-0.bpo.2-cloud-amd64 on ams-pg-test to use 
-# Reboot
-# Ensure the running kernel is correct
+- name: install kernel to support BTRFS with zstd
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  apt:
+    cache_valid_time: 86400
+    name: linux-image-5.8.0-0.bpo.2-cloud-amd64
+
+- name: ensure the running kernel is correct
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  shell: uname -a | grep 5.8.0-0.bpo.2-cloud-amd64
+
 - name: Mount btrfs metadb FS
-  when: ansible_hostname == 'ams-pg-test.ooni.org'
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
   mount:
     fstype: btrfs
     opts: defaults,space_cache,noatime,compress=zstd:1,nodatacow,autodefrag
@@ -67,7 +74,7 @@
     mode: 0644
     owner: root
 
-- name: Overwrite postgresql.conf
+- name: Prepare postgresql.conf
   template:
     src: templates/postgresql.conf
     dest: /etc/postgresql/11/main/postgresql.conf
@@ -89,6 +96,15 @@
 
 - name: reload nftables service
   shell: systemctl reload nftables.service
+
+# FIXME
+- name: create metadb database and users
+  shell: |
+    sudo -u postgres createuser readonly
+    #sudo -u postgres psql -c "ALTER USER readonly PASSWORD 'test_passwd'"
+    sudo -u postgres createuser shovel
+    sudo -u postgres createdb -O shovel metadb
+  ignore_errors: yes
 
 - name: configure Netdata Postgres monitoring
   tags: netdata
