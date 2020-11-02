@@ -92,6 +92,15 @@
     mode: 0755
     owner: root
 
+- name: create badges dir
+  file:
+    path: /var/www/debian_badges/
+    state: directory
+
+- name: Safely reload Nginx
+  tags: api
+  shell: nginx -t && systemctl reload nginx
+
 - name: allow incoming TCP connections to API
   tags: api
   blockinfile:
