@@ -80,7 +80,7 @@
       [DEFAULT]
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      # FIXME aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
+      aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
       bucket_name = ooni-data-eu-fra
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
