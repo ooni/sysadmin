@@ -11,12 +11,6 @@
     comment: "User to run docker container"
     state: present
 
-- name: get the user ids
-  shell: >
-    egrep "^explorer:" /etc/passwd | awk -F: '{ print $3":"$4 }'
-  changed_when: false
-  register: user_group_id
-
 - name: ams-explorer nginx config
   template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
   notify: reload nginx
@@ -39,7 +33,6 @@
     purge_networks: true
     env:
       NODE_ENV: production
-    user: "{{ user_group_id.stdout }}"
+    user: "explorer:explorer"
     restart_policy: unless-stopped
-
 ...
