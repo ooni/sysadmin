@@ -7,9 +7,15 @@
 - name: create user
   user:
     name: "explorer"
-    group: "explorer"
     comment: "User to run docker container"
     state: present
+  register: user
+
+- name: create group
+  group:
+    name: explorer
+    state: present
+  register: group
 
 - name: ams-explorer nginx config
   template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
@@ -25,7 +31,6 @@
       gateway: 172.27.33.1
 
 - name: OONI Explorer webservice
-  tags: docker_container
   docker_container:
     image: openobservatory/explorer-next:{{ explorer_next_tag }}
     name: explorer
@@ -34,6 +39,7 @@
     purge_networks: true
     env:
       NODE_ENV: production
-    user: "explorer:explorer"
+    user: "{{ user.uid }}:{{ group.gid }}"
     restart_policy: unless-stopped
+
 ...
