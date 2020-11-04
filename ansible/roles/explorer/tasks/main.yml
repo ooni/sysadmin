@@ -25,6 +25,7 @@
       gateway: 172.27.33.1
 
 - name: OONI Explorer webservice
+  tags: docker
   docker_container:
     image: openobservatory/explorer-next:{{ explorer_next_tag }}
     name: explorer
