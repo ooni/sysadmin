@@ -20,15 +20,13 @@
 - hosts: mia-explorer-test.ooni.nu
   roles:
     - role: docker
-      tags: test
     - role: letsencrypt
       letsencrypt_domains:
         - 'mia-explorer-test.ooni.nu'
         - 'explorer-test.ooni.io'
-      tags: test
     - role: explorer
       explorer_next_tag: '20201027-64a902c9'
       explorer_public_hostname: 'explorer-test.ooni.io'
       explorer_domain: 'mia-explorer-test.ooni.nu'
-      tags: test
+      tags: explorer-test
 ...
