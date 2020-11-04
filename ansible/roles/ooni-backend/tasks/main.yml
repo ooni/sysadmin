@@ -93,8 +93,9 @@
     owner: root
 
 - name: create badges dir
+  tags: api
   file:
-    path: /var/www/debian_badges/
+    path: /var/www/package_badges/
     state: directory
 
 - name: Safely reload Nginx
