@@ -40,7 +40,6 @@ blackbox_jobs:
       - "https://c.collector.ooni.io/invalidpath"
       # Probe services
       - "https://ps.ooni.io/invalidpath"
-      - "https://ps-test.ooni.io/invalidpath"
       - "https://collector.ooni.io/invalidpath"
   - name: "ooni bouncer"
     module: "ooni_bouncer_ok"
