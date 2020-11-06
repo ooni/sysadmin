@@ -5,3 +5,4 @@
   roles:
     - role: docker
     - role: th-echo
+      tags: echo
