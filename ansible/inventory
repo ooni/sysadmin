@@ -39,11 +39,13 @@ ams-explorer.ooni.nu
 db-1.proteus.ooni.io
 amsmetadb.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
+# Only active for onion service, certbot is removed
+ams-ps2.ooni.nu
+
 
 [doams]
 doams1-countly.ooni.nu
