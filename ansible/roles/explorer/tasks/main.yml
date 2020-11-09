@@ -26,9 +26,9 @@
     name: explrr
     driver_options:
       com.docker.network.bridge.name: brexplrr
-    ipam_options:
-      subnet: 172.27.33.0/24
-      gateway: 172.27.33.1
+    ipam_config:
+      - subnet: 172.27.33.0/24
+        gateway: 172.27.33.1
 
 - name: OONI Explorer webservice
   docker_container:

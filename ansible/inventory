@@ -20,9 +20,9 @@ ams
 
 [mia]
 miatorth.ooni.nu
-mia-ps2.ooni.nu
+#mia-ps2.ooni.nu
 mia-get.ooni.nu
-mia-orchestra-test.ooni.nu
+#mia-orchestra-test.ooni.nu
 mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
