@@ -123,11 +123,12 @@
 
 ## Fastpath ##
 
-- name: install fastpath
+- name: install fastpath if not present
   tags: fastpath
   apt:
     cache_valid_time: 86400
-    name: fastpath=0.33
+    name: fastpath
+    state: present
 
 - name: configure fastpath
   tags: fastpath
@@ -140,6 +141,14 @@
       collectors = localhost
       # The password is already made public
       db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
+
+      # S3 access credentials
+      # used for fetching cans/minicans
+      # arn:aws:iam::082866812839:user/ooni-datacollector, AWS: OONI Team
+      s3_access_key = AKIAJQAGCR267PNGTTKA
+      s3_secret_key: '{{ vault_s3_ooni_open_data_access_key }}'
+
+
 
 
 
