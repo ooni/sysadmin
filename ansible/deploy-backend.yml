@@ -6,6 +6,7 @@
     - role: base-buster
     - role: nftables
     - role: nginx-buster
+      tags: nginx
     - role: letsencrypt
       tags: letsencrypt
       expand: yes
@@ -29,6 +30,7 @@
     - role: base-buster
     - role: nftables
     - role: nginx-buster
+      tags: nginx
     - role: letsencrypt
       tags: letsencrypt
       expand: yes
