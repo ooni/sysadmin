@@ -127,7 +127,7 @@
   tags: fastpath
   apt:
     cache_valid_time: 86400
-    name: fastpath=0.32~pr324-331
+    name: fastpath=0.33
 
 - name: configure fastpath
   tags: fastpath

@@ -3,8 +3,9 @@
 
 - hosts: ams-pg.ooni.org
   roles:
-    - role: ooni-backend
-      ssl_domain: ams-pg.ooni.org
+    - role: base-buster
+    - role: nftables
+    - role: nginx-buster
     - role: letsencrypt
       tags: letsencrypt
       expand: yes
@@ -20,11 +21,14 @@
         - "ps2.ooni.io"
         - "ps3.ooni.io"
         - "ps4.ooni.io"
+    - role: ooni-backend
+      ssl_domain: ams-pg.ooni.org
 
 - hosts: ams-pg-test.ooni.org
   roles:
     - role: base-buster
     - role: nftables
+    - role: nginx-buster
     - role: letsencrypt
       tags: letsencrypt
       expand: yes
