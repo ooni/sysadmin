@@ -56,6 +56,22 @@
 - name: Reset failed smartd
   command: systemctl reset-failed
 
+- name: Configure journald
+  tags: journald
+  template:
+    src: templates/journald.conf
+    dest: /etc/systemd/journald.conf
+    mode: 0644
+    owner: root
+
+- name: enable and restart journald
+  tags: journald
+  systemd:
+    name: systemd-journald.service
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
 - name: Autoremove
   apt:
     autoremove: yes
