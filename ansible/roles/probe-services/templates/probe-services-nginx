@@ -3,6 +3,8 @@
 {% import 'common.j2' as c %}
 
 server {
+    # port 80 is used by legacy probes over onion service v2
+    listen 80;
     listen 443 ssl;
     {{ c.ssl_letsencrypt(probe_services_domain) }}
 

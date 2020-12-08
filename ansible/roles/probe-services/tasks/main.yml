@@ -9,6 +9,7 @@
 
 - name: probe-services nginx config
   template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
+  tags: nginx
   notify: reload nginx
 
 - name: mkdir for config and data
