@@ -1,0 +1,16 @@
+
+Configure certbot and Nginx to generate certificates (locally to each server)
+
+- use a dedicated /etc/nginx/sites-enabled/letsencrypt-http config file for letsencrypt
+
+- listen on port 443 for ACME challenge
+
+- listen on port 80 and forward any incoming request to 443
+
+- renew certs automatically (Fix #90)
+
+- ansible --diff is supported
+
+- generate certificate expirations metrics for node exporter
+
+- changes to /etc are also tracked locally by etckeeper

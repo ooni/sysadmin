@@ -1,0 +1,4 @@
+---
+letsencrypt_domains: '{{ CHANGE_ME }}' # must be list
+letsencrypt_admin_email: admin@openobservatory.org
+...

@@ -1,0 +1,7 @@
+[Unit]
+Description=Run monitor_certs.py, activated by monitor_certs.timer
+
+[Service]
+Type=oneshot
+ExecStart=/etc/ooni/monitor_certs.py
+

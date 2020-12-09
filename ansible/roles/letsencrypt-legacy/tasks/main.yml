@@ -1,0 +1,100 @@
+---
+- name: Install certbot and Python library
+  apt:
+    name:
+    - certbot
+    - python3-prometheus-client
+    state: latest
+    update_cache: yes
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+  when: ansible_distribution_release == 'buster'
+
+- name: Ensure required directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "/etc/nginx/sites-enabled"
+    - "/var/www/letsencrypt/.well-known/acme-challenge/"
+    - "/etc/ooni"
+
+- name: Empty /etc/nginx/sites-available/default
+  shell: echo > /etc/nginx/sites-available/default
+
+- name: Add letsencrypt dedicated sites-enabled file
+  template:
+    src: templates/letsencrypt-http
+    dest: /etc/nginx/sites-enabled/letsencrypt-http
+    mode: 0644
+    owner: root
+  notify: reload nginx
+
+- name: allow incoming TCP connections to Nginx
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/80.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 80 counter accept comment "incoming HTTP"
+
+- name: reload nftables service
+  shell: systemctl reload nftables.service
+
+- meta: flush_handlers
+
+# Run certbot to create a new cert if needed
+# It's one certificate for all the domains in letsencrypt_domains
+# named after the first domain
+# If new domains have been added certbot updates the cert (--expand)
+# otherwise it keeps the existing cert (--keep)
+- name: Create Letsencrypt certificates for the first time
+  args:
+  command: >
+    certbot certonly
+    --webroot --webroot-path /var/www/letsencrypt
+    --preferred-challenges http
+    --noninteractive --text --agree-tos
+    --email {{ letsencrypt_admin_email }}
+    --domains {{ letsencrypt_domains | join(',') }}
+    --expand
+    --keep
+
+- name: Ensure certbot timer runs
+  systemd:
+    name: certbot.timer
+    state: started
+    enabled: yes
+
+- name: Add certificate monitoring monitor_certs.py
+  tags: monitor_certs
+  template:
+    src: templates/monitor_certs.py
+    dest: /etc/ooni/monitor_certs.py
+    mode: 0755
+    owner: root
+
+- name: Install monitor_certs.service
+  tags: monitor_certs
+  template:
+    src: templates/monitor_certs.service
+    dest: /etc/systemd/system/monitor_certs.service
+    mode: 0755
+    owner: root
+
+- name: Add certificate monitoring monitor_certs.py
+  tags: monitor_certs
+  template:
+    src: templates/monitor_certs.timer
+    dest: /etc/systemd/system/monitor_certs.timer
+    mode: 0755
+    owner: root
+
+- name: enable timer for monitor_certs
+  tags: monitor_certs
+  systemd:
+    daemon_reload: yes
+    name: monitor_certs.timer
+    state: started
+    enabled: yes
+
+...

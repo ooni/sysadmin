@@ -28,7 +28,7 @@
 - hosts: mia-ps2.ooni.nu
   roles:
     - role: docker
-    - role: letsencrypt
+    - role: letsencrypt-legacy
       expand: yes
       tags: tls
       letsencrypt_domains:
@@ -51,7 +51,7 @@
 - hosts: ams-ps2.ooni.nu
   roles:
     - role: docker
-    - role: letsencrypt
+    - role: letsencrypt-legacy
       expand: yes
       tags: tls
       letsencrypt_domains:
@@ -78,7 +78,7 @@
 - hosts: ams-ps.ooni.nu
   roles:
     - role: docker
-    - role: letsencrypt
+    - role: letsencrypt-legacy
       expand: yes
       tags: tls
       letsencrypt_domains:
@@ -104,23 +104,3 @@
       onion_services:
       - "{{ bouncer_service_v2 }}"
       - "{{ collector_service_v2 }}"
-
-- hosts: hkg-ps.ooni.nu
-  roles:
-    - role: docker
-      tags: base
-    - role: letsencrypt
-      tags: base
-      expand: yes
-      letsencrypt_domains:
-        - "hkg-ps.ooni.nu"
-    - role: ooni-bouncer
-      tags:
-        - service
-        - bouncer
-    - role: ooni-collector
-      tags:
-        - service
-        - collector
-    - role: probe-services
-      tags: ps
