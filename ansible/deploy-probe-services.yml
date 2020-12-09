@@ -85,8 +85,6 @@
       tags: tls
       letsencrypt_domains:
         - "ams-ps.ooni.nu"
-        - "ps.ooni.io"
-        - "ps4.ooni.io"
         - "bouncer.ooni.io"
         - "registry.ooni.io"
         - "orchestrate.ooni.io"
