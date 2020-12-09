@@ -33,7 +33,6 @@
       tags: tls
       letsencrypt_domains:
         - "mia-ps2.ooni.nu"
-        - "ps2.ooni.io"
     - role: ooni-bouncer
       tags:
         - service
@@ -57,7 +56,6 @@
       tags: tls
       letsencrypt_domains:
         - "ams-ps2.ooni.nu"
-        - "ps1.ooni.io"
         - "collector.ooni.io"
         - "a.collector.ooni.io"
         - "b.collector.ooni.io"
@@ -116,7 +114,6 @@
       expand: yes
       letsencrypt_domains:
         - "hkg-ps.ooni.nu"
-        - "ps3.ooni.io"
     - role: ooni-bouncer
       tags:
         - service
