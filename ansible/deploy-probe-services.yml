@@ -32,10 +32,6 @@
       tags: tls
       letsencrypt_domains:
         - "ams-ps2.ooni.nu"
-        - "collector.ooni.io"
-        - "a.collector.ooni.io"
-        - "b.collector.ooni.io"
-        - "c.collector.ooni.io"
     - role: ooni-bouncer
       tags:
         - service
