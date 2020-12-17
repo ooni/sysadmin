@@ -31,6 +31,7 @@ mia-explorer-test.ooni.nu
 
 [hkg]
 
+# Eclips.is Amsterdam Hosts
 [ams]
 amstorth.ooni.nu
 prometheus.infra.ooni.io
@@ -45,11 +46,11 @@ ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 # Only active for onion service, certbot is removed
 ams-ps2.ooni.nu
-test-helper.ooni.org
 
-
+# Digital Ocean Amsterdam Hosts
 [doams]
 doams1-countly.ooni.nu
+test-helper.ooni.org
 # FIXME Disabled due to location tags not working as expected
 #ams-pg.ooni.org
 #ams-pg-test.ooni.org

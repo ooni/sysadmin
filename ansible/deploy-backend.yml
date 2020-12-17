@@ -43,3 +43,10 @@
   roles:
     - role: base-buster
     - role: nftables
+    - role: docker
+    - role: letsencrypt
+      letsencrypt_domains:
+        - "test-helper.ooni.org"
+    - role: th-web-connectivity
+      tags: wcth
+      web_connectivity_domain: test-helper.ooni.org
