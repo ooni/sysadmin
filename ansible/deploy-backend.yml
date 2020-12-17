@@ -38,3 +38,8 @@
         - "ams-pg-test.ooni.org"
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
+
+- hosts: test-helper.ooni.org
+  roles:
+    - role: base-buster
+    - role: nftables

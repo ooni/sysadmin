@@ -45,6 +45,7 @@ ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 # Only active for onion service, certbot is removed
 ams-ps2.ooni.nu
+test-helper.ooni.org
 
 
 [doams]
@@ -75,6 +76,7 @@ mia-ps2.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
+test-helper.ooni.org
 
 [psk_orchestra_test]
 mia-orchestra-test.ooni.nu
