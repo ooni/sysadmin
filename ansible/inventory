@@ -134,6 +134,7 @@ ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 mia-explorer-test.ooni.nu
+ams-slack-1.ooni.org
 
 [have_tor] # Tor test-helpers
 amstorth.ooni.nu
