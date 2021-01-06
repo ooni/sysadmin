@@ -1,0 +1,8 @@
+---
+#- import_playbook: ansible-version.yml
+
+- hosts: vpsprobes
+  gather_facts: false
+  roles:
+    - role: vpsprobes
+      tags: vpsprobes
