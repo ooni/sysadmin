@@ -44,6 +44,7 @@ ams-orchestra.ooni.nu
 ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
+ams-slack-1.ooni.org
 # Only active for onion service, certbot is removed
 ams-ps2.ooni.nu
 
