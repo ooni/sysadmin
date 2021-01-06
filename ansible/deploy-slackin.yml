@@ -17,9 +17,6 @@
 
 - hosts: ams-slack-1.ooni.org
   roles:
-    - role: base-buster
-    - role: nginx-buster
-      tags: nginx
     - role: docker
     - role: letsencrypt
       tags: letsencrypt

@@ -15,7 +15,7 @@
 - name: Deploy slackin container
   docker_container:
     name: slackin
-    image: chk1/slackin
+    image: emedvedev/slackin-extended
     restart_policy: unless-stopped
     published_ports: "3000:3000"
     env:

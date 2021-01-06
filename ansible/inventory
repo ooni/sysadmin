@@ -112,6 +112,7 @@ ams-orchestra.ooni.nu
 mia-run.ooni.nu
 ams-jupyter.ooni.nu
 mia-explorer-test.ooni.nu
+ams-slack-1.ooni.org
 
 [have_nftables]
 ams-pg.ooni.org
