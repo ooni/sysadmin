@@ -113,21 +113,18 @@ ooniprobe --collector httpo://CollectorAddress.onion blocking/http_requests \
 
 ## DNS name policy
 
-Public HTTP services are `${service}.ooni.io`. _Public_ means that it's part of some external system we can't control: published APP or MK versions, web URLs and so on.
-Public name should __never__ be used as an `inventory_hostname` to ease migration.
+Public HTTP services are named `${service}.ooni.org` or `${service}.ooni.io`
+(legacy). _Public_ means that it's part of some external system we can't
+control: published APP or MK versions, web URLs and so on. Public names should
+not be used as an `inventory_hostname` to ease migration.
 
-Private HTTP services like monitoring, probe and data management are `${service}.ooni.nu`. Exceptions are various legacy redirects like `www.ooni.nu`.
+VMs should have FQDN like `${location}-${name}-${number}.ooni.org`.
+VMs can provide one or more public-facing services that can change over time.
+The name should be as descriptive as possible e.g. the type of services
+or the most important service being run. 
 
-Multi-purpose VM SHOULD use 4...8 character name and have FQDN like `${deity}.ooni.nu`:
-- WDC ~ [fish name](https://en.wikipedia.org/wiki/List_of_common_fish_names)
-- AMS ~ [Roman deity](https://en.wikipedia.org/wiki/List_of_Roman_deities#Alphabetical_list)
-- HKG ~ [Slavic deity](https://en.wikipedia.org/wiki/Deities_of_Slavic_religion)
-
-Single-purpose VM names MAY use `${service}.ooni.nu` as an `inventory_hostname`.
-If the service has several geo-distributed instances, it should be `${dc}${svc}.ooni.nu`.
-If the service has just a single instance, it should be just `${svc}.oonu.nu`.
-
-Various legacy names should be cleaned up during re-deploying VMs with newer base OS version.
+Various legacy names should be cleaned up during re-deploying VMs with newer
+base OS version.
 
 # Rename host HOWTO
 
