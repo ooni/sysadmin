@@ -20,8 +20,8 @@
     published_ports: "3000:3000"
     env:
       SLACKIN_VERSION: latest
-      SLACK_ORG: "{{ slackin_org }}"
-      SLACK_TOKEN: "{{ slackin_token }}"
+      SLACK_SUBDOMAIN: "{{ slackin_org }}"
+      SLACK_API_TOKEN: "{{ slackin_token }}"
 
 - name: Deploy slack-irc-bridge container
   tags: slack-irc

@@ -16,8 +16,20 @@
     mode: 0755
   with_items:
     - "/etc/nginx/sites-enabled"
+    - "/etc/nginx/sites-available"
     - "/var/www/letsencrypt/.well-known/acme-challenge/"
     - "/etc/ooni"
+
+- name: Empty /etc/nginx/sites-available/default
+  shell: echo > /etc/nginx/sites-available/default
+
+- name: Add letsencrypt dedicated sites-enabled file
+  template:
+    src: templates/letsencrypt-http
+    dest: /etc/nginx/sites-enabled/letsencrypt-http
+    mode: 0644
+    owner: root
+  notify: reload nginx
 
 # Run certbot to create a new cert if needed
 # It's one certificate for all the domains in letsencrypt_domains
