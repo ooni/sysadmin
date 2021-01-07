@@ -23,7 +23,7 @@ miatorth.ooni.nu
 #mia-ps2.ooni.nu
 mia-get.ooni.nu
 #mia-orchestra-test.ooni.nu
-mia-slack.ooni.nu
+#mia-slack.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 mia-run.ooni.nu
@@ -104,7 +104,6 @@ ams-ps.ooni.nu
 ams-ps2.ooni.nu
 mia-get.ooni.nu
 mia-orchestra-test.ooni.nu
-mia-slack.ooni.nu
 ams-explorer.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
@@ -126,7 +125,6 @@ ams-ps.ooni.nu
 ams-ps2.ooni.nu
 mia-get.ooni.nu
 mia-orchestra-test.ooni.nu
-mia-slack.ooni.nu
 ams-explorer.ooni.nu
 ams-orchestra.ooni.nu
 mia-run.ooni.nu

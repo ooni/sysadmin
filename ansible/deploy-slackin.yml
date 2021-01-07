@@ -2,19 +2,6 @@
 # When deploying to a different host you will also have to login to the slack
 # admin interface and go into the Apps setting and change the IP whitelist to
 # the new IP otherwise it will not work and you will not know why.
-- hosts: mia-slack.ooni.nu
-  roles:
-    - role: docker
-    - role: letsencrypt
-      letsencrypt_domains:
-        - "mia-slack.ooni.nu"
-        - "slack.ooni.org"
-        - "slack.ooni.io"
-        - "slack.openobservatory.org"
-    - role: slackin
-      tags: slackin
-      ssl_domain: "mia-slack.ooni.nu"
-
 - hosts: ams-slack-1.ooni.org
   roles:
     - role: docker
