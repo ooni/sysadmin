@@ -23,6 +23,9 @@
       expand: yes
       letsencrypt_domains:
         - "ams-slack-1.ooni.org"
+        - "slack.ooni.org"
+        - "slack.ooni.io"
+        - "slack.openobservatory.org"
     - role: slackin
       tags: slackin
       ssl_domain: "ams-slack-1.ooni.org"
