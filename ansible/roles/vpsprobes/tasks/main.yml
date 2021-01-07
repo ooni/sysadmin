@@ -1,0 +1,58 @@
+---
+# Deploy OONI Probe on dedicated VPSes
+# This role runs across many versions of Debian and Ubuntu
+#
+#- name: Set apt repos
+#  template:
+#    src: templates/sources.list
+#    dest: /etc/apt/sources.list
+#    mode: 0644
+#    owner: root
+
+- name: localegen
+  shell: locale-gen --purge en_US.UTF-8 
+  remote_user: root
+
+- name: locales
+  shell: echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
+  remote_user: root
+
+- name: add ooniprobe-debian-test APT archive
+  remote_user: root
+  shell: echo "deb [trusted=yes] https://dl.bintray.com/ooni/ooniprobe-debian-test unstable main" > /etc/apt/sources.list.d/ooniprobe-test.list
+
+- name: motd
+  remote_user: root
+  shell: echo "" > /etc/motd
+
+- name: Update apt cache and upgrade packages
+  remote_user: root
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Install probe and etckeeper
+  remote_user: root
+  apt:
+    name:
+    - bash-completion
+    - byobu
+    - etckeeper
+    - fail2ban
+    - ooniprobe-cli
+    - python-apt
+    - tcpdump
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+    install_recommends: no
+    state: latest
+    update_cache: yes
+
+- name: Autoremove
+  remote_user: root
+  apt:
+    autoremove: yes
+
+- name: Clean cache
+  remote_user: root
+  apt:
+    autoclean: yes
