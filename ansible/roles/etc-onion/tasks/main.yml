@@ -35,7 +35,7 @@
 
 - name: Apply Tor IPv6 ULA routing
   command: /etc/network/if-up.d/ipv6-ula-tor
-  when: ula_tor | changed
+  when: ula_tor.changed
 
 - name: Enable coredns.service
   systemd:
