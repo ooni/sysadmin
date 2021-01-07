@@ -59,7 +59,6 @@ ams-ps2.ooni.nu
 # Digital Ocean Amsterdam Hosts
 [doams]
 doams1-countly.ooni.nu
-test-helper.ooni.org
 # FIXME Disabled due to location tags not working as expected
 #ams-pg.ooni.org
 #ams-pg-test.ooni.org
@@ -86,7 +85,6 @@ mia-ps2.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
-test-helper.ooni.org
 
 [psk_orchestra_test]
 mia-orchestra-test.ooni.nu
