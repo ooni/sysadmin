@@ -38,19 +38,3 @@
         - "ams-pg-test.ooni.org"
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
-
-- hosts: test-helper.ooni.org
-  roles:
-    - role: base-buster
-    # docker doesn't work with nftables
-    #- role: nftables
-    - role: nginx-buster
-      tags: nginx
-    - role: letsencrypt
-      letsencrypt_domains:
-        - "test-helper.ooni.org"
-      tags: letsencrypt
-    - role: docker
-    - role: th-web-connectivity
-      tags: wcth
-      web_connectivity_domain: test-helper.ooni.org
