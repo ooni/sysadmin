@@ -27,7 +27,7 @@
 
 - name: docker run ooni-run
   docker_container:
-    image: "openobservatory/run:20210113-2e606849"
+    image: "openobservatory/run:20210118-a4dc5700"
     name: ooni-run
     hostname: ooni-run
     network_mode: 'host'
