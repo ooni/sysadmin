@@ -59,6 +59,23 @@
     --expand
     --keep
 
+- name: Ensure webroot_path is set in /etc/letsencrypt/renewal/...
+  ini_file:
+    path: /etc/letsencrypt/renewal/{{ inventory_hostname }}.conf
+    section: renewalparams
+    option: webroot_path
+    # There's a comma at the end
+    value: /var/www/letsencrypt,
+    backup: yes
+
+- name: Ensure webroot_map is not set
+  ini_file:
+    path: /etc/letsencrypt/renewal/{{ inventory_hostname }}.conf
+    # The section name is in double braces in the file: [[webroot_map]]
+    section: '[webroot_map]'
+    state: absent
+    backup: yes
+
 - name: Ensure certbot timer runs
   systemd:
     name: certbot.timer
