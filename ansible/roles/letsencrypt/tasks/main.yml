@@ -46,8 +46,22 @@
 # It's one certificate for all the domains in letsencrypt_domains
 # named after the first domain
 # If new domains have been added certbot updates the cert (--expand)
-# otherwise it keeps the existing cert (--keep)
-- name: Create Letsencrypt certificates for the first time
+#
+# NOTE: if a previously used domain has been removed the command
+# needs to be ran manually with --force-renewal to forget such domain
+#
+#- name: Debug Initialize certificates for {{ letsencrypt_domains }}
+#  ansible.builtin.debug:
+#    msg:
+#      certbot certonly
+#      --webroot --webroot-path /var/www/letsencrypt
+#      --preferred-challenges http
+#      --noninteractive --text --agree-tos
+#      --email {{ letsencrypt_admin_email }}
+#      --domains {{ letsencrypt_domains | join(',') }}
+#      --expand
+
+- name: Initialize certificates for {{ letsencrypt_domains }}
   args:
   command: >
     certbot certonly
@@ -57,7 +71,6 @@
     --email {{ letsencrypt_admin_email }}
     --domains {{ letsencrypt_domains | join(',') }}
     --expand
-    --keep
 
 - name: Ensure webroot_path is set in /etc/letsencrypt/renewal/...
   ini_file:
