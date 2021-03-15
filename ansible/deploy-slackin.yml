@@ -2,6 +2,8 @@
 # When deploying to a different host you will also have to login to the slack
 # admin interface and go into the Apps setting and change the IP whitelist to
 # the new IP otherwise it will not work and you will not know why.
+- import_playbook: ansible-version.yml
+
 - hosts: ams-slack-1.ooni.org
   roles:
     - role: docker
