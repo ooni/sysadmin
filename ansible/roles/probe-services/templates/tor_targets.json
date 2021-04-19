@@ -158,19 +158,6 @@
     },
     "protocol": "obfs4"
   },
-  "9b43c53b62e6f49a16d3c17b6f563b63498b8b4d8061a3e10d240a87473f4fb5": {
-    "address": "37.218.240.34:40035",
-    "fingerprint": "88CD36D45A35271963EF82E511C8827A24730913",
-    "params": {
-      "cert": [
-        "eGXYfWODcgqIdPJ+rRupg4GGvVGfh25FWaIXZkit206OSngsp7GAIiGIXOJJROMxEqFKJg"
-      ],
-      "iat-mode": [
-        "1"
-      ]
-    },
-    "protocol": "obfs4"
-  },
   "548eebff71da6128321c3bc1c3ec12b5bfff277ef5cde32709a33e207b57f3e2": {
     "address": "37.218.245.14:38224",
     "fingerprint": "D9A82D2F9C2F65A18407B1D2B764F130847F8B5D",
