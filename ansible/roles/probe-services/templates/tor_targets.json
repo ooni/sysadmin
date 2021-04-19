@@ -313,5 +313,18 @@
       ]
     },
     "protocol": "obfs4"
+  },
+  "fa69b2ee7a7c8975af2452ecd566f67a6459d397a4cefc30be86a670675cdc23": {
+    "address": "51.222.13.177:80",
+    "fingerprint": "5EDAC3B810E12B01F6FD8050D2FD3E277B289A08",
+    "params": {
+      "cert": [
+        "2uplIpLQ0q9+0qMFrK5pkaYRDOe460LL9WHBvatgkuRr/SL31wBOEupaMMJ6koRE6Ld0ew"
+      ],
+      "iat-mode": [
+        "0"
+      ]
+    },
+    "protocol": "obfs4"
   }
 }
