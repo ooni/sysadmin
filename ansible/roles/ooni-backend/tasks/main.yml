@@ -29,7 +29,7 @@
 
       DATABASE_STATEMENT_TIMEOUT = 30
 
-      BASE_URL = "https://ams-pg-test.ooni.org/"
+      BASE_URL = "{{ base_url }}"
 
       AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
       CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
