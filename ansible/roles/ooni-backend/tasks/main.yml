@@ -29,7 +29,7 @@
 
       DATABASE_STATEMENT_TIMEOUT = 30
 
-      BASE_URL = "https://ams-pg.ooni.org/"
+      BASE_URL = "https://ams-pg-test.ooni.org/"
 
       AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
       CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
@@ -39,15 +39,23 @@
       S3_SESSION_TOKEN = "CHANGEME"
       S3_ENDPOINT_URL = "CHANGEME"
 
+      JWT_ENCRYPTION_KEY = "{{ jwt_encryption_key }}"
+
       # Hardcoded in the code
       #S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
 
       # Registration email delivery
-      MAIL_SERVER = "CHANGEME"
+      MAIL_SERVER = "smtp.sendgrid.net"
       MAIL_PORT = 465
       MAIL_USE_SSL = True
-      MAIL_USERNAME = "CHANGEME"
-      MAIL_PASSWORD = "CHANGEME"
+      MAIL_USERNAME = "apikey"
+      MAIL_PASSWORD = "{{ mail_smtp_password }}"
+      MAIL_SOURCE_ADDRESS = "contact@openobservatory.org"
+
+      GITHUB_WORKDIR = "/var/lib/ooniapi/citizenlab"
+      GITHUB_TOKEN = "{{ github_token }}"
+      GITHUB_ORIGIN_REPO = "citizenlab/test-lists"
+      GITHUB_PUSH_REPO = "ooni-bot/test-lists"
 
       #SECRET_KEY = "CHANGEME"
 

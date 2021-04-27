@@ -1,0 +1,5 @@
+s3_ooni_open_data_access_key: "{{ vault_s3_ooni_open_data_access_key }}"
+amspg_ooni_org_onion_key: "{{ vault_amspg_ooni_org_onion_key }}"
+jwt_encryption_key: "{{ vault_jwt_encryption_key }}"
+github_token: "{{ vault_ooni_bot_github_token }}"
+mail_smtp_password: "{{ vault_mail_smtp_password }}"
