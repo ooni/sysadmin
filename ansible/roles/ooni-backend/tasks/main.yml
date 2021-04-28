@@ -73,7 +73,7 @@
       [DEFAULT]
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      # aws_secret_access_key =  vault_s3_ooni_open_data_access_key }}
+      # aws_secret_access_key =  s3_ooni_open_data_access_key }}
       bucket_name = ooni-data-eu-fra-test
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
@@ -88,7 +88,7 @@
       [DEFAULT]
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      aws_secret_access_key = {{ vault_s3_ooni_open_data_access_key }}
+      aws_secret_access_key = {{ s3_ooni_open_data_access_key }}
       bucket_name = ooni-data-eu-fra
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
@@ -154,7 +154,7 @@
       # used for fetching cans/minicans
       # arn:aws:iam::082866812839:user/ooni-datacollector, AWS: OONI Team
       s3_access_key = AKIAJQAGCR267PNGTTKA
-      s3_secret_key: '{{ vault_s3_ooni_open_data_access_key }}'
+      s3_secret_key: '{{ s3_ooni_open_data_access_key }}'
 
 
 
@@ -244,7 +244,7 @@
     owner: debian-tor
     group: debian-tor
     mode: 0600
-    block: "{{ vault_amspg_ooni_org_onion_key }}"
+    block: "{{ amspg_ooni_org_onion_key }}"
 
 - name: set tor onion service directory
   when: inventory_hostname == 'ams-pg.ooni.org'
