@@ -27,7 +27,7 @@
       # The password is already made public
       DATABASE_URI_RO = "postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb"
 
-      DATABASE_STATEMENT_TIMEOUT = 30
+      DATABASE_STATEMENT_TIMEOUT = 20
 
       BASE_URL = "{{ base_url }}"
 
@@ -57,8 +57,6 @@
       GITHUB_ORIGIN_REPO = "citizenlab/test-lists"
       GITHUB_PUSH_REPO = "ooni-bot/test-lists"
 
-      #SECRET_KEY = "CHANGEME"
-
       # Measurement spool directory
       MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
 
@@ -73,7 +71,7 @@
       [DEFAULT]
       # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
       aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      # aws_secret_access_key =  s3_ooni_open_data_access_key }}
+      # aws_secret_access_key =  {{ s3_ooni_open_data_access_key }}
       bucket_name = ooni-data-eu-fra-test
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
