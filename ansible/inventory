@@ -84,6 +84,8 @@ mia-ps2.ooni.nu
 ams-ps.ooni.nu
 ams-ps2.ooni.nu
 ams-orchestra.ooni.nu
+ams-pg.ooni.org
+ams-pg-test.ooni.org
 
 [psk_orchestra_test]
 mia-orchestra-test.ooni.nu

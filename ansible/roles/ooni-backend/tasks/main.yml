@@ -68,19 +68,15 @@
 
 - name: create Psiphon conffile
   tags: api
-  blockinfile:
-    path: /etc/ooni/psiphon_config.json
-    create: yes
-    block: |
-      {}
+  copy:
+    content: "{{ psiphon_config }}"
+    dest: /etc/ooni/psiphon_config.json
 
-- name: create Tor targets conffile
+- name: Write Tor targets conffile
   tags: api
-  blockinfile:
-    path: /etc/ooni/tor_targets.json
-    create: yes
-    block: |
-      {}
+  template:
+    src: tor_targets.json
+    dest: /etc/ooni/tor_targets.json
 
 - name: configure api uploader using test bucket
   when: inventory_hostname == 'ams-pg-test.ooni.org'
