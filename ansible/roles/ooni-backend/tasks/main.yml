@@ -39,7 +39,13 @@
       S3_SESSION_TOKEN = "CHANGEME"
       S3_ENDPOINT_URL = "CHANGEME"
 
+      PSIPHON_CONFFILE = "/etc/ooni/psiphon_config.json"
+      TOR_TARGETS_CONFFILE = "/etc/ooni/tor_targets.json"
+
       JWT_ENCRYPTION_KEY = "{{ jwt_encryption_key }}"
+
+      SESSION_EXPIRY_DAYS = 180
+      LOGIN_EXPIRY_DAYS = 365
 
       # Hardcoded in the code
       #S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
@@ -59,6 +65,22 @@
 
       # Measurement spool directory
       MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
+
+- name: create Psiphon conffile
+  tags: api
+  blockinfile:
+    path: /etc/ooni/psiphon_config.json
+    create: yes
+    block: |
+      {}
+
+- name: create Tor targets conffile
+  tags: api
+  blockinfile:
+    path: /etc/ooni/tor_targets.json
+    create: yes
+    block: |
+      {}
 
 - name: configure api uploader using test bucket
   when: inventory_hostname == 'ams-pg-test.ooni.org'
