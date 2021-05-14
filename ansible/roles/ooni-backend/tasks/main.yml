@@ -131,6 +131,13 @@
           proxy_pass https://ooni-deb.s3.eu-central-1.amazonaws.com/;
         }
       }
+      server {
+        listen 80;
+        server_name deb-ci.ooni.org;
+        location / {
+          proxy_pass https://ooni-internal-deb.s3.eu-central-1.amazonaws.com/;
+        }
+      }
 
 - name: create badges dir
   tags: api

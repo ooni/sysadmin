@@ -1,25 +1,32 @@
 ---
 - name: Remove apt repo
+  tags: apt
   file:
     path: /etc/apt/sources.list.d/ftp_nl_debian_org_debian.list
     state: absent
 
 - name: Remove apt repo
+  tags: apt
   file:
     path: /etc/apt/sources.list.d/security_debian_org.list
     state: absent
 
 - name: Set apt repos
+  tags: apt
   template:
     src: templates/sources.list
     dest: /etc/apt/sources.list
     mode: 0644
     owner: root
 
-- name: Update apt cache and upgrade packages
+- name: Import gpg key
+  tags: apt
+  command: apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50'
+
+- name: Update apt cache
+  tags: apt
   apt:
     update_cache: yes
-    upgrade: dist
 
 - name: Installs base packages
   tags: base-packages
@@ -73,10 +80,12 @@
     daemon_reload: yes
 
 - name: Autoremove
+  tags: apt
   apt:
     autoremove: yes
 
 - name: Clean cache
+  tags: apt
   apt:
     autoclean: yes
 
