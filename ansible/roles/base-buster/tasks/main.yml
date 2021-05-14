@@ -80,7 +80,7 @@
     daemon_reload: yes
 
 - name: Autoremove
-  tags: apt
+  tags: autoremove
   apt:
     autoremove: yes
 
