@@ -18,9 +18,10 @@ Features:
    local mirror
  - Support multiple packages in the same git repository
  - GPG signing
- - Phased updates (rolling deployments)
+ - Support multiple architectures
  - Update changelogs automatically
  - Easy to debug
+ - Phased updates (rolling deployments)
 """
 
 # TODO: fix S3 credentials passing security
@@ -28,6 +29,7 @@ Features:
 
 # debdeps: git
 from argparse import ArgumentParser
+from datetime import datetime, timedelta
 import os
 from os import getenv
 from pathlib import Path
@@ -166,12 +168,11 @@ def _set_pkg_version_from_github_actions(p, ver):
     print(f"GitHub Actions PR #: {pr_num} Run #: {gh_run_number}")
     print("SHA " + getenv("GITHUB_SHA"))
 
-    comp = ""
     if pr_num is None:
         if gh_ref.endswith("/master"):
             print(f"GitHub release build detected - using version {ver}")
             run2(f"dch -b -v {ver} ''", cwd=p)
-            run2(f"dch --release ''", cwd=p)
+            run2("dch --release ''", cwd=p)
             ver2 = run2("dpkg-parsechangelog --show-field Version", cwd=p)
             assert ver == ver2, ver + " <--> " + ver2
             return True
@@ -185,7 +186,7 @@ def _set_pkg_version_from_github_actions(p, ver):
         ver = f"{ver}~pr{pr_num}-{gh_run_number}"
         print(f"GitHub Pull Request detected - using version {ver}")
         run2(f"dch -b -v {ver} ''", cwd=p)
-        run2(f"dch --release ''", cwd=p)
+        run2("dch --release ''", cwd=p)
         ver2 = run2("dpkg-parsechangelog --show-field Version", cwd=p)
         assert ver == ver2, ver + " <--> " + ver2
         return True
@@ -352,23 +353,66 @@ class Bintray:
             sys.exit(1)
 
 
+def _extract_archs_from_InRelease(content: str) -> dict:
+    out = {}
+    in_block = False
+    for li in content.splitlines():
+        if li == "SHA256:":
+            in_block = True
+
+        elif in_block and li.startswith(" "):
+            sha, size, fn = li.split()
+            # Support only main/binary-<arch>/Packages
+            if fn.startswith("main/binary-") and fn.endswith("/Packages"):
+                arch = fn[12:-9]
+                out[arch] = (sha, size)
+
+        elif in_block:
+            return out
+
+    return out
+
+
 class S3:
     """S3 backend"""
 
-    def generate_release_file(self, conf, sha, size):
+    def fetch_and_parse_release_file(self, baseuri, tmpdir):
+        """Extract architectures and SHAs"""
+        # e.g. s3://ooni-internal-deb/dists/unstable/InRelease
+        uri = f"{baseuri}/InRelease"
+        oldf = tmpdir / "InRelease.old"
+        try:
+            run2(f"s3cmd --no-progress get {uri} {oldf.as_posix()}")
+            content = oldf.read_text()
+        except Exception as e:
+            print("Previous InRelease not found.")
+            return {}
+
+        return _extract_archs_from_InRelease(content)
+
+    def generate_release_file(self, conf, sha: str, size: int, archd: dict) -> str:
+        now = datetime.utcnow()
+        dfmt = "%a, %d %b %Y %H:%M:%S UTC"
+        date = now.strftime(dfmt)
+        until = (now + timedelta(days=3650)).strftime(dfmt)
+        archd[conf.arch] = (sha, size)
+        archs = " ".join(sorted(archd.keys()))
         r = dedent(
             f"""
             Acquire-By-Hash: no
-            Architectures: {conf.arch}
+            Architectures: {archs}
             Codename: {conf.distro}
             Components: main
-            Date: Thu, 07 Nov 2019 14:23:37 UTC
+            Date: {date}
             Origin: private
-            Valid-Until: Thu, 14 Nov 2029 14:23:37 UTC
+            Valid-Until: {until}
             SHA256:
-             {sha} {size} main/binary-{conf.arch}/Packages
         """
         )
+        for arch, (sha, size) in sorted(archd.items()):
+            line = f" {sha} {size} main/binary-{arch}/Packages\n"
+            r += line
+
         return r
 
     def init_archive(self, conf):
@@ -478,8 +522,8 @@ class S3:
         # Create, sign, upload InRelease
         release = tmpdir / "Release"
         inrelease = tmpdir / "InRelease"
-        rfdata = self.generate_release_file(conf, packagesf_sha, packagesf_size)
-        # print(rfdata)
+        archd = self.fetch_and_parse_release_file(baseuri, tmpdir)
+        rfdata = self.generate_release_file(conf, packagesf_sha, packagesf_size, archd)
         release.write_text(rfdata)
         # r, o = runc(f"gpg -a -s --clearsign -o {inrelease} {release}")
         # if r != 0:
@@ -530,8 +574,8 @@ def main():
     ap.add_argument(
         "action", choices=("upload", "scan", "ci", "build", "delete_from_archive")
     )
-    ap.add_argument("-r", "--repo", default=None, help="S3/Bintray repository name")
-    ap.add_argument("-o", "--org", default=DEFAULT_ORG, help="S3/Bintray org name")
+    ap.add_argument("-r", "--repo", default=None, help="Bintray repository name")
+    ap.add_argument("-o", "--org", default=DEFAULT_ORG, help="Bintray org name")
     ap.add_argument("--bucket-name", help="S3 bucket name")
     ap.add_argument("--distro", default="unstable", help="Debian distribution name")
     ap.add_argument("--arch", default="amd64", help="Debian architecture name")
