@@ -300,17 +300,26 @@ class DuplicatePkgError(Exception):
     pass
 
 
-def check_duplicate_package(pkgblock, packages_text):
-    li = pkgblock.splitlines()
-    assert li[0].startswith("Package: "), li
-    pname = li[0].split(" ", 1)[1]
-    assert li[1].startswith("Version: "), li
-    pver = li[1].split(" ", 1)[1]
-    assert li[2].startswith("Architecture: "), li
-    parch = li[2].split(" ", 1)[1]
+def extract_pva(text):
+    d = {}
+    for line in text.splitlines():
+        if line.startswith(f"Package: "):
+            val = line.split(" ", 1)[1]
+            if d:
+                yield d
+            d = {"p": val}
+        elif line.startswith(f"Version: "):
+            d["v"] = line.split(" ", 1)[1]
+        elif line.startswith(f"Architecture: "):
+            d["a"] = line.split(" ", 1)[1]
 
-    m = f"Package: {pname}\nVersion: {pver}\nArchitecture: {parch}"
-    if m in packages_text:
+    yield d
+
+
+def check_duplicate_package(pkgblock, packages_text):
+    new = next(extract_pva(pkgblock))
+    existing = list(extract_pva(packages_text))
+    if new in existing:
         raise DuplicatePkgError()
 
 
