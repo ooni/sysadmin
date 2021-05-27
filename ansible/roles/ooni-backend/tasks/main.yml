@@ -117,8 +117,8 @@
     mode: 0755
     owner: root
 
-# This is deployed on all backend hosts (it's harmless)
-- name: Configure deb.ooni.org forwarder
+- name: Configure deb.ooni.org forwarder on prod host
+  when: inventory_hostname == 'ams-pg.ooni.org'
   tags: deb_ooni_org
   blockinfile:
     path: /etc/nginx/sites-enabled/deb_ooni_org_http
@@ -132,6 +132,15 @@
           proxy_pass https://ooni-deb.s3.eu-central-1.amazonaws.com/;
         }
       }
+
+- name: Configure deb-ci.ooni.org forwarder on test host
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  tags: deb_ooni_org
+  blockinfile:
+    path: /etc/nginx/sites-enabled/deb_ooni_org_http
+    create: yes
+    block: |
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
       server {
         listen 80;
         server_name deb-ci.ooni.org;
@@ -147,7 +156,7 @@
     state: directory
 
 - name: Safely reload Nginx
-  tags: api
+  tags: api deb_ooni_org
   shell: nginx -t && systemctl reload nginx
 
 - name: allow incoming TCP connections to API
