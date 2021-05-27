@@ -51,12 +51,12 @@
       #S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
 
       # Registration email delivery
-      MAIL_SERVER = "smtp.sendgrid.net"
+      MAIL_SERVER = "mail.riseup.net"
       MAIL_PORT = 465
       MAIL_USE_SSL = True
-      MAIL_USERNAME = "apikey"
+      MAIL_USERNAME = "ooni-mailer"
       MAIL_PASSWORD = "{{ mail_smtp_password }}"
-      MAIL_SOURCE_ADDRESS = "contact@openobservatory.org"
+      MAIL_SOURCE_ADDRESS = "contact@ooni.org"
       LOGIN_BASE_URL = "https://url-prioritization.ooni.org/login"
 
       GITHUB_WORKDIR = "/var/lib/ooniapi/citizenlab"
