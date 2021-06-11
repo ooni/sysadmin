@@ -254,6 +254,51 @@
       dbpassword = yEqgNr2eXvgG255iEBxVeP
       dbhost = localhost
 
+- name: configure test helper rotation
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  blockinfile:
+    path: /etc/ooni/rotation.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      [DEFAULT]
+      token = CHANGEME
+      db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
+      active_droplets_count = 1
+      size_slug = s-1vcpu-1gb
+      image_name = debian-10-x64
+      draining_time_minutes = 300
+
+- name: configure test helper rotation
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  blockinfile:
+    path: /etc/ooni/rotation_setup.sh
+    create: yes
+    block: |
+      #!/bin/bash
+      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
+      # Configure test-helper droplet
+      # This script is run as root and with CWD=/
+      set -euo pipefail
+      exec 1>setup.log 2>&1
+      echo "deb [trusted=yes] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main" > /etc/apt/sources.list.d/ooni.list
+      apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50'
+      apt-get update
+      apt-get upgrade -qy
+      echo > /etc/motd
+      apt-get install -qy oohelperd
+
+- name: Enable and start rotation service
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    name: ooni-rotation.timer
+    state: started
+
 
 ## Tor daemon and onion service ##
 
