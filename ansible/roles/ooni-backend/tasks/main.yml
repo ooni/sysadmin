@@ -263,7 +263,7 @@
     block: |
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
       [DEFAULT]
-      token = CHANGEME
+      token = {{ digital_ocean_token }}
       db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
       active_droplets_count = 1
       size_slug = s-1vcpu-1gb
