@@ -254,6 +254,9 @@
       dbpassword = yEqgNr2eXvgG255iEBxVeP
       dbhost = localhost
 
+
+## Test helper rotation ##
+
 - name: configure test helper rotation
   tags: rotation
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -270,25 +273,22 @@
       image_name = debian-10-x64
       draining_time_minutes = 300
 
-- name: configure test helper rotation
+- name: configure test helper rotation certbot
   tags: rotation
   when: inventory_hostname == 'ams-pg.ooni.org'
   blockinfile:
-    path: /etc/ooni/rotation_setup.sh
+    path: /etc/ooni/certbot-digitalocean
     create: yes
     block: |
-      #!/bin/bash
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
-      # Configure test-helper droplet
-      # This script is run as root and with CWD=/
-      set -euo pipefail
-      exec 1>setup.log 2>&1
-      echo "deb [trusted=yes] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main" > /etc/apt/sources.list.d/ooni.list
-      apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50'
-      apt-get update
-      apt-get upgrade -qy
-      echo > /etc/motd
-      apt-get install -qy oohelperd
+      dns_digitalocean_token = {{ digital_ocean_token }}
+
+- name: configure test helper rotation setup script
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  template:
+    src: rotation_setup.sh
+    dest: /etc/ooni/rotation_setup.sh
 
 - name: Enable and start rotation service
   tags: rotation
