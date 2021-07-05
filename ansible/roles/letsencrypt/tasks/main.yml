@@ -1,15 +1,16 @@
 ---
 - name: Install certbot and Python library
+  tags: letsencrypt
   apt:
     name:
     - certbot
-    - python3-prometheus-client
     state: latest
     update_cache: yes
     cache_valid_time: '{{ apt_cache_valid_time }}'
   when: ansible_distribution_release == 'buster'
 
 - name: Ensure required directories exist
+  tags: letsencrypt
   file:
     path: "{{ item }}"
     state: directory
@@ -23,14 +24,24 @@
   shell: echo > /etc/nginx/sites-available/default
 
 - name: Add letsencrypt dedicated sites-enabled file
+  tags: letsencrypt
   template:
     src: templates/letsencrypt-http
-    dest: /etc/nginx/sites-enabled/letsencrypt-http
+    # the server block matches all SSL FQDNs and must be
+    # parsed first, hence 00-
+    dest: /etc/nginx/sites-enabled/00-letsencrypt-http
     mode: 0644
     owner: root
   notify: reload nginx
 
+- name: Remove old file
+  tags: letsencrypt
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/letsencrypt-http
+    state: absent
+
 - name: allow incoming TCP connections to Nginx
+  tags: letsencrypt
   blockinfile:
     path: /etc/ooni/nftables/tcp/80.nft
     create: yes
@@ -38,6 +49,7 @@
       add rule inet filter input tcp dport 80 counter accept comment "incoming HTTP"
 
 - name: reload nftables service
+  tags: letsencrypt
   shell: systemctl reload nftables.service
 
 - meta: flush_handlers
@@ -62,6 +74,7 @@
 #      --expand
 
 - name: Initialize certificates for {{ letsencrypt_domains }}
+  tags: letsencrypt
   args:
   command: >
     certbot certonly
@@ -73,6 +86,7 @@
     --expand
 
 - name: Ensure webroot_path is set in /etc/letsencrypt/renewal/...
+  tags: letsencrypt
   ini_file:
     path: /etc/letsencrypt/renewal/{{ inventory_hostname }}.conf
     section: renewalparams
@@ -82,6 +96,7 @@
     backup: yes
 
 - name: Ensure webroot_map is not set
+  tags: letsencrypt
   ini_file:
     path: /etc/letsencrypt/renewal/{{ inventory_hostname }}.conf
     # The section name is in double braces in the file: [[webroot_map]]
@@ -90,6 +105,7 @@
     backup: yes
 
 - name: Ensure certbot timer runs
+  tags: letsencrypt
   systemd:
     name: certbot.timer
     state: started
