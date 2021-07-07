@@ -266,12 +266,14 @@
     block: |
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
       [DEFAULT]
+      # Digital Ocean token
       token = {{ digital_ocean_token }}
       db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
-      active_droplets_count = 1
+      active_droplets_count = 2
       size_slug = s-1vcpu-1gb
       image_name = debian-10-x64
       draining_time_minutes = 300
+      dns_zone = th.ooni.org
 
 - name: configure test helper rotation certbot
   tags: rotation
