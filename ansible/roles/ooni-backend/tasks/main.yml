@@ -301,18 +301,19 @@
 
 - name: generate test helper rotation SSH keypair
   tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
   openssh_keypair:
     path: /etc/ooni/testhelper_ssh_key
     owner: root
     group: root
-    mode: o=r,g=r
+    mode: 0400
     type: ed25519
-  register: ssh_key
+  register: pubkey
 
 - name: print SSH pubkey
-  ansible.builtin.debug:
-    var: ssh_key.public_key
-    verbosity: 2
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  debug: msg={{ pubkey.public_key }}
 
 - name: Enable and start rotation service
   tags: rotation
