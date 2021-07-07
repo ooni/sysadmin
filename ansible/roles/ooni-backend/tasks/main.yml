@@ -299,6 +299,21 @@
     src: rotation_nginx_conf
     dest: /etc/ooni/rotation_nginx_conf
 
+- name: generate test helper rotation SSH keypair
+  tags: rotation
+  openssh_keypair:
+    path: /etc/ooni/testhelper_ssh_key
+    owner: root
+    group: root
+    mode: o=r,g=r
+    type: ed25519
+  register: ssh_key
+
+- name: print SSH pubkey
+  ansible.builtin.debug:
+    var: ssh_key.public_key
+    verbosity: 2
+
 - name: Enable and start rotation service
   tags: rotation
   when: inventory_hostname == 'ams-pg.ooni.org'
