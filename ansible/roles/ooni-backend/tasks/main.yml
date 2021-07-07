@@ -290,6 +290,13 @@
     src: rotation_setup.sh
     dest: /etc/ooni/rotation_setup.sh
 
+- name: create test helper rotation nginx template
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  template:
+    src: rotation_nginx_conf
+    dest: /etc/ooni/rotation_nginx_conf
+
 - name: Enable and start rotation service
   tags: rotation
   when: inventory_hostname == 'ams-pg.ooni.org'
