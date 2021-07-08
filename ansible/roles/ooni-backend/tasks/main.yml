@@ -273,7 +273,7 @@
       active_droplets_count = 2
       size_slug = s-1vcpu-1gb
       image_name = debian-10-x64
-      draining_time_minutes = 300
+      draining_time_minutes = 1440
       dns_zone = th.ooni.org
 
 - name: configure test helper rotation certbot
