@@ -263,6 +263,7 @@
   blockinfile:
     path: /etc/ooni/rotation.conf
     create: yes
+    mode: 0400
     block: |
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
       [DEFAULT]
