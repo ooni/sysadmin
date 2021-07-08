@@ -281,6 +281,7 @@
   blockinfile:
     path: /etc/ooni/certbot-digitalocean
     create: yes
+    mode: 0400
     block: |
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
       dns_digitalocean_token = {{ digital_ocean_token }}
