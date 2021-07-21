@@ -13,59 +13,31 @@
     path: /var/cache/nginx/ooni-api
     state: directory
 
-- name: configure api
+- name: configure test api
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api
-  blockinfile:
-    path: /etc/ooni/api.conf
-    create: yes
-    block: |
-      # See roles/ooni-backend/tasks/main.yml
-      # Syntax: treat it as a Python file, but only uppercase variables are used
-      COLLECTORS = []
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    github_push_repo: "ooni-bot/test-lists"
+    login_base_url: "https://test-lists.test.ooni.org/login"
 
-      # Read-only database access
-      # The password is already made public
-      DATABASE_URI_RO = "postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb"
-
-      DATABASE_STATEMENT_TIMEOUT = 20
-
-      BASE_URL = "{{ base_url }}"
-
-      AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
-      CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
-
-      S3_ACCESS_KEY_ID = "AKIAJURD7T4DTN5JMJ5Q"
-      S3_SECRET_ACCESS_KEY = "CHANGEME"
-      S3_SESSION_TOKEN = "CHANGEME"
-      S3_ENDPOINT_URL = "CHANGEME"
-
-      PSIPHON_CONFFILE = "/etc/ooni/psiphon_config.json"
-      TOR_TARGETS_CONFFILE = "/etc/ooni/tor_targets.json"
-
-      JWT_ENCRYPTION_KEY = "{{ jwt_encryption_key }}"
-
-      SESSION_EXPIRY_DAYS = 180
-      LOGIN_EXPIRY_DAYS = 365
-
-      # Hardcoded in the code
-      #S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
-
-      # Registration email delivery
-      MAIL_SERVER = "mail.riseup.net"
-      MAIL_PORT = 465
-      MAIL_USE_SSL = True
-      MAIL_USERNAME = "ooni-mailer"
-      MAIL_PASSWORD = "{{ mail_smtp_password }}"
-      MAIL_SOURCE_ADDRESS = "contact@ooni.org"
-      LOGIN_BASE_URL = "https://test-lists.ooni.org/login"
-
-      GITHUB_WORKDIR = "/var/lib/ooniapi/citizenlab"
-      GITHUB_TOKEN = "{{ github_token }}"
-      GITHUB_ORIGIN_REPO = "citizenlab/test-lists"
-      GITHUB_PUSH_REPO = "ooni-bot/test-lists"
-
-      # Measurement spool directory
-      MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
+- name: configure prod api
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: api
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    github_push_repo: "citizenlab/test-lists"
+    login_base_url: "https://test-lists.ooni.org/login"
 
 - name: create Psiphon conffile
   tags: api
