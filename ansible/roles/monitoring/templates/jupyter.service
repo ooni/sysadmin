@@ -1,0 +1,37 @@
+[Unit]
+Description=Jupyter
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/jupyter-notebook --no-browser
+Environment=JUPYTER_CONFIG_DIR=/var/lib/jupyter/conf
+Environment=JUPYTER_DATA_DIR=/var/lib/jupyter/data
+Environment=JUPYTER_RUNTIME_DIR=/var/lib/jupyter/run
+Restart=on-failure
+# DynamicUser=yes implies ProtectSystem=strict ProtectHome=read-only PrivateTmp, RemoveIPC, NoNewPrivileges, RestrictSUIDSGID
+DynamicUser=yes
+PrivateDevices=yes
+PrivateMounts=yes
+PrivateUsers=yes
+DevicePolicy=closed
+ProtectHostname=yes
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=yes
+RestrictRealtime=yes
+MemoryDenyWriteExecute=yes
+LockPersonality=yes
+
+CacheDirectory=jupyter
+ReadWriteDirectories=/var/lib/jupyter
+RuntimeDirectory=jupyter
+StateDirectory=jupyter
+WorkingDirectory=/var/lib/jupyter
+WorkingDirectory=/var/lib/jupyter
+
+[Install]
+WantedBy=multi-user.target

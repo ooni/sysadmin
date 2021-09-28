@@ -1,0 +1,179 @@
+---
+- name: motd
+  shell: echo "" > /etc/motd
+
+- name: Remove apt repo
+  tags: apt
+  file:
+    path: /etc/apt/sources.list.d/ftp_nl_debian_org_debian.list
+    state: absent
+
+- name: Remove apt repo
+  tags: apt
+  file:
+    path: /etc/apt/sources.list.d/security_debian_org.list
+    state: absent
+
+- name: Set apt repos
+  tags: apt
+  template:
+    src: templates/sources.list
+    dest: /etc/apt/sources.list
+    mode: 0644
+    owner: root
+
+- name: Install gpg
+  tags: base-packages
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - gpg
+      - gpg-agent
+
+      #- name: Import gpg key
+      #  tags: apt
+      #  command: apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50'
+
+- name: Update apt cache
+  tags: apt
+  apt:
+    update_cache: yes
+
+- name: Installs base packages
+  tags: base-packages
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - bash-completion
+      - byobu
+      - chrony
+      - etckeeper
+      - fail2ban
+      - git
+      - iotop
+      - jupyter-notebook
+      - manpages
+      - ncdu
+      - netdata-core
+      - netdata-plugins-bash
+      - netdata-plugins-python
+      - netdata-web
+      - nftables
+      - nullmailer
+      - prometheus
+      - prometheus-node-exporter
+      - rsync
+      - ssl-cert
+      - strace
+      - tcpdump
+      - tmux
+      - vim
+
+- name: Configure journald
+  tags: journald
+  template:
+    src: templates/journald.conf
+    dest: /etc/systemd/journald.conf
+    mode: 0644
+    owner: root
+
+- name: enable and restart journald
+  tags: journald
+  systemd:
+    name: systemd-journald.service
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: Autoremove
+  tags: autoremove
+  apt:
+    autoremove: yes
+
+- name: Clean cache
+  tags: apt
+  apt:
+    autoclean: yes
+
+- name: allow netdata.service
+  tags: netdata
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/19999.nft
+    create: yes
+    block: |
+      add rule inet filter input ip saddr {{ lookup('dig', 'prometheus.infra.ooni.io/A') }} tcp dport 19999 counter accept comment "netdata.service"
+
+#- name: reload nftables service
+#  systemd:
+#    name: nftables.service
+#    state: reloaded
+#    enabled: yes
+#    daemon_reload: yes
+
+- name: reload nftables service
+  shell: systemctl reload nftables.service
+
+- name: configure netdata.service
+  tags: netdata
+  blockinfile:
+    path: /etc/netdata/netdata.conf
+    block: |
+      # Managed by ansible, see roles/base-bullseye/tasks/main.yml
+      [global]
+        run as user = netdata
+        web files owner = root
+        web files group = root
+        bind socket to IP = 0.0.0.0
+
+      [plugins]
+        python.d = yes
+
+- name: disable netdata emails
+  tags: netdata
+  blockinfile:
+    path: /etc/netdata/conf.d/health_alarm_notify.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/base-bullseye/tasks/main.yml
+      SEND_EMAIL="NO"
+
+- name: configure netdata chrony
+  tags: netdata
+  blockinfile:
+    path: /etc/netdata/python.d/chrony.conf
+    create: yes
+    block: |
+      # Managed by ansible, see roles/base-bullseye/tasks/main.yml
+      update_every: 5
+      local:
+        command: 'chronyc -n tracking'
+
+#- name: configure netdata nginx
+#  blockinfile:
+#    path: /etc/netdata/python.d/nginx.conf
+#    create: yes
+#    block: |
+#      # Managed by ansible, see roles/base-bullseye/tasks/main.yml
+#      update_every: 5
+#      nginx_log:
+#        name  : 'nginx_log'
+#        path  : '/var/log/nginx/access.log'
+
+#- name: configure netdata haproxy
+#  blockinfile:
+#    path: /etc/netdata/python.d/haproxy.conf
+#    block: |
+#      # Managed by ansible, see roles/base-bullseye/tasks/main.yml
+#      update_every: 5
+#      via_url:
+#        url: 'http://127.0.0.1:7000/haproxy_stats;csv;norefresh'
+
+- name: restart netdata service
+  tags: netdata
+  systemd:
+    name: netdata.service
+    state: restarted
+
+

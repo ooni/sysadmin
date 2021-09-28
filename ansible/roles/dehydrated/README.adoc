@@ -1,0 +1,10 @@
+
+Configure dehydrated to generate certificates (locally to each server)
+
+- listen on port 443 for ACME challenge
+
+- ansible --diff is supported
+
+- generate certificate expirations metrics for node exporter
+
+- changes to /etc are also tracked locally by etckeeper
