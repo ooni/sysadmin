@@ -1,0 +1,97 @@
+---
+
+- name: Installs packages
+  tags: dehydrated
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - dehydrated
+
+- name: create dehydrated hook file
+  # This hook is called after getting a new cert to deploy it
+  template:
+    src: templates/hook.sh
+    dest: /etc/dehydrated/hook.sh
+    mode: 0755
+    owner: root
+
+
+- name: set dehydrated hook
+  blockinfile:
+    path: /etc/dehydrated/config
+    block: |
+      HOOK="/etc/dehydrated/hook.sh"
+
+- name: Add letsencrypt dedicated sites-enabled file
+  tags: dehydrated
+  template:
+    src: templates/letsencrypt-http
+    # the server block matches all SSL FQDNs and must be
+    # parsed first, hence 00-
+    dest: /etc/nginx/sites-enabled/00-letsencrypt-http
+    mode: 0644
+    owner: root
+
+- name: reload nginx
+  tags: dehydrated
+  shell: systemctl reload nginx.service
+
+- name: allow incoming TCP connections to Nginx on port 80
+  tags: dehydrated
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/80.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 80 counter accept comment "incoming HTTP"
+
+- name: reload nftables service
+  tags: dehydrated
+  shell: systemctl reload nftables.service
+
+- name: Configure domains {{ ssl_domains }}
+  # https://github.com/dehydrated-io/dehydrated/blob/master/docs/domains_txt.md
+  tags: dehydrated
+  template:
+    src: templates/domains.txt.j2
+    dest: /etc/dehydrated/domains.txt
+
+- name: Register account if needed
+  tags: dehydrated
+  ansible.builtin.shell:
+    cmd: test -d /var/lib/dehydrated/accounts || dehydrated --register --accept-terms
+- name: Install dehydrated.service
+  tags: dehydrated
+  template:
+    src: templates/dehydrated.service
+    dest: /etc/systemd/system/dehydrated.service
+    mode: 0755
+    owner: root
+
+- name: Install dehydrated.timer
+  tags: dehydrated
+  template:
+    src: templates/dehydrated.timer
+    dest: /etc/systemd/system/dehydrated.timer
+    mode: 0755
+    owner: root
+
+- name: Ensure timer runs
+  tags: dehydrated
+  systemd:
+    name: dehydrated.timer
+    state: started
+    enabled: yes
+
+- name: Run dehydrated service immediately
+  tags: dehydrated
+  systemd:
+    name: dehydrated.service
+    state: started
+    enabled: yes
+
+- name: reload nginx
+  tags: dehydrated
+  shell: systemctl reload nginx.service
+
+...

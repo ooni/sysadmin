@@ -1,0 +1,13 @@
+---
+- import_playbook: ansible-version.yml
+
+- hosts: monitoring.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: monitoring
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        - "monitoring.ooni.org"

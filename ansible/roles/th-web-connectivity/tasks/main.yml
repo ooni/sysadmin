@@ -15,6 +15,7 @@
   template: src=web-connectivity-nginx dest=/etc/nginx/sites-enabled/web-connectivity
   notify: reload nginx
   when: with_nginx
+  tags: nginx
 
 - name: mkdir for config and data
   file:

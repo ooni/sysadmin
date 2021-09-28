@@ -13,59 +13,31 @@
     path: /var/cache/nginx/ooni-api
     state: directory
 
-- name: configure api
+- name: configure test api
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api
-  blockinfile:
-    path: /etc/ooni/api.conf
-    create: yes
-    block: |
-      # See roles/ooni-backend/tasks/main.yml
-      # Syntax: treat it as a Python file, but only uppercase variables are used
-      COLLECTORS = []
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    github_push_repo: "ooni-bot/test-lists"
+    login_base_url: "https://test-lists.test.ooni.org/login"
 
-      # Read-only database access
-      # The password is already made public
-      DATABASE_URI_RO = "postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb"
-
-      DATABASE_STATEMENT_TIMEOUT = 20
-
-      BASE_URL = "{{ base_url }}"
-
-      AUTOCLAVED_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/autoclaved/"
-      CENTRIFUGATION_BASE_URL = "http://datacollector.infra.ooni.io/ooni-public/centrifugation/"
-
-      S3_ACCESS_KEY_ID = "AKIAJURD7T4DTN5JMJ5Q"
-      S3_SECRET_ACCESS_KEY = "CHANGEME"
-      S3_SESSION_TOKEN = "CHANGEME"
-      S3_ENDPOINT_URL = "CHANGEME"
-
-      PSIPHON_CONFFILE = "/etc/ooni/psiphon_config.json"
-      TOR_TARGETS_CONFFILE = "/etc/ooni/tor_targets.json"
-
-      JWT_ENCRYPTION_KEY = "{{ jwt_encryption_key }}"
-
-      SESSION_EXPIRY_DAYS = 180
-      LOGIN_EXPIRY_DAYS = 365
-
-      # Hardcoded in the code
-      #S3_AUTOCLAVED_ENDPOINT_URL = "CHANGEME"
-
-      # Registration email delivery
-      MAIL_SERVER = "mail.riseup.net"
-      MAIL_PORT = 465
-      MAIL_USE_SSL = True
-      MAIL_USERNAME = "ooni-mailer"
-      MAIL_PASSWORD = "{{ mail_smtp_password }}"
-      MAIL_SOURCE_ADDRESS = "contact@ooni.org"
-      LOGIN_BASE_URL = "https://url-prioritization.ooni.org/login"
-
-      GITHUB_WORKDIR = "/var/lib/ooniapi/citizenlab"
-      GITHUB_TOKEN = "{{ github_token }}"
-      GITHUB_ORIGIN_REPO = "citizenlab/test-lists"
-      GITHUB_PUSH_REPO = "ooni-bot/test-lists"
-
-      # Measurement spool directory
-      MSMT_SPOOL_DIR = "/var/lib/ooniapi/measurements"
+- name: configure prod api
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: api
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    github_push_repo: "citizenlab/test-lists"
+    login_base_url: "https://test-lists.ooni.org/login"
 
 - name: create Psiphon conffile
   tags: api
@@ -254,41 +226,68 @@
       dbpassword = yEqgNr2eXvgG255iEBxVeP
       dbhost = localhost
 
+
+## Test helper rotation ##
+
 - name: configure test helper rotation
   tags: rotation
   when: inventory_hostname == 'ams-pg.ooni.org'
   blockinfile:
     path: /etc/ooni/rotation.conf
     create: yes
+    mode: 0400
     block: |
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
       [DEFAULT]
+      # Digital Ocean token
       token = {{ digital_ocean_token }}
       db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
-      active_droplets_count = 1
+      active_droplets_count = 2
       size_slug = s-1vcpu-1gb
       image_name = debian-10-x64
-      draining_time_minutes = 300
+      draining_time_minutes = 1440
+      dns_zone = th.ooni.org
 
-- name: configure test helper rotation
+- name: configure test helper rotation certbot
   tags: rotation
   when: inventory_hostname == 'ams-pg.ooni.org'
   blockinfile:
-    path: /etc/ooni/rotation_setup.sh
+    path: /etc/ooni/certbot-digitalocean
     create: yes
+    mode: 0400
     block: |
-      #!/bin/bash
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
-      # Configure test-helper droplet
-      # This script is run as root and with CWD=/
-      set -euo pipefail
-      exec 1>setup.log 2>&1
-      echo "deb [trusted=yes] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main" > /etc/apt/sources.list.d/ooni.list
-      apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50'
-      apt-get update
-      apt-get upgrade -qy
-      echo > /etc/motd
-      apt-get install -qy oohelperd
+      dns_digitalocean_token = {{ digital_ocean_token }}
+
+- name: configure test helper rotation setup script
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  template:
+    src: rotation_setup.sh
+    dest: /etc/ooni/rotation_setup.sh
+
+- name: create test helper rotation nginx template
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  template:
+    src: rotation_nginx_conf
+    dest: /etc/ooni/rotation_nginx_conf
+
+- name: generate test helper rotation SSH keypair
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  openssh_keypair:
+    path: /etc/ooni/testhelper_ssh_key
+    owner: root
+    group: root
+    mode: 0400
+    type: ed25519
+  register: pubkey
+
+- name: print SSH pubkey
+  tags: rotation
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  debug: msg={{ pubkey.public_key }}
 
 - name: Enable and start rotation service
   tags: rotation
