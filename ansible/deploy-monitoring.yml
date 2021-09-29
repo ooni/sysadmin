@@ -10,4 +10,9 @@
       tags: dehydrated
       expand: yes
       ssl_domains:
+        - "grafana.ooni.org"
+        - "jupyter.ooni.org"
+        - "loghost.ooni.org"
         - "monitoring.ooni.org"
+        - "netdata.ooni.org"
+        - "prometheus.ooni.org"
