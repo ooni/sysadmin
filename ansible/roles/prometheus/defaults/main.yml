@@ -1,24 +1,5 @@
-go_arch: amd64
 
-prometheus_user:   "{{ passwd.prometh.login }}"
-prometheus_group:  "{{ passwd.prometh.login }}"
-
-prometheus_base:         /srv/prometheus
-prometheus_ssl_dir:              /srv/prometheus/ssl
-prometheus_config_path:          /srv/prometheus/config
-prometheus_db_path:              /srv/prometheus/data2x # TODO: remove /srv/prometheus/data
-
-prometheus_listen_address: '{{ CHANGE_ME }}'
-
-prometheus_version: 2.16.0
-prometheus_download_url: https://github.com/prometheus/prometheus/releases/download
-
-prometheus_basename: "prometheus-{{ prometheus_version }}.linux-{{ go_arch }}"
-prometheus_tarball_url: "{{ prometheus_download_url }}/v{{ prometheus_version }}/{{ prometheus_basename}}.tar.gz"
-prometheus_sha256sums_url: "{{ prometheus_download_url }}/v{{ prometheus_version }}/sha256sums.txt"
-prometheus_sha256sums: "{{ playbook_dir }}/cache/prometheus-{{ prometheus_version}}.SHA256SUMS"
-prometheus_path: "{{ prometheus_base }}/{{ prometheus_basename }}"
-
-prometheus_exporter_cert: "{{ prometheus_ssl_dir }}/exporter_ca.cert"
+prometheus_ssl_dir: /etc/prometheus/ssl
+prometheus_exporter_cert: "/etc/prometheus/exporter_ca.cert"
 prometheus_basic_auth_user: "prometheus"
 prometheus_basic_auth_password: "{{ CHANGE_ME }}"
