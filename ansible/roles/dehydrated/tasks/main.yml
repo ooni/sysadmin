@@ -8,22 +8,22 @@
     name:
       - dehydrated
 
-- name: create dehydrated hook file
-  # This hook is called after getting a new cert to deploy it
-  template:
-    src: templates/hook.sh
-    dest: /etc/dehydrated/hook.sh
-    mode: 0755
-    owner: root
+#- name: create dehydrated hook file
+#  # This hook is called after getting a new cert to deploy it
+#  template:
+#    src: templates/hook.sh
+#    dest: /etc/dehydrated/hook.sh
+#    mode: 0755
+#    owner: root
+#
+#
+#- name: set dehydrated hook
+#  blockinfile:
+#    path: /etc/dehydrated/config
+#    block: |
+#      HOOK="/etc/dehydrated/hook.sh"
 
-
-- name: set dehydrated hook
-  blockinfile:
-    path: /etc/dehydrated/config
-    block: |
-      HOOK="/etc/dehydrated/hook.sh"
-
-- name: Add letsencrypt dedicated sites-enabled file
+- name: Add ACME dedicated sites-enabled file
   tags: dehydrated
   template:
     src: templates/letsencrypt-http
@@ -60,6 +60,7 @@
   tags: dehydrated
   ansible.builtin.shell:
     cmd: test -d /var/lib/dehydrated/accounts || dehydrated --register --accept-terms
+
 - name: Install dehydrated.service
   tags: dehydrated
   template:
@@ -84,6 +85,8 @@
     enabled: yes
 
 - name: Run dehydrated service immediately
+  # creates:
+  # /var/lib/dehydrated/certs/<name>/chain.pem cert.pem privkey.pem fullchain.pem
   tags: dehydrated
   systemd:
     name: dehydrated.service

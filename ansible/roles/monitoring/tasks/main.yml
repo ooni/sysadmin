@@ -1,0 +1,195 @@
+---
+# # monitoring host # #
+
+- name: Set a hostname
+  tags: monitoring
+  ansible.builtin.hostname:
+    name: monitoring
+
+- name: Update etc hosts
+  tags: monitoring
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      127.0.0.1 monitoring.ooni.org monitoring
+
+- name: Set grafana apt repo
+  tags: monitoring
+  template:
+    src: templates/grafana.list
+    dest: /etc/apt/sources.list.d/grafana.list
+    mode: 0644
+    owner: root
+
+    #- name: Import gpg key
+    #  tags: apt
+    #  command: wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+- name: Installs packages
+  tags: monitoring
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - apt-transport-https
+      - nginx
+
+- name: Installs grafana
+  tags: monitoring
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - grafana
+
+- name: Autoremove
+  tags: monitoring
+  apt:
+    autoremove: yes
+
+- name: Clean cache
+  tags: monitoring
+  apt:
+    autoclean: yes
+
+- name: allow HTTPS
+  tags: monitoring
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/443.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 443 counter accept comment "HTTPS"
+
+- name: reload nft
+  tags: monitoring
+  shell: systemctl reload nftables.service
+
+- name: enable grafana
+  tags: monitoring
+  shell: systemctl enable grafana-server
+
+- name: start grafana
+  tags: monitoring
+  shell: systemctl start grafana-server
+
+- name: Deploy nginx conf
+  tags: monitoring
+  template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/sites-enabled/10-monitoring
+    mode: 0644
+    owner: root
+
+- name: copy monitoring.htpasswd
+  tags: monitoring
+  copy:
+    src: htpasswd
+    dest: /etc/nginx/monitoring.htpasswd
+    mode: 0440
+    owner: www-data
+    group: www-data
+
+- name: reload nginx
+  tags: monitoring
+  shell: systemctl reload nginx
+
+- name: Installs packages
+  tags: jupyter
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - jupyter-notebook
+      - jupyter-server
+      - python3-bottleneck
+      - python3-matplotlib
+      - python3-numpy
+      - python3-pandas
+      - python3-psycopg2
+      - python3-scipy
+      - python3-seaborn
+      - python3-tables
+
+- name: Install jupyter.service
+  tags: jupyter
+  template:
+    src: templates/jupyter.service
+    dest: /etc/systemd/system/jupyter.service
+    mode: 0755
+    owner: root
+
+- name: create jupyter dir
+  tags: jupyter
+  file:
+    path: /var/lib/jupyter/conf
+    state: directory
+    owner: jupyter
+    group: jupyter
+
+- name: create jupyter conf
+  tags: jupyter
+  blockinfile:
+    path: /var/lib/jupyter/conf/jupyter_notebook_config.py
+    create: yes
+    owner: jupyter
+    group: jupyter
+    block: |
+      c.NotebookApp.allow_remote_access = True
+      c.NotebookApp.enable_mathjax = False
+      c.NotebookApp.open_browser = False
+      c.NotebookApp.password = u''
+      c.NotebookApp.quit_button = False
+      c.NotebookApp.token = ''
+
+- name: reload systemd
+  tags: jupyter
+  shell: systemctl daemon-reload
+
+- name: Start jupyter
+  tags: jupyter
+  systemd:
+    name: jupyter.service
+    state: started
+    enabled: yes
+
+- name: Configure fail2ban
+  tags: fail2ban
+  lineinfile:
+    path: /etc/fail2ban/jail.conf
+    regexp: '^backend '
+    line: backend = systemd
+
+- name: Configure fail2ban
+  tags: fail2ban
+  blockinfile:
+    create: yes
+    path: /etc/fail2ban/jail.d/ooni.conf
+    block: |
+      [nginx-http-auth]
+      enabled  = true
+      filter   = nginx-http-auth
+      port     = http,https
+      journalmatch = _SYSTEMD_UNIT=nginx.service PRIORITY=3
+
+      [nginx-400]
+      enabled = true
+      port    = http,https
+      filter  = nginx-400
+      maxretry = 2
+      findtime = 300
+
+- name: Configure fail2ban
+  tags: fail2ban
+  blockinfile:
+    create: yes
+    path: /etc/fail2ban/filter.d/nginx-400.conf
+    block: |
+      [Definition]
+      failregex = ^<HOST> -.*"(GET|POST|HEAD).*HTTP.*" 400
+      ignoreregex =
+
+- name: reload fail2ban
+  tags: fail2ban
+  shell: systemctl reload fail2ban.service
+
+...
