@@ -33,6 +33,8 @@
     name:
       - apt-transport-https
       - nginx
+      - prometheus
+      - prometheus-blackbox-exporter
 
 - name: Installs grafana
   tags: monitoring

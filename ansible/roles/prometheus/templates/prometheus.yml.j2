@@ -161,7 +161,7 @@ scrape_configs:
       format: [prometheus]
     static_configs:
       - targets:
-        - localhost:19999
+        - 127.0.0.1:19999
 {% for host in (groups.have_netdata|sort) %}
         - {{ host }}:19999
 {% endfor %}
