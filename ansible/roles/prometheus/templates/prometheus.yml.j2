@@ -6,8 +6,8 @@ global:
 
 # the path is absolute as ansible `validates` temporary file in some temporary directory
 rule_files:
-  - "{{ prometheus_config_path }}/alert_rules.yml"
-  - "{{ prometheus_config_path }}/alert_ooni.yml"
+  - "/etc/prometheus/alert_rules.yml"
+  - "/etc/prometheus/alert_ooni.yml"
 
 alerting:
   alertmanagers:
@@ -161,28 +161,10 @@ scrape_configs:
       format: [prometheus]
     static_configs:
       - targets:
+        - localhost:19999
 {% for host in (groups.have_netdata|sort) %}
         - {{ host }}:19999
 {% endfor %}
-
-#  - job_name: 'raw postgres-exporter'
-#    scrape_interval: 5s
-#    scheme: https
-#    metrics_path: /api/v1/allmetrics
-#    params:
-#      format: [prometheus]
-#    static_configs:
-#      - targets:
-#        - ams-pg.ooni.nu:9187
-
-  - job_name: 'gorush'
-    scrape_interval: 5s
-    scheme: https
-    basic_auth:
-      username: prometheus_scraper
-      password: "{{ prometheus_scraper_password }}"
-    static_configs:
-      - targets: [ 'gorush.ooni.io:8081' ]
 
   - job_name: 'ooni-api'
     scrape_interval: 5s

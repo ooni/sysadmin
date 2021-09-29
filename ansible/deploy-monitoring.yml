@@ -16,3 +16,5 @@
         - "monitoring.ooni.org"
         - "netdata.ooni.org"
         - "prometheus.ooni.org"
+    - role: prometheus
+      tags: prometheus
