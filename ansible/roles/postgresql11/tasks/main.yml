@@ -88,13 +88,16 @@
   shell: systemctl reload postgresql.service
 
 - name: allow incoming TCP connections to database
+  tags: pg-nftables
   blockinfile:
     path: /etc/ooni/nftables/tcp/5432.nft
     create: yes
     block: |
-      add rule inet filter input ip saddr {{ lookup('dig', 'ams-jupyter.ooni.nu/A') }}         tcp dport 5432 counter accept comment "incoming psql"
+      add rule inet filter input ip saddr {{ lookup('dig', 'ams-jupyter.ooni.nu/A') }} tcp dport 5432 counter accept comment "psql from legacy jupyter"
+      add rule inet filter input ip saddr {{ lookup('dig', 'jupyter.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from jupyter.ooni.org"
 
 - name: reload nftables service
+  tags: pg-nftables
   shell: systemctl reload nftables.service
 
 # FIXME
