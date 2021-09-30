@@ -16,7 +16,10 @@
 # Simple `--syn` shortcut can't be used as it'll trigged `diff` to report fake difference.
 -A INPUT -p tcp -m tcp --dport 22 --tcp-flags FIN,SYN,RST,ACK SYN -j ACCEPT
 {% for port in ngxprom_exporter_ports.keys() %}
--A INPUT -s {{ lookup('dig', 'prometheus.infra.ooni.io/A') }}/32 -p tcp -m tcp --dport {{ port }} -j ACCEPT
+# Legacy prometheus
+-A INPUT -s {{ lookup('dig', 'prometheus.infra.ooni.io/A') }}/32 -p tcp -m tcp --dport 9100 -j ACCEPT
+# New prometheus
+-A INPUT -s {{ lookup('dig', 'prometheus.ooni.org/A') }}/32 -p tcp -m tcp --dport 9100 -j ACCEPT
 {% endfor %}
 
 {% block svc %}{% endblock %}
