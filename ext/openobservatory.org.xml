@@ -5,20 +5,20 @@
   <RequestedCommand>namecheap.domains.dns.gethosts</RequestedCommand>
   <CommandResponse Type="namecheap.domains.dns.getHosts">
     <DomainDNSGetHostsResult Domain="openobservatory.org" EmailType="MX" IsUsingOurDNS="true">
-      <host HostId="76053923" Name="@" Type="URL" Address="https://ooni.org" MXPref="10" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="76053924" Name="www" Type="URL" Address="https://ooni.org" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="77079882" Name="blog" Type="CNAME" Address="openo.ghost.io." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="109814312" Name="slack" Type="A" Address="37.218.241.90" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="112976321" Name="test-lists" Type="A" Address="37.218.240.141" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="122751235" Name="@" Type="TXT" Address="google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123108525" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="300" AssociatedAppTitle="" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123108558" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123108577" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123108599" Name="@" Type="MX" Address="ALT3.ASPMX.L.GOOGLE.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123108622" Name="@" Type="MX" Address="ALT4.ASPMX.L.GOOGLE.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="123109678" Name="google._domainkey" Type="TXT" Address="v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX+361fwH2SJeu6WpEI3/6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS+EcIZ8MD/4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1/MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy/tB" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="114020488" Name="_amazonses" Type="TXT" Address="sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="101566748" Name="@" Type="TXT" Address="v=spf1 include:_spf.google.com ~all" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="109814312" Name="slack" Type="A" Address="37.218.247.98" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="112976321" Name="test-lists" Type="A" Address="37.218.240.141" MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="77079882" Name="blog" Type="CNAME" Address="openo.ghost.io." MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123108525" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="60" AssociatedAppTitle="" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123108558" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123108577" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123108599" Name="@" Type="MX" Address="ALT3.ASPMX.L.GOOGLE.COM." MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123108622" Name="@" Type="MX" Address="ALT4.ASPMX.L.GOOGLE.COM." MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="101566748" Name="@" Type="TXT" Address="v=spf1 include:_spf.google.com ~all" MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="122751235" Name="@" Type="TXT" Address="google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8" MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="114020488" Name="_amazonses" Type="TXT" Address="sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=" MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="123109678" Name="google._domainkey" Type="TXT" Address="v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX+361fwH2SJeu6WpEI3/6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS+EcIZ8MD/4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1/MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy/tB" MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053923" Name="@" Type="URL" Address="https://ooni.org" MXPref="60" TTL="1799" AssociatedAppTitle="URL Forwarding" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="76053924" Name="www" Type="URL" Address="https://ooni.org" MXPref="60" TTL="1799" AssociatedAppTitle="" FriendlyName="URL Record" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>

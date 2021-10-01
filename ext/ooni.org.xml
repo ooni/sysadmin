@@ -6,18 +6,36 @@
   <CommandResponse Type="namecheap.domains.dns.getHosts">
     <DomainDNSGetHostsResult Domain="ooni.org" EmailType="MX" IsUsingOurDNS="true">
       <host HostId="172587267" Name="@" Type="A" Address="104.198.14.52" MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="182182516" Name="explorer" Type="A" Address="37.218.242.149" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="182488397" Name="slack" Type="A" Address="37.218.241.90" MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="182505721" Name="www" Type="CNAME" Address="ooni.netlify.com." MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="183414834" Name="matomo" Type="A" Address="37.218.242.173" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186940630" Name="@" Type="TXT" Address="google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186965072" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="1799" AssociatedAppTitle="MX" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186965076" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186965080" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186965093" Name="@" Type="MX" Address="ASPMX2.GOOGLEMAIL.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186965096" Name="@" Type="MX" Address="ASPMX3.GOOGLEMAIL.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
-      <host HostId="186965497" Name="@" Type="TXT" Address="v=spf1 include:_spf.google.com ~all" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
       <host HostId="214610336" Name="ams-pg" Type="A" Address="142.93.237.101" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="221277595" Name="ams-pg-test" Type="A" Address="188.166.93.143" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="229313164" Name="ams-slack-1" Type="A" Address="37.218.247.98" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="244841420" Name="api" Type="A" Address="142.93.237.101" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="244018922" Name="deb-ci" Type="A" Address="188.166.93.143" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="182182516" Name="explorer" Type="A" Address="37.218.242.149" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="244845743" Name="explorer-test" Type="A" Address="37.218.241.175" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="183414834" Name="matomo" Type="A" Address="37.218.242.173" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="259462675" Name="monitoring" Type="A" Address="5.9.112.244" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="236311115" Name="quic" Type="A" Address="167.99.36.132" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="242690601" Name="deb" Type="CNAME" Address="ams-pg.ooni.org." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="259860296" Name="grafana" Type="CNAME" Address="monitoring.ooni.org." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="259860253" Name="jupyter" Type="CNAME" Address="monitoring.ooni.org." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="259860318" Name="loghost" Type="CNAME" Address="monitoring.ooni.org." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="259860306" Name="netdata" Type="CNAME" Address="monitoring.ooni.org." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="259860349" Name="prometheus" Type="CNAME" Address="monitoring.ooni.org." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="250671182" Name="test-lists" Type="CNAME" Address="cname.vercel-dns.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="251580669" Name="test-lists.test" Type="CNAME" Address="cname.vercel-dns.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="244846289" Name="url-prioritization" Type="CNAME" Address="cname.vercel-dns.com." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="182505721" Name="www" Type="CNAME" Address="ooni.netlify.com." MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="249747228" Name="th" Type="NS" Address="ns1.digitalocean.com." MXPref="10" TTL="300" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186940630" Name="@" Type="TXT" Address="google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="239681974" Name="@" Type="TXT" Address="OSSRH-66913" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186965497" Name="@" Type="TXT" Address="v=spf1 include:_spf.google.com include:riseup.net ~all" MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186965096" Name="@" Type="MX" Address="ASPMX3.GOOGLEMAIL.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186965093" Name="@" Type="MX" Address="ASPMX2.GOOGLEMAIL.COM." MXPref="10" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186965080" Name="@" Type="MX" Address="ALT2.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186965076" Name="@" Type="MX" Address="ALT1.ASPMX.L.GOOGLE.COM." MXPref="5" TTL="1799" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="186965072" Name="@" Type="MX" Address="ASPMX.L.GOOGLE.COM." MXPref="1" TTL="1799" AssociatedAppTitle="MX" FriendlyName="MX1" IsActive="true" IsDDNSEnabled="false" />
+      <host HostId="182488397" Name="slack" Type="A" Address="37.218.247.98" MXPref="10" TTL="60" AssociatedAppTitle="" FriendlyName="" IsActive="true" IsDDNSEnabled="false" />
     </DomainDNSGetHostsResult>
   </CommandResponse>
   <Server/>

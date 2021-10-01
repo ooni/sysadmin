@@ -7,10 +7,28 @@ $TTL 1799
 @		MX	ASPMX.L.GOOGLE.COM.
 @		MX	ASPMX2.GOOGLEMAIL.COM.
 @		MX	ASPMX3.GOOGLEMAIL.COM.
-@		TXT	v=spf1 include:_spf.google.com ~all
+@		TXT	OSSRH-66913
+@		TXT	v=spf1 include:_spf.google.com include:riseup.net ~all
 ams-pg		A	142.93.237.101
+ams-pg-test		A	188.166.93.143
+ams-slack-1		A	37.218.247.98
+api		A	142.93.237.101
+deb		CNAME	ams-pg.ooni.org.
+deb-ci		A	188.166.93.143
 explorer	60	A	37.218.242.149
+explorer-test		A	37.218.241.175
+grafana		CNAME	monitoring.ooni.org.
+jupyter		CNAME	monitoring.ooni.org.
+loghost		CNAME	monitoring.ooni.org.
 matomo	60	A	37.218.242.173
-slack	300	A	37.218.241.90
+monitoring		A	5.9.112.244
+netdata		CNAME	monitoring.ooni.org.
+prometheus		CNAME	monitoring.ooni.org.
+quic		A	167.99.36.132
+slack	60	A	37.218.247.98
+test-lists		CNAME	cname.vercel-dns.com.
+test-lists.test		CNAME	cname.vercel-dns.com.
+th	300	NS	ns1.digitalocean.com.
+url-prioritization		CNAME	cname.vercel-dns.com.
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.org.xml with SHA256 777fead44575ae2f87982a4501bbfd2b37acd92367bbda86f7b14691eef09142
+; generated from ooni.org.xml with SHA256 74a7df07a2737f217a5b76822b8dc48efaea83baedf435790ff61c75df7ea44f

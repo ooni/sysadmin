@@ -1,17 +1,17 @@
 $ORIGIN openobservatory.org
 $TTL 1799
-@	300	MX	ASPMX.L.GOOGLE.COM.
-@		MX	ALT1.ASPMX.L.GOOGLE.COM.
-@		MX	ALT2.ASPMX.L.GOOGLE.COM.
-@		MX	ALT3.ASPMX.L.GOOGLE.COM.
-@		MX	ALT4.ASPMX.L.GOOGLE.COM.
+@	60	MX	ALT1.ASPMX.L.GOOGLE.COM.
+@	60	MX	ALT2.ASPMX.L.GOOGLE.COM.
+@	60	MX	ALT3.ASPMX.L.GOOGLE.COM.
+@	60	MX	ALT4.ASPMX.L.GOOGLE.COM.
+@	60	MX	ASPMX.L.GOOGLE.COM.
 @		TXT	google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8
 @		TXT	v=spf1 include:_spf.google.com ~all
 @		URL	https://ooni.org
 _amazonses		TXT	sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=
 blog		CNAME	openo.ghost.io.
 google._domainkey		TXT	v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX+361fwH2SJeu6WpEI3/6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS+EcIZ8MD/4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1/MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy/tB
-slack	60	A	37.218.241.90
+slack	60	A	37.218.247.98
 test-lists		A	37.218.240.141
 www		URL	https://ooni.org
-; generated from openobservatory.org.xml with SHA256 eed4deb861f410a5cd2683e65ba843f1c32667c30f53bb5dbac59c4449b95b74
+; generated from openobservatory.org.xml with SHA256 a95cb8ff2b59500c106b389b47d9a9cc1727b40106525d730d0cf8f02d3d7b60

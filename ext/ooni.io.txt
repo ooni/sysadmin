@@ -9,21 +9,21 @@ $TTL 60
 @	1799	TXT	google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
 @	1799	TXT	v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
 _amazonses	1799	TXT	azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
-a.collector		A	37.218.245.109
+a.collector		A	142.93.237.101
 a.echo.th		A	37.218.241.93
 a.http.th		A	37.218.241.94
 a.web-connectivity.th		A	37.218.245.117
 acme-redirect-helper		A	37.218.241.32
 analytics		A	37.218.242.173
-api		A	37.218.242.30
+api		A	142.93.237.101
 api.test	1799	A	37.218.241.8
-b.collector		A	37.218.245.109
+b.collector		A	142.93.237.101
 b.web-connectivity.th		A	37.218.245.117
 bouncer		A	37.218.245.90
-c.collector		A	37.218.245.109
+c.collector		A	142.93.237.101
 c.echo.th	1799	A	37.218.241.93
 c.web-connectivity.th		A	37.218.245.117
-collector		A	37.218.245.109
+collector		A	142.93.237.101
 collector-sandbox	1799	CNAME	ec2-52-15-125-134.us-east-2.compute.amazonaws.com.
 countly	300	A	167.71.64.109
 datacollector.infra	1799	A	37.218.240.67
@@ -63,22 +63,20 @@ orchestrate.test	1799	A	37.218.240.151
 prometheus.infra	1799	A	37.218.245.43
 proteus		A	37.218.247.95
 proteus.test		A	37.218.240.152
-ps		A	37.218.245.90
-ps-test	1799	A	37.218.241.86
-ps1	300	A	37.218.245.109
-ps2	300	A	37.218.241.102
-ps3	300	A	103.104.244.28
-ps4	300	A	37.218.245.90
+ps		A	142.93.237.101
+ps-test	1799	CNAME	ams-pg.ooni.org.
+ps1	300	A	142.93.237.101
+ps2	300	A	142.93.237.101
+ps3	300	A	142.93.237.101
+ps4	300	A	142.93.237.101
 registry		A	37.218.245.90
 registry.proteus		A	37.218.245.90
 registry.proteus.test		A	37.218.241.86
 run		A	37.218.241.95
-slack	1799	A	37.218.241.90
+slack		A	37.218.247.98
 slides	1200	CNAME	ooni-slides.netlify.com.
-ssdams.infra	1799	A	37.218.242.236
-ssdamsterdam.infra	1799	A	37.218.242.236
 superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
 wcth		A	37.218.245.117
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 5481a5a8784865bc49dcbbfed25eb713c22d438e0e9180939e7da55608d93836
+; generated from ooni.io.xml with SHA256 dcf1f5a3036875ddf313bc7fbdd4e663c4f03a1e5fb34d9045bea83bd12ccae6

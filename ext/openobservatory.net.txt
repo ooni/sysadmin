@@ -4,4 +4,4 @@ $TTL 1799
 blog		CNAME	openo.ghost.io.
 docs		CNAME	openobservatory.github.io.
 www		URL	http://ooni.torproject.org
-; generated from openobservatory.net.xml with SHA256 1379be65c963979b6756e87347fa1f1f20e7e69ebeace3ff63aacb40bacfe96c
+; generated from openobservatory.net.xml with SHA256 0b95fca9450d8205e92d8986656b9c65c2c5077b9070b36b4813a144802cd75e

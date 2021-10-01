@@ -3,50 +3,11 @@
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 6800,
-            "features": [],
-            "id": "786",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 83:7d:3b:6b:99:75:05:08:ff:d8:0e:f1:cc:37:6d:87 ",
-                "ssh_ecdsa": "256 79:91:06:fe:c2:c3:f7:c4:47:d0:8c:a3:5f:5b:af:d3 ",
-                "ssh_rsa": "2048 69:1f:95:a9:7d:f0:c6:64:7a:06:9d:5c:09:8e:e7:16 "
-            },
-            "locked": false,
-            "memory": "16384",
-            "name": "datacollector.infra.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254",
-                        "ip_address": "37.218.240.67",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.240.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "0",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "4"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 5,
             "features": [],
-            "id": "1134",
+            "id": 1134,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -56,7 +17,7 @@
                 "ssh_rsa": "2048 92:1d:35:9e:d1:6a:1c:04:7c:7f:52:fc:98:c2:71:01"
             },
             "locked": false,
-            "memory": "1024",
+            "memory": 1024,
             "name": "amstorth.ooni.nu",
             "networks": {
                 "v4": [
@@ -70,61 +31,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 0,
-            "features": [],
-            "id": "1160",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 47:14:32:f1:48:ea:79:cb:73:97:5d:ce:05:c1:41:ba /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_dsa_key.pub (DSA)",
-                "ssh_ecdsa": "256 85:ce:ac:a6:98:32:89:32:33:0f:b0:d5:0f:39:06:40 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_ecdsa_key.pub (ECDSA)",
-                "ssh_rsa": "2048 85:55:28:27:07:27:23:f7:c7:c8:7e:db:67:8a:9f:f1 /srv/installer/output/cSmLv7bXIItEMKApSOZU9pv6inladwrKtQtuo7ncsoxd/etc/ssh/ssh_host_rsa_key.pub (RSA)"
-            },
-            "locked": false,
-            "memory": "1024",
-            "name": "ssdams.infra.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.236",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "stopped",
-            "vcpus": "1"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 100,
             "features": [],
-            "id": "1607",
+            "id": 1607,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -134,7 +56,7 @@
                 "ssh_rsa": "2048 ab:28:58:b2:39:ea:ad:36:3e:2b:53:43:29:ca:10:68"
             },
             "locked": false,
-            "memory": "6144",
+            "memory": 6144,
             "name": "prometheus.infra.ooni.io",
             "networks": {
                 "v4": [
@@ -148,22 +70,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 200,
             "features": [],
-            "id": "1800",
+            "id": 1800,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -173,7 +95,7 @@
                 "ssh_rsa": "2048 a9:2a:fe:2c:8b:5c:b8:13:70:ec:01:a5:9b:dd:af:5f"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "db-1.proteus.ooni.io",
             "networks": {
                 "v4": [
@@ -187,61 +109,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 1810,
-            "features": [],
-            "id": "1811",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 0c:6e:81:42:5c:b4:b6:1d:2c:1c:8a:26:e5:ac:6b:73",
-                "ssh_ecdsa": "256 2d:6c:d4:90:59:34:a2:bb:6c:cc:c9:99:4c:49:e5:8a",
-                "ssh_rsa": "2048 94:b4:e6:25:64:7e:08:00:3d:fe:b2:7f:a2:14:41:aa"
-            },
-            "locked": false,
-            "memory": "16384",
-            "name": "hkgmetadb.infra.ooni.io",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.240.254",
-                        "ip_address": "37.218.240.56",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.240.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "0",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "4"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 1350,
             "features": [],
-            "id": "1868",
+            "id": 1868,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -251,7 +134,7 @@
                 "ssh_rsa": "2048 58:89:64:4d:c9:da:03:a1:5b:89:67:28:79:c5:24:ed"
             },
             "locked": false,
-            "memory": "16384",
+            "memory": 16384,
             "name": "amsmetadb.ooni.nu",
             "networks": {
                 "v4": [
@@ -265,61 +148,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "4"
+            "vcpus": 4
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 5,
             "features": [],
-            "id": "2801",
+            "id": 2803,
             "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 35:4f:f3:95:41:a8:19:09:23:b0:4b:1e:a5:b1:69:46",
-                "ssh_ecdsa": "256 87:b4:3e:89:63:e4:32:25:29:7d:e0:94:04:75:29:c2",
-                "ssh_rsa": "2048 44:bd:03:c9:ae:ae:3f:d3:8e:f9:4e:4b:34:d8:34:e7"
-            },
-            "locked": false,
-            "memory": "1024",
-            "name": "hkgtorth.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254",
-                        "ip_address": "103.104.244.76",
-                        "netmask": "255.255.255.0",
-                        "network": "103.104.244.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "0",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 5,
-            "features": [],
-            "id": "2803",
-            "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -329,7 +173,7 @@
                 "ssh_rsa": "2048 SHA256:EkbveL4JQ3kZHwrbni+D9ANsvtRgjRkiM/xgLusKqjo"
             },
             "locked": false,
-            "memory": "1024",
+            "memory": 1024,
             "name": "miatorth.ooni.nu",
             "networks": {
                 "v4": [
@@ -343,61 +187,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 50,
-            "features": [],
-            "id": "3143",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 90:30:17:dc:50:a9:11:3c:7c:71:c3:55:82:3a:6e:86",
-                "ssh_ecdsa": "256 e5:d8:7d:87:c5:6c:75:f3:a2:94:65:d4:44:e1:70:f8",
-                "ssh_rsa": "2048 53:33:9b:a0:66:2e:38:76:ec:b2:86:d2:69:03:3e:53"
-            },
-            "locked": false,
-            "memory": "8192",
-            "name": "fastpath.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254",
-                        "ip_address": "103.104.244.20",
-                        "netmask": "255.255.255.0",
-                        "network": "103.104.244.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "0",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "4"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 100,
             "features": [],
-            "id": "3194",
+            "id": 3194,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -407,7 +212,7 @@
                 "ssh_rsa": "2048 SHA256:/deO7eDx2n8vKs57lrNcG7QHj1x/gMFs2GcBNJAqt+8"
             },
             "locked": false,
-            "memory": "3072",
+            "memory": 3072,
             "name": "ams-matomo.ooni.nu",
             "networks": {
                 "v4": [
@@ -421,22 +226,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 50,
             "features": [],
-            "id": "3206",
+            "id": 3206,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -446,7 +251,7 @@
                 "ssh_rsa": "2048 SHA256:KMq1DSt/IalPL5dCxKNVnpTUVaGwL2yZM4RZKrfJ0T4"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "ams-ps.ooni.nu",
             "networks": {
                 "v4": [
@@ -460,61 +265,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 50,
-            "features": [],
-            "id": "3207",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 d3:3a:85:2f:9a:98:83:ba:8b:3c:90:d1:08:8f:99:a0",
-                "ssh_ecdsa": "256 86:32:b3:89:67:d0:43:a0:04:2b:39:42:7e:e7:5d:0f",
-                "ssh_rsa": "2048 ea:83:60:26:81:0a:85:fb:58:04:9f:c3:8c:9a:35:4e"
-            },
-            "locked": false,
-            "memory": "4096",
-            "name": "hkg-ps.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "103.104.244.254",
-                        "ip_address": "103.104.244.28",
-                        "netmask": "255.255.255.0",
-                        "network": "103.104.244.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "0",
-                "name": "Hong Kong",
-                "slug": "Hong Kong"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 20,
             "features": [],
-            "id": "3247",
+            "id": 3247,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -524,7 +290,7 @@
                 "ssh_rsa": "2048 SHA256:pMjM1j4mXutf7bFL9t/sJvvPSFH9h+fYkJpdh2zrFtA"
             },
             "locked": false,
-            "memory": "1024",
+            "memory": 1024,
             "name": "mia-get.ooni.nu",
             "networks": {
                 "v4": [
@@ -538,61 +304,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 20,
             "features": [],
-            "id": "3250",
+            "id": 3251,
             "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:DeNajzeBqvwiYsGfoGrnHs5WzjekxN/4RTxF0Rivs1w",
-                "ssh_ecdsa": "256 SHA256:KqOgYCqUrGzwbnc2u5W6Mc9cKDa0/3IxFEzg8NXA/eA",
-                "ssh_rsa": "2048 SHA256:rrgNUid2+QoLrf5AgPwz/QAUEqDJeTsFbJt2TI5ctW4"
-            },
-            "locked": false,
-            "memory": "1024",
-            "name": "mia-ps-test.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.241.254",
-                        "ip_address": "37.218.241.86",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.241.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "US East (Miami)",
-                "slug": "US East (Miami)"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 20,
-            "features": [],
-            "id": "3251",
-            "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -602,7 +329,7 @@
                 "ssh_rsa": "2048 SHA256:wiXLPeqjM/8L16zxrsP2k254ueWDs5MhRgTC48kuTvw"
             },
             "locked": false,
-            "memory": "1024",
+            "memory": 1024,
             "name": "mia-orchestra-test.ooni.nu",
             "networks": {
                 "v4": [
@@ -616,61 +343,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 10,
             "features": [],
-            "id": "3259",
+            "id": 3262,
             "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:eQtW1xhypvM5D6SHNTd/DURUD+AdFFA0Qccdfyx/64E",
-                "ssh_ecdsa": "256 SHA256:yhhltyReI9CIWC9qNs3y2m7ADyHPlckWW7b4+X57jSs",
-                "ssh_rsa": "2048 SHA256:VT4jZ49Ppmxj+zU3LGxncg9f8MiEeitoWdJvGDOdI6A"
-            },
-            "locked": false,
-            "memory": "1024",
-            "name": "mia-slack.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.241.254",
-                        "ip_address": "37.218.241.90",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.241.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "US East (Miami)",
-                "slug": "US East (Miami)"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 10,
-            "features": [],
-            "id": "3262",
-            "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -680,7 +368,7 @@
                 "ssh_rsa": "2048 SHA256:KOTR53wPgD9FgxFzrMWlfhOjj5y/P+WWtnwrpWZG33k"
             },
             "locked": false,
-            "memory": "1024",
+            "memory": 1024,
             "name": "mia-echoth.ooni.nu",
             "networks": {
                 "v4": [
@@ -694,22 +382,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 10,
             "features": [],
-            "id": "3265",
+            "id": 3265,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -719,7 +407,7 @@
                 "ssh_rsa": "2048 SHA256:qemVnaK/gb1GYKReLaMP/3sWcP4G/XGmhsbHSK8Gza0"
             },
             "locked": false,
-            "memory": "1024",
+            "memory": 1024,
             "name": "mia-httpth.ooni.nu",
             "networks": {
                 "v4": [
@@ -733,22 +421,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 100,
             "features": [],
-            "id": "3266",
+            "id": 3266,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -758,7 +446,7 @@
                 "ssh_rsa": "2048 SHA256:zGU7a0qpn6mLvzg/ZEK43OFLeS940vM3FaqAocFaiYE"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "ams-explorer.ooni.nu",
             "networks": {
                 "v4": [
@@ -772,22 +460,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 20,
             "features": [],
-            "id": "3272",
+            "id": 3272,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -797,7 +485,7 @@
                 "ssh_rsa": "2048 SHA256:oeUH0edp88swJRoSVZnGx7JZQ+hmiGqWWzt8DTv8veI"
             },
             "locked": false,
-            "memory": "2048",
+            "memory": 2048,
             "name": "ams-orchestra.ooni.nu",
             "networks": {
                 "v4": [
@@ -811,22 +499,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 15,
             "features": [],
-            "id": "3274",
+            "id": 3274,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -836,7 +524,7 @@
                 "ssh_rsa": "2048 SHA256:+RTRzDc45feHhvt7mOsCo9eIT7TR89dePG47qtnjNy0"
             },
             "locked": false,
-            "memory": "2048",
+            "memory": 2048,
             "name": "mia-run.ooni.nu",
             "networks": {
                 "v4": [
@@ -850,61 +538,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "1"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 20,
-            "features": [],
-            "id": "3276",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:66h2b8Odp+qBtC20SQvxtjukdk1fQBO76xbXsSd0EXQ",
-                "ssh_ecdsa": "256 SHA256:SIzd9Hip7mmd4/PmKabcaLp3eH3zSBpqE82FJW4/RN4",
-                "ssh_rsa": "2048 SHA256:WG76rmIQ1hJD9ULkoUWQdYs++uU0sBQ4TsUOgh8BhYM"
-            },
-            "locked": false,
-            "memory": "12288",
-            "name": "ams-api.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.30",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": "6"
+            "vcpus": 1
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 200,
             "features": [],
-            "id": "3279",
+            "id": 3279,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -914,7 +563,7 @@
                 "ssh_rsa": "2048 SHA256:m2NnPxwE24/nx+OKLIM4sF0qvS4lBKKck/x/jhUCy8U"
             },
             "locked": false,
-            "memory": "16384",
+            "memory": 16384,
             "name": "ams-jupyter.ooni.nu",
             "networks": {
                 "v4": [
@@ -928,22 +577,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "8"
+            "vcpus": 8
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 200,
             "features": [],
-            "id": "3326",
+            "id": 3326,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -953,7 +602,7 @@
                 "ssh_rsa": "2048 SHA256:OHXq27/LtZcmB+N8ZZzUE/w4McECFcYsoYdVj8pjmaE"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "ams-ps2.ooni.nu",
             "networks": {
                 "v4": [
@@ -967,22 +616,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 200,
             "features": [],
-            "id": "3327",
+            "id": 3327,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -992,7 +641,7 @@
                 "ssh_rsa": "2048 SHA256:ExMX5ajomgIZNbyeZFyRswRlNYR3TGcy9XjUbkwTPew"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "mia-ps2.ooni.nu",
             "networks": {
                 "v4": [
@@ -1006,22 +655,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 50,
             "features": [],
-            "id": "3345",
+            "id": 3345,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -1031,7 +680,7 @@
                 "ssh_rsa": "2048 SHA256:iZax3oDZS5GdoakaiR7KS1Nrnzr8bIppsRe/3fGEkuI"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "ams-wcth2.ooni.nu",
             "networks": {
                 "v4": [
@@ -1045,22 +694,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 50,
             "features": [],
-            "id": "3406",
+            "id": 3406,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -1070,7 +719,7 @@
                 "ssh_rsa": "2048 SHA256:p++0ahRjztoX6e+RSTyr1fvjOTML22tQ7cZpn9Zjm8g"
             },
             "locked": false,
-            "memory": "12288",
+            "memory": 12288,
             "name": "ams-wcth3.ooni.nu",
             "networks": {
                 "v4": [
@@ -1084,22 +733,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "6"
+            "vcpus": 6
         },
         {
             "backup_ids": [],
             "created_at": "1970-01-01T00:00:00+00:00",
             "disk": 40,
             "features": [],
-            "id": "3470",
+            "id": 3470,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -1109,7 +758,7 @@
                 "ssh_rsa": "2048 SHA256:kUscqFlx9bKtVShG2mTTtJKwc7xiNvaKqAz1JIIn1Qc"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "federico-test",
             "networks": {
                 "v4": [
@@ -1123,61 +772,22 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "Amsterdam",
                 "slug": "Amsterdam"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
-        },
-        {
-            "backup_ids": [],
-            "created_at": "2020-04-21T15:29:14+00:00",
-            "disk": 1600,
-            "features": [],
-            "id": "3586",
-            "kernel": {
-                "id": "13",
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:phKxdDwVxdYpll+ZN4dfBvHns3aAy8fZskRsPtvcTIw",
-                "ssh_ecdsa": "256 SHA256:nG4mXJmgE8MF5Q7mLauDlbx42VHgjpUAdyfFcsn6oVI",
-                "ssh_rsa": "2048 SHA256:zn1hTsg/ucOg4cTntHPb8eqT/5/vzNXixpOLq9sgKiU"
-            },
-            "locked": false,
-            "memory": "16384",
-            "name": "ams-pg.ooni.nu",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.245.254",
-                        "ip_address": "37.218.245.83",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.245.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
-                "available": "1",
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
-            },
-            "snapshot_ids": [],
-            "status": "stopped",
-            "vcpus": "8"
+            "vcpus": 2
         },
         {
             "backup_ids": [],
             "created_at": "2020-05-07T14:11:45+00:00",
             "disk": 50,
             "features": [],
-            "id": "3637",
+            "id": 3637,
             "kernel": {
-                "id": "13",
+                "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
@@ -1187,7 +797,7 @@
                 "ssh_rsa": "2048 SHA256:gJdcuh5r4Q84KXXw19O//cwMbKiItwLli5zJlMophqA"
             },
             "locked": false,
-            "memory": "4096",
+            "memory": 4096,
             "name": "mia-explorer-test.ooni.nu",
             "networks": {
                 "v4": [
@@ -1201,17 +811,132 @@
                 ]
             },
             "region": {
-                "available": "1",
+                "available": true,
                 "name": "US East (Miami)",
                 "slug": "US East (Miami)"
             },
             "snapshot_ids": [],
             "status": "running",
-            "vcpus": "2"
+            "vcpus": 2
+        },
+        {
+            "backup_ids": [],
+            "created_at": "2021-01-06T12:45:28+00:00",
+            "disk": 10,
+            "features": [],
+            "id": 4180,
+            "kernel": {
+                "id": 13,
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_dsa": "1024 SHA256:FNVz3Xc+jHNqz+U/wy3mNHpf84vqw8GTRCfHOtzHaoI",
+                "ssh_ecdsa": "256 SHA256:wMz399DL5PFWxQLxXRNnseMmCZ9qWVPKIr4hjnWXpkM",
+                "ssh_rsa": "2048 SHA256:fMWpjKGHrX6sc2BepRMNeGXNTiMkIbyeQI0cylAUSu4"
+            },
+            "locked": false,
+            "memory": 1024,
+            "name": "ams-slack-1.ooni.org",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.247.126",
+                        "ip_address": "37.218.247.98",
+                        "netmask": "255.255.255.128",
+                        "network": "37.218.247.0/25",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": true,
+                "name": "Amsterdam",
+                "slug": "Amsterdam"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": 1
+        },
+        {
+            "backup_ids": [],
+            "created_at": "2021-05-14T17:57:30+00:00",
+            "disk": 20,
+            "features": [],
+            "id": 4403,
+            "kernel": {
+                "id": 13,
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_ecdsa": "256 SHA256:Ld1Q/dbG6Bp50HGRMYAy5YW9vjTl9aSHr6yRJhXblxI",
+                "ssh_rsa": "2048 SHA256:eaIOHFG849+Uk32T9cUUDUa/xHzGhKCnsifAoGg0cyU"
+            },
+            "locked": false,
+            "memory": 1024,
+            "name": "testing-packages",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.242.254",
+                        "ip_address": "37.218.242.165",
+                        "netmask": "255.255.255.0",
+                        "network": "37.218.242.0/24",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": true,
+                "name": "Amsterdam",
+                "slug": "Amsterdam"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": 1
+        },
+        {
+            "backup_ids": [],
+            "created_at": "2021-05-17T14:35:13+00:00",
+            "disk": 1000,
+            "features": [],
+            "id": 4414,
+            "kernel": {
+                "id": 13,
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_ecdsa": "256 SHA256:7fIbBVzwgoyRrI17Wu9l6Lxo8laEpTCaI8X5PuoNt+s",
+                "ssh_rsa": "2048 SHA256:tllXvomBncnKrLxnI0Hd6N4+c1vSnvfs0RWB0qjjIjM"
+            },
+            "locked": false,
+            "memory": 16384,
+            "name": "olap-testhouse",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.243.126",
+                        "ip_address": "37.218.243.68",
+                        "netmask": "255.255.255.128",
+                        "network": "37.218.243.0/25",
+                        "type": "public"
+                    }
+                ]
+            },
+            "region": {
+                "available": true,
+                "name": "Amsterdam",
+                "slug": "Amsterdam"
+            },
+            "snapshot_ids": [],
+            "status": "running",
+            "vcpus": 8
         }
     ],
     "links": [],
     "meta": {
-        "total": 31
+        "total": 24
     }
 }

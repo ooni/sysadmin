@@ -1,11 +1,9 @@
 $ORIGIN ooni.nu
 $TTL 1799
 @	1800	URL301	https://ooni.org
-ams-api	60	A	37.218.242.30
 ams-explorer		A	37.218.242.149
 ams-jupyter	60	A	37.218.242.67
 ams-orchestra	300	A	37.218.247.95
-ams-pg		A	37.218.245.83
 ams-ps	60	A	37.218.245.90
 ams-ps2	300	A	37.218.245.109
 ams-wcth	300	A	37.218.245.114
@@ -32,11 +30,10 @@ mia-orchestra-test	60	A	37.218.241.87
 mia-ps-test		A	37.218.241.86
 mia-ps2	300	A	37.218.241.102
 mia-run	60	A	37.218.241.95
-mia-slack	300	A	37.218.241.90
 miaapi		A	37.218.241.8
 miacollector		A	37.218.241.178
 miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 e9c77ab38af0f64aa60663d61e354118949a37c3e3e8286a1f9867e97388c59f
+; generated from ooni.nu.xml with SHA256 0cd09e05a4c4b8ae565b66764d60b8e0e7720b00e7d3a33a98ba453650e40e63
