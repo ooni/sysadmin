@@ -24,3 +24,5 @@
         - "prometheus.ooni.org"
     - role: prometheus
       tags: prometheus
+    - role: blackbox_exporter
+      tags: blackbox_exporter
