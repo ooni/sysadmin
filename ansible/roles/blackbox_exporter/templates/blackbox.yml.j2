@@ -71,7 +71,7 @@ modules:
       headers:
         Content-Type: application/json
       body: '{"net-tests":[{"input-hashes":null,"name":"web_connectivity","test-helpers":["web-connectivity"],"version":"0.0.1"}]}'
-      fail_if_not_matches_regexp:
+      fail_if_body_not_matches_regexp:
       - '"web-connectivity":' # some bouncer-like response
 
   # When using this prober, be sure to target:
@@ -81,7 +81,7 @@ modules:
     http:
       valid_status_codes: [200]
       method: GET
-      fail_if_not_matches_regexp:
+      fail_if_body_not_matches_regexp:
         - ".+?\"status\".+?\"ok\".+?"
 
   ooni_tcp_echo_ok:
@@ -97,13 +97,13 @@ modules:
     http:
       valid_status_codes: [200]
       method: GET
-      fail_if_not_matches_regexp:
+      fail_if_body_not_matches_regexp:
         - ".+?\"headers_dict\".+?"
 
   ooni_orchestrate:
     prober: http
     http:
-      fail_if_not_matches_regexp:
+      fail_if_body_not_matches_regexp:
       - "\"category_code\":"
 
   ooni_registry:
@@ -111,12 +111,12 @@ modules:
     http:
       valid_status_codes: [404]
       method: GET
-      fail_if_not_matches_regexp:
+      fail_if_body_not_matches_regexp:
       - "404 page not found"
 
   ooni_proteus:
     prober: http
     http:
-      fail_if_not_matches_regexp:
+      fail_if_body_not_matches_regexp:
       - "OONI Proteus" # the admin JS-based frontend
 ...
