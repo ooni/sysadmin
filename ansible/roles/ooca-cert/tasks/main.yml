@@ -17,7 +17,7 @@
     creates: "{{ ooca_ssl_base }}.dhparam"
 
 - name: Generate CSR
-  command: openssl req -new -sha256 -subj "{{ ooca_ssl_subj }}" -addext "subjectAltName = {{ ooca_ssl_san }}" -key {{ ooca_ssl_base }}.key -out {{ ooca_ssl_base }}.csr
+  command: openssl req -new -sha256 -subj "{{ ooca_ssl_subj }}" -key {{ ooca_ssl_base }}.key -out {{ ooca_ssl_base }}.csr
   args:
     creates: "{{ ooca_ssl_base }}.csr"
 
