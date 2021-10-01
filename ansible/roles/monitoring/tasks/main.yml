@@ -111,6 +111,7 @@
       - python3-scipy
       - python3-seaborn
       - python3-tables
+      - python3-tqdm
       - python3-ujson
 
 - name: Install jupyter.service
