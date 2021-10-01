@@ -4,6 +4,13 @@
 - hosts: monitoring.ooni.org
   roles:
     - role: base-bullseye
+    - role: ooca-cert
+      ooca_ssl_dir: /etc/prometheus/ssl
+      ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
+      ooca_ssl_san: 'DNS:{{ inventory_hostname }}'
+      ooca_ca: scraper_ca
+      ooca_group: prometheus
+      tags: ooca
     - role: nftables
     - role: monitoring
     - role: dehydrated
