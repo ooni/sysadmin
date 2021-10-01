@@ -10,7 +10,7 @@ It is recommended you use a [python virtualenv](https://virtualenv.pypa.io/en/la
 Once you activate the virtualenv you can install the correct version of ansible and dnspython with:
 
 ```
-pip install ansible==2.8.3 dnspython==1.15.0
+pip install ansible==2.9.16
 ```
 
 
