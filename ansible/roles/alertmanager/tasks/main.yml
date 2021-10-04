@@ -1,6 +1,6 @@
 
 - name: Installs packages
-  tags: monitoring, prometheus
+  tags: monitoring, alertmanager
   apt:
     install_recommends: no
     cache_valid_time: 86400
@@ -8,7 +8,7 @@
       - prometheus-alertmanager
 
 - name: Configure Alertmanager templates
-  tags: monitoring, prometheus
+  tags: monitoring, alertmanager
   notify:
   - reload alertmanager
   copy:
@@ -21,7 +21,14 @@
     - templates/*.tmpl
 
 - name: Configure Alertmanager
-  tags: monitoring, prometheus
+  tags: monitoring, alertmanager
+  lineinfile:
+    path: /etc/default/prometheus-alertmanager
+    regexp: '^ARGS='
+    line: ARGS='--cluster.listen-address= --web.listen-address="127.0.0.1:9093"'
+
+- name: Reload Alertmanager
+  tags: monitoring, alertmanager
   notify:
   - reload alertmanager
   template:
