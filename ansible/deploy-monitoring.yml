@@ -26,3 +26,5 @@
       tags: prometheus
     - role: blackbox_exporter
       tags: blackbox_exporter
+    - role: alertmanager
+      tags: alertmanager

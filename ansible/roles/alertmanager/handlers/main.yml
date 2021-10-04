@@ -1,4 +1,4 @@
 - name: restart alertmanager
-  systemd: name=alertmanager.service state=restarted
+  systemd: name=prometheus-alertmanager.service state=restarted
 - name: reload alertmanager
-  systemd: name=alertmanager.service state=reloaded
+  systemd: name=prometheus-alertmanager.service state=reloaded

@@ -1,22 +1,2 @@
-go_arch: amd64
-
-alertmanager_user:   "{{ passwd.alertman.login }}"
-alertmanager_group:  "{{ passwd.alertman.login }}"
-
-alertmanager_base:        /srv/alertmanager
-alertmanager_config_path:         /srv/alertmanager/config
-alertmanager_templates_path:      /srv/alertmanager/config/templates
-alertmanager_data_path:           /srv/alertmanager/data
-
 alertmanager_listen_address: '{{ CHANGE_ME }}'
-
-alertmanager_version: 0.12.0
-alertmanager_download_url: https://github.com/prometheus/alertmanager/releases/download
-
 alertmanager_slack_api_url: '{{ CHANGE_ME }}'
-
-alertmanager_basename: "alertmanager-{{ alertmanager_version }}.linux-{{ go_arch }}"
-alertmanager_tarball_url: "{{ alertmanager_download_url }}/v{{ alertmanager_version }}/{{ alertmanager_basename }}.tar.gz"
-alertmanager_sha256sums_url: "{{ alertmanager_download_url }}/v{{ alertmanager_version }}/sha256sums.txt"
-alertmanager_sha256sums: "{{ playbook_dir }}/cache/alertmanager-{{ alertmanager_version}}.SHA256SUMS"
-alertmanager_path: "{{ alertmanager_base }}/{{ alertmanager_basename }}"
