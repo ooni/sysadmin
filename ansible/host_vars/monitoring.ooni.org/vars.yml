@@ -64,15 +64,11 @@ blackbox_jobs:
     targets:
       - "https://explorer.ooni.org/"
 
-  - name: "ooni API files"
-    module: "http_2xx"
-    targets:
-      - "https://api.ooni.io/api/v1/files"
-
   - name: "ooni API measurements"
     module: "http_2xx"
     targets:
       - "https://api.ooni.io/api/v1/measurements"
+      - "https://ams-pg-test.ooni.org/api/v1/measurements"
 
   - name: "countly.ooni.io ping"
     module: "http_2xx"
@@ -88,6 +84,7 @@ blackbox_jobs:
     module: "http_2xx"
     targets:
       - "https://ooni.torproject.org"
+      - "https://ooni.org"
 
   - name: "ooni get"
     module: "http_2xx"
