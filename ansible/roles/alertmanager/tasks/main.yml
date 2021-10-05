@@ -33,7 +33,7 @@
   - reload alertmanager
   template:
     src: alertmanager.yml.j2
-    dest: /etc/prometheus/alertmanager.yml"
+    dest: /etc/prometheus/alertmanager.yml
     owner: root
     group: root
     mode: 0644
