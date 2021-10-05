@@ -36,4 +36,4 @@ miatorth		A	37.218.241.28
 mirror1.reports	1800	A	213.138.109.232
 mon		A	37.218.245.43
 www	1800	URL301	https://ooni.org
-; generated from ooni.nu.xml with SHA256 0cd09e05a4c4b8ae565b66764d60b8e0e7720b00e7d3a33a98ba453650e40e63
+; generated from ooni.nu.xml with SHA256 dedf7560f59b584544cc09f8dbd7dab668e5a498c56e182bcb50e8444045f989

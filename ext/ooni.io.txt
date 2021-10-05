@@ -79,4 +79,4 @@ superset	1799	A	37.218.240.92
 test-qemu.infra	1799	A	199.119.112.12
 wcth		A	37.218.245.117
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.io.xml with SHA256 dcf1f5a3036875ddf313bc7fbdd4e663c4f03a1e5fb34d9045bea83bd12ccae6
+; generated from ooni.io.xml with SHA256 2965143c05786480e413e487e09b8ff0c902399478acfcf62fe51c9dacbf0d5f

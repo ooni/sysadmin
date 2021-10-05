@@ -31,4 +31,4 @@ test-lists.test		CNAME	cname.vercel-dns.com.
 th	300	NS	ns1.digitalocean.com.
 url-prioritization		CNAME	cname.vercel-dns.com.
 www	300	CNAME	ooni.netlify.com.
-; generated from ooni.org.xml with SHA256 74a7df07a2737f217a5b76822b8dc48efaea83baedf435790ff61c75df7ea44f
+; generated from ooni.org.xml with SHA256 b4f9abf75aa80d364e6ff7aca4c576b60efc533ebe467f907044d4099f8c594e
