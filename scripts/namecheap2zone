@@ -1,44 +1,110 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 #
-# Build zone-like file with data from namecheap.domains.dns.gethosts API call
-# to make diff more readable as namecheap re-orders XML entries quite randomly.
+# Extracts DNS data from Namecheap
+# Run using: ./play ext-inventory.yml -t namecheap
+# Note: namecheap re-orders XML entries randomly
+#
+# Inputs:
+#   NAMECHEAP_USER env var
+#   NAMECHEAP_TOKEN env var
 
-import sys
-import os
-import hashlib
+from argparse import ArgumentParser
+from os import getenv
+from time import sleep
+from socket import gethostbyname
+from pathlib import Path
+import json
+import requests
+import subprocess
 import xml.etree.ElementTree as ElementTree
 
-src, dst = sys.argv[1:]
-with open(src, 'r') as fd:
-    blob = fd.read()
 
-ns = {'NC': 'http://api.namecheap.com/xml.response'}
-tree = ElementTree.fromstring(blob)
-origin = tree.find('./NC:CommandResponse/NC:DomainDNSGetHostsResult', ns).attrib['Domain']
-zone = []
-ttl = {}
-for el in tree.findall('./NC:CommandResponse/NC:DomainDNSGetHostsResult/NC:host', ns):
-    rr = el.attrib
-    rrttl = int(rr['TTL'])
-    zone.append((rr['Name'], rrttl, rr['Type'], rr['Address']))
-    ttl.setdefault(rrttl, 0)
-    ttl[rrttl] += 1
-ttl = max(ttl.iteritems(), key=lambda x: x[1])[0]
-zone.sort()
+def parse_args():
+    ap = ArgumentParser()
+    ap.add_argument("--api-baseurl", default="https://api.namecheap.com")
+    ap.add_argument("--socks5port", type=int, default=9747)
+    ap.add_argument("--domains")
+    ap.add_argument("--client-fqdn")
+    return ap.parse_args()
 
-cname_check = {}
-for name, rrttl, rrtype, address in zone:
-    cname_check.setdefault(name, set()).add(rrtype)
-for name, rrtype in cname_check.iteritems():
-    if 'CNAME' in rrtype and len(rrtype) != 1:
-        raise RuntimeError('CNAME hides some records', name, rrtype)
 
-with open(dst, 'w') as fd:
-    print >>fd, '$ORIGIN %s' % (origin)
-    print >>fd, '$TTL %d' % (ttl)
-    for name, rrttl, rrtype, address in zone:
-        if rrttl == ttl:
-            print >>fd, '%s\t\t%s\t%s' % (name, rrtype, address)
-        else:
-            print >>fd, '%s\t%d\t%s\t%s' % (name, rrttl, rrtype, address)
-    print >>fd, '; generated from %s with SHA256 %s' % (os.path.basename(src), hashlib.sha256(blob).hexdigest())
+def fetch_domain_data(args, domain, nc_user, nc_token: str, client_ipaddr):
+    api_authurl = f"{args.api_baseurl}/xml.response?ApiUser={nc_user}&ApiKey={nc_token}&UserName={nc_user}"
+    api_authurl += f"&ClientIp={client_ipaddr}"
+    sld, tld = domain.rsplit(".", 1)
+    api_url = (
+        f"{api_authurl}&Command=namecheap.domains.dns.getHosts&SLD={sld}&TLD={tld}"
+    )
+    proxies = dict(https=f"socks5://localhost:{args.socks5port}")
+    assert api_url.startswith("https")
+    resp = requests.get(api_url, proxies=proxies)
+    return resp
+
+
+def parse(blob, domain):
+    ns = {"NC": "http://api.namecheap.com/xml.response"}
+    tree = ElementTree.fromstring(blob)
+    node_finder = "./NC:CommandResponse/NC:DomainDNSGetHostsResult/NC:host"
+    zone = []
+    for el in tree.findall(node_finder, ns):
+        rr = el.attrib
+        rr_ttl = int(rr["TTL"])
+        name = rr["Name"] + "." + domain
+        addr = rr["Address"]
+        if len(addr) > 1:
+            addr = addr.rstrip(".")
+        zone.append(dict(name=name, ttl=rr_ttl, type=rr["Type"], address=addr))
+
+    return zone
+
+    # cname_check = {}
+    # for name, rrttl, rrtype, address in zone:
+    #    cname_check.setdefault(name, set()).add(rrtype)
+    # for name, rrtype in cname_check.iteritems():
+    #    if "CNAME" in rrtype and len(rrtype) != 1:
+    #        raise RuntimeError("CNAME hides some records", name, rrtype)
+
+
+def setup_ssh(fqdn, port):
+    # use ssh to support ~/.ssh/config, keys, etc
+    cmd = ["ssh", "-D", str(port), "-o", "BatchMode=yes", "-S", "none", "-N", fqdn]
+    print(" ".join(cmd))
+    s = subprocess.Popen(cmd)
+    sleep(5)  # finger crossed :-/
+    return s
+
+
+def main():
+    args = parse_args()
+    nc_user = getenv("NAMECHEAP_USER")
+    assert nc_user
+    nc_token = getenv("NAMECHEAP_TOKEN")
+    assert nc_token
+    client_ipaddr = gethostbyname(args.client_fqdn)
+    ssh = setup_ssh(args.client_fqdn, args.socks5port)
+
+    all_records = []
+    for domain in args.domains.split(","):
+        print(f"Fetching {domain}")
+        resp = fetch_domain_data(args, domain, nc_user, nc_token, client_ipaddr)
+        assert resp.status_code == 200
+        # TODO: check for auth error?
+        zone = parse(resp.text, domain)
+        print(f"Fetched {len(zone)} records")
+        all_records.extend(zone)
+
+    assert all_records, "Empty record list"
+    all_records = sorted(all_records, key=lambda z: z["name"])
+    Path("../ext/dns.json").write_text(
+        json.dumps(all_records, indent=2, sort_keys=True)
+    )
+
+    ssh.terminate()
+    try:
+        ssh.wait(2)
+    except subprocess.TimeoutExpired:
+        ssh.kill()
+
+
+if __name__ == "__main__":
+    main()

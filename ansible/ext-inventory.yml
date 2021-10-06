@@ -6,79 +6,35 @@
   connection: local
   gather_facts: false
   vars:
-    namecheap_zones:
-      - [ooni, io]
-      - [ooni, nu]
-      - [ooni, org]
-      - [openobservatory, com]
-      - [openobservatory, net]
-      - [openobservatory, org]
-    namecheap_domains: '{{ namecheap_zones | map("join", ".") | list }}'
+    # comma-separated, no spaces
+    namecheap_domains: 'ooni.io,ooni.nu,ooni.org,openobservatory.com,openobservatory.net,openobservatory.org'
     extroot: '{{ lookup("pipe", "git rev-parse --show-toplevel") }}/ext'
-    files: '{{
-      (
-        (namecheap_domains | map("regex_replace", "^", extroot ~ "/") | map("regex_replace", "$", ".txt") | list) +
-        (namecheap_domains | map("regex_replace", "^", extroot ~ "/") | map("regex_replace", "$", ".xml") | list) +
-        [extroot ~ "/gh-droplets.json"]
-      ) | join(" ")
-    }}'
-    namecheap_api: https://api.namecheap.com/xml.response?ApiUser={{ namecheap_user }}&ApiKey={{ namecheap_token }}&UserName={{ namecheap_user }}&ClientIp={{ lookup('dig', jumphost, 'qtype=A') }}
+
   tasks:
     - name: select jumphost and local socks5 port
+      tags: namecheap
       set_fact:
-        socks5: '{{ 32767 | random(1024) }}'
         jumphost: '{{ namecheap_jumphosts | random }}'
-    - name: ssh jumphost ({{ jumphost }})
-      command: ssh -D {{ socks5 }} -o BatchMode=yes -N {{ jumphost }}
-      async: 60
-      poll: 0
-    - name: wait for jumphost connection
-      wait_for: port={{ socks5 }} timeout=10
 
-    # curl is used instead of M(uri) to pass traffic through socks5 jumphost so cleartext
-    # namecheap_token does not touch disk of jumphost as a temporary file created by ansible
-    - name: fetch zone
-      command: curl -sS --socks5-hostname localhost:{{ socks5 }} "{{ namecheap_api }}&Command=namecheap.domains.dns.getHosts&SLD={{ item.0 }}&TLD={{ item.1 }}"
-      register: zones # becomes a _list_ of results after the task
-      changed_when: false
-      failed_when: "'    </DomainDNSGetHostsResult>' not in zones.stdout_lines"
-      loop_control:
-        label: '{{ item.0 }}.{{ item.1 }}'
-      with_items:
-        - '{{ namecheap_zones }}' # NB: that's quite creepy syntax...
+    - name: Fetch DNS data from Namecheap
+      tags: namecheap
+      command: ../scripts/namecheap2zone --domains '{{ namecheap_domains }}' --client-fqdn '{{ jumphost }}'
+      environment:
+        NAMECHEAP_USER: '{{ namecheap_user }}'
+        NAMECHEAP_TOKEN: "{{ namecheap_token }}"
 
     - name: fetch gh droplets
+      tags: greenhost
       uri:
         url: https://portal.eclips.is/portal/api/v2/droplets
         headers: { Authorization: 'Bearer {{ gh_token }}' }
         return_content: yes
       register: droplets
 
-    - copy:
-        content: "{{ item.0.stdout | regex_replace('<Server>[^<]+</Server>', '<Server/>') | regex_replace('<ExecutionTime>[^<]+</ExecutionTime>', '<ExecutionTime/>')  | regex_replace('<GMTTimeDifference>[^<]+</GMTTimeDifference>', '<GMTTimeDifference/>')}}"
-        dest: '{{ extroot }}/{{ item.1 }}.xml'
-      with_together:
-        - '{{ zones.results }}'
-        - '{{ namecheap_domains }}'
-      loop_control:
-        label: '{{ item.1 }}'
-
     - name: save gh-droplets.json
+      tags: greenhost
       copy:
         content: '{{ droplets.json | to_nice_json }}'
         dest: '{{ extroot }}/gh-droplets.json'
 
-    - name: convert zones from XML to TXT
-      command: ../scripts/namecheap2zone {{extroot}}/{{item}}.xml {{extroot}}/{{item}}.txt
-      with_items: '{{ namecheap_domains }}'
-
-    - name: git add
-      command: git add {{ files }}
-      changed_when: false
-    - name: git diff
-      command: git diff HEAD -- {{ files }}
-      changed_when: false
-      register: diff
-    - name: git commit
-      command: git commit -m 'Current external inventory state' -- {{ files }}
-      when: diff.stdout | length > 0
+...
