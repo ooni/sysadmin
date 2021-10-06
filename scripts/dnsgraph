@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+# usage:
+# ./scripts/dnscheck CNAME > /tmp/x && blockdiag3 /tmp/x -o ext/dnsgraph.svg -T SVG
+
+import subprocess
+from pathlib import Path
+import json
+
+unsupported_chars = " :~/=;+"
+mask = "▾"
+
+def main():
+    rs = json.loads(Path("ext/dns.json").read_text())
+    tmp = Path("/tmp/dnscheck.tmp")
+    types = sorted(set(r["type"] for r in rs))
+    for record_type in types:
+        print(record_type)
+        out = [
+            "blockdiag {",
+        ]
+        for r in rs:
+            if r["type"] != record_type:
+                continue
+            name = r["name"]
+            name = name.replace("@", "AT")
+            addr = r["address"]
+            for bad in unsupported_chars:
+                addr = addr.replace(bad, mask)
+            line = f'{name} -> {addr};'
+            out.append(line)
+            line = f"{name}[width={len(name) * 7}];"
+            out.append(line)
+            line = f"{addr}[width={len(addr) * 7}];"
+            out.append(line)
+
+        out.append("}")
+        tmp.write_text("\n".join(out))
+        cmd = [
+            "blockdiag3",
+            tmp.as_posix(),
+            "-o",
+            f"ext/dnsgraph.{record_type}.svg",
+            "-T",
+            "SVG",
+        ]
+        subprocess.run(cmd, check=True)
+
+
+if __name__ == "__main__":
+    main()
