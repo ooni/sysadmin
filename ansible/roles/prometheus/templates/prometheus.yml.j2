@@ -28,12 +28,6 @@ scrape_configs:
     - targets:
       - prometheus.infra.ooni.io:8090
 
-  - job_name: pushgateway
-    scheme: http
-    static_configs:
-    - targets:
-      - localhost:9091
-
   - job_name: 'alertmanager'
     scheme: https
     tls_config:
@@ -161,7 +155,6 @@ scrape_configs:
       format: [prometheus]
     static_configs:
       - targets:
-        - 127.0.0.1:19999
 {% for host in (groups.have_netdata|sort) %}
         - {{ host }}:19999
 {% endfor %}
