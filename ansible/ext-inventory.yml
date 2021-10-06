@@ -23,13 +23,6 @@
         NAMECHEAP_USER: '{{ namecheap_user }}'
         NAMECHEAP_TOKEN: "{{ namecheap_token }}"
 
-    - name: Plotting DNS graphs
-      # creates/overwrites ../ext/dnsgraph.*.svg
-      tags: namecheap
-      command: ./scripts/dnsgraph
-      args:
-        chdir: ..
-
     - name: fetch gh droplets
       tags: greenhost
       uri:
