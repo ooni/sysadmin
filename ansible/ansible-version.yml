@@ -12,4 +12,5 @@
       delegate_to: localhost
       run_once: true
       when: lookup('env', 'TRAVIS_VAULT_SECRET' ) | length == 0
+
 ...
