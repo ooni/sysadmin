@@ -36,7 +36,7 @@
     group: ooniapi
     mode: 0640
   vars:
-    github_push_repo: "citizenlab/test-lists"
+    github_push_repo: "ooni-bot/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
 
 - name: create Psiphon conffile
