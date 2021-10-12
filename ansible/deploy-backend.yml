@@ -38,3 +38,17 @@
         - "ams-pg-test.ooni.org"
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
+
+- hosts: backend-fsn.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: nginx-buster
+      tags: nginx
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        - "backend-fsn.ooni.org"
+    - role: ooni-backend
+      ssl_domain: backend-fsn.ooni.org

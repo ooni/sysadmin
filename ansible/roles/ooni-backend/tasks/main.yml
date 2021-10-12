@@ -40,6 +40,7 @@
     login_base_url: "https://test-lists.ooni.org/login"
 
 - name: create Psiphon conffile
+  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: api
   copy:
     content: "{{ psiphon_config }}"
@@ -153,6 +154,7 @@
 ## Fastpath ##
 
 - name: install fastpath if not present
+  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: fastpath
   apt:
     cache_valid_time: 86400
@@ -160,6 +162,7 @@
     state: present
 
 - name: configure fastpath
+  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: fastpath
   blockinfile:
     path: /etc/ooni/fastpath.conf
@@ -201,6 +204,7 @@
 ## Analysis daemon ##
 
 - name: install analysis
+  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: analysis
   apt:
     cache_valid_time: 86400
@@ -208,6 +212,7 @@
     force: True
 
 - name: configure analysis
+  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: analysis
   blockinfile:
     path: /etc/ooni/analysis.conf
@@ -351,3 +356,52 @@
   systemd:
     name: tor@default.service
     state: reloaded
+
+
+# Clickhouse
+
+- name: install clickhouse
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  apt:
+    cache_valid_time: 86400
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - dirmngr
+
+- name: install clickhouse
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
+
+- name: set clickhouse repos
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  blockinfile:
+    path: /etc/apt/sources.list.d/clickhouse.list
+    create: yes
+    block: |
+      deb https://repo.clickhouse.com/deb/lts/ main/
+
+- name: install clickhouse
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  apt:
+    # refresh cache
+    cache_valid_time: 0
+    name:
+      - clickhouse-server={{ clickhouse_pkg_ver }}
+      - clickhouse-client={{ clickhouse_pkg_ver }}
+      - clickhouse-common-static={{ clickhouse_pkg_ver }}
+  vars:
+    clickhouse_pkg_ver: 21.8.8.29
+
+- name: Run clickhouse
+  tags: clickhouse
+  systemd:
+    name: clickhouse-server.service
+    state: started
+    enabled: yes
+
+

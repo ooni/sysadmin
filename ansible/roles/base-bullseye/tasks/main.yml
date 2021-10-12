@@ -113,7 +113,7 @@
 #    daemon_reload: yes
 
 - name: reload nftables service
-  shell: systemctl reload nftables.service
+  service: name=nftables state=restarted
 
 - name: configure netdata.service
   tags: netdata

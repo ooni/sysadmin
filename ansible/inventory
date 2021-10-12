@@ -123,6 +123,7 @@ ams-slack-1.ooni.org
 [have_nftables]
 ams-pg.ooni.org
 ams-pg-test.ooni.org
+backend-fsn.ooni.org
 
 [have_nginx]
 prometheus.infra.ooni.io
@@ -169,6 +170,7 @@ amsmetadb.ooni.nu
 [have_netdata]
 ams-pg.ooni.org
 ams-pg-test.ooni.org
+backend-fsn.ooni.org
 
 [probe_services]
 mia-ps2.ooni.nu
