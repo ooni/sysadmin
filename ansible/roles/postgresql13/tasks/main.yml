@@ -1,0 +1,65 @@
+---
+- name: install PostgreSQL
+  apt:
+    cache_valid_time: 86400
+    name:
+      - postgresql-13
+
+- name: Overwrite pg_hba.conf
+  template:
+    src: templates/pg_hba.conf
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    mode: 0644
+    owner: root
+
+- name: Prepare postgresql.conf
+  template:
+    src: templates/postgresql.conf
+    dest: /etc/postgresql/13/main/postgresql.conf
+    mode: 0644
+    owner: root
+
+- name: Enable and start service
+  shell: systemctl enable --now postgresql.service
+
+- name: Reload pg after conf change
+  shell: systemctl reload postgresql.service
+
+- name: allow incoming TCP connections to database
+  tags: pg-nftables
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/5432.nft
+    create: yes
+    block: |
+      add rule inet filter input ip saddr {{ lookup('dig', 'jupyter.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from jupyter.ooni.org"
+
+- name: reload nftables service
+  tags: pg-nftables
+  shell: systemctl reload nftables.service
+
+# FIXME
+- name: create metadb database and users
+  shell: |
+    sudo -u postgres createuser readonly
+    #sudo -u postgres psql -c "ALTER USER readonly PASSWORD 'test_passwd'"
+    sudo -u postgres createuser shovel
+    sudo -u postgres createdb -O shovel metadb
+  ignore_errors: yes
+
+- name: configure Netdata Postgres monitoring
+  tags: netdata
+  blockinfile:
+    path: /etc/netdata/python.d/postgres.conf
+    create: yes
+    block: |
+      socket:
+        name     : 'local'
+        user     : 'shovel'
+        database : 'metadb'
+
+- name: restart netdata service
+  tags: netdata
+  systemd:
+    name: netdata.service
+    state: restarted
+

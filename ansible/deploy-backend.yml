@@ -50,5 +50,6 @@
       expand: yes
       ssl_domains:
         - "backend-fsn.ooni.org"
+    - role: postgresql13
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
