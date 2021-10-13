@@ -1,5 +1,4 @@
 ---
 dependencies:
-  - role: base-buster
   - role: nftables
   - role: track_etc_directory

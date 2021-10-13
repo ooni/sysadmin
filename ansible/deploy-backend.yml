@@ -22,6 +22,7 @@
         - "ps2.ooni.io"
         - "ps3.ooni.io"
         - "ps4.ooni.io"
+    - role: postgresql11
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
 
@@ -36,8 +37,10 @@
       expand: yes
       letsencrypt_domains:
         - "ams-pg-test.ooni.org"
+    - role: postgresql11
+      tags: postgresql11
     - role: ooni-backend
-      ssl_domain: ams-pg.ooni.org
+      ssl_domain: ams-pg-test.ooni.org
 
 - hosts: backend-fsn.ooni.org
   roles:
@@ -51,5 +54,6 @@
       ssl_domains:
         - "backend-fsn.ooni.org"
     - role: postgresql13
+      tags: postgresql13
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org

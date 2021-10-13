@@ -23,6 +23,11 @@ ams
 89.219.32.43
 41.231.54.200
 
+# Location-specific conf
+[on_hetzner]
+monitoring.ooni.org
+backend-fsn.ooni.org
+
 ########################################################################
 # location tags
 

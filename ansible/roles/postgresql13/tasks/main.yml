@@ -46,6 +46,8 @@
     sudo -u postgres createdb -O shovel metadb
   ignore_errors: yes
 
+  #  CREATE SUBSCRIPTION metadbsub CONNECTION 'dbname=metadb host=ams-pg-test.ooni.org user=readonly' PUBLICATION metadbpub;
+
 - name: configure Netdata Postgres monitoring
   tags: netdata
   blockinfile:

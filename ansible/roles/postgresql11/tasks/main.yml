@@ -1,11 +1,13 @@
 ---
 - name: install LVM
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg.ooni.org'
   apt:
     cache_valid_time: 86400
     name: lvm2
 
 - name: Create vg.metadb Volume Group
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg.ooni.org'
   lvg:
     vg: vg.metadb
@@ -13,6 +15,7 @@
       - /dev/sda
 
 - name: Create metadb logical volume
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg.ooni.org'
   lvol:
     vg: vg.metadb
@@ -20,6 +23,7 @@
     size: 100%VG
 
 - name: Create ext4 filesystem for metadb
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg.ooni.org'
   filesystem:
     fstype: ext4
@@ -27,6 +31,7 @@
     opts: -L metadb
 
 - name: Mount ext4 metadb FS
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg.ooni.org'
   mount:
     fstype: ext4
@@ -36,6 +41,7 @@
     state: mounted
 
 - name: Create btrfs filesystem for metadb
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   filesystem:
     fstype: btrfs
@@ -43,16 +49,19 @@
     opts: -L metadb
 
 - name: install kernel to support BTRFS with zstd
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   apt:
     cache_valid_time: 86400
     name: linux-image-5.8.0-0.bpo.2-cloud-amd64
 
 - name: ensure the running kernel is correct
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   shell: uname -a | grep 5.8.0-0.bpo.2-cloud-amd64
 
 - name: Mount btrfs metadb FS
+  tags: postgresql11-fs
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   mount:
     fstype: btrfs
@@ -62,12 +71,14 @@
     state: mounted
 
 - name: install PG11
+  tags: postgresql11
   apt:
     cache_valid_time: 86400
     name:
       - postgresql-11
 
 - name: Overwrite pg_hba.conf
+  tags: postgresql11
   template:
     src: templates/pg_hba.conf
     dest: /etc/postgresql/11/main/pg_hba.conf
@@ -75,6 +86,7 @@
     owner: root
 
 - name: Prepare postgresql.conf
+  tags: postgresql11
   template:
     src: templates/postgresql.conf
     dest: /etc/postgresql/11/main/postgresql.conf
@@ -82,9 +94,11 @@
     owner: root
 
 - name: Enable and start service
+  tags: postgresql11
   shell: systemctl enable --now postgresql.service
 
 - name: Reload pg after conf change
+  tags: postgresql11
   shell: systemctl reload postgresql.service
 
 - name: allow incoming TCP connections to database
@@ -93,21 +107,60 @@
     path: /etc/ooni/nftables/tcp/5432.nft
     create: yes
     block: |
-      add rule inet filter input ip saddr {{ lookup('dig', 'ams-jupyter.ooni.nu/A') }} tcp dport 5432 counter accept comment "psql from legacy jupyter"
       add rule inet filter input ip saddr {{ lookup('dig', 'jupyter.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from jupyter.ooni.org"
+      add rule inet filter input ip saddr {{ lookup('dig', 'backend-fsn.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from jupyter.ooni.org"
 
 - name: reload nftables service
   tags: pg-nftables
   shell: systemctl reload nftables.service
 
-# FIXME
-- name: create metadb database and users
-  shell: |
-    sudo -u postgres createuser readonly
-    #sudo -u postgres psql -c "ALTER USER readonly PASSWORD 'test_passwd'"
-    sudo -u postgres createuser shovel
-    sudo -u postgres createdb -O shovel metadb
-  ignore_errors: yes
+- name: Create readonly user
+  become_user: postgres
+  postgresql_user:
+    db: metadb
+    name: readonly
+    # already made public
+    password: b2HUU6gKM19SvXzXJCzpUV
+    role_attr_flags: NOSUPERUSER
+    priv: ALL
+    ssl_mode: require
+
+- name: Create shovel user
+  become_user: postgres
+  postgresql_user:
+    db: metadb
+    name: shovel
+    # already made public
+    password: yEqgNr2eXvgG255iEBxVeP
+    role_attr_flags: NOSUPERUSER
+    priv: ALL
+    ssl_mode: require
+
+- name: Create replicator user
+  become_user: postgres
+  tags: postgresql11
+  postgresql_user:
+    db: metadb
+    name: replicator
+    role_attr_flags: NOSUPERUSER,REPLICATION
+    ssl_mode: require
+
+#  shell: |
+#    sudo -u postgres createdb -O shovel metadb
+
+- name: Create publication
+  tags: postgresql11
+  become_user: postgres
+  postgresql_publication:
+    db: metadb
+    name: metadbpub
+
+- name: Simple select query
+  tags: postgresql11
+  postgresql_query:
+    db: metadb
+    query: SELECT version()
+    login_user: readonly
 
 - name: configure Netdata Postgres monitoring
   tags: netdata
