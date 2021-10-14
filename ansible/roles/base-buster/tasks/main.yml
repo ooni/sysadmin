@@ -34,11 +34,11 @@
     install_recommends: no
     cache_valid_time: 86400
     name:
-      # - prometheus-node-exporter-collectors
       - bash-completion
       - byobu
       - chrony
       - fail2ban
+      - git
       - iotop
       - manpages
       - ncdu
@@ -49,11 +49,15 @@
       - nftables
       - nullmailer
       - prometheus-node-exporter
+      - pv
+      # needed by ansible
+      - python3-apt
       - rsync
       - ssl-cert
       - strace
       - tcpdump
       - tmux
+      - vim
 
 - name: Remove smartmontools
   apt:

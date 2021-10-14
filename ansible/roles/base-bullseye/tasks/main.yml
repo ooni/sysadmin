@@ -62,8 +62,10 @@
       - netdata-web
       - nftables
       - nullmailer
-      - prometheus
       - prometheus-node-exporter
+      - pv
+      # needed by ansible
+      - python3-apt
       - rsync
       - ssl-cert
       - strace
