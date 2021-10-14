@@ -114,8 +114,15 @@
   tags: pg-nftables
   shell: systemctl reload nftables.service
 
+- name: Create metadb
+  tags: postgresql11
+  become_user: postgres
+  postgresql_db:
+    name: metadb
+
 - name: Create readonly user
   become_user: postgres
+  tags: postgresql11
   postgresql_user:
     db: metadb
     name: readonly
@@ -127,6 +134,7 @@
 
 - name: Create shovel user
   become_user: postgres
+  tags: postgresql11
   postgresql_user:
     db: metadb
     name: shovel
@@ -149,8 +157,8 @@
 #    sudo -u postgres createdb -O shovel metadb
 
 - name: Create publication
-  tags: postgresql11
   become_user: postgres
+  tags: postgresql11
   postgresql_publication:
     db: metadb
     name: metadbpub
