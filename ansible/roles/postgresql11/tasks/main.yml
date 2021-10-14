@@ -108,7 +108,7 @@
     create: yes
     block: |
       add rule inet filter input ip saddr {{ lookup('dig', 'jupyter.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from jupyter.ooni.org"
-      add rule inet filter input ip saddr {{ lookup('dig', 'backend-fsn.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from jupyter.ooni.org"
+      add rule inet filter input ip saddr {{ lookup('dig', 'backend-fsn.ooni.org/A') }} tcp dport 5432 counter accept comment "psql from backend-fsn.ooni.org"
 
 - name: reload nftables service
   tags: pg-nftables
