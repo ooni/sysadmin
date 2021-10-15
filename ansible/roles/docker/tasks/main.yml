@@ -29,6 +29,7 @@
       - docker-ce-cli
       - containerd.io
       - python-docker # Required to control docker from ansible
+      - python3-docker
 
 - name: enables and starts docker service
   service: >
