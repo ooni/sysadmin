@@ -175,4 +175,13 @@ scrape_configs:
       - ooni.torproject.org:443
       - openobservatory.github.io:443
       - ooni.netlify.com:443
+
+  - job_name: 'clickhouse'
+    scrape_interval: 5s
+    scheme: http
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+        - backend-fsn.ooni.org:9363
+
 ...

@@ -442,7 +442,7 @@
     mode: 0400
   notify: restart clickhouse
 
-- name: allow incoming TCP connections to API
+- name: allow incoming TCP connections from monitoring to Clickhouse prometheus interface
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: clickhouse
   blockinfile:
@@ -450,6 +450,16 @@
     create: yes
     block: |
       add rule inet filter input ip saddr 5.9.112.244 tcp dport 9363 counter accept comment "clickhouse prometheus from monitoring.ooni.org"
+  notify: reload nftables
+
+- name: allow incoming TCP connections from jupiter on monitoring.ooni.org to Clickhouse
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/9000.nft
+    create: yes
+    block: |
+      add rule inet filter input ip saddr 5.9.112.244 tcp dport 9000 counter accept comment "clickhouse from monitoring.ooni.org"
   notify: reload nftables
 
 - name: Run clickhouse
