@@ -1,0 +1,6 @@
+---
+- name: reload nftables
+  service: name=nftables state=reloaded
+
+- name: restart clickhouse
+  service: name=clickhouse-server state=restarted

@@ -404,7 +404,7 @@
       - ca-certificates
       - dirmngr
 
-- name: install clickhouse
+- name: install clickhouse keys
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: clickhouse
   command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
@@ -430,6 +430,27 @@
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
     clickhouse_pkg_ver: 21.8.8.29
+
+- name: install clickhouse conf
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  template:
+    src: clickhouse_config.xml
+    dest: /etc/clickhouse-server/config.xml
+    owner: clickhouse
+    group: clickhouse
+    mode: 0400
+  notify: restart clickhouse
+
+- name: allow incoming TCP connections to API
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/9363.nft
+    create: yes
+    block: |
+      add rule inet filter input ip saddr 5.9.112.244 tcp dport 9363 counter accept comment "clickhouse prometheus from monitoring.ooni.org"
+  notify: reload nftables
 
 - name: Run clickhouse
   tags: clickhouse
