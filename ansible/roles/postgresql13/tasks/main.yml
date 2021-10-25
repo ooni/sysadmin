@@ -1,11 +1,13 @@
 ---
-- name: install PostgreSQL
+- name: install PostgreSQL 13
+  tags: postgresql13
   apt:
     cache_valid_time: 86400
     name:
       - postgresql-13
 
 - name: Overwrite pg_hba.conf
+  tags: postgresql13
   template:
     src: templates/pg_hba.conf
     dest: /etc/postgresql/13/main/pg_hba.conf
@@ -13,6 +15,7 @@
     owner: root
 
 - name: Prepare postgresql.conf
+  tags: postgresql13
   template:
     src: templates/postgresql.conf
     dest: /etc/postgresql/13/main/postgresql.conf
@@ -20,9 +23,11 @@
     owner: root
 
 - name: Enable and start service
+  tags: postgresql13
   shell: systemctl enable --now postgresql.service
 
 - name: Reload pg after conf change
+  tags: postgresql13
   shell: systemctl reload postgresql.service
 
 - name: allow incoming TCP connections to database
@@ -37,16 +42,52 @@
   tags: pg-nftables
   shell: systemctl reload nftables.service
 
-# FIXME
-- name: create metadb database and users
-  shell: |
-    sudo -u postgres createuser readonly
-    #sudo -u postgres psql -c "ALTER USER readonly PASSWORD 'test_passwd'"
-    sudo -u postgres createuser shovel
-    sudo -u postgres createdb -O shovel metadb
-  ignore_errors: yes
+- name: Create metadb
+  tags: postgresql13
+  become_user: postgres
+  postgresql_db:
+    name: metadb
 
-  #  CREATE SUBSCRIPTION metadbsub CONNECTION 'dbname=metadb host=ams-pg-test.ooni.org user=readonly' PUBLICATION metadbpub;
+- name: Create readonly user
+  tags: postgresql13
+  become_user: postgres
+  postgresql_user:
+    db: metadb
+    name: readonly
+    # already made public
+    password: b2HUU6gKM19SvXzXJCzpUV
+    role_attr_flags: NOSUPERUSER
+    priv: ALL
+    ssl_mode: require
+
+- name: Create shovel user
+  tags: postgresql13
+  become_user: postgres
+  postgresql_user:
+    db: metadb
+    name: shovel
+    # already made public
+    password: yEqgNr2eXvgG255iEBxVeP
+    role_attr_flags: NOSUPERUSER
+    priv: ALL
+    ssl_mode: require
+
+- name: Create amsapi user
+  tags: postgresql13
+  become_user: postgres
+  postgresql_user:
+    db: metadb
+    name: amsapi
+    role_attr_flags: NOSUPERUSER
+    priv: ALL
+    ssl_mode: require
+
+- name: Simple select query
+  tags: postgresql13
+  postgresql_query:
+    db: metadb
+    query: SELECT version()
+    login_user: readonly
 
 - name: configure Netdata Postgres monitoring
   tags: netdata
@@ -58,6 +99,7 @@
         name     : 'local'
         user     : 'shovel'
         database : 'metadb'
+#  CREATE SUBSCRIPTION metadbsub CONNECTION 'dbname=metadb host=ams-pg-test.ooni.org user=readonly' PUBLICATION metadbpub;
 
 - name: restart netdata service
   tags: netdata

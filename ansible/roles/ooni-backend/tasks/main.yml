@@ -2,11 +2,17 @@
 
 ## API ##
 
-#- name: install API
-#  tags: api
-#  apt:
-#    cache_valid_time: 86400
-#    name: ooni-api=0.1~pr192-96
+- name: Check API pkg
+  tags: api
+  command: dpkg-query -l ooni-api
+  register: api_is_installed
+
+- name: install API
+  when: api_is_installed.stdout.find('no packages found') != -1
+  tags: api
+  apt:
+    cache_valid_time: 86400
+    name: ooni-api
 
 - name: create Nginx cache dir
   file:
@@ -15,6 +21,19 @@
 
 - name: configure test api
   when: inventory_hostname == 'ams-pg-test.ooni.org'
+  tags: api
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    github_push_repo: "ooni-bot/test-lists"
+    login_base_url: "https://test-lists.test.ooni.org/login"
+
+- name: configure test api
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: api
   template:
     src: api.conf
@@ -90,6 +109,21 @@
     mode: 0755
     owner: root
 
+- name: Use dehydrated
+  tags: api
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  replace:
+    path: /etc/nginx/sites-available/ooni-api.conf
+    regexp: /etc/letsencrypt/live/
+    replace: /var/lib/dehydrated/certs/
+
+- name: Create symlink for API nginx conf
+  tags: api
+  file:
+    src=/etc/nginx/sites-available/ooni-api.conf
+    dest=/etc/nginx/sites-enabled/ooni-api.conf
+    state=link
+
 - name: Configure deb.ooni.org forwarder on prod host
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: deb_ooni_org
@@ -129,7 +163,7 @@
     state: directory
 
 - name: Safely reload Nginx
-  tags: api deb_ooni_org
+  tags: api, deb_ooni_org
   shell: nginx -t && systemctl reload nginx
 
 - name: allow incoming TCP connections to API

@@ -153,16 +153,6 @@
     role_attr_flags: NOSUPERUSER,REPLICATION
     ssl_mode: require
 
-#  shell: |
-#    sudo -u postgres createdb -O shovel metadb
-
-- name: Create publication
-  become_user: postgres
-  tags: postgresql11
-  postgresql_publication:
-    db: metadb
-    name: metadbpub
-
 - name: Simple select query
   tags: postgresql11
   postgresql_query:
