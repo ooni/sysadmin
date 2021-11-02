@@ -60,19 +60,13 @@
     "type": "A"
   },
   {
-    "address": "ASPMX.L.GOOGLE.COM",
+    "address": "google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c",
     "name": "@.ooni.org",
-    "ttl": 1799,
-    "type": "MX"
+    "ttl": 60,
+    "type": "TXT"
   },
   {
-    "address": "ALT1.ASPMX.L.GOOGLE.COM",
-    "name": "@.ooni.org",
-    "ttl": 1799,
-    "type": "MX"
-  },
-  {
-    "address": "ALT2.ASPMX.L.GOOGLE.COM",
+    "address": "ASPMX3.GOOGLEMAIL.COM",
     "name": "@.ooni.org",
     "ttl": 1799,
     "type": "MX"
@@ -84,25 +78,31 @@
     "type": "MX"
   },
   {
-    "address": "ASPMX3.GOOGLEMAIL.COM",
+    "address": "ALT2.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.org",
     "ttl": 1799,
     "type": "MX"
   },
   {
-    "address": "google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c",
+    "address": "ALT1.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.org",
-    "ttl": 60,
-    "type": "TXT"
+    "ttl": 1799,
+    "type": "MX"
   },
   {
-    "address": "v=spf1 include:_spf.google.com include:riseup.net ~all",
+    "address": "ASPMX.L.GOOGLE.COM",
+    "name": "@.ooni.org",
+    "ttl": 1799,
+    "type": "MX"
+  },
+  {
+    "address": "OSSRH-66913",
     "name": "@.ooni.org",
     "ttl": 1799,
     "type": "TXT"
   },
   {
-    "address": "OSSRH-66913",
+    "address": "v=spf1 include:_spf.google.com include:riseup.net ~all",
     "name": "@.ooni.org",
     "ttl": 1799,
     "type": "TXT"
@@ -342,6 +342,12 @@
     "type": "A"
   },
   {
+    "address": "162.55.247.208",
+    "name": "backend-fsn.ooni.org",
+    "ttl": 1799,
+    "type": "A"
+  },
+  {
     "address": "openo.ghost.io",
     "name": "blog.openobservatory.net",
     "ttl": 1799,
@@ -514,6 +520,12 @@
     "name": "explorer.ooni.org",
     "ttl": 60,
     "type": "A"
+  },
+  {
+    "address": "cname.vercel-dns.com",
+    "name": "explorer.test.ooni.org",
+    "ttl": 1799,
+    "type": "CNAME"
   },
   {
     "address": "103.104.244.20",
