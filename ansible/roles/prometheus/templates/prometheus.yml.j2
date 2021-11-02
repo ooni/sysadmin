@@ -18,25 +18,6 @@ alerting:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
-    scheme: https
-    tls_config:
-      ca_file: "{{ prometheus_exporter_cert }}"
-      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
-      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
-    static_configs:
-    - targets:
-      - prometheus.infra.ooni.io:8090
-
-  - job_name: 'alertmanager'
-    scheme: https
-    tls_config:
-      ca_file: "{{ prometheus_exporter_cert }}"
-      cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
-      key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
-    static_configs:
-    - targets:
-      - prometheus.infra.ooni.io:9093
 
 {% for bbjob in blackbox_jobs %}
   - job_name: "{{ bbjob.name }}"
