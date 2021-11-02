@@ -86,11 +86,6 @@ blackbox_jobs:
       - "https://ooni.torproject.org"
       - "https://ooni.org"
 
-  - name: "ooni get"
-    module: "http_2xx"
-    targets:
-      - "https://get.ooni.torproject.org"
-
   - name: "orchestrate"
     module: "ooni_orchestrate"
     targets: [ "https://orchestrate.ooni.io:443/api/v1/test-list/urls?limit=10" ]
