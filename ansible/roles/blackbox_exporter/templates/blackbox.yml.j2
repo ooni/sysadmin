@@ -113,10 +113,4 @@ modules:
       method: GET
       fail_if_body_not_matches_regexp:
       - "404 page not found"
-
-  ooni_proteus:
-    prober: http
-    http:
-      fail_if_body_not_matches_regexp:
-      - "OONI Proteus" # the admin JS-based frontend
 ...
