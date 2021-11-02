@@ -3,6 +3,5 @@ ansible_become: false # keep current UID at localhost as all other hosts use `su
 gh_token: '{{ vault_gh_token }}'
 namecheap_user: '{{ vault_namecheap_user }}'
 namecheap_token: '{{ vault_namecheap_token }}'
-namecheap_jumphosts: '{{ vault_namecheap_jumphosts }}'
 openobservatory_smtp_whitelist: '{{ vault_openobservatory_smtp_whitelist }}' # not used, just shared knowledge storage
 ...

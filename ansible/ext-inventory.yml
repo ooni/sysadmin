@@ -11,10 +11,10 @@
     extroot: '{{ lookup("pipe", "git rev-parse --show-toplevel") }}/ext'
 
   tasks:
-    - name: select jumphost and local socks5 port
+    - name: set jumphost and local socks5 port
       tags: namecheap
       set_fact:
-        jumphost: '{{ namecheap_jumphosts | random }}'
+        jumphost: ams-pg-test.ooni.org
 
     - name: Fetch DNS data from Namecheap
       tags: namecheap
