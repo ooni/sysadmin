@@ -32,10 +32,6 @@ backend-fsn.ooni.org
 # location tags
 
 [mia]
-miatorth.ooni.nu
-#mia-ps2.ooni.nu
-mia-get.ooni.nu
-#mia-orchestra-test.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 mia-run.ooni.nu
@@ -45,20 +41,13 @@ mia-explorer-test.ooni.nu
 
 # Eclips.is Amsterdam Hosts
 [ams]
-amstorth.ooni.nu
-prometheus.infra.ooni.io
 amsmatomo.ooni.nu
 ams-explorer.ooni.nu
 db-1.proteus.ooni.io
-amsmetadb.ooni.nu
 ams-ps.ooni.nu
-ams-orchestra.ooni.nu
-ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-slack-1.ooni.org
-# Only active for onion service, certbot is removed
-ams-ps2.ooni.nu
 
 # Digital Ocean Amsterdam Hosts
 [doams]
@@ -71,10 +60,8 @@ doams1-countly.ooni.nu
 # PSK (pre-shared key) tags
 
 [psk_amsrepl]
-amsmetadb.ooni.nu
 
 [psk_hkgmetadb]
-amsmetadb.ooni.nu
 
 [psk_oomsm_beta]
 # FIXME: drop `oomsm-beta` user
@@ -85,15 +72,11 @@ amsmetadb.ooni.nu
 db-1.proteus.ooni.io
 
 [psk_orchestra_prod]
-mia-ps2.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
-ams-orchestra.ooni.nu
 ams-pg.ooni.org
 ams-pg-test.ooni.org
 
 [psk_orchestra_test]
-mia-orchestra-test.ooni.nu
 
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
@@ -105,23 +88,14 @@ db-1.proteus.ooni.io
 # role tags
 
 [have_fw]
-amsmetadb.ooni.nu
-miatorth.ooni.nu
-amstorth.ooni.nu
 amsmatomo.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
-mia-ps2.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
-mia-get.ooni.nu
-mia-orchestra-test.ooni.nu
 ams-explorer.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
-ams-orchestra.ooni.nu
 mia-run.ooni.nu
-ams-jupyter.ooni.nu
 mia-explorer-test.ooni.nu
 ams-slack-1.ooni.org
 
@@ -131,46 +105,30 @@ ams-pg-test.ooni.org
 backend-fsn.ooni.org
 
 [have_nginx]
-prometheus.infra.ooni.io
 amsmatomo.ooni.nu
-mia-ps2.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
-mia-get.ooni.nu
-mia-orchestra-test.ooni.nu
 ams-explorer.ooni.nu
-ams-orchestra.ooni.nu
 mia-run.ooni.nu
-ams-jupyter.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 mia-explorer-test.ooni.nu
 ams-slack-1.ooni.org
 
 [have_tor] # Tor test-helpers
-amstorth.ooni.nu
-miatorth.ooni.nu
 
 [have_collector]
-mia-ps2.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
 
 [have_tcpmetrics]
 ams-explorer.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
-mia-ps2.ooni.nu
 
 [active_collector]
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
-mia-ps2.ooni.nu
 
 [db_active]
 
 [db_standby]
-amsmetadb.ooni.nu
 
 [have_netdata]
 ams-pg.ooni.org
@@ -178,9 +136,7 @@ ams-pg-test.ooni.org
 backend-fsn.ooni.org
 
 [probe_services]
-mia-ps2.ooni.nu
 ams-ps.ooni.nu
-ams-ps2.ooni.nu
 
 [monitoring]
 monitoring.ooni.org
