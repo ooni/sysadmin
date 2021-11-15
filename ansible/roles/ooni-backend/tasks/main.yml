@@ -30,6 +30,7 @@
     mode: 0640
   vars:
     github_push_repo: "ooni-bot/test-lists"
+    github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
 
 - name: configure test api
@@ -43,6 +44,7 @@
     mode: 0640
   vars:
     github_push_repo: "ooni-bot/test-lists"
+    github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
 
 - name: configure prod api
@@ -56,6 +58,7 @@
     mode: 0640
   vars:
     github_push_repo: "ooni/test-lists"
+    github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
 
 - name: create Psiphon conffile
