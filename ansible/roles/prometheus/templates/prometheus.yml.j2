@@ -131,7 +131,7 @@ scrape_configs:
   - job_name: 'raw-netdata'
     scrape_interval: 5s
     scheme: http
-    metrics_path: "/api/v1/allmetrics?format=prometheus&help=yes"
+    metrics_path: "/api/v1/allmetrics"
     params:
       format: [prometheus]
     static_configs:
