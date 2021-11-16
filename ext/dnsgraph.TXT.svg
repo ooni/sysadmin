@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 2236 920" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>blockdiag {
+AT.ooni.io -&gt; google-site-verification▾e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ;
+AT.ooni.io[width=70];
+google-site-verification▾e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ[width=476];
+AT.ooni.io -&gt; v▾spf1▾ip4▾37.218.245.43▾include▾_spf.google.com▾▾all;
+AT.ooni.io[width=70];
+v▾spf1▾ip4▾37.218.245.43▾include▾_spf.google.com▾▾all[width=371];
+AT.ooni.org -&gt; google-site-verification▾a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c;
+AT.ooni.org[width=77];
+google-site-verification▾a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c[width=476];
+AT.ooni.org -&gt; OSSRH-66913;
+AT.ooni.org[width=77];
+OSSRH-66913[width=77];
+AT.ooni.org -&gt; v▾spf1▾include▾_spf.google.com▾include▾riseup.net▾▾all;
+AT.ooni.org[width=77];
+v▾spf1▾include▾_spf.google.com▾include▾riseup.net▾▾all[width=378];
+AT.openobservatory.org -&gt; v▾spf1▾include▾_spf.google.com▾▾all;
+AT.openobservatory.org[width=154];
+v▾spf1▾include▾_spf.google.com▾▾all[width=245];
+AT.openobservatory.org -&gt; google-site-verification▾Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8;
+AT.openobservatory.org[width=154];
+google-site-verification▾Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8[width=476];
+_amazonses.ooni.io -&gt; azEYpr▾7CEF1lHGi▾rRg0hGDTOjwBFKFLU47CfHYK4Y▾;
+_amazonses.ooni.io[width=126];
+azEYpr▾7CEF1lHGi▾rRg0hGDTOjwBFKFLU47CfHYK4Y▾[width=308];
+_amazonses.openobservatory.org -&gt; sDKCPKHh8kDdOFe8OisJEePIqUU▾vgCsfRI3ou9qsJc▾;
+_amazonses.openobservatory.org[width=210];
+sDKCPKHh8kDdOFe8OisJEePIqUU▾vgCsfRI3ou9qsJc▾[width=308];
+google._domainkey.ooni.io -&gt; v▾DKIM1▾▾k▾rsa▾▾p▾MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z▾4do2GpVQmd18eAM7HFmDvOk16W▾0k▾DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD▾1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS;
+google._domainkey.ooni.io[width=175];
+v▾DKIM1▾▾k▾rsa▾▾p▾MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z▾4do2GpVQmd18eAM7HFmDvOk16W▾0k▾DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD▾1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS[width=1785];
+google._domainkey.openobservatory.org -&gt; v▾DKIM1▾▾k▾rsa▾▾p▾MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX▾361fwH2SJeu6WpEI3▾6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS▾EcIZ8MD▾4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1▾MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy▾tB;
+google._domainkey.openobservatory.org[width=259];
+v▾DKIM1▾▾k▾rsa▾▾p▾MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX▾361fwH2SJeu6WpEI3▾6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS▾EcIZ8MD▾4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1▾MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy▾tB[width=1785];
+}</desc>
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="71" x="161" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="477" x="1044" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="371" x="1097" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="77" x="158" y="206" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="477" x="1044" y="206" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="77" x="1244" y="286" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="379" x="1093" y="366" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="155" x="119" y="446" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="245" x="1160" y="446" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="477" x="1044" y="526" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="127" x="133" y="606" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="309" x="1128" y="606" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="211" x="91" y="686" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="309" x="1128" y="686" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="175" x="109" y="766" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="1785" x="390" y="766" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="259" x="67" y="846" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="1785" x="390" y="846" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="71" x="158" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="50" x="194.0" y="66">AT.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="477" x="1041" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="412" x="1280.0" y="67">google-site-verification▾e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="371" x="1094" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="334" x="1280.0" y="147">v▾spf1▾ip4▾37.218.245.43▾include▾_spf.google.com▾▾all</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="77" x="155" y="200" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="57" x="193.5" y="227">AT.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="477" x="1041" y="200" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="416" x="1280.0" y="227">google-site-verification▾a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="77" x="1241" y="280" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="74" x="1280.0" y="306">OSSRH-66913</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="379" x="1090" y="360" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="329" x="1279.5" y="387">v▾spf1▾include▾_spf.google.com▾include▾riseup.net▾▾all</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="155" x="116" y="440" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="122" x="194.0" y="467">AT.openobservatory.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="245" x="1157" y="440" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="217" x="1279.5" y="467">v▾spf1▾include▾_spf.google.com▾▾all</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="477" x="1041" y="520" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="414" x="1280.0" y="547">google-site-verification▾Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="127" x="130" y="600" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="99" x="193.5" y="626">_amazonses.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="309" x="1125" y="600" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="297" x="1279.5" y="627">azEYpr▾7CEF1lHGi▾rRg0hGDTOjwBFKFLU47CfHYK4Y▾</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="211" x="88" y="680" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="171" x="193.5" y="707">_amazonses.openobservatory.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="309" x="1125" y="680" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="284" x="1280.0" y="707">sDKCPKHh8kDdOFe8OisJEePIqUU▾vgCsfRI3ou9qsJc▾</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="175" x="106" y="760" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="134" x="194.0" y="787">google._domainkey.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="1785" x="387" y="760" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="1708" x="1280.0" y="787">v▾DKIM1▾▾k▾rsa▾▾p▾MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z▾4do2GpVQmd18eAM7HFmDvOk16W▾0k▾DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD▾1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="259" x="64" y="840" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="206" x="194.0" y="867">google._domainkey.openobservatory.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="1785" x="387" y="840" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="1717" x="1279.5" y="867">v▾DKIM1▾▾k▾rsa▾▾p▾MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX▾361fwH2SJeu6WpEI3▾6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS▾EcIZ8MD▾4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1▾MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy▾tB</text>
+  <path d="M 229 60 L 1033 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1040,60 1033,56 1033,64 1040,60" stroke="rgb(0,0,0)" />
+  <path d="M 229 60 L 355 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 60 L 355 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 140 L 1086 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1093,140 1086,136 1086,144 1093,140" stroke="rgb(0,0,0)" />
+  <path d="M 232 220 L 1033 220" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1040,220 1033,216 1033,224 1040,220" stroke="rgb(0,0,0)" />
+  <path d="M 232 220 L 355 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 220 L 355 300" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 300 L 1233 300" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1240,300 1233,296 1233,304 1240,300" stroke="rgb(0,0,0)" />
+  <path d="M 232 220 L 355 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 220 L 355 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 380 L 1082 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1089,380 1082,376 1082,384 1089,380" stroke="rgb(0,0,0)" />
+  <path d="M 271 460 L 1149 460" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1156,460 1149,456 1149,464 1156,460" stroke="rgb(0,0,0)" />
+  <path d="M 271 460 L 355 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 460 L 355 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 355 540 L 1033 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1040,540 1033,536 1033,544 1040,540" stroke="rgb(0,0,0)" />
+  <path d="M 257 620 L 1117 620" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1124,620 1117,616 1117,624 1124,620" stroke="rgb(0,0,0)" />
+  <path d="M 299 700 L 1117 700" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1124,700 1117,696 1117,704 1124,700" stroke="rgb(0,0,0)" />
+  <path d="M 281 780 L 379 780" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="386,780 379,776 379,784 386,780" stroke="rgb(0,0,0)" />
+  <path d="M 323 860 L 379 860" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="386,860 379,856 379,864 386,860" stroke="rgb(0,0,0)" />
+</svg>

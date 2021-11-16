@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 535 520" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>blockdiag {
+AT.openobservatory.com -&gt; http▾▾▾ooni.torproject.org;
+AT.openobservatory.com[width=154];
+http▾▾▾ooni.torproject.org[width=182];
+AT.openobservatory.net -&gt; http▾▾▾ooni.torproject.org;
+AT.openobservatory.net[width=154];
+http▾▾▾ooni.torproject.org[width=182];
+AT.openobservatory.org -&gt; https▾▾▾ooni.org;
+AT.openobservatory.org[width=154];
+https▾▾▾ooni.org[width=112];
+www.openobservatory.com -&gt; http▾▾▾ooni.torproject.org;
+www.openobservatory.com[width=161];
+http▾▾▾ooni.torproject.org[width=182];
+www.openobservatory.net -&gt; http▾▾▾ooni.torproject.org;
+www.openobservatory.net[width=161];
+http▾▾▾ooni.torproject.org[width=182];
+www.openobservatory.org -&gt; https▾▾▾ooni.org;
+www.openobservatory.org[width=161];
+https▾▾▾ooni.org[width=112];
+}</desc>
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="155" x="70" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="155" x="70" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="67" y="206" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="67" y="286" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="182" x="292" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="155" x="70" y="366" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="67" y="446" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="112" x="327" y="366" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="155" x="67" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="125" x="144.5" y="67">AT.openobservatory.com</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="155" x="67" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="122" x="145.0" y="147">AT.openobservatory.net</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="64" y="200" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="139" x="144.5" y="227">www.openobservatory.com</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="64" y="280" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="136" x="145.0" y="307">www.openobservatory.net</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="182" x="289" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="155" x="380.5" y="67">http▾▾▾ooni.torproject.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="155" x="67" y="360" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="122" x="145.0" y="387">AT.openobservatory.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="64" y="440" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="136" x="145.0" y="467">www.openobservatory.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="112" x="324" y="360" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="104" x="380.0" y="387">https▾▾▾ooni.org</text>
+  <path d="M 222 60 L 281 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="288,60 281,56 281,64 288,60" stroke="rgb(0,0,0)" />
+  <path d="M 222 140 L 273 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 140 L 273 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 60 L 281 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="288,60 281,56 281,64 288,60" stroke="rgb(0,0,0)" />
+  <path d="M 222 380 L 316 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="323,380 316,376 316,384 323,380" stroke="rgb(0,0,0)" />
+  <path d="M 225 220 L 273 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 220 L 273 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 60 L 281 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="288,60 281,56 281,64 288,60" stroke="rgb(0,0,0)" />
+  <path d="M 225 300 L 273 300" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 300 L 273 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 60 L 281 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="288,60 281,56 281,64 288,60" stroke="rgb(0,0,0)" />
+  <path d="M 225 460 L 273 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 460 L 273 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 273 380 L 316 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="323,380 316,376 316,384 323,380" stroke="rgb(0,0,0)" />
+</svg>
