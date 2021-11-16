@@ -105,7 +105,7 @@
     path: /etc/ooni/nftables/tcp/19999.nft
     create: yes
     block: |
-      add rule inet filter input ip saddr {{ lookup('dig', 'prometheus.infra.ooni.io/A') }} tcp dport 19999 counter accept comment "netdata.service"
+      add rule inet filter input ip saddr {{ lookup('dig', 'prometheus.ooni.org/A') }} tcp dport 19999 counter accept comment "netdata.service"
 
 #- name: reload nftables service
 #  systemd:
