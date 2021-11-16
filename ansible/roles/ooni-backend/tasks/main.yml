@@ -398,7 +398,7 @@
 # Clickhouse
 
 - name: install clickhouse
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   apt:
     cache_valid_time: 86400
@@ -408,12 +408,12 @@
       - dirmngr
 
 - name: install clickhouse keys
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
 
 - name: set clickhouse repos
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   blockinfile:
     path: /etc/apt/sources.list.d/clickhouse.list
@@ -421,7 +421,7 @@
     block: |
       deb https://repo.clickhouse.com/deb/lts/ main/
 
-- name: install clickhouse
+- name: install clickhouse on backend-fsn
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: clickhouse
   apt:
@@ -434,8 +434,21 @@
   vars:
     clickhouse_pkg_ver: 21.8.8.29
 
+- name: install clickhouse on ams-pg-test.ooni.org
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  tags: clickhouse
+  apt:
+    # refresh cache
+    cache_valid_time: 0
+    name:
+      - clickhouse-server={{ clickhouse_pkg_ver }}
+      - clickhouse-client={{ clickhouse_pkg_ver }}
+      - clickhouse-common-static={{ clickhouse_pkg_ver }}
+  vars:
+    clickhouse_pkg_ver: 21.8.10.19
+
 - name: install clickhouse conf
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   template:
     src: clickhouse_config.xml
@@ -446,7 +459,7 @@
   notify: restart clickhouse
 
 - name: allow incoming TCP connections from monitoring to Clickhouse prometheus interface
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   blockinfile:
     path: /etc/ooni/nftables/tcp/9363.nft
@@ -456,7 +469,7 @@
   notify: reload nftables
 
 - name: allow incoming TCP connections from jupiter on monitoring.ooni.org to Clickhouse
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   blockinfile:
     path: /etc/ooni/nftables/tcp/9000.nft
@@ -466,6 +479,7 @@
   notify: reload nftables
 
 - name: Run clickhouse
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   systemd:
     name: clickhouse-server.service
