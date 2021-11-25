@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 507 760" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>blockdiag {
+AT.ooni.io -&gt; ASPMX.L.GOOGLE.COM;
+AT.ooni.io[width=70];
+ASPMX.L.GOOGLE.COM[width=126];
+AT.ooni.io -&gt; ALT1.ASPMX.L.GOOGLE.COM;
+AT.ooni.io[width=70];
+ALT1.ASPMX.L.GOOGLE.COM[width=161];
+AT.ooni.io -&gt; ALT2.ASPMX.L.GOOGLE.COM;
+AT.ooni.io[width=70];
+ALT2.ASPMX.L.GOOGLE.COM[width=161];
+AT.ooni.io -&gt; ALT3.ASPMX.L.GOOGLE.COM;
+AT.ooni.io[width=70];
+ALT3.ASPMX.L.GOOGLE.COM[width=161];
+AT.ooni.io -&gt; ALT4.ASPMX.L.GOOGLE.COM;
+AT.ooni.io[width=70];
+ALT4.ASPMX.L.GOOGLE.COM[width=161];
+AT.ooni.org -&gt; ASPMX3.GOOGLEMAIL.COM;
+AT.ooni.org[width=77];
+ASPMX3.GOOGLEMAIL.COM[width=147];
+AT.ooni.org -&gt; ASPMX2.GOOGLEMAIL.COM;
+AT.ooni.org[width=77];
+ASPMX2.GOOGLEMAIL.COM[width=147];
+AT.ooni.org -&gt; ALT2.ASPMX.L.GOOGLE.COM;
+AT.ooni.org[width=77];
+ALT2.ASPMX.L.GOOGLE.COM[width=161];
+AT.ooni.org -&gt; ALT1.ASPMX.L.GOOGLE.COM;
+AT.ooni.org[width=77];
+ALT1.ASPMX.L.GOOGLE.COM[width=161];
+AT.ooni.org -&gt; ASPMX.L.GOOGLE.COM;
+AT.ooni.org[width=77];
+ASPMX.L.GOOGLE.COM[width=126];
+AT.openobservatory.com -&gt; mx.runbox.com;
+AT.openobservatory.com[width=154];
+mx.runbox.com[width=91];
+AT.openobservatory.org -&gt; ASPMX.L.GOOGLE.COM;
+AT.openobservatory.org[width=154];
+ASPMX.L.GOOGLE.COM[width=126];
+AT.openobservatory.org -&gt; ALT1.ASPMX.L.GOOGLE.COM;
+AT.openobservatory.org[width=154];
+ALT1.ASPMX.L.GOOGLE.COM[width=161];
+AT.openobservatory.org -&gt; ALT2.ASPMX.L.GOOGLE.COM;
+AT.openobservatory.org[width=154];
+ALT2.ASPMX.L.GOOGLE.COM[width=161];
+AT.openobservatory.org -&gt; ALT3.ASPMX.L.GOOGLE.COM;
+AT.openobservatory.org[width=154];
+ALT3.ASPMX.L.GOOGLE.COM[width=161];
+AT.openobservatory.org -&gt; ALT4.ASPMX.L.GOOGLE.COM;
+AT.openobservatory.org[width=154];
+ALT4.ASPMX.L.GOOGLE.COM[width=161];
+}</desc>
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="70" x="109" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="154" x="67" y="446" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="78" x="105" y="526" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="127" x="302" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="285" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="285" y="206" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="285" y="286" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="285" y="366" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="147" x="292" y="526" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="147" x="292" y="606" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="154" x="67" y="686" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="91" x="320" y="686" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="70" x="106" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="50" x="141.0" y="66">AT.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="154" x="64" y="440" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="122" x="141.0" y="467">AT.openobservatory.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="78" x="102" y="520" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="57" x="141.5" y="547">AT.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="127" x="299" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="119" x="362.5" y="66">ASPMX.L.GOOGLE.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="282" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="148" x="363.0" y="146">ALT1.ASPMX.L.GOOGLE.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="282" y="200" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="148" x="363.0" y="226">ALT2.ASPMX.L.GOOGLE.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="282" y="280" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="148" x="363.0" y="306">ALT3.ASPMX.L.GOOGLE.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="282" y="360" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="148" x="363.0" y="386">ALT4.ASPMX.L.GOOGLE.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="147" x="289" y="520" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="143" x="362.5" y="546">ASPMX3.GOOGLEMAIL.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="147" x="289" y="600" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="143" x="362.5" y="626">ASPMX2.GOOGLEMAIL.COM</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="154" x="64" y="680" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="125" x="141.5" y="707">AT.openobservatory.com</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="91" x="317" y="680" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="76" x="363.0" y="706">mx.runbox.com</text>
+  <path d="M 176 60 L 291 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="298,60 291,56 291,64 298,60" stroke="rgb(0,0,0)" />
+  <path d="M 176 60 L 250 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 60 L 250 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 140 L 262.0 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 262.0 140.0 A4.0,4.0 0 0 1 270.0 140.0" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 270.0 140 L 274 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,140 274,136 274,144 281,140" stroke="rgb(0,0,0)" />
+  <path d="M 176 60 L 250 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 60 L 250 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 220 L 262.0 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 262.0 220.0 A4.0,4.0 0 0 1 270.0 220.0" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 270.0 220 L 274 220" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,220 274,216 274,224 281,220" stroke="rgb(0,0,0)" />
+  <path d="M 176 60 L 250 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 60 L 250 300" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 300 L 262.0 300" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 262.0 300.0 A4.0,4.0 0 0 1 270.0 300.0" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 270.0 300 L 274 300" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,300 274,296 274,304 281,300" stroke="rgb(0,0,0)" />
+  <path d="M 176 60 L 250 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 60 L 250 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 380 L 262.0 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 262.0 380.0 A4.0,4.0 0 0 1 270.0 380.0" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 270.0 380 L 274 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,380 274,376 274,384 281,380" stroke="rgb(0,0,0)" />
+  <path d="M 180 540 L 281 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="288,540 281,536 281,544 288,540" stroke="rgb(0,0,0)" />
+  <path d="M 180 540 L 250 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 540 L 250 620" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 250 620 L 281 620" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="288,620 281,616 281,624 288,620" stroke="rgb(0,0,0)" />
+  <path d="M 180 540 L 266 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 540 L 266 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 220 L 274 220" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,220 274,216 274,224 281,220" stroke="rgb(0,0,0)" />
+  <path d="M 180 540 L 266 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 540 L 266 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 140 L 274 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,140 274,136 274,144 281,140" stroke="rgb(0,0,0)" />
+  <path d="M 180 540 L 266 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 540 L 266 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 60 L 291 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="298,60 291,56 291,64 298,60" stroke="rgb(0,0,0)" />
+  <path d="M 218 700 L 309 700" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="316,700 309,696 309,704 316,700" stroke="rgb(0,0,0)" />
+  <path d="M 218 460 L 266 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 460 L 266 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 60 L 291 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="298,60 291,56 291,64 298,60" stroke="rgb(0,0,0)" />
+  <path d="M 218 460 L 266 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 460 L 266 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 140 L 274 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,140 274,136 274,144 281,140" stroke="rgb(0,0,0)" />
+  <path d="M 218 460 L 266 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 460 L 266 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 220 L 274 220" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,220 274,216 274,224 281,220" stroke="rgb(0,0,0)" />
+  <path d="M 218 460 L 266 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 460 L 266 300" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 300 L 274 300" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,300 274,296 274,304 281,300" stroke="rgb(0,0,0)" />
+  <path d="M 218 460 L 266 460" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 460 L 266 380" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 266 380 L 274 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="281,380 274,376 274,384 281,380" stroke="rgb(0,0,0)" />
+</svg>
