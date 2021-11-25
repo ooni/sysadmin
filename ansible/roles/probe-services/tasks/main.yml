@@ -1,12 +1,4 @@
 ---
-- name: setup anycast
-  include_tasks: setup-anycast.yml
-  when:
-  - "anycast_ip is defined"
-  - "anycast_gateway is defined"
-  - "blackhole_ip is defined"
-  - "blackhole_gateway is defined"
-
 - name: probe-services nginx config
   template: src=probe-services-nginx dest=/etc/nginx/sites-enabled/probe-services
   tags: nginx
