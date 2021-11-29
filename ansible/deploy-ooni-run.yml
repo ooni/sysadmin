@@ -4,7 +4,9 @@
 - hosts: mia-run.ooni.nu
   roles:
     - role: docker
-    - role: letsencrypt
+    - role: letsencrypt-legacy
+      tags: letsencrypt
+      expand: yes
       letsencrypt_domains:
         - "mia-run.ooni.nu"
         - "run.ooni.io"
