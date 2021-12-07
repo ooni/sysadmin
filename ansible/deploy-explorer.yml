@@ -4,7 +4,7 @@
 - hosts: ams-explorer.ooni.nu
   roles:
     - role: docker
-    - role: letsencrypt
+    - role: letsencrypt-legacy
       letsencrypt_domains:
         - 'ams-explorer.ooni.nu'
         - 'explorer.ooni.io'
@@ -20,7 +20,7 @@
 - hosts: mia-explorer-test.ooni.nu
   roles:
     - role: docker
-    - role: letsencrypt
+    - role: letsencrypt-legacy
       letsencrypt_domains:
         - 'mia-explorer-test.ooni.nu'
         - 'explorer-test.ooni.io'
