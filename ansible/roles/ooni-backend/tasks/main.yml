@@ -32,8 +32,10 @@
     github_push_repo: "ooni-bot/test-lists"
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
+    pg_uri: ""
+    clickhouse_host: "localhost"
 
-- name: configure test api
+- name: configure backend-fsn api
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: api
   template:
@@ -46,6 +48,8 @@
     github_push_repo: "ooni-bot/test-lists"
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
+    pg_uri: ""
+    clickhouse_host: "localhost"
 
 - name: configure prod api
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -60,6 +64,8 @@
     github_push_repo: "ooni/test-lists"
     github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
+    pg_uri: "postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb"
+    clickhouse_host: ""
 
 - name: create Psiphon conffile
   when: inventory_hostname != 'backend-fsn.ooni.org'
