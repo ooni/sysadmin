@@ -432,7 +432,7 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.8.29
+    clickhouse_pkg_ver: 21.8.12.29
 
 - name: install clickhouse on ams-pg-test.ooni.org
   when: inventory_hostname == 'ams-pg-test.ooni.org'
@@ -445,14 +445,25 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.10.19
+    clickhouse_pkg_ver: 21.8.12.29
 
-- name: install clickhouse conf
+- name: install clickhouse conf override
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   template:
     src: clickhouse_config.xml
-    dest: /etc/clickhouse-server/config.xml
+    dest: /etc/clickhouse-server/config.d/ooni_conf.xml
+    owner: clickhouse
+    group: clickhouse
+    mode: 0400
+  notify: restart clickhouse
+
+- name: install clickhouse user conf override
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  tags: clickhouse
+  template:
+    src: clickhouse_users.xml
+    dest: /etc/clickhouse-server/users.d/ooni_users.xml
     owner: clickhouse
     group: clickhouse
     mode: 0400

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<yandex>
+  <clickhouse>
+    <users>
+      <default>
+        <!-- default user can connect from any ipaddr and has the "readonly" profile-->
+        <!-- <profile replace="replace">readonly</profile> -->
+        <networks replace="replace">
+          <ip>0.0.0.0</ip>
+        </networks>
+      </default>
+    </users>
+  </clickhouse>
+</yandex>
+

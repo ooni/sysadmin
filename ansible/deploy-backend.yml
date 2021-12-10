@@ -28,7 +28,7 @@
 
 - hosts: ams-pg-test.ooni.org
   roles:
-    - role: base-buster
+    - role: base-bullseye
     - role: nftables
     - role: nginx-buster
       tags: nginx
@@ -37,8 +37,6 @@
       expand: yes
       letsencrypt_domains:
         - "ams-pg-test.ooni.org"
-    - role: postgresql11
-      tags: postgresql11
     - role: ooni-backend
       ssl_domain: ams-pg-test.ooni.org
 
@@ -53,7 +51,5 @@
       expand: yes
       ssl_domains:
         - "backend-fsn.ooni.org"
-    - role: postgresql13
-      tags: postgresql13
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
