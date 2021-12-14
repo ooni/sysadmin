@@ -2,17 +2,14 @@
 
 ## API ##
 
-- name: Check API pkg
-  tags: api
-  command: dpkg-query -l ooni-api
-  register: api_is_installed
-
-- name: install API
-  when: api_is_installed.stdout.find('no packages found') != -1
+- name: install API if not present
   tags: api
   apt:
-    cache_valid_time: 86400
+    allow_downgrade: no
+    cache_valid_time: '{{ apt_cache_valid_time }}'
     name: ooni-api
+    state: present
+    update_cache: yes
 
 - name: create Nginx cache dir
   file:
@@ -34,6 +31,9 @@
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
     clickhouse_host: "localhost"
+    mail_smtp_password: "DISABLED"
+    github_token: "DISABLED"
+    jwt_encryption_key: "api-test-bogus-key"
 
 - name: configure backend-fsn api
   when: inventory_hostname == 'backend-fsn.ooni.org'
@@ -111,6 +111,16 @@
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
 - name: Overwrite API nginx conf
+  when: inventory_hostname != 'backend-fsn.ooni.org'
+  tags: api
+  template:
+    src: templates/ooni-api.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+
+- name: Overwrite API nginx conf
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: api
   template:
     src: templates/ooni-api.conf
@@ -427,6 +437,17 @@
     block: |
       deb https://repo.clickhouse.com/deb/lts/ main/
 
+- name: pin clickhouse release train
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  tags: clickhouse
+  blockinfile:
+    path: /etc/apt/preferences.d/clickhouse-server
+    create: yes
+    block: |
+      Package: clickhouse-server
+      Pin: version 21.8.12.*
+      Pin-Priority: 999
+
 - name: install clickhouse on backend-fsn
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: clickhouse
@@ -438,7 +459,7 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.12.29
+    clickhouse_pkg_ver: 21.8.12.*
 
 - name: install clickhouse on ams-pg-test.ooni.org
   when: inventory_hostname == 'ams-pg-test.ooni.org'
@@ -451,7 +472,7 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.12.29
+    clickhouse_pkg_ver: 21.8.12.*
 
 - name: install clickhouse conf override
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
