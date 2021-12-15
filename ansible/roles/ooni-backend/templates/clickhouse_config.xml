@@ -7,7 +7,7 @@
 {% if inventory_hostname == 'backend-fsn.ooni.org' %}
   <display_name>production</display_name>
 {% else %}
-  <display_name>{{ inventory_hostname }}</display_name>
+  <display_name>{{ inventory_hostname.replace(".ooni.org", "") }}</display_name>
 {% endif %}
   <!-- further filtering is done by netfilter -->
   <listen_host>0.0.0.0</listen_host>
