@@ -524,4 +524,33 @@
     state: started
     enabled: yes
 
+- name: Run feeder on ams-pg-test
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  tags: clickhouse
+  blockinfile:
+    path: /etc/ooni/clickhouse_feeder.conf
+    create: yes
+    block: |
+      [DEFAULT]
+      pg_dbuser = readonly
+      pg_dbhost = localhost
+
+- name: run feeder on backend-fsn
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: clickhouse
+  blockinfile:
+    path: /etc/ooni/clickhouse_feeder.conf
+    create: yes
+    block: |
+      [DEFAULT]
+      pg_dbuser = readonly
+      pg_dbhost = ams-pg.ooni.org
+
+- name: Run feeder
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  tags: clickhouse
+  systemd:
+    name: ooni-clickhouse-feeder.service
+    state: started
+    enabled: yes
 
