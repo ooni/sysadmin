@@ -4,7 +4,11 @@
     <!-- Possible levels [1]: - none - fatal - critical - error - warning - notice - information - debug - trace -->
     <level>information</level>
   </logger>
+{% if inventory_hostname == 'backend-fsn.ooni.org' %}
   <display_name>production</display_name>
+{% else %}
+  <display_name>{{ inventory_hostname }}</display_name>
+{% endif %}
   <!-- further filtering is done by netfilter -->
   <listen_host>0.0.0.0</listen_host>
   <prometheus>
