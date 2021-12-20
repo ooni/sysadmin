@@ -1,14 +1,30 @@
 <?xml version="1.0"?>
 <yandex>
   <clickhouse>
+
+    <profiles>
+      <readonly>
+        <readonly>1</readonly>
+      </readonly>
+    </profiles>
+
     <users>
-      <default>
-        <!-- default user can connect from any ipaddr and has the "readonly" profile-->
-        <!-- <profile replace="replace">readonly</profile> -->
+      <api>
+        <!-- api user can connect from any ipaddr and has the "readonly" profile-->
+        <profile replace="replace">readonly</profile>
         <networks replace="replace">
           <ip>0.0.0.0</ip>
         </networks>
-      </default>
+      </api>
+
+      <fastpath>
+        <!-- the fastpath user can only connect from localhost, has a password and is able to write to the db -->
+        <password_sha256_hex>{{ clickhouse_writer_password|hash('sha256') }}</password_sha256_hex>
+        <networks replace="replace">
+          <ip>127.0.0.1</ip>
+        </networks>
+      </fastpath>
+
     </users>
   </clickhouse>
 </yandex>

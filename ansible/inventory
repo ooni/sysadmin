@@ -61,6 +61,10 @@ doams1-countly.ooni.nu
 
 [psk_amsrepl]
 
+[psk_clickhouse]
+backend-fsn.ooni.org
+ams-pg-test.ooni.org
+
 [psk_hkgmetadb]
 
 [psk_oomsm_beta]
