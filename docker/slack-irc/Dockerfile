@@ -1,7 +1,5 @@
-FROM node:13
+FROM node:17-bullseye
 # Taken from: https://github.com/chihchun/slack-ircbridge-docker/tree/master/3.8.2
-
-ENV SLACK_IRC_VERSION=3.11.3
 
 # Usual update and install
 ENV DEBIAN_FRONTEND noninteractive
