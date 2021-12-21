@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y supervisor
 
 # Get slack-irc
-RUN yarn install -g https://github.com/ooni/slack-irc
+RUN yarn global add https://github.com/ooni/slack-irc
 
 # Add supervisor configs
 ADD supervisord.conf supervisord.conf
