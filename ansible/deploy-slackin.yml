@@ -7,6 +7,7 @@
 - hosts: ams-slack-1.ooni.org
   roles:
     - role: docker
+      tags: docker
     - role: letsencrypt-legacy
       tags: letsencrypt
       expand: yes
