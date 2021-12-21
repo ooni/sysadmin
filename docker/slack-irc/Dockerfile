@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y supervisor
 
 # Get slack-irc
-RUN npm install -g slack-irc@${SLACK_IRC_VERSION}
+RUN npm install -g https://github.com/ooni/slack-irc
 
 # Add supervisor configs
 ADD supervisord.conf supervisord.conf
