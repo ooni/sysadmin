@@ -5,7 +5,6 @@
 - name: install API if not present
   tags: api
   apt:
-    allow_downgrade: no
     cache_valid_time: '{{ apt_cache_valid_time }}'
     name: ooni-api
     state: present
@@ -30,7 +29,7 @@
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
-    clickhouse_url: "clickhouse://api@localhost:9000/default"
+    clickhouse_url: "clickhouse://default@localhost/default"
     mail_smtp_password: "DISABLED"
     github_token: "DISABLED"
     jwt_encryption_key: "api-test-bogus-key"
@@ -87,11 +86,9 @@
     path: /etc/ooni/api-uploader.conf
     create: yes
     block: |
-      # OONI API measurement uploader - Python ini format
       [DEFAULT]
-      # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
-      aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      # aws_secret_access_key =  {{ s3_ooni_open_data_access_key }}
+      # WARNING: deleting data instead of uploding to S3
+      run_mode = DESTROY_DATA
       bucket_name = ooni-data-eu-fra-test
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
