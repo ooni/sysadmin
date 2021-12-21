@@ -27,7 +27,7 @@
   tags: slack-irc
   docker_container:
     name: slack-irc-bridge
-    image: openobservatory/sysadmin-slack-irc:20211221-5ea5b3ab
+    image: openobservatory/sysadmin-slack-irc:20211221-547bf205
     restart_policy: unless-stopped
     volumes:
       - "/srv/slack-irc:/slack-irc"
