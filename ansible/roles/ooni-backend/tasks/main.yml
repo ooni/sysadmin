@@ -116,6 +116,8 @@
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
+  vars:
+    certpath: /etc/letsencrypt/live/
 
 - name: Overwrite API nginx conf
   when: inventory_hostname == 'backend-fsn.ooni.org'
@@ -125,6 +127,9 @@
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
+  vars:
+    # Uses dehydrated
+    certpath: /var/lib/dehydrated/certs/
 
 - name: Deploy API gunicorn conf
   tags: api
@@ -134,14 +139,6 @@
     owner: ooniapi
     group: ooniapi
     mode: 0640
-
-- name: Use dehydrated
-  tags: api
-  when: inventory_hostname == 'backend-fsn.ooni.org'
-  replace:
-    path: /etc/nginx/sites-available/ooni-api.conf
-    regexp: /etc/letsencrypt/live/
-    replace: /var/lib/dehydrated/certs/
 
 - name: Create symlink for API nginx conf
   tags: api
