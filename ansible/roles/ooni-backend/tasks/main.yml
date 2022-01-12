@@ -3,6 +3,7 @@
 ## API ##
 
 - name: install API if not present
+  # do not update package if present
   tags: api
   apt:
     cache_valid_time: '{{ apt_cache_valid_time }}'
@@ -213,6 +214,7 @@
 ## Fastpath ##
 
 - name: install fastpath if not present
+  # do not update package if present
   when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: fastpath
   apt:
@@ -263,12 +265,14 @@
 ## Analysis daemon ##
 
 - name: install analysis
+  # do not update package if present
   when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: analysis
   apt:
     cache_valid_time: 86400
     name: analysis=0.15~pr324-331
     force: True
+    state: present
 
 - name: configure analysis
   when: inventory_hostname != 'backend-fsn.ooni.org'
@@ -420,10 +424,12 @@
 # Clickhouse
 
 - name: install clickhouse
+  # do not update package if present
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   apt:
     cache_valid_time: 86400
+    state: present
     name:
       - apt-transport-https
       - ca-certificates
