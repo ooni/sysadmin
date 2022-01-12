@@ -1,5 +1,7 @@
 # OONI MetaDB Sharing
 
+**Attention** We no longer offer the ability to sync OONI data using this method, so all the following documentation is to be considered obsolete.
+
 This document will explain how you can setup a copy of the OONI metadb which
 powers the OONI API and Explorer.
 
