@@ -418,7 +418,7 @@
     state: reloaded
 
 
-# Clickhouse
+# # Clickhouse # #
 
 - name: install clickhouse
   # do not update package if present
@@ -494,17 +494,6 @@
     mode: 0400
   notify: restart clickhouse
 
-- name: install clickhouse user conf override
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
-  tags: clickhouse
-  template:
-    src: clickhouse_users.xml
-    dest: /etc/clickhouse-server/users.d/ooni_users.xml
-    owner: clickhouse
-    group: clickhouse
-    mode: 0400
-  notify: restart clickhouse
-
 - name: allow incoming TCP connections from monitoring to Clickhouse prometheus interface
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
@@ -532,6 +521,83 @@
     name: clickhouse-server.service
     state: started
     enabled: yes
+
+## Clickhouse access control ##
+# https://clickhouse.com/docs/en/operations/access-rights/#enabling-access-control
+
+- name: Clickhouse - test admin user
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  tags: clickhouse-users
+  command: clickhouse-client -u admin --password admin -q 'select 1'
+  ignore_errors: true
+  register: admin_check
+
+- name: Clickhouse - set flag
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  # The users.xml file itself needs to be edited for this to work
+  xml:
+    path: /etc/clickhouse-server/users.xml
+    backup: yes
+    xpath: /yandex/users/default/access_management
+    value: "1"
+  register: users_xml
+
+- name: Clickhouse - restart immediately if needed
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  systemd:
+    name: clickhouse-server
+    state: restarted
+
+- name: Clickhouse - create admin
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  command: clickhouse-client -q "CREATE USER OR REPLACE admin IDENTIFIED WITH plaintext_password BY 'admin' HOST LOCAL GRANTEES ANY"
+  # The server might be still starting: retry as needed
+  retries: 10
+  delay: 5
+  register: result
+  until: result.rc == 0
+
+- name: Clickhouse - grant admin rights
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  command: clickhouse-client -q 'GRANT ALL ON *.* TO admin WITH GRANT OPTION'
+
+- name: Clickhouse - create readonly profile
+  when: admin_check is defined and admin_check is failed
+  blockinfile:
+    path: /etc/clickhouse-server/users.d/make_default_readonly.xml
+    create: yes
+    block: |
+      <?xml version="1.0"?>
+      <!-- deployed by ansible, see roles/ooni-backend/tasks/main.yml -->
+      <yandex>
+        <clickhouse>
+          <profiles>
+            <default>
+              <readonly>1</readonly>
+            </default>
+          </profiles>
+        </clickhouse>
+      </yandex>
+
+- name: Clickhouse - restore users.xml
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  command: mv {{ users_xml.backup_file }} /etc/clickhouse-server/users.xml
+
+- name: Clickhouse - restart immediately if needed
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  systemd:
+    name: clickhouse-server
+    state: restarted
+
+## end of Clickhouse access control ##
+
+
 
 - name: Run feeder on ams-pg-test
   when: inventory_hostname == 'ams-pg-test.ooni.org'
