@@ -21,6 +21,7 @@
   <!-- further filtering is done by netfilter and user auth -->
   <listen_host>0.0.0.0</listen_host>
 
+  <!-- enable prometheus metrics -->
   <prometheus>
     <endpoint>/metrics</endpoint>
     <port>9363</port>
