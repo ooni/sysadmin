@@ -566,22 +566,13 @@
   command: clickhouse-client -q 'GRANT ALL ON *.* TO admin WITH GRANT OPTION'
 
 - name: Clickhouse - create readonly profile
-  when: admin_check is defined and admin_check is failed
-  blockinfile:
-    path: /etc/clickhouse-server/users.d/make_default_readonly.xml
-    create: yes
-    block: |
-      <?xml version="1.0"?>
-      <!-- deployed by ansible, see roles/ooni-backend/tasks/main.yml -->
-      <yandex>
-        <clickhouse>
-          <profiles>
-            <default>
-              <readonly>1</readonly>
-            </default>
-          </profiles>
-        </clickhouse>
-      </yandex>
+  tags: clickhouse-users
+  template:
+    src: clickhouse_readonly.xml
+    dest: /etc/clickhouse-server/users.d/make_default_readonly.xml
+    owner: clickhouse
+    group: clickhouse
+    mode: 0640
 
 - name: Clickhouse - restore users.xml
   when: admin_check is defined and admin_check is failed

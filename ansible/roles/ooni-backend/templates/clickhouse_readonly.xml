@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- deployed by ansible, see roles/ooni-backend/tasks/main.yml -->
+<yandex>
+  <profiles>
+    <default>
+      <readonly replace="replace">1</readonly>
+    </default>
+  </profiles>
+</yandex>
