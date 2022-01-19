@@ -30,7 +30,7 @@
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
-    clickhouse_url: "clickhouse://default@localhost/default"
+    clickhouse_url: clickhouse://api:api@localhost/default
     mail_smtp_password: "DISABLED"
     github_token: "DISABLED"
     jwt_encryption_key: "api-test-bogus-key"
@@ -49,7 +49,7 @@
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
-    clickhouse_url: "clickhouse://api@localhost:9000/default"
+    clickhouse_url: clickhouse://api:api@localhost/default
 
 - name: configure prod api
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -134,7 +134,7 @@
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api.conf
+    src: templates/ooni-api-fsn.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
