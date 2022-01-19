@@ -27,7 +27,7 @@
 
 - name: docker run ooni-run
   docker_container:
-    image: "openobservatory/run:20211129-7a9c83ae" # Note: deploy-ooni-run.yml needs to be upgraded to fix nftables dependency issues
+    image: "openobservatory/run:20220119-c09fae79" # Note: deploy-ooni-run.yml needs to be upgraded to fix nftables dependency issues
     name: ooni-run
     hostname: ooni-run
     network_mode: 'host'
