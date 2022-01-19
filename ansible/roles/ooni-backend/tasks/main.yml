@@ -108,9 +108,20 @@
       bucket_name = ooni-data-eu-fra
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
-- name: Overwrite API nginx conf
-  when: inventory_hostname != 'backend-fsn.ooni.org'
-  tags: api
+- name: Overwrite API nginx prod conf
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: api, api-nginx
+  template:
+    src: templates/ooni-api-prod.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+  vars:
+    certpath: /etc/letsencrypt/live/
+
+- name: Overwrite API nginx test conf
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  tags: api, api-nginx
   template:
     src: templates/ooni-api.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
@@ -119,9 +130,9 @@
   vars:
     certpath: /etc/letsencrypt/live/
 
-- name: Overwrite API nginx conf
+- name: Overwrite API nginx FSN conf
   when: inventory_hostname == 'backend-fsn.ooni.org'
-  tags: api
+  tags: api, api-nginx
   template:
     src: templates/ooni-api.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
@@ -186,7 +197,7 @@
     state: directory
 
 - name: Safely reload Nginx
-  tags: api, deb_ooni_org
+  tags: api, deb_ooni_org, api-nginx
   shell: nginx -t && systemctl reload nginx
 
 - name: allow incoming TCP connections to API
@@ -532,6 +543,13 @@
   ignore_errors: true
   register: admin_check
 
+- name: install tor python3-lxml
+  when: admin_check is defined and admin_check is failed
+  tags: clickhouse-users
+  apt:
+    cache_valid_time: 86400
+    name: python3-lxml
+
 - name: Clickhouse - set flag
   when: admin_check is defined and admin_check is failed
   tags: clickhouse-users
@@ -594,10 +612,10 @@
     create: yes
     marker: "-- {mark} managed by ansible, see roles/ooni-backend/tasks/main.yml"
     block: |
-      CREATE USER OR REPLACE api IDENTIFIED WITH plaintext_password BY 'api' HOST LOCAL
-      GRANT ALL ON *.* TO api
-      CREATE USER OR REPLACE fastpath IDENTIFIED WITH plaintext_password BY 'fastpath' HOST LOCAL
-      GRANT ALL ON *.* TO fastpath
+      CREATE USER OR REPLACE api IDENTIFIED WITH plaintext_password BY 'api' HOST LOCAL;
+      GRANT ALL ON *.* TO api;
+      CREATE USER OR REPLACE fastpath IDENTIFIED WITH plaintext_password BY 'fastpath' HOST LOCAL;
+      GRANT ALL ON *.* TO fastpath;
 
 - name: Clickhouse - run commands
   tags: clickhouse-users
