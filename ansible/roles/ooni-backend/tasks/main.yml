@@ -50,6 +50,7 @@
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
+    base_url: "https://api.ooni.io"
 
 - name: configure prod api
   when: inventory_hostname == 'ams-pg.ooni.org'
