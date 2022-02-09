@@ -1,0 +1,20 @@
+[Unit]
+Description=jupycron Jupyter notebook runner
+
+[Service]
+ExecStart=jupycron
+# jupycron itself runs as root but the notebooks are run as jupyter
+User=root
+Group=root
+
+SystemCallFilter=~@clock @debug @cpu-emulation @keyring @module @mount @obsolete @raw-io @reboot @swap
+NoNewPrivileges=yes
+PrivateDevices=yes
+PrivateTmp=yes
+ProtectHome=yes
+ProtectSystem=full
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target

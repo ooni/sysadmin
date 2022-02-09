@@ -203,4 +203,41 @@
   tags: fail2ban
   shell: systemctl reload fail2ban.service
 
+# jupycron
+
+- name: Install jupycron script
+  tags: jupycron
+  template:
+    src: files/jupycron
+    dest: /usr/bin/jupycron
+    mode: 0755
+    owner: root
+
+- name: Install jupycron.service
+  tags: jupycron
+  template:
+    src: files/jupycron.service
+    dest: /etc/systemd/system/jupycron.service
+    mode: 0644
+    owner: root
+
+- name: Install jupycron.timer
+  tags: jupycron
+  template:
+    src: files/jupycron.timer
+    dest: /etc/systemd/system/jupycron.timer
+    mode: 0644
+    owner: root
+
+- name: reload systemd
+  tags: jupycron
+  shell: systemctl daemon-reload
+
+- name: Ensure jupycron timer runs
+  tags: jupycron
+  systemd:
+    name: jupycron.timer
+    state: started
+    enabled: yes
+
 ...
