@@ -248,4 +248,75 @@
     state: started
     enabled: yes
 
-...
+# # clickhouse # #
+
+- name: install clickhouse requirements
+  tags: clickhouse
+  apt:
+    cache_valid_time: 86400
+    state: present
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - dirmngr
+
+- name: install clickhouse keys
+  tags: clickhouse
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
+
+- name: set clickhouse repos
+  tags: clickhouse
+  blockinfile:
+    path: /etc/apt/sources.list.d/clickhouse.list
+    create: yes
+    block: |
+      deb https://repo.clickhouse.com/deb/lts/ main/
+
+- name: pin clickhouse release train
+  tags: clickhouse
+  blockinfile:
+    path: /etc/apt/preferences.d/clickhouse-server
+    create: yes
+    block: |
+      Package: clickhouse-server
+      Pin: version 21.8.12.*
+      Pin-Priority: 999
+
+- name: install clickhouse
+  tags: clickhouse
+  apt:
+    # refresh cache
+    cache_valid_time: 0
+    name:
+      - clickhouse-server={{ clickhouse_pkg_ver }}
+      - clickhouse-client={{ clickhouse_pkg_ver }}
+      - clickhouse-common-static={{ clickhouse_pkg_ver }}
+  vars:
+    clickhouse_pkg_ver: 21.8.12.*
+
+#- name: install clickhouse conf override
+#  tags: clickhouse
+#  template:
+#    src: clickhouse_config.xml
+#    dest: /etc/clickhouse-server/config.d/ooni_conf.xml
+#    owner: clickhouse
+#    group: clickhouse
+#    mode: 0400
+#  notify: restart clickhouse
+
+- name: Run clickhouse
+  tags: clickhouse
+  systemd:
+    name: clickhouse-server.service
+    state: started
+    enabled: yes
+
+- name: deploy file
+  tags: clickhouse
+  copy:
+    src: create_logs_table.sql
+    dest: /etc/clickhouse-server/create_logs_table.sql
+
+- name: create logs table
+  tags: clickhouse
+  command: clickhouse-client --multiline --multiquery --queries-file /etc/clickhouse-server/create_logs_table.sql
