@@ -15,7 +15,7 @@ import json
 import subprocess
 
 DEFAULT_NOTEBOOK_PATH = Path("/var/lib/jupyter/notebooks/")
-DEFAULT_OUTPUT_PATH = "/var/lib/jupyter/jupycron"
+DEFAULT_OUTPUT_PATH = "/var/lib/jupyter/notebooks/jupycron"
 RUNTIME_LIMIT = 3600
 MAXMEM = 1000
 log = logging.getLogger("jupycron")
@@ -64,6 +64,7 @@ def run_notebook(nb, conf):
     cmd = [
         "systemd-run",
         f"--unit={unitname}",
+        "--collect",
         "--uid=jupyter",
         "--gid=jupyter",
         "--working-directory=/var/lib/jupyter/notebooks/",
@@ -84,9 +85,11 @@ def run_notebook(nb, conf):
     try:
         p = subprocess.check_output(cmd, stderr=subprocess.PIPE, timeout=5)
         out = p.decode()
-        log.debug(f"{unitname} output:\n{out}")
+        log.info(f"{unitname} output:\n{out}")
     except subprocess.CalledProcessError as e:
         log.info(f"Error in {unitname}. Output:\n{e.output.decode()}")
+
+    log.info(f"{unitname} done")
 
 
 def main():

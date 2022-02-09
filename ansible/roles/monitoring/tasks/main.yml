@@ -213,6 +213,14 @@
     mode: 0755
     owner: root
 
+- name: Create jupycron output dir
+  tags: jupycron
+  file:
+    path: /var/lib/jupyter/notebooks/jupycron
+    state: directory
+    owner: jupyter
+    group: jupyter
+
 - name: Install jupycron.service
   tags: jupycron
   template:
