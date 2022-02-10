@@ -1,0 +1,17 @@
+[Unit]
+Description=log ingestion
+
+[Service]
+ExecStart=/bin/sh -c 'journalctl -ojson -f | clickhouse-client --query="INSERT INTO logs FORMAT JSONEachRow" --input_format_skip_unknown_fields=1 --input_format_allow_errors_ratio=1'
+
+SystemCallFilter=~@clock @debug @cpu-emulation @keyring @module @mount @obsolete @raw-io @reboot @swap
+NoNewPrivileges=yes
+PrivateDevices=yes
+PrivateTmp=yes
+ProtectHome=yes
+ProtectSystem=full
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target

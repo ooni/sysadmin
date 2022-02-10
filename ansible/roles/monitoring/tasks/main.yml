@@ -320,3 +320,17 @@
 - name: create logs table
   tags: clickhouse
   command: clickhouse-client --multiline --multiquery --queries-file /etc/clickhouse-server/create_logs_table.sql
+
+- name: deploy service file
+  tags: log-ingestion
+  copy:
+    src: log-ingestion.service
+    dest: /etc/systemd/system/log-ingestion.service
+
+- name: Run log ingestion
+  tags: log-ingestion
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    name: log-ingestion.service
+    state: started
