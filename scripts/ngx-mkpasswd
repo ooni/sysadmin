@@ -1,23 +1,28 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
-from getpass import getpass, getuser
+from getpass import getuser
 from os import urandom
 from base64 import b64encode, urlsafe_b64encode
 from hashlib import sha1
 
+
 def ssha(password):
-    salt = urandom(16) # glibc salt length is 8 <= x <= 16
+    salt = urandom(16)  # glibc salt length is 8 <= x <= 16
     return b64encode(sha1(password + salt).digest() + salt)
 
-def main():
-    pw = urlsafe_b64encode(urandom(21)) # SHA1 is 20 bytes, but last byte of password is not "uniform b64 character"
-    print '#'
-    print '# Password to store in keychain: %s' % pw
-    print '#'
-    print '# Hash to store in htpasswd file:'
-    print '#'
-    print '%s:{SSHA}%s' % (getuser(), ssha(pw))
-    print '#'
 
-if __name__ == '__main__':
+def main():
+    pw = urlsafe_b64encode(
+        urandom(21)
+    )  # SHA1 is 20 bytes, but last byte of password is not "uniform b64 character"
+    print("#")
+    print("# Password to store in keychain: %s" % pw.decode())
+    print("#")
+    print("# Hash to store in htpasswd file:")
+    print("#")
+    print("%s:{SSHA}%s" % (getuser(), ssha(pw).decode()))
+    print("#")
+
+
+if __name__ == "__main__":
     main()
