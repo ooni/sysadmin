@@ -90,7 +90,7 @@
     owner: root
 
 - name: copy monitoring.htpasswd
-  tags: monitoring, grafana
+  tags: monitoring, grafana, htpasswd
   copy:
     src: htpasswd
     dest: /etc/nginx/monitoring.htpasswd

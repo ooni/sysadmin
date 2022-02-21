@@ -52,14 +52,17 @@ def time_to_run(conf):
     return epoch_min % every_min == 0
 
 
+def generate_unit_name(nb):
+    hash_ = nb.as_posix().encode()
+    hash_ = hashlib.sha224(hash_).hexdigest()[:10]
+    return nb.stem.replace(" ", "_") + "-" + hash_
+
+
 def run_notebook(nb, conf):
     htmlfn = nb.with_suffix(".html").as_posix()
     htmlfn = htmlfn.replace(DEFAULT_NOTEBOOK_PATH.as_posix(), DEFAULT_OUTPUT_PATH)
-    hash_ = nb.as_posix().encode()
-    hash_ = hashlib.sha224(hash_).hexdigest()[:10]
-    unitname = nb.stem.replace(" ", "_") + "-"
-    unitname += hash_
-    maxruntimesec = min(conf.get("MaxRuntime", RUNTIME_LIMIT), RUNTIME_LIMIT)
+    unitname = generate_unit_name(nb)
+    # maxruntimesec = min(conf.get("MaxRuntime", RUNTIME_LIMIT), RUNTIME_LIMIT)
     memorymax = min(conf.get("MaxMem", MAXMEM), MAXMEM)
     cmd = [
         "systemd-run",
