@@ -231,27 +231,29 @@
     name: fastpath
     state: present
 
-- name: configure fastpath
-  when: inventory_hostname != 'backend-fsn.ooni.org'
+- name: configure fastpath on test
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: fastpath
-  blockinfile:
-    path: /etc/ooni/fastpath.conf
-    create: yes
-    block: |
-      # See roles/ooni-backend/tasks/main.yml
-      [DEFAULT]
-      collectors = localhost
-      # The password is already made public
-      db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
+  template:
+    src: fastpath.conf
+    dest: /etc/ooni/fastpath.conf
+    owner: fastpath
+    group: fastpath
+    mode: 0640
+  vars:
+    clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
 
-      # S3 access credentials
-      # used for fetching cans/minicans
-      # arn:aws:iam::082866812839:user/ooni-datacollector, AWS: OONI Team
-      s3_access_key = AKIAJQAGCR267PNGTTKA
-      s3_secret_key: '{{ s3_ooni_open_data_access_key }}'
-
-
-
+- name: configure fastpath on ams-pg
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: fastpath
+  template:
+    src: fastpath.conf
+    dest: /etc/ooni/fastpath.conf
+    owner: fastpath
+    group: fastpath
+    mode: 0640
+  vars:
+    clickhouse_url:
 
 
 ## Event detector ##
