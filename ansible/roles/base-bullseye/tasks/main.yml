@@ -141,8 +141,19 @@
       # Managed by ansible, see roles/base-bullseye/tasks/main.yml
       SEND_EMAIL="NO"
 
+- name: Set timezone
+  tags: timezone
+  timezone:
+    name: Etc/UTC
+
+- name: restart chrony service
+  tags: timezone
+  systemd:
+    name: chrony.service
+    state: restarted
+
 - name: configure netdata chrony
-  tags: netdata
+  tags: netdata, timezone
   blockinfile:
     path: /etc/netdata/python.d/chrony.conf
     create: yes
@@ -151,6 +162,13 @@
       update_every: 5
       local:
         command: 'chronyc -n tracking'
+
+- name: configure netdata chrony
+  tags: netdata, timezone
+  lineinfile:
+    path: /usr/lib/netdata/conf.d/python.d.conf
+    regexp: '^chrony:'
+    line: 'chrony: yes'
 
 #- name: configure netdata nginx
 #  blockinfile:
@@ -173,7 +191,7 @@
 #        url: 'http://127.0.0.1:7000/haproxy_stats;csv;norefresh'
 
 - name: restart netdata service
-  tags: netdata
+  tags: netdata, timezone
   systemd:
     name: netdata.service
     state: restarted
