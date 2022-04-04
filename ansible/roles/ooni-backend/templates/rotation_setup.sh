@@ -24,5 +24,21 @@ oN7jfdbznrWVigE=
 EOF
 apt-get update -q
 apt-get upgrade -qy
-apt-get install -qy nginx-light
+apt-get install -qy nginx-light chrony netdata
 apt-get install -qy oohelperd
+
+# Configure incoming connections to Netdata
+cat > /etc/netdata/netdata.conf <<EOF
+[global]
+	run as user = netdata
+	web files owner = root
+	web files group = root
+	# Netdata is not designed to be exposed to potentially hostile
+	# networks. See https://github.com/netdata/netdata/issues/164
+	bind socket to IP = 0.0.0.0
+[web]
+	allow connections from = 5.9.112.244
+EOF
+# Enable chrony monitoring and restart Netdata
+sed -i 's/^chrony: no/chrony: yes/g' /usr/lib/netdata/conf.d/python.d.conf
+systemctl restart netdata
