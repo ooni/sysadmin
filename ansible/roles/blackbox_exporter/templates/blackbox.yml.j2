@@ -84,6 +84,19 @@ modules:
       fail_if_body_not_matches_regexp:
         - ".+?\"status\".+?\"ok\".+?"
 
+  # Send JSON with a POST to a new test helper to run a real http_request and tcp_connect test
+  new_test_helper_health:
+    prober: http
+    timeout: 25s
+    http:
+      valid_status_codes: [200]
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: '{"http_request":"https://google.com/","http_request_headers":{},"tcp_connect":["8.8.8.8:443"]}'
+      fail_if_body_not_matches_regexp:
+        - "Google"
+
   ooni_tcp_echo_ok:
     prober: tcp
     timeout: 5s

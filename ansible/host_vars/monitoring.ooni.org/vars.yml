@@ -32,6 +32,13 @@ blackbox_jobs:
       - "https://wcth.ooni.io/status"
       - "https://ams-wcth2.ooni.nu/status"
       - "https://a.web-connectivity.th.ooni.io/status" # "https://ams-wcth3.ooni.nu/status"
+
+  - name: "new test helpers"
+    module: "new_test_helper_health"
+    targets:
+      - "https://0.th.ooni.org/"
+      - "https://1.th.ooni.org/"
+
   - name: "ooni collector"
     module: "ooni_collector_ok"
     targets:
