@@ -42,3 +42,12 @@ server {
 
   }
 }
+
+# Used by Netdata to monitor Nginx
+server {
+  listen 127.0.0.1:80;
+  server_name localhost;
+  location = /stub_status {
+    stub_status;
+  }
+}
