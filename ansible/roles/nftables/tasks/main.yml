@@ -1,10 +1,12 @@
 ---
 - name: Install nftables
+  tags: nftables
   apt:
     cache_valid_time: 86400
     name: nftables
 
 - name: create config dir
+  tags: nftables
   file:
     path: /etc/ooni/nftables/tcp
     state: directory
@@ -13,6 +15,7 @@
     mode: 0755
 
 - name: allow SSH
+  tags: nftables
   blockinfile:
     path: /etc/ooni/nftables/tcp/22.nft
     create: yes
@@ -20,6 +23,7 @@
       add rule inet filter input tcp dport 22 counter accept comment "Incoming SSH"
 
 - name: Overwrite nftables.conf
+  tags: nftables
   template:
     src: templates/nftables.conf
     dest: /etc/nftables.conf
@@ -27,9 +31,11 @@
     owner: root
 
 - name: enable nftables service
+  tags: nftables
   shell: systemctl enable nftables.service
 
 - name: enable nftables service
+  tags: nftables
   shell: systemctl start nftables.service
 
 #- name: Enable and start nftables service
@@ -39,4 +45,5 @@
 #    enabled: yes
 
 - name: reload nftables service
+  tags: nftables
   shell: systemctl reload nftables.service
