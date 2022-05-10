@@ -1,0 +1,11 @@
+- hosts: oonidata.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: nginx-buster
+      tags: nginx
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        - "oonidata.ooni.org"

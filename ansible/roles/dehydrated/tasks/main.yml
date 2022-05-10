@@ -59,7 +59,7 @@
 - name: Register account if needed
   tags: dehydrated
   ansible.builtin.shell:
-    cmd: test -d /var/lib/dehydrated/accounts || dehydrated --register --accept-terms
+    cmd: "test -d /var/lib/dehydrated/accounts || dehydrated --register --accept-terms"
 
 - name: Install dehydrated.service
   tags: dehydrated

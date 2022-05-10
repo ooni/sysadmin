@@ -27,6 +27,7 @@ ams
 [on_hetzner]
 monitoring.ooni.org
 backend-fsn.ooni.org
+oonidata.ooni.org
 
 ########################################################################
 # location tags
