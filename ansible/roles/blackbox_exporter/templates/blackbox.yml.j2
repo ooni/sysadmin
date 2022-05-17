@@ -1,4 +1,5 @@
 ---
+# Used together with host_vars/monitoring.ooni.org/vars.yml
 modules:
   http_2xx:
     prober: http
@@ -126,4 +127,37 @@ modules:
       method: GET
       fail_if_body_not_matches_regexp:
       - "404 page not found"
+
+  https_2xx_json:
+    http:
+      method: GET
+      valid_status_codes: []  # Defaults to 2xx
+      fail_if_not_ssl: true
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+      headers:
+        Origin: monitoring.ooni.org
+      no_follow_redirects: false
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      fail_if_body_not_matches_regexp:
+        - "}"
+    prober: http
+    timeout: 30s
+
+  https_2xx_json_meta:
+    http:
+      method: GET
+      valid_status_codes: []  # Defaults to 2xx
+      fail_if_not_ssl: true
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+      headers:
+        Origin: monitoring.ooni.org
+      no_follow_redirects: false
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      fail_if_body_not_matches_regexp:
+        - "metadata"
+    prober: http
+    timeout: 30s
+
 ...

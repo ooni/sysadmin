@@ -25,6 +25,8 @@ ngxprom_exporter_ports:
   9093: '127.0.0.1'
 
 blackbox_jobs:
+  # Used together with roles/blackbox_exporter/templates/blackbox.yml.j2
+
   - name: "ooni web_connectivity test helpers"
     module: "ooni_web_connectivity_ok"
     targets:
@@ -76,6 +78,11 @@ blackbox_jobs:
     targets:
       - "https://api.ooni.io/api/v1/measurements"
       - "https://ams-pg-test.ooni.org/api/v1/measurements"
+
+  - name: "ooni API test-list urls"
+    module: "https_2xx_json_meta"
+    targets:
+      - "https://api.ooni.io/api/v1/test-list/urls?country_code=US"
 
   - name: "countly.ooni.io ping"
     module: "http_2xx"
