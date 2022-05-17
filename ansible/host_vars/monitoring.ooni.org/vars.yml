@@ -73,6 +73,8 @@ blackbox_jobs:
     targets:
       - "https://explorer.ooni.org/"
 
+  # API #
+
   - name: "ooni API measurements"
     module: "http_2xx"
     targets:
@@ -83,6 +85,19 @@ blackbox_jobs:
     module: "https_2xx_json_meta"
     targets:
       - "https://api.ooni.io/api/v1/test-list/urls?country_code=US"
+
+  - name: "ooni API test-helpers"
+    module: "https_2xx_json"
+    targets:
+      - "https://api.ooni.io/api/v1/test-helpers"
+
+  - name: "ooni API priv global overview"
+    module: "https_2xx_json"
+    targets:
+      - "https://api.ooni.io/api/_/global_overview"
+
+  # end of API #
+
 
   - name: "countly.ooni.io ping"
     module: "http_2xx"

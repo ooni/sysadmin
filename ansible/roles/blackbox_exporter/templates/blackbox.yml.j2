@@ -136,7 +136,7 @@ modules:
       preferred_ip_protocol: "ip4" # defaults to "ip6"
       ip_protocol_fallback: false  # no fallback to "ip6"
       headers:
-        Origin: monitoring.ooni.org
+        User-Agent: ooni blackbox
       no_follow_redirects: false
       valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
       fail_if_body_not_matches_regexp:
@@ -152,7 +152,7 @@ modules:
       preferred_ip_protocol: "ip4" # defaults to "ip6"
       ip_protocol_fallback: false  # no fallback to "ip6"
       headers:
-        Origin: monitoring.ooni.org
+        User-Agent: ooni blackbox
       no_follow_redirects: false
       valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
       fail_if_body_not_matches_regexp:
