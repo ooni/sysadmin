@@ -39,6 +39,7 @@ def get_bridges():
     return bridges
 
 def parse_dirauth(line : str) -> dict:
+    # Example: tor26 orport=443 v3ident=14C131DFC5C6F93646BE72FA1401C02A8DF2E8B4 ipv6=[2001:858:2:2:aabb:0:563b:1526]:443 86.59.21.38:80 847B 1F85 0344 D787 6491 A548 92F9 0493 4E4E B85D
     da = {}
     parts = line.split(" ")
     da["name"] = parts[0]
