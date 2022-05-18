@@ -15,6 +15,7 @@ from typing import List, Dict, Tuple, Union
 import json
 import hashlib
 
+from urllib.parse import urlsplit
 from urllib.request import urlopen
 
 DIRAUTH_URL = "https://gitweb.torproject.org/tor.git/plain/src/app/config/auth_dirs.inc"
@@ -22,6 +23,13 @@ BRIDGES_URL = "https://bridges.torproject.org/moat/circumvention/builtin"
 
 BridgeParams = Dict[str, List[str]]
 BridgeEntry = Dict[str, Union[str, BridgeParams]]
+
+
+def parse_ip(address) -> str:
+    purl = urlsplit("//" + address)
+    assert purl.hostname is not None, f"unable to parse ip from {address}"
+    return purl.hostname
+
 
 def parse_params(parts: List[str]) -> BridgeParams:
     params = {}
@@ -33,7 +41,7 @@ def parse_params(parts: List[str]) -> BridgeParams:
 
 def parse_bridge_line(line: str) -> Tuple[str, BridgeEntry]:
     # Example: "obfs4 146.57.248.225:22 10A6CD36A537FCE513A322361547444B393989F0 cert=K1gDtDAIcUfeLqbstggjIw2rtgIKqdIhUlHp82XRqNSq/mtAjp1BIC9vHKJ2FAEpGssTPw iat-mode=0"
-    bridge : BridgeEntry = {}
+    bridge: BridgeEntry = {}
     parts = line.split(" ")
     bridge["protocol"] = parts[0]
     bridge["address"] = parts[1]
@@ -41,7 +49,7 @@ def parse_bridge_line(line: str) -> Tuple[str, BridgeEntry]:
     bridge["params"] = parse_params(parts[3:])
 
     bridge_id = hashlib.sha256(
-        bridge["address"].encode("ascii") + bridge["fingerprint"].encode("ascii") # type: ignore
+        bridge["address"].encode("ascii") + bridge["fingerprint"].encode("ascii")  # type: ignore
     ).hexdigest()
 
     return bridge_id, bridge
@@ -102,7 +110,7 @@ def get_dirauths():
     for line in da_lines:
         da = parse_dirauth(line)
 
-        or_address = da["dir_address"].split(":")[0] + ":" + da["or_port"]
+        or_address = parse_ip(da["dir_address"]) + ":" + da["or_port"]
 
         # Since dirauths are keyed based on the address, if we don't check for
         # duplicate addressed we might end up ignoring a dir auth without
@@ -118,9 +126,8 @@ def get_dirauths():
         }
 
         assert (
-            or_address not in dir_auths
+            da["dir_address"] not in dir_auths
         ), "duplicate dirauth with the same dir_address detected, check the tor source code: https://gitweb.torproject.org/tor.git/plain/src/app/config/auth_dirs.inc"
-        assert da["dir_address"] not in dir_auths
         dir_auths[da["dir_address"]] = {
             "address": da["dir_address"],
             "name": da["name"],
