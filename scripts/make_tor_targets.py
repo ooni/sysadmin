@@ -46,7 +46,7 @@ def parse_dirauth(line : str) -> dict:
     assert parts[1].startswith("orport=")
     da["or_port"] = parts[1].lstrip("orport=")
     da["dir_address"] = parts[-11]
-    da["fingerprint"] = "".join(parts[-10:])
+    da["fingerprint"] = "".join(parts[-10:])  # ditto
     return da
 
 def get_dirauths():
