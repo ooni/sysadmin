@@ -6,7 +6,7 @@ from urllib.request import urlopen
 DIRAUTH_URL = "https://gitweb.torproject.org/tor.git/plain/src/app/config/auth_dirs.inc"
 BRIDGES_URL = "https://bridges.torproject.org/moat/circumvention/builtin"
 
-def parse_params(parts : list[str]) -> dict[str, str]:
+def parse_params(parts: list[str]) -> dict[str, list[str]]:
     params = {}
     for p in parts:
         k, v = p.split("=")
