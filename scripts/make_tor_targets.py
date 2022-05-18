@@ -13,7 +13,8 @@ def parse_params(parts: list[str]) -> dict[str, list[str]]:
         params[k] = [v]
     return params
 
-def parse_bridge_line(line : str) -> tuple[str, dict]:
+def parse_bridge_line(line: str) -> tuple[str, dict]:
+    # Example: "obfs4 146.57.248.225:22 10A6CD36A537FCE513A322361547444B393989F0 cert=K1gDtDAIcUfeLqbstggjIw2rtgIKqdIhUlHp82XRqNSq/mtAjp1BIC9vHKJ2FAEpGssTPw iat-mode=0"
     bridge = {}
     parts = line.split(" ")
     bridge["protocol"] = parts[0]
