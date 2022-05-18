@@ -45,7 +45,8 @@ def parse_dirauth(line : str) -> dict:
     da["name"] = parts[0]
     assert parts[1].startswith("orport=")
     da["or_port"] = parts[1].lstrip("orport=")
-    da["dir_address"] = parts[-11]
+    # TODO(hellais, bassosimone): This parsing algorithm ignores the IPv6 address.
+    da["dir_address"] = parts[-11]  # Note: the fingerprint consists of 10 elements
     da["fingerprint"] = "".join(parts[-10:])  # ditto
     return da
 
