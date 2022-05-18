@@ -1,3 +1,17 @@
+"""
+This script is meant to be run from the ooni/sysadmin repository root
+directory.
+
+It will fetch the latest bridge information from Tor's `moat` bridge API
+(https://gitlab.torproject.org/tpo/anti-censorship/rdsys/-/blob/main/doc/moat.md#circumventionbuiltin)
+and the directory authority information from the tor source code.
+The resulting data will be written to files in ooni/sysadmin so that it can be
+consumed by the OONI API.
+
+The data format is compatible with:
+https://github.com/ooni/spec/blob/master/nettests/ts-023-tor.md#expected-inputs.
+"""
+from typing import List, Dict, Tuple, Union
 import json
 import hashlib
 
@@ -35,7 +49,11 @@ def get_bridges():
     bridges = {}
     for b in j["obfs4"]:
         bridge_id, bd = parse_bridge_line(b)
-        assert bridge_id not in bridges
+        # Since bridges are keyed based on the ID, if we don't check for
+        # duplicate IDs we might end up ignoring a bridge without noticing
+        assert (
+            bridge_id not in bridges
+        ), "duplicate bridge ID detected, check the API response: https://bridges.torproject.org/moat/circumvention/builtin"
         bridges[bridge_id] = bd
     return bridges
 
@@ -78,20 +96,29 @@ def get_dirauths():
         da = parse_dirauth(line)
 
         or_address = da["dir_address"].split(":")[0] + ":" + da["or_port"]
-        assert or_address not in dir_auths
+
+        # Since dirauths are keyed based on the address, if we don't check for
+        # duplicate addressed we might end up ignoring a dir auth without
+        # noticing
+        assert (
+            or_address not in dir_auths
+        ), "duplicate dirauth with the same or_address detected, check the tor source code: https://gitweb.torproject.org/tor.git/plain/src/app/config/auth_dirs.inc"
         dir_auths[or_address] = {
             "address": or_address,
             "name": da["name"],
             "fingerprint": da["fingerprint"],
-            "protocol": "or_port_dirauth"
+            "protocol": "or_port_dirauth",
         }
 
+        assert (
+            or_address not in dir_auths
+        ), "duplicate dirauth with the same dir_address detected, check the tor source code: https://gitweb.torproject.org/tor.git/plain/src/app/config/auth_dirs.inc"
         assert da["dir_address"] not in dir_auths
         dir_auths[da["dir_address"]] = {
             "address": da["dir_address"],
             "name": da["name"],
             "fingerprint": da["fingerprint"],
-            "protocol": "dir_port"
+            "protocol": "dir_port",
         }
 
     return dir_auths
@@ -110,8 +137,11 @@ def main():
     res.update(dir_auths)
     res.update(bridges)
 
+    # we write to both location where there is a tor_targets.json file. It's
+    # unclear if one of these roles is deprecated
     write_json("ansible/roles/probe-services/templates/tor_targets.json", res)
     write_json("ansible/roles/ooni-backend/templates/tor_targets.json", res)
+
 
 if __name__ == "__main__":
     main()
