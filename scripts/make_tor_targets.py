@@ -20,16 +20,20 @@ from urllib.request import urlopen
 DIRAUTH_URL = "https://gitweb.torproject.org/tor.git/plain/src/app/config/auth_dirs.inc"
 BRIDGES_URL = "https://bridges.torproject.org/moat/circumvention/builtin"
 
-def parse_params(parts: list[str]) -> dict[str, list[str]]:
+BridgeParams = Dict[str, List[str]]
+BridgeEntry = Dict[str, Union[str, BridgeParams]]
+
+def parse_params(parts: List[str]) -> BridgeParams:
     params = {}
     for p in parts:
         k, v = p.split("=")
         params[k] = [v]
     return params
 
-def parse_bridge_line(line: str) -> tuple[str, dict]:
+
+def parse_bridge_line(line: str) -> Tuple[str, BridgeEntry]:
     # Example: "obfs4 146.57.248.225:22 10A6CD36A537FCE513A322361547444B393989F0 cert=K1gDtDAIcUfeLqbstggjIw2rtgIKqdIhUlHp82XRqNSq/mtAjp1BIC9vHKJ2FAEpGssTPw iat-mode=0"
-    bridge = {}
+    bridge : BridgeEntry = {}
     parts = line.split(" ")
     bridge["protocol"] = parts[0]
     bridge["address"] = parts[1]
@@ -37,10 +41,11 @@ def parse_bridge_line(line: str) -> tuple[str, dict]:
     bridge["params"] = parse_params(parts[3:])
 
     bridge_id = hashlib.sha256(
-            bridge["address"].encode("ascii") + bridge["fingerprint"].encode("utf-8")
+        bridge["address"].encode("ascii") + bridge["fingerprint"].encode("ascii") # type: ignore
     ).hexdigest()
 
     return bridge_id, bridge
+
 
 def get_bridges():
     with urlopen(BRIDGES_URL) as resp:
@@ -57,7 +62,8 @@ def get_bridges():
         bridges[bridge_id] = bd
     return bridges
 
-def parse_dirauth(line : str) -> dict:
+
+def parse_dirauth(line: str) -> Dict:
     # Example: tor26 orport=443 v3ident=14C131DFC5C6F93646BE72FA1401C02A8DF2E8B4 ipv6=[2001:858:2:2:aabb:0:563b:1526]:443 86.59.21.38:80 847B 1F85 0344 D787 6491 A548 92F9 0493 4E4E B85D
     da = {}
     parts = line.split(" ")
@@ -68,6 +74,7 @@ def parse_dirauth(line : str) -> dict:
     da["dir_address"] = parts[-11]  # Note: the fingerprint consists of 10 elements
     da["fingerprint"] = "".join(parts[-10:])  # ditto
     return da
+
 
 def get_dirauths():
     with urlopen(DIRAUTH_URL) as resp:
@@ -123,11 +130,13 @@ def get_dirauths():
 
     return dir_auths
 
-def write_json(path : str, obj : dict):
+
+def write_json(path: str, obj: Dict):
     with open(path, "w") as out_file:
         json.dump(obj, out_file, indent=2, sort_keys=True)
 
     print(f"written {path} file")
+
 
 def main():
     bridges = get_bridges()
