@@ -47,7 +47,7 @@
   vars:
     github_push_repo: "ooni-bot/test-lists"
     github_origin_repo: "ooni/test-lists"
-    login_base_url: "https://test-lists.test.ooni.org/login"
+    login_base_url: "https://test-lists.ooni.org/login"
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
     base_url: "https://api.ooni.io"
