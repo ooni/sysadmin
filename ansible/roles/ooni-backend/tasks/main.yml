@@ -69,7 +69,6 @@
     clickhouse_url: ""
 
 - name: create Psiphon conffile
-  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: api
   copy:
     content: "{{ psiphon_config }}"
