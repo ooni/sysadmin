@@ -285,24 +285,11 @@
     state: present
 
 - name: configure analysis
-  when: inventory_hostname != 'backend-fsn.ooni.org'
-  tags: analysis
-  blockinfile:
-    path: /etc/ooni/analysis.conf
-    create: yes
-    block: |
+  tags: analysis-conf
+  template:
+    src: analysis.conf
+    dest: /etc/ooni/analysis.conf
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
-      [active]
-      dbname = metadb
-      dbuser = shovel
-      dbpassword = yEqgNr2eXvgG255iEBxVeP
-      dbhost = localhost
-
-      [standby]
-      dbname = metadb
-      dbuser = shovel
-      dbpassword = yEqgNr2eXvgG255iEBxVeP
-      dbhost = localhost
 
 
 ## Test helper rotation ##
