@@ -296,7 +296,7 @@
 
 - name: configure test helper rotation
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   blockinfile:
     path: /etc/ooni/rotation.conf
     create: yes
@@ -306,7 +306,6 @@
       [DEFAULT]
       # Digital Ocean token
       token = {{ digital_ocean_token }}
-      db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
       active_droplets_count = 2
       size_slug = s-1vcpu-1gb
       image_name = debian-11-x64
@@ -315,7 +314,7 @@
 
 - name: configure test helper rotation certbot
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   blockinfile:
     path: /etc/ooni/certbot-digitalocean
     create: yes
@@ -326,21 +325,21 @@
 
 - name: configure test helper rotation setup script
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   template:
     src: rotation_setup.sh
     dest: /etc/ooni/rotation_setup.sh
 
 - name: create test helper rotation nginx template
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   template:
     src: rotation_nginx_conf
     dest: /etc/ooni/rotation_nginx_conf
 
 - name: generate test helper rotation SSH keypair
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   openssh_keypair:
     path: /etc/ooni/testhelper_ssh_key
     owner: root
@@ -351,12 +350,12 @@
 
 - name: print SSH pubkey
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   debug: msg={{ pubkey.public_key }}
 
 - name: Enable and start rotation service
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   systemd:
     daemon_reload: yes
     enabled: yes
