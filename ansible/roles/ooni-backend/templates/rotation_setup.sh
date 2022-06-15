@@ -54,6 +54,8 @@ systemctl restart netdata
 echo "Installing Nginx"
 apt-get install -qy nginx-light
 
+systemctl restart netdata
+
 # Used by https://github.com/ooni/pipeline/blob/master/af/analysis/rotation.py
 # to detect when the new test helper is ready to be used
 echo "Rotation setup completed"
