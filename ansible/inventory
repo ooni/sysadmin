@@ -79,6 +79,7 @@ db-1.proteus.ooni.io
 ams-ps.ooni.nu
 ams-pg.ooni.org
 ams-pg-test.ooni.org
+backend-fsn.ooni.org
 
 [psk_orchestra_test]
 
