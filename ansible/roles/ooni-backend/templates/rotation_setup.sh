@@ -29,7 +29,9 @@ oN7jfdbznrWVigE=
 EOF
 
 echo "Installing packages"
+export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
+apt-get purge -qy unattended-upgrades
 apt-get upgrade -qy
 apt-get install -qy chrony netdata
 apt-get install -qy oohelperd
