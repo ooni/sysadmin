@@ -49,12 +49,11 @@ EOF
 
 echo "Enabling chrony monitoring and restart Netdata"
 sed -i 's/^chrony: no/chrony: yes/g' /usr/lib/netdata/conf.d/python.d.conf
-systemctl restart netdata
 
 echo "Installing Nginx"
 apt-get install -qy nginx-light
 
-systemctl restart netdata
+# Netdata will be [re]started by rotation.py after configuring and restarting Nginx
 
 # Used by https://github.com/ooni/pipeline/blob/master/af/analysis/rotation.py
 # to detect when the new test helper is ready to be used
