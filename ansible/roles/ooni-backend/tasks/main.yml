@@ -32,7 +32,6 @@
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
     # mail_smtp_password: "DISABLED"
-    github_token: "DISABLED"
     jwt_encryption_key: "api-test-bogus-key"
 
 - name: configure backend-fsn api
