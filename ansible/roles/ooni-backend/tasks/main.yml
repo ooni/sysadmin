@@ -26,13 +26,13 @@
     group: ooniapi
     mode: 0640
   vars:
+    collectors: []
     github_push_repo: "ooni-bot/test-lists"
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
     # mail_smtp_password: "DISABLED"
-    github_token: "DISABLED"
     jwt_encryption_key: "api-test-bogus-key"
 
 - name: configure backend-fsn api
@@ -45,6 +45,7 @@
     group: ooniapi
     mode: 0640
   vars:
+    collectors: ['backend-fsn.ooni.org', 'ams-pg.ooni.org']
     github_push_repo: "ooni/test-lists"
     github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
@@ -62,6 +63,7 @@
     group: ooniapi
     mode: 0640
   vars:
+    collectors: ['backend-fsn.ooni.org', 'ams-pg.ooni.org']
     github_push_repo: "ooni/test-lists"
     github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
@@ -112,7 +114,7 @@
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api-prod.conf
+    src: templates/nginx-api-ams-pg.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
@@ -123,7 +125,7 @@
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api.conf
+    src: templates/nginx-api-test.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
@@ -134,7 +136,7 @@
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api-fsn.conf
+    src: templates/nginx-api-fsn.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
