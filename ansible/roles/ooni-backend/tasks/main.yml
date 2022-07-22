@@ -114,7 +114,7 @@
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api-prod.conf
+    src: templates/nginx-api-ams-pg.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
@@ -125,7 +125,7 @@
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api.conf
+    src: templates/nginx-api-test.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
@@ -136,7 +136,7 @@
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api-fsn.conf
+    src: templates/nginx-api-fsn.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
