@@ -45,8 +45,8 @@
     group: ooniapi
     mode: 0640
   vars:
-    github_push_repo: "ooni-bot/test-lists"
-    github_origin_repo: "ooni/test-lists"
+    github_push_repo: "ooni/test-lists"
+    github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
