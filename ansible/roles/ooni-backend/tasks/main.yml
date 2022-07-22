@@ -110,17 +110,6 @@
       bucket_name = ooni-data-eu-fra
       msmt_spool_dir = /var/lib/ooniapi/measurements
 
-- name: Overwrite API nginx prod conf
-  when: inventory_hostname == 'ams-pg.ooni.org'
-  tags: api, api-nginx
-  template:
-    src: templates/nginx-api-ams-pg.conf
-    dest: /etc/nginx/sites-available/ooni-api.conf
-    mode: 0755
-    owner: root
-  vars:
-    certpath: /etc/letsencrypt/live/
-
 - name: Overwrite API nginx test conf
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api, api-nginx
@@ -143,6 +132,17 @@
   vars:
     # Uses dehydrated
     certpath: /var/lib/dehydrated/certs/
+
+- name: Overwrite API nginx prod conf
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: api, api-nginx
+  template:
+    src: templates/nginx-api-ams-pg.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+  vars:
+    certpath: /etc/letsencrypt/live/
 
 - name: Deploy API gunicorn conf
   tags: api
