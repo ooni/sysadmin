@@ -71,20 +71,11 @@ passwd:
     login: art
     comment: Arturo Filasto
     keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9her6lZIfP/ulXleu00u3ukdcVEDslkfXzi65JFRXRkKYsdMw7zLvrkvFryqDGsRQwpZo0rlk5o26QNSUR/g2Kf3wEHxxmMcN4+g+f0/fJDKLHSFdL5Z5ACyp5YvjA88vG753qVn7lBINuvCb4wk1sUOWM1WVG5WiszLiJCddYUrgCZWzD3FHyApJ/GGH2A5vTTN8mcQapQaJ9/sgxDw5WT+yMtZ8TW4462x+TaWWGE0WnAd/l6HOFaS14mql0K+MbtRp9EKN2O6+sA0OsjknYpt21ovtEWfBiojjh+4Iz6bTk+M5+fWHwQaxqEcaok22l35GudlmaoTB0OesB/1z art@eclipsis"]
-  nuke:
-    login: nuke
-    comment: Lorenzo Primiterra
-    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+QtDwA/s8vw7aETWGjItUBmgCXgm9jTEjCh/5OofGJ/Bk4kjZ+a6NisUNJRvrySfr89oeJz7VOuHgHTCM1g2CKANAiidcBkepHjdBlHDElV1WBlUxdgl0RsbM4ue8zUxtrmzEQaxLxL769ZHR+gI8PoZau1cSyKG5jVge91Bt1+wvV3dMGvxibM144+uHCrxHpBsbRd9irIgk+vNJmecKn3bSh3aKo9txBjIqBprBrZ1Dqj0x9IKVhD59URcO1Vrr3HXPghZnsWFjOSSQ0DeVpkE3cEz78CpdvqL0drv4Mo1ZgE33YLwWjJSceDGIrtnsPZhs5YzOI4iStRIdPD4X nuke"]
   sbs:
     login: sbs
     comment: Simone Basso
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsifxweF7RnZaI55tLEuW2V9SOA6ZJXizXWp69hs1Vy1zeCkyMHMjtUHVjtiV6m1OStb78iNnXh5KjqaNZy7Ign2HILvtFysWktasgM/Vn04FXN9mkh29fKVqVu5XZpzNoBupjCrc9asJUf/6gCAFQHoQyCNO58/R12iUZBtF9cSaZoX4BfwnCNH66uXQ1EK+D0d2uTqtBrPHdm5rexII7uGvG3+dm/YvPmlj87qW6gJstcRVzAPtjBtf8sQGZBnhV1mGAAHQ168DwiZ1LJwtEAEW2HOhtVDemZNKV/KnDGZOWzF/Ybl+4lIdDHcdk/gpjARJtf92XRTD7FmobduwKVmvXR7hHY8nklWHF+PhQtAqg31y1QhW/g4U/JAd8BhziNE9KF6GZ/CIcDFKLZzpyeB4dg2hnJ6e1RoZvC9ObgVOp0jRMgv0c3GpCwoh2eml01zoxDicPMGzbEnuTduVhW5ebMh23NoYhaMnzDcZaRfT//1OB1vi52dXHj4BCE+4s07DzbR7JLvYwYCtMghAqSkotTDoyjYWF8ymwC6Zg54OSYkyNsjOAgQg1u06+dxNubSB9ZI6woUqY0Fhay/ZkS0sO+skEekE1dZes9NWW/1QVWGOgO8g3aO59+Y6e1YbyJhBG2N05tLn1upuqdEHjdkDX9hYm267oBaAdMMl0+Q== sbasso@dunkerque.local"
-  sarath:
-    login: sarath
-    comment: Sarath M S
-    keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXhSQ1VI6TxiFJeA7N1HDh5JSXfWFDGFEzB/97zDFnZ6OHdDLnUjQjfAN+pvzbXEvPZc6o9S9+gXWdB9CzMHhAJ6Gk7fKN4kjE7gKKLpEJoWIY5xXw8WDyYVfdI8bu10Op3bRCG+f2Lp6sw5ax8kiRWKs8xZppsRj/dICCLt7nU4X6MIrSu3eVSyGcs5HcKl038gd01I0YsfcG35wwOoCmbYgGu/u3gDOXCEuXCnK1PRu5ob9zMyGLN+QTiVW2oqCXhhTvZAOPpqirDEg13nwldcYi2cSePt+YZi1ecjX+3XdiXeLpQGRvQdDiXCKlnIIVR9pYGlllCC24AMhOpSXx"
   federico:
     login: federico
     comment: Federico Ceratto
