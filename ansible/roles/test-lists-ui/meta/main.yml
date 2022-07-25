@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: nodejs
+    vars:
+      node_version: 16.x

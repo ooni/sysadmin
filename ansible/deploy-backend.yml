@@ -51,5 +51,8 @@
       expand: yes
       ssl_domains:
         - "backend-fsn.ooni.org"
+        - "test-lists-ui.ooni.org"
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
+    - role: test-lists-ui
+      tags: test-lists-ui
