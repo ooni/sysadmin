@@ -1,0 +1,40 @@
+---
+- name: Git checkout
+  git:
+    repo: 'https://github.com/ooni/test-lists-ui.git'
+    dest: /srv/test-lists-ui
+    version: '{{ test_lists_ui_branch }}'
+    update: yes
+
+- name: Yarn install deps
+  shell: yarn install --frozen-lockfile
+  args:
+    chdir: /srv/test-lists-ui
+
+- name: Build app
+  become: true
+  become_user: nodetlu
+  shell: yarn run build
+  args:
+    chdir: /srv/test-lists-ui
+
+- name: Install test-lists-ui.service
+  template:
+    src: templates/test-lists-ui.service
+    dest: /etc/systemd/system/test-lists-ui.service
+    mode: 0755
+    owner: root
+
+- name: Run test-lists-ui service
+  systemd:
+    name: test-lists-ui.service
+    state: restarted
+    enabled: yes
+
+- name: Write nginx config
+  template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/sites-available/test-lists-ui.conf
+    mode: 0755
+    owner: root
+  notify: reload nginx

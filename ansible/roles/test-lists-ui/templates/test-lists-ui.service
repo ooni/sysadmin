@@ -1,0 +1,24 @@
+[Unit]
+Description=OONI tests-lists-ui node.js frontend
+After=network.target
+
+[Service]
+Type=simple
+
+DynamicUser=yes
+
+PrivateTmp=yes
+PrivateUsers=yes
+RestrictSUIDSGID=yes
+ProtectSystem=strict
+NoNewPrivileges=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+
+WorkingDirectory=/srv/test-lists-ui
+ExecStart=/usr/bin/yarn run start
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
