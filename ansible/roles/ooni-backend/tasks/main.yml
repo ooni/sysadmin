@@ -85,30 +85,20 @@
 - name: configure api uploader using test bucket
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api
-  blockinfile:
-    path: /etc/ooni/api-uploader.conf
-    create: yes
-    block: |
-      [DEFAULT]
-      # WARNING: deleting data instead of uploding to S3
-      run_mode = DESTROY_DATA
-      bucket_name = ooni-data-eu-fra-test
-      msmt_spool_dir = /var/lib/ooniapi/measurements
+  template:
+    src: templates/api-uploader.conf
+    dest: /etc/ooni/api-uploader.conf
+  vars:
+    bucket_name: ooni-data-eu-fra-test
 
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api
-  blockinfile:
-    path: /etc/ooni/api-uploader.conf
-    create: yes
-    block: |
-      # OONI API measurement uploader - Python ini format
-      [DEFAULT]
-      # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
-      aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      aws_secret_access_key = {{ s3_ooni_open_data_access_key }}
-      bucket_name = ooni-data-eu-fra
-      msmt_spool_dir = /var/lib/ooniapi/measurements
+  template:
+    src: templates/api-uploader.conf
+    dest: /etc/ooni/api-uploader.conf
+  vars:
+    bucket_name: ooni-data-eu-fra
 
 - name: Overwrite API nginx test conf
   when: inventory_hostname == 'ams-pg-test.ooni.org'
