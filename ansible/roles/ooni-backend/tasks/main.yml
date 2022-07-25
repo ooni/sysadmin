@@ -90,6 +90,7 @@
     dest: /etc/ooni/api-uploader.conf
   vars:
     bucket_name: ooni-data-eu-fra-test
+    collector_id: 1
 
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -99,6 +100,7 @@
     dest: /etc/ooni/api-uploader.conf
   vars:
     bucket_name: ooni-data-eu-fra
+    collector_id: 0
 
 - name: Overwrite API nginx test conf
   when: inventory_hostname == 'ams-pg-test.ooni.org'
