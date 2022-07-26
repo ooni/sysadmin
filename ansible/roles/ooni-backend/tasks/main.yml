@@ -102,6 +102,17 @@
     bucket_name: ooni-data-eu-fra-test
     collector_id: 2
 
+- name: configure FSN api uploader using PROD bucket
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: api
+  template:
+    src: templates/api-uploader.conf
+    dest: /etc/ooni/api-uploader.conf
+  vars:
+    # bucket_name and collector_id must match the API
+    bucket_name: ooni-data-eu-fra
+    collector_id: 1
+
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api
