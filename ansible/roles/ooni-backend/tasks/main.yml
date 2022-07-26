@@ -27,6 +27,8 @@
     mode: 0640
   vars:
     collectors: []
+    # collector_id must match the uploader
+    collector_id: 2
     github_push_repo: "ooni-bot/test-lists"
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
@@ -46,6 +48,8 @@
     mode: 0640
   vars:
     collectors: ['backend-fsn.ooni.org', 'ams-pg.ooni.org']
+    # collector_id must match the uploader
+    collector_id: 1
     github_push_repo: "ooni/test-lists"
     github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
@@ -64,6 +68,8 @@
     mode: 0640
   vars:
     collectors: ['backend-fsn.ooni.org', 'ams-pg.ooni.org']
+    # collector_id must match the uploader
+    collector_id: 0
     github_push_repo: "ooni/test-lists"
     github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
@@ -90,7 +96,8 @@
     dest: /etc/ooni/api-uploader.conf
   vars:
     bucket_name: ooni-data-eu-fra-test
-    collector_id: 1
+    # collector_id must match the API
+    collector_id: 2
 
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -100,6 +107,7 @@
     dest: /etc/ooni/api-uploader.conf
   vars:
     bucket_name: ooni-data-eu-fra
+    # collector_id must match the API
     collector_id: 0
 
 - name: Overwrite API nginx test conf
