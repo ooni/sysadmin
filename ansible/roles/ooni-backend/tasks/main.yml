@@ -255,6 +255,7 @@
     mode: 0640
   vars:
     clickhouse_url:
+    psql_uri: postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
 
 
 ## Event detector ##
