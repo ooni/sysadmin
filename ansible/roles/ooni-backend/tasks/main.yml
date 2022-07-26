@@ -258,6 +258,18 @@
   vars:
     clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
 
+- name: configure fastpath on FSN
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: fastpath
+  template:
+    src: fastpath.conf
+    dest: /etc/ooni/fastpath.conf
+    owner: fastpath
+    group: fastpath
+    mode: 0640
+  vars:
+    clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
+
 - name: configure fastpath on ams-pg
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: fastpath
