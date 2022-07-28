@@ -39,6 +39,10 @@ and link location of the variable using same name without prefix in correspondin
 `ansible/play` wrapper for `ansible-playbook` will execute a playbook with
 proper vault secret and inventory.
 
+In order to access secrets stored inside of the vault, you will need a copy of
+the vault password encrypted with your PGP key. This file should be stored
+inside of `~/.ssh/ooni-sysadmin.vaultpw.gpg`.
+
 # SSH Config
 
 You should configure your `~/.ssh/config` with the following:
