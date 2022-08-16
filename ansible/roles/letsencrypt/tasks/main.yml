@@ -34,6 +34,17 @@
     owner: root
   notify: reload nginx
 
+- name: Add letsencrypt forwarding to FSN
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: letsencrypt
+  template:
+    src: templates/letsencrypt-http-ams-pg
+    # the server block matches all SSL FQDNs and must be
+    # parsed first, hence 00-
+    dest: /etc/nginx/sites-enabled/00-letsencrypt-http
+    mode: 0644
+    owner: root
+
 - name: Remove old file
   tags: letsencrypt
   ansible.builtin.file:
