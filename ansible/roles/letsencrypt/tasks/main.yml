@@ -24,6 +24,7 @@
   shell: echo > /etc/nginx/sites-available/default
 
 - name: Add letsencrypt dedicated sites-enabled file
+  when: inventory_hostname != 'ams-pg.ooni.org'
   tags: letsencrypt
   template:
     src: templates/letsencrypt-http
