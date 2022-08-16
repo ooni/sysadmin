@@ -51,5 +51,6 @@
       expand: yes
       ssl_domains:
         - "backend-fsn.ooni.org"
+        - "api.ooni.io"
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
