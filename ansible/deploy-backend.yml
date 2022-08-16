@@ -52,5 +52,14 @@
       ssl_domains:
         - "backend-fsn.ooni.org"
         - "api.ooni.io"
+        - "collector.ooni.io"
+        - "a.collector.ooni.io"
+        - "b.collector.ooni.io"
+        - "c.collector.ooni.io"
+        - "ps.ooni.io"
+        - "ps1.ooni.io"
+        - "ps2.ooni.io"
+        - "ps3.ooni.io"
+        - "ps4.ooni.io"
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
