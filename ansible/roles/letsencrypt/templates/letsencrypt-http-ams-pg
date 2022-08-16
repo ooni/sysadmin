@@ -6,10 +6,16 @@ server {
     listen 80;
     server_name _;
 
+    # Redirect everything to port 443 regardless of domain
+    # The most general location matcher goes first
+    location / {
+        return 301 https://$host$request_uri;
+    }
+
     # Forward ACME challenge to FSN
-    location ^~ /.well-known/acme-challenge {
-        # alias /var/lib/dehydrated/acme-challenges;
-        proxy_pass https://backend-fsn.ooni.org;
+    location /.well-known/acme-challenge {
+        #root /var/www/letsencrypt;
+        proxy_pass http://backend-fsn.ooni.org;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
