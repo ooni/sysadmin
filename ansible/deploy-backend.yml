@@ -50,6 +50,8 @@
       tags: dehydrated
       expand: yes
       ssl_domains:
+        # with dehydrated the first entry is the cert FQDN
+        # and the other ones are alternative names
         - "backend-fsn.ooni.org"
         - "api.ooni.io"
         - "collector.ooni.io"
