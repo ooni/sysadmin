@@ -32,10 +32,12 @@
     - role: nftables
     - role: nginx-buster
       tags: nginx
-    - role: letsencrypt
-      tags: letsencrypt
+    - role: dehydrated
+      tags: dehydrated
       expand: yes
-      letsencrypt_domains:
+      ssl_domains:
+        # with dehydrated the first entry is the cert FQDN
+        # and the other ones are alternative names
         - "ams-pg-test.ooni.org"
     - role: ooni-backend
       ssl_domain: ams-pg-test.ooni.org
