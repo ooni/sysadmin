@@ -19,6 +19,7 @@
 
 - name: ams-explorer nginx config
   template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
+  tags: nginx
   notify: reload nginx
 
 - name: docker network for explorer

@@ -28,7 +28,23 @@ server {
     error_log   /var/log/nginx/{{ explorer_domain }}.error.log;
 
     location / {
+        deny 45.115.236.0/24;
+        deny 35.160.27.0/24;
+        deny 54.36.149.0/24;
+        deny 54.36.148.0/24;
+        deny 87.250.224.0/24;
+        deny 173.231.60.0/24;
+        deny 95.108.213.0/24;
+        deny 114.119.128.0/19;  # PetalBot
+        deny 95.108.213.0/24; # YandexBot
+        deny 35.160.27.0/24; # SemanticScholarBot
+        allow all;
         proxy_pass http://127.0.0.1:{{ explorer_next_backend_port }};
+    }
+
+    location = /robots.txt {
+        add_header Content-Type text/plain;
+        return 200 "User-agent: *\nDisallow: /measurement\nCrawl-delay: 600\n";
     }
 
     location = /rss/global.xml {
