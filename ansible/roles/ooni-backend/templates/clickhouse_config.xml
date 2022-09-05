@@ -24,6 +24,10 @@
   <!-- further filtering is done by netfilter and user auth -->
   <listen_host>0.0.0.0</listen_host>
 
+  <!-- disable MySQL and PostgreSQL interfaces -->
+  <mysql_port></mysql_port>
+  <postgresql_port></postgresql_port>
+
   <!-- enable prometheus metrics -->
   <prometheus>
     <endpoint>/metrics</endpoint>
