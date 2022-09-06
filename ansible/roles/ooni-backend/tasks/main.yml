@@ -448,7 +448,7 @@
 
 # # Clickhouse # #
 
-- name: install clickhouse
+- name: install APT HTTPS support
   # do not update package if present
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
