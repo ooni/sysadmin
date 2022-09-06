@@ -463,7 +463,7 @@
 - name: install clickhouse keys
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
-  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8919F6BD2B48D754
 
 - name: set clickhouse repos
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
