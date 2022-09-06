@@ -472,7 +472,7 @@
     path: /etc/apt/sources.list.d/clickhouse.list
     create: yes
     block: |
-      deb https://repo.clickhouse.com/deb/lts/ main/
+      deb https://packages.clickhouse.com/deb lts main
 
 - name: pin clickhouse release train
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
