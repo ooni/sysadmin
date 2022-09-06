@@ -25,8 +25,8 @@
   <listen_host>0.0.0.0</listen_host>
 
   <!-- disable MySQL and PostgreSQL interfaces -->
-  <mysql_port></mysql_port>
-  <postgresql_port></postgresql_port>
+  <mysql_port remove="1"/>
+  <postgresql_port remove="1"/>
 
   <!-- enable prometheus metrics -->
   <prometheus>
