@@ -133,7 +133,8 @@
     mode: 0755
     owner: root
   vars:
-    certpath: /etc/letsencrypt/live/
+    # Uses dehydrated
+    certpath: /var/lib/dehydrated/certs/
 
 - name: Overwrite API nginx FSN conf
   when: inventory_hostname == 'backend-fsn.ooni.org'
