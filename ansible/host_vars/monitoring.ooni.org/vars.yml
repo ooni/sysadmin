@@ -34,6 +34,8 @@ blackbox_jobs:
       - "https://wcth.ooni.io/status"
       - "https://ams-wcth2.ooni.nu/status"
       - "https://a.web-connectivity.th.ooni.io/status" # "https://ams-wcth3.ooni.nu/status"
+      # cloudfront
+      - "https://d33d1gs9kpq1c5.cloudfront.net/status"
 
   - name: "new test helpers"
     module: "new_test_helper_health"
@@ -47,6 +49,9 @@ blackbox_jobs:
       #- "https://a.collector.ooni.io/invalidpath"
       - "https://b.collector.ooni.io/invalidpath" # hardcoded in MK as a fallback in case of bouncer failure
       - "https://c.collector.ooni.io/invalidpath"
+      # cloudfront
+      - "https://dkyhjv0wpi2dk.cloudfront.net/invalidpath"
+      - "https://dvp6h0xblpcqp.cloudfront.net/invalidpath"
       # Probe services
       - "https://ps.ooni.io/invalidpath"
       - "https://collector.ooni.io/invalidpath"
@@ -55,6 +60,8 @@ blackbox_jobs:
     targets:
       - "https://bouncer.ooni.io/bouncer/net-tests"
       - "https://ps.ooni.io/bouncer/net-tests"
+      # cloudfront
+      - "https://d3kr4emv7f56qa.cloudfront.net/bouncer/net-tests"
 
   # IP addresses are used for test-helpers in monitoring configuration for some
   # historical reason hopefully remembered by @hellais.
