@@ -24,7 +24,8 @@
   <!-- further filtering is done by netfilter and user auth -->
   <listen_host>0.0.0.0</listen_host>
 
-  <!-- disable MySQL and PostgreSQL interfaces -->
+  <!-- disable HTTP, MySQL and PostgreSQL interfaces -->
+  <http_port remove="1"/>
   <mysql_port remove="1"/>
   <postgresql_port remove="1"/>
 
