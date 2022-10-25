@@ -1,5 +1,0 @@
----
-# metadb_wal_s3_* are empty by default, only master ships WAL to S3.
-metadb_wal_s3_key_id: ''
-metadb_wal_s3_access_key: ''
-...
