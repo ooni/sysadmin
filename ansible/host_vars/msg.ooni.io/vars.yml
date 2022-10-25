@@ -1,3 +1,0 @@
----
-grav_admin_pass: '{{ vault_grav_admin_pass }}'
-...

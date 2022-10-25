@@ -39,8 +39,6 @@ passwd:
 
   piwik:    {login: piwik, comment: Piwik user}
 
-  grav:     {login: grav, comment: Grav user}
-
   prtreg:   {login: prtreg, comment: Orchestration Registry}
   prtevent: {login: prtevent, comment: Orchestration Events}
   prtnotif: {login: prtnotif, comment: Orchestration Notifications}
