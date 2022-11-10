@@ -176,7 +176,7 @@
     state=link
 
 - name: Configure deb.ooni.org forwarder on FSN host
-  when: inventory_hostname == 'backend-fsn.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org' or inventory_hostname == 'ams-pg-test.ooni.org'
   tags: deb_ooni_org
   # Uses dehydrated
   template:
