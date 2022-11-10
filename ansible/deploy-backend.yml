@@ -54,12 +54,13 @@
       ssl_domains:
         # with dehydrated the first entry is the cert FQDN
         # and the other ones are alternative names
-        - "backend-fsn.ooni.org"
-        - "api.ooni.io"
-        - "collector.ooni.io"
         - "a.collector.ooni.io"
+        - "api.ooni.io"
         - "b.collector.ooni.io"
+        - "backend-fsn.ooni.org"
         - "c.collector.ooni.io"
+        - "collector.ooni.io"
+        - "deb.ooni.org"
         - "ps.ooni.io"
         - "ps1.ooni.io"
         - "ps2.ooni.io"
