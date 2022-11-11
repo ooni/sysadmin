@@ -19,7 +19,6 @@ ams
 [vpsprobes]
 168.197.99.40
 89.219.32.43
-41.231.54.200
 
 # Location-specific conf
 [on_hetzner]
