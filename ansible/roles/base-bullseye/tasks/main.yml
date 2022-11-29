@@ -119,18 +119,9 @@
 
 - name: configure netdata.service
   tags: netdata
-  blockinfile:
-    path: /etc/netdata/netdata.conf
-    block: |
-      # Managed by ansible, see roles/base-bullseye/tasks/main.yml
-      [global]
-        run as user = netdata
-        web files owner = root
-        web files group = root
-        bind socket to IP = 0.0.0.0
-
-      [plugins]
-        python.d = yes
+  template:
+    src: netdata.conf
+    dest: /etc/netdata/netdata.conf
 
 - name: disable netdata emails
   tags: netdata
