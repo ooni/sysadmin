@@ -674,3 +674,13 @@
     mode: 0600
   vars:
     public_bucket_name: ooni-data-eu-fra-test
+
+- name: Run DB backup on FSN
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: dbbackup
+  template:
+    src: db-backup.conf
+    dest: /etc/ooni/db-backup.conf
+    mode: 0600
+  vars:
+    public_bucket_name: ooni-data-eu-fra
