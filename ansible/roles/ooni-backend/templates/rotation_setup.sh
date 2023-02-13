@@ -31,10 +31,9 @@ EOF
 echo "Installing packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
-apt-get purge -qy unattended-upgrades
+apt-get purge -qy unattended-upgrades rsyslog
 apt-get upgrade -qy
-apt-get install -qy chrony netdata
-apt-get install -qy oohelperd
+apt-get install -qy --no-install-recommends chrony netdata oohelperd
 
 echo "Enabling incoming connections to Netdata"
 cat > /etc/netdata/netdata.conf <<EOF
