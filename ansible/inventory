@@ -24,6 +24,7 @@ ams
 [on_hetzner]
 monitoring.ooni.org
 backend-fsn.ooni.org
+backend-hel.ooni.org
 
 ########################################################################
 # location tags
@@ -60,6 +61,7 @@ doams1-countly.ooni.nu
 
 [psk_clickhouse]
 backend-fsn.ooni.org
+backend-hel.ooni.org
 ams-pg-test.ooni.org
 
 [psk_hkgmetadb]
@@ -105,6 +107,7 @@ ams-slack-1.ooni.org
 ams-pg.ooni.org
 ams-pg-test.ooni.org
 backend-fsn.ooni.org
+backend-hel.ooni.org
 
 [have_nginx]
 amsmatomo.ooni.nu
@@ -136,6 +139,7 @@ ams-ps.ooni.nu
 ams-pg.ooni.org
 ams-pg-test.ooni.org
 backend-fsn.ooni.org
+backend-hel.ooni.org
 
 [probe_services]
 ams-ps.ooni.nu
