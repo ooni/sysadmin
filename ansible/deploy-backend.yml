@@ -68,3 +68,19 @@
         - "ps4.ooni.io"
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
+
+- hosts: backend-hel.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: nginx-buster
+      tags: nginx
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        # with dehydrated the first entry is the cert FQDN
+        # and the other ones are alternative names
+        - "backend-hel.ooni.org"
+    - role: ooni-backend
+      ssl_domain: backend-hel.ooni.org
