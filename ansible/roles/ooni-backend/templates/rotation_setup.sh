@@ -33,7 +33,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
 apt-get purge -qy unattended-upgrades rsyslog
 apt-get upgrade -qy
-apt-get install -qy --no-install-recommends chrony netdata oohelperd
+apt-get install -qy --no-install-recommends chrony netdata oohelperd netdata-plugins-python
 
 echo "Enabling incoming connections to Netdata"
 cat > /etc/netdata/netdata.conf <<EOF

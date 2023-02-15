@@ -328,7 +328,7 @@
       [DEFAULT]
       # Digital Ocean token
       token = {{ digital_ocean_token }}
-      active_droplets_count = 2
+      active_droplets_count = 4
       size_slug = s-1vcpu-1gb
       image_name = debian-11-x64
       draining_time_minutes = 1440
