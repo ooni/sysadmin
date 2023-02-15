@@ -42,6 +42,8 @@ blackbox_jobs:
     targets:
       - "https://0.th.ooni.org/"
       - "https://1.th.ooni.org/"
+      - "https://2.th.ooni.org/"
+      - "https://3.th.ooni.org/"
 
   - name: "ooni collector"
     module: "ooni_collector_ok"
