@@ -302,7 +302,7 @@
   tags: analysis
   apt:
     cache_valid_time: 86400
-    name: analysis=0.15~pr324-331
+    name: analysis=1.4~pr408-209
     force: True
     state: present
 
