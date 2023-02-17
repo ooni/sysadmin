@@ -1,5 +1,6 @@
 # s3_ooni_open_data_access_key: "{{ vault_s3_ooni_open_data_access_key }}"
 jwt_encryption_key: "{{ vault_jwt_encryption_key }}"
+account_id_hashing_key: "{{ vault_account_id_hashing_key }}"
 github_token: "{{ vault_github_token }}"
 mail_smtp_password: "{{ vault_mail_smtp_password }}"
 tor_targets: "{{ vault_tor_targets }}"
