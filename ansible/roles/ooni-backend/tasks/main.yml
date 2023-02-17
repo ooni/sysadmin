@@ -36,7 +36,7 @@
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
     # mail_smtp_password: "DISABLED"
-    jwt_encryption_key: "api-test-bogus-key"
+    # jwt_encryption_key and account_id_hashing_key are taken from the vault
 
 - name: configure backend-fsn api
   when: inventory_hostname == 'backend-fsn.ooni.org'
