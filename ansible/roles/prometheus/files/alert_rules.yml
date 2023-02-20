@@ -128,7 +128,7 @@ groups:
       summary: "{{ $labels.instance }} endpoint down"
 
   - alert: SSLCertExpires
-    expr: (probe_ssl_earliest_cert_expiry{job!="tor testhelper"} - time()) / 86400 < 25
+    expr: (probe_ssl_earliest_cert_expiry{job!="tor testhelper"} - time()) / 25200 < 25
     annotations:
       summary: '`certbot` failed at {{ $labels.instance }}'
       description: 'SSL cert for  expires in {{ printf "%.0f" $value }} days.'
