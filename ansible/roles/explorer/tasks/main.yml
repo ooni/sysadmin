@@ -40,6 +40,8 @@
     purge_networks: true
     env:
       NODE_ENV: production
+      CLOUDFLARE_API_EMAIL: "{{ cloudflare_api_email }}"
+      CLOUDFLARE_API_TOKEN_SECRET: "{{ cloudflare_api_token_secret }}"
     user: "{{ user.uid }}:{{ group.gid }}"
     restart_policy: unless-stopped
 
