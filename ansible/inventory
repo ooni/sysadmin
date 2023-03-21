@@ -29,6 +29,9 @@ monitoring.ooni.org
 backend-fsn.ooni.org
 oonidata.ooni.org
 
+[on_cherryservers]
+shinri.ooni.org
+
 ########################################################################
 # location tags
 
