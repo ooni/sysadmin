@@ -21,3 +21,6 @@
       expand: yes
       ssl_domains:
         - "shinri.ooni.org"
+    - role: jupyterhub
+      tags: jupyterhub
+      ssl_domain: "shinri.ooni.org"

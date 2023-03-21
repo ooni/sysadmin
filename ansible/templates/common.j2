@@ -35,6 +35,15 @@ server {
     ssl_trusted_certificate /etc/letsencrypt/live/{{ main_domain }}/chain.pem; # for ssl_stapling_verify
 {%- endmacro %}
 
+{% macro ssl_dehydrated(main_domain, ssl_conf='ssl_intermediate.conf') -%}
+    include /etc/nginx/{{ ssl_conf }};
+
+    ssl_certificate /var/lib/dehydrated/certs/{{ main_domain }}/fullchain.pem;
+    ssl_certificate_key /var/lib/dehydrated/certs/{{ main_domain }}/privkey.pem;
+    ssl_trusted_certificate /var/lib/dehydrated/certs/{{ main_domain }}/chain.pem;
+{%- endmacro %}
+
+
 {% macro add_header_hsts() -%}
 add_header Strict-Transport-Security max-age=15768000; # HSTS (15768000 seconds = 6 months)
 {%- endmacro %}
