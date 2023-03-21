@@ -36,7 +36,30 @@
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
     # mail_smtp_password: "DISABLED"
-    jwt_encryption_key: "api-test-bogus-key"
+    # jwt_encryption_key and account_id_hashing_key are taken from the vault
+
+- name: configure backend-hel api
+  when: inventory_hostname == 'backend-hel.ooni.org'
+  tags: api
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    collectors: ['backend-hel.ooni.org',]
+    # bucket_name and collector_id must match the uploader
+    collector_id: 3
+    # test bucket
+    bucket_name: ooni-data-eu-fra-test
+    # test GH repo
+    github_push_repo: "ooni-bot/test-lists"
+    github_origin_repo: "citizenlab/test-lists"
+    login_base_url: "https://test-lists.ooni.org/login"
+    pg_uri: ""
+    clickhouse_url: clickhouse://api:api@localhost/default
+    base_url: "https://backend-hel.ooni.org"
 
 - name: configure backend-fsn api
   when: inventory_hostname == 'backend-fsn.ooni.org'
@@ -112,6 +135,17 @@
     # bucket_name and collector_id must match the API
     bucket_name: ooni-data-eu-fra
     collector_id: 1
+
+# - name: configure HEL api uploader using test bucket
+#   when: inventory_hostname == 'backend-hel.ooni.org'
+#   tags: api
+#   template:
+#     src: templates/api-uploader.conf
+#     dest: /etc/ooni/api-uploader.conf
+#   vars:
+#     # bucket_name and collector_id must match the API
+#     bucket_name: ooni-data-eu-fra-test
+#     collector_id: 3
 
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -263,6 +297,18 @@
   vars:
     clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
 
+
+- name: configure fastpath on HEL
+  when: inventory_hostname == 'backend-hel.ooni.org'
+  tags: fastpath
+  template:
+    src: fastpath.conf
+    dest: /etc/ooni/fastpath.conf
+    owner: fastpath
+    group: fastpath
+    mode: 0640
+  vars:
+    clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
 - name: configure fastpath on ams-pg
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: fastpath
@@ -302,7 +348,7 @@
   tags: analysis
   apt:
     cache_valid_time: 86400
-    name: analysis=0.15~pr324-331
+    name: analysis=1.4~pr408-209
     force: True
     state: present
 
@@ -328,7 +374,7 @@
       [DEFAULT]
       # Digital Ocean token
       token = {{ digital_ocean_token }}
-      active_droplets_count = 2
+      active_droplets_count = 4
       size_slug = s-1vcpu-1gb
       image_name = debian-11-x64
       draining_time_minutes = 1440
@@ -388,12 +434,14 @@
 ## Tor daemon and onion service ##
 
 - name: install tor daemon
+  when: inventory_hostname in ('backend-fsn.ooni.org', )
   tags: tor
   apt:
     cache_valid_time: 86400
     name: tor
 
 - name: configure tor onion service
+  when: inventory_hostname in ('backend-fsn.ooni.org', )
   tags: tor
   blockinfile:
     path: /etc/tor/torrc
@@ -433,6 +481,7 @@
     chmod 0700 /var/lib/tor/ooni_onion_service
 
 - name: reload tor service
+  when: inventory_hostname in ('backend-fsn.ooni.org', )
   tags: tor
   systemd:
     name: tor@default.service
@@ -443,7 +492,7 @@
 
 - name: install APT HTTPS support
   # do not update package if present
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   apt:
     cache_valid_time: 86400
@@ -454,12 +503,12 @@
       - dirmngr
 
 - name: install clickhouse keys
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8919F6BD2B48D754
 
 - name: set clickhouse repos
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   blockinfile:
     path: /etc/apt/sources.list.d/clickhouse.list
@@ -478,6 +527,17 @@
       Pin: version 21.8.12.*
       Pin-Priority: 999
 
+- name: pin clickhouse release train
+  when: inventory_hostname in ('backend-hel.ooni.org', )
+  tags: clickhouse
+  blockinfile:
+    path: /etc/apt/preferences.d/clickhouse-server
+    create: yes
+    block: |
+      Package: clickhouse-server
+      Pin: version 23.1.3.*
+      Pin-Priority: 999
+
 - name: install clickhouse on backend-fsn
   when: inventory_hostname == 'backend-fsn.ooni.org'
   tags: clickhouse
@@ -490,6 +550,18 @@
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
     clickhouse_pkg_ver: 21.8.12.*
+
+- name: install clickhouse on backend-hel
+  when: inventory_hostname == 'backend-hel.ooni.org'
+  tags: clickhouse
+  apt:
+    # refresh cache
+    cache_valid_time: 0
+    name:
+      - clickhouse-server={{ clickhouse_pkg_ver }}
+      - clickhouse-client={{ clickhouse_pkg_ver }}
+  vars:
+    clickhouse_pkg_ver: 23.1.3.*
 
 - name: install clickhouse on ams-pg-test.ooni.org
   when: inventory_hostname == 'ams-pg-test.ooni.org'
@@ -547,7 +619,7 @@
 # https://clickhouse.com/docs/en/operations/access-rights/#enabling-access-control
 
 - name: Clickhouse - test admin user
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse-users
   command: clickhouse-client -u admin --password admin -q 'select 1'
   ignore_errors: true

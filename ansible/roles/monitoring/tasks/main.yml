@@ -262,15 +262,15 @@
 
 - name: install clickhouse keys
   tags: clickhouse
-  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8919F6BD2B48D754
 
 - name: set clickhouse repos
   tags: clickhouse
-  blockinfile:
-    path: /etc/apt/sources.list.d/clickhouse.list
-    create: yes
-    block: |
-      deb https://repo.clickhouse.com/deb/lts/ main/
+  template:
+    src: templates/clickhouse.list
+    dest: /etc/apt/sources.list.d/clickhouse.list
+    mode: 0644
+    owner: root
 
 - name: pin clickhouse release train
   tags: clickhouse
@@ -279,7 +279,7 @@
     create: yes
     block: |
       Package: clickhouse-server
-      Pin: version 21.8.12.*
+      Pin: version 23.1.3.*
       Pin-Priority: 999
 
 - name: install clickhouse
@@ -311,7 +311,7 @@
     state: started
     enabled: yes
 
-- name: deploy file
+- name: deploy SQL file to create logs table
   tags: clickhouse
   copy:
     src: create_logs_table.sql

@@ -141,6 +141,8 @@ scrape_configs:
 {% endfor %}
         - 0.th.ooni.org:19999
         - 1.th.ooni.org:19999
+        - 2.th.ooni.org:19999
+        - 3.th.ooni.org:19999
         # - 2.th.ooni.org:19999
 
   - job_name: 'test-helpers'
@@ -151,6 +153,8 @@ scrape_configs:
       - targets:
         - 0.th.ooni.org:9001
         - 1.th.ooni.org:9001
+        - 2.th.ooni.org:9001
+        - 3.th.ooni.org:9001
 
   - job_name: 'ooni-api'
     scrape_interval: 5s
