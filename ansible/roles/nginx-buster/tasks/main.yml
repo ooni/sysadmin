@@ -3,6 +3,7 @@
   apt:
     name: nginx
     cache_valid_time: 86400
+  notify: start nginx
 
 # https://ssl-config.mozilla.org/#server=nginx&version=1.14.2&config=intermediate&openssl=1.1.1d&guideline=5.4
 #
@@ -28,5 +29,5 @@
     src=nginx.conf
     dest=/etc/nginx/nginx.conf
     mode=0444
-  notify: restart nginx
+  notify: reload nginx
 ...
