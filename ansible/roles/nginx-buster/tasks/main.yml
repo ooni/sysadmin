@@ -28,5 +28,5 @@
     src=nginx.conf
     dest=/etc/nginx/nginx.conf
     mode=0444
-  notify: reload nginx
+  notify: restart nginx
 ...
