@@ -1,0 +1,49 @@
+- name: install apt requirements
+  apt:
+    cache_valid_time: 86400
+    state: present
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - dirmngr
+
+- name: create clickhouse gpgp keyring
+  shell:
+    cmd: "wget -qO- https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3a9ea1193a97b548be1457d48919f6bd2b48d754 | gpg --dearmor | tee /usr/share/keyrings/clickhouse-keyring.gpg"
+    creates: "/usr/share/keyrings/clickhouse-keyring.gpg"
+    warn: false
+
+- name: set clickhouse repos
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  tags: clickhouse
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg] https://packages.clickhouse.com/deb stable main"
+
+- name: install clickhouse
+  apt:
+    cache_valid_time: 0
+    name:
+      - clickhouse-server
+      - clickhouse-client
+
+- name: mkdir for clickhouse custom config
+  file:
+    path: "/etc/clickhouse-server/config.d/"
+    state: directory
+    owner: clickhouse
+    group: clickhouse
+    mode: 0744
+
+- name: install clickhouse conf override
+  tags: clickhouse
+  template:
+    src: clickhouse_config.xml
+    dest: /etc/clickhouse-server/config.d/ooni_conf.xml
+    owner: clickhouse
+    group: clickhouse
+    mode: 0644
+  notify: restart clickhouse
+
+
+- name: install packages with conda
+  shell: "{{ conda_bin }} install -c conda-forge pandas numpy altair clickhouse-driver dask scipy scikit-learn catboost pycountry ujson orjson tqdm seaborn requests maxminddb matplotlib lz4 shap msgpack-python beautifulsoup4"

@@ -1,0 +1,4 @@
+- name: reload clickhouse
+  service: name=clickhouse-server state=reloaded
+- name: restart clickhouse
+  service: name=clickhouse-server state=restarted

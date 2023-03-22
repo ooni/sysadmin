@@ -24,3 +24,5 @@
     - role: jupyterhub
       tags: jupyterhub
       ssl_domain: "shinri.ooni.org"
+    - role: datascience
+      tags: datascience

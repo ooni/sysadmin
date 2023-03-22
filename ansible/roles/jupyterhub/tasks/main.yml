@@ -33,16 +33,12 @@
     cmd: "bash {{ install_dir }}/{{ mambaforge_script }} -b -u -p {{ conda_dir }}"
     creates: "{{ conda_dir }}/bin/activate"
 
-- name: install conda packages
+- name: install jupyterhub with conda
   shell: "{{ conda_bin }} install -c conda-forge {{ item }}"
   with_items:
     - "jupyterhub"
     - "jupyterlab"
     - "jupyter_server"
-    - "pandas"
-    - "numpy"
-    - "altair"
-    - "clickhouse-driver"
 
 - name: Write jupyterhub.conf
   template:
