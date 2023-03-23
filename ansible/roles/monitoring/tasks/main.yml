@@ -311,26 +311,49 @@
     state: started
     enabled: yes
 
+
+# # vector
+
+- name: install vector keys
+  tags: vector
+  shell: curl -s https://repositories.timber.io/public/vector/gpg.3543DB2D0A2BC4B8.key | apt-key add -
+
+- name: set vector repos
+  tags: vector
+  template:
+    src: templates/vector.list
+    dest: /etc/apt/sources.list.d/vector.list
+    mode: 0644
+    owner: root
+
+- name: install vector
+  tags: vector
+  apt:
+    # refresh cache
+    cache_valid_time: 0
+    name:
+      - vector
+
 - name: deploy SQL file to create logs table
-  tags: clickhouse
+  tags: vector
   copy:
     src: create_logs_table.sql
     dest: /etc/clickhouse-server/create_logs_table.sql
 
-- name: create logs table
-  tags: clickhouse
+- name: create vector_logs table
+  tags: vectort
   command: clickhouse-client --multiline --multiquery --queries-file /etc/clickhouse-server/create_logs_table.sql
 
-- name: deploy service file
-  tags: log-ingestion
-  copy:
-    src: log-ingestion.service
-    dest: /etc/systemd/system/log-ingestion.service
+- name: configure vector
+  tags: vector
+  template:
+    src: templates/vector.toml
+    dest: /etc/vector/vector.toml
 
-- name: Run log ingestion
-  tags: log-ingestion
+- name: Run vector
+  tags: vector
   systemd:
     daemon_reload: yes
     enabled: yes
-    name: log-ingestion.service
+    name: vector.service
     state: started
