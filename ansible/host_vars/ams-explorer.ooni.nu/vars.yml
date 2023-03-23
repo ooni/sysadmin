@@ -1,4 +1,3 @@
 ---
-cloudflare_api_email: "admin@openobservatory.org"
 cloudflare_api_token_secret: "{{ vault_cloudflare_api_token_secret }}"
 ...
