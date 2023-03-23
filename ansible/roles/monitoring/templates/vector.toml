@@ -1,0 +1,15 @@
+# Managed by ansible
+
+[sources.local_journald]
+type = "journald"
+exclude_units = [ "clickhouse" ]
+
+[sinks.clickhouse_sink]
+type = "clickhouse"
+inputs = [ "local_journald" ]
+database = "default"
+endpoint = "http://localhost:8123"
+table = "logs"
+
+
+# data_dir = "/var/lib/vector"
