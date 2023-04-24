@@ -3,7 +3,7 @@
 
 - hosts: monitoring.ooni.org
   roles:
-    - role: base-bullseye
+    - role: base-bookworm
     - role: ooca-cert
       ooca_ssl_dir: /etc/prometheus/ssl
       ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
