@@ -81,6 +81,7 @@ def run_notebook(nb, conf):
         "--execute",
         "--to",
         "html",
+        "--allow-errors",
         f"--output={htmlfn}",
         nb.as_posix(),
     ]
