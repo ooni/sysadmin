@@ -7,6 +7,7 @@
 # jupycron itself runs as root but the notebooks are run as jupyter
 # monitor with: sudo journalctl -f -u jupycron
 
+from datetime import datetime
 from pathlib import Path
 import pathlib
 import hashlib
@@ -157,9 +158,9 @@ def list_ipynb_files() -> list:
 
 def update_history(run_history, history):
     nbs = history.get("notebooks", {})
-    for nb in nbs.keys():
+    for nb in tuple(nbs.keys()):
         if nb not in run_history:
-            log.debug("Discarding deleted notebook")
+            log.debug(f"Discarding deleted notebook {nb}")
             nbs.pop(nb)
 
     for nb, data in run_history.items():
@@ -194,10 +195,11 @@ def generate_summary(history: dict):
   <table>
     <tr>
         <th>Status</th>
+        <th>Last run time</th>
         <th>Name</th>
-        <th>Elapsed time</th>
+        <th>Run duration</th>
     </tr>
-    {% for nb, (res, elapsed) in notebooks.items() %}
+    {% for nb, (tstamp, res, elapsed) in notebooks.items() %}
     <tr>
       {% if res == 'success': %}
       <td>🟢</td>
@@ -206,6 +208,7 @@ def generate_summary(history: dict):
       {% else %}
       <td>🛇</td>
       {% endif %}
+      <td>{{ tstamp }}</td>
       <td><a href=/notebooks/notebooks/{{ nb }}>{{ nb }}</a>
       </td>
       <td>{{ elapsed|round(2) }}</td>
@@ -234,12 +237,13 @@ def main():
             conf = extract_jupycron_conf(nb)
             if conf is None:
                 log.debug(f"Skpping {nb}")
-                run_history[nb_rel.as_posix()] = ("not run", 0)
+                run_history[nb_rel.as_posix()] = ("", "not run", 0)
                 continue
 
             if time_to_run(conf):
+                tstamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M")
                 res, elapsed = run_notebook(nb, conf)
-                run_history[nb_rel.as_posix()] = (res, elapsed)
+                run_history[nb_rel.as_posix()] = (tstamp, res, elapsed)
 
         except Exception as e:
             log.error(e)
