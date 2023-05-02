@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: adm
+    become: false
+    remote_user: root
+    gather_facts: false
