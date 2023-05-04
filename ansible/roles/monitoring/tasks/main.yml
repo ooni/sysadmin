@@ -390,6 +390,18 @@
     src: templates/vector.toml
     dest: /etc/vector/vector.toml
 
+- name: vector - open port
+  tags: vector
+  ansible.builtin.copy:
+    src: templates/10514.nft
+    dest: /etc/ooni/nftables/tcp/
+  register: nft_reload_needed
+
+- name: vector - reload nft
+  tags: vector
+  shell: systemctl reload nftables.service
+  when: nft_reload_needed.changed
+
 - name: vector - restart service
   tags: vector
   systemd:
