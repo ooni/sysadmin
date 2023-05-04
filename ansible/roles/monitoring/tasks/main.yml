@@ -379,9 +379,10 @@
     path: "{{ item }}"
     state: absent
   loop:
-    - oonicacert.pem
     - node-cert.pem
+    - node-req.pem
     - node.key
+    - oonicacert.pem
 
 - name: vector - configure
   tags: vector

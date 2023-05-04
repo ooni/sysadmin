@@ -231,9 +231,10 @@
     mode: '0440'
     owner: vector
   loop:
-    - oonicacert.pem
     - node-cert.pem
+    - node-req.pem
     - node.key
+    - oonicacert.pem
 
 - name: vector - Delete files
   tags: vectorsender
