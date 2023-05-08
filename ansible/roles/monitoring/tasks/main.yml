@@ -207,7 +207,7 @@
 
 - name: Install jupycron script
   tags: jupycron
-  template:
+  ansible.builtin.copy:
     src: files/jupycron
     dest: /usr/bin/jupycron
     mode: 0755
