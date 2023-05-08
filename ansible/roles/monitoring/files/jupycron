@@ -83,13 +83,18 @@ def extract_jupycron_conf(nb: Path):
     #     return json.loads(conf)
 
 
+time_lookup = {"min": 60, "hour": 3600, "day": 86400, "week": 604800, "month": 2628000}
+
+
 def time_to_run(conf):
-    every = conf.get("every", "").split()
-    if len(every) != 2 or every[-1] != "min":
+    try:
+        num, dimension = conf.get("every", "").split()
+        dimension = dimension.rstrip("s")
+        seconds = int(float(num) * time_lookup[dimension])
+    except Exception:
+        # todo: log
         return False
-    every_min = int(every[0])
-    epoch_min = int(time.time() / 60)
-    return epoch_min % every_min == 0
+    return int(time.time()) % seconds == 0
 
 
 def generate_unit_name(nb):
