@@ -205,48 +205,12 @@
 
 # jupycron
 
-- name: Install jupycron script
+- name: Install jupycron
   tags: jupycron
-  ansible.builtin.copy:
-    src: files/jupycron
-    dest: /usr/bin/jupycron
-    mode: 0755
-    owner: root
-
-- name: Create jupycron output dir
-  tags: jupycron
-  file:
-    path: /var/lib/jupyter/notebooks/jupycron
-    state: directory
-    owner: jupyter
-    group: jupyter
-
-- name: Install jupycron.service
-  tags: jupycron
-  template:
-    src: files/jupycron.service
-    dest: /etc/systemd/system/jupycron.service
-    mode: 0644
-    owner: root
-
-- name: Install jupycron.timer
-  tags: jupycron
-  template:
-    src: files/jupycron.timer
-    dest: /etc/systemd/system/jupycron.timer
-    mode: 0644
-    owner: root
-
-- name: reload systemd
-  tags: jupycron
-  shell: systemctl daemon-reload
-
-- name: Ensure jupycron timer runs
-  tags: jupycron
-  systemd:
-    name: jupycron.timer
-    state: started
-    enabled: yes
+  apt:
+    cache_valid_time: 86400
+    state: present
+    name: jupycron
 
 # # clickhouse # #
 
