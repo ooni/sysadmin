@@ -205,48 +205,12 @@
 
 # jupycron
 
-- name: Install jupycron script
+- name: Install jupycron
   tags: jupycron
-  template:
-    src: files/jupycron
-    dest: /usr/bin/jupycron
-    mode: 0755
-    owner: root
-
-- name: Create jupycron output dir
-  tags: jupycron
-  file:
-    path: /var/lib/jupyter/notebooks/jupycron
-    state: directory
-    owner: jupyter
-    group: jupyter
-
-- name: Install jupycron.service
-  tags: jupycron
-  template:
-    src: files/jupycron.service
-    dest: /etc/systemd/system/jupycron.service
-    mode: 0644
-    owner: root
-
-- name: Install jupycron.timer
-  tags: jupycron
-  template:
-    src: files/jupycron.timer
-    dest: /etc/systemd/system/jupycron.timer
-    mode: 0644
-    owner: root
-
-- name: reload systemd
-  tags: jupycron
-  shell: systemctl daemon-reload
-
-- name: Ensure jupycron timer runs
-  tags: jupycron
-  systemd:
-    name: jupycron.timer
-    state: started
-    enabled: yes
+  apt:
+    cache_valid_time: 86400
+    state: present
+    name: jupycron
 
 # # clickhouse # #
 
@@ -312,21 +276,27 @@
     enabled: yes
 
 
-# # vector
+# # Vector
 
-- name: install vector keys
+- name: vector - install vector APT keys
   tags: vector
   shell: curl -s https://repositories.timber.io/public/vector/gpg.3543DB2D0A2BC4B8.key | apt-key add -
 
-- name: set vector repos
+- name: vector - set APT repos
   tags: vector
   template:
     src: templates/vector.list
     dest: /etc/apt/sources.list.d/vector.list
     mode: 0644
     owner: root
+  register: apt_update_needed
 
-- name: install vector
+- name: vector - update apt cache
+  apt:
+    update_cache: yes
+  when: apt_update_needed.changed
+
+- name: vector - install pkg
   tags: vector
   apt:
     # refresh cache
@@ -334,26 +304,74 @@
     name:
       - vector
 
-- name: deploy SQL file to create logs table
+- name: vector - deploy SQL file to create logs table
   tags: vector
   copy:
     src: create_logs_table.sql
     dest: /etc/clickhouse-server/create_logs_table.sql
 
-- name: create vector_logs table
-  tags: vectort
+- name: vector - create vector_logs table
+  tags: vector
   command: clickhouse-client --multiline --multiquery --queries-file /etc/clickhouse-server/create_logs_table.sql
 
-- name: configure vector
+- name: vector - Generate syslog certificates
+  tags: vector
+  # runs locally
+  delegate_to: 127.0.0.1
+  shell: |
+    ./vault view files/pusher_ca.key.vault | openssl req -x509 -new -nodes -key /dev/stdin -sha256 -days 3650 -subj '/O=OONI/OU=CA/CN=ooni.org' -out oonicacert.pem
+    openssl req -newkey rsa:2048 -nodes -days 3650 -keyout node.key -out node-req.pem -subj '/CN=ooni.org/O=OONI temp CA/C=US' -batch
+    ./vault view files/pusher_ca.key.vault | openssl x509 -req -days 3650 -set_serial 01 -in node-req.pem -out node-cert.pem -CA oonicacert.pem -CAkey /dev/stdin
+  register: certs_ready
+
+- name: vector - Copy TLS certs
+  tags: vector
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/vector/
+    mode: '0440'
+    owner: vector
+  loop:
+    - oonicacert.pem
+    - node-cert.pem
+    - node.key
+  when: certs_ready.changed
+
+- name: vector - Delete files
+  tags: vector
+  # runs locally
+  delegate_to: 127.0.0.1
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - node-cert.pem
+    - node-req.pem
+    - node.key
+    - oonicacert.pem
+
+- name: vector - configure
   tags: vector
   template:
     src: templates/vector.toml
     dest: /etc/vector/vector.toml
 
-- name: Run vector
+- name: vector - open port
+  tags: vector
+  ansible.builtin.copy:
+    src: templates/10514.nft
+    dest: /etc/ooni/nftables/tcp/
+  register: nft_reload_needed
+
+- name: vector - reload nft
+  tags: vector
+  shell: systemctl reload nftables.service
+  when: nft_reload_needed.changed
+
+- name: vector - restart service
   tags: vector
   systemd:
     daemon_reload: yes
     enabled: yes
     name: vector.service
-    state: started
+    state: restarted

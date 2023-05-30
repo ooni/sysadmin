@@ -1,0 +1,2 @@
+# See ansible/roles/monitoring/tasks/main.yml
+deb https://repositories.timber.io/public/vector/deb/debian bullseye main

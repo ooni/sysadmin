@@ -1,0 +1,2 @@
+# Manged by ansible roles/monitoring/templates/10514.nft
+add rule inet filter input tcp dport 10514 counter accept comment "incoming logs"

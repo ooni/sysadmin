@@ -1,0 +1,5 @@
+install_dir: "/srv/jupyterhub"
+conda_dir: "{{ install_dir }}/conda"
+conda_bin: "{{ install_dir }}/conda/bin/conda"
+mambaforge_version: "22.11.1-4"
+mambaforge_script: "Mambaforge-{{ mambaforge_version }}-Linux-x86_64.sh"
