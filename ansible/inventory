@@ -17,17 +17,15 @@ ams
 
 # VPSes running OONI Probe
 [vpsprobes]
-154.16.136.53
-103.104.61.216
-185.184.143.14
+168.197.99.40
 89.219.32.43
-41.231.54.200
 
 # Location-specific conf
 [on_hetzner]
 monitoring.ooni.org
 backend-fsn.ooni.org
 oonidata.ooni.org
+backend-hel.ooni.org
 
 [on_cherryservers]
 shinri.ooni.org
@@ -67,6 +65,7 @@ doams1-countly.ooni.nu
 
 [psk_clickhouse]
 backend-fsn.ooni.org
+backend-hel.ooni.org
 ams-pg-test.ooni.org
 
 [psk_hkgmetadb]
@@ -80,9 +79,12 @@ ams-pg-test.ooni.org
 db-1.proteus.ooni.io
 
 [psk_orchestra_prod]
+# Used to populate the vault_orchestra_psiphon_config_file_content var
 ams-ps.ooni.nu
 ams-pg.ooni.org
 ams-pg-test.ooni.org
+backend-fsn.ooni.org
+backend-hel.ooni.org
 
 [psk_orchestra_test]
 
@@ -111,6 +113,7 @@ ams-slack-1.ooni.org
 ams-pg.ooni.org
 ams-pg-test.ooni.org
 backend-fsn.ooni.org
+backend-hel.ooni.org
 
 [have_nginx]
 amsmatomo.ooni.nu
@@ -142,6 +145,7 @@ ams-ps.ooni.nu
 ams-pg.ooni.org
 ams-pg-test.ooni.org
 backend-fsn.ooni.org
+backend-hel.ooni.org
 
 [probe_services]
 ams-ps.ooni.nu

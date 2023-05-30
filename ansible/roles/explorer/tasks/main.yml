@@ -19,6 +19,7 @@
 
 - name: ams-explorer nginx config
   template: src=ngx-explorer dest=/etc/nginx/sites-enabled/explorer
+  tags: nginx
   notify: reload nginx
 
 - name: docker network for explorer
@@ -39,6 +40,7 @@
     purge_networks: true
     env:
       NODE_ENV: production
+      CLOUDFLARE_TOKEN: "{{ cloudflare_api_token_secret }}"
     user: "{{ user.uid }}:{{ group.gid }}"
     restart_policy: unless-stopped
 

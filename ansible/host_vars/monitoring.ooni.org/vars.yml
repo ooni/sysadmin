@@ -25,6 +25,8 @@ ngxprom_exporter_ports:
   9093: '127.0.0.1'
 
 blackbox_jobs:
+  # Used together with roles/blackbox_exporter/templates/blackbox.yml.j2
+
   - name: "ooni web_connectivity test helpers"
     module: "ooni_web_connectivity_ok"
     targets:
@@ -32,12 +34,26 @@ blackbox_jobs:
       - "https://wcth.ooni.io/status"
       - "https://ams-wcth2.ooni.nu/status"
       - "https://a.web-connectivity.th.ooni.io/status" # "https://ams-wcth3.ooni.nu/status"
+      # cloudfront
+      - "https://d33d1gs9kpq1c5.cloudfront.net/status"
+
+  - name: "new test helpers"
+    module: "new_test_helper_health"
+    targets:
+      - "https://0.th.ooni.org/"
+      - "https://1.th.ooni.org/"
+      - "https://2.th.ooni.org/"
+      - "https://3.th.ooni.org/"
+
   - name: "ooni collector"
     module: "ooni_collector_ok"
     targets:
       #- "https://a.collector.ooni.io/invalidpath"
       - "https://b.collector.ooni.io/invalidpath" # hardcoded in MK as a fallback in case of bouncer failure
       - "https://c.collector.ooni.io/invalidpath"
+      # cloudfront
+      - "https://dkyhjv0wpi2dk.cloudfront.net/invalidpath"
+      - "https://dvp6h0xblpcqp.cloudfront.net/invalidpath"
       # Probe services
       - "https://ps.ooni.io/invalidpath"
       - "https://collector.ooni.io/invalidpath"
@@ -46,6 +62,8 @@ blackbox_jobs:
     targets:
       - "https://bouncer.ooni.io/bouncer/net-tests"
       - "https://ps.ooni.io/bouncer/net-tests"
+      # cloudfront
+      - "https://d3kr4emv7f56qa.cloudfront.net/bouncer/net-tests"
 
   # IP addresses are used for test-helpers in monitoring configuration for some
   # historical reason hopefully remembered by @hellais.
@@ -64,11 +82,31 @@ blackbox_jobs:
     targets:
       - "https://explorer.ooni.org/"
 
+  # API #
+
   - name: "ooni API measurements"
     module: "http_2xx"
     targets:
       - "https://api.ooni.io/api/v1/measurements"
       - "https://ams-pg-test.ooni.org/api/v1/measurements"
+
+  - name: "ooni API test-list urls"
+    module: "https_2xx_json_meta"
+    targets:
+      - "https://api.ooni.io/api/v1/test-list/urls?country_code=US"
+
+  - name: "ooni API test-helpers"
+    module: "https_2xx_json"
+    targets:
+      - "https://api.ooni.io/api/v1/test-helpers"
+
+  - name: "ooni API priv global overview"
+    module: "https_2xx_json"
+    targets:
+      - "https://api.ooni.io/api/_/global_overview"
+
+  # end of API #
+
 
   - name: "countly.ooni.io ping"
     module: "http_2xx"

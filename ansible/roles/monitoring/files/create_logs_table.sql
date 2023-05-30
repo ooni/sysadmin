@@ -1,12 +1,14 @@
 CREATE TABLE IF NOT EXISTS default.logs
 (
+    `host` String,
+    `timestamp` String,
+    `message` String,
     `CODE_FILE` String,
     `CODE_FUNC` String,
     `CODE_LINE` String,
     `INVOCATION_ID` String,
     `LOGGER` String,
     `MESSAGE_ID` String,
-    `MESSAGE` String,
     `PRIORITY` UInt8,
     `PROCESS_NAME` String,
     `SYSLOG_FACILITY` UInt16,
@@ -47,5 +49,5 @@ CREATE TABLE IF NOT EXISTS default.logs
     rtdate ALIAS fromUnixTimestamp64Micro(__REALTIME_TIMESTAMP)
 )
 ENGINE = MergeTree
-ORDER BY __REALTIME_TIMESTAMP
+ORDER BY timestamp
 SETTINGS index_granularity = 8192

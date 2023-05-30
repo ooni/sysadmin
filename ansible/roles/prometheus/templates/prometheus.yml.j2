@@ -2,7 +2,7 @@
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
-  # scrape_timeout is set to the global default (10s).
+  scrape_timeout:      15s
 
 # the path is absolute as ansible `validates` temporary file in some temporary directory
 rule_files:
@@ -139,6 +139,22 @@ scrape_configs:
 {% for host in (groups.have_netdata|sort) %}
         - {{ host }}:19999
 {% endfor %}
+        - 0.th.ooni.org:19999
+        - 1.th.ooni.org:19999
+        - 2.th.ooni.org:19999
+        - 3.th.ooni.org:19999
+        # - 2.th.ooni.org:19999
+
+  - job_name: 'test-helpers'
+    scrape_interval: 5s
+    scheme: http
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+        - 0.th.ooni.org:9001
+        - 1.th.ooni.org:9001
+        - 2.th.ooni.org:9001
+        - 3.th.ooni.org:9001
 
   - job_name: 'ooni-api'
     scrape_interval: 5s

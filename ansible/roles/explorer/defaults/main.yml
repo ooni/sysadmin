@@ -1,4 +1,5 @@
-explorer_next_tag: '20220127-f21891c6'
+explorer_next_tag: '20230508-dd6a766a'
 explorer_next_backend_ipv4: 172.27.33.254
 explorer_next_backend_port: 3100
 explorer_public_hostname: "explorer.ooni.org"
+cloudflare_api_token_secret: "MUST OVERRIDE IN HOST VARS"

@@ -1,0 +1,1 @@
+Configure base host based on Bookworm

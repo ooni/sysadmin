@@ -71,10 +71,6 @@ passwd:
     login: art
     comment: Arturo Filasto
     keys: ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJsibU0nsQFFIdolD1POzXOws4VetV0ZNByINRzY8Hx0 arturo@ooni.org"]
-  nuke:
-    login: nuke
-    comment: Lorenzo Primiterra
-    keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+QtDwA/s8vw7aETWGjItUBmgCXgm9jTEjCh/5OofGJ/Bk4kjZ+a6NisUNJRvrySfr89oeJz7VOuHgHTCM1g2CKANAiidcBkepHjdBlHDElV1WBlUxdgl0RsbM4ue8zUxtrmzEQaxLxL769ZHR+gI8PoZau1cSyKG5jVge91Bt1+wvV3dMGvxibM144+uHCrxHpBsbRd9irIgk+vNJmecKn3bSh3aKo9txBjIqBprBrZ1Dqj0x9IKVhD59URcO1Vrr3HXPghZnsWFjOSSQ0DeVpkE3cEz78CpdvqL0drv4Mo1ZgE33YLwWjJSceDGIrtnsPZhs5YzOI4iStRIdPD4X nuke"]
   sbs:
     login: sbs
     comment: Simone Basso
@@ -85,10 +81,15 @@ passwd:
     comment: Federico Ceratto
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
+  majakomel:
+    login: majakomel
+    comment: Maja Komel
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7gWQL4h/IyMbwDuMIXbTVmNEm8Yx19Ftt0P2e3OyWctSMH7WGaHc6b0dGoGh6Y4x0Kpw5h0iHWshP8Rg0pckNG9LeDjLY9nLR3Jv66ogFQtFi1DAlg4CXe369N70rBN9iurndgXjShW9OV+bY+MOlW8Fmmm67Vg0xFiYuYzjgUOpl4ofkbLGAQ7sJRBzpDV6TqHhGfOdYMDJyfFvurVz0oSyEZPFFRv4Css9iVk7BGsBukCCpUuax8akEeEjxWWCvjYXva7OA0jHKayfPAroZx/OJh01rhFe7wxlu5JwUKOcevvAZqeHh6200C82ijZOCN+Qq9yvxOH+OgzhnQwnoetIbGFgnb4CkDxo7dVLc/DFyObznC4f26f5D1OyPMUX8AEarEVdEPwsEfD2ePQr6qek0XWCWtYvGklb+GRLk9Yn0VL1qwvgrtstHdeXsKONTPKRxaCjWHu18dQaG2qOUnZ+St6SHeL49CN9aav2azNI/YKoQ9SGR4D23XeBRsW8="
 
 # Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
 # See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
-adm_logins: [ art, federico, sbs ]
+adm_logins: [ art, federico, sbs, majakomel ]
 shell_logins: [ agrabeli ]
 svc_ssh_logins: [ ]
 sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'

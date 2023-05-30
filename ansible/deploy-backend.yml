@@ -32,10 +32,12 @@
     - role: nftables
     - role: nginx-buster
       tags: nginx
-    - role: letsencrypt
-      tags: letsencrypt
+    - role: dehydrated
+      tags: dehydrated
       expand: yes
-      letsencrypt_domains:
+      ssl_domains:
+        # with dehydrated the first entry is the cert FQDN
+        # and the other ones are alternative names
         - "ams-pg-test.ooni.org"
     - role: ooni-backend
       ssl_domain: ams-pg-test.ooni.org
@@ -50,6 +52,35 @@
       tags: dehydrated
       expand: yes
       ssl_domains:
+        # with dehydrated the first entry is the cert FQDN
+        # and the other ones are alternative names
         - "backend-fsn.ooni.org"
+        - "a.collector.ooni.io"
+        - "api.ooni.io"
+        - "b.collector.ooni.io"
+        - "c.collector.ooni.io"
+        - "collector.ooni.io"
+        - "deb.ooni.org"
+        - "ps.ooni.io"
+        - "ps1.ooni.io"
+        - "ps2.ooni.io"
+        - "ps3.ooni.io"
+        - "ps4.ooni.io"
     - role: ooni-backend
       ssl_domain: backend-fsn.ooni.org
+
+- hosts: backend-hel.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: nginx-buster
+      tags: nginx
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        # with dehydrated the first entry is the cert FQDN
+        # and the other ones are alternative names
+        - "backend-hel.ooni.org"
+    - role: ooni-backend
+      ssl_domain: backend-hel.ooni.org

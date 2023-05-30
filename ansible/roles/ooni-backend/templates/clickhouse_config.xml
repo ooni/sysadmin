@@ -7,19 +7,27 @@
 
 {% if inventory_hostname == 'backend-fsn.ooni.org' %}
   <display_name>production</display_name>
+  <max_server_memory_usage>20100100100</max_server_memory_usage> <!-- 20GB -->
+  <!-- max_memory_usage applies to a single query
+       max_server_memory_usage defaults to auto
+       max_server_memory_usage_to_ram_ratio defaults to 0.9
+       max_memory_usage_for_user defaults to unlimited -->
 {% else %}
   <display_name>{{ inventory_hostname.replace(".ooni.org", "") }}</display_name>
 {% endif %}
 
 {% if inventory_hostname == 'ams-pg-test.ooni.org' %}
-  <!-- 500MB -->
-  <mark_cache_size>500100100</mark_cache_size>
-  <!-- 3GB -->
-  <max_server_memory_usage>3100100100</max_server_memory_usage>
+  <mark_cache_size>500100100</mark_cache_size> <!-- 500MB -->
+  <max_server_memory_usage>3100100100</max_server_memory_usage> <!-- 3GB -->
 {% endif %}
 
   <!-- further filtering is done by netfilter and user auth -->
   <listen_host>0.0.0.0</listen_host>
+
+  <!-- disable HTTP, MySQL and PostgreSQL interfaces -->
+  <http_port remove="1"/>
+  <mysql_port remove="1"/>
+  <postgresql_port remove="1"/>
 
   <!-- enable prometheus metrics -->
   <prometheus>

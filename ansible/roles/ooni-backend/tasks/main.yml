@@ -26,14 +26,40 @@
     group: ooniapi
     mode: 0640
   vars:
+    collectors: []
+    # bucket_name and collector_id must match the uploader
+    collector_id: 2
+    bucket_name: ooni-data-eu-fra-test
     github_push_repo: "ooni-bot/test-lists"
     github_origin_repo: "ooni/test-lists"
     login_base_url: "https://test-lists.test.ooni.org/login"
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
-    mail_smtp_password: "DISABLED"
-    github_token: "DISABLED"
-    jwt_encryption_key: "api-test-bogus-key"
+    # mail_smtp_password: "DISABLED"
+    # jwt_encryption_key and account_id_hashing_key are taken from the vault
+
+- name: configure backend-hel api
+  when: inventory_hostname == 'backend-hel.ooni.org'
+  tags: api
+  template:
+    src: api.conf
+    dest: /etc/ooni/api.conf
+    owner: ooniapi
+    group: ooniapi
+    mode: 0640
+  vars:
+    collectors: ['backend-hel.ooni.org',]
+    # bucket_name and collector_id must match the uploader
+    collector_id: 3
+    # test bucket
+    bucket_name: ooni-data-eu-fra-test
+    # test GH repo
+    github_push_repo: "ooni-bot/test-lists"
+    github_origin_repo: "citizenlab/test-lists"
+    login_base_url: "https://test-lists.ooni.org/login"
+    pg_uri: ""
+    clickhouse_url: clickhouse://api:api@localhost/default
+    base_url: "https://backend-hel.ooni.org"
 
 - name: configure backend-fsn api
   when: inventory_hostname == 'backend-fsn.ooni.org'
@@ -45,9 +71,13 @@
     group: ooniapi
     mode: 0640
   vars:
-    github_push_repo: "ooni-bot/test-lists"
-    github_origin_repo: "ooni/test-lists"
-    login_base_url: "https://test-lists.test.ooni.org/login"
+    collectors: ['backend-fsn.ooni.org', 'ams-pg.ooni.org']
+    # bucket_name and collector_id must match the uploader
+    collector_id: 1
+    bucket_name: ooni-data-eu-fra
+    github_push_repo: "ooni/test-lists"
+    github_origin_repo: "citizenlab/test-lists"
+    login_base_url: "https://test-lists.ooni.org/login"
     pg_uri: ""
     clickhouse_url: clickhouse://api:api@localhost/default
     base_url: "https://api.ooni.io"
@@ -62,6 +92,10 @@
     group: ooniapi
     mode: 0640
   vars:
+    collectors: ['backend-fsn.ooni.org', 'ams-pg.ooni.org']
+    # collector_id must match the uploader
+    collector_id: 0
+    bucket_name: ooni-data-eu-fra
     github_push_repo: "ooni/test-lists"
     github_origin_repo: "citizenlab/test-lists"
     login_base_url: "https://test-lists.ooni.org/login"
@@ -69,7 +103,6 @@
     clickhouse_url: ""
 
 - name: create Psiphon conffile
-  when: inventory_hostname != 'backend-fsn.ooni.org'
   tags: api
   copy:
     content: "{{ psiphon_config }}"
@@ -84,64 +117,81 @@
 - name: configure api uploader using test bucket
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api
-  blockinfile:
-    path: /etc/ooni/api-uploader.conf
-    create: yes
-    block: |
-      [DEFAULT]
-      # WARNING: deleting data instead of uploding to S3
-      run_mode = DESTROY_DATA
-      bucket_name = ooni-data-eu-fra-test
-      msmt_spool_dir = /var/lib/ooniapi/measurements
+  template:
+    src: templates/api-uploader.conf
+    dest: /etc/ooni/api-uploader.conf
+  vars:
+    # bucket_name and collector_id must match the API
+    bucket_name: ooni-data-eu-fra-test
+    collector_id: 2
+
+- name: configure FSN api uploader using PROD bucket
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: api
+  template:
+    src: templates/api-uploader.conf
+    dest: /etc/ooni/api-uploader.conf
+  vars:
+    # bucket_name and collector_id must match the API
+    bucket_name: ooni-data-eu-fra
+    collector_id: 1
+
+# - name: configure HEL api uploader using test bucket
+#   when: inventory_hostname == 'backend-hel.ooni.org'
+#   tags: api
+#   template:
+#     src: templates/api-uploader.conf
+#     dest: /etc/ooni/api-uploader.conf
+#   vars:
+#     # bucket_name and collector_id must match the API
+#     bucket_name: ooni-data-eu-fra-test
+#     collector_id: 3
 
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api
-  blockinfile:
-    path: /etc/ooni/api-uploader.conf
-    create: yes
-    block: |
-      # OONI API measurement uploader - Python ini format
-      [DEFAULT]
-      # arn:aws:iam::676739448697:user/ooni-pipeline, AWS: OONI Open Data
-      aws_access_key_id = AKIAJURD7T4DTN5JMJ5Q
-      aws_secret_access_key = {{ s3_ooni_open_data_access_key }}
-      bucket_name = ooni-data-eu-fra
-      msmt_spool_dir = /var/lib/ooniapi/measurements
-
-- name: Overwrite API nginx prod conf
-  when: inventory_hostname == 'ams-pg.ooni.org'
-  tags: api, api-nginx
   template:
-    src: templates/ooni-api-prod.conf
-    dest: /etc/nginx/sites-available/ooni-api.conf
-    mode: 0755
-    owner: root
+    src: templates/api-uploader.conf
+    dest: /etc/ooni/api-uploader.conf
   vars:
-    certpath: /etc/letsencrypt/live/
+    # bucket_name and collector_id must match the API
+    bucket_name: ooni-data-eu-fra
+    collector_id: 0
 
 - name: Overwrite API nginx test conf
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: api, api-nginx
   template:
-    src: templates/ooni-api.conf
-    dest: /etc/nginx/sites-available/ooni-api.conf
-    mode: 0755
-    owner: root
-  vars:
-    certpath: /etc/letsencrypt/live/
-
-- name: Overwrite API nginx FSN conf
-  when: inventory_hostname == 'backend-fsn.ooni.org'
-  tags: api, api-nginx
-  template:
-    src: templates/ooni-api-fsn.conf
+    src: templates/nginx-api-test.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
     mode: 0755
     owner: root
   vars:
     # Uses dehydrated
     certpath: /var/lib/dehydrated/certs/
+
+- name: Overwrite API nginx FSN conf
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: api, api-nginx
+  template:
+    src: templates/nginx-api-fsn.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+  vars:
+    # Uses dehydrated
+    certpath: /var/lib/dehydrated/certs/
+
+- name: Overwrite API nginx prod conf
+  when: inventory_hostname == 'ams-pg.ooni.org'
+  tags: api, api-nginx
+  template:
+    src: templates/nginx-api-ams-pg.conf
+    dest: /etc/nginx/sites-available/ooni-api.conf
+    mode: 0755
+    owner: root
+  vars:
+    certpath: /etc/letsencrypt/live/
 
 - name: Deploy API gunicorn conf
   tags: api
@@ -159,21 +209,13 @@
     dest=/etc/nginx/sites-enabled/ooni-api.conf
     state=link
 
-- name: Configure deb.ooni.org forwarder on prod host
-  when: inventory_hostname == 'ams-pg.ooni.org'
+- name: Configure deb.ooni.org forwarder on FSN host
+  when: inventory_hostname == 'backend-fsn.ooni.org' or inventory_hostname == 'ams-pg-test.ooni.org'
   tags: deb_ooni_org
-  blockinfile:
-    path: /etc/nginx/sites-enabled/deb_ooni_org_http
-    create: yes
-    block: |
-      # Managed by ansible, see roles/ooni-backend/tasks/main.yml
-      server {
-        listen 80;
-        server_name deb.ooni.org;
-        location / {
-          proxy_pass https://ooni-deb.s3.eu-central-1.amazonaws.com/;
-        }
-      }
+  # Uses dehydrated
+  template:
+    src: deb_ooni_org.nginx.conf
+    dest: /etc/nginx/sites-enabled/deb_ooni_org
 
 - name: Configure deb-ci.ooni.org forwarder on test host
   when: inventory_hostname == 'ams-pg-test.ooni.org'
@@ -243,6 +285,30 @@
   vars:
     clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
 
+- name: configure fastpath on FSN
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: fastpath
+  template:
+    src: fastpath.conf
+    dest: /etc/ooni/fastpath.conf
+    owner: fastpath
+    group: fastpath
+    mode: 0640
+  vars:
+    clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
+
+
+- name: configure fastpath on HEL
+  when: inventory_hostname == 'backend-hel.ooni.org'
+  tags: fastpath
+  template:
+    src: fastpath.conf
+    dest: /etc/ooni/fastpath.conf
+    owner: fastpath
+    group: fastpath
+    mode: 0640
+  vars:
+    clickhouse_url: clickhouse://fastpath:fastpath@localhost/default
 - name: configure fastpath on ams-pg
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: fastpath
@@ -254,6 +320,7 @@
     mode: 0640
   vars:
     clickhouse_url:
+    psql_uri: postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
 
 
 ## Event detector ##
@@ -281,36 +348,23 @@
   tags: analysis
   apt:
     cache_valid_time: 86400
-    name: analysis=0.15~pr324-331
+    name: analysis=1.4~pr408-209
     force: True
     state: present
 
 - name: configure analysis
-  when: inventory_hostname != 'backend-fsn.ooni.org'
-  tags: analysis
-  blockinfile:
-    path: /etc/ooni/analysis.conf
-    create: yes
-    block: |
+  tags: analysis-conf
+  template:
+    src: analysis.conf
+    dest: /etc/ooni/analysis.conf
       # Managed by ansible, see roles/ooni-backend/tasks/main.yml
-      [active]
-      dbname = metadb
-      dbuser = shovel
-      dbpassword = yEqgNr2eXvgG255iEBxVeP
-      dbhost = localhost
-
-      [standby]
-      dbname = metadb
-      dbuser = shovel
-      dbpassword = yEqgNr2eXvgG255iEBxVeP
-      dbhost = localhost
 
 
 ## Test helper rotation ##
 
 - name: configure test helper rotation
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   blockinfile:
     path: /etc/ooni/rotation.conf
     create: yes
@@ -320,16 +374,15 @@
       [DEFAULT]
       # Digital Ocean token
       token = {{ digital_ocean_token }}
-      db_uri = postgresql://shovel:yEqgNr2eXvgG255iEBxVeP@localhost/metadb
-      active_droplets_count = 2
+      active_droplets_count = 4
       size_slug = s-1vcpu-1gb
-      image_name = debian-10-x64
+      image_name = debian-11-x64
       draining_time_minutes = 1440
       dns_zone = th.ooni.org
 
 - name: configure test helper rotation certbot
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   blockinfile:
     path: /etc/ooni/certbot-digitalocean
     create: yes
@@ -340,21 +393,21 @@
 
 - name: configure test helper rotation setup script
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   template:
     src: rotation_setup.sh
     dest: /etc/ooni/rotation_setup.sh
 
 - name: create test helper rotation nginx template
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   template:
     src: rotation_nginx_conf
     dest: /etc/ooni/rotation_nginx_conf
 
 - name: generate test helper rotation SSH keypair
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   openssh_keypair:
     path: /etc/ooni/testhelper_ssh_key
     owner: root
@@ -365,12 +418,12 @@
 
 - name: print SSH pubkey
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   debug: msg={{ pubkey.public_key }}
 
 - name: Enable and start rotation service
   tags: rotation
-  when: inventory_hostname == 'ams-pg.ooni.org'
+  when: inventory_hostname == 'backend-fsn.ooni.org'
   systemd:
     daemon_reload: yes
     enabled: yes
@@ -380,21 +433,6 @@
 
 ## Tor daemon and onion service ##
 
-- name: install tor daemon
-  tags: tor
-  apt:
-    cache_valid_time: 86400
-    name: tor
-
-- name: configure tor onion service
-  tags: tor
-  blockinfile:
-    path: /etc/tor/torrc
-    block: |
-      # See roles/ooni-backend/tasks/main.yml
-      HiddenServiceDir /var/lib/tor/ooni_onion_service/
-      HiddenServicePort 80 127.0.0.1:17744
-      HiddenServiceVersion 2
 
 - name: configure tor onion service hostname
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -425,18 +463,12 @@
     chown debian-tor:debian-tor /var/lib/tor/ooni_onion_service
     chmod 0700 /var/lib/tor/ooni_onion_service
 
-- name: reload tor service
-  tags: tor
-  systemd:
-    name: tor@default.service
-    state: reloaded
-
 
 # # Clickhouse # #
 
-- name: install clickhouse
+- name: install APT HTTPS support
   # do not update package if present
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   apt:
     cache_valid_time: 86400
@@ -447,18 +479,18 @@
       - dirmngr
 
 - name: install clickhouse keys
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
-  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8919F6BD2B48D754
 
 - name: set clickhouse repos
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   blockinfile:
     path: /etc/apt/sources.list.d/clickhouse.list
     create: yes
     block: |
-      deb https://repo.clickhouse.com/deb/lts/ main/
+      deb https://packages.clickhouse.com/deb lts main
 
 - name: pin clickhouse release train
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
@@ -469,6 +501,17 @@
     block: |
       Package: clickhouse-server
       Pin: version 21.8.12.*
+      Pin-Priority: 999
+
+- name: pin clickhouse release train
+  when: inventory_hostname in ('backend-hel.ooni.org', )
+  tags: clickhouse
+  blockinfile:
+    path: /etc/apt/preferences.d/clickhouse-server
+    create: yes
+    block: |
+      Package: clickhouse-server
+      Pin: version 23.1.3.*
       Pin-Priority: 999
 
 - name: install clickhouse on backend-fsn
@@ -484,6 +527,18 @@
   vars:
     clickhouse_pkg_ver: 21.8.12.*
 
+- name: install clickhouse on backend-hel
+  when: inventory_hostname == 'backend-hel.ooni.org'
+  tags: clickhouse
+  apt:
+    # refresh cache
+    cache_valid_time: 0
+    name:
+      - clickhouse-server={{ clickhouse_pkg_ver }}
+      - clickhouse-client={{ clickhouse_pkg_ver }}
+  vars:
+    clickhouse_pkg_ver: 23.1.3.*
+
 - name: install clickhouse on ams-pg-test.ooni.org
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: clickhouse
@@ -495,7 +550,7 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.12.*
+    clickhouse_pkg_ver: 21.8.14.*
 
 - name: install clickhouse conf override
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
@@ -540,7 +595,7 @@
 # https://clickhouse.com/docs/en/operations/access-rights/#enabling-access-control
 
 - name: Clickhouse - test admin user
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse-users
   command: clickhouse-client -u admin --password admin -q 'select 1'
   ignore_errors: true
@@ -658,3 +713,22 @@
     state: started
     enabled: yes
 
+- name: Run DB backup on ams-pg-test
+  when: inventory_hostname == 'ams-pg-test.ooni.org'
+  tags: dbbackup
+  template:
+    src: db-backup.conf
+    dest: /etc/ooni/db-backup.conf
+    mode: 0600
+  vars:
+    public_bucket_name: ooni-data-eu-fra-test
+
+- name: Run DB backup on FSN
+  when: inventory_hostname == 'backend-fsn.ooni.org'
+  tags: dbbackup
+  template:
+    src: db-backup.conf
+    dest: /etc/ooni/db-backup.conf
+    mode: 0600
+  vars:
+    public_bucket_name: ooni-data-eu-fra

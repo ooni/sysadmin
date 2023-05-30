@@ -42,3 +42,29 @@ server {
 
   }
 }
+
+# Used by Netdata to monitor Nginx
+server {
+  listen 127.0.0.1:80;
+  server_name localhost;
+
+  allow 5.9.112.244; # monitoring host
+  deny all;
+
+  location = /stub_status {
+    stub_status;
+  }
+}
+
+# Used by Prometheus to reach the TH
+server {
+  listen 9001;
+  server_name localhost;
+
+  allow 5.9.112.244; # monitoring host
+  deny all;
+
+  location = /metrics {
+    proxy_pass http://127.0.0.1:9091;
+  }
+}

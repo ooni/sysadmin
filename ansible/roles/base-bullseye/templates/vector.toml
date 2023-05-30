@@ -1,0 +1,20 @@
+# Managed by ansible
+
+# Reads from local journald and send to monitoring.ooni.org
+
+[sources.local_journald]
+type = "journald"
+# exclude_units = [ ]
+
+[sinks.monitoring_ooni_org]
+type = "vector"
+inputs = [ "local_journald" ]
+address = "monitoring.ooni.org:10514"
+compression = true
+
+tls.enabled = true
+tls.verify_certificate = true
+tls.verify_hostname = false
+tls.ca_file = "/etc/vector/oonicacert.pem"
+tls.crt_file = "/etc/vector/node-cert.pem"
+tls.key_file = "/etc/vector/node.key"

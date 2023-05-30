@@ -1,4 +1,5 @@
 ---
+# Used together with host_vars/monitoring.ooni.org/vars.yml
 modules:
   http_2xx:
     prober: http
@@ -84,6 +85,19 @@ modules:
       fail_if_body_not_matches_regexp:
         - ".+?\"status\".+?\"ok\".+?"
 
+  # Send JSON with a POST to a new test helper to run a real http_request and tcp_connect test
+  new_test_helper_health:
+    prober: http
+    timeout: 25s
+    http:
+      valid_status_codes: [200]
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: '{"http_request":"https://google.com/","http_request_headers":{},"tcp_connect":["8.8.8.8:443"]}'
+      fail_if_body_not_matches_regexp:
+        - "Google"
+
   ooni_tcp_echo_ok:
     prober: tcp
     timeout: 5s
@@ -113,4 +127,37 @@ modules:
       method: GET
       fail_if_body_not_matches_regexp:
       - "404 page not found"
+
+  https_2xx_json:
+    http:
+      method: GET
+      valid_status_codes: []  # Defaults to 2xx
+      fail_if_not_ssl: true
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+      headers:
+        User-Agent: ooni blackbox
+      no_follow_redirects: false
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      fail_if_body_not_matches_regexp:
+        - "}"
+    prober: http
+    timeout: 30s
+
+  https_2xx_json_meta:
+    http:
+      method: GET
+      valid_status_codes: []  # Defaults to 2xx
+      fail_if_not_ssl: true
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+      headers:
+        User-Agent: ooni blackbox
+      no_follow_redirects: false
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      fail_if_body_not_matches_regexp:
+        - "metadata"
+    prober: http
+    timeout: 30s
+
 ...

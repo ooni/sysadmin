@@ -1,0 +1,24 @@
+# Managed by ansible
+
+[sources.local_journald]
+type = "journald"
+exclude_units = [ "clickhouse" ]
+
+[sources.remote_vector]
+type = "vector"
+address = "0.0.0.0:10514"
+
+tls.enabled = true
+tls.verify_certificate = true
+tls.verify_hostname = false
+tls.ca_file = "/etc/vector/oonicacert.pem"
+tls.crt_file = "/etc/vector/node-cert.pem"
+tls.key_file = "/etc/vector/node.key"
+
+[sinks.clickhouse_sink]
+type = "clickhouse"
+inputs = [ "local_journald", "remote_vector" ]
+database = "default"
+endpoint = "http://localhost:8123"
+table = "logs"
+date_time_best_effort = true
