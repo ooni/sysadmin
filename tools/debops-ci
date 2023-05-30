@@ -64,6 +64,9 @@ conf = None
 
 
 def run2(cmd: str, **kw) -> str:
+    """Runs command expecting exit code to be 0.
+    Prints out stderr and stdout and raises an exception otherwise.
+    """
     if conf.show_commands:
         print(f"Running {cmd}\nKW: {kw}")
     p = run(cmd.split(), capture_output=True, **kw)
@@ -499,10 +502,9 @@ class S3:
         print(r)
 
     def scanpackages(self, conf, debfn) -> str:
-        r, o = runc(f"dpkg-scanpackages {debfn}")
-        assert r == 0, repr(o)
+        lines = run2(f"dpkg-scanpackages {debfn}")
         out = []
-        for line in o.splitlines():
+        for line in lines.splitlines():
             if line.startswith("Filename: "):
                 fn = line.split("/")[-1]
                 line = f"Filename: dists/{conf.distro}/main/binary-{conf.arch}/{fn}"
