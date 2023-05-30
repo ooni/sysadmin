@@ -10,11 +10,6 @@
     script: setup_ansible_prereqs.sh creates=/root/.ansible_prereqs_installed
 
 - hosts: vpsprobes
-  remote_user: root
   roles:
-    - role: base-bullseye
-    - role: nftables
     - role: vpsprobes
       tags: vpsprobes
-
-
