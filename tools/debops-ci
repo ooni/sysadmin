@@ -38,7 +38,7 @@ from subprocess import run
 from tempfile import mkdtemp, NamedTemporaryFile
 from textwrap import dedent
 from time import sleep
-from typing import List
+from typing import List, Tuple
 from hashlib import sha256
 import requests
 import sys
@@ -63,7 +63,7 @@ assert sys.version_info >= (3, 7, 0), "Python 3.7.0 or later is required"
 conf = None
 
 
-def run2(cmd, **kw):
+def run2(cmd: str, **kw) -> str:
     if conf.show_commands:
         print(f"Running {cmd}\nKW: {kw}")
     p = run(cmd.split(), capture_output=True, **kw)
@@ -82,10 +82,10 @@ def runi(cmd: str, cwd: Path, sudo=False) -> None:
     run(cmd.split(), cwd=cwd, check=True)
 
 
-def runc(cmd):
+def runc(cmd: str) -> Tuple[int, str]:
     print("Running:", cmd)
     r = run(cmd.split(), capture_output=True)
-    print("Retcode", r.returncode)
+    print("Return code:", r.returncode)
     return r.returncode, r.stdout.decode()
 
 
@@ -98,8 +98,8 @@ def detect_changed_packages() -> List[Path]:
     commit = run2("git merge-base remotes/origin/master HEAD")
     changes = run2(f"git diff --name-only {commit}")
     pkgs = set()
-    for c in changes.splitlines():
-        c = Path(c)
+    for cs in changes.splitlines():
+        c = Path(cs)
         if c.as_posix().endswith(DCH):
             pkgs.add(c.parent.parent)
             continue
@@ -123,7 +123,7 @@ def trim_compare(url: str) -> str:
     return url
 
 
-def _set_pkg_version_from_circleci(p, ver) -> None:
+def _set_pkg_version_from_circleci(p, ver) -> bool:
     comp = trim_compare(getenv("CIRCLE_COMPARE_URL", ""))  # show changes in VCS
     if not comp:
         # https://discuss.circleci.com/t/circle-compare-url-is-empty/24549/8
@@ -303,14 +303,14 @@ class DuplicatePkgError(Exception):
 def extract_pva(text):
     d = {}
     for line in text.splitlines():
-        if line.startswith(f"Package: "):
+        if line.startswith("Package: "):
             val = line.split(" ", 1)[1]
             if d:
                 yield d
             d = {"p": val}
-        elif line.startswith(f"Version: "):
+        elif line.startswith("Version: "):
             d["v"] = line.split(" ", 1)[1]
-        elif line.startswith(f"Architecture: "):
+        elif line.startswith("Architecture: "):
             d["a"] = line.split(" ", 1)[1]
 
     yield d
@@ -500,7 +500,7 @@ class S3:
 
     def scanpackages(self, conf, debfn) -> str:
         r, o = runc(f"dpkg-scanpackages {debfn}")
-        assert r == 0, repr(r)
+        assert r == 0, repr(o)
         out = []
         for line in o.splitlines():
             if line.startswith("Filename: "):
@@ -513,6 +513,7 @@ class S3:
     def _inner_upload(self, debfn, tmpdir, baseuri, pkgblock: str, gpg, gpgkeyfp):
         # Fetch existing Packages file
         packages = tmpdir / "Packages"
+        assert conf
         uri = f"{baseuri}/main/binary-{conf.arch}/Packages {packages}"
         run2(f"s3cmd --no-progress get {uri}")
 
@@ -549,7 +550,7 @@ class S3:
         run2(f"{put} {packages} {baseuri}/main/binary-{conf.arch}/Packages")
         run2(f"{put} {debfn} {baseuri}/main/binary-{conf.arch}/")
 
-    def upload(self, debfn, conf):
+    def upload(self, debfn: Path, conf) -> None:
         assert conf.bucket_name
         tmpdir = Path(mkdtemp(prefix="debops-ci"))
 
