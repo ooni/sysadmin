@@ -7,6 +7,7 @@ description = ""
 [tool.poetry.dependencies]
 python = "^3.11"
 ansible = "^7.3.0"
+dnspython = "^2.3.0"
 
 [build-system]
 requires = ["poetry-core"]

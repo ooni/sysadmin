@@ -2,7 +2,19 @@
 #- import_playbook: ansible-version.yml
 
 - hosts: vpsprobes
-  gather_facts: false
+  gather_facts: no
+  remote_user: root
+  tags: prereqs
+  tasks:
+  - name: install ansible prerequisites
+    script: setup_ansible_prereqs.sh creates=/root/.ansible_prereqs_installed
+
+- hosts: vpsprobes
+  remote_user: root
   roles:
+    - role: base-bullseye
+    - role: nftables
     - role: vpsprobes
       tags: vpsprobes
+
+
