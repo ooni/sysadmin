@@ -9,6 +9,16 @@
 #    mode: 0644
 #    owner: root
 
+- name: Install locale
+  remote_user: root
+  apt:
+    name:
+    - locale
+    cache_valid_time: '{{ apt_cache_valid_time }}'
+    install_recommends: no
+    state: latest
+    update_cache: yes
+
 - name: localegen
   shell: locale-gen --purge en_US.UTF-8 
   remote_user: root
@@ -17,9 +27,13 @@
   shell: echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
   remote_user: root
 
+- name: add repo key
+  remote_user: root
+  shell: apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys 'B5A08F01796E7F521861B449372D1FF271F2DD50'
+
 - name: add ooniprobe-debian-test APT archive
   remote_user: root
-  shell: echo "deb [trusted=yes] https://dl.bintray.com/ooni/ooniprobe-debian-test unstable main" > /etc/apt/sources.list.d/ooniprobe-test.list
+  shell: echo "deb http://deb.ooni.org/ unstable main" > /etc/apt/sources.list.d/ooniprobe-test.list
 
 - name: motd
   remote_user: root
