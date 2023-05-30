@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "ooni-sysadmin"
+version = "0.1.0"
+authors = []
+description = ""
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ansible = "^7.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

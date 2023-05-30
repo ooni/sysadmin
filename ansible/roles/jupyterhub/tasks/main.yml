@@ -1,0 +1,75 @@
+---
+- name: install requirements with apt
+  apt:
+    name:
+      - python3
+      - nodejs
+      - npm
+
+- name: install configurable-http-proxy
+  shell:
+    cmd: "npm install -g configurable-http-proxy"
+    creates: "/usr/local/bin/configurable-http-proxy"
+
+- name: mkdir for install, state and config
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ install_dir }}"
+    - "{{ install_dir }}/state"
+    - "{{ install_dir }}/config"
+    - "{{ conda_dir }}"
+
+- name: download conda installer
+  get_url:
+    url: "https://github.com/conda-forge/miniforge/releases/download/{{ mambaforge_version }}/{{ mambaforge_script }}"
+    dest: "{{ install_dir }}/{{ mambaforge_script }}"
+    mode: 0755
+
+- name: install conda
+  shell:
+    cmd: "bash {{ install_dir }}/{{ mambaforge_script }} -b -u -p {{ conda_dir }}"
+    creates: "{{ conda_dir }}/bin/activate"
+
+- name: install jupyterhub with conda
+  shell: "{{ conda_bin }} install -c conda-forge {{ item }}"
+  with_items:
+    - "jupyterhub"
+    - "jupyterlab"
+    - "jupyter_server"
+
+- name: Write jupyterhub.conf
+  template:
+    src: templates/jupyterhub_config.py
+    dest: "{{ install_dir }}/config/jupyterhub_config.py"
+    mode: 0644
+    owner: root
+
+- name: allow incoming HTTPS connections to 443
+  blockinfile:
+    path: /etc/ooni/nftables/tcp/443.nft
+    create: yes
+    block: |
+      add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
+
+- name: reload nftables service
+  shell: systemctl reload nftables.service
+
+- name: Install jupyterhub.service
+  template:
+    src: templates/jupyterhub.service
+    dest: /etc/systemd/system/jupyterhub.service
+    mode: 0644
+    owner: root
+
+- name: jupyterhub nginx config
+  template: src=jupyterhub-nginx dest=/etc/nginx/sites-enabled/jupyterhub
+  notify: reload nginx
+
+- name: Start jupyterhub
+  systemd:
+    name: jupyterhub.service
+    state: started
+    enabled: yes
