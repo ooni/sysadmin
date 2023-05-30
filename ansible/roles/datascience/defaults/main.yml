@@ -1,3 +1,3 @@
 install_dir: "/srv/jupyterhub"
 conda_dir: "{{ install_dir }}/conda"
-conda_bin: "{{ conda_dir }}/bin/conda"
+conda_bin: "{{ conda_dir }}/bin"

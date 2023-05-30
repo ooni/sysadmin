@@ -49,7 +49,7 @@
 
 
 - name: install packages with conda
-  shell: "{{ conda_bin }} install -c conda-forge pandas numpy altair clickhouse-driver dask scipy scikit-learn catboost pycountry ujson orjson tqdm seaborn requests maxminddb matplotlib lz4 shap msgpack-python beautifulsoup4"
+  shell: "{{ conda_bin }}/conda install -c conda-forge pandas numpy altair clickhouse-driver dask scipy scikit-learn catboost pycountry ujson orjson tqdm seaborn requests maxminddb matplotlib lz4 shap msgpack-python beautifulsoup4"
 
 - name: create yarn gpg keyring
   shell:
@@ -65,3 +65,23 @@
     cache_valid_time: 0
     name:
       - yarn
+
+# Apache Superset setup
+- name: install apt requirements for superset
+  apt:
+    state: present
+    name:
+      - build-essential
+      - python-dev
+      - libssl-dev 
+      - libffi-dev
+      - libsasl2-dev 
+      - libldap2-dev
+      - default-libmysqlclient-dev
+
+- name: install superset with pip
+  shell: "{{ conda_bin }}/pip install apache-superset
+
+- name: initialize superset DB
+  shell: "{{ conda_bin }}/superset db upgrade
+
