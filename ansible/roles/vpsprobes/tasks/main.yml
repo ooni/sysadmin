@@ -13,7 +13,7 @@
   remote_user: root
   apt:
     name:
-    - locale
+    - locales
     cache_valid_time: '{{ apt_cache_valid_time }}'
     install_recommends: no
     state: latest
@@ -54,7 +54,7 @@
     - etckeeper
     - fail2ban
     - ooniprobe-cli
-    - python-apt
+    - python3-apt
     - tcpdump
     cache_valid_time: '{{ apt_cache_valid_time }}'
     install_recommends: no
