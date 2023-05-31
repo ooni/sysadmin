@@ -3,7 +3,6 @@
 
 - hosts: vpsprobes
   gather_facts: no
-  remote_user: root
   tags: prereqs
   tasks:
   - name: install ansible prerequisites

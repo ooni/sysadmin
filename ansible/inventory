@@ -26,9 +26,10 @@ probe-hk1.ooni.org
 probe-ua1.ooni.org
 probe-th1.ooni.org
 probe-kg1.ooni.org
+probe-sa1.ooni.org
+probe-ae1.ooni.org
 # Currently broken
 # 89.219.32.43
-# probe-sa1.ooni.org
 
 # Location-specific conf
 [on_hetzner]
