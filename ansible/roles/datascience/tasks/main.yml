@@ -8,10 +8,9 @@
       - dirmngr
 
 - name: create clickhouse gpg keyring
-  shell:
-    cmd: "wget -qO- 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3a9ea1193a97b548be1457d48919f6bd2b48d754' | gpg --dearmor | tee /usr/share/keyrings/clickhouse-keyring.gpg"
+  shell: "wget -qO- 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3a9ea1193a97b548be1457d48919f6bd2b48d754' | gpg --dearmor | tee /usr/share/keyrings/clickhouse-keyring.gpg"
+  args:
     creates: "/usr/share/keyrings/clickhouse-keyring.gpg"
-    warn: false
 
 - name: set clickhouse repos
   apt_repository:
@@ -26,8 +25,7 @@
       - clickhouse-server={{ clickhouse_pkg_ver }}
       - clickhouse-client={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 23.2.*
-
+    clickhouse_pkg_ver: 23.5.*
 
 - name: mkdir for clickhouse custom config
   file:
@@ -52,10 +50,9 @@
   shell: "{{ conda_bin }}/conda install -c conda-forge pandas numpy altair clickhouse-driver dask scipy scikit-learn catboost pycountry ujson orjson tqdm seaborn requests maxminddb matplotlib lz4 shap msgpack-python beautifulsoup4"
 
 - name: create yarn gpg keyring
-  shell:
-    cmd: "wget -qO- https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarn-keyring.gpg"
+  shell: "wget -qO- https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarn-keyring.gpg"
+  args:
     creates: "/usr/share/keyrings/yarn-keyring.gpg"
-    warn: false
 
 - name: set yarn repos
   apt_repository:
