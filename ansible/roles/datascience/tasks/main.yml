@@ -67,21 +67,21 @@
       - yarn
 
 # Apache Superset setup
-- name: install apt requirements for superset
-  apt:
-    state: present
-    name:
-      - build-essential
-      - python-dev
-      - libssl-dev 
-      - libffi-dev
-      - libsasl2-dev 
-      - libldap2-dev
-      - default-libmysqlclient-dev
-
-- name: install superset with pip
-  shell: "{{ conda_bin }}/pip install apache-superset
-
-- name: initialize superset DB
-  shell: "{{ conda_bin }}/superset db upgrade
-
+#- name: install apt requirements for superset
+#  apt:
+#    state: present
+#    name:
+#      - build-essential
+#      - python-dev
+#      - libssl-dev
+#      - libffi-dev
+#      - libsasl2-dev
+#      - libldap2-dev
+#      - default-libmysqlclient-dev
+#
+#- name: install superset with pip
+#  shell: "{{ conda_bin }}/pip install apache-superset"
+#
+#- name: initialize superset DB
+#  shell: "{{ conda_bin }}/superset db upgrade"
+#
