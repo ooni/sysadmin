@@ -61,9 +61,13 @@ read -p "Press enter to continue, ^C if that's wrong"
 set -o errexit
 set -o pipefail
 
+DOCKER_BUILD="docker build"
+if [ "$(uname -p)" = "arm" ];then
+    DOCKER_BUILD="docker buildx build --platform linux/amd64"
+fi
 (
     set -o xtrace
-    git archive --format=tgz "$git_head" | docker build -t "$img:$ver" -t "$img:latest" -
+    git archive --format=tgz "$git_head" | $DOCKER_BUILD -t "$img:$ver" -t "$img:latest" -
 )
 
 echo "Going to push $img:$ver & $img:latest"

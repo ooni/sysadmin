@@ -433,23 +433,6 @@
 
 ## Tor daemon and onion service ##
 
-- name: install tor daemon
-  when: inventory_hostname in ('backend-fsn.ooni.org', )
-  tags: tor
-  apt:
-    cache_valid_time: 86400
-    name: tor
-
-- name: configure tor onion service
-  when: inventory_hostname in ('backend-fsn.ooni.org', )
-  tags: tor
-  blockinfile:
-    path: /etc/tor/torrc
-    block: |
-      # See roles/ooni-backend/tasks/main.yml
-      HiddenServiceDir /var/lib/tor/ooni_onion_service/
-      HiddenServicePort 80 127.0.0.1:17744
-      HiddenServiceVersion 2
 
 - name: configure tor onion service hostname
   when: inventory_hostname == 'ams-pg.ooni.org'
@@ -479,13 +462,6 @@
   shell: |
     chown debian-tor:debian-tor /var/lib/tor/ooni_onion_service
     chmod 0700 /var/lib/tor/ooni_onion_service
-
-- name: reload tor service
-  when: inventory_hostname in ('backend-fsn.ooni.org', )
-  tags: tor
-  systemd:
-    name: tor@default.service
-    state: reloaded
 
 
 # # Clickhouse # #

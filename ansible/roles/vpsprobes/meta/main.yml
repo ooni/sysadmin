@@ -2,5 +2,4 @@
 dependencies:
   - role: adm
     become: false
-    remote_user: root
     gather_facts: true # to gather ansible_distribution_release

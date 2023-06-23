@@ -2,7 +2,13 @@
 #- import_playbook: ansible-version.yml
 
 - hosts: vpsprobes
-  gather_facts: false
+  gather_facts: no
+  tags: prereqs
+  tasks:
+  - name: install ansible prerequisites
+    script: setup_ansible_prereqs.sh creates=/root/.ansible_prereqs_installed
+
+- hosts: vpsprobes
   roles:
     - role: vpsprobes
       tags: vpsprobes

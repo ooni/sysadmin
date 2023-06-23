@@ -1,0 +1,28 @@
+- hosts: oonidata.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: nginx-buster
+      tags: nginx
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        - "oonidata.ooni.org"
+
+- hosts: shinri.ooni.org
+  roles:
+    - role: base-bullseye
+    - role: nftables
+    - role: nginx-buster
+      tags: nginx
+    - role: dehydrated
+      tags: dehydrated
+      expand: yes
+      ssl_domains:
+        - "shinri.ooni.org"
+    - role: jupyterhub
+      tags: jupyterhub
+      ssl_domain: "shinri.ooni.org"
+    - role: datascience
+      tags: datascience
