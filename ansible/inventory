@@ -18,7 +18,16 @@ ams
 # VPSes running OONI Probe
 [vpsprobes]
 168.197.99.40
-89.219.32.43
+probe-by1.ooni.org
+probe-kz1.ooni.org
+probe-ru1.ooni.org
+probe-tr1.ooni.org
+probe-hk1.ooni.org
+probe-ua1.ooni.org
+probe-th1.ooni.org
+probe-kg1.ooni.org
+probe-sa1.ooni.org
+probe-ae1.ooni.org
 
 # Location-specific conf
 [on_hetzner]

@@ -75,7 +75,7 @@ passwd:
     login: sbs
     comment: Simone Basso
     keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsifxweF7RnZaI55tLEuW2V9SOA6ZJXizXWp69hs1Vy1zeCkyMHMjtUHVjtiV6m1OStb78iNnXh5KjqaNZy7Ign2HILvtFysWktasgM/Vn04FXN9mkh29fKVqVu5XZpzNoBupjCrc9asJUf/6gCAFQHoQyCNO58/R12iUZBtF9cSaZoX4BfwnCNH66uXQ1EK+D0d2uTqtBrPHdm5rexII7uGvG3+dm/YvPmlj87qW6gJstcRVzAPtjBtf8sQGZBnhV1mGAAHQ168DwiZ1LJwtEAEW2HOhtVDemZNKV/KnDGZOWzF/Ybl+4lIdDHcdk/gpjARJtf92XRTD7FmobduwKVmvXR7hHY8nklWHF+PhQtAqg31y1QhW/g4U/JAd8BhziNE9KF6GZ/CIcDFKLZzpyeB4dg2hnJ6e1RoZvC9ObgVOp0jRMgv0c3GpCwoh2eml01zoxDicPMGzbEnuTduVhW5ebMh23NoYhaMnzDcZaRfT//1OB1vi52dXHj4BCE+4s07DzbR7JLvYwYCtMghAqSkotTDoyjYWF8ymwC6Zg54OSYkyNsjOAgQg1u06+dxNubSB9ZI6woUqY0Fhay/ZkS0sO+skEekE1dZes9NWW/1QVWGOgO8g3aO59+Y6e1YbyJhBG2N05tLn1upuqdEHjdkDX9hYm267oBaAdMMl0+Q== sbasso@dunkerque.local"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtWoPfhhRSm+V2iXBAapsIcEGVBYUVO5rGRGc0LDuPI"
   federico:
     login: federico
     comment: Federico Ceratto

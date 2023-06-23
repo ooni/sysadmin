@@ -50,6 +50,7 @@
       - bash-completion
       - byobu
       - chrony
+      - curl
       - etckeeper
       - fail2ban
       - git
