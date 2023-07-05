@@ -58,7 +58,14 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -q
 apt-get purge -qy unattended-upgrades rsyslog
 apt-get upgrade -qy
-apt-get install -qy --no-install-recommends chrony netdata oohelperd netdata-plugins-python vector
+apt-get install -qy --no-install-recommends chrony netdata oohelperd netdata-plugins-python
+
+systemctl daemon-reload
+systemctl restart systemd-journald.service
+logger start
+systemctl restart systemd-journald.service
+
+apt-get install -qy --no-install-recommends vector
 
 echo "Configuring Vector"
 # The certs are copied over by rotation.py
