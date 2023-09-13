@@ -2,6 +2,10 @@
 - name: motd
   shell: echo "" > /etc/motd
 
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+
 - name: Remove apt repo
   tags: apt
   file:
