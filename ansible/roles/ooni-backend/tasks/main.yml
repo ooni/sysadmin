@@ -627,8 +627,13 @@
   xml:
     path: /etc/clickhouse-server/users.xml
     backup: yes
-    xpath: /clickhouse/users/default/access_management
+    xpath: /clickhouse/users/default/{{ item }}
     value: "1"
+  loop:
+    - access_management
+    - named_collection_control
+    - show_named_collections
+    - show_named_collections_secrets
   register: users_xml
 
 - name: Clickhouse - restart immediately if needed
@@ -641,7 +646,7 @@
 - name: Clickhouse - create admin
   when: admin_check is defined and admin_check is failed
   tags: clickhouse-users
-  command: clickhouse-client -q "CREATE USER OR REPLACE admin IDENTIFIED WITH plaintext_password BY 'admin' HOST LOCAL GRANTEES ANY"
+  command: clickhouse-client -q "CREATE USER OR REPLACE admin IDENTIFIED WITH sha256_password BY 'admin' HOST LOCAL GRANTEES ANY"
   # The server might be still starting: retry as needed
   retries: 10
   delay: 5
@@ -663,10 +668,10 @@
     group: clickhouse
     mode: 0640
 
-- name: Clickhouse - restore users.xml
-  when: admin_check is defined and admin_check is failed
-  tags: clickhouse-users
-  command: mv {{ users_xml.backup_file }} /etc/clickhouse-server/users.xml
+      #- name: Clickhouse - restore users.xml
+      #  when: admin_check is defined and admin_check is failed
+      #  tags: clickhouse-users
+      #  command: mv {{ users_xml.backup_file }} /etc/clickhouse-server/users.xml
 
 - name: Clickhouse - restart immediately if needed
   when: admin_check is defined and admin_check is failed
@@ -682,9 +687,9 @@
     create: yes
     marker: "-- {mark} managed by ansible, see roles/ooni-backend/tasks/main.yml"
     block: |
-      CREATE USER OR REPLACE api IDENTIFIED WITH plaintext_password BY 'api' HOST LOCAL;
+      CREATE USER OR REPLACE api IDENTIFIED WITH sha256_password BY 'api' HOST LOCAL;
       GRANT ALL ON *.* TO api;
-      CREATE USER OR REPLACE fastpath IDENTIFIED WITH plaintext_password BY 'fastpath' HOST LOCAL;
+      CREATE USER OR REPLACE fastpath IDENTIFIED WITH sha256_password BY 'fastpath' HOST LOCAL;
       GRANT ALL ON *.* TO fastpath;
 
 - name: Clickhouse - run commands
