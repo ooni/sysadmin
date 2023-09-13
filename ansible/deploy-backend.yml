@@ -71,7 +71,7 @@
 
 - hosts: backend-hel.ooni.org
   roles:
-    - role: base-bullseye
+    - role: base-bookworm
     - role: nftables
     - role: nginx-buster
       tags: nginx
