@@ -606,7 +606,7 @@
 ## Clickhouse access control ##
 # https://clickhouse.com/docs/en/operations/access-rights/#enabling-access-control
 
-- name: Clickhouse - test admin user
+- name: Clickhouse - test admin user - failure is ok to ignore
   when: inventory_hostname in ('backend-fsn.ooni.org', 'backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse-users
   command: clickhouse-client -u admin --password admin -q 'select 1'
@@ -627,7 +627,7 @@
   xml:
     path: /etc/clickhouse-server/users.xml
     backup: yes
-    xpath: /yandex/users/default/access_management
+    xpath: /clickhouse/users/default/access_management
     value: "1"
   register: users_xml
 
