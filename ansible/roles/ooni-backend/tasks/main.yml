@@ -682,19 +682,12 @@
 
 - name: Clickhouse - setup users and permissions
   tags: clickhouse-users
-  blockinfile:
-    dest: /etc/clickhouse-server/setup_aaa.sql
-    create: yes
-    marker: "-- {mark} managed by ansible, see roles/ooni-backend/tasks/main.yml"
-    block: |
-      CREATE USER OR REPLACE api IDENTIFIED WITH sha256_password BY 'api' HOST LOCAL;
-      GRANT ALL ON *.* TO api;
-      CREATE USER OR REPLACE fastpath IDENTIFIED WITH sha256_password BY 'fastpath' HOST LOCAL;
-      GRANT ALL ON *.* TO fastpath;
-
-- name: Clickhouse - run commands
-  tags: clickhouse-users
-  command: clickhouse-client -u admin --password admin --multiline --multiquery --queries-file /etc/clickhouse-server/setup_aaa.sql
+  command: clickhouse-client -u admin --password admin -q "{{ item }}"
+  loop:
+    - "CREATE USER OR REPLACE api IDENTIFIED WITH sha256_password BY 'api' HOST LOCAL"
+    - "GRANT ALL ON *.* TO api"
+    - "CREATE USER OR REPLACE fastpath IDENTIFIED WITH sha256_password BY 'fastpath' HOST LOCAL"
+    - "GRANT ALL ON *.* TO fastpath"
 
 ## end of Clickhouse access control ##
 
