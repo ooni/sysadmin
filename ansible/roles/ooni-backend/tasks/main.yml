@@ -505,7 +505,7 @@
       deb https://packages.clickhouse.com/deb lts main
 
 - name: pin clickhouse release train
-  when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')
+  when: inventory_hostname in ('backend-fsn.ooni.org', )
   tags: clickhouse
   blockinfile:
     path: /etc/apt/preferences.d/clickhouse-server
@@ -516,7 +516,7 @@
       Pin-Priority: 999
 
 - name: pin clickhouse release train
-  when: inventory_hostname in ('backend-hel.ooni.org', )
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: clickhouse
   blockinfile:
     path: /etc/apt/preferences.d/clickhouse-server
@@ -562,7 +562,7 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.14.*
+    clickhouse_pkg_ver: 23.8.2.*
 
 - name: install clickhouse conf override
   when: inventory_hostname in ('backend-fsn.ooni.org', 'ams-pg-test.ooni.org')

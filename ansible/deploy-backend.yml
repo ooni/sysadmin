@@ -28,7 +28,7 @@
 
 - hosts: ams-pg-test.ooni.org
   roles:
-    - role: base-bullseye
+    - role: base-bookworm
     - role: nftables
     - role: nginx-buster
       tags: nginx
