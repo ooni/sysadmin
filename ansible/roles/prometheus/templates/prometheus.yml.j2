@@ -184,7 +184,7 @@ scrape_configs:
   # See ansible/roles/ooni-backend/tasks/main.yml for the scraping targets
   - job_name: 'haproxy'
     scrape_interval: 5s
-    scheme: http
+    scheme: https
     metrics_path: "/__haproxy_prom_metrics"
     static_configs:
       - targets:
