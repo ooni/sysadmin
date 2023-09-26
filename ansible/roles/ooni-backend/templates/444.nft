@@ -1,0 +1,2 @@
+# roles/ooni-backend/templates/444.nft
+add rule inet filter input tcp dport 444 counter accept comment "incoming haproxy metrics"

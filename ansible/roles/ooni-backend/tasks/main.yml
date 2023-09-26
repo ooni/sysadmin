@@ -147,6 +147,9 @@
 #     bucket_name: ooni-data-eu-fra-test
 #     collector_id: 3
 
+
+## Haproxy and nginx ##
+
 - name: configure api uploader using PROD bucket
   when: inventory_hostname == 'ams-pg.ooni.org'
   tags: api
@@ -160,7 +163,7 @@
 
 - name: Overwrite API nginx test conf
   when: inventory_hostname == 'ams-pg-test.ooni.org'
-  tags: api, api-nginx
+  tags: api, webserv
   template:
     src: templates/nginx-api-test.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
@@ -172,7 +175,7 @@
 
 - name: Overwrite API nginx HEL conf
   when: inventory_hostname == 'backend-hel.ooni.org'
-  tags: api, api-nginx
+  tags: api, webserv
   template:
     src: templates/nginx-api-test.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
@@ -182,9 +185,56 @@
     # Uses dehydrated
     certpath: /var/lib/dehydrated/certs/
 
+- name: install haproxy if not present
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: webserv
+  apt:
+    cache_valid_time: 86400
+    name: haproxy
+    state: present
+
+- name: Deploy haproxy conf
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: api, webserv
+  template:
+    src: templates/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0755
+    owner: root
+  vars:
+    # Uses dehydrated
+    certpath: /var/lib/dehydrated/certs/
+
+- name: Deploy dehydrated conf
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: api, webserv
+  template:
+    src: templates/dehydrated.config
+    dest: /etc/dehydrated/config
+    mode: 0755
+    owner: root
+
+- name: Deploy dehydrated conf
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: api, webserv
+  template:
+    src: templates/dehydrated.config
+    dest: /etc/dehydrated/config
+    mode: 0755
+    owner: root
+
+- name: Deploy dehydrated haproxy hook
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: api, haproxy
+  template:
+    src: templates/dehydrated_haproxy_hook.sh
+    dest: /etc/dehydrated/haproxy_hook.sh
+    mode: 0755
+    owner: root
+
 - name: Overwrite API nginx FSN conf
   when: inventory_hostname == 'backend-fsn.ooni.org'
-  tags: api, api-nginx
+  tags: api, webserv
   template:
     src: templates/nginx-api-fsn.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
@@ -196,7 +246,7 @@
 
 - name: Overwrite API nginx prod conf
   when: inventory_hostname == 'ams-pg.ooni.org'
-  tags: api, api-nginx
+  tags: api, webserv
   template:
     src: templates/nginx-api-ams-pg.conf
     dest: /etc/nginx/sites-available/ooni-api.conf
@@ -252,8 +302,13 @@
     state: directory
 
 - name: Safely reload Nginx
-  tags: api, deb_ooni_org, api-nginx
+  tags: api, deb_ooni_org, webserv
   shell: nginx -t && systemctl reload nginx
+
+- name: Reload haproxy
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: api, deb_ooni_org, webserv
+  shell: systemctl reload haproxy
 
 - name: allow incoming TCP connections to API
   tags: api
@@ -263,6 +318,12 @@
     block: |
       add rule inet filter input tcp dport 443 counter accept comment "incoming HTTPS"
 
+- name: allow incoming TCP connections to haproxy metrics
+  tags: webserv
+  template:
+    src: 444.nft
+    dest: /etc/ooni/nftables/tcp/444.nft
+
 #- name: reload nftables service
 #  tags: api
 #  systemd:
@@ -270,7 +331,7 @@
 #    state: reloaded
 
 - name: reload nftables service
-  tags: api
+  tags: api, webserv
   shell: systemctl reload nftables.service
 
 
