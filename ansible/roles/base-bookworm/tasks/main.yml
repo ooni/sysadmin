@@ -192,3 +192,16 @@
     state: restarted
 
 
+- name: Install systemd-resolved
+  tags: resolved
+  apt:
+    install_recommends: no
+    cache_valid_time: 86400
+    name:
+      - systemd-resolved
+
+- name: restart systemd-resolved
+  tags: resolved
+  systemd:
+    name: systemd-resolved.service
+    state: restarted
