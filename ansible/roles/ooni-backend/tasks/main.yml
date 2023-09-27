@@ -205,6 +205,13 @@
     # Uses dehydrated
     certpath: /var/lib/dehydrated/certs/
 
+- name: Delete old file
+  when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
+  tags: api, webserv
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/00-letsencrypt-http
+    state: absent
+
 - name: Deploy dehydrated conf
   when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: api, webserv
@@ -279,14 +286,6 @@
     src: deb_ooni_org.nginx.conf
     dest: /etc/nginx/sites-enabled/deb_ooni_org
 
-- name: Configure deb.ooni.org forwarder on ngxinx port 80
-  when: inventory_hostname in ('ams-pg-test.ooni.org', )
-  tags: deb_ooni_org, webserv
-  # Uses dehydrated
-  template:
-    src: deb_ooni_org.no_443.nginx.conf
-    dest: /etc/nginx/sites-enabled/deb_ooni_org
-
 - name: Configure deb-ci.ooni.org forwarder on test host
   when: inventory_hostname == 'ams-pg-test.ooni.org'
   tags: deb_ooni_org
@@ -313,10 +312,11 @@
   tags: api, deb_ooni_org, webserv
   shell: nginx -t && systemctl reload nginx
 
-- name: Reload haproxy
+- name: Restart haproxy
+  # reload is not enough
   when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: api, deb_ooni_org, webserv
-  shell: systemctl reload haproxy
+  shell: systemctl restart haproxy
 
 - name: allow incoming TCP connections to API
   tags: api
