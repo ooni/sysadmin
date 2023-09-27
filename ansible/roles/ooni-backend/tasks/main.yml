@@ -205,12 +205,16 @@
     # Uses dehydrated
     certpath: /var/lib/dehydrated/certs/
 
-- name: Delete old file
+- name: Delete old files
   when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
   tags: api, webserv
   ansible.builtin.file:
-    path: /etc/nginx/sites-enabled/00-letsencrypt-http
+    path: "{{ item }}"
     state: absent
+  loop:
+    - /etc/nginx/sites-enabled/00-letsencrypt-http
+    - /etc/nginx/sites-enabled/deb_ooni_org
+    - /etc/nginx/sites-enabled/deb_ooni_org_http
 
 - name: Deploy dehydrated conf
   when: inventory_hostname in ('backend-hel.ooni.org', 'ams-pg-test.ooni.org')
