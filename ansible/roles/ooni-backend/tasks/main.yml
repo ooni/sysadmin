@@ -309,8 +309,13 @@
     state: directory
 
 - name: Safely reload Nginx
+  # TODO remove restart after transition to haproxy
   tags: api, deb_ooni_org, webserv
   shell: nginx -t && systemctl reload nginx
+
+- name: Restart Nginx
+  tags: webserv
+  shell: nginx -t && systemctl restart nginx
 
 - name: Restart haproxy
   # reload is not enough
