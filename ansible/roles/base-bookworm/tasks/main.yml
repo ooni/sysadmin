@@ -192,7 +192,7 @@
     state: restarted
 
 
-- name: Install systemd-resolved
+- name: install systemd-resolved
   tags: resolved
   apt:
     install_recommends: no
@@ -200,8 +200,18 @@
     name:
       - systemd-resolved
 
+- name: configure systemd-resolved
+  tags: resolved
+  template:
+    src: resolved.conf
+    dest: /etc/systemd/resolved.conf
+
 - name: restart systemd-resolved
   tags: resolved
   systemd:
     name: systemd-resolved.service
     state: restarted
+
+- name: test systemd-resolved
+  tags: resolved
+  shell: resolvectl query go.dnscheck.tools --cache=no
