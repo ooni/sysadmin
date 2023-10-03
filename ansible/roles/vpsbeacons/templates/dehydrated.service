@@ -1,0 +1,12 @@
+[Unit]
+Description=Run dehydrated certificate refresh
+
+[Service]
+Type=oneshot
+#User=dehydrated
+#Group=dehydrated
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/dehydrated
+PrivateTmp=yes
+ExecStart=/usr/bin/dehydrated --cron

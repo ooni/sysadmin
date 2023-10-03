@@ -1,0 +1,14 @@
+---
+
+- hosts: vpsbeacons
+  gather_facts: no
+  tags: prereqs
+  tasks:
+  - name: install ansible prerequisites
+    script: setup_ansible_prereqs.sh creates=/root/.ansible_prereqs_installed
+
+- hosts: vpsbeacons
+  roles:
+    - role: nftables
+    - role: vpsbeacons
+      tags: vpsbeacons

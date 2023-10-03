@@ -140,8 +140,7 @@ all:
     # Dedicated VPSes providing beacons
     vpsbeacons:
       hosts:
-        greenhost-beacon.ooni.org:
-          ansible_host: 37.218.243.110
+        greenhost-beacon.ooni.org: {}
 
     # VPSes running OONI Probe
     vpsprobes:

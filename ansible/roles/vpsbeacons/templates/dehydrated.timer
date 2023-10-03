@@ -1,0 +1,9 @@
+[Unit]
+Description=Run dehydrated certificate refresh
+
+[Timer]
+OnCalendar=Mon 13:00
+
+[Install]
+WantedBy=timers.target
+

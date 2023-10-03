@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: adm
+    become: false
+    gather_facts: true # to gather ansible_distribution_release
