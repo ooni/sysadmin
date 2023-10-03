@@ -1,0 +1,159 @@
+all:
+  children:
+    active_collector:
+      hosts:
+        ams-ps.ooni.nu: {}
+
+    db_active: {}
+
+    db_standby: {}
+
+    dom0:
+      children:
+        do:
+          children:
+            doams:
+              hosts:
+                doams1-countly.ooni.nu: {}
+        gh:
+          children:
+            ams:
+              hosts:
+                ams-explorer.ooni.nu: {}
+                ams-ps.ooni.nu: {}
+                ams-slack-1.ooni.org: {}
+                ams-wcth2.ooni.nu: {}
+                ams-wcth3.ooni.nu: {}
+                amsmatomo.ooni.nu: {}
+                db-1.proteus.ooni.io: {}
+            hkg: {}
+            mia:
+              hosts:
+                mia-echoth.ooni.nu: {}
+                mia-explorer-test.ooni.nu: {}
+                mia-httpth.ooni.nu: {}
+                mia-run.ooni.nu: {}
+    have_collector:
+      hosts:
+        ams-ps.ooni.nu: {}
+
+    have_fw:
+      hosts:
+        ams-explorer.ooni.nu: {}
+        ams-ps.ooni.nu: {}
+        ams-slack-1.ooni.org: {}
+        ams-wcth2.ooni.nu: {}
+        ams-wcth3.ooni.nu: {}
+        amsmatomo.ooni.nu: {}
+        mia-echoth.ooni.nu: {}
+        mia-explorer-test.ooni.nu: {}
+        mia-httpth.ooni.nu: {}
+        mia-run.ooni.nu: {}
+
+    have_netdata:
+      hosts:
+        ams-pg-test.ooni.org: {}
+        ams-pg.ooni.org: {}
+        backend-fsn.ooni.org: {}
+        backend-hel.ooni.org: {}
+
+    have_nftables:
+      hosts:
+        ams-pg-test.ooni.org: {}
+        ams-pg.ooni.org: {}
+        backend-fsn.ooni.org: {}
+        backend-hel.ooni.org: {}
+
+    have_nginx:
+      hosts:
+        ams-explorer.ooni.nu: {}
+        ams-ps.ooni.nu: {}
+        ams-slack-1.ooni.org: {}
+        ams-wcth2.ooni.nu: {}
+        ams-wcth3.ooni.nu: {}
+        amsmatomo.ooni.nu: {}
+        mia-explorer-test.ooni.nu: {}
+        mia-run.ooni.nu: {}
+
+    have_tcpmetrics:
+      hosts:
+        ams-explorer.ooni.nu: {}
+        ams-ps.ooni.nu: {}
+
+    have_tor: {}
+
+    monitoring:
+      hosts:
+        monitoring.ooni.org: {}
+
+    on_cherryservers:
+      hosts:
+        shinri.ooni.org: {}
+
+    on_hetzner:
+      hosts:
+        backend-fsn.ooni.org: {}
+        backend-hel.ooni.org: {}
+        monitoring.ooni.org: {}
+        oonidata.ooni.org: {}
+
+    probe_services:
+      hosts:
+        ams-ps.ooni.nu: {}
+
+    psk_amsrepl: {}
+
+    psk_clickhouse:
+      hosts:
+        ams-pg-test.ooni.org: {}
+        backend-fsn.ooni.org: {}
+        backend-hel.ooni.org: {}
+
+    psk_hkgmetadb: {}
+
+    psk_metadb_amsapi: {}
+
+    psk_oomsm_beta: {}
+
+    psk_orchestra_db_prod:
+      hosts:
+        db-1.proteus.ooni.io: {}
+
+    psk_orchestra_prod:
+      hosts:
+        ams-pg-test.ooni.org: {}
+        ams-pg.ooni.org: {}
+        ams-ps.ooni.nu: {}
+        backend-fsn.ooni.org: {}
+        backend-hel.ooni.org: {}
+
+    psk_orchestra_test: {}
+
+    psk_orchestration:
+      hosts:
+        db-1.proteus.ooni.io: {}
+
+    psk_superset_hkgmetadb: {}
+
+    ungrouped: {}
+
+    # Dedicated VPSes providing beacons
+    vpsbeacons:
+      hosts:
+        greenhost-beacon.ooni.org:
+          ansible_host: 37.218.243.110
+
+    # VPSes running OONI Probe
+    vpsprobes:
+      hosts:
+        168.197.99.40: {}
+        probe-ae1.ooni.org: {}
+        probe-by1.ooni.org: {}
+        probe-hk1.ooni.org: {}
+        probe-kg1.ooni.org: {}
+        probe-kz1.ooni.org: {}
+        probe-ru1.ooni.org: {}
+        probe-sa1.ooni.org: {}
+        probe-th1.ooni.org: {}
+        probe-tr1.ooni.org: {}
+        probe-ua1.ooni.org: {}

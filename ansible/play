@@ -49,14 +49,14 @@ if [ -t 0 -a -t 1 -a -t 2 ]; then
       # I need some internal bash `printf` supporting %q, also filename limit of 255 chars should be enforced.
       name=$(echo "$cmd" "$@" | sed 's/[^-+=a-zA-Z0-9_]/_/g; s/__*/_/g; s/^\(.\{200\}\).*/\1.../').$(date +%Y.%m.%d.%H.%M.%S).$$.$(tput cols)x$(tput lines)
       args=$(printf "%q " "$@")
-      exec /usr/bin/script --append --return --timing="$LOGS_DIR/${name}.timing" -c "$binary --vault-password-file ./password-pipe --inventory-file ./inventory $args" "$LOGS_DIR/${name}.log"
+      exec /usr/bin/script --append --return --timing="$LOGS_DIR/${name}.timing" -c "$binary --vault-password-file ./password-pipe --inventory-file ./inventory.yml $args" "$LOGS_DIR/${name}.log"
     fi
   elif [ "$uname" = Darwin ]; then
     name=`echo "$cmd" "$@" | sed s/[^-+=a-zA-Z0-9_]/_/g`.`date +%Y.%m.%d.%H.%M.%S`.$$.log
-    exec script -a "$LOGS_DIR/$name" "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
+    exec script -a "$LOGS_DIR/$name" "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory.yml "$@"
   else
     echo "$0: don't know how to launch \`script\` at $uname." 1>&2
     # fall-through
   fi
 fi
-exec "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
+exec "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory.yml "$@"
