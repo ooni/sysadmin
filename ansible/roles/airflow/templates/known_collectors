@@ -1,3 +1,0 @@
-{% for host in groups.active_collector %}
-{{ lookup('pipe', 'grep -F -e {}, {}/../ext/known_hosts'.format(host, inventory_dir)) }}
-{% endfor %}

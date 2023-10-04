@@ -22,7 +22,6 @@
         - "ps2.ooni.io"
         - "ps3.ooni.io"
         - "ps4.ooni.io"
-    - role: postgresql11
     - role: ooni-backend
       ssl_domain: ams-pg.ooni.org
 

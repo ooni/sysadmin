@@ -77,8 +77,6 @@ backend-fsn.ooni.org
 backend-hel.ooni.org
 ams-pg-test.ooni.org
 
-[psk_hkgmetadb]
-
 [psk_oomsm_beta]
 # FIXME: drop `oomsm-beta` user
 
@@ -100,8 +98,6 @@ backend-hel.ooni.org
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
 db-1.proteus.ooni.io
-
-[psk_superset_hkgmetadb]
 
 ########################################################################
 # role tags
