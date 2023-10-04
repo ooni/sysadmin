@@ -34,6 +34,8 @@
     name:
       - gpg
       - gpg-agent
+      - dirmngr
+
 
 - name: Import OONI private repo gpg key
   tags: apt

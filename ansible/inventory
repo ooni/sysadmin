@@ -34,10 +34,8 @@ probe-ae1.ooni.org
 monitoring.ooni.org
 backend-fsn.ooni.org
 oonidata.ooni.org
+data.ooni.org
 backend-hel.ooni.org
-
-[on_cherryservers]
-shinri.ooni.org
 
 ########################################################################
 # location tags
