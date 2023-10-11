@@ -21,10 +21,6 @@
     mode: 0644
     owner: root
 
-    #- name: Import gpg key
-    #  tags: apt
-    #  command: wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
-
 - name: Installs packages
   tags: monitoring, prometheus
   apt:
@@ -35,6 +31,22 @@
       - nginx
       - prometheus
       - prometheus-blackbox-exporter
+
+- name: Create Grafana repo GPG pubkey
+  tags: apt
+  template:
+    src: templates/grafana.gpg
+    dest: /etc/apt/grafana.asc
+    mode: 0644
+    owner: root
+
+- name: Create Grafana sources list
+  tags: apt
+  template:
+    src: templates/grafana.sources
+    dest: /etc/apt/sources.list.d/grafana.sources
+    mode: 0644
+    owner: root
 
 - name: Installs grafana
   tags: monitoring, grafana
@@ -226,13 +238,17 @@
 
 - name: install clickhouse keys
   tags: clickhouse
-  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8919F6BD2B48D754
+  template:
+    src: templates/clickhouse.gpg
+    dest: /etc/apt/clickhouse.asc
+    mode: 0644
+    owner: root
 
 - name: set clickhouse repos
   tags: clickhouse
   template:
-    src: templates/clickhouse.list
-    dest: /etc/apt/sources.list.d/clickhouse.list
+    src: templates/clickhouse.sources
+    dest: /etc/apt/sources.list.d/clickhouse.sources
     mode: 0644
     owner: root
 

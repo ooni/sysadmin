@@ -1,0 +1,7 @@
+Architectures: amd64
+Suites: stable
+Uris: https://apt.grafana.com
+Types: deb
+Components: main
+Enabled: yes
+Signed-By: /etc/apt/grafana.asc
