@@ -137,10 +137,10 @@ all:
 
     ungrouped: {}
 
-    # Dedicated VPSes providing beacons
-    vpsbeacons:
+    # Dedicated VPSes providing bridges
+    vpsbridges:
       hosts:
-        greenhost-beacon.ooni.org: {}
+        bridge-greenhost.ooni.org: {}
 
     # VPSes running OONI Probe
     vpsprobes:
