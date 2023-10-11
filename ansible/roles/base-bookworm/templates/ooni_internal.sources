@@ -1,0 +1,7 @@
+Architectures: amd64
+Suites: unstable
+Uris: https://ooni-internal-deb.s3.eu-central-1.amazonaws.com
+Types: deb
+Components: main
+Enabled: yes
+Signed-By: /etc/ooni/internal-deb.gpg

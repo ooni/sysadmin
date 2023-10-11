@@ -43,10 +43,6 @@
       - gpg
       - gpg-agent
 
-- name: Import OONI private repo gpg key
-  tags: apt
-  command: apt-key adv --verbose --keyserver hkp://keyserver.ubuntu.com --recv-keys B5A08F01796E7F521861B449372D1FF271F2DD50
-
 - name: Update apt cache
   tags: apt
   apt:
