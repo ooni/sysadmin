@@ -31,6 +31,7 @@
       - nginx
       - prometheus
       - prometheus-blackbox-exporter
+      - extrepo
 
 - name: Create Grafana repo GPG pubkey
   tags: apt
@@ -294,23 +295,9 @@
 
 # # Vector
 
-- name: vector - install vector APT keys
+- name: vector - enable repo
   tags: vector
-  shell: curl -s https://repositories.timber.io/public/vector/gpg.3543DB2D0A2BC4B8.key | apt-key add -
-
-- name: vector - set APT repos
-  tags: vector
-  template:
-    src: templates/vector.list
-    dest: /etc/apt/sources.list.d/vector.list
-    mode: 0644
-    owner: root
-  register: apt_update_needed
-
-- name: vector - update apt cache
-  apt:
-    update_cache: yes
-  when: apt_update_needed.changed
+  shell: extrepo enable vector && extrepo update vector
 
 - name: vector - install pkg
   tags: vector
