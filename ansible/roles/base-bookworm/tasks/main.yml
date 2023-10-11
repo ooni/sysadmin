@@ -18,6 +18,14 @@
     path: /etc/apt/sources.list.d/security_debian_org.list
     state: absent
 
+- name: Create internal-deb repo GPG pubkey
+  tags: apt
+  template:
+    src: templates/internal-deb.gpg
+    dest: /etc/ooni/internal-deb.gpg
+    mode: 0644
+    owner: root
+
 - name: Set apt repos
   tags: apt
   template:

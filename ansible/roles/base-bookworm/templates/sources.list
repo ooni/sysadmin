@@ -4,4 +4,4 @@
 deb http://deb.debian.org/debian bookworm main contrib non-free-firmware
 deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free-firmware
 deb http://deb.debian.org/debian bookworm-backports main
-deb [trusted=yes] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main
+deb [signed-by=/etc/ooni/internal-deb.gpg] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main
