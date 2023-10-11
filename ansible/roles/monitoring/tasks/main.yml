@@ -272,7 +272,7 @@
       - clickhouse-client={{ clickhouse_pkg_ver }}
       - clickhouse-common-static={{ clickhouse_pkg_ver }}
   vars:
-    clickhouse_pkg_ver: 21.8.12.*
+    clickhouse_pkg_ver: 23.9.*
 
 #- name: install clickhouse conf override
 #  tags: clickhouse
