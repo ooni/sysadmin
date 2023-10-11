@@ -54,13 +54,13 @@
 
 # On first run the certificate is missing. Update the conf later on.
 - name: Check if TLS cert is present
-  tags: bcn
+  tags: bridge
   ansible.builtin.stat:
     path=/var/lib/dehydrated/certs/{{ ansible_host }}/privkey.pem.haproxy
   register: certfile
 
 - name: Deploy haproxy conf with TLS
-  tags: bcn
+  tags: bridge
   template:
     src: templates/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
@@ -74,59 +74,59 @@
 ## Nftables
 
 - name: nftables directory
-  tags: bcn
+  tags: bridge
   ansible.builtin.file:
     path: /etc/ooni/nftables/tcp/
     state: directory
 
 - name: allow incoming HTTP connections to 80
-  tags: bcn
+  tags: bridge
   ansible.builtin.shell:
     cmd: echo 'add rule inet filter input tcp dport 80 counter accept' > /etc/ooni/nftables/tcp/80.nft
 
 - name: allow incoming HTTPS connections to 443
-  tags: bcn
+  tags: bridge
   ansible.builtin.shell:
     cmd: echo 'add rule inet filter input tcp dport 443 counter accept' > /etc/ooni/nftables/tcp/443.nft
 
 - name: allow incoming HTTPS connections to 444
-  tags: bcn
+  tags: bridge
   ansible.builtin.shell:
     cmd: echo 'add rule inet filter input tcp dport 444 counter accept' > /etc/ooni/nftables/tcp/444.nft
 
 - name: reload nftables service
-  tags: bcn
+  tags: bridge
   service: name=nftables state=restarted
 
 # Dehydrated section
 
 - name: Deploy dehydrated conf
-  tags: bcn
+  tags: bridge
   template:
     src: templates/dehydrated.config
     dest: /etc/dehydrated/config
     mode: 0755
 
 - name: Deploy dehydrated haproxy hook
-  tags: bcn
+  tags: bridge
   template:
     src: templates/dehydrated_haproxy_hook.sh
     dest: /etc/dehydrated/haproxy_hook.sh
     mode: 0755
 
 - name: Configure domains
-  tags: bcn
+  tags: bridge
   template:
     src: templates/domains.txt.j2
     dest: /etc/dehydrated/domains.txt
 
 - name: Register account if needed
-  tags: bcn
+  tags: bridge
   ansible.builtin.shell:
     cmd: "test -d /var/lib/dehydrated/accounts || dehydrated --register --accept-terms"
 
 - name: Install dehydrated.service
-  tags: bcn
+  tags: bridge
   template:
     src: templates/dehydrated.service
     dest: /etc/systemd/system/dehydrated.service
@@ -134,7 +134,7 @@
     owner: root
 
 - name: Install dehydrated.timer
-  tags: bcn
+  tags: bridge
   template:
     src: templates/dehydrated.timer
     dest: /etc/systemd/system/dehydrated.timer
@@ -142,7 +142,7 @@
     owner: root
 
 - name: Ensure timer runs
-  tags: bcn
+  tags: bridge
   systemd:
     name: dehydrated.timer
     state: started
@@ -151,25 +151,25 @@
 - name: Run dehydrated service immediately
   # creates:
   # /var/lib/dehydrated/certs/<name>/chain.pem cert.pem privkey.pem fullchain.pem
-  tags: bcn
+  tags: bridge
   systemd:
     name: dehydrated.service
     state: started
     enabled: yes
 
 - name: Restart dehydrated
-  tags: bcn
+  tags: bridge
   shell: systemctl restart dehydrated
 
 # On first run the certificate could be missing. Update the conf to enable TLS
 - name: Check if TLS cert is present
-  tags: bcn
+  tags: bridge
   ansible.builtin.stat:
     path=/var/lib/dehydrated/certs/{{ ansible_host }}/privkey.pem.haproxy
   register: certfile
 
 - name: Deploy haproxy conf with TLS
-  tags: bcn
+  tags: bridge
   template:
     src: templates/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
@@ -181,5 +181,5 @@
 
 - name: Restart haproxy
   # reload is not enough
-  tags: bcn
+  tags: bridge
   shell: systemctl restart haproxy
