@@ -59,7 +59,7 @@
     path=/var/lib/dehydrated/certs/{{ ansible_host }}/privkey.pem.haproxy
   register: certfile
 
-- name: Deploy haproxy conf with TLS
+- name: Deploy haproxy conf WITHOUT TLS
   tags: bridge
   template:
     src: templates/haproxy.cfg
@@ -68,7 +68,25 @@
   vars:
     # Uses dehydrated
     certpath: /var/lib/dehydrated/certs/
-    certificate_available: (certfile.stat.exists == True)
+    certificate_available: False
+  when: not certfile.stat.exists
+
+- name: Deploy haproxy conf with  TLS
+  tags: bridge
+  template:
+    src: templates/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0755
+  vars:
+    # Uses dehydrated
+    certpath: /var/lib/dehydrated/certs/
+    certificate_available: True
+  when: certfile.stat.exists
+
+- name: Restart haproxy
+  # reload is not enough
+  tags: bridge
+  service: name=haproxy state=restarted
 
 
 ## Nftables
@@ -182,4 +200,4 @@
 - name: Restart haproxy
   # reload is not enough
   tags: bridge
-  shell: systemctl restart haproxy
+  service: name=haproxy state=restarted
