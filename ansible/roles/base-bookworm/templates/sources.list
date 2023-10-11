@@ -1,7 +1,7 @@
 # Managed by ansible
 # roles/base-bookworm/templates/sources.list
 
-deb http://deb.debian.org/debian bookworm main contrib non-free
-deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free
+deb http://deb.debian.org/debian bookworm main contrib non-free-firmware
+deb http://deb.debian.org/debian-security/ bookworm-security main contrib non-free-firmware
 deb http://deb.debian.org/debian bookworm-backports main
 deb [trusted=yes] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main
