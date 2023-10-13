@@ -70,6 +70,13 @@
   notify: restart node_exporter
   when: ansible_service_mgr == 'sysvinit'
 
+- name: Deploy oonicacert.pem as /srv/ngxprom/ssl/exporter_ca.cert on prom exporter targets
+  tags: deploy-prom-exp-certs
+  ansible.builtin.copy:
+    src: "oonicacert.pem"
+    dest: /srv/ngxprom/ssl/exporter_ca.cert
+    mode: '0440'
+
 - name: Enable and start node_exporter service
   service:
     name: node_exporter

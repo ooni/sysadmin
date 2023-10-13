@@ -292,6 +292,31 @@
     state: started
     enabled: yes
 
+# # Deploy certs created locally by the ooca-cert role
+
+- name: Deploy oonicacert.pem as /etc/prometheus/exporter_ca.cert on monitoring.ooni.org
+  when: inventory_hostname == 'monitoring.ooni.org'
+  tags: deploy-prom-exp-certs
+  ansible.builtin.copy:
+    src: "oonicacert.pem"
+    dest: /etc/prometheus/exporter_ca.cert
+    mode: '0440'
+    owner: prometheus
+  when: inventory_hostname == 'monitoring.ooni.org'
+
+- name: Deploy SSL certs on monitoring.ooni.org
+  when: inventory_hostname == 'monitoring.ooni.org'
+  tags: deploy-prom-exp-certs
+  ansible.builtin.copy:
+    src: ooca-node.{{ item }}
+    dest: /etc/prometheus/ssl/{{ inventory_hostname }}.{{ item }}
+    mode: '0440'
+    owner: prometheus
+  loop:
+    - key
+    - cert
+    - chain
+
 
 # # Vector
 
