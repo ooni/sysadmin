@@ -1,0 +1,4 @@
+# Managed by ansible, see
+# monitoring/templates/etc_default_prometheus
+ARGS=""
+GODEBUG=x509ignoreCN=0

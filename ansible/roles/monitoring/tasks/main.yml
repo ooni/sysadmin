@@ -33,6 +33,15 @@
       - prometheus-blackbox-exporter
       - extrepo
 
+- name: Create Prometheus environment override
+  # Disable strict cert check https://pkg.go.dev/crypto/x509#Certificate.VerifyHostname
+  tags: monitoring, prometheus, override_cert_check
+  template:
+    src: templates/etc_default_prometheus
+    dest: /etc/default/prometheus
+    mode: 0644
+    owner: root
+
 - name: Create Grafana repo GPG pubkey
   tags: apt
   template:
