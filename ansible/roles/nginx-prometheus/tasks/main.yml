@@ -23,8 +23,12 @@
     - '{{ ngxprom_base }}'
     - '{{ ngxprom_base }}/log'
 
-- name: Upload Scraper CA
-  copy: src=scraper_ca.cert dest={{ngxprom_ssl_dir}}/ owner=root group=root mode=0444
+- name: Deploy oonicacert.pem as /srv/ngxprom/ssl/scraper_ca.cert on prom exporter targets
+  tags: deploy-prom-exp-certs
+  ansible.builtin.copy:
+    src: oonicacert.pem
+    dest: /srv/ngxprom/ssl/scraper_ca.cert
+    mode: 0444
 
 - name: cleanup stale files
   file: name={{item}} state=absent
