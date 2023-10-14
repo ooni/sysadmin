@@ -33,6 +33,13 @@
       - prometheus-blackbox-exporter
       - extrepo
 
+- name: Give cap_net_raw to prometheus-blackbox-exporter
+  tags: monitoring, prometheus, exporter_cap_net_raw
+  community.general.capabilities:
+    path: /usr/bin/prometheus-blackbox-exporter
+    capability: cap_net_raw+ep
+    state: present
+
 - name: Create Prometheus environment override
   # Disable strict cert check https://pkg.go.dev/crypto/x509#Certificate.VerifyHostname
   tags: monitoring, prometheus, override_cert_check
