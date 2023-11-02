@@ -9,6 +9,7 @@ import json
 unsupported_chars = " :~/=;+"
 mask = "▾"
 
+
 def main():
     rs = json.loads(Path("ext/dns.json").read_text())
     tmp = Path("/tmp/dnsgraph.tmp")
@@ -26,7 +27,7 @@ def main():
             addr = r["address"]
             for bad in unsupported_chars:
                 addr = addr.replace(bad, mask)
-            line = f'{name} -> {addr};'
+            line = f"{name} -> {addr};"
             out.append(line)
             line = f"{name}[width={len(name) * 7}];"
             out.append(line)
@@ -35,13 +36,22 @@ def main():
 
         out.append("}")
         tmp.write_text("\n".join(out))
+        # cmd = [
+        #     "blockdiag3",
+        #     tmp.as_posix(),
+        #     "-o",
+        #     f"ext/dnsgraph.{record_type}.svg",
+        #     "-T",
+        #     "SVG",
+        # ]
         cmd = [
-            "blockdiag3",
-            tmp.as_posix(),
-            "-o",
-            f"ext/dnsgraph.{record_type}.svg",
-            "-T",
-            "SVG",
+            "curl",
+            "-s",
+            "https://kroki.io/blockdiag/svg",
+            "--data-binary",
+            "@/tmp/dnsgraph.tmp",
+            "--output",
+            f"ext/dnsgraph.{record_type}.svg"
         ]
         subprocess.run(cmd, check=True)
 
