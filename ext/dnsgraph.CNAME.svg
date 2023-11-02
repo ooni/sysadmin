@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg viewBox="0 0 724 1800" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 724 1960" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs id="defs_block">
     <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
       <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
@@ -17,9 +17,9 @@ openo.ghost.io[width=98];
 collector-sandbox.ooni.io -&gt; ec2-52-15-125-134.us-east-2.compute.amazonaws.com;
 collector-sandbox.ooni.io[width=175];
 ec2-52-15-125-134.us-east-2.compute.amazonaws.com[width=343];
-deb.ooni.org -&gt; ams-pg.ooni.org;
+deb.ooni.org -&gt; backend-fsn.ooni.org;
 deb.ooni.org[width=84];
-ams-pg.ooni.org[width=105];
+backend-fsn.ooni.org[width=140];
 design.ooni.io -&gt; ooni-design.netlify.com;
 design.ooni.io[width=98];
 ooni-design.netlify.com[width=161];
@@ -50,12 +50,18 @@ ooni.netlify.com[width=112];
 netdata.ooni.org -&gt; monitoring.ooni.org;
 netdata.ooni.org[width=112];
 monitoring.ooni.org[width=133];
+probe-web.ooni.org -&gt; ooni.github.io;
+probe-web.ooni.org[width=126];
+ooni.github.io[width=98];
 prometheus.ooni.org -&gt; monitoring.ooni.org;
 prometheus.ooni.org[width=133];
 monitoring.ooni.org[width=133];
 ps-test.ooni.io -&gt; ams-pg.ooni.org;
 ps-test.ooni.io[width=105];
 ams-pg.ooni.org[width=105];
+run.test.ooni.org -&gt; cname.vercel-dns.com;
+run.test.ooni.org[width=119];
+cname.vercel-dns.com[width=140];
 slides.ooni.io -&gt; ooni-slides.netlify.com;
 slides.ooni.io[width=98];
 ooni-slides.netlify.com[width=161];
@@ -81,17 +87,17 @@ ooni.netlify.com[width=112];
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="175" x="74" y="206" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="343" x="320" y="206" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="85" x="119" y="286" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="105" x="109" y="366" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="105" x="439" y="286" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="99" x="112" y="446" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="411" y="446" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="169" x="77" y="526" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="175" x="404" y="526" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="155" x="84" y="606" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="141" x="421" y="286" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="99" x="112" y="366" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="411" y="366" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="169" x="77" y="446" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="175" x="404" y="446" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="155" x="84" y="526" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="119" x="102" y="606" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="133" x="95" y="686" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="169" x="77" y="766" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="189" x="67" y="846" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="141" x="421" y="606" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="141" x="421" y="526" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="113" x="105" y="926" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="113" x="105" y="1006" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="113" x="105" y="1086" />
@@ -105,72 +111,84 @@ ooni.netlify.com[width=112];
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="77" x="123" y="1566" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="85" x="119" y="1646" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="113" x="435" y="1486" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="99" x="112" y="1726" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="411" y="1726" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="127" x="98" y="1726" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="99" x="442" y="1726" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="105" x="109" y="1806" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="105" x="439" y="1806" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="99" x="112" y="1886" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="161" x="411" y="1886" />
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="169" x="74" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="133" x="158.5" y="67">blog.openobservatory.net</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="142" x="159.0" y="67">blog.openobservatory.net</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="169" x="74" y="120" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="132" x="159.0" y="147">blog.openobservatory.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="142" x="159.0" y="147">blog.openobservatory.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="99" x="439" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="76" x="489.0" y="67">openo.ghost.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="82" x="489.0" y="67">openo.ghost.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="175" x="71" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="131" x="158.5" y="226">collector-sandbox.ooni.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="140" x="159.0" y="226">collector-sandbox.ooni.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="343" x="317" y="200" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="294" x="489.0" y="227">ec2-52-15-125-134.us-east-2.compute.amazonaws.com</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="306" x="489.0" y="227">ec2-52-15-125-134.us-east-2.compute.amazonaws.com</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="85" x="116" y="280" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="64" x="159.0" y="307">deb.ooni.org</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="105" x="106" y="360" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="77" x="158.5" y="387">ps-test.ooni.io</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="105" x="436" y="280" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="83" x="488.5" y="307">ams-pg.ooni.org</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="99" x="109" y="440" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="72" x="159.0" y="467">design.ooni.io</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="408" y="440" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="122" x="489.0" y="467">ooni-design.netlify.com</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="169" x="74" y="520" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="134" x="159.0" y="547">docs.openobservatory.net</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="175" x="401" y="520" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="137" x="488.5" y="547">openobservatory.github.io</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="155" x="81" y="600" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="111" x="158.5" y="627">explorer.test.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="70" x="159.0" y="307">deb.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="141" x="418" y="280" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="117" x="488.5" y="307">backend-fsn.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="99" x="109" y="360" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="159.0" y="387">design.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="408" y="360" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="129" x="488.5" y="387">ooni-design.netlify.com</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="169" x="74" y="440" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="143" x="158.5" y="467">docs.openobservatory.net</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="175" x="401" y="440" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="146" x="489.0" y="467">openobservatory.github.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="155" x="81" y="520" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="120" x="159.0" y="547">explorer.test.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="119" x="99" y="600" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="94" x="159.0" y="627">run.test.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="133" x="92" y="680" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="95" x="158.5" y="707">test-lists.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="97" x="158.5" y="707">test-lists.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="169" x="74" y="760" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="119" x="158.5" y="787">test-lists.test.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="122" x="159.0" y="787">test-lists.test.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="189" x="64" y="840" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="137" x="158.5" y="867">url-prioritization.ooni.org</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="141" x="418" y="600" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="112" x="489.0" y="626">cname.vercel-dns.com</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="143" x="158.5" y="867">url-prioritization.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="141" x="418" y="520" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="125" x="488.5" y="546">cname.vercel-dns.com</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="113" x="102" y="920" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="85" x="158.5" y="947">grafana.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="93" x="158.5" y="947">grafana.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="113" x="102" y="1000" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="84" x="159.0" y="1027">jupyter.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="158.5" y="1027">jupyter.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="113" x="102" y="1080" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="84" x="159.0" y="1107">loghost.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="158.5" y="1107">loghost.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="113" x="102" y="1160" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="86" x="159.0" y="1187">netdata.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="92" x="159.0" y="1187">netdata.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="133" x="92" y="1240" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="106" x="159.0" y="1267">prometheus.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="116" x="159.0" y="1267">prometheus.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="133" x="422" y="920" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="102" x="489.0" y="947">monitoring.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="111" x="488.5" y="947">monitoring.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="175" x="71" y="1320" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="141" x="158.5" y="1346">measurements-beta.ooni.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="152" x="159.0" y="1346">measurements-beta.ooni.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="141" x="88" y="1400" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="112" x="159.0" y="1426">measurements.ooni.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="123" x="158.5" y="1426">measurements.ooni.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="77" x="450" y="1320" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="54" x="489.0" y="1347">api.ooni.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="58" x="489.0" y="1347">api.ooni.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="77" x="120" y="1480" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="58" x="159.0" y="1507">msg.ooni.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="64" x="159.0" y="1507">msg.ooni.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="77" x="120" y="1560" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="64" x="159.0" y="1586">www.ooni.io</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="68" x="159.0" y="1586">www.ooni.io</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="85" x="116" y="1640" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="71" x="158.5" y="1667">www.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="77" x="158.5" y="1667">www.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="113" x="432" y="1480" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="83" x="488.5" y="1507">ooni.netlify.com</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="99" x="109" y="1720" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="68" x="159.0" y="1746">slides.ooni.io</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="408" y="1720" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="118" x="489.0" y="1747">ooni-slides.netlify.com</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="89" x="488.5" y="1507">ooni.netlify.com</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="127" x="95" y="1720" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="109" x="158.5" y="1747">probe-web.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="99" x="439" y="1720" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="489.0" y="1747">ooni.github.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="105" x="106" y="1800" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="79" x="158.5" y="1827">ps-test.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="105" x="436" y="1800" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="90" x="489.0" y="1827">ams-pg.ooni.org</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="99" x="109" y="1880" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="73" x="158.5" y="1906">slides.ooni.io</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="161" x="408" y="1880" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="124" x="489.0" y="1907">ooni-slides.netlify.com</text>
   <path d="M 243 60 L 431 60" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="438,60 431,56 431,64 438,60" stroke="rgb(0,0,0)" />
   <path d="M 243 140 L 301 140" fill="none" stroke="rgb(0,0,0)" />
@@ -179,14 +197,14 @@ ooni.netlify.com[width=112];
   <polygon fill="rgb(0,0,0)" points="438,60 431,56 431,64 438,60" stroke="rgb(0,0,0)" />
   <path d="M 246 220 L 309 220" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="316,220 309,216 309,224 316,220" stroke="rgb(0,0,0)" />
-  <path d="M 201 300 L 428 300" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="435,300 428,296 428,304 435,300" stroke="rgb(0,0,0)" />
-  <path d="M 208 460 L 400 460" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="407,460 400,456 400,464 407,460" stroke="rgb(0,0,0)" />
-  <path d="M 243 540 L 393 540" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="400,540 393,536 393,544 400,540" stroke="rgb(0,0,0)" />
-  <path d="M 236 620 L 410 620" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="417,620 410,616 410,624 417,620" stroke="rgb(0,0,0)" />
+  <path d="M 201 300 L 410 300" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="417,300 410,296 410,304 417,300" stroke="rgb(0,0,0)" />
+  <path d="M 208 380 L 400 380" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="407,380 400,376 400,384 407,380" stroke="rgb(0,0,0)" />
+  <path d="M 243 460 L 393 460" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="400,460 393,456 393,464 400,460" stroke="rgb(0,0,0)" />
+  <path d="M 236 540 L 410 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="417,540 410,536 410,544 417,540" stroke="rgb(0,0,0)" />
   <path d="M 215 940 L 414 940" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="421,940 414,936 414,944 421,940" stroke="rgb(0,0,0)" />
   <path d="M 215 1020 L 301 1020" fill="none" stroke="rgb(0,0,0)" />
@@ -209,28 +227,32 @@ ooni.netlify.com[width=112];
   <path d="M 301 1180 L 301 940" fill="none" stroke="rgb(0,0,0)" />
   <path d="M 301 940 L 414 940" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="421,940 414,936 414,944 421,940" stroke="rgb(0,0,0)" />
+  <path d="M 222 1740 L 431 1740" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="438,1740 431,1736 431,1744 438,1740" stroke="rgb(0,0,0)" />
   <path d="M 225 1260 L 301 1260" fill="none" stroke="rgb(0,0,0)" />
   <path d="M 301 1260 L 301 940" fill="none" stroke="rgb(0,0,0)" />
   <path d="M 301 940 L 414 940" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="421,940 414,936 414,944 421,940" stroke="rgb(0,0,0)" />
-  <path d="M 211 380 L 301 380" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 380 L 301 300" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 300 L 428 300" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="435,300 428,296 428,304 435,300" stroke="rgb(0,0,0)" />
-  <path d="M 208 1740 L 400 1740" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="407,1740 400,1736 400,1744 407,1740" stroke="rgb(0,0,0)" />
+  <path d="M 211 1820 L 428 1820" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="435,1820 428,1816 428,1824 435,1820" stroke="rgb(0,0,0)" />
+  <path d="M 218 620 L 301 620" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 301 620 L 301 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 301 540 L 410 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="417,540 410,536 410,544 417,540" stroke="rgb(0,0,0)" />
+  <path d="M 208 1900 L 400 1900" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="407,1900 400,1896 400,1904 407,1900" stroke="rgb(0,0,0)" />
   <path d="M 225 700 L 301 700" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 700 L 301 620" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 620 L 410 620" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="417,620 410,616 410,624 417,620" stroke="rgb(0,0,0)" />
+  <path d="M 301 700 L 301 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 301 540 L 410 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="417,540 410,536 410,544 417,540" stroke="rgb(0,0,0)" />
   <path d="M 243 780 L 301 780" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 780 L 301 620" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 620 L 410 620" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="417,620 410,616 410,624 417,620" stroke="rgb(0,0,0)" />
+  <path d="M 301 780 L 301 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 301 540 L 410 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="417,540 410,536 410,544 417,540" stroke="rgb(0,0,0)" />
   <path d="M 253 860 L 301 860" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 860 L 301 620" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 301 620 L 410 620" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="417,620 410,616 410,624 417,620" stroke="rgb(0,0,0)" />
+  <path d="M 301 860 L 301 540" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 301 540 L 410 540" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="417,540 410,536 410,544 417,540" stroke="rgb(0,0,0)" />
   <path d="M 197 1580 L 301 1580" fill="none" stroke="rgb(0,0,0)" />
   <path d="M 301 1580 L 301 1500" fill="none" stroke="rgb(0,0,0)" />
   <path d="M 301 1500 L 424 1500" fill="none" stroke="rgb(0,0,0)" />

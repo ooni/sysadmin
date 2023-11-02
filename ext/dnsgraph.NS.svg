@@ -20,13 +20,13 @@ ns1.digitalocean.com[width=140];
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="77" x="88" y="126" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="140" x="250" y="126" />
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="119" x="64" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="92" x="124.0" y="66">dnstunnel.ooni.nu</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="100" x="124.0" y="66">dnstunnel.ooni.nu</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="50" x="292" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="38" x="317.0" y="66">ooni.nu</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="42" x="317.0" y="66">ooni.nu</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="77" x="85" y="120" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="57" x="123.5" y="147">th.ooni.org</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="123.5" y="147">th.ooni.org</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="140" x="247" y="120" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="109" x="317.5" y="147">ns1.digitalocean.com</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="119" x="317.5" y="147">ns1.digitalocean.com</text>
   <path d="M 183 60 L 284 60" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="291,60 284,56 284,64 291,60" stroke="rgb(0,0,0)" />
   <path d="M 162 140 L 239 140" fill="none" stroke="rgb(0,0,0)" />
