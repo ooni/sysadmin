@@ -3,14 +3,14 @@
 """
 Version 2023-10-20.1
 
-Builds deb packages and uploads them to S3-compatible storage or bintray.
+Builds deb packages and uploads them to S3-compatible storage.
 Works locally and on GitHub Actions and CircleCI
 Detects which package[s] need to be built.
 Support "release" and PR/testing archives.
 
 scan              - scan the current repository for packages to be built
 build             - locate and build packages
-upload <filename> - upload one package to S3 or Bintray
+upload <filename> - upload one package to S3
 ci                - detect CircleCI PRs, build and upload packages
 delete_from_archive <filename> - delete filename from archive
 
@@ -52,7 +52,6 @@ except ImportError:
     gnupg = None
 
 # TODO remove these
-BINTRAY_API = "https://bintray.com/api/v1"
 DEFAULT_ORG = "ooni"
 DEFAULT_PR_REPO = "internal-pull-requests"
 DEFAULT_MASTER_REPO = "internal-master"
@@ -224,9 +223,6 @@ def buildpkg(p) -> List[Path]:
 
 
 def detect_archive_backend():
-    if getenv("BINTRAY_USERNAME") and getenv("BINTRAY_API_KEY"):
-        return "bintray"
-
     if getenv("AWS_ACCESS_KEY_ID") and getenv("AWS_SECRET_ACCESS_KEY"):
         return "s3"
 
@@ -271,15 +267,10 @@ def ci(args) -> None:
     # TODO: detect sudo presence
 
     backend_name = detect_archive_backend()
-    if backend_name == "bintray":
-        backend = Bintray()
-    elif backend_name == "s3":
+    if backend_name == "s3":
         backend = S3()
     else:
-        print(
-            "Either set BINTRAY_USERNAME / BINTRAY_API_KEY env vars or "
-            "AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY"
-        )
+        print("Set AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY env vars")
         sys.exit(1)
     del backend_name
 
@@ -335,45 +326,6 @@ def check_duplicate_package(pkgblock, packages_text):
     existing = list(extract_pva(packages_text))
     if new in existing:
         raise DuplicatePkgError()
-
-
-class Bintray:
-    """Bintray backend"""
-
-    def __init__(self):
-        self._btuser = getenv("BINTRAY_USERNAME")
-        assert self._btuser, "Missing BINTRAY_USERNAME"
-
-    def upload(self, fi, args) -> None:
-        """Upload to Bintray"""
-        # FIXME: specify repo
-        assert repo, "Please specify a repository"
-        assert fi.is_file()
-        pname, pver, arch = fi.name.split("_")
-        auth = HTTPBasicAuth(self._btuser, getenv("BINTRAY_API_KEY"))
-        dist = "unstable"
-        url = (
-            f"{BINTRAY_API}/content/{args.org}/{repo}/{pname}/{pver}/{fi.name};"
-            f"deb_distribution={dist};deb_component=main;deb_architecture=amd64;publish=1"
-        )
-        with open(fi, "rb") as f:
-            resp = requests.put(url, auth=auth, data=f)
-
-        if not resp.ok:
-            print(f"Error {resp.text} when calling {resp.request.url}")
-            sys.exit(1)
-
-    def delete_package(self, args, extra) -> None:
-        """Delete package from Bintray"""
-        auth = HTTPBasicAuth(self._btuser, getenv("BINTRAY_API_KEY"))
-        filename = extra[0]
-        assert filename.endswith(".deb")
-        assert args.repo, "Please specify a repository"
-        url = f"{BINTRAY_API}/content/{args.org}/{args.repo}/{filename}"
-        resp = requests.delete(url, auth=auth)
-        if not resp.ok:
-            print(f"Error {resp.text} when calling {resp.request.url}")
-            sys.exit(1)
 
 
 def _extract_archs_from_InRelease(content: str) -> dict:
@@ -597,8 +549,6 @@ def main():
     ap.add_argument(
         "action", choices=("upload", "scan", "ci", "build", "delete_from_archive")
     )
-    ap.add_argument("-r", "--repo", default=None, help="Bintray repository name")
-    ap.add_argument("-o", "--org", default=DEFAULT_ORG, help="Bintray org name")
     ap.add_argument("--bucket-name", help="S3 bucket name")
     ap.add_argument("--distro", default="unstable", help="Debian distribution name")
     ap.add_argument("--origin", default="private", help="Debian Origin name")
@@ -614,14 +564,10 @@ def main():
         for p in sorted(detect_changed_packages()):
             print(p.as_posix())
     elif args.action == "upload":
-        # TODO select backend
-        # bk = Bintray()
         bk = S3()
         for fn in extra:
             bk.upload(Path(fn), args)
     elif args.action == "delete_from_archive":
-        # TODO select backend
-        # bk = Bintray()
         bk = S3()
         bk.delete_package(args, extra)
     elif args.action == "build":
