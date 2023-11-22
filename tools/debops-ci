@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-"""
-Version 2023-10-20.1
+doci_version = "2023-11-22.1"
 
+"""
 Builds deb packages and uploads them to S3-compatible storage.
 Works locally and on GitHub Actions and CircleCI
 Detects which package[s] need to be built.
@@ -235,7 +235,9 @@ def detect_archive_backend() -> Optional[str]:
     return None
 
 
-def setup_gpg_key(keyfp: Optional[str], tmpdir: Path) -> Tuple[gnupg.GPG, Optional[str]]:
+def setup_gpg_key(
+    keyfp: Optional[str], tmpdir: Path
+) -> Tuple[gnupg.GPG, Optional[str]]:
     """Import key from env var or use existing keyring"""
     if gnupg is None:
         print("Please install python3-gnupg")
@@ -486,7 +488,9 @@ class S3:
 
         return "\n".join(out) + "\n"
 
-    def _inner_upload(self, debfn, tmpdir, baseuri, pkgblock: str, gpg, gpgkeyfp) -> None:
+    def _inner_upload(
+        self, debfn, tmpdir, baseuri, pkgblock: str, gpg, gpgkeyfp
+    ) -> None:
         # Fetch existing Packages file
         packages = tmpdir / "Packages"
         assert conf
@@ -559,6 +563,7 @@ class S3:
 
 def main() -> None:
     global conf
+    print(f"debops-ci version {doci_version}")
     ap = ArgumentParser(usage=__doc__)
     ap.add_argument(
         "action", choices=("upload", "scan", "ci", "build", "delete_from_archive")
