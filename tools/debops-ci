@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-doci_version = "2023-11-22.1"
+doci_version = "2023-11-22.2"
 
 """
 Builds deb packages and uploads them to S3-compatible storage.
@@ -504,7 +504,7 @@ class S3:
         # without any risk of altering the existing content
         with packages.open("a") as f:
             # Explicitly add newlines for safety
-            pkgblock = pkgblock.rstrip() + "\n\n"
+            pkgblock = "\n" + pkgblock.strip() + "\n"
             f.write(pkgblock)
 
         data = packages.read_bytes()
