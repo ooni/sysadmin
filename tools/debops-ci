@@ -30,20 +30,18 @@ Features:
 # TODO: Phased-Update-Percentage
 
 # debdeps: git
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from datetime import datetime, timedelta
 import base64
 import os
 from os import getenv
 from pathlib import Path
-from requests.auth import HTTPBasicAuth
 from subprocess import run
 from tempfile import mkdtemp, NamedTemporaryFile
 from textwrap import dedent
 from time import sleep
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Optional
 from hashlib import sha256
-import requests
 import sys
 
 try:
@@ -62,7 +60,15 @@ EXAMPLE_CONFIG = """
 
 assert sys.version_info >= (3, 7, 0), "Python 3.7.0 or later is required"
 
-conf = None
+conf: Namespace
+
+
+def getenv_or_raise(name: str) -> str:
+    val = getenv(name)
+    if val is None:
+        raise Exception(f"Missing {name} environment variable")
+
+    return val
 
 
 def run2(cmd: str, **kw) -> str:
@@ -128,11 +134,11 @@ def trim_compare(url: str) -> str:
     return url
 
 
-def _set_pkg_version_from_circleci(p, ver) -> bool:
+def _set_pkg_version_from_circleci(p: Path, ver: str) -> bool:
     comp = trim_compare(getenv("CIRCLE_COMPARE_URL", ""))  # show changes in VCS
     if not comp:
         # https://discuss.circleci.com/t/circle-compare-url-is-empty/24549/8
-        comp = getenv("CIRCLE_PULL_REQUEST")
+        comp = getenv("CIRCLE_PULL_REQUEST") or ""
 
     if getenv("CIRCLE_PULL_REQUEST"):
         # This is a PR: build ~pr<N>-<N> version. CIRCLE_PR_NUMBER is broken
@@ -159,19 +165,19 @@ def _set_pkg_version_from_circleci(p, ver) -> bool:
     return False
 
 
-def _set_pkg_version_from_github_actions(p, ver):
+def _set_pkg_version_from_github_actions(p: Path, ver: str) -> bool:
     """When running in GitHub Actions, access env vars to set
     the package version"""
     # GITHUB_REF syntax: refs/heads/<branch-name> or refs/pull/<PR#>/merge
-    gh_ref = getenv("GITHUB_REF")
+    gh_ref = getenv_or_raise("GITHUB_REF")
     try:
         pr_num = int(gh_ref.split("/")[2])
     except ValueError:
         pr_num = None
 
-    gh_run_number = int(getenv("GITHUB_RUN_NUMBER"))
+    gh_run_number = int(getenv_or_raise("GITHUB_RUN_NUMBER"))
     print(f"GitHub Actions PR #: {pr_num} Run #: {gh_run_number}")
-    print("SHA " + getenv("GITHUB_SHA"))
+    print("SHA " + getenv_or_raise("GITHUB_SHA"))
 
     if pr_num is None:
         if gh_ref.endswith("/master"):
@@ -197,7 +203,7 @@ def _set_pkg_version_from_github_actions(p, ver):
         return True
 
 
-def buildpkg(p) -> List[Path]:
+def buildpkg(p: Path) -> List[Path]:
     """Build one package, installing required dependencies"""
     print(f"Building package in {p}")
     ver = run2("dpkg-parsechangelog --show-field Version", cwd=p)
@@ -222,21 +228,23 @@ def buildpkg(p) -> List[Path]:
         return [p.parent.joinpath(line.split()[0]) for line in f]
 
 
-def detect_archive_backend():
+def detect_archive_backend() -> Optional[str]:
     if getenv("AWS_ACCESS_KEY_ID") and getenv("AWS_SECRET_ACCESS_KEY"):
         return "s3"
 
+    return None
 
-def setup_gpg_key(keyfp, tmpdir):
+
+def setup_gpg_key(keyfp: Optional[str], tmpdir: Path) -> Tuple[gnupg.GPG, Optional[str]]:
     """Import key from env var or use existing keyring"""
     if gnupg is None:
         print("Please install python3-gnupg")
         sys.exit(1)
 
     if "DEB_GPG_KEY" in os.environ:
-        gpg_key_raw = os.getenv("DEB_GPG_KEY")
+        gpg_key_raw = getenv_or_raise("DEB_GPG_KEY")
     elif "DEB_GPG_KEY_BASE64" in os.environ:
-        k = os.environ["DEB_GPG_KEY_BASE64"].encode("utf-8")
+        k = getenv_or_raise("DEB_GPG_KEY_BASE64").encode("utf-8")
         gpg_key_raw = base64.b64decode(k)
     else:
         gpg_key_raw = None
@@ -305,8 +313,8 @@ class DuplicatePkgError(Exception):
     pass
 
 
-def extract_pva(text):
-    d = {}
+def extract_pva(text: str):
+    d: Dict[str, str] = {}
     for line in text.splitlines():
         if line.startswith("Package: "):
             val = line.split(" ", 1)[1]
@@ -321,7 +329,10 @@ def extract_pva(text):
     yield d
 
 
-def check_duplicate_package(pkgblock, packages_text):
+def check_duplicate_package(pkgblock: str, packages_text) -> None:
+    """Check for already uploaded package: once a package is published its
+    contents should not be overwritten.
+    """
     new = next(extract_pva(pkgblock))
     existing = list(extract_pva(packages_text))
     if new in existing:
@@ -444,7 +455,7 @@ class S3:
 
         r, o = runc(f"{put} {tf.name} {baseuri}/index.html")
 
-    def lock(self, conf, baseuri):
+    def lock(self, conf, baseuri: str) -> None:
         """Rename semaphore file"""
         print(f"Locking {baseuri} ...")
         cmd = f"s3cmd mv --no-progress {baseuri}/.debrepos3.nolock {baseuri}/.debrepos3.lock"
@@ -457,7 +468,7 @@ class S3:
             print("The distro is locked. Waiting...")
             sleep(10)
 
-    def unlock(self, baseuri):
+    def unlock(self, baseuri: str) -> None:
         """Rename semaphore file"""
         r, o = runc(
             f"s3cmd mv --no-progress {baseuri}/.debrepos3.lock {baseuri}/.debrepos3.nolock"
@@ -475,7 +486,7 @@ class S3:
 
         return "\n".join(out) + "\n"
 
-    def _inner_upload(self, debfn, tmpdir, baseuri, pkgblock: str, gpg, gpgkeyfp):
+    def _inner_upload(self, debfn, tmpdir, baseuri, pkgblock: str, gpg, gpgkeyfp) -> None:
         # Fetch existing Packages file
         packages = tmpdir / "Packages"
         assert conf
@@ -485,7 +496,8 @@ class S3:
         # Check for already uploaded package
         check_duplicate_package(pkgblock, packages.read_text())
 
-        # Append, then read whole file back
+        # Append, then read whole file back: this is meant to add a new block
+        # without any risk of altering the existing content
         with packages.open("a") as f:
             f.write(pkgblock)
 
@@ -543,7 +555,7 @@ class S3:
     #  rm Packages.gz
 
 
-def main():
+def main() -> None:
     global conf
     ap = ArgumentParser(usage=__doc__)
     ap.add_argument(
@@ -568,8 +580,9 @@ def main():
         for fn in extra:
             bk.upload(Path(fn), args)
     elif args.action == "delete_from_archive":
-        bk = S3()
-        bk.delete_package(args, extra)
+        raise NotImplementedError
+        # bk = S3()
+        # bk.delete_package(args, extra)
     elif args.action == "build":
         build()
 
