@@ -499,6 +499,8 @@ class S3:
         # Append, then read whole file back: this is meant to add a new block
         # without any risk of altering the existing content
         with packages.open("a") as f:
+            # Explicitly add newlines for safety
+            pkgblock = pkgblock.rstrip() + "\n\n"
             f.write(pkgblock)
 
         data = packages.read_bytes()
