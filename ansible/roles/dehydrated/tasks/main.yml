@@ -1,5 +1,4 @@
 ---
-
 - name: Installs packages
   tags: dehydrated
   apt:
@@ -30,6 +29,14 @@
     # the server block matches all SSL FQDNs and must be
     # parsed first, hence 00-
     dest: /etc/nginx/sites-enabled/00-letsencrypt-http
+    mode: 0644
+    owner: root
+
+- name: Add canary file to ensure /.well-known/acme-challenge is reachable by let's encrypt
+  tags: dehydrated
+  template:
+    src: /dev/null
+    dest: /var/www/letsencrypt/.well-known/acme-challenge/ooni-acme-canary
     mode: 0644
     owner: root
 
@@ -96,5 +103,3 @@
 - name: reload nginx
   tags: dehydrated
   shell: systemctl reload nginx.service
-
-...
