@@ -1,5 +1,5 @@
 ---
-adm_logins: [ art, federico, sbs ]
+adm_logins: [art, federico, sbs]
 ngxprom_scrapers:
   - prometheus.infra.ooni.io
 
@@ -7,12 +7,12 @@ onion_ipv6_ula: 'fd26:a7e3:2a3::'
 
 # That's the password that other nodes do NOT store in config files,
 # other nodes store SSHA() of it that is in group_vars/all
-#prometheus_scraper_password: '{{ vault_prometheus_scraper_password }}'
+# prometheus_scraper_password: '{{ vault_prometheus_scraper_password }}'
 
 prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
 alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
-grafana_secret_key: "{{ vault_grafana_secret_key }}" # to sign cookies
+grafana_secret_key: "{{ vault_grafana_secret_key }}"  # to sign cookies
 
 prometheus_listen_address: "127.0.0.1:8090"
 alertmanager_listen_address: "127.0.0.1:9093"
@@ -21,7 +21,7 @@ grafana_backend_port: 26738
 
 ngxprom_exporter_ports:
   9100: '{{ node_exporter_ipv4 }}'
-  8090: '127.0.0.1' # FIXME: unusual port for prometheus
+  8090: '127.0.0.1'  # FIXME: unusual port for prometheus
   9093: '127.0.0.1'
 
 blackbox_jobs:
@@ -30,7 +30,7 @@ blackbox_jobs:
   - name: "ooni web_connectivity test helpers"
     module: "ooni_web_connectivity_ok"
     targets:
-      #- "https://a.web-connectivity.th.ooni.io/status"
+      # - "https://a.web-connectivity.th.ooni.io/status"
       - "https://wcth.ooni.io/status"
       - "https://ams-wcth2.ooni.nu/status"
       - "https://a.web-connectivity.th.ooni.io/status" # "https://ams-wcth3.ooni.nu/status"
@@ -48,7 +48,7 @@ blackbox_jobs:
   - name: "ooni collector"
     module: "ooni_collector_ok"
     targets:
-      #- "https://a.collector.ooni.io/invalidpath"
+      # - "https://a.collector.ooni.io/invalidpath"
       - "https://b.collector.ooni.io/invalidpath" # hardcoded in MK as a fallback in case of bouncer failure
       - "https://c.collector.ooni.io/invalidpath"
       # cloudfront
@@ -57,6 +57,7 @@ blackbox_jobs:
       # Probe services
       - "https://ps.ooni.io/invalidpath"
       - "https://collector.ooni.io/invalidpath"
+
   - name: "ooni bouncer"
     module: "ooni_bouncer_ok"
     targets:
@@ -130,7 +131,7 @@ blackbox_jobs:
 
   - name: "registry"
     module: "ooni_registry"
-    targets: [ "https://registry.proteus.ooni.io:443/api/v1/register" ]
+    targets: ["https://registry.proteus.ooni.io:443/api/v1/register"]
 
   - name: "tor testhelper" # see also SSLCertExpires in roles/prometheus/files/alert_rules.yml
     module: tls_snakeoil
@@ -143,4 +144,5 @@ blackbox_jobs:
   - name: icmp
     module: icmp
     targets: "{{ groups['dom0'] | list }}"
+
 ...
