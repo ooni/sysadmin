@@ -44,64 +44,6 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endfor %}
 
-{% set onion_scrape_interval = '1m' %}
-{% set onion_scrape_timeout = '45s' %}
-
-  # DNS AAAA *.onion -> IPv6 ULA resolution is done by prometheus and not by
-  # blackbox_exporter due to differences in DNS resolver libraries.  See also
-  # - https://github.com/prometheus/blackbox_exporter/issues/264#issuecomment-442936583
-  # - https://github.com/golang/go/blob/go1.11.2/src/net/dnsclient_unix.go#L424-L436
-  - job_name: 'onion bouncer'
-    scrape_interval: {{ onion_scrape_interval }}
-    scrape_timeout: {{ onion_scrape_timeout }}
-    metrics_path: /probe
-    params: {module: [ooni_bouncer_ok]}
-    dns_sd_configs:
-    - type: AAAA
-      port: 80
-      refresh_interval: 60s # tor DNS TTL
-      names:
-      - nkvphnp3p6agi5qq.onion # hardcoded in app
-    relabel_configs:
-    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/bouncer/net-tests"}
-    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
-    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/bouncer/net-tests"}
-
-  - job_name: 'onion collector'
-    scrape_interval: {{ onion_scrape_interval }}
-    scrape_timeout: {{ onion_scrape_timeout }}
-    metrics_path: /probe
-    params: {module: [ooni_collector_ok]}
-    dns_sd_configs:
-    - type: AAAA
-      port: 80
-      refresh_interval: 60s # tor DNS TTL
-      names:
-      - jehhrikjjqrlpufu.onion # onion of ams-ps2
-      - hcn5nqahdkds6cjv.onion # onion of mia-ps2
-      - guegdifjy7bjpequ.onion # onion of ams-pg.ooni.org
-    relabel_configs:
-    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/invalidpath"}
-    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
-    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/invalidpath"}
-
-  - job_name: 'onion web-connectivity.th'
-    scrape_interval: {{ onion_scrape_interval }}
-    scrape_timeout: {{ onion_scrape_timeout }}
-    metrics_path: /probe
-    params: {module: [ooni_web_connectivity_ok]}
-    dns_sd_configs:
-    - type: AAAA
-      port: 80
-      refresh_interval: 60s # tor DNS TTL
-      names:
-      - o7mcp5y4ibyjkcgs.onion # onion of ams-wcth3.ooni.nu
-      - y3zq5fwelrzkkv3s.onion # onion of ams-wcth2.ooni.nu
-    relabel_configs:
-    - {source_labels: [__address__], target_label: __param_target, replacement: "http://${1}/status"}
-    - {source_labels: [], target_label: __address__, replacement: "127.0.0.1:9115"}
-    - {source_labels: [__meta_dns_name], target_label: instance, replacement: "http://${1}/status"}
-
   - job_name: 'node'
     scrape_interval: 5s
     scheme: https
@@ -109,6 +51,8 @@ scrape_configs:
       ca_file: "{{ prometheus_exporter_cert }}"
       cert_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.chain"
       key_file: "{{ prometheus_ssl_dir }}/{{ inventory_hostname }}.key"
+      # XXX this is a hotfix to https://github.com/ooni/backend/issues/747
+      insecure_skip_verify: true
     static_configs:
       - targets:
 {% for host in (groups.dom0|sort) %}
