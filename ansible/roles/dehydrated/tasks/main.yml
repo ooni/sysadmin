@@ -35,7 +35,8 @@
 - name: Add canary file to ensure /.well-known/acme-challenge is reachable by let's encrypt
   tags: dehydrated
   template:
-    src: /dev/null
+    create: yes
+    content: Added by ansible using {{ ansible_playbook_name }}
     dest: /var/www/letsencrypt/.well-known/acme-challenge/ooni-acme-canary
     mode: 0644
     owner: root
