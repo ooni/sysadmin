@@ -126,7 +126,7 @@ blackbox_jobs:
 
   # Make sure that we can still access the .well-known/acme-challenge dir
   # TODO(bassosimone): we should monitor all hosts here.
-  - name: "ooni website"
+  - name: "check for .well-known/acme-challenge availability"
     module: "http_2xx"
     targets:
       - http://ams-pg-test.ooni.org/.well-known/acme-challenge/ooni-acme-canary
