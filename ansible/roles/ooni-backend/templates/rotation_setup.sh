@@ -10,7 +10,7 @@ exec 1>/var/log/vm_rotation_setup.log 2>&1
 echo > /etc/motd
 
 echo "Configuring APT"
-echo "deb [trusted=yes] https://ooni-internal-deb.s3.eu-central-1.amazonaws.com unstable main" > /etc/apt/sources.list.d/ooni.list
+echo "deb [trusted=yes] https://ooni-deb.s3.eu-central-1.amazonaws.com unstable main" > /etc/apt/sources.list.d/ooni.list
 cat <<EOF  | gpg --dearmor > /etc/apt/trusted.gpg.d/ooni.gpg
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
