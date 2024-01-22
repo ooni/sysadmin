@@ -1,0 +1,6 @@
+@.openobservatory.net 1799 IN URL http://ooni.torproject.org
+blog.openobservatory.net 1799 IN CNAME openo.ghost.io
+docs.openobservatory.net 1799 IN CNAME openobservatory.github.io
+p.openobservatory.net 60 IN A 37.218.241.237
+playground.openobservatory.net 60 IN A 37.218.241.237
+www.openobservatory.net 1799 IN URL http://ooni.torproject.org

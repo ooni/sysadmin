@@ -1,0 +1,35 @@
+## @.ooni.nu URL301 https://ooni.org
+ams-explorer.ooni.nu 1799 IN A 37.218.242.149
+ams-jupyter.ooni.nu 60 IN A 37.218.242.67
+ams-orchestra.ooni.nu 300 IN A 37.218.247.95
+ams-ps.ooni.nu 60 IN A 37.218.245.90
+ams-ps2.ooni.nu 300 IN A 37.218.245.109
+ams-wcth.ooni.nu 300 IN A 37.218.245.114
+ams-wcth2.ooni.nu 300 IN A 37.218.247.47
+ams-wcth3.ooni.nu 300 IN A 37.218.245.117
+amsexplorer.ooni.nu 1799 IN A 37.218.242.231
+amsmatomo.ooni.nu 60 IN A 37.218.242.173
+amsmetadb.ooni.nu 1799 IN A 37.218.242.175
+amstorth.ooni.nu 1799 IN A 37.218.242.217
+## censorshipwiki.ooni.nu URL301 https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki
+dnstunnel.ooni.nu 1800 IN NS ooni.nu
+doams1-countly.ooni.nu 1799 IN A 167.71.64.109
+fastpath.ooni.nu 1799 IN A 103.104.244.20
+hkg-ps.ooni.nu 60 IN A 103.104.244.28
+hkgbouncer.ooni.nu 1799 IN A 103.104.244.87
+hkgcollectora.ooni.nu 1799 IN A 103.104.244.110
+hkgtorth.ooni.nu 1799 IN A 103.104.244.76
+mia-echoth.ooni.nu 1799 IN A 37.218.241.93
+mia-explorer-test.ooni.nu 1799 IN A 37.218.241.175
+mia-get.ooni.nu 1200 IN A 37.218.241.63
+mia-github-webhooks.ooni.nu 300 IN A 37.218.241.98
+mia-httpth.ooni.nu 60 IN A 37.218.241.94
+mia-orchestra-test.ooni.nu 60 IN A 37.218.241.87
+mia-ps-test.ooni.nu 1799 IN A 37.218.241.86
+mia-ps2.ooni.nu 300 IN A 37.218.241.102
+mia-run.ooni.nu 60 IN A 37.218.241.95
+miaapi.ooni.nu 1799 IN A 37.218.241.8
+miacollector.ooni.nu 1799 IN A 37.218.241.178
+miatorth.ooni.nu 1799 IN A 37.218.241.28
+mirror1.reports.ooni.nu 1800 IN A 213.138.109.232
+## www.ooni.nu URL301 https://ooni.org
