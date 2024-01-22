@@ -84,6 +84,7 @@ def main():
     ssh = setup_ssh(args.client_fqdn, args.socks5port)
 
     all_records = []
+    all_zones = []
     for domain in args.domains.split(","):
         print(f"Fetching {domain}")
         resp = fetch_domain_data(args, domain, nc_user, nc_token, client_ipaddr)
@@ -92,12 +93,23 @@ def main():
         zone = parse(resp.text, domain)
         print(f"Fetched {len(zone)} records")
         all_records.extend(zone)
+        all_zones.append((domain, zone))
 
     assert all_records, "Empty record list"
     all_records = sorted(all_records, key=lambda z: z["name"])
     Path("../ext/dns.json").write_text(
         json.dumps(all_records, indent=2, sort_keys=True)
     )
+
+    for domain, zone in all_zones:
+        zone_txt = ""
+        zone_entries = sorted(zone, key=lambda z: z["name"])
+        for entry in zone_entries:
+            if entry['type'] == 'URL301':
+                zone_txt += f"## {entry['name']} {entry['type']} {entry['address']}\n"
+            else:
+                zone_txt += f"{entry['name']} {entry['ttl']} IN {entry['type']} {entry['address']}\n"
+        Path(f"../ext/dns_zone-{domain}.txt").write_text(zone_txt)
 
     ssh.terminate()
     try:
