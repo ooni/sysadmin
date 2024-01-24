@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys, os, yaml, glob
 
@@ -8,7 +8,7 @@ vltfd, travfd = sys.stdin, sys.stdout
 assert os.path.isfile(vpath)
 
 with vltfd:
-    vault = {k: "TRAVIS_" + os.urandom(8).encode("hex") for k in yaml.load(vltfd).keys()}
+    vault = {k: "TRAVIS_" + os.urandom(8).hex() for k in yaml.safe_load(vltfd).keys()}
 
 plaintext = {}
 for fname in glob.glob(os.path.join(os.path.dirname(vpath), '*.yml')):
