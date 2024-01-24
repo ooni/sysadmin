@@ -118,6 +118,10 @@
     mode: 0644
     owner: root
 
+# TODO(art): this htaccess file contains the password of federico which cannot
+# be removed, since removing it leads to a bunch of alerts being triggerd. We
+# should figure out where his personal password was used and replace it with a
+# role based password that is shared and stored in our team keychain.
 - name: copy monitoring.htpasswd
   tags: monitoring, grafana, htpasswd
   copy:
