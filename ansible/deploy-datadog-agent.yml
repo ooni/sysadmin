@@ -11,5 +11,6 @@
       tags:
         - "cloud_provider:{{ dd_tag_cloud_provider }}"
         - "availability-zone:{{ dd_tag_availability_zone }}"
+        - "region:{{ dd_tag_availability_zone }}"
         - "env:{{ dd_tag_env }}"
         - "service:{{ dd_tag_service }}"
