@@ -165,8 +165,8 @@ ooni_datadog_checks:
           - "^prom.+"
           - "^net_.+"
           - "^go_.+"
-      - openmetrics_endpoint: "http://localhost:19999/api/v1/allmetrics?format=prometheus"
-        namespace: "ooninetdata"
-        metrics:
-          - "^netdata.+"
+      - metrics:
+        - ^netdata_statsd.*
+        namespace: ooninetdata
+        openmetrics_endpoint: http://localhost:19999/api/v1/allmetrics?format=prometheus&timestamps=no&types=yes&help=yes
 ...
