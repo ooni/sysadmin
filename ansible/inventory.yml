@@ -89,16 +89,16 @@ all:
         #  dd_tag_availability_zone: eu-fsn
         #  dd_tag_env: prod
         #  dd_tag_service: oonibackend
-        #backend-hel.ooni.org:
-        #  dd_tag_cloud_provider: hetzner
-        #  dd_tag_availability_zone: eu-hel
-        #  dd_tag_env: test
-        #  dd_tag_service: oonibackend
         #monitoring.ooni.org:
         #  dd_tag_cloud_provider: hetzner
         #  dd_tag_availability_zone: eu-fsn
         #  dd_tag_env: prod
         #  dd_tag_service: monitoring
+        backend-hel.ooni.org:
+          dd_tag_cloud_provider: hetzner
+          dd_tag_availability_zone: eu-hel
+          dd_tag_env: test
+          dd_tag_service: oonibackend
         data.ooni.org:
           dd_tag_cloud_provider: hetzner
           dd_tag_availability_zone: eu-fsn
