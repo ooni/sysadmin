@@ -10,6 +10,6 @@
       hostname: "{{ inventory_hostname }}"
       tags:
         - "cloud_provider:{{ dd_tag_cloud_provider }}"
-        - "availability_zone:{{ dd_tag_availability_zone }}"
+        - "availability-zone:{{ dd_tag_availability_zone }}"
         - "env:{{ dd_tag_env }}"
         - "service:{{ dd_tag_service }}"
