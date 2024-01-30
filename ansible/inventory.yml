@@ -82,6 +82,10 @@ all:
 
     have_tor: {}
 
+    have_datadog_agent:
+      hosts:
+        oonidata.ooni.org: {}
+
     monitoring:
       hosts:
         monitoring.ooni.org: {}

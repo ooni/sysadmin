@@ -1,0 +1,7 @@
+# Runnning this role requires ansible >= 2.10 and running:
+# ansible-galaxy install datadog.datadog
+- hosts: have_datadog_agent
+  roles:
+    - { role: datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: "{{ ooni_datadog_api_key }}"
