@@ -21,8 +21,7 @@ ooni_datadog_checks:
           - "^prom.+"
           - "^net_.+"
           - "^go_.+"
-  statsd:
-    instances:
-      - host: localhost
-        port: 8126
-        service: "oonimonitoring"
+      - openmetrics_endpoint: "http://localhost:19999/api/v1/allmetrics?format=prometheus"
+        namespace: "ooninetdata"
+        metrics:
+          - "^netdata.+"
