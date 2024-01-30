@@ -5,3 +5,4 @@
     - { role: datadog.datadog, become: yes }
   vars:
     datadog_api_key: "{{ ooni_datadog_api_key }}"
+    datadog_site: "datadoghq.eu"
