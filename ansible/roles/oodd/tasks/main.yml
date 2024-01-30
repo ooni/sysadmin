@@ -1,0 +1,5 @@
+- name: Add dd-agent user to systemd-journal group
+  ansible.builtin.user:
+    name: dd-agent
+    groups: systemd-journal
+    append: yes

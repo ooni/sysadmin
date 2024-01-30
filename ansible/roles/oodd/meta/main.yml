@@ -1,0 +1,20 @@
+dependencies:
+  roles:
+    - { role: datadog.datadog, become: yes }
+  vars:
+    datadog_api_key: "{{ ooni_datadog_api_key }}"
+    datadog_site: "datadoghq.eu"
+    datadog_checks:
+      journald:
+        logs:
+        - type: journald
+          container_mode: true
+    datadog_config:
+      hostname: "{{ inventory_hostname }}"
+      logs_enabled: true
+      tags:
+        - "cloud_provider:{{ dd_tag_cloud_provider }}"
+        - "availability-zone:{{ dd_tag_availability_zone }}"
+        - "region:{{ dd_tag_availability_zone }}"
+        - "env:{{ dd_tag_env }}"
+        - "service:{{ dd_tag_service }}"

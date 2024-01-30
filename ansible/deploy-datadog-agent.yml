@@ -2,15 +2,4 @@
 # ansible-galaxy install datadog.datadog
 - hosts: have_datadog_agent
   roles:
-    - { role: datadog.datadog, become: yes }
-  vars:
-    datadog_api_key: "{{ ooni_datadog_api_key }}"
-    datadog_site: "datadoghq.eu"
-    datadog_config:
-      hostname: "{{ inventory_hostname }}"
-      tags:
-        - "cloud_provider:{{ dd_tag_cloud_provider }}"
-        - "availability-zone:{{ dd_tag_availability_zone }}"
-        - "region:{{ dd_tag_availability_zone }}"
-        - "env:{{ dd_tag_env }}"
-        - "service:{{ dd_tag_service }}"
+    - oodd
