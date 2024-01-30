@@ -99,11 +99,11 @@ all:
         #  dd_tag_availability_zone: eu-fsn
         #  dd_tag_env: prod
         #  dd_tag_service: monitoring
-        #data.ooni.org:
-        #  dd_tag_cloud_provider: hetzner
-        #  dd_tag_availability_zone: eu-fsn
-        #  dd_tag_env: test
-        #  dd_tag_service: oonidata
+        data.ooni.org:
+          dd_tag_cloud_provider: hetzner
+          dd_tag_availability_zone: eu-fsn
+          dd_tag_env: test
+          dd_tag_service: oonidata
         oonidata.ooni.org:
           dd_tag_cloud_provider: hetzner
           dd_tag_availability_zone: eu-fsn
