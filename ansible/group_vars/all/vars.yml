@@ -105,10 +105,4 @@ ngxprom_exporter_ports: { 9100: '{{ node_exporter_ipv4 }}' }
 
 ntp_pool: debian
 have_ssd: false
-
-# defaults for datadog tag keys
-dd_tag_cloud_provider: "undefined"
-dd_tag_availability_zone: "undefined"
-dd_tag_env: "undefined"
-dd_tag_service: "undefined"
 ...

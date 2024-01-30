@@ -1,5 +1,20 @@
 # Runnning this role requires ansible >= 2.10 and running:
 # ansible-galaxy install datadog.datadog
 - hosts: have_datadog_agent
+  pre_tasks:
+    - name: set datadog tags
+      set_fact:
+        datadog_tags: >-
+          [
+          {% if dd_tag_cloud_provider is defined %}"cloud_provider:{{ dd_tag_cloud_provider }}",{% endif %}
+          {% if dd_tag_availability_zone is defined %}"availability-zone:{{ dd_tag_availability_zone }}",{% endif %}
+          {% if dd_tag_availability_zone is defined %}"region:{{ dd_tag_availability_zone }}",{% endif %}
+          {% if dd_tag_env is defined %}"env:{{ dd_tag_env }}",{% endif %}
+          {% if dd_tag_service is defined %}"service:{{ dd_tag_service }}",{% endif %}
+          "configuration_manager:ansible"
+          ]
   roles:
-    - oodd
+    - role: oodd
+      vars:
+        tags: "{{ datadog_tags }}"
+        hostname: "{{ inventory_hostname }}"
