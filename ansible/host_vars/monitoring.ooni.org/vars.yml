@@ -158,8 +158,11 @@ ooni_datadog_checks:
     - type: journald
       container_mode: true
   openmetrics:
-    openmetrics_endpoint: "http://prometheus.ooni.org:9090/metrics"
-    namespace: "ooniprom"
-    metrics:
-      - ".*"
+    instances:
+      - openmetrics_endpoint: "http://prometheus.ooni.org:9090/metrics"
+        namespace: "ooniprom"
+        metrics:
+          - "^prom.+"
+          - "^net_.+"
+          - "^go_.+"
 ...
