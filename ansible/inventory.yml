@@ -84,7 +84,32 @@ all:
 
     have_datadog_agent:
       hosts:
-        oonidata.ooni.org: {}
+        #backend-fsn.ooni.org:
+        #  dd_tag_cloud_provider: hetzner
+        #  dd_tag_availability_zone: eu-fsn
+        #  dd_tag_env: prod
+        #  dd_tag_service: oonibackend
+        #backend-hel.ooni.org:
+        #  dd_tag_cloud_provider: hetzner
+        #  dd_tag_availability_zone: eu-hel
+        #  dd_tag_env: test
+        #  dd_tag_service: oonibackend
+        #monitoring.ooni.org:
+        #  dd_tag_cloud_provider: hetzner
+        #  dd_tag_availability_zone: eu-fsn
+        #  dd_tag_env: prod
+        #  dd_tag_service: monitoring
+        #data.ooni.org:
+        #  dd_tag_cloud_provider: hetzner
+        #  dd_tag_availability_zone: eu-fsn
+        #  dd_tag_env: test
+        #  dd_tag_service: oonidata
+        oonidata.ooni.org:
+          dd_tag_cloud_provider: hetzner
+          dd_tag_availability_zone: eu-fsn
+          dd_tag_env: prod
+          dd_tag_service: oonidata
+
 
     monitoring:
       hosts:
@@ -100,6 +125,7 @@ all:
         backend-hel.ooni.org: {}
         monitoring.ooni.org: {}
         oonidata.ooni.org: {}
+        data.ooni.org: {}
 
     probe_services:
       hosts:
