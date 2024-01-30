@@ -4,11 +4,7 @@ dependencies:
     vars:
       datadog_api_key: "{{ ooni_datadog_api_key }}"
       datadog_site: "datadoghq.eu"
-      datadog_checks:
-        journald:
-          logs:
-          - type: journald
-            container_mode: true
+      datadog_checks: "{{ ooni_datadog_checks }}"
       datadog_config:
         hostname: "{{ hostname }}"
         logs_enabled: true

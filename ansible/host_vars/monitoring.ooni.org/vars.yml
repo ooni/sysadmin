@@ -152,4 +152,14 @@ blackbox_jobs:
     module: icmp
     targets: "{{ groups['dom0'] | list }}"
 
+ooni_datadog_checks:
+  journald:
+    logs:
+    - type: journald
+      container_mode: true
+  openmetrics:
+    openmetrics_endpoint: "http://prometheus.ooni.org:9090/metrics"
+    namespace: "ooniprom"
+    metrics:
+      - ".*"
 ...
