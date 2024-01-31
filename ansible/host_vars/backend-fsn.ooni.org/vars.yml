@@ -8,3 +8,20 @@ base_url: "https://ams-pg.ooni.org/"
 tor_targets: "{{ vault_tor_targets }}"
 psiphon_config: "{{ vault_orchestra_psiphon_config_file_content }}"
 digital_ocean_token: "{{ vault_digital_ocean_token }}"
+ooni_datadog_checks:
+  journald:
+    logs:
+    - type: journald
+      container_mode: true
+  openmetrics:
+    instances:
+      - openmetrics_endpoint: "http://localhost:9090/metrics"
+        namespace: "ooniprom"
+        metrics:
+          - "^prom.+"
+          - "^net_.+"
+          - "^go_.+"
+      - metrics:
+        - ^netdata_statsd.*
+        namespace: ooninetdata
+        openmetrics_endpoint: http://localhost:19999/api/v1/allmetrics?format=prometheus&timestamps=no&types=yes&help=yes

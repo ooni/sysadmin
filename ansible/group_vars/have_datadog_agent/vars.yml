@@ -1,0 +1,1 @@
+ooni_datadog_api_key: "{{ vault_ooni_datadog_api_key }}"

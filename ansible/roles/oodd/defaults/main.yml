@@ -1,0 +1,5 @@
+ooni_datadog_checks:
+  journald:
+    logs:
+      - type: journald
+        container_mode: true
