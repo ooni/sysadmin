@@ -11,6 +11,8 @@ Once you activate the virtualenv you can install the correct version of ansible 
 
 ```
 pip install ansible==2.9.16
+pip install requests
+pip install requests[socks]
 ```
 
 

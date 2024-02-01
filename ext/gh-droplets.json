@@ -6,6 +6,18 @@
             "disk": 5,
             "features": [],
             "id": 1134,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 16,
+                "min_disk_size": null,
+                "name": "stretch-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "stretch-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -30,14 +42,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 5,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m1024m-d5g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d5g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "off",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "2751"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -45,6 +78,18 @@
             "disk": 100,
             "features": [],
             "id": 1607,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 6,
+                "min_disk_size": null,
+                "name": "jessie-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "jessie-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -69,14 +114,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 100,
+                "memory": 6144,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m6144m-d100g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m6144m-d100g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "off",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "1558"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -84,6 +150,18 @@
             "disk": 200,
             "features": [],
             "id": 1800,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 6,
+                "min_disk_size": null,
+                "name": "jessie-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "jessie-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -108,14 +186,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 200,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m4096m-d200g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d200g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "1748"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -123,6 +222,18 @@
             "disk": 1350,
             "features": [],
             "id": 1868,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 16,
+                "min_disk_size": null,
+                "name": "stretch-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "stretch-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -147,14 +258,41 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 1350,
+                "memory": 16384,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m16384m-d1350g",
+                "transfer": -1,
+                "vcpus": 4
+            },
+            "size_slug": "m16384m-d1350g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 4
+            "status": "off",
+            "tags": [],
+            "vcpus": 4,
+            "volume_ids": [
+                "1818",
+                "2004",
+                "2005",
+                "2006",
+                "2007",
+                "2008",
+                "2009"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -162,6 +300,18 @@
             "disk": 5,
             "features": [],
             "id": 2803,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 16,
+                "min_disk_size": null,
+                "name": "stretch-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "stretch-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -186,14 +336,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 5,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m1024m-d5g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d5g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "off",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "2750"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -201,6 +372,18 @@
             "disk": 100,
             "features": [],
             "id": 3194,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -225,14 +408,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 100,
+                "memory": 3072,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m3072m-d100g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m3072m-d100g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3162"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -240,6 +444,18 @@
             "disk": 50,
             "features": [],
             "id": 3206,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -264,14 +480,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 50,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m4096m-d50g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d50g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3175"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -279,6 +516,18 @@
             "disk": 20,
             "features": [],
             "id": 3247,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -303,14 +552,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 20,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m1024m-d20g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d20g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "off",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "3217"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -318,6 +588,18 @@
             "disk": 20,
             "features": [],
             "id": 3251,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -342,14 +624,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 20,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m1024m-d20g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d20g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "off",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "3222"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -357,6 +660,18 @@
             "disk": 10,
             "features": [],
             "id": 3262,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -381,14 +696,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 10,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m1024m-d10g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d10g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "active",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "3233"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -396,6 +732,18 @@
             "disk": 10,
             "features": [],
             "id": 3265,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -420,14 +768,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 10,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m1024m-d10g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d10g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "active",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "3236"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -435,6 +804,18 @@
             "disk": 100,
             "features": [],
             "id": 3266,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -459,14 +840,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 100,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m4096m-d100g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d100g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3237"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -474,6 +876,18 @@
             "disk": 20,
             "features": [],
             "id": 3272,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -498,14 +912,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 20,
+                "memory": 2048,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m2048m-d20g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m2048m-d20g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "off",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "3243"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -513,6 +948,18 @@
             "disk": 15,
             "features": [],
             "id": 3274,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -537,14 +984,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 15,
+                "memory": 2048,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m2048m-d15g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m2048m-d15g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "active",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "3245"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -552,6 +1020,18 @@
             "disk": 200,
             "features": [],
             "id": 3279,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -576,14 +1056,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 200,
+                "memory": 16384,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m16384m-d200g",
+                "transfer": -1,
+                "vcpus": 8
+            },
+            "size_slug": "m16384m-d200g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 8
+            "status": "off",
+            "tags": [],
+            "vcpus": 8,
+            "volume_ids": [
+                "3250"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -591,6 +1092,18 @@
             "disk": 200,
             "features": [],
             "id": 3326,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -615,14 +1128,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 200,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m4096m-d200g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d200g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "off",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3300"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -630,6 +1164,18 @@
             "disk": 200,
             "features": [],
             "id": 3327,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -654,14 +1200,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 200,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m4096m-d200g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d200g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "off",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3301"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -669,6 +1236,18 @@
             "disk": 50,
             "features": [],
             "id": 3345,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -693,14 +1272,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 50,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m4096m-d50g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d50g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3320"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -708,6 +1308,18 @@
             "disk": 50,
             "features": [],
             "id": 3406,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -732,53 +1344,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
-            "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 6
-        },
-        {
-            "backup_ids": [],
-            "created_at": "1970-01-01T00:00:00+00:00",
-            "disk": 40,
-            "features": [],
-            "id": 3470,
-            "kernel": {
-                "id": 13,
-                "name": "Linux Latest",
-                "version": "latest"
-            },
-            "key_fingerprint": {
-                "ssh_dsa": "1024 SHA256:Ct1ip0S7f9O5DOJcfQVRuQTY5HpWPZSeQ3WKf4BewfE",
-                "ssh_ecdsa": "256 SHA256:iTj5AIdJLAMWrIJi6YJCcKmXZQDZXzCvuEEAAUCdkoY",
-                "ssh_rsa": "2048 SHA256:kUscqFlx9bKtVShG2mTTtJKwc7xiNvaKqAz1JIIn1Qc"
-            },
-            "locked": false,
-            "memory": 4096,
-            "name": "federico-test",
-            "networks": {
-                "v4": [
-                    {
-                        "gateway": "37.218.245.254",
-                        "ip_address": "37.218.245.153",
-                        "netmask": "255.255.255.0",
-                        "network": "37.218.245.0/24",
-                        "type": "public"
-                    }
-                ]
-            },
-            "region": {
+            "size": {
                 "available": true,
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "description": "-",
+                "disk": 50,
+                "memory": 12288,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m12288m-d50g",
+                "transfer": -1,
+                "vcpus": 6
             },
+            "size_slug": "m12288m-d50g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 6,
+            "volume_ids": [
+                "3382"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -786,6 +1380,18 @@
             "disk": 50,
             "features": [],
             "id": 3637,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -810,14 +1416,35 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "US East (Miami)",
-                "slug": "US East (Miami)"
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 50,
+                "memory": 4096,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m4096m-d50g",
+                "transfer": -1,
+                "vcpus": 2
+            },
+            "size_slug": "m4096m-d50g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 2
+            "status": "active",
+            "tags": [],
+            "vcpus": 2,
+            "volume_ids": [
+                "3635"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
@@ -825,6 +1452,18 @@
             "disk": 10,
             "features": [],
             "id": 4180,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 20,
+                "min_disk_size": null,
+                "name": "buster-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "buster-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
@@ -849,93 +1488,251 @@
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 10,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m1024m-d10g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d10g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "active",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "4194"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
-            "created_at": "2021-05-14T17:57:30+00:00",
-            "disk": 20,
+            "created_at": "1970-01-01T00:00:00+00:00",
+            "disk": 500,
             "features": [],
-            "id": 4403,
+            "id": 4671,
+            "image": {
+                "created_at": null,
+                "distribution": "ubuntu",
+                "id": 21,
+                "min_disk_size": null,
+                "name": "focal-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "focal-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
             "key_fingerprint": {
-                "ssh_ecdsa": "256 SHA256:Ld1Q/dbG6Bp50HGRMYAy5YW9vjTl9aSHr6yRJhXblxI",
-                "ssh_rsa": "2048 SHA256:eaIOHFG849+Uk32T9cUUDUa/xHzGhKCnsifAoGg0cyU"
+                "ssh_ecdsa": "256 SHA256:JmNU/CI3fnldUhu7SZME3iKx9DLyNeUMV0NTv2c3O58",
+                "ssh_rsa": "2048 SHA256:fTEClmIEaJz1j1Z/17QqXINIGLrCBZ3K5pnXetaxak8"
             },
             "locked": false,
-            "memory": 1024,
-            "name": "testing-packages",
+            "memory": 16384,
+            "name": "arturo-playground",
             "networks": {
                 "v4": [
                     {
-                        "gateway": "37.218.242.254",
-                        "ip_address": "37.218.242.165",
+                        "gateway": "37.218.241.254",
+                        "ip_address": "37.218.241.237",
                         "netmask": "255.255.255.0",
-                        "network": "37.218.242.0/24",
+                        "network": "37.218.241.0/24",
                         "type": "public"
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
-                "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "name": "US East (Miami)",
+                "slug": "mia1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 500,
+                "memory": 16384,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m16384m-d500g",
+                "transfer": -1,
+                "vcpus": 8
+            },
+            "size_slug": "m16384m-d500g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 1
+            "status": "active",
+            "tags": [],
+            "vcpus": 8,
+            "volume_ids": [
+                "4709"
+            ],
+            "vpc_uuid": "-"
         },
         {
             "backup_ids": [],
-            "created_at": "2021-05-17T14:35:13+00:00",
-            "disk": 1000,
+            "created_at": "2022-05-10T13:03:45+00:00",
+            "disk": 50,
             "features": [],
-            "id": 4414,
+            "id": 4778,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 23,
+                "min_disk_size": null,
+                "name": "bullseye-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "bullseye-x64",
+                "type": "snapshot"
+            },
             "kernel": {
                 "id": 13,
                 "name": "Linux Latest",
                 "version": "latest"
             },
             "key_fingerprint": {
-                "ssh_ecdsa": "256 SHA256:7fIbBVzwgoyRrI17Wu9l6Lxo8laEpTCaI8X5PuoNt+s",
-                "ssh_rsa": "2048 SHA256:tllXvomBncnKrLxnI0Hd6N4+c1vSnvfs0RWB0qjjIjM"
+                "ssh_ecdsa": "256 SHA256:dGeFSM+lJf/X7QG+IuoyLklDNczFw5SAmdUk7Xr5PvQ",
+                "ssh_rsa": "2048 SHA256:MAplWR+WX6M7877c4YanE7h3EBKuIFjGqlzhRhbJu/M"
             },
             "locked": false,
-            "memory": 16384,
-            "name": "olap-testhouse",
+            "memory": 8192,
+            "name": "api-test-geoip",
+            "networks": {
+                "v4": [
+                    {
+                        "gateway": "37.218.244.126",
+                        "ip_address": "37.218.244.46",
+                        "netmask": "255.255.255.128",
+                        "network": "37.218.244.0/25",
+                        "type": "public"
+                    }
+                ]
+            },
+            "next_backup_window": null,
+            "region": {
+                "available": true,
+                "name": "US East (Miami)",
+                "slug": "mia1"
+            },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 50,
+                "memory": 8192,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "mia1"
+                ],
+                "slug": "m8192m-d50g",
+                "transfer": -1,
+                "vcpus": 4
+            },
+            "size_slug": "m8192m-d50g",
+            "snapshot_ids": [],
+            "status": "active",
+            "tags": [],
+            "vcpus": 4,
+            "volume_ids": [
+                "4818"
+            ],
+            "vpc_uuid": "-"
+        },
+        {
+            "backup_ids": [],
+            "created_at": "2023-10-02T17:04:47+00:00",
+            "disk": 10,
+            "features": [],
+            "id": 5161,
+            "image": {
+                "created_at": null,
+                "distribution": "debian",
+                "id": 27,
+                "min_disk_size": null,
+                "name": "bookworm-x64",
+                "public": true,
+                "regions": [],
+                "size_gigabytes": null,
+                "slug": "bookworm-x64",
+                "type": "snapshot"
+            },
+            "kernel": {
+                "id": 13,
+                "name": "Linux Latest",
+                "version": "latest"
+            },
+            "key_fingerprint": {
+                "ssh_ecdsa": "256 SHA256:mGddflIK6RZO3YRvNVQO9w1+H6mLyQEN0mhX5Jnizq8",
+                "ssh_rsa": "2048 SHA256:NSWizeUk/VEOUNvdU1K+gq/5FtvP/E35G/SY4csEjQQ"
+            },
+            "locked": false,
+            "memory": 1024,
+            "name": "greenhost-beacon.ooni.org",
             "networks": {
                 "v4": [
                     {
                         "gateway": "37.218.243.126",
-                        "ip_address": "37.218.243.68",
+                        "ip_address": "37.218.243.110",
                         "netmask": "255.255.255.128",
                         "network": "37.218.243.0/25",
                         "type": "public"
                     }
                 ]
             },
+            "next_backup_window": null,
             "region": {
                 "available": true,
                 "name": "Amsterdam",
-                "slug": "Amsterdam"
+                "slug": "ams1"
             },
+            "size": {
+                "available": true,
+                "description": "-",
+                "disk": 10,
+                "memory": 1024,
+                "price_hourly": -1,
+                "price_monthly": -1,
+                "regions": [
+                    "ams1"
+                ],
+                "slug": "m1024m-d10g",
+                "transfer": -1,
+                "vcpus": 1
+            },
+            "size_slug": "m1024m-d10g",
             "snapshot_ids": [],
-            "status": "running",
-            "vcpus": 8
+            "status": "active",
+            "tags": [],
+            "vcpus": 1,
+            "volume_ids": [
+                "5225"
+            ],
+            "vpc_uuid": "-"
         }
     ],
-    "links": [],
+    "links": {},
     "meta": {
         "total": 24
     }

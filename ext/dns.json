@@ -6,19 +6,19 @@
     "type": "A"
   },
   {
-    "address": "ASPMX.L.GOOGLE.COM",
+    "address": "v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all",
     "name": "@.ooni.io",
     "ttl": 1799,
-    "type": "MX"
+    "type": "TXT"
   },
   {
-    "address": "ALT1.ASPMX.L.GOOGLE.COM",
+    "address": "google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ",
     "name": "@.ooni.io",
     "ttl": 1799,
-    "type": "MX"
+    "type": "TXT"
   },
   {
-    "address": "ALT2.ASPMX.L.GOOGLE.COM",
+    "address": "ALT4.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
     "ttl": 1799,
     "type": "MX"
@@ -30,34 +30,28 @@
     "type": "MX"
   },
   {
-    "address": "ALT4.ASPMX.L.GOOGLE.COM",
+    "address": "ALT2.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
     "ttl": 1799,
     "type": "MX"
   },
   {
-    "address": "google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ",
+    "address": "ALT1.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
     "ttl": 1799,
-    "type": "TXT"
+    "type": "MX"
   },
   {
-    "address": "v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all",
+    "address": "ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
     "ttl": 1799,
-    "type": "TXT"
+    "type": "MX"
   },
   {
     "address": "https://ooni.org",
     "name": "@.ooni.nu",
     "ttl": 1800,
     "type": "URL301"
-  },
-  {
-    "address": "apex-loadbalancer.netlify.com",
-    "name": "@.ooni.org",
-    "ttl": 300,
-    "type": "ALIAS"
   },
   {
     "address": "ASPMX.L.GOOGLE.COM",
@@ -90,21 +84,9 @@
     "type": "MX"
   },
   {
-    "address": "google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c",
-    "name": "@.ooni.org",
-    "ttl": 60,
-    "type": "TXT"
-  },
-  {
     "address": "v=spf1 include:_spf.google.com include:riseup.net ~all",
     "name": "@.ooni.org",
     "ttl": 3600,
-    "type": "TXT"
-  },
-  {
-    "address": "OSSRH-66913",
-    "name": "@.ooni.org",
-    "ttl": 1799,
     "type": "TXT"
   },
   {
@@ -114,16 +96,34 @@
     "type": "TXT"
   },
   {
-    "address": "mx.runbox.com",
-    "name": "@.openobservatory.com",
+    "address": "apex-loadbalancer.netlify.com",
+    "name": "@.ooni.org",
+    "ttl": 300,
+    "type": "ALIAS"
+  },
+  {
+    "address": "google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c",
+    "name": "@.ooni.org",
     "ttl": 60,
-    "type": "MX"
+    "type": "TXT"
+  },
+  {
+    "address": "OSSRH-66913",
+    "name": "@.ooni.org",
+    "ttl": 1799,
+    "type": "TXT"
   },
   {
     "address": "http://ooni.torproject.org",
     "name": "@.openobservatory.com",
     "ttl": 1799,
     "type": "URL"
+  },
+  {
+    "address": "mx.runbox.com",
+    "name": "@.openobservatory.com",
+    "ttl": 60,
+    "type": "MX"
   },
   {
     "address": "http://ooni.torproject.org",
@@ -162,12 +162,6 @@
     "type": "MX"
   },
   {
-    "address": "v=spf1 include:_spf.google.com ~all",
-    "name": "@.openobservatory.org",
-    "ttl": 1799,
-    "type": "TXT"
-  },
-  {
     "address": "google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8",
     "name": "@.openobservatory.org",
     "ttl": 1799,
@@ -178,6 +172,12 @@
     "name": "@.openobservatory.org",
     "ttl": 1799,
     "type": "URL"
+  },
+  {
+    "address": "v=spf1 include:_spf.google.com ~all",
+    "name": "@.openobservatory.org",
+    "ttl": 1799,
+    "type": "TXT"
   },
   {
     "address": "azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=",
@@ -612,16 +612,16 @@
     "type": "A"
   },
   {
-    "address": "a01:4f8:162:53e8::2",
-    "name": "grafana.ooni.org",
-    "ttl": 1799,
-    "type": "AAAA"
-  },
-  {
     "address": "monitoring.ooni.org",
     "name": "grafana.ooni.org",
     "ttl": 1799,
     "type": "CNAME"
+  },
+  {
+    "address": "a01:4f8:162:53e8::2",
+    "name": "grafana.ooni.org",
+    "ttl": 1799,
+    "type": "AAAA"
   },
   {
     "address": "103.104.244.28",
@@ -684,16 +684,16 @@
     "type": "A"
   },
   {
-    "address": "a01:4f8:162:53e8::2",
-    "name": "jupyter.ooni.org",
-    "ttl": 1799,
-    "type": "AAAA"
-  },
-  {
     "address": "monitoring.ooni.org",
     "name": "jupyter.ooni.org",
     "ttl": 1799,
     "type": "CNAME"
+  },
+  {
+    "address": "a01:4f8:162:53e8::2",
+    "name": "jupyter.ooni.org",
+    "ttl": 1799,
+    "type": "AAAA"
   },
   {
     "address": "104.198.14.52",
