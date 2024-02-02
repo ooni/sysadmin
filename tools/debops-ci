@@ -110,8 +110,11 @@ def detect_changed_packages() -> List[Path]:
     changes = run2(f"git diff --name-only {commit}")
     pkgs = set()
     for cs in changes.splitlines():
-        c = Path(cs)
-        if c.as_posix().endswith(DCH):
+        p = cs.split("\t")
+        status = p[0]
+        path = p[1]
+        c = Path(path)
+        if c.as_posix().endswith(DCH) and status != "D":
             pkgs.add(c.parent.parent)
             continue
         while c.name:
