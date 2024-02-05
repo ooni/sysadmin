@@ -6,31 +6,7 @@
     "type": "A"
   },
   {
-    "address": "v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all",
-    "name": "@.ooni.io",
-    "ttl": 1799,
-    "type": "TXT"
-  },
-  {
-    "address": "google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ",
-    "name": "@.ooni.io",
-    "ttl": 1799,
-    "type": "TXT"
-  },
-  {
-    "address": "ALT4.ASPMX.L.GOOGLE.COM",
-    "name": "@.ooni.io",
-    "ttl": 1799,
-    "type": "MX"
-  },
-  {
-    "address": "ALT3.ASPMX.L.GOOGLE.COM",
-    "name": "@.ooni.io",
-    "ttl": 1799,
-    "type": "MX"
-  },
-  {
-    "address": "ALT2.ASPMX.L.GOOGLE.COM",
+    "address": "ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
     "ttl": 1799,
     "type": "MX"
@@ -42,16 +18,40 @@
     "type": "MX"
   },
   {
-    "address": "ASPMX.L.GOOGLE.COM",
+    "address": "ALT2.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
     "ttl": 1799,
     "type": "MX"
   },
   {
-    "address": "https://ooni.org",
-    "name": "@.ooni.nu",
-    "ttl": 1800,
-    "type": "URL301"
+    "address": "ALT3.ASPMX.L.GOOGLE.COM",
+    "name": "@.ooni.io",
+    "ttl": 1799,
+    "type": "MX"
+  },
+  {
+    "address": "ALT4.ASPMX.L.GOOGLE.COM",
+    "name": "@.ooni.io",
+    "ttl": 1799,
+    "type": "MX"
+  },
+  {
+    "address": "google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ",
+    "name": "@.ooni.io",
+    "ttl": 1799,
+    "type": "TXT"
+  },
+  {
+    "address": "v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all",
+    "name": "@.ooni.io",
+    "ttl": 1799,
+    "type": "TXT"
+  },
+  {
+    "address": "apex-loadbalancer.netlify.com",
+    "name": "@.ooni.org",
+    "ttl": 300,
+    "type": "ALIAS"
   },
   {
     "address": "ASPMX.L.GOOGLE.COM",
@@ -84,27 +84,15 @@
     "type": "MX"
   },
   {
-    "address": "v=spf1 include:_spf.google.com include:riseup.net ~all",
-    "name": "@.ooni.org",
-    "ttl": 3600,
-    "type": "TXT"
-  },
-  {
-    "address": "twilio-domain-verification=c8ac43e4d3e8476d8459233d7f6a7d46",
-    "name": "@.ooni.org",
-    "ttl": 60,
-    "type": "TXT"
-  },
-  {
-    "address": "apex-loadbalancer.netlify.com",
-    "name": "@.ooni.org",
-    "ttl": 300,
-    "type": "ALIAS"
-  },
-  {
     "address": "google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c",
     "name": "@.ooni.org",
     "ttl": 60,
+    "type": "TXT"
+  },
+  {
+    "address": "v=spf1 include:_spf.google.com include:riseup.net ~all",
+    "name": "@.ooni.org",
+    "ttl": 3600,
     "type": "TXT"
   },
   {
@@ -114,16 +102,22 @@
     "type": "TXT"
   },
   {
-    "address": "http://ooni.torproject.org",
-    "name": "@.openobservatory.com",
-    "ttl": 1799,
-    "type": "URL"
+    "address": "twilio-domain-verification=c8ac43e4d3e8476d8459233d7f6a7d46",
+    "name": "@.ooni.org",
+    "ttl": 60,
+    "type": "TXT"
   },
   {
     "address": "mx.runbox.com",
     "name": "@.openobservatory.com",
     "ttl": 60,
     "type": "MX"
+  },
+  {
+    "address": "http://ooni.torproject.org",
+    "name": "@.openobservatory.com",
+    "ttl": 1799,
+    "type": "URL"
   },
   {
     "address": "http://ooni.torproject.org",
@@ -162,6 +156,12 @@
     "type": "MX"
   },
   {
+    "address": "v=spf1 include:_spf.google.com ~all",
+    "name": "@.openobservatory.org",
+    "ttl": 1799,
+    "type": "TXT"
+  },
+  {
     "address": "google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8",
     "name": "@.openobservatory.org",
     "ttl": 1799,
@@ -172,12 +172,6 @@
     "name": "@.openobservatory.org",
     "ttl": 1799,
     "type": "URL"
-  },
-  {
-    "address": "v=spf1 include:_spf.google.com ~all",
-    "name": "@.openobservatory.org",
-    "ttl": 1799,
-    "type": "TXT"
   },
   {
     "address": "azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=",
@@ -222,24 +216,6 @@
     "type": "A"
   },
   {
-    "address": "37.218.242.149",
-    "name": "ams-explorer.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.242.67",
-    "name": "ams-jupyter.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "37.218.247.95",
-    "name": "ams-orchestra.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
     "address": "188.166.93.143",
     "name": "ams-pg-test.ooni.org",
     "ttl": 1799,
@@ -258,62 +234,8 @@
     "type": "A"
   },
   {
-    "address": "37.218.245.90",
-    "name": "ams-ps.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "37.218.245.109",
-    "name": "ams-ps2.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
     "address": "37.218.247.98",
     "name": "ams-slack-1.ooni.org",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.245.114",
-    "name": "ams-wcth.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
-    "address": "37.218.247.47",
-    "name": "ams-wcth2.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
-    "address": "37.218.245.117",
-    "name": "ams-wcth3.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
-    "address": "37.218.242.231",
-    "name": "amsexplorer.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.242.173",
-    "name": "amsmatomo.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "37.218.242.175",
-    "name": "amsmetadb.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.242.217",
-    "name": "amstorth.ooni.nu",
     "ttl": 1799,
     "type": "A"
   },
@@ -414,12 +336,6 @@
     "type": "A"
   },
   {
-    "address": "https://trac.torproject.org/projects/tor/wiki/doc/OONI/censorshipwiki",
-    "name": "censorshipwiki.ooni.nu",
-    "ttl": 1800,
-    "type": "URL301"
-  },
-  {
     "address": "ec2-52-15-125-134.us-east-2.compute.amazonaws.com",
     "name": "collector-sandbox.ooni.io",
     "ttl": 1799,
@@ -478,18 +394,6 @@
     "name": "design.ooni.io",
     "ttl": 1799,
     "type": "CNAME"
-  },
-  {
-    "address": "ooni.nu",
-    "name": "dnstunnel.ooni.nu",
-    "ttl": 1800,
-    "type": "NS"
-  },
-  {
-    "address": "167.71.64.109",
-    "name": "doams1-countly.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
   },
   {
     "address": "cname.vercel-dns.com",
@@ -570,12 +474,6 @@
     "type": "CNAME"
   },
   {
-    "address": "103.104.244.20",
-    "name": "fastpath.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
     "address": "37.218.241.63",
     "name": "get.ooni.io",
     "ttl": 60,
@@ -612,34 +510,16 @@
     "type": "A"
   },
   {
-    "address": "monitoring.ooni.org",
-    "name": "grafana.ooni.org",
-    "ttl": 1799,
-    "type": "CNAME"
-  },
-  {
     "address": "a01:4f8:162:53e8::2",
     "name": "grafana.ooni.org",
     "ttl": 1799,
     "type": "AAAA"
   },
   {
-    "address": "103.104.244.28",
-    "name": "hkg-ps.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "103.104.244.87",
-    "name": "hkgbouncer.ooni.nu",
+    "address": "monitoring.ooni.org",
+    "name": "grafana.ooni.org",
     "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "103.104.244.110",
-    "name": "hkgcollectora.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
+    "type": "CNAME"
   },
   {
     "address": "37.218.240.56",
@@ -656,12 +536,6 @@
   {
     "address": "37.218.240.92",
     "name": "hkgsuperset.ooni.io",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "103.104.244.76",
-    "name": "hkgtorth.ooni.nu",
     "ttl": 1799,
     "type": "A"
   },
@@ -684,16 +558,16 @@
     "type": "A"
   },
   {
-    "address": "monitoring.ooni.org",
-    "name": "jupyter.ooni.org",
-    "ttl": 1799,
-    "type": "CNAME"
-  },
-  {
     "address": "a01:4f8:162:53e8::2",
     "name": "jupyter.ooni.org",
     "ttl": 1799,
     "type": "AAAA"
+  },
+  {
+    "address": "monitoring.ooni.org",
+    "name": "jupyter.ooni.org",
+    "ttl": 1799,
+    "type": "CNAME"
   },
   {
     "address": "104.198.14.52",
@@ -724,84 +598,6 @@
     "name": "measurements.ooni.io",
     "ttl": 1800,
     "type": "CNAME"
-  },
-  {
-    "address": "37.218.241.93",
-    "name": "mia-echoth.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.175",
-    "name": "mia-explorer-test.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.63",
-    "name": "mia-get.ooni.nu",
-    "ttl": 1200,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.98",
-    "name": "mia-github-webhooks.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.94",
-    "name": "mia-httpth.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.87",
-    "name": "mia-orchestra-test.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.86",
-    "name": "mia-ps-test.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.102",
-    "name": "mia-ps2.ooni.nu",
-    "ttl": 300,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.95",
-    "name": "mia-run.ooni.nu",
-    "ttl": 60,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.8",
-    "name": "miaapi.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.178",
-    "name": "miacollector.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "37.218.241.28",
-    "name": "miatorth.ooni.nu",
-    "ttl": 1799,
-    "type": "A"
-  },
-  {
-    "address": "213.138.109.232",
-    "name": "mirror1.reports.ooni.nu",
-    "ttl": 1800,
-    "type": "A"
   },
   {
     "address": "5.9.112.244",
@@ -1150,12 +946,6 @@
     "name": "www.ooni.io",
     "ttl": 300,
     "type": "CNAME"
-  },
-  {
-    "address": "https://ooni.org",
-    "name": "www.ooni.nu",
-    "ttl": 1800,
-    "type": "URL301"
   },
   {
     "address": "ooni.netlify.com",

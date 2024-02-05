@@ -3,9 +3,9 @@
 @.openobservatory.org 60 IN MX ALT2.ASPMX.L.GOOGLE.COM
 @.openobservatory.org 60 IN MX ALT3.ASPMX.L.GOOGLE.COM
 @.openobservatory.org 60 IN MX ALT4.ASPMX.L.GOOGLE.COM
+@.openobservatory.org 1799 IN TXT v=spf1 include:_spf.google.com ~all
 @.openobservatory.org 1799 IN TXT google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8
 @.openobservatory.org 1799 IN URL https://ooni.org
-@.openobservatory.org 1799 IN TXT v=spf1 include:_spf.google.com ~all
 _amazonses.openobservatory.org 1799 IN TXT sDKCPKHh8kDdOFe8OisJEePIqUU+vgCsfRI3ou9qsJc=
 blog.openobservatory.org 1799 IN CNAME openo.ghost.io
 google._domainkey.openobservatory.org 1799 IN TXT v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvxxJebWX+361fwH2SJeu6WpEI3/6RMDI6sQ0vG7kZdJ6At1clJaKAaU4Pnyzm0tGifkSDC9I3nbxuuUmgDCFKmEBmMp3bKiS81n0flS+EcIZ8MD/4rUfF753H3oAJZPV0chDDEnmHhuqufvSsty4q0OD50oaTSx1/MIM6FxNTkXMVk6AIcW4LLH6ZPAAIy/tBVP1TOoLn4IgMb9DG5M+BEPKd6vrdJNkllz0OvoL3ftq1uQ37c7YAR/oY6iGAjvyQAcWSaDeC5bYgPG4iV5sNPjgJS9QDf/h8d9CX3CuylMwRFCnM4XALpjcq+vJc8rmqfK71r9aQ4nfarYCLomhLwIDAQAB
