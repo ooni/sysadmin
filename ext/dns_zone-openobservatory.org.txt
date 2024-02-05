@@ -1,8 +1,8 @@
-@.openobservatory.org 1799 IN MX ASPMX.L.GOOGLE.COM
-@.openobservatory.org 60 IN MX ALT1.ASPMX.L.GOOGLE.COM
-@.openobservatory.org 60 IN MX ALT2.ASPMX.L.GOOGLE.COM
-@.openobservatory.org 60 IN MX ALT3.ASPMX.L.GOOGLE.COM
-@.openobservatory.org 60 IN MX ALT4.ASPMX.L.GOOGLE.COM
+@.openobservatory.org 1799 IN MX 1 ASPMX.L.GOOGLE.COM
+@.openobservatory.org 60 IN MX 5 ALT1.ASPMX.L.GOOGLE.COM
+@.openobservatory.org 60 IN MX 5 ALT2.ASPMX.L.GOOGLE.COM
+@.openobservatory.org 60 IN MX 10 ALT3.ASPMX.L.GOOGLE.COM
+@.openobservatory.org 60 IN MX 10 ALT4.ASPMX.L.GOOGLE.COM
 @.openobservatory.org 1799 IN TXT v=spf1 include:_spf.google.com ~all
 @.openobservatory.org 1799 IN TXT google-site-verification=Ph-U-kNd7lLXcjMB4sPtdfG9s_0eChEmfKY7FoQWYl8
 @.openobservatory.org 1799 IN URL https://ooni.org

@@ -8,30 +8,35 @@
   {
     "address": "ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
+    "pref": "1",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT1.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
+    "pref": "5",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT2.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
+    "pref": "5",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT3.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
+    "pref": "10",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT4.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.io",
+    "pref": "10",
     "ttl": 1799,
     "type": "MX"
   },
@@ -56,30 +61,35 @@
   {
     "address": "ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.org",
+    "pref": "1",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT1.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.org",
+    "pref": "5",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT2.ASPMX.L.GOOGLE.COM",
     "name": "@.ooni.org",
+    "pref": "5",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ASPMX2.GOOGLEMAIL.COM",
     "name": "@.ooni.org",
+    "pref": "10",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ASPMX3.GOOGLEMAIL.COM",
     "name": "@.ooni.org",
+    "pref": "10",
     "ttl": 1799,
     "type": "MX"
   },
@@ -110,6 +120,7 @@
   {
     "address": "mx.runbox.com",
     "name": "@.openobservatory.com",
+    "pref": "10",
     "ttl": 60,
     "type": "MX"
   },
@@ -128,30 +139,35 @@
   {
     "address": "ASPMX.L.GOOGLE.COM",
     "name": "@.openobservatory.org",
+    "pref": "1",
     "ttl": 1799,
     "type": "MX"
   },
   {
     "address": "ALT1.ASPMX.L.GOOGLE.COM",
     "name": "@.openobservatory.org",
+    "pref": "5",
     "ttl": 60,
     "type": "MX"
   },
   {
     "address": "ALT2.ASPMX.L.GOOGLE.COM",
     "name": "@.openobservatory.org",
+    "pref": "5",
     "ttl": 60,
     "type": "MX"
   },
   {
     "address": "ALT3.ASPMX.L.GOOGLE.COM",
     "name": "@.openobservatory.org",
+    "pref": "10",
     "ttl": 60,
     "type": "MX"
   },
   {
     "address": "ALT4.ASPMX.L.GOOGLE.COM",
     "name": "@.openobservatory.org",
+    "pref": "10",
     "ttl": 60,
     "type": "MX"
   },

@@ -1,9 +1,9 @@
 @.ooni.org 300 IN ALIAS apex-loadbalancer.netlify.com
-@.ooni.org 1799 IN MX ASPMX.L.GOOGLE.COM
-@.ooni.org 1799 IN MX ALT1.ASPMX.L.GOOGLE.COM
-@.ooni.org 1799 IN MX ALT2.ASPMX.L.GOOGLE.COM
-@.ooni.org 1799 IN MX ASPMX2.GOOGLEMAIL.COM
-@.ooni.org 1799 IN MX ASPMX3.GOOGLEMAIL.COM
+@.ooni.org 1799 IN MX 1 ASPMX.L.GOOGLE.COM
+@.ooni.org 1799 IN MX 5 ALT1.ASPMX.L.GOOGLE.COM
+@.ooni.org 1799 IN MX 5 ALT2.ASPMX.L.GOOGLE.COM
+@.ooni.org 1799 IN MX 10 ASPMX2.GOOGLEMAIL.COM
+@.ooni.org 1799 IN MX 10 ASPMX3.GOOGLEMAIL.COM
 @.ooni.org 60 IN TXT google-site-verification=a6qQkxsRhS_0ZpxTXyPU4tOa4Jm9ZtSn7EGHJPa4b8c
 @.ooni.org 3600 IN TXT v=spf1 include:_spf.google.com include:riseup.net ~all
 @.ooni.org 1799 IN TXT OSSRH-66913

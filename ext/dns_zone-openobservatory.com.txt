@@ -1,3 +1,3 @@
-@.openobservatory.com 60 IN MX mx.runbox.com
+@.openobservatory.com 60 IN MX 10 mx.runbox.com
 @.openobservatory.com 1799 IN URL http://ooni.torproject.org
 www.openobservatory.com 1799 IN URL http://ooni.torproject.org
