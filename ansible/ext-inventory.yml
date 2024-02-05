@@ -7,7 +7,7 @@
   gather_facts: false
   vars:
     # comma-separated, no spaces
-    namecheap_domains: 'ooni.io,ooni.nu,ooni.org,openobservatory.com,openobservatory.net,openobservatory.org'
+    namecheap_domains: 'ooni.io,ooni.org,openobservatory.com,openobservatory.net,openobservatory.org'
     extroot: '{{ lookup("pipe", "git rev-parse --show-toplevel") }}/ext'
 
   tasks:
