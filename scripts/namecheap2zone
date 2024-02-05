@@ -53,7 +53,10 @@ def parse(blob, domain):
         addr = rr["Address"]
         if len(addr) > 1:
             addr = addr.rstrip(".")
-        zone.append(dict(name=name, ttl=rr_ttl, type=rr["Type"], address=addr))
+        d = dict(name=name, ttl=rr_ttl, type=rr["Type"], address=addr)
+        if rr["Type"] == "MX":
+            d["pref"] = rr["MXPref"]
+        zone.append(d)
 
     return zone
 
@@ -107,6 +110,8 @@ def main():
         for entry in zone_entries:
             if entry['type'] == 'URL301':
                 zone_txt += f"## {entry['name']} {entry['type']} {entry['address']}\n"
+            elif entry['type'] == 'MX':
+                zone_txt += f"{entry['name']} {entry['ttl']} IN {entry['type']} {entry['pref']} {entry['address']}\n"
             else:
                 zone_txt += f"{entry['name']} {entry['ttl']} IN {entry['type']} {entry['address']}\n"
         Path(f"../ext/dns_zone-{domain}.txt").write_text(zone_txt)
