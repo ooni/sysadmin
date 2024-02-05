@@ -71,12 +71,10 @@ def getenv_or_raise(name: str) -> str:
     return val
 
 
-def run2(cmd: str, **kw) -> str:
-    """Runs command expecting exit code to be 0.
-    Prints out stderr and stdout and raises an exception otherwise.
-    """
+def run_always(cmd: str, **kw) -> str:
     if conf.show_commands:
         print(f"Running {cmd}\nKW: {kw}")
+
     p = run(cmd.split(), capture_output=True, **kw)
     if p.returncode != 0:
         stdout = p.stdout.decode().strip()
@@ -86,14 +84,27 @@ def run2(cmd: str, **kw) -> str:
         raise Exception(f"'{cmd}' returned: {p.returncode}")
     return p.stdout.decode().strip()
 
+def run2(cmd: str, **kw) -> str:
+    """Runs command expecting exit code to be 0.
+    Prints out stderr and stdout and raises an exception otherwise.
+    """
+    if conf.dry_run:
+        return
+    return run_always(cmd, **kw)
 
 def runi(cmd: str, cwd: Path, sudo=False) -> None:
     if sudo:
         cmd = f"sudo {cmd}"
+    if conf.dry_run:
+        print(f"DRYRUN: $ {cmd}")
+        return
     run(cmd.split(), cwd=cwd, check=True)
 
 
 def runc(cmd: str) -> Tuple[int, str]:
+    if conf.dry_run:
+        print(f"DRYRUN: $ {cmd}")
+        return
     print("Running:", cmd)
     r = run(cmd.split(), capture_output=True)
     print("Return code:", r.returncode)
@@ -106,12 +117,15 @@ def detect_changed_packages() -> List[Path]:
     """
     DCH = "debian/changelog"
     # TODO: find a cleaner method:
-    commit = run2("git merge-base remotes/origin/master HEAD")
-    changes = run2(f"git diff --name-only {commit}")
+    commit = run_always("git merge-base remotes/origin/master HEAD")
+    changes = run_always(f"git diff --name-status {commit}")
     pkgs = set()
     for cs in changes.splitlines():
-        c = Path(cs)
-        if c.as_posix().endswith(DCH):
+        p = cs.split("\t")
+        status = p[0]
+        path = p[1]
+        c = Path(path)
+        if c.as_posix().endswith(DCH) and status != "D":
             pkgs.add(c.parent.parent)
             continue
         while c.name:
@@ -206,7 +220,7 @@ def _set_pkg_version_from_github_actions(p: Path, ver: str) -> bool:
 def buildpkg(p: Path) -> List[Path]:
     """Build one package, installing required dependencies"""
     print(f"Building package in {p}")
-    ver = run2("dpkg-parsechangelog --show-field Version", cwd=p)
+    ver = run_always("dpkg-parsechangelog --show-field Version", cwd=p)
     assert ver, f"No version number found in {p}/debian/changelog"
     sudo = True
     should_build = False
@@ -570,6 +584,7 @@ def main() -> None:
     )
     ap.add_argument("--bucket-name", help="S3 bucket name")
     ap.add_argument("--distro", default="unstable", help="Debian distribution name")
+    ap.add_argument("--dry-run", action="store_true", help="Debian distribution name")
     ap.add_argument("--origin", default="private", help="Debian Origin name")
     ap.add_argument("--arch", default="amd64", help="Debian architecture name")
     ap.add_argument("--gpg-key-fp", help="GPG key fingerprint")
