@@ -112,6 +112,8 @@ def main():
                 zone_txt += f"## {entry['name']} {entry['type']} {entry['address']}\n"
             elif entry['type'] == 'MX':
                 zone_txt += f"{entry['name']} {entry['ttl']} IN {entry['type']} {entry['pref']} {entry['address']}\n"
+            elif entry['type'] == 'TXT':
+                zone_txt += f"{entry['name']} {entry['ttl']} IN {entry['type']} \"{entry['address']}\"\n"
             else:
                 zone_txt += f"{entry['name']} {entry['ttl']} IN {entry['type']} {entry['address']}\n"
         Path(f"../ext/dns_zone-{domain}.txt").write_text(zone_txt)
