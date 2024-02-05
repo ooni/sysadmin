@@ -4,9 +4,9 @@
 @.ooni.io 1799 IN MX 5 ALT2.ASPMX.L.GOOGLE.COM
 @.ooni.io 1799 IN MX 10 ALT3.ASPMX.L.GOOGLE.COM
 @.ooni.io 1799 IN MX 10 ALT4.ASPMX.L.GOOGLE.COM
-@.ooni.io 1799 IN TXT google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ
-@.ooni.io 1799 IN TXT v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all
-_amazonses.ooni.io 1799 IN TXT azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y=
+@.ooni.io 1799 IN TXT "google-site-verification=e9IMJ_PebCn6CXK3_VT1acJkJR0IkKhSMe7Qakyc5sQ"
+@.ooni.io 1799 IN TXT "v=spf1 ip4:37.218.245.43 include:_spf.google.com ~all"
+_amazonses.ooni.io 1799 IN TXT "azEYpr/7CEF1lHGi/rRg0hGDTOjwBFKFLU47CfHYK4Y="
 a.collector.ooni.io 60 IN A 162.55.247.208
 a.echo.th.ooni.io 60 IN A 37.218.241.93
 a.http.th.ooni.io 60 IN A 37.218.241.94
@@ -38,7 +38,7 @@ explorer-test.ooni.io 300 IN A 37.218.241.175
 explorer.ooni.io 60 IN A 37.218.242.149
 get.ooni.io 60 IN A 37.218.241.63
 github-webhooks.ooni.io 60 IN A 37.218.241.98
-google._domainkey.ooni.io 1799 IN TXT v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS
+google._domainkey.ooni.io 1799 IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi34W2DN2w5z/4do2GpVQmd18eAM7HFmDvOk16W+0k/DDtEWgwQQMRU4Jf2dUhZuIbZ60TJZVz6Vj5lbErldLPykQD+1UqShnslofePeDxZL3d9yx3y9R5OZ51X62Ym5USoTxx6Ka7rSFRuhcj2MgtBCwBiiIRx5HImdWjkaYE8agbKzsXPPnGtwcybCiMGYrS"
 gorush.ooni.io 60 IN A 37.218.247.95
 hkgmetadb.infra.ooni.io 1799 IN A 37.218.240.56
 hkgsuperset.ooni.io 1799 IN A 37.218.240.92
