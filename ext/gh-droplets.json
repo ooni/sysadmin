@@ -338,7 +338,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -554,7 +554,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -626,7 +626,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -698,7 +698,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -770,7 +770,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -986,7 +986,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -1202,7 +1202,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -1418,7 +1418,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -1561,7 +1561,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
@@ -1632,7 +1632,7 @@
             },
             "next_backup_window": null,
             "region": {
-                "available": true,
+                "available": false,
                 "name": "US East (Miami)",
                 "slug": "mia1"
             },
