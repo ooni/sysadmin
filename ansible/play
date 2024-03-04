@@ -53,10 +53,10 @@ if [ -t 0 -a -t 1 -a -t 2 ]; then
     fi
   elif [ "$uname" = Darwin ]; then
     name=`echo "$cmd" "$@" | sed s/[^-+=a-zA-Z0-9_]/_/g`.`date +%Y.%m.%d.%H.%M.%S`.$$.log
-    exec script -a "$LOGS_DIR/$name" "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory.yml "$@"
+    exec script -a "$LOGS_DIR/$name" "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
   else
     echo "$0: don't know how to launch \`script\` at $uname." 1>&2
     # fall-through
   fi
 fi
-exec "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory.yml "$@"
+exec "$binary" --vault-password-file ./password-pipe --inventory-file ./inventory "$@"
