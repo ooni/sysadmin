@@ -1,2 +1,0 @@
-domain: '{{ CHANGE_ME }}'
-web_root_dir: '/srv/static-www'

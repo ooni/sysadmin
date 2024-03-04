@@ -1,9 +1,0 @@
----
-- name: Create webroot
-  file:
-    path: "{{ web_root_dir }}"
-    state: directory
-
-- name: static-fileserver nginx config
-  template: src=static-fileserver-nginx dest=/etc/nginx/sites-enabled/static-fileserver
-  notify: reload nginx

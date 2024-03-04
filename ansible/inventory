@@ -45,7 +45,6 @@ shinri.ooni.org
 [mia]
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
-mia-run.ooni.nu
 
 [hkg]
 
@@ -111,7 +110,6 @@ ams-wcth3.ooni.nu
 ams-ps.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
-mia-run.ooni.nu
 ams-slack-1.ooni.org
 
 [have_nftables]
@@ -123,7 +121,6 @@ backend-hel.ooni.org
 [have_nginx]
 amsmatomo.ooni.nu
 ams-ps.ooni.nu
-mia-run.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-slack-1.ooni.org
