@@ -46,14 +46,12 @@ shinri.ooni.org
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 mia-run.ooni.nu
-mia-explorer-test.ooni.nu
 
 [hkg]
 
 # Eclips.is Amsterdam Hosts
 [ams]
 amsmatomo.ooni.nu
-ams-explorer.ooni.nu
 db-1.proteus.ooni.io
 ams-ps.ooni.nu
 ams-wcth2.ooni.nu
@@ -111,11 +109,9 @@ amsmatomo.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-ps.ooni.nu
-ams-explorer.ooni.nu
 mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 mia-run.ooni.nu
-mia-explorer-test.ooni.nu
 ams-slack-1.ooni.org
 
 [have_nftables]
@@ -127,11 +123,9 @@ backend-hel.ooni.org
 [have_nginx]
 amsmatomo.ooni.nu
 ams-ps.ooni.nu
-ams-explorer.ooni.nu
 mia-run.ooni.nu
 ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
-mia-explorer-test.ooni.nu
 ams-slack-1.ooni.org
 
 [have_tor] # Tor test-helpers
@@ -140,7 +134,6 @@ ams-slack-1.ooni.org
 ams-ps.ooni.nu
 
 [have_tcpmetrics]
-ams-explorer.ooni.nu
 ams-ps.ooni.nu
 
 [active_collector]
