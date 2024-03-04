@@ -135,4 +135,9 @@ scrape_configs:
         - backend-hel.ooni.org:444
         - ams-pg-test.ooni.org:444
 
+remote_write:
+    - url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom/push
+      basic_auth:
+        username: 1412863
+        password: {{ grafana_cloud_api_token }}
 ...
