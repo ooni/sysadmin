@@ -49,8 +49,6 @@ passwd:
   prtnotif: {login: prtnotif, comment: Orchestration Notifications}
   prtfront: {login: prtfront, comment: Orchestration Front}
 
-  explorer: {login: explorer, comment: OONI Explorer}
-
   oomsmweb: {login: oomsmweb, comment: OONI Measurements WebAPI}
 
   anaconda: {login: anaconda, comment: Anaconda python user}

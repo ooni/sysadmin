@@ -12,6 +12,7 @@
       tags: ooca
     - role: nftables
     - role: monitoring
+      tags: monitoring
     - role: dehydrated
       tags: dehydrated
       expand: yes
@@ -23,8 +24,14 @@
         - "netdata.ooni.org"
         - "prometheus.ooni.org"
     - role: prometheus
-      tags: prometheus
+      tags:
+        - prometheus
+        - conf
     - role: blackbox_exporter
-      tags: blackbox_exporter
+      tags:
+        - blackbox_exporter
+        - conf
     - role: alertmanager
-      tags: alertmanager
+      tags:
+        - alertmanager
+        - conf

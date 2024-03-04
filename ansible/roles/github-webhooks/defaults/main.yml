@@ -1,2 +1,0 @@
-github_webhooks_image: 'openobservatory/github-webhooks:20191118-b38eccc2'
-github_private_key: '{{ CHANGE_ME }}'
