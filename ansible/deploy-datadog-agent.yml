@@ -13,8 +13,8 @@
           {% if dd_tag_service is defined %}"service:{{ dd_tag_service }}",{% endif %}
           "configuration_manager:ansible"
           ]
-  roles:
-    - role: oodd
-      vars:
-        tags: "{{ datadog_tags }}"
-        hostname: "{{ inventory_hostname }}"
+  tasks:
+    - ansible.builtin.apt:
+      name: datadog-agent
+      state: absent
+      purge: yes
