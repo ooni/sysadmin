@@ -14,7 +14,8 @@
           "configuration_manager:ansible"
           ]
   tasks:
-    - ansible.builtin.apt:
-      name: datadog-agent
-      state: absent
-      purge: yes
+    - name: remove datadog agent
+      ansible.builtin.apt:
+        name: datadog-agent
+        state: absent
+        purge: yes
