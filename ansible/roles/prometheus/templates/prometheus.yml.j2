@@ -1,7 +1,7 @@
 ---
 global:
-  scrape_interval:     60s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 60s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   scrape_timeout:      15s
 
 # the path is absolute as ansible `validates` temporary file in some temporary directory
@@ -45,7 +45,7 @@ scrape_configs:
 {% endfor %}
 
   - job_name: 'node'
-    scrape_interval: 60s
+    scrape_interval: 5s
     scheme: https
     tls_config:
       ca_file: "{{ prometheus_exporter_cert }}"
@@ -73,7 +73,7 @@ scrape_configs:
 #      - targets:
 
   - job_name: 'raw-netdata'
-    scrape_interval: 60s
+    scrape_interval: 5s
     scheme: http
     metrics_path: "/api/v1/allmetrics"
     params:
@@ -90,7 +90,7 @@ scrape_configs:
         # - 2.th.ooni.org:19999
 
   - job_name: 'test-helpers'
-    scrape_interval: 60s
+    scrape_interval: 5s
     scheme: http
     metrics_path: "/metrics"
     static_configs:
@@ -101,7 +101,7 @@ scrape_configs:
         - 3.th.ooni.org:9001
 
   - job_name: 'ooni-api'
-    scrape_interval: 60s
+    scrape_interval: 5s
     scheme: https
     static_configs:
       - targets: [ 'api.ooni.io:443' ]
@@ -118,7 +118,7 @@ scrape_configs:
       - ooni.netlify.com:443
 
   - job_name: 'clickhouse'
-    scrape_interval: 60s
+    scrape_interval: 5s
     scheme: http
     metrics_path: "/metrics"
     static_configs:
@@ -127,7 +127,7 @@ scrape_configs:
 
   # See ansible/roles/ooni-backend/tasks/main.yml for the scraping targets
   - job_name: 'haproxy'
-    scrape_interval: 60s
+    scrape_interval: 5s
     scheme: https
     metrics_path: "/__haproxy_prom_metrics"
     static_configs:
