@@ -2,36 +2,40 @@
 - import_playbook: ansible-version.yml
 
 - hosts: monitoring.ooni.org
-  roles:
-    - role: base-bookworm
-    - role: ooca-cert
-      ooca_ssl_dir: /etc/prometheus/ssl
-      ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
-      ooca_ca: scraper_ca
-      ooca_group: prometheus
-      tags: ooca
-    - role: nftables
-    - role: monitoring
-      tags: monitoring
-    - role: dehydrated
-      tags: dehydrated
-      expand: yes
-      ssl_domains:
-        - "grafana.ooni.org"
-        - "jupyter.ooni.org"
-        - "loghost.ooni.org"
-        - "monitoring.ooni.org"
-        - "netdata.ooni.org"
-        - "prometheus.ooni.org"
-    - role: prometheus
-      tags:
-        - prometheus
-        - conf
-    - role: blackbox_exporter
-      tags:
-        - blackbox_exporter
-        - conf
-    - role: alertmanager
-      tags:
-        - alertmanager
-        - conf
+  tasks:
+  - name: ansible role has been moved to ooni/devops
+    ansible.builtin.debug:
+      msg: please run this from ooni/devops instead
+#  roles:
+#    - role: base-bookworm
+#    - role: ooca-cert
+#      ooca_ssl_dir: /etc/prometheus/ssl
+#      ooca_ssl_subj: '/O=OONI/OU=Prometheus Scraper/CN={{ inventory_hostname }}'
+#      ooca_ca: scraper_ca
+#      ooca_group: prometheus
+#      tags: ooca
+#    - role: nftables
+#    - role: monitoring
+#      tags: monitoring
+#    - role: dehydrated
+#      tags: dehydrated
+#      expand: yes
+#      ssl_domains:
+#        - "grafana.ooni.org"
+#        - "jupyter.ooni.org"
+#        - "loghost.ooni.org"
+#        - "monitoring.ooni.org"
+#        - "netdata.ooni.org"
+#        - "prometheus.ooni.org"
+#    - role: prometheus
+#      tags:
+#        - prometheus
+#        - conf
+#    - role: blackbox_exporter
+#      tags:
+#        - blackbox_exporter
+#        - conf
+#    - role: alertmanager
+#      tags:
+#        - alertmanager
+#        - conf
