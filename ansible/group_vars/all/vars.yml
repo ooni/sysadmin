@@ -74,20 +74,20 @@ passwd:
     comment: Simone Basso
     keys:
       - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtWoPfhhRSm+V2iXBAapsIcEGVBYUVO5rGRGc0LDuPI"
-  federico:
-    login: federico
-    comment: Federico Ceratto
-    keys:
-      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDm9vQEIYOOGI5m4sx7M0vrSBX/dyw64gCLxGchlaDJXn1Pj3lAvDNdJIjNl4XLQIm/E0inwo+4orw8a+WY5R+bOD8/86VnvsH8CvqoJDNx6NaIPwVNGjZHGmJ6GZKzSWWpq2Kzcr5LhEmPx+w46M1WHinoUtigEUdrwpPKg9/xTYTQjE61Zu+QK52nhyUOPWpUW5m3444FWlNmrJFnMk2zo/XVA5b4fwpU5UnzQPLTky56Rtn4JJpyeiJHr1IS0B3eQphZ9E/7M3sEJc7KE4I4ULbUEiDjS50eNnwwSfzFNvdSIXgH/YAp8AgMj1TF8lFaxL5eV2UhksfKHGnFVRsl"
   majakomel:
     login: majakomel
     comment: Maja Komel
     keys:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7gWQL4h/IyMbwDuMIXbTVmNEm8Yx19Ftt0P2e3OyWctSMH7WGaHc6b0dGoGh6Y4x0Kpw5h0iHWshP8Rg0pckNG9LeDjLY9nLR3Jv66ogFQtFi1DAlg4CXe369N70rBN9iurndgXjShW9OV+bY+MOlW8Fmmm67Vg0xFiYuYzjgUOpl4ofkbLGAQ7sJRBzpDV6TqHhGfOdYMDJyfFvurVz0oSyEZPFFRv4Css9iVk7BGsBukCCpUuax8akEeEjxWWCvjYXva7OA0jHKayfPAroZx/OJh01rhFe7wxlu5JwUKOcevvAZqeHh6200C82ijZOCN+Qq9yvxOH+OgzhnQwnoetIbGFgnb4CkDxo7dVLc/DFyObznC4f26f5D1OyPMUX8AEarEVdEPwsEfD2ePQr6qek0XWCWtYvGklb+GRLk9Yn0VL1qwvgrtstHdeXsKONTPKRxaCjWHu18dQaG2qOUnZ+St6SHeL49CN9aav2azNI/YKoQ9SGR4D23XeBRsW8="
+  mehul:
+    login: mehul
+    comment: Mehul Gulati
+    keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEZSA9TKUaYWG8gfnMoyDZO2S6vsy87xma4R/EzNpveZiOZTYSNn+UDL8NpQRuH5YgdWuQV2E7sKw/PIYA0lC/QTiq8Btqf6sEK5YWXtQy+yn9q5kB/rmi8zjaz0FUNigRrjL+26ao+c7NKpgmR+TRqbRd5VeJ46PuFD5M3c+MBeUoF1PT0zfioQFJ1mQoXwVix0n260clEXQDp4t0GZuNpWGTS+YTuJZ2vl6TDZtt8jrnENd99QArr2KU+NMTq8T2KYcPeQOoYsm7v/1TBkbv9UStllhjdE7HZSivPT8oRkF2YZYgytDxtCZG8i5iCK+vbNn6QmZMjuXPoBUeW+Njm70tlsirrKpUX+QiogA2qljxPD9st2eUkA7cATyOBkK7WLh1HYv2xyKpPtkkaELG+EHjmaVjVdyVAgUYwqg+MbIw1OyDpNmMZcW3iOpGpflXPMmLjKNMhee0//G7NxcGfwmIMbIiBkeofOnWDrMo+0PRULFtn6C7aA7ddirck+k="
 
 # Variables from different places have different precedence, beware of that while overriding group_vars/all variables!
 # See https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
-adm_logins: [ art, federico, sbs, majakomel ]
+adm_logins: [ art, sbs, majakomel, mehul ]
 shell_logins: [ agrabeli ]
 svc_ssh_logins: [ ]
 sshd_allow_users: '{{ adm_logins | union(shell_logins) | union(svc_ssh_logins) }}'
