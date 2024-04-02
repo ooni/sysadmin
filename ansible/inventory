@@ -17,17 +17,17 @@ ams
 
 # VPSes running OONI Probe
 [vpsprobes]
-168.197.99.40
-probe-by1.ooni.org
+#168.197.99.40
+#probe-by1.ooni.org
 probe-kz1.ooni.org
 probe-ru1.ooni.org
 probe-tr1.ooni.org
 probe-hk1.ooni.org
-probe-ua1.ooni.org
-probe-th1.ooni.org
-probe-kg1.ooni.org
-probe-sa1.ooni.org
-probe-ae1.ooni.org
+#probe-ua1.ooni.org
+#probe-th1.ooni.org
+#probe-kg1.ooni.org
+#probe-sa1.ooni.org
+#probe-ae1.ooni.org
 
 # Location-specific conf
 [on_hetzner]
@@ -36,30 +36,27 @@ backend-fsn.ooni.org
 oonidata.ooni.org
 backend-hel.ooni.org
 
-[on_cherryservers]
-shinri.ooni.org
-
 ########################################################################
 # location tags
 
 [mia]
-mia-echoth.ooni.nu
+#mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 
 [hkg]
 
 # Eclips.is Amsterdam Hosts
 [ams]
-amsmatomo.ooni.nu
-db-1.proteus.ooni.io
+#amsmatomo.ooni.nu
+#db-1.proteus.ooni.io
 ams-ps.ooni.nu
-ams-wcth2.ooni.nu
+#ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-slack-1.ooni.org
 
 # Digital Ocean Amsterdam Hosts
 [doams]
-doams1-countly.ooni.nu
+#doams1-countly.ooni.nu
 # FIXME Disabled due to location tags not working as expected
 #ams-pg.ooni.org
 #ams-pg-test.ooni.org
@@ -82,7 +79,7 @@ ams-pg-test.ooni.org
 [psk_metadb_amsapi]
 
 [psk_orchestration]
-db-1.proteus.ooni.io
+#db-1.proteus.ooni.io
 
 [psk_orchestra_prod]
 # Used to populate the vault_orchestra_psiphon_config_file_content var
@@ -96,7 +93,7 @@ backend-hel.ooni.org
 
 [psk_orchestra_db_prod]
 # FIXME: untie `psk_orchestration` into something more manageable
-db-1.proteus.ooni.io
+#db-1.proteus.ooni.io
 
 [psk_superset_hkgmetadb]
 
@@ -104,11 +101,11 @@ db-1.proteus.ooni.io
 # role tags
 
 [have_fw]
-amsmatomo.ooni.nu
-ams-wcth2.ooni.nu
+#amsmatomo.ooni.nu
+#ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-ps.ooni.nu
-mia-echoth.ooni.nu
+#mia-echoth.ooni.nu
 mia-httpth.ooni.nu
 ams-slack-1.ooni.org
 
@@ -119,9 +116,9 @@ backend-fsn.ooni.org
 backend-hel.ooni.org
 
 [have_nginx]
-amsmatomo.ooni.nu
+#amsmatomo.ooni.nu
 ams-ps.ooni.nu
-ams-wcth2.ooni.nu
+#ams-wcth2.ooni.nu
 ams-wcth3.ooni.nu
 ams-slack-1.ooni.org
 
@@ -167,3 +164,22 @@ monitoring.ooni.org
 # since 2018-12-12 # a.echo.th.ooni.io # restore onion key to check if it gets traffic
 # since 2018-12-12 # munin.ooni.io # disk idle since 2018-11-25
 # since 2018-12-12 # shark.ooni.nu # disk kept since 2018-11-25, idle since 2018-10-16
+#
+
+
+# Following hosts are as dead as Lenin, we should drop DNS records since they
+# have been droppped from the inventory file and are unreachable.
+#
+# 168.197.99.40              : ok=0    changed=0    unreachable=1    failed=0    skipped=1    rescued=0    ignored=0
+# ams-wcth2.ooni.nu          : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# amsmatomo.ooni.nu          : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# db-1.proteus.ooni.io       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# doams1-countly.ooni.nu     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# mia-echoth.ooni.nu         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# probe-ae1.ooni.org         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# probe-by1.ooni.org         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# probe-kg1.ooni.org         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# probe-sa1.ooni.org         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# probe-th1.ooni.org         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# probe-ua1.ooni.org         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+# shinri.ooni.org            : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
