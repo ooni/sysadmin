@@ -1,5 +1,5 @@
 ---
-adm_logins: [art, federico, sbs]
+adm_logins: [art, mehul, sbs]
 ngxprom_scrapers:
   - prometheus.infra.ooni.io
 
