@@ -13,6 +13,7 @@ prometheus_basic_auth_password: "{{ vault_prometheus_basic_auth_password }}"
 alertmanager_slack_api_url: '{{ vault_alertmanager_slack_api_url }}'
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
 grafana_secret_key: "{{ vault_grafana_secret_key }}"  # to sign cookies
+grafana_cloud_api_token: "{{ vault_grafana_cloud_api_token }}"  # for sending data to grafana cloud
 
 prometheus_listen_address: "127.0.0.1:8090"
 alertmanager_listen_address: "127.0.0.1:9093"
