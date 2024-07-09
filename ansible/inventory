@@ -1,3 +1,4 @@
+# NOTE: this has now been moved to ooni/devops ansible directory as inventory-legacy
 ########################################################################
 # dom0 tags (showing diversity of our infra, huh)
 
