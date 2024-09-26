@@ -223,30 +223,6 @@
     "name": "tor26",
     "protocol": "dir_port"
   },
-  "99e9adc8bba0d60982dbc655b5e8735d88ad788905c3713a39eff3224b617eeb": {
-    "address": "38.229.1.78:80",
-    "fingerprint": "C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4",
-    "params": {
-      "cert": [
-        "Hmyfd2ev46gGY7NoVxA9ngrPF2zCZtzskRTzoWXbxNkzeVnGFPWmrTtILRyqCTjHR+s9dg"
-      ],
-      "iat-mode": [
-        "1"
-      ]
-    },
-    "protocol": "obfs4"
-  },
-  "9d735c6e70512123ab2c2fe966446b2345b352c512e9fb359f4b1673236e4d4a": {
-    "address": "38.229.33.83:80",
-    "fingerprint": "0BAC39417268B96B9F514E7F63FA6FBA1A788955",
-    "params": {
-      "cert": [
-        "VwEFpk9F/UN9JED7XpG1XOjm/O8ZCXK80oPecgWnNDZDv5pdkhq1OpbAH0wNqOT6H6BmRQ"
-      ],
-      "iat-mode": [
-        "1"
-      ]
-    },
     "protocol": "obfs4"
   },
   "b7c0e3f183ad85a6686ec68344765cec57906b215e7b82a98a9ca013cb980efa": {
