@@ -10,9 +10,9 @@
       ssl_domains:
         - "oonidata.ooni.org"
 
-- hosts: shinri.ooni.org
+- hosts: data.ooni.org
   roles:
-    - role: base-bullseye
+    - role: base-bookworm
     - role: nftables
     - role: nginx-buster
       tags: nginx
@@ -20,9 +20,9 @@
       tags: dehydrated
       expand: yes
       ssl_domains:
-        - "shinri.ooni.org"
+        - "data.ooni.org"
     - role: jupyterhub
       tags: jupyterhub
-      ssl_domain: "shinri.ooni.org"
+      ssl_domain: "data.ooni.org"
     - role: datascience
       tags: datascience

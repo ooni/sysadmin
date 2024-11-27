@@ -42,6 +42,8 @@
     name:
       - gpg
       - gpg-agent
+      - dirmngr
+
 
 - name: Update apt cache
   tags: apt
