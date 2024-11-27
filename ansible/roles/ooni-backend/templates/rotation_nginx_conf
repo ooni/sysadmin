@@ -1,13 +1,36 @@
 # Managed by ansible, see roles/ooni-backend/tasks/main.yml
 # and roles/ooni-backend/templates/rotation_nginx_conf
 # Deployed by rotation tool to the test-helper hosts
+
+# Use 2-level cache using 5GB on disk
 proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=thcache:100M
                 max_size=5g inactive=24h use_temp_path=off;
+
+# anonymize ipaddr
+map $remote_addr $remote_addr_anon {
+  ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
+  ~(?P<ip>[^:]+:[^:]+):       $ip::;
+  default                     0.0.0.0;
+}
+
+# anonymize forwarded ipaddr
+map $http_x_forwarded_for $remote_fwd_anon {
+  ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
+  ~(?P<ip>[^:]+:[^:]+):       $ip::;
+  default                     0.0.0.0;
+}
+
+# log anonymized ipaddr and caching status
+log_format ooni_log_fmt '$remote_addr_anon $remote_fwd_anon $upstream_cache_status [$time_local] '
+    '"$request" $status snt:$body_bytes_sent rt:$request_time uprt:$upstream_response_time "$http_referer" "$http_user_agent"';
 
 server {
   listen 443 ssl http2;
   listen [::]:443 ssl http2;
   server_name _;
+  access_log syslog:server=unix:/dev/log,tag=nginx,severity=info ooni_log_fmt;
+  error_log syslog:server=unix:/dev/log,tag=nginx,severity=info;
+
   gzip on;
   ssl_certificate /etc/ssl/private/th_fullchain.pem;
   ssl_certificate_key /etc/ssl/private/th_privkey.pem;
@@ -20,7 +43,10 @@ server {
   add_header Strict-Transport-Security "max-age=63072000" always;
   ssl_stapling on;
   ssl_stapling_verify on;
-  resolver 127.0.0.1;
+
+  # No local caching resolver configured. Use external resolvers by default.
+  # resolver 127.0.0.1;
+
   # local test helper
   location / {
       proxy_set_header X-Forwarded-Proto $scheme;
