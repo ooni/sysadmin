@@ -1,13 +1,13 @@
 {
   "128.31.0.39:9101": {
-    "address": "128.31.0.39:9101",
-    "fingerprint": "9695DFC35FFEB861329B9F1AB04C46397020CE31",
+    "address": "128.31.0.39:9201",
+    "fingerprint": "1A25C6358DB91342AA51720A5038B72742732498",
     "name": "moria1",
     "protocol": "or_port_dirauth"
   },
   "128.31.0.39:9131": {
-    "address": "128.31.0.39:9131",
-    "fingerprint": "9695DFC35FFEB861329B9F1AB04C46397020CE31",
+    "address": "128.31.0.39:9231",
+    "fingerprint": "1A25C6358DB91342AA51720A5038B72742732498",
     "name": "moria1",
     "protocol": "dir_port"
   },
