@@ -3,3 +3,4 @@ prometheus_ssl_dir: /etc/prometheus/ssl
 prometheus_exporter_cert: "/etc/prometheus/exporter_ca.cert"
 prometheus_basic_auth_user: "prometheus"
 prometheus_basic_auth_password: "{{ CHANGE_ME }}"
+grafana_cloud_api_token: "{{ CHANGE_ME }}"
