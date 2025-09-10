@@ -306,7 +306,7 @@ def ci(args) -> None:
         return
 
     print(f"Building {pkgdirs}")
-    run2("apt-get install -qy --no-install-recommends devscripts")
+    run2("apt-get install -qy --no-install-recommends devscripts fakeroot")
 
     pkgs_lists = [buildpkg(pd) for pd in pkgdirs]
     print(f"Processing {pkgs_lists}")
